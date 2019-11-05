@@ -14,9 +14,6 @@ drop schema if exists db_cis_cosca;
 create schema db_cis_cosca;
 use db_cis_cosca;
 
-
-
-
 drop table if exists colleges;
 create table colleges(
 id int auto_increment primary key
@@ -56,6 +53,8 @@ id int auto_increment primary key
 ,college varchar(255)
 ,department_id int
 ,department_name varchar(255)
+,no_of_years int
+,studies varchar(255)
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -372,3 +371,26 @@ id int auto_increment primary key
 );
 
 
+drop table if exists users;
+create table users(
+id int auto_increment primary key
+,user_screen_name varchar(255)
+,user_name varchar(255)
+,password varchar(255)
+,date_added datetime
+,date_updated datetime
+,added_by_id varchar(255)
+,update_by_id varchar(255)
+,status int
+);
+
+drop table if exists user_default_privileges;
+create table user_default_privileges(
+id int auto_increment primary key
+,account varchar(255)
+,privilege varchar(255)
+,date_added datetime
+,date_updated datetime
+,added_by_id varchar(255)
+,update_by_id varchar(255)
+);
