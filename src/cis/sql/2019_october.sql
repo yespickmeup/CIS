@@ -63,6 +63,80 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
+drop table if exists academic_years;
+create table academic_years(
+id int auto_increment primary key
+,years varchar(255)
+,date_from date
+,date_to date
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+drop table if exists academic_year_periods;
+create table academic_year_periods(
+id int auto_increment primary key
+,academic_year_id int
+,department_id int
+,department varchar(255)
+,years varchar(255)
+,period varchar(255)
+,date_from date
+,date_to date
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+drop table if exists academic_offerings;
+create table academic_offerings(
+id int auto_increment primary key
+,academic_year_id int
+,academic_year varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department_name varchar(255)
+,no_of_years int
+,studies varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+
+
+drop table if exists subject_groupings;
+create table subject_groupings(
+id int auto_increment primary key
+,description varchar(255)
+,department_id int
+,department varchar(255)
+,college_id int
+,college varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
 
 drop table if exists academic_years;
 create table academic_years(
@@ -146,9 +220,12 @@ id int auto_increment primary key
 ,course_id int
 ,course_code varchar(255)
 ,course_description varchar(255)
-,units double
+,lecture_units double
+,lab_units double
 ,amount double
-,is_lab int
+,prerequisites_course_ids varchar(255)
+,subject_group varchar(255)
+,subject_group_id int
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -156,6 +233,24 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+drop table if exists subject_prerequisites;
+create table subject_prerequisites(
+id int auto_increment primary key
+,subject_id int
+,subject_code varchar(255)
+,description varchar(255)
+,lecture_units double
+,lab_units double
+,remarks varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
 
 drop table if exists curriculums;
 create table curriculums(

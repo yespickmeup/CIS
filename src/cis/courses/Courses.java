@@ -40,8 +40,8 @@ public class Courses {
         public final int status;
         public final int is_uploaded;
         public boolean selected;
-        
-        public to_courses(int id, String course_code, String course_description, int college_id, String college, int department_id, String department_name, int no_of_years, String studies, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded,boolean selected) {
+
+        public to_courses(int id, String course_code, String course_description, int college_id, String college, int department_id, String department_name, int no_of_years, String studies, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, boolean selected) {
             this.id = id;
             this.course_code = course_code;
             this.course_description = course_description;
@@ -57,8 +57,17 @@ public class Courses {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
-            this.selected=selected;
+            this.selected = selected;
         }
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
+
     }
 
     public static void add_data(to_courses to_courses) {
@@ -171,6 +180,42 @@ public class Courses {
         }
     }
 
+    public static void update_level_college(List<to_courses> to_courses1, String department, String department_id, String college, String college_id) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            for (to_courses to_courses : to_courses1) {
+                String s0 = "update courses set "
+                        + "college_id= :college_id "
+                        + ",college= :college "
+                        + ",department_id= :department_id "
+                        + ",department_name= :department_name "
+                        + " where id='" + to_courses.id + "' "
+                        + " ";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("college_id", college_id)
+                        .setString("college", college)
+                        .setString("department_id", department_id)
+                        .setString("department_name", department)
+                        .ok();
+
+                stmt.addBatch(s0);
+
+            }
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Courses.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_courses to_courses) {
         try {
             Connection conn = MyConnection.connect();
@@ -231,7 +276,7 @@ public class Courses {
                 int status = rs.getInt(14);
                 int is_uploaded = rs.getInt(15);
 
-                to_courses to = new to_courses(id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
+                to_courses to = new to_courses(id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                 datas.add(to);
             }
             return datas;

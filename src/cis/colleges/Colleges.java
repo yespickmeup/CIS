@@ -252,6 +252,18 @@ public class Colleges {
                 int status = rs.getInt(11);
                 int is_uploaded = rs.getInt(12);
                 int no_of_courses = 0;
+
+                String s2 = "select "
+                        + "count(id)"
+                        + " from courses"
+                        + " where college_id='" + id + "' ";
+
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s2);
+                if (rs2.next()) {
+                    no_of_courses = rs2.getInt(1);
+
+                }
                 to_colleges to = new to_colleges(id, college_name, college_admin_id, college_admin_name, department_name, department_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, no_of_courses);
                 datas.add(to);
             }

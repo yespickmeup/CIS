@@ -204,4 +204,65 @@ public class Departments {
         }
     }
 
+    public static List<to_departments> ret_periods(String where, String academic_year_id) {
+        List<to_departments> datas = new ArrayList();
+
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "select "
+                    + "id"
+                    + ",department_name"
+                    + ",college_id"
+                    + ",department_admin_id"
+                    + ",department_admin_name"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + " from departments"
+                    + " " + where;
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(s0);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String department_name = rs.getString(2);
+                int college_id = rs.getInt(3);
+                int department_admin_id = rs.getInt(4);
+                String department_admin_name = rs.getString(5);
+                String created_at = rs.getString(6);
+                String updated_at = rs.getString(7);
+                String created_by = rs.getString(8);
+                String updated_by = rs.getString(9);
+                int status = rs.getInt(10);
+                int is_uploaded = rs.getInt(11);
+
+                created_by = "";
+                updated_by = "";
+                String s2 = "select "
+                        + "id"
+                        + ",period"
+                        + " from academic_year_periods"
+                        + " where academic_year_id='" + academic_year_id + "' and department_id='" + id + "' ";
+
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s2);
+                while (rs2.next()) {
+                    created_by = "" + rs2.getInt(1);
+                    updated_by = rs2.getString(2);
+                }
+
+                to_departments to = new to_departments(id, department_name, college_id, department_admin_id, department_admin_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                datas.add(to);
+            }
+            return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
 }

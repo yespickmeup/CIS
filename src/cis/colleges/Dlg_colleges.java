@@ -12,6 +12,7 @@ import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -309,8 +310,8 @@ public class Dlg_colleges extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -546,7 +547,7 @@ public class Dlg_colleges extends javax.swing.JDialog {
     private void ret_colleges() {
         Field.Combo dep = (Field.Combo) tf_user_screen_name2;
         String where = " where department_id='" + dep.getId() + "' order by college_name asc ";
-        List<Colleges.to_colleges> colleges = Colleges.ret_data(where);
+        List<Colleges.to_colleges> colleges = Colleges.ret_data_with_courses(where);
         loadData_colleges(colleges);
         jLabel2.setText("" + colleges.size());
     }
@@ -655,12 +656,12 @@ public class Dlg_colleges extends javax.swing.JDialog {
         Colleges.to_colleges to = (Colleges.to_colleges) tbl_colleges_ALM.get(row);
         if (col == 4) {
             Window p = (Window) this;
-            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
             nd.setTitle("");
-            nd.setCallback(new Dlg_confirm_action.Callback() {
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
 
                 @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
                     closeDialog.ok();
                     Colleges.delete_data(to);
                     Alert.set(3, "");

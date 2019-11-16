@@ -12,13 +12,17 @@ import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +30,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
@@ -198,6 +205,8 @@ public class Dlg_courses extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -228,6 +237,16 @@ public class Dlg_courses extends javax.swing.JDialog {
         jLabel13 = new javax.swing.JLabel();
         jCheckBox6 = new javax.swing.JCheckBox();
 
+        jMenuItem1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/group.png"))); // NOI18N
+        jMenuItem1.setText("Department/College");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -247,6 +266,17 @@ public class Dlg_courses extends javax.swing.JDialog {
 
             }
         ));
+        tbl_courses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_coursesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_coursesMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_coursesMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_courses);
 
         jLabel1.setText("No. of rows:");
@@ -260,14 +290,29 @@ public class Dlg_courses extends javax.swing.JDialog {
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("All");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jCheckBox2);
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox2.setText("Assigned");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jCheckBox3);
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox3.setText("Unassigned");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
 
         tf_field2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -284,6 +329,11 @@ public class Dlg_courses extends javax.swing.JDialog {
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox4.setSelected(true);
         jCheckBox4.setText("All");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Department:");
@@ -294,6 +344,11 @@ public class Dlg_courses extends javax.swing.JDialog {
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox5.setSelected(true);
         jCheckBox5.setText("All");
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox5ActionPerformed(evt);
+            }
+        });
 
         tf_field3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -389,6 +444,7 @@ public class Dlg_courses extends javax.swing.JDialog {
         jLabel7.setText("No. of years:");
 
         tf_field1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field1.setText("4");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Studies:");
@@ -555,6 +611,42 @@ public class Dlg_courses extends javax.swing.JDialog {
         init_studies();
     }//GEN-LAST:event_tf_field4MouseClicked
 
+    private void tbl_coursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_coursesMouseClicked
+        select_course();
+    }//GEN-LAST:event_tbl_coursesMouseClicked
+
+    private void tbl_coursesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_coursesMousePressed
+        popup(evt);
+    }//GEN-LAST:event_tbl_coursesMousePressed
+
+    private void tbl_coursesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_coursesMouseReleased
+        popup(evt);
+    }//GEN-LAST:event_tbl_coursesMouseReleased
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        select_college();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        ret_courses();
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        ret_courses();
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        ret_courses();
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        ret_courses();
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        ret_courses();
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -579,9 +671,11 @@ public class Dlg_courses extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_courses;
     private javax.swing.JTextField tf_field;
@@ -658,6 +752,7 @@ public class Dlg_courses extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
+                ret_courses();
             }
         });
     }
@@ -686,7 +781,7 @@ public class Dlg_courses extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field3;
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
-
+                ret_courses();
             }
         });
     }
@@ -741,15 +836,37 @@ public class Dlg_courses extends javax.swing.JDialog {
         }
         Dimension d = tbl_courses.getTableHeader().getPreferredSize();
         d.height = 25;
+        tbl_courses.setRowHeight(40);
         tbl_courses.getTableHeader().setPreferredSize(d);
         tbl_courses.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_courses.setRowHeight(25);
+
         tbl_courses.setFont(new java.awt.Font("Arial", 0, 12));
+
+        TableColumnModel tcm = tbl_courses.getColumnModel();
+        TableColumn tm = tcm.getColumn(1);
+        tm.setCellRenderer(new Html());
+
     }
 
     public static void loadData_courses(List<to_courses> acc) {
         tbl_courses_ALM.clear();
         tbl_courses_ALM.addAll(acc);
+    }
+
+    public static class Html extends DefaultTableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            JLabel lbl = new JLabel();
+            lbl.setText(value.toString());
+            lbl.setOpaque(true);
+            lbl.setBackground(Color.white);
+            if (selected) {
+                lbl.setBackground(new java.awt.Color(0, 120, 215));
+                lbl.setForeground(new java.awt.Color(255, 255, 255));
+            }
+            return lbl;
+        }
     }
 
     public static class TblcoursesModel extends AbstractTableAdapter {
@@ -785,7 +902,18 @@ public class Dlg_courses extends javax.swing.JDialog {
                 case 0:
                     return " " + tt.course_code;
                 case 1:
-                    return " " + tt.course_description;
+                    String des = tt.course_description;
+                    int syl = tt.course_description.length();
+                    if (syl > 50) {
+                        des = des.substring(0, 49) + "...";
+                    }
+                    String html = "<html><body>"
+                            + "&nbsp <b><font size=\"4\" > " + des + "</font></b><br>"
+                            + "&nbsp  " + tt.department_name + " - " + tt.college + "&emsp;" + "<br>"
+                            + "</body>"
+                            + "</html>";
+                    return html;
+
                 case 2:
                     return " " + tt.no_of_years;
                 case 3:
@@ -820,7 +948,22 @@ public class Dlg_courses extends javax.swing.JDialog {
     }
 
     private void ret_courses() {
-        String where = "";
+
+        String where = " where id<>0 ";
+        if (jCheckBox2.isSelected()) {
+            where = where + " and college_id<>0 ";
+        }
+        if (jCheckBox3.isSelected()) {
+            where = where + " and college_id=0 ";
+        }
+        if (!jCheckBox4.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field2;
+            where = where + " and department_id='" + dep.getId() + "' ";
+        }
+        if (!jCheckBox4.isSelected() && !jCheckBox5.isSelected() && !jCheckBox3.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field3;
+            where = where + " and college_id='" + dep.getId() + "' ";
+        }
         List<to_courses> courses = Courses.ret_data(where);
         loadData_courses(courses);
         jLabel2.setText("" + courses.size());
@@ -829,8 +972,8 @@ public class Dlg_courses extends javax.swing.JDialog {
     private void new_course() {
         tf_field5.setText("");
         tf_field.setText("");
-        tf_field1.setText("");
-        tf_field4.setText("Undergraduate");
+//        tf_field1.setText("4");
+//        tf_field4.setText("Undergraduate");
         jCheckBox6.setSelected(true);
         tbl_courses.clearSelection();
         tf_field5.grabFocus();
@@ -853,6 +996,9 @@ public class Dlg_courses extends javax.swing.JDialog {
             String created_by = MyUser.getUser_id();
             String updated_by = MyUser.getUser_id();
             int status = 1;
+            if (!jCheckBox6.isSelected()) {
+                status = 0;
+            }
             int is_uploaded = 0;
             boolean selected = false;
             Courses.to_courses course = new to_courses(id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
@@ -873,9 +1019,140 @@ public class Dlg_courses extends javax.swing.JDialog {
             nd.setVisible(true);
 
         } else {
+            Courses.to_courses to = (Courses.to_courses) tbl_courses_ALM.get(row);
+            int id = to.id;
+            String course_code = tf_field5.getText();
+            String course_description = tf_field.getText();
+            int college_id = to.college_id;
+            String college = to.college;
+            int department_id = to.department_id;
+            String department_name = to.department_name;
+            int no_of_years = FitIn.toInt(tf_field1.getText());
+            String studies = tf_field4.getText();
+            String created_at = to.created_at;
+            String updated_at = DateType.now();
+            String created_by = to.created_by;
+            String updated_by = MyUser.getUser_id();
+            int status = 1;
+            if (!jCheckBox6.isSelected()) {
+                status = 0;
+            }
+            int is_uploaded = 2;
+            boolean selected = false;
+            Courses.to_courses course = new to_courses(id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
+            Window p = (Window) this;
+            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            nd.setTitle("");
+            nd.setCallback(new Dlg_confirm_action.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                    closeDialog.ok();
+                    Courses.update_data(course);
+                    Alert.set(2, "");
+                    new_course();
+                    ret_courses();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
 
         }
     }
+
+    private void select_course() {
+        int row = tbl_courses.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        Courses.to_courses to = (Courses.to_courses) tbl_courses_ALM.get(row);
+        int col = tbl_courses.getSelectedColumn();
+        if (col == 5) { //delete
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Courses.delete_data(to);
+                    Alert.set(3, "");
+                    new_course();
+                    ret_courses();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        } else if (col == 6) { //select
+            if (to.selected) {
+                to.setSelected(false);
+            } else {
+                to.setSelected(true);
+
+            }
+            tbl_courses_M.fireTableDataChanged();
+        } else {
+            tf_field5.setText(to.course_code);
+            tf_field.setText(to.course_description);
+            if (to.status == 1) {
+                jCheckBox6.setSelected(true);
+            } else {
+                jCheckBox6.setSelected(false);
+            }
+            tf_field1.setText("" + to.no_of_years);
+            tf_field4.setText(to.studies);
+        }
+
+    }
 //</editor-fold> 
 
+    private void popup(MouseEvent evt) {
+
+        if (evt.isPopupTrigger()) {
+            List<Courses.to_courses> courses = tbl_courses_ALM;
+            int selected = 0;
+            for (Courses.to_courses to : courses) {
+                if (to.selected) {
+                    selected++;
+                    break;
+                }
+            }
+
+            if (selected == 0) {
+                Alert.set(0, "Please select course/s");
+                return;
+            }
+            jPopupMenu1.show(tbl_courses, evt.getX(), evt.getY());
+        }
+
+    }
+
+    private void select_college() {
+
+        Window p = (Window) this;
+        Dlg_courses_select_college nd = Dlg_courses_select_college.create(p, true);
+        nd.setTitle("");
+        nd.setCallback(new Dlg_courses_select_college.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_courses_select_college.OutputData data) {
+                closeDialog.ok();
+
+                List<Courses.to_courses> courses = tbl_courses_ALM;
+                List<Courses.to_courses> selected = new ArrayList();
+
+                for (Courses.to_courses to : courses) {
+                    if (to.selected) {
+                        selected.add(to);
+                    }
+                }
+                Courses.update_level_college(selected, data.department, data.department_id, data.college, data.college_id);
+                Alert.set(2, "");
+                new_course();
+                ret_courses();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
 }
