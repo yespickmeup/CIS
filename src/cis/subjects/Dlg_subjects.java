@@ -845,6 +845,8 @@ public class Dlg_subjects extends javax.swing.JDialog {
             }
         });
     }
+    
+    
     List<Colleges.to_colleges> colleges = new ArrayList();
 
     private void init_colleges() {
