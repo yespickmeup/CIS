@@ -225,6 +225,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jCheckBox5 = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
         jButton2 = new Button.Success();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         tf_field2 = new Field.Combo();
@@ -239,6 +240,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new Button.Info();
+        jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -338,7 +340,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -380,7 +382,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -388,8 +390,9 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addGap(5, 5, 5))
         );
 
+        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Offerings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(373, 529));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -487,7 +490,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -500,7 +503,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                                 .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(1, 1, 1)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field6, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                            .addComponent(tf_field6, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                             .addComponent(tf_field5)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -536,13 +539,29 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap())
+                    .addComponent(jLabel4)))
         );
+
+        jTabbedPane2.addTab("Offerings", jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 529, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Print Preview", jPanel2);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -550,9 +569,9 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -560,8 +579,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane2))
                 .addContainerGap())
         );
 
@@ -700,6 +719,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -707,6 +727,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable tbl_courses;
     private javax.swing.JTable tbl_offerings;
     private javax.swing.JTextField tf_field2;
@@ -723,7 +744,6 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         acad_years = Academic_years.ret_data("");
         deps = Departments.ret_data(" order by department_name  asc ");
         if (!acad_years.isEmpty()) {
-
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {
                     Field.Combo year = (Field.Combo) tf_field2;
@@ -732,7 +752,6 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                     break;
                 }
             }
-
         }
 
         init_tbl_courses(tbl_courses);
@@ -1008,7 +1027,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 co.setId("" + to.id);
                 ret_courses();
             }
-            
+
         });
     }
 
@@ -1250,6 +1269,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
                     closeDialog.ok();
+
                 }
             });
             nd.setLocationRelativeTo(this);

@@ -215,12 +215,14 @@ public class Dlg_subjects extends javax.swing.JDialog {
         tf_field2 = new Field.Combo();
         jLabel10 = new javax.swing.JLabel();
         tf_field3 = new Field.Combo();
-        tf_field = new Field.Input();
+        tf_field = new Field.Combo();
         jLabel6 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jButton5 = new Button.Primary();
+        tf_field4 = new Field.Search();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -259,6 +261,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
         jLabel8.setText("Department:");
 
         tf_field2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field2.setFocusable(false);
         tf_field2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field2MouseClicked(evt);
@@ -286,6 +289,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
         });
 
         tf_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field.setFocusable(false);
         tf_field.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_fieldMouseClicked(evt);
@@ -304,6 +308,11 @@ public class Dlg_subjects extends javax.swing.JDialog {
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("All");
         jCheckBox1.setFocusable(false);
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox2.setSelected(true);
@@ -314,6 +323,11 @@ public class Dlg_subjects extends javax.swing.JDialog {
         jCheckBox3.setSelected(true);
         jCheckBox3.setText("All");
         jCheckBox3.setFocusable(false);
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("New");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +335,21 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 jButton5ActionPerformed(evt);
             }
         });
+
+        tf_field4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field4MouseClicked(evt);
+            }
+        });
+        tf_field4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field4ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Desc/Code:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -331,23 +360,29 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(jCheckBox1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCheckBox2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(jCheckBox1))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jCheckBox2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_field)
-                    .addComponent(tf_field3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-                    .addComponent(tf_field2))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_field)
+                            .addComponent(tf_field3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                            .addComponent(tf_field2)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_field4)))
                 .addGap(133, 133, 133)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -365,11 +400,15 @@ public class Dlg_subjects extends javax.swing.JDialog {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox3))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_field4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -399,7 +438,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -470,6 +509,22 @@ public class Dlg_subjects extends javax.swing.JDialog {
         init_group();
     }//GEN-LAST:event_tf_fieldMouseClicked
 
+    private void tf_field4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field4MouseClicked
+
+    private void tf_field4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field4ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_tf_field4ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +535,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -492,6 +548,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field;
     private javax.swing.JTextField tf_field2;
     private javax.swing.JTextField tf_field3;
+    private javax.swing.JTextField tf_field4;
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
@@ -499,9 +556,13 @@ public class Dlg_subjects extends javax.swing.JDialog {
         System.setProperty("pool_password", "password");
 
         init_tbl_subjects(tbl_subjects);
-        ret_subjects();
 
         deps2 = Departments.ret_data(" order by department_name  asc ");
+
+        ret_subjects();
+        tf_field3.setVisible(false);
+        jCheckBox2.setVisible(false);
+        jLabel10.setVisible(false);
     }
 
     public void do_pass() {
@@ -644,7 +705,28 @@ public class Dlg_subjects extends javax.swing.JDialog {
     }
 
     private void ret_subjects() {
-        String where = "";
+        String where = " where id<>0 ";
+        String where2 = "";
+        String search = tf_field4.getText();
+        if (!jCheckBox1.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field2;
+            Field.Combo gr = (Field.Combo) tf_field;
+
+            where = where + " and department_id='" + dep.getId() + "' ";
+            where2 = where2 + "  or department_id='" + dep.getId() + "' ";
+
+            if (!jCheckBox3.isSelected()) {
+                where = where + " and subject_group_id='" + gr.getId() + "' ";
+                where2 = where2 + " and subject_group_id='" + gr.getId() + "' ";
+            }
+            where = where + " and subject_code like '%" + search + "%' ";
+
+            where = where + where2 + " and description like '%" + search + "%' order by description desc ";
+        } else {
+            where = " where subject_code like '%" + search + "%' or description like '%" + search + "%' order by description desc ";
+        }
+
+//        System.out.println(where);
         List<Subjects.to_subjects> subjects = Subjects.ret_data(where);
         loadData_subjects(subjects);
         jLabel4.setText("" + subjects.size());
@@ -716,9 +798,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
             Window p = (Window) this;
             Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
             nd.setTitle("");
-//            nd.do_pass(subject);
             nd.setCallback(new Dlg_confirm_delete.Callback() {
-
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
                     closeDialog.ok();
@@ -804,25 +884,35 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field2;
                 co.setText("" + to.department_name);
                 co.setId("" + to.id);
-
-                colleges = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
-                Field.Combo co1 = (Field.Combo) tf_field3;
-                if (!colleges.isEmpty()) {
-                    Colleges.to_colleges c = (Colleges.to_colleges) colleges.get(0);
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
-                } else {
-                    co1.setText("");
-                    co1.setId("");
+                String where = " where department_id='" + to.id + "' ";
+                groupings = Subject_groupings.ret_data(where);
+                if (!groupings.isEmpty()) {
+                    Subject_groupings.to_subject_groupings sg = (Subject_groupings.to_subject_groupings) groupings.get(0);
+                    Field.Combo co1 = (Field.Combo) tf_field;
+                    co1.setText(sg.description);
+                    co1.setId("" + sg.id);
                 }
+
+                ret_subjects();
+//                colleges = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+//                Field.Combo co1 = (Field.Combo) tf_field3;
+//                if (!colleges.isEmpty()) {
+//                    Colleges.to_colleges c = (Colleges.to_colleges) colleges.get(0);
+//                    co1.setText("" + c.college_name);
+//                    co1.setId("" + c.id);
+//                } else {
+//                    co1.setText("");
+//                    co1.setId("");
+//                }
             }
         });
     }
 
-    
+    List<Subject_groupings.to_subject_groupings> groupings = new ArrayList();
+
     private void init_group() {
         String where = "";
-        List<Subject_groupings.to_subject_groupings> groupings = Subject_groupings.ret_data(where);
+
         Object[][] obj = new Object[groupings.size()][1];
         int i = 0;
         for (Subject_groupings.to_subject_groupings to : groupings) {
@@ -842,11 +932,12 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field;
                 co.setText("" + to.description);
                 co.setId("" + to.id);
+
+                ret_subjects();
             }
         });
     }
-    
-    
+
     List<Colleges.to_colleges> colleges = new ArrayList();
 
     private void init_colleges() {
@@ -875,5 +966,4 @@ public class Dlg_subjects extends javax.swing.JDialog {
 
         });
     }
-
 }

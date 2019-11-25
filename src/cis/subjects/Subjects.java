@@ -83,7 +83,7 @@ public class Subjects {
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement("");
             String s0 = "insert into subjects("
-                    + "subject_code"
+                    + " subject_code"
                     + ",description"
                     + ",level_id"
                     + ",level"
@@ -107,7 +107,7 @@ public class Subjects {
                     + ",status"
                     + ",is_uploaded"
                     + ")values("
-                    + ":subject_code"
+                    + " :subject_code"
                     + ",:description"
                     + ",:level_id"
                     + ",:level"

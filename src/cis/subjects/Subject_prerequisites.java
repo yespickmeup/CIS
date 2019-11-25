@@ -25,7 +25,8 @@ public class Subject_prerequisites {
     public static class to_subject_prerequisites {
 
         public final int id;
-        public final int subject_id;
+        public final int ref_subject_id;
+        public final int main_subject_id;
         public final String subject_code;
         public final String description;
         public final double lecture_units;
@@ -38,9 +39,10 @@ public class Subject_prerequisites {
         public final int status;
         public final int is_uploaded;
 
-        public to_subject_prerequisites(int id, int subject_id, String subject_code, String description, double lecture_units, double lab_units, String remarks, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_subject_prerequisites(int id, int ref_subject_id, int main_subject_id, String subject_code, String description, double lecture_units, double lab_units, String remarks, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
             this.id = id;
-            this.subject_id = subject_id;
+            this.ref_subject_id = ref_subject_id;
+            this.main_subject_id = main_subject_id;
             this.subject_code = subject_code;
             this.description = description;
             this.lecture_units = lecture_units;
@@ -68,7 +70,8 @@ public class Subject_prerequisites {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "insert into subject_prerequisites("
-                    + "subject_id"
+                    + "ref_subject_id"
+                    + ",main_subject_id"
                     + ",subject_code"
                     + ",description"
                     + ",lecture_units"
@@ -81,7 +84,8 @@ public class Subject_prerequisites {
                     + ",status"
                     + ",is_uploaded"
                     + ")values("
-                    + ":subject_id"
+                    + ":ref_subject_id"
+                    + ",:main_subject_id"
                     + ",:subject_code"
                     + ",:description"
                     + ",:lecture_units"
@@ -96,7 +100,8 @@ public class Subject_prerequisites {
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
-                    .setNumber("subject_id", to_subject_prerequisites.subject_id)
+                    .setNumber("ref_subject_id", to_subject_prerequisites.ref_subject_id)
+                    .setNumber("main_subject_id", to_subject_prerequisites.main_subject_id)
                     .setString("subject_code", to_subject_prerequisites.subject_code)
                     .setString("description", to_subject_prerequisites.description)
                     .setNumber("lecture_units", to_subject_prerequisites.lecture_units)
@@ -124,7 +129,8 @@ public class Subject_prerequisites {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update subject_prerequisites set "
-                    + "subject_id= :subject_id "
+                    + "ref_subject_id= :ref_subject_id "
+                    + ",main_subject_id= :main_subject_id "
                     + ",subject_code= :subject_code "
                     + ",description= :description "
                     + ",lecture_units= :lecture_units "
@@ -140,7 +146,8 @@ public class Subject_prerequisites {
                     + " ";
 
             s0 = SqlStringUtil.parse(s0)
-                    .setNumber("subject_id", to_subject_prerequisites.subject_id)
+                    .setNumber("ref_subject_id", to_subject_prerequisites.ref_subject_id)
+                    .setNumber("main_subject_id", to_subject_prerequisites.main_subject_id)
                     .setString("subject_code", to_subject_prerequisites.subject_code)
                     .setString("description", to_subject_prerequisites.description)
                     .setNumber("lecture_units", to_subject_prerequisites.lecture_units)
@@ -173,7 +180,9 @@ public class Subject_prerequisites {
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
-            Lg.s(Subject_prerequisites.class, "Successfully Deleted");
+            Lg
+                    .s(Subject_prerequisites.class,
+                       "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -188,7 +197,8 @@ public class Subject_prerequisites {
             Connection conn = MyConnection.connect();
             String s0 = "select "
                     + "id"
-                    + ",subject_id"
+                    + ",ref_subject_id"
+                    + ",main_subject_id"
                     + ",subject_code"
                     + ",description"
                     + ",lecture_units"
@@ -207,20 +217,21 @@ public class Subject_prerequisites {
             ResultSet rs = stmt.executeQuery(s0);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                int subject_id = rs.getInt(2);
-                String subject_code = rs.getString(3);
-                String description = rs.getString(4);
-                double lecture_units = rs.getDouble(5);
-                double lab_units = rs.getDouble(6);
-                String remarks = rs.getString(7);
-                String created_at = rs.getString(8);
-                String updated_at = rs.getString(9);
-                String created_by = rs.getString(10);
-                String updated_by = rs.getString(11);
-                int status = rs.getInt(12);
-                int is_uploaded = rs.getInt(13);
+                int ref_subject_id = rs.getInt(2);
+                int main_subject_id = rs.getInt(3);
+                String subject_code = rs.getString(4);
+                String description = rs.getString(5);
+                double lecture_units = rs.getDouble(6);
+                double lab_units = rs.getDouble(7);
+                String remarks = rs.getString(8);
+                String created_at = rs.getString(9);
+                String updated_at = rs.getString(10);
+                String created_by = rs.getString(11);
+                String updated_by = rs.getString(12);
+                int status = rs.getInt(13);
+                int is_uploaded = rs.getInt(14);
 
-                to_subject_prerequisites to = new to_subject_prerequisites(id, subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_subject_prerequisites to = new to_subject_prerequisites(id, ref_subject_id, main_subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);
             }
             return datas;

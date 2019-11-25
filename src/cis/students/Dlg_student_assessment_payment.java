@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cis.utils;
+
+package cis.students;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -11,65 +12,67 @@ import java.util.logging.Level;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
-import synsoftech.fields.Button;
+
+
+
+
 
 /**
  *
- * @author Guinness
+ * @author Ronescape
  */
-public class Dlg_confirm_action extends javax.swing.JDialog {
+public class Dlg_student_assessment_payment extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_confirm_action
-     */
+    /** Creates new form Dlg_student_assessment_payment */
     //<editor-fold defaultstate="collapsed" desc=" callback ">
     private Callback callback;
 
     public void setCallback(Callback callback) {
         this.callback = callback;
 
-    }
+
+}
 
     public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+}
 
-    public static class InputData {
-    }
+public static class InputData {
+}
 
-    public static class OutputData {
-    }
+public static class OutputData {
+}
 //</editor-fold>
-
+ 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_confirm_action(java.awt.Frame parent, boolean modal) {
+private Dlg_student_assessment_payment(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_confirm_action(java.awt.Dialog parent, boolean modal) {
+    private Dlg_student_assessment_payment(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
-        setUndecorated(true);
+        setUndecorated(true);    
         initComponents();
         myInit();
     }
 
-    public Dlg_confirm_action() {
+    public Dlg_student_assessment_payment() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_confirm_action myRef;
+    private Dlg_student_assessment_payment myRef;
 
-    private void setThisRef(Dlg_confirm_action myRef) {
+    private void setThisRef(Dlg_student_assessment_payment myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_confirm_action> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_student_assessment_payment> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -77,7 +80,7 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_confirm_action create(java.awt.Window parent, boolean modal) {
+    public static Dlg_student_assessment_payment create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -87,14 +90,14 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_confirm_action create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_student_assessment_payment create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_confirm_action dialog = dialogContainer.get(parent);
+            Dlg_student_assessment_payment dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_confirm_action((java.awt.Frame) parent, false);
+                dialog = new Dlg_student_assessment_payment((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -108,10 +111,10 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_confirm_action dialog = dialogContainer.get(parent);
+            Dlg_student_assessment_payment dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_confirm_action((java.awt.Dialog) parent, false);
+                dialog = new Dlg_student_assessment_payment((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -138,7 +141,8 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_confirm_action dialog = Dlg_confirm_action.create(new javax.swing.JFrame(), true);
+
+        Dlg_student_assessment_payment dialog = Dlg_student_assessment_payment.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -146,7 +150,7 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
 
     //<editor-fold defaultstate="collapsed" desc=" added ">
     @Override
-    public void setVisible(boolean visible) {
+        public void setVisible(boolean visible) {
         super.setVisible(visible);
         if (visible == true) {
             getContentPane().removeAll();
@@ -154,6 +158,7 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
             myInit();
             repaint();
         }
+
 
     }
 
@@ -167,70 +172,30 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
     }
     //</editor-fold>
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new Button.Primary();
-        jButton2 = new Button.Default();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Yes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("No");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Are you sure you want to continue?");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,22 +212,12 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        disposed();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ok();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
@@ -270,10 +225,9 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
         init_key();
     }
 
-    public void do_pass() {
-
+    public void do_pass(){
+ 
     }
-
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
         this.dispose();
@@ -281,28 +235,16 @@ public class Dlg_confirm_action extends javax.swing.JDialog {
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
-
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+                KeyEvent.VK_ESCAPE, new KeyAction() {
+            
+            @Override
+        public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ENTER, new KeyAction() {
-
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
-                              ok();
-                          }
-                      });
+                disposed();
+            }
+        });
     }
     // </editor-fold>
-
-    private void ok() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
-    }
+    
+    
 }

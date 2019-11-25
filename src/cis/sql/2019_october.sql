@@ -15,6 +15,8 @@ create schema db_cis_cosca;
 use db_cis_cosca;
 
 drop table if exists colleges;
+
+
 create table colleges(
 id int auto_increment primary key
 ,college_name varchar(255)
@@ -110,6 +112,78 @@ id int auto_increment primary key
 ,department_name varchar(255)
 ,no_of_years int
 ,studies varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+drop table if exists academic_offering_subjects;
+create table academic_offering_subjects(
+id int auto_increment primary key
+,academic_offering_id int
+,academic_year_id int
+,academic_year varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,term varchar(255) /* Basis Ed - 1 Year, SHS - , Tertiary - 1st Semester, 2nd Semester*/
+,year_level varchar(255)
+,subject_id int
+,subject_code varchar(255)
+,description varchar(255)
+,units double
+,lecture_units double
+,lab_units double
+,amount double
+,is_lab int
+,max_students int
+,prerequisite_subject_ids varchar(255)
+,subject_group varchar(255)
+,subject_group_id int
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+drop table if exists academic_offering_subject_prerequisites;
+create table academic_offering_subject_prerequisites(
+id int auto_increment primary key
+,academic_offering_id int
+,academic_year_id int
+,academic_year varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,term varchar(255) /* Basis Ed - 1 Year, SHS - , Tertiary - 1st Semester, 2nd Semester*/
+,year_level varchar(255)
+,ref_subject_id int
+,main_subject_id int
+,subject_code varchar(255)
+,description varchar(255)
+,lecture_units double
+,lab_units double
+,remarks varchar(255)
+,subject_group varchar(255)
+,subject_group_id int
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -237,7 +311,8 @@ id int auto_increment primary key
 drop table if exists subject_prerequisites;
 create table subject_prerequisites(
 id int auto_increment primary key
-,subject_id int
+,ref_subject_id int
+,main_subject_id int
 ,subject_code varchar(255)
 ,description varchar(255)
 ,lecture_units double
@@ -264,36 +339,7 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
-drop table if exists curriculum_subjects;
-create table curriculum_subjects(
-id int auto_increment primary key
-,curriculum_id int
-,academic_year varchar(255)
-,level_id int
-,level varchar(255)
-,college_id int
-,college varchar(255)
-,department_id int
-,department varchar(255)
-,course_id int
-,course_code varchar(255)
-,course_description varchar(255)
-,term varchar(255) /* Basis Ed - 1 Year, SHS - , Tertiary - 1st Semester, 2nd Semester*/
-,year_level varchar(255)
-,subject_code varchar(255)
-,description varchar(255)
-,units double
-,amount double
-,is_lab int
-,max_students int
-,prerequisite_subject_ids varchar(255)
-,created_at datetime
-,updated_at datetime
-,created_by varchar(255)
-,updated_by varchar(255)
-,status int
-,is_uploaded int
-);
+
 
 
 drop table if exists users;
@@ -319,16 +365,20 @@ id int auto_increment primary key
 ,fname varchar(255)
 ,lname varchar(255)
 ,mi varchar(255)
-,designation varchar(255)
 ,level_id int
 ,level varchar(255)
 ,college_id int
 ,college varchar(255)
 ,department_id int
 ,department varchar(255)
+,group_id int
+,group_name varchar(255)
+,designation_id int
+,designation varchar(255)
 ,is_fulltime int
-,user_name varchar(255)
-,password varchar(255)
+,is_acad int
+,dean_college_id int
+,dean_college_name varchar(255)
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -342,6 +392,9 @@ id int auto_increment primary key
 drop table if exists students;
 create table students(
 id int auto_increment primary key
+,is_transferee int
+,academic_year_id int
+,academic_year varchar(255)
 ,student_no varchar(255)
 ,last_name varchar(255)
 ,first_name varchar(255)
@@ -371,6 +424,60 @@ id int auto_increment primary key
 ,department varchar(255)
 ,year_level varchar(255)
 ,year_level_status varchar(255)
+,preferred_course1 varchar(255)
+,preferred_course2 varchar(255)
+,preferred_course3 varchar(255)
+
+,father_name varchar(255)
+,father_citizenship varchar(255)
+,father_home_address  varchar(255)
+,father_email_address  varchar(255)
+,father_mobile_no  varchar(255)
+,father_occupation  varchar(255)
+,father_employer  varchar(255)
+,father_business_address  varchar(255)
+,father_business_tel_no  varchar(255)
+,father_educational_attainment  varchar(255)
+,father_last_school_attended  varchar(255)
+
+,mother_name varchar(255)
+,mother_citizenship varchar(255)
+,mother_home_address  varchar(255)
+,mother_email_address  varchar(255)
+,mother_mobile_no  varchar(255)
+,mother_occupation  varchar(255)
+,mother_employer  varchar(255)
+,mother_business_address  varchar(255)
+,mother_business_tel_no  varchar(255)
+,mother_educational_attainment  varchar(255)
+,mother_last_school_attended  varchar(255)
+
+,guardian_name  varchar(255)
+,guardian_mailing_address  varchar(255)
+,guardian_telephone_no  varchar(255)
+
+
+,grade_school_name  varchar(255)
+,grade_school_region  varchar(255)
+,grade_school_school_year  varchar(255)
+
+,high_school_name  varchar(255)
+,high_school_region  varchar(255)
+,high_school_school_year  varchar(255)
+
+,college_school_name  varchar(255)
+,college_school_region  varchar(255)
+,college_school_school_year  varchar(255)
+
+,sibling1   varchar(500)
+,sibling2   varchar(500)
+,sibling3   varchar(500)
+,sibling4   varchar(500)
+,sibling5   varchar(500)
+,sibling6   varchar(500)
+,sibling7   varchar(500)
+,sibling8   varchar(500)
+
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -378,6 +485,12 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+
+
+
+
+
 
 
 

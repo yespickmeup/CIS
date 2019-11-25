@@ -239,6 +239,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new Button.Default();
         jButton2 = new Button.Success();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -351,7 +352,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -373,6 +374,14 @@ public class Dlg_subject_new extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/settings.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -390,14 +399,17 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_field2)
                                     .addComponent(tf_field1)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(tf_field, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(tf_field2)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,9 +439,11 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -498,11 +512,16 @@ public class Dlg_subject_new extends javax.swing.JDialog {
         select_sp();
     }//GEN-LAST:event_tbl_subject_prerequisitesMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        groupings();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
@@ -660,7 +679,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
     }
 
     private void ret_sp() {
-        String where = " where subject_id='" + subject_idd + "' ";
+        String where = " where ref_subject_id='" + subject_idd + "' ";
         List<Subject_prerequisites.to_subject_prerequisites> datas = Subject_prerequisites.ret_data(where);
         loadData_subject_prerequisites(datas);
         jLabel2.setText("" + datas.size());
@@ -753,7 +772,8 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                 closeDialog.ok();
                 if (subject_idd == 0) {
                     int id = 0;
-                    int subject_id = 0;
+                    int ref_subject_id = 0;
+                    int main_subject_id = to.id;
                     String subject_code = to.subject_code;
                     String description = to.description;
                     double lecture_units = to.lecture_units;
@@ -765,14 +785,15 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 1;
                     int is_uploaded = 0;
-                    Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, ref_subject_id, main_subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
 
                     tbl_subject_prerequisites_ALM.add(sp);
                     Alert.set(1, "");
                     jLabel2.setText("" + tbl_subject_prerequisites_ALM.size());
                 } else {
                     int id = 0;
-                    int subject_id = subject_idd;
+                    int ref_subject_id = subject_idd;
+                    int main_subject_id = to.id;
                     String subject_code = to.subject_code;
                     String description = to.description;
                     double lecture_units = to.lecture_units;
@@ -784,7 +805,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 1;
                     int is_uploaded = 0;
-                    Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, ref_subject_id, main_subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                     Subject_prerequisites.add_data(sp);
                     Alert.set(1, "");
                     ret_sp();
@@ -853,7 +874,8 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                     public void ok(CloseDialog closeDialog, Dlg_subject_new_remarks.OutputData data) {
                         closeDialog.ok();
                         int id = to.id;
-                        int subject_id = to.subject_id;
+                        int ref_subject_id = to.ref_subject_id;
+                        int main_subject_id = to.main_subject_id;
                         String subject_code = to.subject_code;
                         String description = to.description;
                         double lecture_units = to.lecture_units;
@@ -865,7 +887,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                         String updated_by = MyUser.getUser_id();
                         int status = to.status;
                         int is_uploaded = 2;
-                        Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                        Subject_prerequisites.to_subject_prerequisites sp = new to_subject_prerequisites(id, ref_subject_id, main_subject_id, subject_code, description, lecture_units, lab_units, remarks, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                         Subject_prerequisites.update_data(sp);
                         Alert.set(2, "");
                         ret_sp();
@@ -875,5 +897,22 @@ public class Dlg_subject_new extends javax.swing.JDialog {
                 nd.setVisible(true);
             }
         }
+    }
+
+    private void groupings() {
+        Window p = (Window) this;
+        Dlg_subject_groupings nd = Dlg_subject_groupings.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_subject_groupings.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_subject_groupings.OutputData data) {
+                closeDialog.ok();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 }
