@@ -15,6 +15,7 @@ import cis.utils.Dlg_confirm_action;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,10 +23,13 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -34,9 +38,14 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
+import mijzcx.synapse.desk.utils.JasperUtil;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.swing.JRViewer;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
 
@@ -240,6 +249,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new Button.Info();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -484,6 +495,16 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel4.setText("0");
 
         jButton3.setText("Print Preview");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jProgressBar1.setString("");
+        jProgressBar1.setStringPainted(true);
+
+        jLabel5.setText("Status:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -515,7 +536,10 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -541,11 +565,15 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
         );
 
         jTabbedPane2.addTab("Offerings", jPanel4);
@@ -699,19 +727,19 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void tf_field5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field5MouseClicked
-        // TODO add your handling code here:
+        init_departments2();
     }//GEN-LAST:event_tf_field5MouseClicked
 
     private void tf_field5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field5ActionPerformed
-        // TODO add your handling code here:
+        init_departments2();
     }//GEN-LAST:event_tf_field5ActionPerformed
 
     private void tf_field6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field6MouseClicked
-        // TODO add your handling code here:
+        init_colleges2();
     }//GEN-LAST:event_tf_field6MouseClicked
 
     private void tf_field6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field6ActionPerformed
-        // TODO add your handling code here:
+        init_colleges2();
     }//GEN-LAST:event_tf_field6ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
@@ -729,6 +757,10 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private void tbl_offeringsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_offeringsMouseClicked
         select_offering();
     }//GEN-LAST:event_tbl_offeringsMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        set_report();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -748,6 +780,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -758,6 +791,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -777,6 +811,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
         acad_years = Academic_years.ret_data("");
         deps = Departments.ret_data(" order by department_name  asc ");
+
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {
@@ -1036,7 +1071,44 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             }
         });
     }
+
+    private void init_departments2() {
+        Object[][] obj = new Object[deps.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field5.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field5, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field5;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field6;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+
+            }
+        });
+    }
+
     List<Colleges.to_colleges> colleges = new ArrayList();
+    List<Colleges.to_colleges> colleges2 = new ArrayList();
 
     private void init_colleges() {
 
@@ -1060,6 +1132,33 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
                 ret_courses();
+            }
+
+        });
+    }
+
+    private void init_colleges2() {
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field6.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field6, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field6;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+
             }
 
         });
@@ -1310,4 +1409,93 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             nd.setVisible(true);
         }
     }
+
+    //<editor-fold defaultstate="collapsed" desc=" list of programs ">
+    private void set_report() {
+
+        jProgressBar1.setString("Loading...Please wait...");
+        jProgressBar1.setIndeterminate(true);
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Field.Combo sy = (Field.Combo) tf_field2;
+                Field.Combo dep = (Field.Combo) tf_field5;
+                Field.Combo co = (Field.Combo) tf_field6;
+
+                String department = "All";
+                String college = "All";
+                String where = " where id<>0 ";
+                where = where + " and academic_year_id='" + sy.getId() + "' ";
+                if (!jCheckBox6.isSelected()) {
+                    where = where + " and department_id='" + dep.getId() + "' ";
+                    department = dep.getText();
+                    if (!jCheckBox7.isSelected()) {
+                        where = where + " and college_id='" + co.getId() + "' ";
+                        college = co.getText();
+                    }
+                }
+
+                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
+                String school_year = sy.getText();
+                String date_printed = DateType.month_date.format(new Date());
+                String printed_by = MyUser.getUser_screen_name();
+
+                List<Srpt_list_of_programs.field> fields = Srpt_list_of_programs.ret_data(where);
+                String jrxml = "rpt_list_of_programs.jrxml";
+                Srpt_list_of_programs rpt = new Srpt_list_of_programs(school_name, school_year, date_printed, printed_by, department, college);
+                rpt.fields.addAll(fields);
+
+                report_programs(rpt, jrxml);
+                jTabbedPane2.setSelectedIndex(1);
+                jProgressBar1.setString("Finished...");
+                jProgressBar1.setIndeterminate(false);
+            }
+        });
+        t.start();
+
+    }
+
+    private void report_programs(final Srpt_list_of_programs to, String jrxml_name) {
+        jPanel2.removeAll();
+        jPanel2.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_programs(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel2.add(viewer);
+            jPanel2.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JRViewer get_viewer_programs(Srpt_list_of_programs to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.makeDatasource(to.fields));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public static JasperReport compileJasper(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_list_of_programs.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //</editor-fold>
 }

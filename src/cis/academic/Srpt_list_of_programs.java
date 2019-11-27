@@ -33,13 +33,17 @@ public class Srpt_list_of_programs {
     public final String date_printed;
     public final String printed_by;
     public final List<field> fields;
+    public final String department;
+    public final String college;
 
-    public Srpt_list_of_programs(String school_name, String school_year, String date_printed, String printed_by) {
+    public Srpt_list_of_programs(String school_name, String school_year, String date_printed, String printed_by, String department, String college) {
         this.school_name = school_name;
         this.school_year = school_year;
         this.date_printed = date_printed;
         this.printed_by = printed_by;
         this.fields = new ArrayList();
+        this.department = department;
+        this.college = college;
     }
 
     public static class field {
@@ -150,9 +154,11 @@ public class Srpt_list_of_programs {
         String school_year = "2019-2020";
         String date_printed = "November 26, 2019";
         String printed_by = "Administrator";
+        String department = "";
+        String college = "";
         List<field> fields = Srpt_list_of_programs.ret_data(" where academic_year_id='2' ");
         String jrxml = "rpt_list_of_programs.jrxml";
-        Srpt_list_of_programs rpt = new Srpt_list_of_programs(school_name, school_year, date_printed, printed_by);
+        Srpt_list_of_programs rpt = new Srpt_list_of_programs(school_name, school_year, date_printed, printed_by, department, college);
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);
         JFrame f = Application.launchMainFrame3(viewer, "Sample", true);
