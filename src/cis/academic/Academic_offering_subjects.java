@@ -57,8 +57,13 @@ public class Academic_offering_subjects {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final int faculty_id;
+        public final String faculty_name;
+        public final String room;
+        public final String schedule;
+        public final int room_id;
 
-        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int faculty_id, String faculty_name, String room, String schedule, int room_id) {
             this.id = id;
             this.academic_offering_id = academic_offering_id;
             this.academic_year_id = academic_year_id;
@@ -92,6 +97,11 @@ public class Academic_offering_subjects {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.faculty_id = faculty_id;
+            this.faculty_name = faculty_name;
+            this.room = room;
+            this.schedule = schedule;
+            this.room_id = room_id;
         }
     }
 
@@ -133,6 +143,11 @@ public class Academic_offering_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",faculty_id"
+                    + ",faculty_name"
+                    + ",room"
+                    + ",schedule"
+                    + ",room_id"
                     + ")values("
                     + ":academic_offering_id"
                     + ",:academic_year_id"
@@ -166,6 +181,11 @@ public class Academic_offering_subjects {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:faculty_id"
+                    + ",:faculty_name"
+                    + ",:room"
+                    + ",:schedule"
+                    + ",:room_id"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -201,7 +221,13 @@ public class Academic_offering_subjects {
                     .setString("updated_by", to_academic_offering_subjects.updated_by)
                     .setNumber("status", to_academic_offering_subjects.status)
                     .setNumber("is_uploaded", to_academic_offering_subjects.is_uploaded)
+                    .setNumber("faculty_id", to_academic_offering_subjects.faculty_id)
+                    .setString("faculty_name", to_academic_offering_subjects.faculty_name)
+                    .setString("room", to_academic_offering_subjects.room)
+                    .setString("schedule", to_academic_offering_subjects.schedule)
+                    .setNumber("room_id", to_academic_offering_subjects.room_id)
                     .ok();
+
             stmt.addBatch(s0);
 
             for (Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites to_academic_offering_subject_prerequisites : to_academic_offering_subject_prerequisites1) {
@@ -331,6 +357,7 @@ public class Academic_offering_subjects {
                     + ",course_description= :course_description "
                     + ",term= :term "
                     + ",year_level= :year_level "
+                    + ",subject_id= :subject_id "
                     + ",subject_code= :subject_code "
                     + ",description= :description "
                     + ",units= :units "
@@ -340,12 +367,19 @@ public class Academic_offering_subjects {
                     + ",is_lab= :is_lab "
                     + ",max_students= :max_students "
                     + ",prerequisite_subject_ids= :prerequisite_subject_ids "
+                    + ",subject_group= :subject_group "
+                    + ",subject_group_id= :subject_group_id "
                     + ",created_at= :created_at "
                     + ",updated_at= :updated_at "
                     + ",created_by= :created_by "
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",faculty_id= :faculty_id"
+                    + ",faculty_name= :faculty_name "
+                    + ",room= :room "
+                    + ",schedule= :schedule "
+                    + ",room_id= :room_id "
                     + " where id='" + to_academic_offering_subjects.id + "' "
                     + " ";
 
@@ -364,6 +398,7 @@ public class Academic_offering_subjects {
                     .setString("course_description", to_academic_offering_subjects.course_description)
                     .setString("term", to_academic_offering_subjects.term)
                     .setString("year_level", to_academic_offering_subjects.year_level)
+                    .setNumber("subject_id", to_academic_offering_subjects.subject_id)
                     .setString("subject_code", to_academic_offering_subjects.subject_code)
                     .setString("description", to_academic_offering_subjects.description)
                     .setNumber("units", to_academic_offering_subjects.units)
@@ -373,12 +408,19 @@ public class Academic_offering_subjects {
                     .setNumber("is_lab", to_academic_offering_subjects.is_lab)
                     .setNumber("max_students", to_academic_offering_subjects.max_students)
                     .setString("prerequisite_subject_ids", to_academic_offering_subjects.prerequisite_subject_ids)
+                    .setString("subject_group", to_academic_offering_subjects.subject_group)
+                    .setNumber("subject_group_id", to_academic_offering_subjects.subject_group_id)
                     .setString("created_at", to_academic_offering_subjects.created_at)
                     .setString("updated_at", to_academic_offering_subjects.updated_at)
                     .setString("created_by", to_academic_offering_subjects.created_by)
                     .setString("updated_by", to_academic_offering_subjects.updated_by)
                     .setNumber("status", to_academic_offering_subjects.status)
                     .setNumber("is_uploaded", to_academic_offering_subjects.is_uploaded)
+                    .setNumber("faculty_id", to_academic_offering_subjects.faculty_id)
+                    .setString("faculty_name", to_academic_offering_subjects.faculty_name)
+                    .setString("room", to_academic_offering_subjects.room)
+                    .setString("schedule", to_academic_offering_subjects.schedule)
+                    .setNumber("room_id", to_academic_offering_subjects.room_id)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -391,6 +433,54 @@ public class Academic_offering_subjects {
         }
     }
 
+    public static void update_faculty(int id, int faculty_id, String faculty_name) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update academic_offering_subjects set "
+                    + " faculty_id= :faculty_id"
+                    + ",faculty_name= :faculty_name "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("faculty_id", faculty_id)
+                    .setString("faculty_name", faculty_name)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Academic_offering_subjects.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void update_faculty_remove(int id) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update academic_offering_subjects set "
+                    + " faculty_id= :faculty_id"
+                    + ",faculty_name= :faculty_name "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("faculty_id", 0F)
+                    .setString("faculty_name", "")
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Academic_offering_subjects.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+    
     public static void delete_data(to_academic_offering_subjects to_academic_offering_subjects) {
         try {
             Connection conn = MyConnection.connect();
@@ -447,6 +537,11 @@ public class Academic_offering_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",faculty_id"
+                    + ",faculty_name"
+                    + ",room"
+                    + ",schedule"
+                    + ",room_id"
                     + " from academic_offering_subjects"
                     + " " + where;
 
@@ -486,8 +581,13 @@ public class Academic_offering_subjects {
                 String updated_by = rs.getString(31);
                 int status = rs.getInt(32);
                 int is_uploaded = rs.getInt(33);
+                int faculty_id = rs.getInt(34);
+                String faculty_name = rs.getString(35);
+                String room = rs.getString(36);
+                String schedule = rs.getString(37);
+                int room_id = rs.getInt(38);
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id);
                 datas.add(to);
             }
             return datas;
@@ -537,6 +637,11 @@ public class Academic_offering_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",faculty_id"
+                    + ",faculty_name"
+                    + ",room"
+                    + ",schedule"
+                    + ",room_id"
                     + " from academic_offering_subjects"
                     + " " + where;
 
@@ -576,6 +681,11 @@ public class Academic_offering_subjects {
                 String updated_by = rs.getString(31);
                 int status = rs.getInt(32);
                 int is_uploaded = rs.getInt(33);
+                int faculty_id = rs.getInt(34);
+                String faculty_name = rs.getString(35);
+                String room = rs.getString(36);
+                String schedule = rs.getString(37);
+                int room_id = rs.getInt(38);
 
                 String s2 = "select "
                         + "id"
@@ -609,7 +719,7 @@ public class Academic_offering_subjects {
 
                 }
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id);
                 datas.add(to);
             }
             return datas;

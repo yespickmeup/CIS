@@ -4,11 +4,24 @@
  */
 package cis.pnl;
 
+import cis.academic.Dlg_academic_offerings;
+import cis.academic.Dlg_academic_years;
+import cis.classrooms.Dlg_classrooms;
+import cis.colleges.Dlg_colleges;
+import cis.courses.Dlg_courses;
+import cis.deans_portal.Dlg_deans_portal;
+import cis.departments.Dlg_departments;
+import cis.faculty_members.Dlg_faculty_members;
+import cis.students.Dlg_student_assessment_loading;
+import cis.students.Dlg_student_enrollment;
+import cis.subjects.Dlg_subjects;
+import cis.users.Dlg_users;
 import cis.users.MyUser;
 import cis.users.User_previleges;
 import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.DateType;
+import cis.utils.DeEncrypter;
 import cis.utils.MyFrame;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -24,9 +37,6 @@ import java.util.List;
 import javax.swing.*;
 import mijzcx.synapse.desk.utils.Application;
 import mijzcx.synapse.desk.utils.CloseDialog;
-
-
-
 
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
@@ -141,7 +151,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/banking2.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/book (2).png"))); // NOI18N
         jLabel7.setOpaque(true);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -164,6 +174,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(16, 88, 197));
         jLabel8.setText("Username:");
 
+        tf_username.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_usernameActionPerformed(evt);
@@ -175,6 +186,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(16, 88, 197));
         jLabel12.setText("Password:");
 
+        tf_password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_passwordActionPerformed(evt);
@@ -485,13 +497,16 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
+
         String business_name = System.getProperty("business_name", "Synapse Software Technologies");
         jLabel7.setText(business_name);
         jPanel6.setVisible(false);
+
         time();
         set_card_items();
         hover();
         set_default_branch();
+
     }
 
     private void set_default_branch() {
@@ -610,6 +625,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         String user_name = tf_username.getText();
         String date = DateType.sf.format(new Date());
         String password = tf_password.getText();
+        password = DeEncrypter.encrypt(password);
         String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
         final Users.to_users to = Users.ret_data_autho(where);
         if (to == null) {
@@ -628,13 +644,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
             jPanel1.updateUI();
             set_previleges();
             cardLayout.show(pnl_main_holder, "2");
-            t_services_transactions();
+
         }
     }
 
     //<editor-fold defaultstate="collapsed" desc=" privileges ">
     private void set_previleges() {
-        String where = " where user_id='" + MyUser.getUser_id() + "' order by previledge asc";
+        String where = " where user_id='" + MyUser.getUser_id() + "' order by privilege asc";
         List<User_previleges.to_user_privileges> datas = User_previleges.ret_data(where);
         for (User_previleges.to_user_privileges to : datas) {
             if (to.privilege.equalsIgnoreCase("Sales")) {
@@ -642,6 +658,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
             //<editor-fold defaultstate="collapsed" desc=" menu icons ">
             //</editor-fold>
         }
+
     }
 
     //</editor-fold>
@@ -678,36 +695,59 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("minimize")) {
                     Pnl_Dashboard.this.setState(Frame.ICONIFIED);
                 }
-
+//                System.out.println("data: " + data.stmt);
                 //<editor-fold defaultstate="collapsed" desc=" transactions ">
-                if (data.stmt.equals("Services-Transaction")) {
-                    t_services_transactions();
+                if (data.stmt.equals("Enrollment")) {
+                    t_enrollment();
+                }
+                if (data.stmt.equals("Dean")) {
+                    t_dean();
+                }
+                if (data.stmt.equals("Registrar")) {
+                    t_registrar();
+                }
+                if (data.stmt.equals("Accounting")) {
+                    t_accounting();
+                }
+                if (data.stmt.equals("Faculty")) {
+                    t_faculty();
                 }
 
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
-                if (data.stmt.equals("Service Departments")) {
+                if (data.stmt.equals("Academic Years")) {
+                    m_academic_years();
+                }
+                if (data.stmt.equals("Academic Offerings")) {
+                    m_academic_offerings();
+                }
+                if (data.stmt.equals("Class Schedules")) {
+                    m_class_schedules();
+                }
+                if (data.stmt.equals("Classrooms")) {
+                    m_class_rooms();
+                }
+                if (data.stmt.equals("Courses")) {
+                    m_courses();
+                }
+                if (data.stmt.equals("Colleges")) {
+                    m_colleges();
+                }
+                if (data.stmt.equals("Departments")) {
                     m_departments();
                 }
-                if (data.stmt.equals("Service Department Members")) {
-                    m_members();
+                if (data.stmt.equals("Faculty and Staff")) {
+                    m_faculty_and_staff();
                 }
-                if (data.stmt.equals("Service Transaction Type")) {
-                    m_type();
+                if (data.stmt.equals("Subjects")) {
+                    m_subjects();
+                }
+                if (data.stmt.equals("Users")) {
+                    m_users();
                 }
 
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" Reports ">
-                if (data.stmt.equals("Services Report")) {
-                    r_services();
-                }
-                if (data.stmt.equals("Barcodes")) {
-                    r_barcode();
-                }
-                if (data.stmt.equals("Services Performance Report")) {
-                  r_services_performance();
-                }
-
                 //</editor-fold>
             }
 
@@ -727,65 +767,80 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         nd.setVisible(true);
     }
 
-    private void t_services_transactions() {
+    private void t_enrollment() {
 
-        int account = 0;
-        String where = " where user_id='" + MyUser.getUser_id() + "' and account='Services' ";
-        List<User_previleges.to_user_privileges> datas = User_previleges.ret_data(where);
+        Dlg_student_enrollment dtc = new Dlg_student_enrollment();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Enrollment");
+    }
 
-        for (User_previleges.to_user_privileges to : datas) {
+    private void t_dean() {
 
-            if (to.privilege.equalsIgnoreCase("Services-View/Encode")) {
-                account = 3;
-            }
-            if (to.privilege.equalsIgnoreCase("Services-View")) {
-                account = 2;
-            }
-            if (to.privilege.equalsIgnoreCase("Services-View/Encode/Update")) {
-                account = 4;
-            }
-            if (to.privilege.equalsIgnoreCase("Services-Transaction")) {
-                account = 1;
-                break;
-            }
-        }
+        Dlg_deans_portal dtc = new Dlg_deans_portal();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Dean");
+    }
 
-//        Dlg_services dtc = new Dlg_services();
-//        dtc.do_pass(account);
-//        MyFrame.set(dtc.getSurface(), jPanel1, "Services");
+    private void t_registrar() {
 
+        Dlg_student_assessment_loading dtc = new Dlg_student_assessment_loading();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Registrar");
+    }
+
+    private void t_accounting() {
+
+    }
+
+    private void t_faculty() {
+
+    }
+
+    private void m_academic_years() {
+        Dlg_academic_years dtc = new Dlg_academic_years();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Academic Years", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_academic_offerings() {
+        Dlg_academic_offerings dtc = new Dlg_academic_offerings();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Academic Offerings", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_class_schedules() {
+//        Dlg_academic_years dtc = new Dlg_academic_years();
+//        MyFrame.set2(dtc.getSurface(), jPanel1, "Class Schedules", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_class_rooms() {
+        Dlg_classrooms dtc = new Dlg_classrooms();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Classrooms", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_courses() {
+        Dlg_courses dtc = new Dlg_courses();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Courses", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_colleges() {
+        Dlg_colleges dtc = new Dlg_colleges();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Colleges", dtc.getWidth(), dtc.getHeight());
     }
 
     private void m_departments() {
-//        Dlg_my_services_departments dtc = new Dlg_my_services_departments();
-//        MyFrame.set2(dtc.getSurface(), jPanel1, "Service Departments", dtc.getWidth(), dtc.getHeight());
+        Dlg_departments dtc = new Dlg_departments();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Departments", dtc.getWidth(), dtc.getHeight());
     }
 
-    private void m_members() {
-//        Dlg_my_services_crews dtc = new Dlg_my_services_crews();
-//        MyFrame.set2(dtc.getSurface(), jPanel1, "Service Department Members", dtc.getWidth(), dtc.getHeight());
+    private void m_faculty_and_staff() {
+        Dlg_faculty_members dtc = new Dlg_faculty_members();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Faculty and Staff", dtc.getWidth(), dtc.getHeight());
     }
 
-    private void m_type() {
-//        Dlg_my_service_type dtc = new Dlg_my_service_type();
-//        MyFrame.set2(dtc.getSurface(), jPanel1, "Service Transaction Type", dtc.getWidth(), dtc.getHeight());
+    private void m_subjects() {
+        Dlg_subjects dtc = new Dlg_subjects();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Subjects", dtc.getWidth(), dtc.getHeight());
     }
 
-    private void r_services() {
-//        Dlg_report_services dtc = new Dlg_report_services();
-//        MyFrame.set(dtc.getSurface(), jPanel1, "Services Report");
-
+    private void m_users() {
+        Dlg_users dtc = new Dlg_users();
+        MyFrame.set2(dtc.getSurface(), jPanel1, "Users", dtc.getWidth(), dtc.getHeight());
     }
 
-    private void r_services_performance() {
-//        Dlg_report_charges dtc = new Dlg_report_charges();
-//        MyFrame.set(dtc.getSurface(), jPanel1, "Services Performance");
-
-    }
-
-    private void r_barcode() {
-//        Dlg_my_services_print_barcodes dtc = new Dlg_my_services_print_barcodes();
-//        MyFrame.set(dtc.getSurface(), jPanel1, "Barcodes");
-
-    }
 }

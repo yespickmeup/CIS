@@ -11,7 +11,9 @@ import cis.departments.Departments;
 import cis.departments.Dlg_departments;
 import cis.faculty_members.Faculty_members.to_faculty_members;
 import cis.users.MyUser;
+import cis.users.Users;
 import cis.utils.Alert;
+import cis.utils.DeEncrypter;
 import cis.utils.Dlg_confirm_action;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
@@ -1371,13 +1373,16 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
     public static ArrayListModel tbl_faculty_members_ALM;
     public static Tblfaculty_membersModel tbl_faculty_members_M;
 
+    
     public static void init_tbl_faculty_members(JTable tbl_faculty_members) {
         tbl_faculty_members_ALM = new ArrayListModel();
         tbl_faculty_members_M = new Tblfaculty_membersModel(tbl_faculty_members_ALM);
         tbl_faculty_members.setModel(tbl_faculty_members_M);
         tbl_faculty_members.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        
+        
         tbl_faculty_members.setRowHeight(25);
-        int[] tbl_widths_faculty_members = {120, 200, 200, 200, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_faculty_members = {120, 200, 200, 200, 60, 60, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_faculty_members.length; i < n; i++) {
             if (i == 0) {
                 continue;
@@ -1400,7 +1405,7 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
     public static class Tblfaculty_membersModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Name", "Department", "College", "Designation", "Status", "", "level", "college_id", "college", "department_id", "department", "is_fulltime", "is_acad", "dean_college_id", "dean_college_name", "rank_id", "rank", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Name", "Department", "College", "Designation", "Status", "Account", "", "college_id", "college", "department_id", "department", "is_fulltime", "is_acad", "dean_college_id", "dean_college_name", "rank_id", "rank", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblfaculty_membersModel(ListModel listmodel) {
@@ -1436,11 +1441,21 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
                 case 3:
                     return " " + tt.designation + " - " + tt.group_name;
                 case 4:
-                    return " Delete";
+                    if (tt.status == 1) {
+                        return " Active";
+                    } else {
+                        return " Inactive";
+                    }
+
                 case 5:
-                    return tt.level_id;
+                    if (tt.updated_by.isEmpty()) {
+                        return "  Create";
+                    } else {
+                        return "  *******";
+                    }
+
                 case 6:
-                    return tt.level;
+                    return " Delete";
                 case 7:
                     return tt.college_id;
                 case 8:
@@ -1478,8 +1493,29 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
     }
 
     private void ret_members() {
-        String where = "";
-        List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data(where);
+        tbl_faculty_members.clearSelection();
+        String where = " where id<>0 ";
+        Field.Combo dep = (Field.Combo) tf_field9;
+        Field.Combo lev = (Field.Combo) tf_field11;
+        Field.Combo gro = (Field.Combo) tf_field10;
+        Field.Combo des = (Field.Combo) tf_field12;
+
+        if (!jCheckBox6.isSelected()) {
+            where = where + " and department_id='" + dep.getId() + "' ";
+            if (!jCheckBox8.isSelected()) {
+                where = where + " and college_id='" + lev.getId() + "' ";
+            }
+        }
+        if (!jCheckBox7.isSelected()) {
+            where = where + " and group_id='" + gro.getId() + "' ";
+            if (!jCheckBox9.isSelected()) {
+                where = where + " and designation_id='" + des.getId() + "' ";
+            }
+        }
+
+        where = where + " and concat(lname,' ',fname)  like '%" + tf_field13.getText() + "%' order by lname asc ";
+        System.out.println(where);
+        List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data_with_account(where);
         loadData_faculty_members(members);
         jLabel2.setText("" + members.size());
     }
@@ -1608,11 +1644,11 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
         }
         int col2 = tbl_faculty_members.getSelectedColumn();
         Faculty_members.to_faculty_members to = (Faculty_members.to_faculty_members) tbl_faculty_members_ALM.get(row);
-        if (col2 == 4) {
+        if (col2 == 6) {
             Window p = (Window) this;
             Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
             nd.setTitle("");
-//            nd.do_pass(services);
+//            nd.do_pass(to);
             nd.setCallback(new Dlg_confirm_delete.Callback() {
 
                 @Override
@@ -1622,6 +1658,27 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
                     ret_members();
                     Alert.set(3, "");
                     clear_fm();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        } else if (col2 == 5) {
+
+            Window p = (Window) this;
+            Dlg_faculty_member_create_account nd = Dlg_faculty_member_create_account.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_faculty_member_create_account.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_faculty_member_create_account.OutputData data) {
+                    closeDialog.ok();
+                    if (to.updated_by.isEmpty()) {
+                        add_account(data.user_screen_name, data.user_name, data.password, to.id);
+
+                    } else {
+                        update_account(data.user_screen_name, data.user_name, data.password, to.id, FitIn.toInt(to.updated_by));
+
+                    }
                 }
             });
             nd.setLocationRelativeTo(this);
@@ -1660,6 +1717,69 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
                 jCheckBox5.setSelected(true);
             }
         }
+    }
+
+    private void add_account(String user_screen_name, String user_name, String password, int faculty_id) {
+        int id = 0;
+
+        password = DeEncrypter.encrypt(password);
+
+        String date_added = DateType.now();
+        String date_updated = DateType.now();
+        String added_by_id = MyUser.getUser_id();
+        String update_by_id = MyUser.getUser_id();
+        int status = 1;
+
+        Users.to_users to = new Users.to_users(id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status, faculty_id);
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                Users.add_data(to);
+                ret_members();
+                Alert.set(1, "");
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+
+    }
+
+    private void update_account(String user_screen_name, String user_name, String password, int faculty_id, int user_id) {
+
+        List<Users.to_users> users = Users.ret_data(" where faculty_id='" + faculty_id + "' ");
+        System.out.println("size: " + users.size());
+        if (!users.isEmpty()) {
+            Users.to_users user = users.get(0);
+            password = DeEncrypter.encrypt(password);
+
+            String date_added = user.date_added;
+            String date_updated = DateType.now();
+            String added_by_id = user.added_by_id;
+            String update_by_id = MyUser.getUser_id();
+            int status = user.status;
+
+            Users.to_users to = new Users.to_users(user_id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status, faculty_id);
+            Window p = (Window) this;
+            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            nd.setTitle("");
+            nd.setCallback(new Dlg_confirm_action.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                    closeDialog.ok();
+                    Users.update_data(to);
+                    ret_members();
+                    Alert.set(2, "");
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+
     }
 
     private void clear_fm() {

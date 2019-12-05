@@ -649,7 +649,7 @@ public class Dlg_departments extends javax.swing.JDialog {
         String where = " order by user_screen_name asc  ";
         List<Users.to_users> users = new ArrayList();
         List<Users.to_users> users1 = Users.ret_data(where);
-        Users.to_users t = new Users.to_users(0, "", "", "", "", "", "", "", 0);
+        Users.to_users t = new Users.to_users(0, "", "", "", "", "", "", "", 0,0);
         users.add(t);
         users.addAll(users1);
         Object[][] obj = new Object[users.size()][1];
@@ -681,7 +681,7 @@ public class Dlg_departments extends javax.swing.JDialog {
         String where = " order by user_screen_name asc  ";
         List<Users.to_users> users = new ArrayList();
         List<Users.to_users> users1 = Users.ret_data(where);
-        Users.to_users t = new Users.to_users(0, "", "", "", "", "", "", "", 0);
+        Users.to_users t = new Users.to_users(0, "", "", "", "", "", "", "", 0,0);
         users.add(t);
         users.addAll(users1);
         Object[][] obj = new Object[users.size()][1];

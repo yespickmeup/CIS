@@ -299,7 +299,7 @@
                                                       <Component id="jCheckBox5" min="-2" pref="75" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jCheckBox6" min="-2" pref="86" max="-2" attributes="0"/>
-                                                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
                                                       <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
@@ -349,7 +349,7 @@
                                               <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tf_field10" pref="126" max="32767" attributes="0"/>
+                                              <Component id="tf_field10" max="32767" attributes="0"/>
                                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1501,9 +1501,9 @@
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tf_field42" pref="501" max="32767" attributes="0"/>
+                                              <Component id="tf_field42" pref="483" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="tf_field39" pref="501" max="32767" attributes="0"/>
+                                              <Component id="tf_field39" pref="483" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="tf_field40" max="32767" attributes="0"/>
@@ -2897,19 +2897,19 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel63" min="-2" pref="76" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tf_field101" min="-2" pref="352" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="tf_field101" pref="352" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel64" min="-2" pref="62" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tf_field102" min="-2" pref="352" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="tf_field102" pref="352" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel65" min="-2" pref="62" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tf_field103" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="tf_field103" pref="240" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

@@ -140,7 +140,7 @@ public class MyUser {
                 String update_by_id = rs.getString(8);
                 int status = rs.getInt(9);
 
-                to_users to = new to_users(id, user_screen_name1, user_name1, password, date_added, date_updated, added_by_id, update_by_id, status);
+                to_users to = new to_users(id, user_screen_name1, user_name1, password, date_added, date_updated, added_by_id, update_by_id, status,0);
                 datas.add(to);
             }
             return datas;

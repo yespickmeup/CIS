@@ -8,6 +8,7 @@ package cis.colleges;
 import cis.colleges.Colleges.to_colleges;
 import cis.departments.Departments;
 import cis.departments.Dlg_departments;
+import cis.faculty_members.Faculty_members;
 import cis.users.MyUser;
 import cis.users.Users;
 import cis.utils.Alert;
@@ -808,16 +809,14 @@ public class Dlg_colleges extends javax.swing.JDialog {
 
     private void init_users() {
 
-        String where = " order by user_screen_name asc  ";
-        List<Users.to_users> users = new ArrayList();
-        List<Users.to_users> users1 = Users.ret_data(where);
-        Users.to_users t = new Users.to_users(0, "", "", "", "", "", "", "", 0);
-        users.add(t);
-        users.addAll(users1);
+        Field.Combo co = (Field.Combo) tf_user_screen_name2;
+        String where = " where group_name like '%DEANS%' order by lname asc  ";
+        List<Faculty_members.to_faculty_members> users = Faculty_members.ret_data(where);
+
         Object[][] obj = new Object[users.size()][1];
         int i = 0;
-        for (Users.to_users to : users) {
-            obj[i][0] = " " + to.user_screen_name;
+        for (Faculty_members.to_faculty_members to : users) {
+            obj[i][0] = " " + to.lname + ", " + to.fname + " " + to.mi;
             i++;
         }
         JLabel[] labels = {};
@@ -829,9 +828,9 @@ public class Dlg_colleges extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                Users.to_users to = users.get(data.selected_row);
+                Faculty_members.to_faculty_members to = users.get(data.selected_row);
                 Field.Combo co = (Field.Combo) tf_user_screen_name1;
-                co.setText("" + to.user_screen_name);
+                co.setText("" + to.lname + ", " + to.fname + " " + to.mi);
                 co.setId("" + to.id);
 
             }

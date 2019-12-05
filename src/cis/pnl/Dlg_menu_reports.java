@@ -322,7 +322,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
     }
 
     private void set_previledge() {
-        String where = " where user_id='" + MyUser.getUser_id() + "' order by previledge asc";
+        String where = " where user_id='" + MyUser.getUser_id() + "' order by privilege asc";
         String where2 = " where user_id='" + MyUser.getUser_id() + "' and name like '" + "Services Performance Report - (View)" + "' ";
         List<User_previleges.to_user_privileges> datas = User_previleges.ret_data(where);
 

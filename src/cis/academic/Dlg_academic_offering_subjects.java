@@ -1092,7 +1092,13 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
                 int status = 1;
                 int is_uploaded = 0;
 
-                Academic_offering_subjects.to_academic_offering_subjects aos = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                int faculty_id = 0;
+                String faculty_name = "";
+                String room = "";
+                String schedule = "";
+                int room_id = 0;
+                Academic_offering_subjects.to_academic_offering_subjects aos = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id);
+
                 //<editor-fold defaultstate="collapsed" desc=" prerequisites ">
                 List<Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites> pres = new ArrayList();
                 List<Subject_prerequisites.to_subject_prerequisites> prerequisites = data.prerequisites;
@@ -1161,7 +1167,7 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
     public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Code", "Description", "Lec", "Lab", "Prerequisites", "Delete", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_code", "description", "units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Code", "Description", "Lec", "Lab", "Prerequisites", "", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_code", "description", "units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblacademic_offering_subjectsModel(ListModel listmodel) {

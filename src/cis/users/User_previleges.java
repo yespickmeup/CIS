@@ -5,8 +5,6 @@
  */
 package cis.users;
 
-
-
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,14 +16,12 @@ import java.util.List;
 import mijzcx.synapse.desk.utils.Lg;
 import mijzcx.synapse.desk.utils.SqlStringUtil;
 
-
 /**
  *
  * @author Ronald
  */
 public class User_previleges {
 
-   
     public static class to_user_privileges {
 
         public final int id;
@@ -148,6 +144,22 @@ public class User_previleges {
         }
     }
 
+    public static void delete_data_where(String where) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "delete from user_privileges  "
+                    + " " + where;
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(User_previleges.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static List<to_user_privileges> ret_data(String where) {
         List<to_user_privileges> datas = new ArrayList();
 
@@ -190,4 +202,50 @@ public class User_previleges {
         }
     }
 
+    public static void add_user_previleges(List<to_user_privileges> to_user_previleges1) {
+        try {
+            Connection conn = MyConnection.connect();
+            for (to_user_privileges to_user_previleges : to_user_previleges1) {
+                String s0 = "insert into user_privileges("
+                        + "user_id"
+                        + ",account"
+                        + ",privilege_id"
+                        + ",privilege"
+                        + ",date_added"
+                        + ",date_updated"
+                        + ",added_by_id"
+                        + ",update_by_id"
+                        + ")values("
+                        + ":user_id"
+                        + ",:account"
+                        + ",:privilege_id"
+                        + ",:privilege"
+                        + ",:date_added"
+                        + ",:date_updated"
+                        + ",:added_by_id"
+                        + ",:update_by_id"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("user_id", to_user_previleges.user_id)
+                        .setString("account", to_user_previleges.account)
+                        .setString("privilege_id", to_user_previleges.privilege_id)
+                        .setString("privilege", to_user_previleges.privilege)
+                        .setString("date_added", to_user_previleges.date_added)
+                        .setString("date_updated", to_user_previleges.date_updated)
+                        .setString("added_by_id", to_user_previleges.added_by_id)
+                        .setString("update_by_id", to_user_previleges.update_by_id)
+                        .ok();
+
+                PreparedStatement stmt = conn.prepareStatement(s0);
+                stmt.execute();
+                Lg.s(User_previleges.class, "Successfully Added");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
 }

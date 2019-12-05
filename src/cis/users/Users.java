@@ -33,8 +33,9 @@ public class Users {
         public final String added_by_id;
         public final String update_by_id;
         public final int status;
+        public final int faculty_id;
 
-        public to_users(int id, String user_screen_name, String user_name, String password, String date_added, String date_updated, String added_by_id, String update_by_id, int status) {
+        public to_users(int id, String user_screen_name, String user_name, String password, String date_added, String date_updated, String added_by_id, String update_by_id, int status, int faculty_id) {
             this.id = id;
             this.user_screen_name = user_screen_name;
             this.user_name = user_name;
@@ -44,6 +45,7 @@ public class Users {
             this.added_by_id = added_by_id;
             this.update_by_id = update_by_id;
             this.status = status;
+            this.faculty_id = faculty_id;
         }
     }
 
@@ -59,6 +61,7 @@ public class Users {
                     + ",added_by_id"
                     + ",update_by_id"
                     + ",status"
+                    + ",faculty_id"
                     + ")values("
                     + ":user_screen_name"
                     + ",:user_name"
@@ -68,6 +71,7 @@ public class Users {
                     + ",:added_by_id"
                     + ",:update_by_id"
                     + ",:status"
+                    + ",:faculty_id"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -79,6 +83,7 @@ public class Users {
                     .setString("added_by_id", to_users.added_by_id)
                     .setString("update_by_id", to_users.update_by_id)
                     .setNumber("status", to_users.status)
+                    .setNumber("faculty_id", to_users.faculty_id)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -159,6 +164,7 @@ public class Users {
                     + ",added_by_id"
                     + ",update_by_id"
                     + ",status"
+                    + ",faculty_id"
                     + " from users"
                     + " " + where;
 
@@ -174,8 +180,8 @@ public class Users {
                 String added_by_id = rs.getString(7);
                 String update_by_id = rs.getString(8);
                 int status = rs.getInt(9);
-
-                to_users to = new to_users(id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status);
+                int faculty_id = rs.getInt(10);
+                to_users to = new to_users(id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status, faculty_id);
                 datas.add(to);
             }
             return datas;
@@ -201,9 +207,10 @@ public class Users {
                     + ",added_by_id"
                     + ",update_by_id"
                     + ",status"
+                    + ",faculty_id"
                     + " from users"
                     + " " + where;
-
+//            System.out.println("where: "+where);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
             if (rs.next()) {
@@ -216,8 +223,8 @@ public class Users {
                 String added_by_id = rs.getString(7);
                 String update_by_id = rs.getString(8);
                 int status = rs.getInt(9);
-
-                to = new to_users(id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status);
+                int faculty_id = rs.getInt(10);
+                to = new to_users(id, user_screen_name, user_name, password, date_added, date_updated, added_by_id, update_by_id, status, faculty_id);
             }
             return to;
         } catch (SQLException e) {

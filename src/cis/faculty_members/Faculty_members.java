@@ -5,6 +5,7 @@
  */
 package cis.faculty_members;
 
+import cis.users.Users;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -309,6 +310,97 @@ public class Faculty_members {
                 String updated_by = rs.getString(22);
                 int status = rs.getInt(23);
                 int is_uploaded = rs.getInt(24);
+
+                to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                datas.add(to);
+            }
+            return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static List<to_faculty_members> ret_data_with_account(String where) {
+        List<to_faculty_members> datas = new ArrayList();
+
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "select "
+                    + "id"
+                    + ",fname"
+                    + ",lname"
+                    + ",mi"
+                    + ",level_id"
+                    + ",level"
+                    + ",college_id"
+                    + ",college"
+                    + ",department_id"
+                    + ",department"
+                    + ",group_id"
+                    + ",group_name"
+                    + ",designation_id"
+                    + ",designation"
+                    + ",is_fulltime"
+                    + ",is_acad"
+                    + ",dean_college_id"
+                    + ",dean_college_name"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + " from faculty_members"
+                    + " " + where;
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(s0);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String fname = rs.getString(2);
+                String lname = rs.getString(3);
+                String mi = rs.getString(4);
+                int level_id = rs.getInt(5);
+                String level = rs.getString(6);
+                int college_id = rs.getInt(7);
+                String college = rs.getString(8);
+                int department_id = rs.getInt(9);
+                String department = rs.getString(10);
+                int group_id = rs.getInt(11);
+                String group_name = rs.getString(12);
+                int designation_id = rs.getInt(13);
+                String designation = rs.getString(14);
+                int is_fulltime = rs.getInt(15);
+                int is_acad = rs.getInt(16);
+                int dean_college_id = rs.getInt(17);
+                String dean_college_name = rs.getString(18);
+                String created_at = rs.getString(19);
+                String updated_at = rs.getString(20);
+                String created_by = rs.getString(21);
+                String updated_by = "";// rs.getString(22);
+                int status = rs.getInt(23);
+                int is_uploaded = rs.getInt(24);
+
+                String s2 = "select "
+                        + "id"
+                        + ",user_screen_name"
+                        + ",user_name"
+                        + ",password"
+                        + ",date_added"
+                        + ",date_updated"
+                        + ",added_by_id"
+                        + ",update_by_id"
+                        + ",status"
+                        + ",faculty_id"
+                        + " from users"
+                        + " where faculty_id='" + id + "'";
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s2);
+                if (rs2.next()) {
+                    updated_by = rs2.getString(1);
+                }
 
                 to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);

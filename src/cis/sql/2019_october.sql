@@ -149,6 +149,11 @@ id int auto_increment primary key
 ,prerequisite_subject_ids varchar(255)
 ,subject_group varchar(255)
 ,subject_group_id int
+,faculty_id int
+,faculty_name varchar(255)
+,room_id int
+,room varchar(255)
+,schedule varchar(255)
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
