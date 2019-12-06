@@ -12,7 +12,7 @@ import cis.courses.Dlg_courses;
 import cis.deans_portal.Dlg_deans_portal;
 import cis.departments.Dlg_departments;
 import cis.faculty_members.Dlg_faculty_members;
-import cis.students.Dlg_student_assessment_loading;
+import cis.registrar.Dlg_registrar_portal;
 import cis.students.Dlg_student_enrollment;
 import cis.subjects.Dlg_subjects;
 import cis.users.Dlg_users;
@@ -781,7 +781,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
 
     private void t_registrar() {
 
-        Dlg_student_assessment_loading dtc = new Dlg_student_assessment_loading();
+        Dlg_registrar_portal dtc = new Dlg_registrar_portal();
         MyFrame.set(dtc.getSurface(), jPanel1, "Registrar");
     }
 
