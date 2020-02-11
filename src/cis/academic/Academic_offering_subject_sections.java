@@ -58,6 +58,8 @@ public class Academic_offering_subject_sections {
         public final int room_id;
         public final String room;
         public final String schedule;
+        public final String start_date;
+        public final String end_date;
         public final String created_at;
         public final String updated_at;
         public final String created_by;
@@ -65,7 +67,7 @@ public class Academic_offering_subject_sections {
         public final int status;
         public final int is_uploaded;
 
-        public to_academic_offering_subject_sections(int id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, String section, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, int faculty_id, String faculty_name, int room_id, String room, String schedule, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_academic_offering_subject_sections(int id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, String section, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, int faculty_id, String faculty_name, int room_id, String room, String schedule, String start_date, String end_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
             this.id = id;
             this.academic_offering_subject_id = academic_offering_subject_id;
             this.academic_offering_id = academic_offering_id;
@@ -100,6 +102,8 @@ public class Academic_offering_subject_sections {
             this.room_id = room_id;
             this.room = room;
             this.schedule = schedule;
+            this.start_date = start_date;
+            this.end_date = end_date;
             this.created_at = created_at;
             this.updated_at = updated_at;
             this.created_by = created_by;
@@ -146,6 +150,8 @@ public class Academic_offering_subject_sections {
                     + ",room_id"
                     + ",room"
                     + ",schedule"
+                    + ",start_date"
+                    + ",end_date"
                     + ",created_at"
                     + ",updated_at"
                     + ",created_by"
@@ -186,6 +192,8 @@ public class Academic_offering_subject_sections {
                     + ",:room_id"
                     + ",:room"
                     + ",:schedule"
+                    + ",:start_date"
+                    + ",:end_date"
                     + ",:created_at"
                     + ",:updated_at"
                     + ",:created_by"
@@ -228,6 +236,8 @@ public class Academic_offering_subject_sections {
                     .setNumber("room_id", to_academic_offering_subject_sections.room_id)
                     .setString("room", to_academic_offering_subject_sections.room)
                     .setString("schedule", to_academic_offering_subject_sections.schedule)
+                    .setString("start_date", to_academic_offering_subject_sections.start_date)
+                    .setString("end_date", to_academic_offering_subject_sections.end_date)
                     .setString("created_at", to_academic_offering_subject_sections.created_at)
                     .setString("updated_at", to_academic_offering_subject_sections.updated_at)
                     .setString("created_by", to_academic_offering_subject_sections.created_by)
@@ -283,6 +293,8 @@ public class Academic_offering_subject_sections {
                     + ",room_id= :room_id "
                     + ",room= :room "
                     + ",schedule= :schedule "
+                    + ",start_date= :start_date "
+                    + ",end_date= :end_date "
                     + ",created_at= :created_at "
                     + ",updated_at= :updated_at "
                     + ",created_by= :created_by "
@@ -326,6 +338,8 @@ public class Academic_offering_subject_sections {
                     .setNumber("room_id", to_academic_offering_subject_sections.room_id)
                     .setString("room", to_academic_offering_subject_sections.room)
                     .setString("schedule", to_academic_offering_subject_sections.schedule)
+                    .setString("start_date", to_academic_offering_subject_sections.start_date)
+                    .setString("end_date", to_academic_offering_subject_sections.end_date)
                     .setString("created_at", to_academic_offering_subject_sections.created_at)
                     .setString("updated_at", to_academic_offering_subject_sections.updated_at)
                     .setString("created_by", to_academic_offering_subject_sections.created_by)
@@ -401,6 +415,8 @@ public class Academic_offering_subject_sections {
                     + ",room_id"
                     + ",room"
                     + ",schedule"
+                    + ",start_date"
+                    + ",end_date"
                     + ",created_at"
                     + ",updated_at"
                     + ",created_by"
@@ -447,14 +463,16 @@ public class Academic_offering_subject_sections {
                 int room_id = rs.getInt(32);
                 String room = rs.getString(33);
                 String schedule = rs.getString(34);
-                String created_at = rs.getString(35);
-                String updated_at = rs.getString(36);
-                String created_by = rs.getString(37);
-                String updated_by = rs.getString(38);
-                int status = rs.getInt(39);
-                int is_uploaded = rs.getInt(40);
+                String start_date = rs.getString(35);
+                String end_date = rs.getString(36);
+                String created_at = rs.getString(37);
+                String updated_at = rs.getString(38);
+                String created_by = rs.getString(39);
+                String updated_by = rs.getString(40);
+                int status = rs.getInt(41);
+                int is_uploaded = rs.getInt(42);
 
-                to_academic_offering_subject_sections to = new to_academic_offering_subject_sections(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, section, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_academic_offering_subject_sections to = new to_academic_offering_subject_sections(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, section, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, start_date, end_date, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);
             }
             return datas;

@@ -726,7 +726,8 @@ public class Dlg_courses extends javax.swing.JDialog {
         Object[][] obj = new Object[deps.size()][1];
         int i = 0;
         for (Departments.to_departments to : deps) {
-            obj[i][0] = " " + to.department_name;
+            obj[i][0
+                    ] = " " + to.department_name;
             i++;
         }
         JLabel[] labels = {};
@@ -817,6 +818,7 @@ public class Dlg_courses extends javax.swing.JDialog {
         });
     }
 
+   
     //<editor-fold defaultstate="collapsed" desc=" courses "> 
     public static ArrayListModel tbl_courses_ALM;
     public static TblcoursesModel tbl_courses_M;

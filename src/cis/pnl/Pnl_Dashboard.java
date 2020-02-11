@@ -9,11 +9,12 @@ import cis.academic.Dlg_academic_years;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
+import cis.deans_portal.Dlg_dean_portal_add_section;
 import cis.deans_portal.Dlg_deans_portal;
 import cis.departments.Dlg_departments;
 import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
-import cis.students.Dlg_student_enrollment;
+import cis.enrollments.Dlg_student_enrollment;
 import cis.subjects.Dlg_subjects;
 import cis.users.Dlg_users;
 import cis.users.MyUser;
@@ -804,7 +805,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     }
 
     private void m_class_schedules() {
-//        Dlg_academic_years dtc = new Dlg_academic_years();
+//        Dlg_dean_portal_add_section dtc = new Dlg_dean_portal_add_section();
 //        MyFrame.set2(dtc.getSurface(), jPanel1, "Class Schedules", dtc.getWidth(), dtc.getHeight());
     }
 

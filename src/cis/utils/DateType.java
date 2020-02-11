@@ -22,6 +22,7 @@ public class DateType {
     public static SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat sf2 = new SimpleDateFormat("MM-dd-yyyy");
     public static SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static SimpleDateFormat datetime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa");
     public static SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss aa");
     public static SimpleDateFormat time2 = new SimpleDateFormat("HH:mm aa");
     public static SimpleDateFormat sf1 = new SimpleDateFormat("EEE, MMM dd,yyyy");

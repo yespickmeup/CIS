@@ -132,6 +132,8 @@ id int auto_increment primary key
 ,room_id int
 ,room varchar(255)
 ,schedule varchar(255)
+,start_date date
+,end_date date
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)

@@ -46,6 +46,22 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
+drop table if exists department_requirements;
+create table department_requirements(
+id int auto_increment primary key
+,academic_year_id int
+,academic_year varchar(255)
+,department_id int
+,department varchar(255)
+,requirements text
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
 drop table if exists courses;
 create table courses(
 id int auto_increment primary key
@@ -149,7 +165,7 @@ id int auto_increment primary key
 ,prerequisite_subject_ids varchar(255)
 ,subject_group varchar(255)
 ,subject_group_id int
-,faculty_id int
+,faculty_id varchar(255)
 ,faculty_name varchar(255)
 ,room_id int
 ,room varchar(255)
@@ -170,9 +186,11 @@ id int auto_increment primary key
 ,academic_year_id int
 ,academic_year varchar(255)
 ,level_id int
+
 ,level varchar(255)
 ,college_id int
 ,college varchar(255)
+
 ,department_id int
 ,department varchar(255)
 ,course_id int
@@ -405,6 +423,7 @@ id int auto_increment primary key
 ,first_name varchar(255)
 ,middle_name varchar(255)
 ,nick_name varchar(255)
+,current_address varchar(255)
 ,permanent_address varchar(255)
 ,email_address varchar(255)
 ,postal_code varchar(255)
@@ -421,6 +440,8 @@ id int auto_increment primary key
 ,date_of_communion date
 ,date_of_confirmation date
 ,is_right_handed int
+,is_indigenous int
+,indigenous_name varchar(255)
 ,level_id int
 ,level varchar(255)
 ,college_id int
@@ -465,14 +486,27 @@ id int auto_increment primary key
 ,grade_school_name  varchar(255)
 ,grade_school_region  varchar(255)
 ,grade_school_school_year  varchar(255)
+,grade_school_awards varchar(255)
 
 ,high_school_name  varchar(255)
 ,high_school_region  varchar(255)
 ,high_school_school_year  varchar(255)
+,high_school_awards varchar(255)
 
 ,college_school_name  varchar(255)
 ,college_school_region  varchar(255)
 ,college_school_school_year  varchar(255)
+,college_awards varchar(255)
+
+,junior_high_name varchar(255)
+,junior_high_region varchar(255)
+,junior_high_year varchar(255)
+,junior_high_awards varchar(255)
+
+,tesda_name varchar(255)
+,tesda_region varchar(255)
+,tesda_year varchar(255)
+,tesda_awards varchar(255)
 
 ,sibling1   varchar(500)
 ,sibling2   varchar(500)
@@ -543,6 +577,7 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
 
 
 

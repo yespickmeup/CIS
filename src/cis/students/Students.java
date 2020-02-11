@@ -33,6 +33,7 @@ public class Students {
         public final String first_name;
         public final String middle_name;
         public final String nick_name;
+        public final String current_address;
         public final String permanent_address;
         public final String email_address;
         public final String postal_code;
@@ -49,6 +50,8 @@ public class Students {
         public final String date_of_communion;
         public final String date_of_confirmation;
         public final int is_right_handed;
+        public final int is_indigenous;
+        public final String indigenous_name;
         public final int level_id;
         public final String level;
         public final int college_id;
@@ -88,12 +91,23 @@ public class Students {
         public final String grade_school_name;
         public final String grade_school_region;
         public final String grade_school_school_year;
+        public final String grade_school_awards;
         public final String high_school_name;
         public final String high_school_region;
         public final String high_school_school_year;
+        public final String high_school_awards;
         public final String college_school_name;
         public final String college_school_region;
         public final String college_school_school_year;
+        public final String college_awards;
+        public final String junior_high_name;
+        public final String junior_high_region;
+        public final String junior_high_year;
+        public final String junior_high_awards;
+        public final String tesda_name;
+        public final String tesda_region;
+        public final String tesda_year;
+        public final String tesda_awards;
         public final String sibling1;
         public final String sibling2;
         public final String sibling3;
@@ -109,7 +123,7 @@ public class Students {
         public final int status;
         public final int is_uploaded;
 
-        public to_students(int id, int is_transferee, int academic_year_id, String academic_year, String student_no, String last_name, String first_name, String middle_name, String nick_name, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String high_school_name, String high_school_region, String high_school_school_year, String college_school_name, String college_school_region, String college_school_school_year, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_students(int id, int is_transferee, int academic_year_id, String academic_year, String student_no, String last_name, String first_name, String middle_name, String nick_name, String current_address, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int is_indigenous, String indigenous_name, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String grade_school_awards, String high_school_name, String high_school_region, String high_school_school_year, String high_school_awards, String college_school_name, String college_school_region, String college_school_school_year, String college_awards, String junior_high_name, String junior_high_region, String junior_high_year, String junior_high_awards, String tesda_name, String tesda_region, String tesda_year, String tesda_awards, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
             this.id = id;
             this.is_transferee = is_transferee;
             this.academic_year_id = academic_year_id;
@@ -119,6 +133,7 @@ public class Students {
             this.first_name = first_name;
             this.middle_name = middle_name;
             this.nick_name = nick_name;
+            this.current_address = current_address;
             this.permanent_address = permanent_address;
             this.email_address = email_address;
             this.postal_code = postal_code;
@@ -135,6 +150,8 @@ public class Students {
             this.date_of_communion = date_of_communion;
             this.date_of_confirmation = date_of_confirmation;
             this.is_right_handed = is_right_handed;
+            this.is_indigenous = is_indigenous;
+            this.indigenous_name = indigenous_name;
             this.level_id = level_id;
             this.level = level;
             this.college_id = college_id;
@@ -174,12 +191,23 @@ public class Students {
             this.grade_school_name = grade_school_name;
             this.grade_school_region = grade_school_region;
             this.grade_school_school_year = grade_school_school_year;
+            this.grade_school_awards = grade_school_awards;
             this.high_school_name = high_school_name;
             this.high_school_region = high_school_region;
             this.high_school_school_year = high_school_school_year;
+            this.high_school_awards = high_school_awards;
             this.college_school_name = college_school_name;
             this.college_school_region = college_school_region;
             this.college_school_school_year = college_school_school_year;
+            this.college_awards = college_awards;
+            this.junior_high_name = junior_high_name;
+            this.junior_high_region = junior_high_region;
+            this.junior_high_year = junior_high_year;
+            this.junior_high_awards = junior_high_awards;
+            this.tesda_name = tesda_name;
+            this.tesda_region = tesda_region;
+            this.tesda_year = tesda_year;
+            this.tesda_awards = tesda_awards;
             this.sibling1 = sibling1;
             this.sibling2 = sibling2;
             this.sibling3 = sibling3;
@@ -209,6 +237,7 @@ public class Students {
                     + ",first_name"
                     + ",middle_name"
                     + ",nick_name"
+                    + ",current_address"
                     + ",permanent_address"
                     + ",email_address"
                     + ",postal_code"
@@ -225,6 +254,8 @@ public class Students {
                     + ",date_of_communion"
                     + ",date_of_confirmation"
                     + ",is_right_handed"
+                    + ",is_indigenous"
+                    + ",indigenous_name"
                     + ",level_id"
                     + ",level"
                     + ",college_id"
@@ -264,12 +295,23 @@ public class Students {
                     + ",grade_school_name"
                     + ",grade_school_region"
                     + ",grade_school_school_year"
+                    + ",grade_school_awards"
                     + ",high_school_name"
                     + ",high_school_region"
                     + ",high_school_school_year"
+                    + ",high_school_awards"
                     + ",college_school_name"
                     + ",college_school_region"
                     + ",college_school_school_year"
+                    + ",college_awards"
+                    + ",junior_high_name"
+                    + ",junior_high_region"
+                    + ",junior_high_year"
+                    + ",junior_high_awards"
+                    + ",tesda_name"
+                    + ",tesda_region"
+                    + ",tesda_year"
+                    + ",tesda_awards"
                     + ",sibling1"
                     + ",sibling2"
                     + ",sibling3"
@@ -293,6 +335,7 @@ public class Students {
                     + ",:first_name"
                     + ",:middle_name"
                     + ",:nick_name"
+                    + ",:current_address"
                     + ",:permanent_address"
                     + ",:email_address"
                     + ",:postal_code"
@@ -309,6 +352,8 @@ public class Students {
                     + ",:date_of_communion"
                     + ",:date_of_confirmation"
                     + ",:is_right_handed"
+                    + ",:is_indigenous"
+                    + ",:indigenous_name"
                     + ",:level_id"
                     + ",:level"
                     + ",:college_id"
@@ -348,12 +393,23 @@ public class Students {
                     + ",:grade_school_name"
                     + ",:grade_school_region"
                     + ",:grade_school_school_year"
+                    + ",:grade_school_awards"
                     + ",:high_school_name"
                     + ",:high_school_region"
                     + ",:high_school_school_year"
+                    + ",:high_school_awards"
                     + ",:college_school_name"
                     + ",:college_school_region"
                     + ",:college_school_school_year"
+                    + ",:college_awards"
+                    + ",:junior_high_name"
+                    + ",:junior_high_region"
+                    + ",:junior_high_year"
+                    + ",:junior_high_awards"
+                    + ",:tesda_name"
+                    + ",:tesda_region"
+                    + ",:tesda_year"
+                    + ",:tesda_awards"
                     + ",:sibling1"
                     + ",:sibling2"
                     + ",:sibling3"
@@ -379,6 +435,7 @@ public class Students {
                     .setString("first_name", to_students.first_name)
                     .setString("middle_name", to_students.middle_name)
                     .setString("nick_name", to_students.nick_name)
+                    .setString("current_address", to_students.current_address)
                     .setString("permanent_address", to_students.permanent_address)
                     .setString("email_address", to_students.email_address)
                     .setString("postal_code", to_students.postal_code)
@@ -395,6 +452,8 @@ public class Students {
                     .setString("date_of_communion", to_students.date_of_communion)
                     .setString("date_of_confirmation", to_students.date_of_confirmation)
                     .setNumber("is_right_handed", to_students.is_right_handed)
+                    .setNumber("is_indigenous", to_students.is_indigenous)
+                    .setString("indigenous_name", to_students.indigenous_name)
                     .setNumber("level_id", to_students.level_id)
                     .setString("level", to_students.level)
                     .setNumber("college_id", to_students.college_id)
@@ -434,12 +493,23 @@ public class Students {
                     .setString("grade_school_name", to_students.grade_school_name)
                     .setString("grade_school_region", to_students.grade_school_region)
                     .setString("grade_school_school_year", to_students.grade_school_school_year)
+                    .setString("grade_school_awards", to_students.grade_school_awards)
                     .setString("high_school_name", to_students.high_school_name)
                     .setString("high_school_region", to_students.high_school_region)
                     .setString("high_school_school_year", to_students.high_school_school_year)
+                    .setString("high_school_awards", to_students.high_school_awards)
                     .setString("college_school_name", to_students.college_school_name)
                     .setString("college_school_region", to_students.college_school_region)
                     .setString("college_school_school_year", to_students.college_school_school_year)
+                    .setString("college_awards", to_students.college_awards)
+                    .setString("junior_high_name", to_students.junior_high_name)
+                    .setString("junior_high_region", to_students.junior_high_region)
+                    .setString("junior_high_year", to_students.junior_high_year)
+                    .setString("junior_high_awards", to_students.junior_high_awards)
+                    .setString("tesda_name", to_students.tesda_name)
+                    .setString("tesda_region", to_students.tesda_region)
+                    .setString("tesda_year", to_students.tesda_year)
+                    .setString("tesda_awards", to_students.tesda_awards)
                     .setString("sibling1", to_students.sibling1)
                     .setString("sibling2", to_students.sibling2)
                     .setString("sibling3", to_students.sibling3)
@@ -478,6 +548,7 @@ public class Students {
                     + ",first_name= :first_name "
                     + ",middle_name= :middle_name "
                     + ",nick_name= :nick_name "
+                    + ",current_address= :current_address "
                     + ",permanent_address= :permanent_address "
                     + ",email_address= :email_address "
                     + ",postal_code= :postal_code "
@@ -494,6 +565,8 @@ public class Students {
                     + ",date_of_communion= :date_of_communion "
                     + ",date_of_confirmation= :date_of_confirmation "
                     + ",is_right_handed= :is_right_handed "
+                    + ",is_indigenous= :is_indigenous "
+                    + ",indigenous_name= :indigenous_name "
                     + ",level_id= :level_id "
                     + ",level= :level "
                     + ",college_id= :college_id "
@@ -533,12 +606,23 @@ public class Students {
                     + ",grade_school_name= :grade_school_name "
                     + ",grade_school_region= :grade_school_region "
                     + ",grade_school_school_year= :grade_school_school_year "
+                    + ",grade_school_awards= :grade_school_awards "
                     + ",high_school_name= :high_school_name "
                     + ",high_school_region= :high_school_region "
                     + ",high_school_school_year= :high_school_school_year "
+                    + ",high_school_awards= :high_school_awards "
                     + ",college_school_name= :college_school_name "
                     + ",college_school_region= :college_school_region "
                     + ",college_school_school_year= :college_school_school_year "
+                    + ",college_awards= :college_awards "
+                    + ",junior_high_name= :junior_high_name "
+                    + ",junior_high_region= :junior_high_region "
+                    + ",junior_high_year= :junior_high_year "
+                    + ",junior_high_awards= :junior_high_awards "
+                    + ",tesda_name= :tesda_name "
+                    + ",tesda_region= :tesda_region "
+                    + ",tesda_year= :tesda_year "
+                    + ",tesda_awards= :tesda_awards "
                     + ",sibling1= :sibling1 "
                     + ",sibling2= :sibling2 "
                     + ",sibling3= :sibling3 "
@@ -565,6 +649,7 @@ public class Students {
                     .setString("first_name", to_students.first_name)
                     .setString("middle_name", to_students.middle_name)
                     .setString("nick_name", to_students.nick_name)
+                    .setString("current_address", to_students.current_address)
                     .setString("permanent_address", to_students.permanent_address)
                     .setString("email_address", to_students.email_address)
                     .setString("postal_code", to_students.postal_code)
@@ -581,6 +666,8 @@ public class Students {
                     .setString("date_of_communion", to_students.date_of_communion)
                     .setString("date_of_confirmation", to_students.date_of_confirmation)
                     .setNumber("is_right_handed", to_students.is_right_handed)
+                    .setNumber("is_indigenous", to_students.is_indigenous)
+                    .setString("indigenous_name", to_students.indigenous_name)
                     .setNumber("level_id", to_students.level_id)
                     .setString("level", to_students.level)
                     .setNumber("college_id", to_students.college_id)
@@ -620,12 +707,23 @@ public class Students {
                     .setString("grade_school_name", to_students.grade_school_name)
                     .setString("grade_school_region", to_students.grade_school_region)
                     .setString("grade_school_school_year", to_students.grade_school_school_year)
+                    .setString("grade_school_awards", to_students.grade_school_awards)
                     .setString("high_school_name", to_students.high_school_name)
                     .setString("high_school_region", to_students.high_school_region)
                     .setString("high_school_school_year", to_students.high_school_school_year)
+                    .setString("high_school_awards", to_students.high_school_awards)
                     .setString("college_school_name", to_students.college_school_name)
                     .setString("college_school_region", to_students.college_school_region)
                     .setString("college_school_school_year", to_students.college_school_school_year)
+                    .setString("college_awards", to_students.college_awards)
+                    .setString("junior_high_name", to_students.junior_high_name)
+                    .setString("junior_high_region", to_students.junior_high_region)
+                    .setString("junior_high_year", to_students.junior_high_year)
+                    .setString("junior_high_awards", to_students.junior_high_awards)
+                    .setString("tesda_name", to_students.tesda_name)
+                    .setString("tesda_region", to_students.tesda_region)
+                    .setString("tesda_year", to_students.tesda_year)
+                    .setString("tesda_awards", to_students.tesda_awards)
                     .setString("sibling1", to_students.sibling1)
                     .setString("sibling2", to_students.sibling2)
                     .setString("sibling3", to_students.sibling3)
@@ -684,6 +782,7 @@ public class Students {
                     + ",first_name"
                     + ",middle_name"
                     + ",nick_name"
+                    + ",current_address"
                     + ",permanent_address"
                     + ",email_address"
                     + ",postal_code"
@@ -700,6 +799,8 @@ public class Students {
                     + ",date_of_communion"
                     + ",date_of_confirmation"
                     + ",is_right_handed"
+                    + ",is_indigenous"
+                    + ",indigenous_name"
                     + ",level_id"
                     + ",level"
                     + ",college_id"
@@ -739,12 +840,23 @@ public class Students {
                     + ",grade_school_name"
                     + ",grade_school_region"
                     + ",grade_school_school_year"
+                    + ",grade_school_awards"
                     + ",high_school_name"
                     + ",high_school_region"
                     + ",high_school_school_year"
+                    + ",high_school_awards"
                     + ",college_school_name"
                     + ",college_school_region"
                     + ",college_school_school_year"
+                    + ",college_awards"
+                    + ",junior_high_name"
+                    + ",junior_high_region"
+                    + ",junior_high_year"
+                    + ",junior_high_awards"
+                    + ",tesda_name"
+                    + ",tesda_region"
+                    + ",tesda_year"
+                    + ",tesda_awards"
                     + ",sibling1"
                     + ",sibling2"
                     + ",sibling3"
@@ -774,83 +886,97 @@ public class Students {
                 String first_name = rs.getString(7);
                 String middle_name = rs.getString(8);
                 String nick_name = rs.getString(9);
-                String permanent_address = rs.getString(10);
-                String email_address = rs.getString(11);
-                String postal_code = rs.getString(12);
-                String tel_no = rs.getString(13);
-                String mobile_no = rs.getString(14);
-                String date_of_birth = rs.getString(15);
-                String place_of_birth = rs.getString(16);
-                int age = rs.getInt(17);
-                int gender = rs.getInt(18);
-                String citizenship = rs.getString(19);
-                String religion = rs.getString(20);
-                String civil_status = rs.getString(21);
-                String spouse_name = rs.getString(22);
-                String date_of_communion = rs.getString(23);
-                String date_of_confirmation = rs.getString(24);
-                int is_right_handed = rs.getInt(25);
-                int level_id = rs.getInt(26);
-                String level = rs.getString(27);
-                int college_id = rs.getInt(28);
-                String college = rs.getString(29);
-                int department_id = rs.getInt(30);
-                String department = rs.getString(31);
-                String year_level = rs.getString(32);
-                String year_level_status = rs.getString(33);
-                String preferred_course1 = rs.getString(34);
-                String preferred_course2 = rs.getString(35);
-                String preferred_course3 = rs.getString(36);
-                String father_name = rs.getString(37);
-                String father_citizenship = rs.getString(38);
-                String father_home_address = rs.getString(39);
-                String father_email_address = rs.getString(40);
-                String father_mobile_no = rs.getString(41);
-                String father_occupation = rs.getString(42);
-                String father_employer = rs.getString(43);
-                String father_business_address = rs.getString(44);
-                String father_business_tel_no = rs.getString(45);
-                String father_educational_attainment = rs.getString(46);
-                String father_last_school_attended = rs.getString(47);
-                String mother_name = rs.getString(48);
-                String mother_citizenship = rs.getString(49);
-                String mother_home_address = rs.getString(50);
-                String mother_email_address = rs.getString(51);
-                String mother_mobile_no = rs.getString(52);
-                String mother_occupation = rs.getString(53);
-                String mother_employer = rs.getString(54);
-                String mother_business_address = rs.getString(55);
-                String mother_business_tel_no = rs.getString(56);
-                String mother_educational_attainment = rs.getString(57);
-                String mother_last_school_attended = rs.getString(58);
-                String guardian_name = rs.getString(59);
-                String guardian_mailing_address = rs.getString(60);
-                String guardian_telephone_no = rs.getString(61);
-                String grade_school_name = rs.getString(62);
-                String grade_school_region = rs.getString(63);
-                String grade_school_school_year = rs.getString(64);
-                String high_school_name = rs.getString(65);
-                String high_school_region = rs.getString(66);
-                String high_school_school_year = rs.getString(67);
-                String college_school_name = rs.getString(68);
-                String college_school_region = rs.getString(69);
-                String college_school_school_year = rs.getString(70);
-                String sibling1 = rs.getString(71);
-                String sibling2 = rs.getString(72);
-                String sibling3 = rs.getString(73);
-                String sibling4 = rs.getString(74);
-                String sibling5 = rs.getString(75);
-                String sibling6 = rs.getString(76);
-                String sibling7 = rs.getString(77);
-                String sibling8 = rs.getString(78);
-                String created_at = rs.getString(79);
-                String updated_at = rs.getString(80);
-                String created_by = rs.getString(81);
-                String updated_by = rs.getString(82);
-                int status = rs.getInt(83);
-                int is_uploaded = rs.getInt(84);
+                String current_address = rs.getString(10);
+                String permanent_address = rs.getString(11);
+                String email_address = rs.getString(12);
+                String postal_code = rs.getString(13);
+                String tel_no = rs.getString(14);
+                String mobile_no = rs.getString(15);
+                String date_of_birth = rs.getString(16);
+                String place_of_birth = rs.getString(17);
+                int age = rs.getInt(18);
+                int gender = rs.getInt(19);
+                String citizenship = rs.getString(20);
+                String religion = rs.getString(21);
+                String civil_status = rs.getString(22);
+                String spouse_name = rs.getString(23);
+                String date_of_communion = rs.getString(24);
+                String date_of_confirmation = rs.getString(25);
+                int is_right_handed = rs.getInt(26);
+                int is_indigenous = rs.getInt(27);
+                String indigenous_name = rs.getString(28);
+                int level_id = rs.getInt(29);
+                String level = rs.getString(30);
+                int college_id = rs.getInt(31);
+                String college = rs.getString(32);
+                int department_id = rs.getInt(33);
+                String department = rs.getString(34);
+                String year_level = rs.getString(35);
+                String year_level_status = rs.getString(36);
+                String preferred_course1 = rs.getString(37);
+                String preferred_course2 = rs.getString(38);
+                String preferred_course3 = rs.getString(39);
+                String father_name = rs.getString(40);
+                String father_citizenship = rs.getString(41);
+                String father_home_address = rs.getString(42);
+                String father_email_address = rs.getString(43);
+                String father_mobile_no = rs.getString(44);
+                String father_occupation = rs.getString(45);
+                String father_employer = rs.getString(46);
+                String father_business_address = rs.getString(47);
+                String father_business_tel_no = rs.getString(48);
+                String father_educational_attainment = rs.getString(49);
+                String father_last_school_attended = rs.getString(50);
+                String mother_name = rs.getString(51);
+                String mother_citizenship = rs.getString(52);
+                String mother_home_address = rs.getString(53);
+                String mother_email_address = rs.getString(54);
+                String mother_mobile_no = rs.getString(55);
+                String mother_occupation = rs.getString(56);
+                String mother_employer = rs.getString(57);
+                String mother_business_address = rs.getString(58);
+                String mother_business_tel_no = rs.getString(59);
+                String mother_educational_attainment = rs.getString(60);
+                String mother_last_school_attended = rs.getString(61);
+                String guardian_name = rs.getString(62);
+                String guardian_mailing_address = rs.getString(63);
+                String guardian_telephone_no = rs.getString(64);
+                String grade_school_name = rs.getString(65);
+                String grade_school_region = rs.getString(66);
+                String grade_school_school_year = rs.getString(67);
+                String grade_school_awards = rs.getString(68);
+                String high_school_name = rs.getString(69);
+                String high_school_region = rs.getString(70);
+                String high_school_school_year = rs.getString(71);
+                String high_school_awards = rs.getString(72);
+                String college_school_name = rs.getString(73);
+                String college_school_region = rs.getString(74);
+                String college_school_school_year = rs.getString(75);
+                String college_awards = rs.getString(76);
+                String junior_high_name = rs.getString(77);
+                String junior_high_region = rs.getString(78);
+                String junior_high_year = rs.getString(79);
+                String junior_high_awards = rs.getString(80);
+                String tesda_name = rs.getString(81);
+                String tesda_region = rs.getString(82);
+                String tesda_year = rs.getString(83);
+                String tesda_awards = rs.getString(84);
+                String sibling1 = rs.getString(85);
+                String sibling2 = rs.getString(86);
+                String sibling3 = rs.getString(87);
+                String sibling4 = rs.getString(88);
+                String sibling5 = rs.getString(89);
+                String sibling6 = rs.getString(90);
+                String sibling7 = rs.getString(91);
+                String sibling8 = rs.getString(92);
+                String created_at = rs.getString(93);
+                String updated_at = rs.getString(94);
+                String created_by = rs.getString(95);
+                String updated_by = rs.getString(96);
+                int status = rs.getInt(97);
+                int is_uploaded = rs.getInt(98);
 
-                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, high_school_name, high_school_region, high_school_school_year, college_school_name, college_school_region, college_school_school_year, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);
             }
             return datas;

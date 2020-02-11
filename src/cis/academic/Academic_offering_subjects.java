@@ -433,7 +433,7 @@ public class Academic_offering_subjects {
         }
     }
 
-    public static void update_faculty(int id, int faculty_id, String faculty_name) {
+    public static void update_faculty(int id, String faculty_id, String faculty_name) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update academic_offering_subjects set "
@@ -443,7 +443,7 @@ public class Academic_offering_subjects {
                     + " ";
 
             s0 = SqlStringUtil.parse(s0)
-                    .setNumber("faculty_id", faculty_id)
+                    .setString("faculty_id", faculty_id)
                     .setString("faculty_name", faculty_name)
                     .ok();
 
