@@ -5,6 +5,8 @@
  */
 package cis.academic;
 
+import cis.users.MyUser;
+import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,6 +62,10 @@ public class Academic_year_periods {
     public static void add_data(to_academic_year_periods to_academic_year_periods) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt3 = conn.prepareStatement("");
+
             String s0 = "insert into academic_year_periods("
                     + "academic_year_id"
                     + ",department_id"
@@ -106,8 +112,113 @@ public class Academic_year_periods {
                     .setNumber("is_uploaded", to_academic_year_periods.is_uploaded)
                     .ok();
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            stmt.addBatch(s0);
+            stmt.executeBatch();
+
+            List<String> periods = new ArrayList();
+
+            if (to_academic_year_periods.period.equals("Semester")) {
+                periods.add("First Semester");
+                periods.add("Second Semester");
+            }
+            if (to_academic_year_periods.period.equals("Trimester")) {
+                periods.add("First Trimester");
+                periods.add("Second Trimester");
+                periods.add("Third Trimester");
+            }
+            if (to_academic_year_periods.period.equals("Four Quarters")) {
+                periods.add("First Quarter");
+                periods.add("Second Quarter");
+                periods.add("Third Quarter");
+                periods.add("Fourth Quarter");
+            }
+            if (!periods.isEmpty()) {
+
+                String s3 = "select "
+                        + "id"
+                        + " from academic_year_periods"
+                        + " order by id desc limit 1";
+
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s3);
+                int id2 = 0;
+                if (rs2.next()) {
+                    id2 = rs2.getInt(1);
+
+                }
+
+                String created_at = DateType.now();
+                String updated_at = DateType.now();
+                String created_by = MyUser.getUser_id();
+                String updated_by = MyUser.getUser_id();
+                int status = 0;
+                int is_uploaded = 0;
+                for (String s : periods) {
+                    int id = 0;
+                    int academic_year_period_id = id2;
+                    int academic_year_id = to_academic_year_periods.academic_year_id;
+                    int department_id = to_academic_year_periods.department_id;
+                    String department = to_academic_year_periods.department;
+                    String years = to_academic_year_periods.years;
+                    String period = s;
+                    String date_from = null;
+                    String date_to = null;
+
+                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    String s2 = "insert into academic_year_period_schedules("
+                            + "academic_year_period_id"
+                            + ",academic_year_id"
+                            + ",department_id"
+                            + ",department"
+                            + ",years"
+                            + ",period"
+                            + ",date_from"
+                            + ",date_to"
+                            + ",created_at"
+                            + ",updated_at"
+                            + ",created_by"
+                            + ",updated_by"
+                            + ",status"
+                            + ",is_uploaded"
+                            + ")values("
+                            + ":academic_year_period_id"
+                            + ",:academic_year_id"
+                            + ",:department_id"
+                            + ",:department"
+                            + ",:years"
+                            + ",:period"
+                            + ",:date_from"
+                            + ",:date_to"
+                            + ",:created_at"
+                            + ",:updated_at"
+                            + ",:created_by"
+                            + ",:updated_by"
+                            + ",:status"
+                            + ",:is_uploaded"
+                            + ")";
+                    s2 = SqlStringUtil.parse(s2)
+                            .setNumber("academic_year_period_id", to_academic_year_period_schedules.academic_year_period_id)
+                            .setNumber("academic_year_id", to_academic_year_period_schedules.academic_year_id)
+                            .setNumber("department_id", to_academic_year_period_schedules.department_id)
+                            .setString("department", to_academic_year_period_schedules.department)
+                            .setString("years", to_academic_year_period_schedules.years)
+                            .setString("period", to_academic_year_period_schedules.period)
+                            .setString("date_from", to_academic_year_period_schedules.date_from)
+                            .setString("date_to", to_academic_year_period_schedules.date_to)
+                            .setString("created_at", to_academic_year_period_schedules.created_at)
+                            .setString("updated_at", to_academic_year_period_schedules.updated_at)
+                            .setString("created_by", to_academic_year_period_schedules.created_by)
+                            .setString("updated_by", to_academic_year_period_schedules.updated_by)
+                            .setNumber("status", to_academic_year_period_schedules.status)
+                            .setNumber("is_uploaded", to_academic_year_period_schedules.is_uploaded)
+                            .ok();
+                    stmt3.addBatch(s2);
+                }
+            }
+
+            stmt3.executeBatch();
+
+            conn.commit();
             Lg.s(Academic_year_periods.class, "Successfully Added");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -165,6 +276,9 @@ public class Academic_year_periods {
     public static void update_data2(to_academic_year_periods to_academic_year_periods) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt3 = conn.prepareStatement("");
             String s0 = "update academic_year_periods set "
                     + " period= :period "
                     + ",updated_at= :updated_at "
@@ -180,8 +294,106 @@ public class Academic_year_periods {
                     .setNumber("is_uploaded", to_academic_year_periods.is_uploaded)
                     .ok();
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            stmt.addBatch(s0);
+
+            String s4 = "delete from academic_year_period_schedules  "
+                    + " where academic_year_period_id='" + to_academic_year_periods.id + "' "
+                    + " ";
+            stmt.addBatch(s4);
+
+            stmt.executeBatch();
+
+            List<String> periods = new ArrayList();
+
+            if (to_academic_year_periods.period.equals("Semester")) {
+                periods.add("First Semester");
+                periods.add("Second Semester");
+            }
+            if (to_academic_year_periods.period.equals("Trimester")) {
+                periods.add("First Trimester");
+                periods.add("Second Trimester");
+                periods.add("Third Trimester");
+            }
+            if (to_academic_year_periods.period.equals("Four Quarters")) {
+                periods.add("First Quarter");
+                periods.add("Second Quarter");
+                periods.add("Third Quarter");
+                periods.add("Fourth Quarter");
+            }
+            if (!periods.isEmpty()) {
+
+                String created_at = DateType.now();
+                String updated_at = DateType.now();
+                String created_by = MyUser.getUser_id();
+                String updated_by = MyUser.getUser_id();
+                int status = 0;
+                int is_uploaded = 0;
+                for (String s : periods) {
+                    int id = 0;
+                    int academic_year_period_id = to_academic_year_periods.id;
+                    int academic_year_id = to_academic_year_periods.academic_year_id;
+                    int department_id = to_academic_year_periods.department_id;
+                    String department = to_academic_year_periods.department;
+                    String years = to_academic_year_periods.years;
+                    String period = s;
+                    String date_from = null;
+                    String date_to = null;
+
+                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    String s2 = "insert into academic_year_period_schedules("
+                            + "academic_year_period_id"
+                            + ",academic_year_id"
+                            + ",department_id"
+                            + ",department"
+                            + ",years"
+                            + ",period"
+                            + ",date_from"
+                            + ",date_to"
+                            + ",created_at"
+                            + ",updated_at"
+                            + ",created_by"
+                            + ",updated_by"
+                            + ",status"
+                            + ",is_uploaded"
+                            + ")values("
+                            + ":academic_year_period_id"
+                            + ",:academic_year_id"
+                            + ",:department_id"
+                            + ",:department"
+                            + ",:years"
+                            + ",:period"
+                            + ",:date_from"
+                            + ",:date_to"
+                            + ",:created_at"
+                            + ",:updated_at"
+                            + ",:created_by"
+                            + ",:updated_by"
+                            + ",:status"
+                            + ",:is_uploaded"
+                            + ")";
+                    s2 = SqlStringUtil.parse(s2)
+                            .setNumber("academic_year_period_id", to_academic_year_period_schedules.academic_year_period_id)
+                            .setNumber("academic_year_id", to_academic_year_period_schedules.academic_year_id)
+                            .setNumber("department_id", to_academic_year_period_schedules.department_id)
+                            .setString("department", to_academic_year_period_schedules.department)
+                            .setString("years", to_academic_year_period_schedules.years)
+                            .setString("period", to_academic_year_period_schedules.period)
+                            .setString("date_from", to_academic_year_period_schedules.date_from)
+                            .setString("date_to", to_academic_year_period_schedules.date_to)
+                            .setString("created_at", to_academic_year_period_schedules.created_at)
+                            .setString("updated_at", to_academic_year_period_schedules.updated_at)
+                            .setString("created_by", to_academic_year_period_schedules.created_by)
+                            .setString("updated_by", to_academic_year_period_schedules.updated_by)
+                            .setNumber("status", to_academic_year_period_schedules.status)
+                            .setNumber("is_uploaded", to_academic_year_period_schedules.is_uploaded)
+                            .ok();
+                    stmt3.addBatch(s2);
+                }
+            }
+
+            stmt3.executeBatch();
+
+            conn.commit();
             Lg.s(Academic_year_periods.class, "Successfully Updated");
         } catch (SQLException e) {
             throw new RuntimeException(e);

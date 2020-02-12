@@ -1494,6 +1494,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
             nd.setTitle("");
             nd.do_pass(to);
+//            System.out.println("offer: "+to.id);
             nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {

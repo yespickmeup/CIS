@@ -113,6 +113,25 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
+drop table if exists academic_year_period_schedules;
+create table academic_year_period_schedules(
+id int auto_increment primary key
+,academic_year_period_id int
+,academic_year_id int
+,department_id int
+,department varchar(255)
+,years varchar(255)
+,period varchar(255)
+,date_from date
+,date_to date
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
 
 drop table if exists academic_offerings;
 create table academic_offerings(
@@ -617,6 +636,27 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+
+drop table if exists enrollment_department_requirements;
+create table enrollment_department_requirements(
+id int auto_increment primary key
+,enrollment_id int
+,enrollment_no varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,department_id int
+,department varchar(255)
+,department_requirement_id int
+,requirements text
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
 
 
 drop table if exists users;

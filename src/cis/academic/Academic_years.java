@@ -164,12 +164,23 @@ public class Academic_years {
     public static void delete_data(to_academic_years to_academic_years) {
         try {
             Connection conn = MyConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement("");
+            conn.setAutoCommit(false);
             String s0 = "delete from academic_years  "
                     + " where id='" + to_academic_years.id + "' "
                     + " ";
+            String s2 = "delete from academic_year_periods  "
+                    + " where academic_year_id='" + to_academic_years.id + "' "
+                    + " ";
+            String s3 = "delete from academic_year_period_schedules  "
+                    + " where academic_year_id='" + to_academic_years.id + "' "
+                    + " ";
+            stmt.addBatch(s0);
+            stmt.addBatch(s2);
+            stmt.addBatch(s3);
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Academic_years.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);

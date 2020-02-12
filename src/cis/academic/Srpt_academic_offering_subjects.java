@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import mijzcx.synapse.desk.utils.Application;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -286,7 +287,7 @@ public class Srpt_academic_offering_subjects {
                 }
                 String subject_description = description;
                 String prerequisites = pres;
-                field f = new field(subject_code, subject_code, subject_description, course_id, status, prerequisites, year_level, term);
+                field f = new field(""+subject_id, subject_code, subject_description, FitIn.toInt(""+lecture_units),  FitIn.toInt(""+lab_units), prerequisites, year_level, term);
                 datas.add(f);
             }
             return datas;

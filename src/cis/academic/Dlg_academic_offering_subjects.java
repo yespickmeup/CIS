@@ -558,7 +558,7 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("No. of rows:");
+        jLabel3.setText("Status:");
 
         jProgressBar1.setRequestFocusEnabled(false);
         jProgressBar1.setString("");
@@ -679,7 +679,7 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -895,6 +895,7 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
             tf_field8.setText("" + list_year.get(0));
         }
         String period = tf_field7.getText();
+        System.out.println("period: "+period);
         if (period.equalsIgnoreCase("Semester")) {
             for (int i = 0; i < semester.length; i++) {
                 list_period.add(semester[i]);

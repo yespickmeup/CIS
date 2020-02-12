@@ -664,29 +664,7 @@ public class Enrollments {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update enrollments set "
-                    + "enrollment_no= :enrollment_no "
-                    + ",is_transferee= :is_transferee "
-                    + ",academic_year_id= :academic_year_id "
-                    + ",academic_year= :academic_year "
-                    + ",curriculum_id= :curriculum_id "
-                    + ",course_id= :course_id "
-                    + ",course_code= :course_code "
-                    + ",course_description= :course_description "
-                    + ",term= :term "
-                    + ",encoded_by_id= :encoded_by_id "
-                    + ",encoded_by= :encoded_by "
-                    + ",encoded_date= :encoded_date "
-                    + ",assessed_by_id= :assessed_by_id "
-                    + ",assessed_by= :assessed_by "
-                    + ",assessed_date= :assessed_date "
-                    + ",advised_by_id= :advised_by_id "
-                    + ",advised_by= :advised_by "
-                    + ",advised_date= :advised_date "
-                    + ",approved_by_id= :approved_by_id "
-                    + ",approved_by= :approved_by "
-                    + ",approved_date= :approved_date "
-                    + ",student_no= :student_no "
-                    + ",last_name= :last_name "
+                    + " last_name= :last_name "
                     + ",first_name= :first_name "
                     + ",middle_name= :middle_name "
                     + ",nick_name= :nick_name "
@@ -709,14 +687,6 @@ public class Enrollments {
                     + ",is_right_handed= :is_right_handed "
                     + ",is_indigenous= :is_indigenous "
                     + ",indigenous_name= :indigenous_name "
-                    + ",level_id= :level_id "
-                    + ",level= :level "
-                    + ",college_id= :college_id "
-                    + ",college= :college "
-                    + ",department_id= :department_id "
-                    + ",department= :department "
-                    + ",year_level= :year_level "
-                    + ",year_level_status= :year_level_status "
                     + ",preferred_course1= :preferred_course1 "
                     + ",preferred_course2= :preferred_course2 "
                     + ",preferred_course3= :preferred_course3 "
@@ -783,28 +753,6 @@ public class Enrollments {
                     + " ";
 
             s0 = SqlStringUtil.parse(s0)
-                    .setString("enrollment_no", to_enrollments.enrollment_no)
-                    .setNumber("is_transferee", to_enrollments.is_transferee)
-                    .setNumber("academic_year_id", to_enrollments.academic_year_id)
-                    .setString("academic_year", to_enrollments.academic_year)
-                    .setNumber("curriculum_id", to_enrollments.curriculum_id)
-                    .setNumber("course_id", to_enrollments.course_id)
-                    .setString("course_code", to_enrollments.course_code)
-                    .setString("course_description", to_enrollments.course_description)
-                    .setString("term", to_enrollments.term)
-                    .setString("encoded_by_id", to_enrollments.encoded_by_id)
-                    .setString("encoded_by", to_enrollments.encoded_by)
-                    .setString("encoded_date", to_enrollments.encoded_date)
-                    .setString("assessed_by_id", to_enrollments.assessed_by_id)
-                    .setString("assessed_by", to_enrollments.assessed_by)
-                    .setString("assessed_date", to_enrollments.assessed_date)
-                    .setString("advised_by_id", to_enrollments.advised_by_id)
-                    .setString("advised_by", to_enrollments.advised_by)
-                    .setString("advised_date", to_enrollments.advised_date)
-                    .setString("approved_by_id", to_enrollments.approved_by_id)
-                    .setString("approved_by", to_enrollments.approved_by)
-                    .setString("approved_date", to_enrollments.approved_date)
-                    .setString("student_no", to_enrollments.student_no)
                     .setString("last_name", to_enrollments.last_name)
                     .setString("first_name", to_enrollments.first_name)
                     .setString("middle_name", to_enrollments.middle_name)
@@ -828,14 +776,6 @@ public class Enrollments {
                     .setNumber("is_right_handed", to_enrollments.is_right_handed)
                     .setNumber("is_indigenous", to_enrollments.is_indigenous)
                     .setString("indigenous_name", to_enrollments.indigenous_name)
-                    .setNumber("level_id", to_enrollments.level_id)
-                    .setString("level", to_enrollments.level)
-                    .setNumber("college_id", to_enrollments.college_id)
-                    .setString("college", to_enrollments.college)
-                    .setNumber("department_id", to_enrollments.department_id)
-                    .setString("department", to_enrollments.department)
-                    .setString("year_level", to_enrollments.year_level)
-                    .setString("year_level_status", to_enrollments.year_level_status)
                     .setString("preferred_course1", to_enrollments.preferred_course1)
                     .setString("preferred_course2", to_enrollments.preferred_course2)
                     .setString("preferred_course3", to_enrollments.preferred_course3)
@@ -911,7 +851,7 @@ public class Enrollments {
     }
 
     public static void update_enroll_course(int id, int course_id, String course_code, String course_description, int level_id, String level, int college_id,
-             String college, int department_id, String department, String year_level) {
+            String college, int department_id, String department, String year_level, String term) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update enrollments set "
@@ -925,6 +865,7 @@ public class Enrollments {
                     + ",department_id= :department_id "
                     + ",department= :department "
                     + ",year_level= :year_level "
+                    + ",term= :term"
                     + " where id='" + id + "' "
                     + " ";
 
@@ -939,8 +880,9 @@ public class Enrollments {
                     .setNumber("department_id", department_id)
                     .setString("department", department)
                     .setString("year_level", year_level)
+                    .setString("term", term)
                     .ok();
-
+//            System.out.println(s0);
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
             Lg.s(Enrollments.class, "Successfully Updated");

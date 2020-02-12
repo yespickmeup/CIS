@@ -2256,11 +2256,13 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         buttonGroup3.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox8.setText("Transfer Student");
+        jCheckBox8.setEnabled(false);
         jCheckBox8.setFocusable(false);
 
         buttonGroup3.add(jCheckBox13);
         jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox13.setText("Returning Student");
+        jCheckBox13.setEnabled(false);
         jCheckBox13.setFocusable(false);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -2965,7 +2967,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         String sibling6 = concat_s(tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95, tf_field122);
         String sibling7 = concat_s(tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field122);
         String sibling8 = concat_s(tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100, tf_field124);
-        
+
         String created_at = DateType.now();
         String updated_at = DateType.now();
         String created_by = MyUser.getUser_id();
@@ -3074,4 +3076,5 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
+
 }
