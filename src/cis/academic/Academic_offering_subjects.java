@@ -62,8 +62,17 @@ public class Academic_offering_subjects {
         public final String room;
         public final String schedule;
         public final int room_id;
+        public boolean selected;
 
-        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int faculty_id, String faculty_name, String room, String schedule, int room_id) {
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
+        
+        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int faculty_id, String faculty_name, String room, String schedule, int room_id,boolean selected) {
             this.id = id;
             this.academic_offering_id = academic_offering_id;
             this.academic_year_id = academic_year_id;
@@ -102,7 +111,9 @@ public class Academic_offering_subjects {
             this.room = room;
             this.schedule = schedule;
             this.room_id = room_id;
+            this.selected=selected;
         }
+        
     }
 
     public static void add_data(to_academic_offering_subjects to_academic_offering_subjects, List<Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites> to_academic_offering_subject_prerequisites1) {
@@ -587,7 +598,7 @@ public class Academic_offering_subjects {
                 String schedule = rs.getString(37);
                 int room_id = rs.getInt(38);
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id,false);
                 datas.add(to);
             }
             return datas;
@@ -719,7 +730,7 @@ public class Academic_offering_subjects {
 
                 }
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id,false);
                 datas.add(to);
             }
             return datas;

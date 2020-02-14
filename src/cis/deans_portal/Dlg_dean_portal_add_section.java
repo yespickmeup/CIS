@@ -12,6 +12,7 @@ import cis.academic.Academic_offering_subject_sections.to_academic_offering_subj
 import cis.academic.Academic_offering_subjects;
 import cis.classrooms.Classrooms;
 import cis.classrooms.Dlg_classrooms;
+import cis.enrollments.Enrollment_offered_subjects;
 import cis.faculty_members.Faculty_members;
 import cis.users.MyUser;
 import cis.utils.Alert;
@@ -1245,34 +1246,34 @@ public class Dlg_dean_portal_add_section extends javax.swing.JDialog {
 
     }
 
-    Academic_offering_subjects.to_academic_offering_subjects aos = null;
+   Enrollment_offered_subjects.to_enrollment_offered_subjects aos = null;
 
-    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to) {
+    public void do_pass(Enrollment_offered_subjects.to_enrollment_offered_subjects to) {
         aos = to;
-        if (to.faculty_id != 0) {
-            Field.Search co = (Field.Search) tf_user_screen_name1;
-            co.setText("" + to.faculty_name);
-            co.setId("" + to.faculty_id);
-
-            List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data(" where id='" + co.getId() + "' ");
-            if (!members.isEmpty()) {
-                Faculty_members.to_faculty_members fac = (Faculty_members.to_faculty_members) members.get(0);
-                tf_field2.setText(fac.department);
-                tf_field3.setText(fac.college);
-                tf_field8.setText(fac.group_name);
-                tf_field4.setText(fac.designation);
-                String job = "Fulltime";
-                if (fac.is_fulltime == 2) {
-                    job = "Parttime";
-                }
-                if (fac.is_fulltime == 3) {
-                    job = "Job Order";
-                }
-//                tf_field9.setText(job);
-            }
-        }
-
-        ret_data();
+//        if (to.faculty_id != 0) {
+//            Field.Search co = (Field.Search) tf_user_screen_name1;
+//            co.setText("" + to.faculty_name);
+//            co.setId("" + to.faculty_id);
+//
+//            List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data(" where id='" + co.getId() + "' ");
+//            if (!members.isEmpty()) {
+//                Faculty_members.to_faculty_members fac = (Faculty_members.to_faculty_members) members.get(0);
+//                tf_field2.setText(fac.department);
+//                tf_field3.setText(fac.college);
+//                tf_field8.setText(fac.group_name);
+//                tf_field4.setText(fac.designation);
+//                String job = "Fulltime";
+//                if (fac.is_fulltime == 2) {
+//                    job = "Parttime";
+//                }
+//                if (fac.is_fulltime == 3) {
+//                    job = "Job Order";
+//                }
+////                tf_field9.setText(job);
+//            }
+//        }
+//
+//        ret_data();
 
     }
 
