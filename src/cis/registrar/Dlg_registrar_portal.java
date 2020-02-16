@@ -7,11 +7,17 @@ package cis.registrar;
 
 import cis.academic.Academic_offering_subjects;
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
+import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_periods;
+import cis.academic.Academic_years;
+import cis.colleges.Colleges;
+import cis.departments.Departments;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subjects;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
+import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Component;
@@ -29,6 +35,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -230,12 +237,15 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         jCheckBox12 = new javax.swing.JCheckBox();
         tf_field13 = new Field.Combo();
-        tf_field14 = new Field.Search();
-        jLabel20 = new javax.swing.JLabel();
         jButton3 = new Button.Success();
         jLabel26 = new javax.swing.JLabel();
         jCheckBox20 = new javax.swing.JCheckBox();
         tf_field19 = new Field.Combo();
+        jLabel27 = new javax.swing.JLabel();
+        tf_field20 = new Field.Combo();
+        jCheckBox21 = new javax.swing.JCheckBox();
+        jLabel28 = new javax.swing.JLabel();
+        tf_field21 = new Field.Combo();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_academic_offering_subjects = new javax.swing.JTable();
@@ -329,7 +339,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jLabel17.setText("Department:");
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
         jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +371,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox11.setSelected(true);
         jCheckBox11.setText("All");
         jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +385,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jLabel19.setText("Course:");
 
         jCheckBox12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox12.setSelected(true);
         jCheckBox12.setText("All");
         jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,21 +404,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             }
         });
 
-        tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field14MouseClicked(evt);
-            }
-        });
-        tf_field14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field14ActionPerformed(evt);
-            }
-        });
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setText("Search:");
-
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Add All");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -421,10 +413,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Term:");
+        jLabel26.setText("Year/Level:");
 
         jCheckBox20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox20.setSelected(true);
         jCheckBox20.setText("All");
         jCheckBox20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,7 +424,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
 
         tf_field19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field19.setText("First Semester");
+        tf_field19.setFocusable(false);
         tf_field19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field19MouseClicked(evt);
@@ -445,6 +436,46 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             }
         });
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel27.setText("School Year:");
+
+        tf_field20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field20.setFocusable(false);
+        tf_field20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field20MouseClicked(evt);
+            }
+        });
+        tf_field20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field20ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox21.setText("All");
+        jCheckBox21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox21ActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel28.setText("Period:");
+
+        tf_field21.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field21.setFocusable(false);
+        tf_field21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field21MouseClicked(evt);
+            }
+        });
+        tf_field21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -453,23 +484,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field12, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                            .addComponent(tf_field11)))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel19Layout.createSequentialGroup()
@@ -477,21 +492,52 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                                 .addGap(1, 1, 1)
                                 .addComponent(tf_field13))
                             .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(tf_field14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field19)))
+                        .addComponent(tf_field19, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jCheckBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jCheckBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel19Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_field12)
+                                    .addComponent(tf_field11)))
+                            .addGroup(jPanel19Layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(tf_field20, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox21, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field21, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -512,12 +558,15 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                     .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jCheckBox20)
                         .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBox21)
+                        .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
@@ -563,7 +612,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -1588,19 +1637,19 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox10ActionPerformed
 
     private void tf_field11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field11MouseClicked
-        // TODO add your handling code here:
+        init_departments3();
     }//GEN-LAST:event_tf_field11MouseClicked
 
     private void tf_field11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field11ActionPerformed
-        // TODO add your handling code here:
+        init_departments3();
     }//GEN-LAST:event_tf_field11ActionPerformed
 
     private void tf_field12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field12MouseClicked
-        // TODO add your handling code here:
+        init_colleges2();
     }//GEN-LAST:event_tf_field12MouseClicked
 
     private void tf_field12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field12ActionPerformed
-        // TODO add your handling code here:
+        init_colleges2();
     }//GEN-LAST:event_tf_field12ActionPerformed
 
     private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
@@ -1612,20 +1661,12 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
     private void tf_field13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field13MouseClicked
-        // TODO add your handling code here:
+        init_programs();
     }//GEN-LAST:event_tf_field13MouseClicked
 
     private void tf_field13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field13ActionPerformed
-        // TODO add your handling code here:
+        init_programs();
     }//GEN-LAST:event_tf_field13ActionPerformed
-
-    private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field14MouseClicked
-
-    private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        ret_offering_subjects();
-    }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         add_all_offering();
@@ -1696,20 +1737,40 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_academic_offering_subjectsMouseClicked
 
     private void jCheckBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox20ActionPerformed
-        // TODO add your handling code here:
+        ret_offering_subjects();
     }//GEN-LAST:event_jCheckBox20ActionPerformed
 
     private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
-        // TODO add your handling code here:
+        init_years2();
     }//GEN-LAST:event_tf_field19MouseClicked
 
     private void tf_field19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field19ActionPerformed
-        // TODO add your handling code here:
+        init_years2();
     }//GEN-LAST:event_tf_field19ActionPerformed
 
     private void tbl_enrollment_offered_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subjectsMouseClicked
         select_offered_subject();
     }//GEN-LAST:event_tbl_enrollment_offered_subjectsMouseClicked
+
+    private void tf_field20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field20MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field20MouseClicked
+
+    private void tf_field20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field20ActionPerformed
+
+    private void jCheckBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox21ActionPerformed
+        ret_offering_subjects();
+    }//GEN-LAST:event_jCheckBox21ActionPerformed
+
+    private void tf_field21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field21MouseClicked
+        init_period();
+    }//GEN-LAST:event_tf_field21MouseClicked
+
+    private void tf_field21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field21ActionPerformed
+        init_period();
+    }//GEN-LAST:event_tf_field21ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1729,6 +1790,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JCheckBox jCheckBox20;
+    private javax.swing.JCheckBox jCheckBox21;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
@@ -1747,13 +1809,14 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1800,12 +1863,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field11;
     private javax.swing.JTextField tf_field12;
     private javax.swing.JTextField tf_field13;
-    private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
     private javax.swing.JTextField tf_field17;
     private javax.swing.JTextField tf_field18;
     private javax.swing.JTextField tf_field19;
+    private javax.swing.JTextField tf_field20;
+    private javax.swing.JTextField tf_field21;
     private javax.swing.JTextField tf_field3;
     private javax.swing.JTextField tf_field4;
     private javax.swing.JTextField tf_field5;
@@ -1820,9 +1884,29 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         System.setProperty("pool_db", "db_cis_cosca");
         System.setProperty("pool_password", "password");
 
+        acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
+        if (!acad_years.isEmpty()) {
+            for (Academic_years.to_academic_years to1 : acad_years) {
+                Field.Combo year = (Field.Combo) tf_field20;
+                Field.Combo year2 = (Field.Combo) tf_field3;
+                year.setText(to1.years);
+                year.setId("" + to1.id);
+                year2.setText(to1.years);
+                year2.setId("" + to1.id);
+            }
+        }
+
         init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
         init_tbl_enrollment_offered_subjects(tbl_enrollment_offered_subjects);
+
+        deps = Departments.ret_data(" order by department_name  asc ");
     }
+
+    List<String> list_year2 = new ArrayList();
+    List<String> list_period = new ArrayList();
+    List<String> list_year = new ArrayList();
+
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
 
     public void do_pass() {
 
@@ -2096,7 +2180,25 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 
     private void ret_offering_subjects() {
-        String where = " order by description asc ";
+
+        Field.Combo ye = (Field.Combo) tf_field20;
+        Field.Combo cou = (Field.Combo) tf_field13;
+        Field.Combo lev = (Field.Combo) tf_field19;
+        Field.Combo per = (Field.Combo) tf_field21;
+
+        String where = " where id<>0 ";
+        if (!jCheckBox12.isSelected()) {
+            where = where + " and academic_offering_id='" + cou.getId() + "' ";
+        }
+        if (!jCheckBox20.isSelected()) {
+            where = where + " and year_level='" + lev.getText() + "' ";
+        }
+        if (!jCheckBox21.isSelected()) {
+            where = where + " and term='" + per.getText() + "' ";
+        }
+        where = where + "  order by description asc ";
+
+        System.out.println(where);
         List<Academic_offering_subjects.to_academic_offering_subjects> datas = Academic_offering_subjects.ret_data(where);
         loadData_academic_offering_subjects(datas);
         jLabel6.setText("" + datas.size());
@@ -2485,4 +2587,192 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
 
     }
+
+    List<Departments.to_departments> deps = new ArrayList();
+
+    private void init_departments3() {
+        Object[][] obj = new Object[deps.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field11.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field11, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field11;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field12;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+
+            }
+        });
+    }
+    List<Colleges.to_colleges> colleges2 = new ArrayList();
+
+    private void init_colleges2() {
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field12.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field12, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field12;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+
+            }
+
+        });
+    }
+
+    private void init_programs() {
+
+        Field.Combo year = (Field.Combo) tf_field20;
+        Field.Combo dep = (Field.Combo) tf_field11;
+        Field.Combo col = (Field.Combo) tf_field12;
+
+        String where = " where academic_year_id='" + year.getId() + "' and department_id='" + dep.getId() + "'  and college_id='" + col.getId() + "'  order by course_description asc ";
+
+        List<Academic_offerings.to_academic_offerings> offerings = Academic_offerings.ret_data(where);
+
+        Object[][] obj = new Object[offerings.size()][2];
+        int i = 0;
+        for (Academic_offerings.to_academic_offerings to : offerings) {
+            obj[i][0] = " " + to.course_code;
+            obj[i][1] = " " + to.course_description;
+            i++;
+        }
+
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {100, tf_field13.getWidth() - 100};
+        int width = 0;
+        String[] col_names = {"", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field13, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_offerings.to_academic_offerings to = offerings.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field13;
+                co.setText("" + to.course_description);
+                co.setId("" + to.id);
+
+                String where2 = " where academic_year_id='" + to.academic_year_id + "' and department_id='" + to.department_id + "' ";
+                List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
+                String period = "";
+                if (!acad.isEmpty()) {
+                    Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
+                    period = ayp.period;
+                }
+
+                String[] semester = {"First Semester", "Second Semester", "Summer Class"};
+                String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
+                String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year"};
+
+                for (int i = 0; i < to.no_of_years; i++) {
+                    list_year2.add(years[i]);
+                }
+
+                if (!list_year2.isEmpty()) {
+                    tf_field19.setText("" + list_year2.get(0));
+                }
+
+                if (period.equalsIgnoreCase("Semester")) {
+                    for (int i = 0; i < semester.length; i++) {
+                        list_period.add(semester[i]);
+                    }
+                }
+                if (period.equalsIgnoreCase("Trimester")) {
+                    for (int i = 0; i < trimester.length; i++) {
+                        list_period.add(trimester[i]);
+                    }
+                }
+                if (!list_period.isEmpty()) {
+                    tf_field21.setText("" + list_period.get(0));
+                }
+
+                ret_offering_subjects();
+            }
+
+        });
+    }
+
+    private void init_years2() {
+        Object[][] obj = new Object[list_year2.size()][1];
+        int i = 0;
+        for (String to : list_year2) {
+            obj[i][0] = " " + to;
+
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field19.getWidth()};
+        int width = 0;
+        String[] col_names = {"", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field19, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = list_year2.get(data.selected_row);
+                tf_field19.setText("" + to);
+
+                ret_offering_subjects();
+            }
+        });
+    }
+
+    private void init_period() {
+        Object[][] obj = new Object[list_period.size()][1];
+        int i = 0;
+        for (String to : list_period) {
+            obj[i][0] = " " + to;
+
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field21.getWidth()};
+        int width = 0;
+        String[] col_names = {"", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field21, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = list_period.get(data.selected_row);
+                tf_field21.setText("" + to);
+
+                ret_offering_subjects();
+            }
+        });
+    }
+
 }

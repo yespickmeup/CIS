@@ -5,8 +5,6 @@
  */
 package cis.deans_portal;
 
-import cis.academic.Academic_offering_subjects;
-import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_years;
 import cis.academic.Dlg_academic_offering_subjects;
@@ -791,7 +789,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jCheckBox15.setFocusable(false);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("Term:");
+        jLabel29.setText("Year/Level:");
 
         jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox16.setSelected(true);

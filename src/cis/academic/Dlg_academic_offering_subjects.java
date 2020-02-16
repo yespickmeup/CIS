@@ -1069,9 +1069,9 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
                 String college = to.college;
                 int department_id = to.department_id;
                 String department = to.department;
-                int course_id = to.course_id;
-                String course_code = to.course_code;
-                String course_description = to.course_description;
+                int course_id = tao.course_id;
+                String course_code = tao.course_code;
+                String course_description = tao.course_description;
                 String term = tf_field9.getText();
                 String year_level = tf_field8.getText();
                 int subject_id = to.id;

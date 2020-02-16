@@ -180,3 +180,52 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+
+
+
+drop table if exists enrollment_student_loaded_subjects;
+create table enrollment_student_loaded_subjects(
+id int auto_increment primary key
+,enrollment_id int
+,enrollment_no varchar(255)
+,fname varchar(255)
+,mi varchar(255)
+,lname varchar(255)
+,enrollment_offered_subject_section_id int
+,enrollment_offered_subject_id int
+,academic_offering_subject_id int
+,academic_offering_id int
+,academic_year_id int
+,academic_year varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,term varchar(255)
+,year_level varchar(255)
+,subject_id int
+,subject_code varchar(255)
+,description varchar(255)
+,faculty_id varchar(255)
+,faculty_name varchar(255)
+,section varchar(255)
+,room_id int
+,room varchar(255)
+,schedule varchar(255)
+,day varchar(255)
+,time varchar(255)
+,start_time datetime
+,closing_time datetime
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);

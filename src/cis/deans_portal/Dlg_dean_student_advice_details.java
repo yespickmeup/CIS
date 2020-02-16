@@ -5,11 +5,13 @@
  */
 package cis.deans_portal;
 
+import cis.academic.Academic_offering_subjects;
+import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_periods;
 import cis.academic.Srpt_academic_offering_subjects;
 import cis.enrollments.Enrollment_department_requirements;
 import cis.enrollments.Enrollment_department_requirements.to_enrollment_department_requirements;
-import cis.students.*;
 import cis.enrollments.Enrollments;
 import cis.users.MyUser;
 import cis.utils.Alert;
@@ -20,10 +22,15 @@ import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -31,12 +38,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
@@ -47,8 +61,10 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
+import org.jfree.ui.Align;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
+import synsoftech.util.ImageRenderer;
 
 /**
  *
@@ -244,11 +260,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         tf_field4 = new Field.Combo();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_academic_offering_subjects = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
         tf_field129 = new Field.Combo();
+        jButton1 = new Button.Info();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jLabel81 = new javax.swing.JLabel();
@@ -525,7 +544,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Subject Code:");
+        jLabel8.setText("Course Code:");
 
         tf_field2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field2.setFocusable(false);
@@ -541,7 +560,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Description:");
+        jLabel9.setText("Course:");
 
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.setFocusable(false);
@@ -609,7 +628,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
@@ -619,7 +638,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel11.setText("Year/Level:");
 
         tf_field4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field4.setText("First Year");
         tf_field4.setFocusable(false);
         tf_field4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -632,7 +650,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_academic_offering_subjects.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -643,7 +661,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        tbl_academic_offering_subjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_academic_offering_subjectsMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tbl_academic_offering_subjects);
 
         jLabel4.setText("No. of rows:");
 
@@ -653,7 +676,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel80.setText("Period:");
 
         tf_field129.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field129.setText("First Semester");
         tf_field129.setFocusable(false);
         tf_field129.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -666,6 +688,29 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox7.setText("All");
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox8.setText("All");
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
         jPanel30Layout.setHorizontalGroup(
@@ -673,21 +718,27 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field4))
+                    .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane4)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel30Layout.createSequentialGroup()
+                            .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_field129)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel30Layout.createSequentialGroup()
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_field4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field129)))
-                .addContainerGap())
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,13 +746,16 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox7))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field129, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field129, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -3059,19 +3113,19 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field3ActionPerformed
 
     private void tf_field4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field4MouseClicked
-        // TODO add your handling code here:
+        init_years2();
     }//GEN-LAST:event_tf_field4MouseClicked
 
     private void tf_field4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field4ActionPerformed
-        // TODO add your handling code here:
+        init_years2();
     }//GEN-LAST:event_tf_field4ActionPerformed
 
     private void tf_field129MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field129MouseClicked
-        // TODO add your handling code here:
+        init_period();
     }//GEN-LAST:event_tf_field129MouseClicked
 
     private void tf_field129ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field129ActionPerformed
-        // TODO add your handling code here:
+        init_period();
     }//GEN-LAST:event_tf_field129ActionPerformed
 
     private void tf_field133MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field133MouseClicked
@@ -3090,6 +3144,22 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_field134ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ret_offered_subjects();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        ret_offered_subjects();
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        ret_offered_subjects();
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
+
+    private void tbl_academic_offering_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_academic_offering_subjectsMouseClicked
+        select_aos();
+    }//GEN-LAST:event_tbl_academic_offering_subjectsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3102,6 +3172,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3116,6 +3187,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
@@ -3243,9 +3316,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable tbl_academic_offering_subjects;
     private javax.swing.JTable tbl_enrollment_department_requirements;
     private javax.swing.JTextField tf_field10;
     private javax.swing.JTextField tf_field100;
@@ -3396,12 +3469,17 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //            year.setId("" + to.id);
 //        }
         init_tbl_enrollment_department_requirements(tbl_enrollment_department_requirements);
+        init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
     }
 
     Enrollments.to_enrollments enroll = null;
+    int academic_offering_id = 0;
 
     public void do_pass(Enrollments.to_enrollments student) {
         enroll = student;
+        list_year2.clear();
+        list_period.clear();
+        list_year.clear();
         tf_field5.setText(student.first_name);
         tf_field6.setText(student.middle_name);
 
@@ -3613,6 +3691,57 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         }
 
+        if (enroll.course_id != 0) {
+            Field.Input cou2 = (Field.Input) tf_field2;
+            cou.setId("" + enroll.course_id);
+            cou.setText(enroll.course_code);
+            jTextArea1.setText(enroll.course_description);
+            String where = " where course_id='" + enroll.course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ";
+            List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(where);
+
+            if (!courses.isEmpty()) {
+                Academic_offerings.to_academic_offerings course = (Academic_offerings.to_academic_offerings) courses.get(0);
+                academic_offering_id = course.id;
+                tf_field3.setText("" + course.no_of_years);
+
+                String where2 = " where academic_year_id='" + course.academic_year_id + "' and department_id='" + course.department_id + "' ";
+                List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
+                String period = "";
+                if (!acad.isEmpty()) {
+                    Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
+                    tf_field7.setText("" + ayp.period);
+                    period = ayp.period;
+                }
+
+                String[] semester = {"First Semester", "Second Semester", "Summer Class"};
+                String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
+                String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year"};
+
+                for (int i = 0; i < course.no_of_years; i++) {
+                    list_year2.add(years[i]);
+                }
+
+                if (!list_year2.isEmpty()) {
+                    tf_field4.setText("" + list_year2.get(0));
+                }
+
+                if (period.equalsIgnoreCase("Semester")) {
+                    for (int i = 0; i < semester.length; i++) {
+                        list_period.add(semester[i]);
+                    }
+                }
+                if (period.equalsIgnoreCase("Trimester")) {
+                    for (int i = 0; i < trimester.length; i++) {
+                        list_period.add(trimester[i]);
+                    }
+                }
+                if (!list_period.isEmpty()) {
+                    tf_field129.setText("" + list_period.get(0));
+                }
+
+            }
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -3632,7 +3761,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                       });
     }
     // </editor-fold>
-
+    List<String> list_year2 = new ArrayList();
+    List<String> list_period = new ArrayList();
     List<String> list_year = new ArrayList();
 
     private void init_years() {
@@ -3655,6 +3785,54 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String to = list_year.get(data.selected_row);
                 tf_field128.setText("" + to);
 
+            }
+        });
+    }
+
+    private void init_years2() {
+        Object[][] obj = new Object[list_year2.size()][1];
+        int i = 0;
+        for (String to : list_year2) {
+            obj[i][0] = " " + to;
+
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field4.getWidth()};
+        int width = 0;
+        String[] col_names = {"", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field4, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = list_year2.get(data.selected_row);
+                tf_field4.setText("" + to);
+                ret_offered_subjects();
+            }
+        });
+    }
+
+    private void init_period() {
+        Object[][] obj = new Object[list_period.size()][1];
+        int i = 0;
+        for (String to : list_period) {
+            obj[i][0] = " " + to;
+
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field129.getWidth()};
+        int width = 0;
+        String[] col_names = {"", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field129, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = list_period.get(data.selected_row);
+                tf_field129.setText("" + to);
+                ret_offered_subjects();
             }
         });
     }
@@ -3882,7 +4060,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 Field.Input lev = (Field.Input) tf_field126;
 
                 cou.setText(off.course_code);
-                cou.setId("" + off.id);
+                cou.setId("" + off.course_id);
                 tf_field132.setText("" + off.no_of_years);
                 tf_field130.setText(off.course_description);
 
@@ -3922,12 +4100,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String course_description = tf_field130.getText();
                 int level_id = FitIn.toInt(lev.getId());
                 String level = lev.getText();
-                int college_id = FitIn.toInt(lev.getId());;
-                String college = lev.getText();;
+                int college_id = FitIn.toInt(lev.getId());
+                String college = lev.getText();
                 int department_id = FitIn.toInt(dep.getId());
                 String department = dep.getText();
                 String year_level = tf_field128.getText();
                 String term = tf_field132.getText();
+
                 Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term);
                 Alert.set(2, "");
                 ret_enrollment_requirements();
@@ -4187,5 +4366,296 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
     }
+
+    //<editor-fold defaultstate="collapsed" desc=" academic_offering_subjects "> 
+    public static ArrayListModel tbl_academic_offering_subjects_ALM;
+    public static Tblacademic_offering_subjectsModel tbl_academic_offering_subjects_M;
+
+    private void init_tbl_academic_offering_subjects(JTable tbl_academic_offering_subjects) {
+        tbl_academic_offering_subjects_ALM = new ArrayListModel();
+        tbl_academic_offering_subjects_M = new Tblacademic_offering_subjectsModel(tbl_academic_offering_subjects_ALM);
+        tbl_academic_offering_subjects.setModel(tbl_academic_offering_subjects_M);
+        tbl_academic_offering_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_academic_offering_subjects.setRowHeight(25);
+        int[] tbl_widths_academic_offering_subjects = {100, 100, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        for (int i = 0, n = tbl_widths_academic_offering_subjects.length; i < n; i++) {
+            if (i == 1) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_academic_offering_subjects, i, tbl_widths_academic_offering_subjects[i]);
+        }
+        Dimension d = tbl_academic_offering_subjects.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_academic_offering_subjects.getTableHeader().setPreferredSize(d);
+        tbl_academic_offering_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_academic_offering_subjects.setRowHeight(25);
+        tbl_academic_offering_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_academic_offering_subjects.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
+
+        TableColumn tc = tbl_academic_offering_subjects.getColumnModel().getColumn(5);
+        tc.setCellEditor(tbl_academic_offering_subjects.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(tbl_academic_offering_subjects.getDefaultRenderer(Boolean.class));
+        tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+    }
+
+    class MyItemListener implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            Object source = e.getSource();
+            if (source instanceof AbstractButton == false) {
+                return;
+            }
+            boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+            for (int x = 0, y = tbl_academic_offering_subjects.getRowCount(); x < y; x++) {
+                tbl_academic_offering_subjects.setValueAt(checked, x, 0);
+
+            }
+        }
+    }
+
+    class CheckBoxHeader extends JCheckBox
+            implements TableCellRenderer, MouseListener {
+
+        protected CheckBoxHeader rendererComponent;
+        protected int column;
+        protected boolean mousePressed = false;
+
+        public CheckBoxHeader(ItemListener itemListener) {
+            rendererComponent = this;
+            rendererComponent.addItemListener(itemListener);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(
+                JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            if (table != null) {
+                JTableHeader header = table.getTableHeader();
+                if (header != null) {
+                    rendererComponent.setForeground(header.getForeground());
+                    rendererComponent.setBackground(new java.awt.Color(204, 204, 204));
+                    rendererComponent.setHorizontalAlignment(Align.CENTER);
+                    rendererComponent.setOpaque(true);
+                    header.addMouseListener(rendererComponent);
+                }
+            }
+            setColumn(column);
+            rendererComponent.setText("");
+            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+            return rendererComponent;
+        }
+
+        protected void setColumn(int column) {
+            this.column = column;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+
+        protected void handleClickEvent(MouseEvent e) {
+            if (mousePressed) {
+                mousePressed = false;
+                JTableHeader header = (JTableHeader) (e.getSource());
+                JTable tableView = header.getTable();
+                TableColumnModel columnModel = tableView.getColumnModel();
+                int viewColumn = columnModel.getColumnIndexAtX(e.getX());
+                int column1 = tableView.convertColumnIndexToModel(viewColumn);
+                if (viewColumn == this.column && e.getClickCount() == 1 && column1 != -1) {
+                    doClick();
+                }
+            }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            handleClickEvent(e);
+            ((JTableHeader) e.getSource()).repaint();
+            List<to_academic_offering_subjects> datas = tbl_academic_offering_subjects_ALM;
+            boolean selected = false;
+            if (this.isSelected()) {
+                selected = true;
+            }
+            for (to_academic_offering_subjects to : datas) {
+                to.setSelected(selected);
+            }
+            e.consume();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            mousePressed = true;
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    public static void loadData_academic_offering_subjects(List<to_academic_offering_subjects> acc) {
+        tbl_academic_offering_subjects_ALM.clear();
+        tbl_academic_offering_subjects_ALM.addAll(acc);
+    }
+
+    public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Subject Code", "Description", "Lec", "Lab", "", "", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "faculty_id", "faculty_name", "room", "schedule", "room_id"
+        };
+
+        public Tblacademic_offering_subjectsModel(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 5) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            to_academic_offering_subjects tt = (to_academic_offering_subjects) getRow(row);
+            switch (col) {
+                case 0:
+                    return " " + tt.subject_code;
+                case 1:
+                    return " " + tt.description;
+                case 2:
+                    return " " + tt.lecture_units;
+                case 3:
+                    return " " + tt.lab_units;
+                case 4:
+                    return "/cis/icons2/plus.png";
+                case 5:
+                    return tt.selected;
+                case 6:
+                    return tt.college_id;
+                case 7:
+                    return tt.college;
+                case 8:
+                    return tt.department_id;
+                case 9:
+                    return tt.department;
+                case 10:
+                    return tt.course_id;
+                case 11:
+                    return tt.course_code;
+                case 12:
+                    return tt.course_description;
+                case 13:
+                    return tt.term;
+                case 14:
+                    return tt.year_level;
+                case 15:
+                    return tt.subject_id;
+                case 16:
+                    return tt.subject_code;
+                case 17:
+                    return tt.description;
+                case 18:
+                    return tt.units;
+                case 19:
+                    return tt.lecture_units;
+                case 20:
+                    return tt.lab_units;
+                case 21:
+                    return tt.amount;
+                case 22:
+                    return tt.is_lab;
+                case 23:
+                    return tt.max_students;
+                case 24:
+                    return tt.prerequisite_subject_ids;
+                case 25:
+                    return tt.subject_group;
+                case 26:
+                    return tt.subject_group_id;
+                case 27:
+                    return tt.created_at;
+                case 28:
+                    return tt.updated_at;
+                case 29:
+                    return tt.created_by;
+                case 30:
+                    return tt.updated_by;
+                case 31:
+                    return tt.status;
+                case 32:
+                    return tt.is_uploaded;
+                case 33:
+                    return tt.faculty_id;
+                case 34:
+                    return tt.faculty_name;
+                case 35:
+                    return tt.room;
+                case 36:
+                    return tt.schedule;
+                default:
+                    return tt.room_id;
+            }
+        }
+    }
+
+    private void ret_offered_subjects() {
+        String where = " where id<>0 ";
+        if (!jCheckBox7.isSelected()) {
+            where = where + " and year_level like '" + tf_field4.getText() + "' ";
+        }
+        if (!jCheckBox8.isSelected()) {
+            where = where + " and term like '" + tf_field129.getText() + "' ";
+        }
+        where = where + " and academic_offering_id='" + academic_offering_id + "' order by description asc  ";
+
+        List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
+        loadData_academic_offering_subjects(subjects);
+        jLabel5.setText("" + subjects.size());
+    }
+
+    private void select_aos() {
+        int row = tbl_academic_offering_subjects.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        to_academic_offering_subjects to = (to_academic_offering_subjects) tbl_academic_offering_subjects_ALM.get(row);
+        int col = tbl_academic_offering_subjects.getSelectedColumn();
+        if (col == 4) {
+            Window p = (Window) this;
+            Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
+                    closeDialog.ok();
+
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+
+    }
+//</editor-fold> 
 
 }
