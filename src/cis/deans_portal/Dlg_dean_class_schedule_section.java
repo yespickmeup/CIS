@@ -734,7 +734,6 @@ public class Dlg_dean_class_schedule_section extends javax.swing.JDialog {
             nd.setTitle("");
             nd.do_pass(to);
             nd.setCallback(new Dlg_dean_class_schedule_section_instructor.Callback() {
-
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_dean_class_schedule_section_instructor.OutputData data) {
                     closeDialog.ok();

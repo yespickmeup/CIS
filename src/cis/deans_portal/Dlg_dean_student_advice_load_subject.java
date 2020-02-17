@@ -9,16 +9,13 @@ import cis.academic.Academic_offering_subjects;
 import cis.academic.Dlg_academic_offerings;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections;
-import cis.enrollments.Enrollment_offered_subjects;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
@@ -34,7 +31,6 @@ import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
-import synsoftech.util.DateType;
 
 /**
  *
@@ -62,6 +58,13 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 
     public static class OutputData {
+
+        public final to_enrollment_offered_subject_sections to;
+
+        public OutputData(to_enrollment_offered_subject_sections to) {
+            this.to = to;
+        }
+
     }
 //</editor-fold>
 
@@ -545,11 +548,12 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tf_field4.setText("" + to.lab_units);
         jTextArea2.setText(to.prerequisite_subject_ids);
         ret_eos();
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
-        ok();
+        this.dispose();
     }
 
     private void init_key() {
@@ -670,13 +674,13 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                     return " " + tt.faculty_name;
                 case 6:
                     if (tt.status == 0) {
-                        return " Open";
+                        return " Posted";
                     } else if (tt.status == 1) {
-                        return " Approved";
+                        return " Open";
                     } else if (tt.status == 2) {
                         return " Closed";
                     } else {
-                        return " Cancelled";
+                        return " Dropped";
                     }
                 case 7:
                     return tt.room;
@@ -703,12 +707,20 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
+        if (datas.size() > 0) {
+            tbl_enrollment_offered_subject_sections.setRowSelectionInterval(0, 0);
+        }
     }
 //</editor-fold> 
 
     private void ok() {
+        int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
         if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
+            callback.ok(new CloseDialog(this), new OutputData(to));
         }
     }
 }

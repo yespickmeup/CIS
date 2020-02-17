@@ -5,6 +5,8 @@
  */
 package cis.enrollments;
 
+import cis.users.MyUser;
+import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -840,6 +842,43 @@ public class Enrollments {
                     .setNumber("is_uploaded", to_enrollments.is_uploaded)
                     .ok();
 
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollments.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void finish_advising(to_enrollments to_enrollments) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollments set "
+                    + " advised_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",advised_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",advised_date = '" + DateType.now() + "' "
+                    + " where id='" + to_enrollments.id + "' "
+                    + " ";
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollments.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+public static void approve_advising(to_enrollments to_enrollments) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollments set "
+                    + " approved_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",approved_date = '" + DateType.now() + "' "
+                    + " where id='" + to_enrollments.id + "' "
+                    + " ";
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
             Lg.s(Enrollments.class, "Successfully Updated");

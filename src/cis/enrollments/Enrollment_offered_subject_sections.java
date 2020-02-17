@@ -621,6 +621,7 @@ public class Enrollment_offered_subject_sections {
                 // search instuctor
                 String s3 = "select "
                         + " faculty_name "
+                        + ",faculty_id"
                         + " from enrollment_offered_subject_section_instructors"
                         + " where enrollment_offered_subject_section_id='" + id + "'  "; //group by room_id
 
@@ -628,11 +629,11 @@ public class Enrollment_offered_subject_sections {
                 ResultSet rs3 = stmt3.executeQuery(s3);
 
                 while (rs3.next()) {
+
                     faculty_name = rs3.getString(1);
+                    faculty_id = rs3.getString(2);
                 }
 
-               
-               
                 to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);
             }

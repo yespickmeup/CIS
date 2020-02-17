@@ -189,6 +189,8 @@ create table enrollment_student_loaded_subjects(
 id int auto_increment primary key
 ,enrollment_id int
 ,enrollment_no varchar(255)
+,student_id int
+,student_no varchar(255)
 ,fname varchar(255)
 ,mi varchar(255)
 ,lname varchar(255)
@@ -212,6 +214,8 @@ id int auto_increment primary key
 ,subject_id int
 ,subject_code varchar(255)
 ,description varchar(255)
+,lecture_units int
+,lab_units int
 ,faculty_id varchar(255)
 ,faculty_name varchar(255)
 ,section varchar(255)
@@ -229,3 +233,66 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+
+drop table if exists academic_year_fees;
+create table academic_year_fees(
+id int auto_increment primary key
+,academic_year_id int
+,academic_year varchar(255)
+,department_id int
+,department varchar(255)
+
+,period varchar(255)
+,group int
+,group_name varchar(255)
+,amount double 
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+drop table if exists tuition_fees;
+create table tuition_fees(
+id int auto_increment primary key
+,fee varchar(255)
+,amount double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+drop table if exists miscellaneous_fees;
+create table miscellaneous_fees(
+id int auto_increment primary key
+,fee varchar(255)
+,amount double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+drop table if exists other_school_fees;
+create table other_school_fees(
+id int auto_increment primary key
+,fee varchar(255)
+,amount double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+

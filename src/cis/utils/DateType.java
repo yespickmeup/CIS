@@ -380,4 +380,31 @@ public class DateType {
         }
         return day;
     }
+
+    public static String mwf(String stmt) {
+        List<String> s = new ArrayList();
+        if (stmt.contains("Monday")) {
+            s.add("M");
+        }
+        if (stmt.contains("Tuesday")) {
+            s.add("T");
+        }
+        if (stmt.contains("Wednesday")) {
+            s.add("W");
+        }
+        if (stmt.contains("Thursday")) {
+            s.add("Th");
+        }
+        if (stmt.contains("Friday")) {
+            s.add("F");
+        }
+        if (stmt.contains("Saturday")) {
+            s.add("S");
+        }
+        if (stmt.contains("Sunday")) {
+            s.add("Su");
+        }
+        String listString = String.join("", s);
+        return listString;
+    }
 }
