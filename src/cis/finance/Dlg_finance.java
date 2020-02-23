@@ -29,8 +29,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -2647,18 +2650,56 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String image_server = System.getProperty("image_server", "192.168.10.127");
 
                 if (!image_server.isEmpty()) {
-                    String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + to.enrollment_no + ".jpg";
+                   String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + to.enrollment_no + ".jpg";
 //            System.out.println("source: " + source);
                     File sourceFile = new File(source);
-                    BufferedImage img = null;
-                    try {
-                        img = ImageIO.read(sourceFile);
-                        Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                                                           Image.SCALE_SMOOTH);
-                        ImageIcon imageIcon = new ImageIcon(dimg);
-                        jLabel1.setIcon(imageIcon);
-                    } catch (IOException e) {
-                        System.out.println(e);
+                    if (sourceFile.exists()) {
+                        BufferedImage img = null;
+                        try {
+                            img = ImageIO.read(sourceFile);
+                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                                                               Image.SCALE_SMOOTH);
+                            ImageIcon imageIcon = new ImageIcon(dimg);
+                            jLabel1.setIcon(imageIcon);
+                        } catch (IOException e) {
+                            System.out.println(e);
+                        }
+                    } else {
+
+                        try {
+                            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+                            FileInputStream inputStream = null;
+                            File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + to.enrollment_no + ".jpg");
+                            File destinationFile = new File(home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg");
+                            inputStream = new FileInputStream(sourceFile1);
+                            FileOutputStream outputStream = new FileOutputStream(destinationFile);
+                            FileChannel inChannel = inputStream.getChannel();
+                            FileChannel outChannel = outputStream.getChannel();
+                            try {
+                                inChannel.transferTo(0, inChannel.size(), outChannel);
+
+                            } finally {
+                                inChannel.close();
+                                outChannel.close();
+                                inputStream.close();
+                                outputStream.close();
+
+                                String orig_file = home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg";
+                                File sourceFile2 = new File(orig_file);
+                                BufferedImage img = null;
+                                try {
+                                    img = ImageIO.read(sourceFile2);
+                                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                                                                       Image.SCALE_SMOOTH);
+                                    ImageIcon imageIcon = new ImageIcon(dimg);
+                                    jLabel1.setIcon(imageIcon);
+                                } catch (IOException e) {
+                                    System.out.println(e);
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                     }
 
                 }
