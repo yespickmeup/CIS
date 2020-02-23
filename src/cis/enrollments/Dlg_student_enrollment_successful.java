@@ -449,10 +449,12 @@ public class Dlg_student_enrollment_successful extends javax.swing.JDialog {
         tf_field9.setText(DateType.convert_slash_datetime2(enrollment.date_of_birth));
         tf_field10.setText(enrollment.enrollment_no);
 
-        String image_server = System.getProperty("image_server", "192.168.10.127");
-        String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment.enrollment_no + ".jpg";
+        String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+        String orig_file = home + "\\images_cis\\enrollments\\"+ enrollment.enrollment_no +".jpg";
+//        String image_server = System.getProperty("image_server", "192.168.10.127");
+//        String source = "\\\\" + image_server + "\\cis\\cis_images\\images_cis\\" + enrollment.enrollment_no + ".jpg";
 //            System.out.println("source: " + source);
-        File sourceFile = new File(source);
+        File sourceFile = new File(orig_file);
         BufferedImage img = null;
         try {
             img = ImageIO.read(sourceFile);

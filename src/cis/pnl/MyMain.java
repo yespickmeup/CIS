@@ -55,17 +55,21 @@ public class MyMain {
                 }
             }
 
-            System.out.println(home);
+            System.setProperty("environment", prop.getProperty("environment", "production"));
             System.setProperty("pool_port", prop.getProperty("pool_port", "3306"));
             System.setProperty("pool_user", prop.getProperty("pool_user", "root"));
-            System.setProperty("pool_password", prop.getProperty("pool_password", "password"));
+            System.setProperty("pool_password", prop.getProperty("pool_password", "synapse246"));
             System.setProperty("pool_db", prop.getProperty("pool_db", "db_cis_cosca"));
             System.setProperty("pool_host", prop.getProperty("pool_host", "localhost"));
-            System.out.println("local_ip: " + System.getProperty("local_ip"));
-            System.out.println("pool_host: " + System.getProperty("pool_host"));
+
             System.setProperty("image_server", prop.getProperty("image_server", ""));
             System.setProperty("webcam_enable", prop.getProperty("webcam_enable", "false"));
-
+            if (System.getProperty("environment", "production").equalsIgnoreCase("development")) {
+                System.out.println(home);
+                System.out.println("local_ip: " + System.getProperty("local_ip"));
+                System.out.println("pool_host: " + System.getProperty("pool_host"));
+//                System.out.println("pool_password: " + System.getProperty("pool_password"));
+            }
 //            System.out.println(System.getProperty("webcam_enable", ""));
 //            System.out.println(System.getProperty("image_server", ""));
             String where = "";

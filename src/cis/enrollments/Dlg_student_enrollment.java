@@ -3484,19 +3484,25 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     private void send_image_to_server(String enrollment_no) throws IOException {
 
-        String image_server = System.setProperty("image_server", "192.168.10.127");
+        String image_server = System.getProperty("image_server", "192.168.10.127"); //
         if (!image_server.isEmpty()) {
             FileInputStream inputStream = null;
+            
             String home = System.getProperty("user.home", "C:\\Users\\Guinness");
             String orig_file = home + "\\images_cis\\image.jpg";
             File sourceFile = new File(orig_file);
             File destinationFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");
+            File destinationFile2 = new File( home + "\\images_cis\\enrollments\\" + enrollment_no + ".jpg");
             inputStream = new FileInputStream(sourceFile);
             FileOutputStream outputStream = new FileOutputStream(destinationFile);
+            FileOutputStream outputStream2 = new FileOutputStream(destinationFile2);
             FileChannel inChannel = inputStream.getChannel();
+            FileChannel inChannel2 = inputStream.getChannel();
             FileChannel outChannel = outputStream.getChannel();
+            FileChannel outChannel2 = outputStream2.getChannel();
             try {
                 inChannel.transferTo(0, inChannel.size(), outChannel);
+                inChannel2.transferTo(0, inChannel2.size(), outChannel2);
 
             } finally {
                 inChannel.close();
@@ -3504,6 +3510,11 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 inputStream.close();
                 outputStream.close();
 
+                inChannel2.close();
+                outChannel2.close();
+//                inputStream2.close();
+                outputStream2.close();
+                
                 if (sourceFile.delete()) {
                     System.out.println("Local image deleted");
                 } else {
