@@ -35,7 +35,7 @@ import synsoftech.util.ImageRenderer;
  *
  * @author Ronescape
  */
-public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
+public class Dlg_mode_of_payments extends javax.swing.JDialog {
 
     /**
      * Creates new form Dlg_miscellaneous_fees
@@ -61,33 +61,33 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_miscellaneous_fees(java.awt.Frame parent, boolean modal) {
+    private Dlg_mode_of_payments(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_miscellaneous_fees(java.awt.Dialog parent, boolean modal) {
+    private Dlg_mode_of_payments(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_miscellaneous_fees() {
+    public Dlg_mode_of_payments() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_miscellaneous_fees myRef;
+    private Dlg_mode_of_payments myRef;
 
-    private void setThisRef(Dlg_miscellaneous_fees myRef) {
+    private void setThisRef(Dlg_mode_of_payments myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_miscellaneous_fees> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_mode_of_payments> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -95,7 +95,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_miscellaneous_fees create(java.awt.Window parent, boolean modal) {
+    public static Dlg_mode_of_payments create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -105,14 +105,14 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_miscellaneous_fees create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_mode_of_payments create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_miscellaneous_fees dialog = dialogContainer.get(parent);
+            Dlg_mode_of_payments dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_miscellaneous_fees((java.awt.Frame) parent, false);
+                dialog = new Dlg_mode_of_payments((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -126,10 +126,10 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_miscellaneous_fees dialog = dialogContainer.get(parent);
+            Dlg_mode_of_payments dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_miscellaneous_fees((java.awt.Dialog) parent, false);
+                dialog = new Dlg_mode_of_payments((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -156,7 +156,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_miscellaneous_fees dialog = Dlg_miscellaneous_fees.create(new javax.swing.JFrame(), true);
+        Dlg_mode_of_payments dialog = Dlg_mode_of_payments.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -212,7 +212,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("Miscellaneous:");
+        jLabel29.setText("Description:");
 
         tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -227,9 +227,10 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         });
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel30.setText("Default Amount:");
+        jLabel30.setText("Count:");
 
         tf_field15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field15.setText("1");
         tf_field15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field15MouseClicked(evt);
@@ -296,12 +297,12 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 266, Short.MAX_VALUE))
+                                    .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_field14)))
+                                    .addComponent(tf_field14, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,7 +317,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +372,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_miscellaneous_feesMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-          clear_record();
+        clear_record();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
@@ -399,8 +400,8 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 
         init_tbl_miscellaneous_fees(tbl_miscellaneous_fees);
         ret_data();
-        jLabel30.setVisible(false);
-        tf_field15.setVisible(false);
+//        jLabel30.setVisible(false);
+//        tf_field15.setVisible(false);
     }
 
     public void do_pass() {
@@ -409,7 +410,8 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
-        this.dispose();
+
+        ok();
     }
 
     private void init_key() {
@@ -448,12 +450,12 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         tbl_miscellaneous_fees.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_miscellaneous_fees.setRowHeight(25);
         tbl_miscellaneous_fees.setFont(new java.awt.Font("Arial", 0, 12));
-        TableWidthUtilities.setColumnRightRenderer(tbl_miscellaneous_fees, 1);
+//        TableWidthUtilities.setColumnRightRenderer(tbl_miscellaneous_fees, 1);
         tbl_miscellaneous_fees.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
         tbl_miscellaneous_fees.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
     }
 
-    public static void loadData_miscellaneous_fees(List<to_miscellaneous_fees> acc) {
+    public static void loadData_miscellaneous_fees(List<Mode_of_payments.to_mode_of_payments> acc) {
         tbl_miscellaneous_fees_ALM.clear();
         tbl_miscellaneous_fees_ALM.addAll(acc);
     }
@@ -461,7 +463,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
     public static class Tblmiscellaneous_feesModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Miscellaneous:", "Amount", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Description", "Count", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblmiscellaneous_feesModel(ListModel listmodel) {
@@ -486,12 +488,12 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 
         @Override
         public Object getValueAt(int row, int col) {
-            to_miscellaneous_fees tt = (to_miscellaneous_fees) getRow(row);
+            Mode_of_payments.to_mode_of_payments tt = (Mode_of_payments.to_mode_of_payments) getRow(row);
             switch (col) {
                 case 0:
-                    return " " + tt.fee;
+                    return " " + tt.mode;
                 case 1:
-                    return FitIn.fmt_wc_0(tt.amount) + " ";
+                    return " " + tt.nos;
                 case 2:
                     return "/cis/icons/new-file.png";
                 case 3:
@@ -512,7 +514,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
 
     private void ret_data() {
         String where = "";
-        List<to_miscellaneous_fees> datas = Miscellaneous_fees.ret_data(where);
+        List<Mode_of_payments.to_mode_of_payments> datas = Mode_of_payments.ret_data(where);
         loadData_miscellaneous_fees(datas);
         jLabel2.setText("" + datas.size());
     }
@@ -523,14 +525,19 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
         if (row < 0) {
             int id = 0;
             String fee = tf_field14.getText();
-            double amount = FitIn.toDouble(tf_field15.getText());
+            int nos = FitIn.toInt(tf_field15.getText());
+            if (nos < 0) {
+                Alert.set(0, "Input count!");
+                tf_field15.grabFocus();
+                return;
+            }
             String created_at = DateType.now();
             String updated_at = DateType.now();
             String created_by = MyUser.getUser_id();
             String updated_by = MyUser.getUser_id();
             int status = 0;
             int is_uploaded = 0;
-            to_miscellaneous_fees to = new to_miscellaneous_fees(id, fee, amount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+            Mode_of_payments.to_mode_of_payments to = new Mode_of_payments.to_mode_of_payments(id, fee, nos, created_at, updated_at, created_by, updated_by, status, is_uploaded);
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");
@@ -538,7 +545,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                     closeDialog.ok();
-                    Miscellaneous_fees.add_data(to);
+                    Mode_of_payments.add_data(to);
                     Alert.set(1, "");
                     ret_data();
                     tf_field14.setText("");
@@ -550,17 +557,22 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
             nd.setVisible(true);
 
         } else {
-            to_miscellaneous_fees to = (to_miscellaneous_fees) tbl_miscellaneous_fees_ALM.get(row);
+            Mode_of_payments.to_mode_of_payments to = (Mode_of_payments.to_mode_of_payments) tbl_miscellaneous_fees_ALM.get(row);
             int id = to.id;
             String fee = tf_field14.getText();
-            double amount = FitIn.toDouble(tf_field15.getText());
+            int amount = FitIn.toInt(tf_field15.getText());
+            if (amount < 0) {
+                Alert.set(0, "Input count!");
+                tf_field15.grabFocus();
+                return;
+            }
             String created_at = to.created_at;
             String updated_at = DateType.now();
             String created_by = to.created_by;
             String updated_by = MyUser.getUser_id();
             int status = to.status;
             int is_uploaded = to.is_uploaded;
-            to_miscellaneous_fees to2 = new to_miscellaneous_fees(id, fee, amount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+            Mode_of_payments.to_mode_of_payments to2 = new Mode_of_payments.to_mode_of_payments(id, fee, amount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");
@@ -568,7 +580,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                     closeDialog.ok();
-                    Miscellaneous_fees.update_data(to2);
+                    Mode_of_payments.update_data(to2);
                     Alert.set(2, "");
                     ret_data();
                     clear_record();
@@ -593,10 +605,10 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
             return;
         }
         int col = tbl_miscellaneous_fees.getSelectedColumn();
-        to_miscellaneous_fees to = (to_miscellaneous_fees) tbl_miscellaneous_fees_ALM.get(row);
+        Mode_of_payments.to_mode_of_payments to = (Mode_of_payments.to_mode_of_payments) tbl_miscellaneous_fees_ALM.get(row);
         if (col == 2) {
-            tf_field14.setText(to.fee);
-            tf_field15.setText("" + FitIn.fmt_wc_0(to.amount));
+            tf_field14.setText(to.mode);
+            tf_field15.setText("" + to.nos);
         }
         if (col == 3) {
             Window p = (Window) this;
@@ -606,7 +618,7 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
                     closeDialog.ok();
-                    Miscellaneous_fees.delete_data(to);
+                    Mode_of_payments.delete_data(to);
                     Alert.set(3, "");
                     ret_data();
                     clear_record();
@@ -614,6 +626,12 @@ public class Dlg_miscellaneous_fees extends javax.swing.JDialog {
             });
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
+        }
+    }
+
+    private void ok() {
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData());
         }
     }
 }

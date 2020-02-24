@@ -291,6 +291,23 @@ public class TableRenderer {
                 }
             }
         });
+         tbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = tbl.getSelectedRow();
+                String[] output = new String[tbl_widths_customers.length];
+                int u = 0;
+                for (int y : tbl_widths_customers) {
+                    output[u] = tbl.getModel().
+                            getValueAt(row, u).
+                            toString();
+                    u++;
+                }
+                tf.grabFocus();
+                popup.setVisible(false);
+                ok1(output, row);
+            }
+        });
     }
 
     public static void setPopup3(final JTextField tf, Object[][] obj, final JLabel[] labels, final int[] tbl_widths_customers, String[] col_names, int width) {

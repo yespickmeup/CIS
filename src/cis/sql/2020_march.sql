@@ -242,11 +242,18 @@ id int auto_increment primary key
 ,academic_year varchar(255)
 ,department_id int
 ,department varchar(255)
-
+,level_id int
+,level varchar(255)
+,course_id int
+,course varchar(255)
 ,period varchar(255)
-,group int
+,group_id int
 ,group_name varchar(255)
+,fee_id int
+,fee varchar(255)
 ,amount double 
+,is_per_unit int
+,per_unit double
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -296,3 +303,61 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
+
+
+drop table if exists mode_of_payments;
+create table mode_of_payments(
+id int auto_increment primary key
+,mode varchar(255)
+,nos int
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+
+
+drop table if exists enrollment_assessments;
+create table enrollment_assessments(
+id int auto_increment primary key
+,enrollment_id int
+,enrollment_no varchar(255)
+,student_id int
+,student_no varchar(255)
+,fname varchar(255)
+,lname varchar(255)
+,mi varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,curriculum_id int
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,term varchar(255) 
+,year_level varchar(255)
+,year_level_status varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,tuition_amount double
+,no_of_units int
+,amount_per_unit double
+,tuition_discount double
+,miscellaneous_amount double
+,miscellaneous_discount double
+,other_fees_amount double
+,other_fees_discount double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);

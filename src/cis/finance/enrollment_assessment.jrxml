@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="43" bottomMargin="20" uuid="f265f36c-6b77-4ccf-9a26-a2a9ede82276">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="226"/>
+	<parameter name="school_name" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="contact_no" class="java.lang.String"/>
+	<parameter name="enrollment_id" class="java.lang.String"/>
+	<parameter name="enrollment_no" class="java.lang.String"/>
+	<parameter name="student_id" class="java.lang.String"/>
+	<parameter name="student_no" class="java.lang.String"/>
+	<parameter name="student_name" class="java.lang.String"/>
+	<parameter name="academic_year" class="java.lang.String"/>
+	<parameter name="course_code" class="java.lang.String"/>
+	<parameter name="course_description" class="java.lang.String"/>
+	<parameter name="no_of_years" class="java.lang.Double"/>
+	<parameter name="level" class="java.lang.String"/>
+	<parameter name="college" class="java.lang.String"/>
+	<parameter name="department" class="java.lang.String"/>
+	<parameter name="year_level" class="java.lang.String"/>
+	<parameter name="tuition_amount" class="java.lang.Double"/>
+	<parameter name="no_of_units" class="java.lang.Double"/>
+	<parameter name="amount_per_unit" class="java.lang.Double"/>
+	<parameter name="miscellaneous_amount" class="java.lang.Double"/>
+	<parameter name="miscellaneous_discount" class="java.lang.Double"/>
+	<parameter name="other_fees_amount" class="java.lang.Double"/>
+	<parameter name="other_fees_discount" class="java.lang.Double"/>
+	<parameter name="total_discount" class="java.lang.Double"/>
+	<parameter name="total_amount_due" class="java.lang.Double"/>
+	<parameter name="rpt_subjects" class="java.util.List"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rpt_mode_of_payments" class="java.util.List"/>
+	<parameter name="assessed_by" class="java.lang.String"/>
+	<field name="subject_code" class="java.lang.String"/>
+	<field name="subject_description" class="java.lang.String"/>
+	<field name="prerequisites" class="java.lang.String"/>
+	<field name="lec_units" class="java.lang.Double"/>
+	<field name="lab_units" class="java.lang.Double"/>
+	<field name="faculty_name" class="java.lang.String"/>
+	<field name="section" class="java.lang.String"/>
+	<field name="room" class="java.lang.String"/>
+	<field name="day" class="java.lang.String"/>
+	<variable name="subject_code_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{subject_code}]]></variableExpression>
+	</variable>
+	<variable name="lec_units_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{lec_units}+$F{lec_units}]]></variableExpression>
+	</variable>
+	<group name="rpt_subjects">
+		<groupExpression><![CDATA[$P{rpt_subjects}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<subreport>
+					<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="0" y="0" width="555" height="15"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_subjects}, false);]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_subjects.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="rpt_mode_of_payments">
+		<groupExpression><![CDATA[$P{rpt_mode_of_payments}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<subreport>
+					<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="0" y="0" width="555" height="15"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_mode_of_payments}, false);]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_mode_of_payments.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="181" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ae05431d-c150-4478-b7c7-187be85ccc5f" x="73" y="0" width="396" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{school_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="70d869e5-51da-40be-8d01-f9493a78b617" x="73" y="20" width="396" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="90" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Enrollent No.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="156" y="90" width="130" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{enrollment_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="286" y="90" width="71" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Student No.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="357" y="90" width="112" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{student_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="110" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="156" y="110" width="313" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{student_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="130" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Course:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="156" y="130" width="313" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{course_description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="150" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Year:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="156" y="150" width="313" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{academic_year}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="51" width="396" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Assessment Form]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="180" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="70" y="7" width="398" height="18" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Fees]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa7c381e-48f4-4ee2-b1b2-89aa27ebbd14" x="70" y="25" width="212" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Tuition Fee]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="282" y="25" width="186" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tuition_amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="282" y="40" width="186" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{miscellaneous_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aa7c381e-48f4-4ee2-b1b2-89aa27ebbd14" x="70" y="40" width="212" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Miscellaneous Fees]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa7c381e-48f4-4ee2-b1b2-89aa27ebbd14" x="70" y="55" width="212" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Other Fees]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="282" y="55" width="186" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{other_fees_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aa7c381e-48f4-4ee2-b1b2-89aa27ebbd14" x="70" y="70" width="212" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Amount Due]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="282" y="70" width="186" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_amount_due}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="203" y="123" width="142" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assessed_by}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="203" y="143" width="142" height="13"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[(Finance)]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

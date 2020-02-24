@@ -64,16 +64,15 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel30" min="-2" pref="109" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tf_field15" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="266" max="32767" attributes="0"/>
+                                      <Component id="tf_field15" min="-2" pref="224" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel29" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel29" min="-2" pref="64" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tf_field14" max="32767" attributes="0"/>
+                                      <Component id="tf_field14" min="-2" pref="323" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton14" min="-2" pref="37" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton15" min="-2" pref="37" max="-2" attributes="0"/>
@@ -95,12 +94,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jButton15" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jButton14" min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel29" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="tf_field14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jButton15" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jButton14" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="319" max="32767" attributes="0"/>
@@ -120,7 +119,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Miscellaneous:"/>
+            <Property name="text" type="java.lang.String" value="Fee:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_field14">
