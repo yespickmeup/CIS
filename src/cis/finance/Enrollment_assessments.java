@@ -5,6 +5,9 @@
  */
 package cis.finance;
 
+import cis.finance.Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes;
+import cis.users.MyUser;
+import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,6 +58,7 @@ public class Enrollment_assessments {
         public final double miscellaneous_discount;
         public final double other_fees_amount;
         public final double other_fees_discount;
+        public final int mode_of_payment;
         public final String created_at;
         public final String updated_at;
         public final String created_by;
@@ -62,7 +66,7 @@ public class Enrollment_assessments {
         public final int status;
         public final int is_uploaded;
 
-        public to_enrollment_assessments(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String lname, String mi, int academic_year_id, String academic_year, int curriculum_id, int course_id, String course_code, String course_description, String term, String year_level, String year_level_status, int level_id, String level, int college_id, String college, int department_id, String department, double tuition_amount, int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount, double other_fees_amount, double other_fees_discount, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_assessments(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String lname, String mi, int academic_year_id, String academic_year, int curriculum_id, int course_id, String course_code, String course_description, String term, String year_level, String year_level_status, int level_id, String level, int college_id, String college, int department_id, String department, double tuition_amount, int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount, double other_fees_amount, double other_fees_discount, int mode_of_payment, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
             this.id = id;
             this.enrollment_id = enrollment_id;
             this.enrollment_no = enrollment_no;
@@ -94,6 +98,7 @@ public class Enrollment_assessments {
             this.miscellaneous_discount = miscellaneous_discount;
             this.other_fees_amount = other_fees_amount;
             this.other_fees_discount = other_fees_discount;
+            this.mode_of_payment = mode_of_payment;
             this.created_at = created_at;
             this.updated_at = updated_at;
             this.created_by = created_by;
@@ -137,6 +142,7 @@ public class Enrollment_assessments {
                     + ",miscellaneous_discount"
                     + ",other_fees_amount"
                     + ",other_fees_discount"
+                    + ",mode_of_payment"
                     + ",created_at"
                     + ",updated_at"
                     + ",created_by"
@@ -174,6 +180,7 @@ public class Enrollment_assessments {
                     + ",:miscellaneous_discount"
                     + ",:other_fees_amount"
                     + ",:other_fees_discount"
+                    + ",:mode_of_payment"
                     + ",:created_at"
                     + ",:updated_at"
                     + ",:created_by"
@@ -213,6 +220,7 @@ public class Enrollment_assessments {
                     .setNumber("miscellaneous_discount", to_enrollment_assessments.miscellaneous_discount)
                     .setNumber("other_fees_amount", to_enrollment_assessments.other_fees_amount)
                     .setNumber("other_fees_discount", to_enrollment_assessments.other_fees_discount)
+                    .setNumber("mode_of_payment", to_enrollment_assessments.mode_of_payment)
                     .setString("created_at", to_enrollment_assessments.created_at)
                     .setString("updated_at", to_enrollment_assessments.updated_at)
                     .setString("created_by", to_enrollment_assessments.created_by)
@@ -223,6 +231,228 @@ public class Enrollment_assessments {
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
+            Lg.s(Enrollment_assessments.class, "Successfully Added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void add_data2(to_enrollment_assessments to_enrollment_assessments, List<to_enrollment_assessment_payment_modes> to_enrollment_assessment_payment_modes1) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "insert into enrollment_assessments("
+                    + "enrollment_id"
+                    + ",enrollment_no"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",fname"
+                    + ",lname"
+                    + ",mi"
+                    + ",academic_year_id"
+                    + ",academic_year"
+                    + ",curriculum_id"
+                    + ",course_id"
+                    + ",course_code"
+                    + ",course_description"
+                    + ",term"
+                    + ",year_level"
+                    + ",year_level_status"
+                    + ",level_id"
+                    + ",level"
+                    + ",college_id"
+                    + ",college"
+                    + ",department_id"
+                    + ",department"
+                    + ",tuition_amount"
+                    + ",no_of_units"
+                    + ",amount_per_unit"
+                    + ",tuition_discount"
+                    + ",miscellaneous_amount"
+                    + ",miscellaneous_discount"
+                    + ",other_fees_amount"
+                    + ",other_fees_discount"
+                    + ",mode_of_payment"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + ")values("
+                    + ":enrollment_id"
+                    + ",:enrollment_no"
+                    + ",:student_id"
+                    + ",:student_no"
+                    + ",:fname"
+                    + ",:lname"
+                    + ",:mi"
+                    + ",:academic_year_id"
+                    + ",:academic_year"
+                    + ",:curriculum_id"
+                    + ",:course_id"
+                    + ",:course_code"
+                    + ",:course_description"
+                    + ",:term"
+                    + ",:year_level"
+                    + ",:year_level_status"
+                    + ",:level_id"
+                    + ",:level"
+                    + ",:college_id"
+                    + ",:college"
+                    + ",:department_id"
+                    + ",:department"
+                    + ",:tuition_amount"
+                    + ",:no_of_units"
+                    + ",:amount_per_unit"
+                    + ",:tuition_discount"
+                    + ",:miscellaneous_amount"
+                    + ",:miscellaneous_discount"
+                    + ",:other_fees_amount"
+                    + ",:other_fees_discount"
+                    + ",:mode_of_payment"
+                    + ",:created_at"
+                    + ",:updated_at"
+                    + ",:created_by"
+                    + ",:updated_by"
+                    + ",:status"
+                    + ",:is_uploaded"
+                    + ")";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("enrollment_id", to_enrollment_assessments.enrollment_id)
+                    .setString("enrollment_no", to_enrollment_assessments.enrollment_no)
+                    .setNumber("student_id", to_enrollment_assessments.student_id)
+                    .setString("student_no", to_enrollment_assessments.student_no)
+                    .setString("fname", to_enrollment_assessments.fname)
+                    .setString("lname", to_enrollment_assessments.lname)
+                    .setString("mi", to_enrollment_assessments.mi)
+                    .setNumber("academic_year_id", to_enrollment_assessments.academic_year_id)
+                    .setString("academic_year", to_enrollment_assessments.academic_year)
+                    .setNumber("curriculum_id", to_enrollment_assessments.curriculum_id)
+                    .setNumber("course_id", to_enrollment_assessments.course_id)
+                    .setString("course_code", to_enrollment_assessments.course_code)
+                    .setString("course_description", to_enrollment_assessments.course_description)
+                    .setString("term", to_enrollment_assessments.term)
+                    .setString("year_level", to_enrollment_assessments.year_level)
+                    .setString("year_level_status", to_enrollment_assessments.year_level_status)
+                    .setNumber("level_id", to_enrollment_assessments.level_id)
+                    .setString("level", to_enrollment_assessments.level)
+                    .setNumber("college_id", to_enrollment_assessments.college_id)
+                    .setString("college", to_enrollment_assessments.college)
+                    .setNumber("department_id", to_enrollment_assessments.department_id)
+                    .setString("department", to_enrollment_assessments.department)
+                    .setNumber("tuition_amount", to_enrollment_assessments.tuition_amount)
+                    .setNumber("no_of_units", to_enrollment_assessments.no_of_units)
+                    .setNumber("amount_per_unit", to_enrollment_assessments.amount_per_unit)
+                    .setNumber("tuition_discount", to_enrollment_assessments.tuition_discount)
+                    .setNumber("miscellaneous_amount", to_enrollment_assessments.miscellaneous_amount)
+                    .setNumber("miscellaneous_discount", to_enrollment_assessments.miscellaneous_discount)
+                    .setNumber("other_fees_amount", to_enrollment_assessments.other_fees_amount)
+                    .setNumber("other_fees_discount", to_enrollment_assessments.other_fees_discount)
+                    .setNumber("mode_of_payment", to_enrollment_assessments.mode_of_payment)
+                    .setString("created_at", to_enrollment_assessments.created_at)
+                    .setString("updated_at", to_enrollment_assessments.updated_at)
+                    .setString("created_by", to_enrollment_assessments.created_by)
+                    .setString("updated_by", to_enrollment_assessments.updated_by)
+                    .setNumber("status", to_enrollment_assessments.status)
+                    .setNumber("is_uploaded", to_enrollment_assessments.is_uploaded)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+            
+            String s4 = "update enrollments set "
+                    + " assessed_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",assessed_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",assessed_date = '" + DateType.now() + "' "
+                    + " where id='" + to_enrollment_assessments.enrollment_id + "' "
+                    + " ";
+
+            stmt.addBatch(s4);
+          
+            stmt.executeBatch();
+
+            String s3 = "select "
+                    + "id"
+                    + " from enrollment_assessments"
+                    + " order by id desc limit 1";
+
+            Statement stmt3 = conn.createStatement();
+            ResultSet rs3 = stmt3.executeQuery(s3);
+            int id2 = 0;
+            if (rs3.next()) {
+                id2 = rs3.getInt(1);
+            }
+
+            PreparedStatement stmt2 = conn.prepareStatement("");
+            for (to_enrollment_assessment_payment_modes to_enrollment_assessment_payment_modes : to_enrollment_assessment_payment_modes1) {
+                String s2 = "insert into enrollment_assessment_payment_modes("
+                        + "enrollment_assessment_id"
+                        + ",enrollment_id"
+                        + ",enrollment_no"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",mode"
+                        + ",mode_order"
+                        + ",to_pay"
+                        + ",amount"
+                        + ",discount"
+                        + ",paid"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":enrollment_assessment_id"
+                        + ",:enrollment_id"
+                        + ",:enrollment_no"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:mode"
+                        + ",:mode_order"
+                        + ",:to_pay"
+                        + ",:amount"
+                        + ",:discount"
+                        + ",:paid"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s2 = SqlStringUtil.parse(s2)
+                        .setNumber("enrollment_assessment_id", id2)
+                        .setNumber("enrollment_id", to_enrollment_assessments.enrollment_id)
+                        .setString("enrollment_no", to_enrollment_assessments.enrollment_no)
+                        .setNumber("academic_year_id", to_enrollment_assessments.academic_year_id)
+                        .setString("academic_year", to_enrollment_assessments.academic_year)
+                        .setString("mode", to_enrollment_assessment_payment_modes.mode)
+                        .setNumber("mode_order", to_enrollment_assessment_payment_modes.mode_order)
+                        .setString("to_pay", to_enrollment_assessment_payment_modes.to_pay)
+                        .setNumber("amount", to_enrollment_assessment_payment_modes.amount)
+                        .setNumber("discount", to_enrollment_assessment_payment_modes.discount)
+                        .setNumber("paid", to_enrollment_assessment_payment_modes.paid)
+                        .setString("created_at", to_enrollment_assessments.created_at)
+                        .setString("updated_at", to_enrollment_assessments.updated_at)
+                        .setString("created_by", to_enrollment_assessments.created_by)
+                        .setString("updated_by", to_enrollment_assessments.updated_by)
+                        .setNumber("status", to_enrollment_assessments.status)
+                        .setNumber("is_uploaded", to_enrollment_assessments.is_uploaded)
+                        .ok();
+
+                stmt2.addBatch(s2);
+            }
+
+            stmt2.executeBatch();
+            conn.commit();
+
             Lg.s(Enrollment_assessments.class, "Successfully Added");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -265,6 +495,7 @@ public class Enrollment_assessments {
                     + ",miscellaneous_discount= :miscellaneous_discount "
                     + ",other_fees_amount= :other_fees_amount "
                     + ",other_fees_discount= :other_fees_discount "
+                    + ",mode_of_payment= :mode_of_payment "
                     + ",created_at= :created_at "
                     + ",updated_at= :updated_at "
                     + ",created_by= :created_by "
@@ -305,6 +536,7 @@ public class Enrollment_assessments {
                     .setNumber("miscellaneous_discount", to_enrollment_assessments.miscellaneous_discount)
                     .setNumber("other_fees_amount", to_enrollment_assessments.other_fees_amount)
                     .setNumber("other_fees_discount", to_enrollment_assessments.other_fees_discount)
+                    .setNumber("mode_of_payment", to_enrollment_assessments.mode_of_payment)
                     .setString("created_at", to_enrollment_assessments.created_at)
                     .setString("updated_at", to_enrollment_assessments.updated_at)
                     .setString("created_by", to_enrollment_assessments.created_by)
@@ -377,6 +609,7 @@ public class Enrollment_assessments {
                     + ",miscellaneous_discount"
                     + ",other_fees_amount"
                     + ",other_fees_discount"
+                    + ",mode_of_payment"
                     + ",created_at"
                     + ",updated_at"
                     + ",created_by"
@@ -420,14 +653,15 @@ public class Enrollment_assessments {
                 double miscellaneous_discount = rs.getDouble(29);
                 double other_fees_amount = rs.getDouble(30);
                 double other_fees_discount = rs.getDouble(31);
-                String created_at = rs.getString(32);
-                String updated_at = rs.getString(33);
-                String created_by = rs.getString(34);
-                String updated_by = rs.getString(35);
-                int status = rs.getInt(36);
-                int is_uploaded = rs.getInt(37);
+                int mode_of_payment = rs.getInt(32);
+                String created_at = rs.getString(33);
+                String updated_at = rs.getString(34);
+                String created_by = rs.getString(35);
+                String updated_by = rs.getString(36);
+                int status = rs.getInt(37);
+                int is_uploaded = rs.getInt(38);
 
-                to_enrollment_assessments to = new to_enrollment_assessments(id, enrollment_id, enrollment_no, student_id, student_no, fname, lname, mi, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, year_level, year_level_status, level_id, level, college_id, college, department_id, department, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_assessments to = new to_enrollment_assessments(id, enrollment_id, enrollment_no, student_id, student_no, fname, lname, mi, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, year_level, year_level_status, level_id, level, college_id, college, department_id, department, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, mode_of_payment, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 datas.add(to);
             }
             return datas;

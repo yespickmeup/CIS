@@ -354,6 +354,7 @@ id int auto_increment primary key
 ,miscellaneous_discount double
 ,other_fees_amount double
 ,other_fees_discount double
+,mode_of_payment int 
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)
@@ -361,3 +362,31 @@ id int auto_increment primary key
 ,status int
 ,is_uploaded int
 );
+
+
+drop table if exists enrollment_assessment_payment_modes;
+create table enrollment_assessment_payment_modes(
+id int auto_increment primary key
+,enrollment_assessment_id int
+,enrollment_id int
+,enrollment_no varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,mode varchar(255)
+,mode_order int
+,to_pay date
+,amount double
+,discount double
+,paid double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+alter table enrollments add student_id int after approved_date;
+alter table enrollments add date_enrolled datetime after approved_date;
+alter table enrollments change date_enrolled date_enrolled datetime;

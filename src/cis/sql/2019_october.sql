@@ -559,6 +559,7 @@ id int auto_increment primary key
 ,fname varchar(255)
 ,lname varchar(255)
 ,mi varchar(255)
+,student_id int
 ,student_no varchar(255)
 ,last_name varchar(255)
 ,first_name varchar(255)

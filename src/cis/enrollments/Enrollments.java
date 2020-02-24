@@ -870,13 +870,33 @@ public class Enrollments {
             MyConnection.close();
         }
     }
-public static void approve_advising(to_enrollments to_enrollments) {
+
+    public static void approve_advising(to_enrollments to_enrollments) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update enrollments set "
                     + " approved_by_id = '" + MyUser.getUser_id() + "' "
                     + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
                     + ",approved_date = '" + DateType.now() + "' "
+                    + " where id='" + to_enrollments.id + "' "
+                    + " ";
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollments.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void approve_assessment(to_enrollments to_enrollments) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollments set "
+                    + " assessed_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",assessed_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",assessed_date = '" + DateType.now() + "' "
                     + " where id='" + to_enrollments.id + "' "
                     + " ";
             PreparedStatement stmt = conn.prepareStatement(s0);

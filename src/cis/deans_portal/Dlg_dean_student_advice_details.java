@@ -10,12 +10,19 @@ import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_year_periods;
 import cis.academic.Srpt_academic_offering_subjects;
+import cis.enrollments.Dlg_student_enrollment_approved;
+import cis.enrollments.Dlg_student_enrollment_successful;
 import cis.enrollments.Enrollment_department_requirements;
 import cis.enrollments.Enrollment_department_requirements.to_enrollment_department_requirements;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
+import cis.finance.Dlg_finance;
+import cis.finance.Enrollment_assessment_payment_modes;
+import cis.finance.Enrollment_assessments;
+import cis.finance.Srpt_enrollment_assessment;
+import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -27,6 +34,7 @@ import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -34,6 +42,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,12 +53,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -62,11 +76,15 @@ import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
 import org.jfree.ui.Align;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
+import synsoftech.panels.Loading;
 import synsoftech.util.ImageRenderer;
 
 /**
@@ -531,6 +549,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jButton6 = new Button.Info();
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanel27 = new javax.swing.JPanel();
+        jPanel33 = new javax.swing.JPanel();
+        jPanel34 = new javax.swing.JPanel();
+        jPanel35 = new javax.swing.JPanel();
+        jLabel83 = new javax.swing.JLabel();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jButton10 = new Button.Info();
+        jButton11 = new Button.Success();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -3053,6 +3078,101 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         jTabbedPane2.addTab("Loading", jPanel23);
 
+        jPanel33.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel34.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Print Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        jPanel35.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel35.setMinimumSize(new java.awt.Dimension(626, 0));
+
+        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
+        jPanel35.setLayout(jPanel35Layout);
+        jPanel35Layout.setHorizontalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel35Layout.setVerticalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 553, Short.MAX_VALUE)
+        );
+
+        jLabel83.setText("Status:");
+
+        jProgressBar2.setString("");
+        jProgressBar2.setStringPainted(true);
+
+        jButton10.setText("Print Assessment");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton11.setText("Approve Enrollment Application");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
+        jPanel34.setLayout(jPanel34Layout);
+        jPanel34Layout.setHorizontalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel34Layout.createSequentialGroup()
+                .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel34Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel83)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
+                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel34Layout.setVerticalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel34Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel83)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
+        jPanel33.setLayout(jPanel33Layout);
+        jPanel33Layout.setHorizontalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(194, 194, 194))
+        );
+        jPanel33Layout.setVerticalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58))
+        );
+
+        jTabbedPane2.addTab("Assessment", jPanel33);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -3260,6 +3380,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         finish_advising();
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        print_assessment();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        confirm_enroll();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3273,6 +3401,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3379,6 +3509,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -3406,6 +3537,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -3413,6 +3547,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3585,6 +3720,16 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     public void do_pass(Enrollments.to_enrollments student, int is_dean) {
         if (is_dean == 0) {
             jButton9.setText("Approve Advising");
+            if (student.advised_date != null && student.approved_date != null && student.assessed_date != null) {
+                if (student.student_no != null) {
+                    jButton11.setEnabled(false);
+                }
+                jButton9.setVisible(false);
+                jTabbedPane2.setSelectedIndex(3);
+                set_assessment();
+            } else {
+                jTabbedPane2.remove(3);
+            }
         }
         enroll = student;
         list_year2.clear();
@@ -4984,7 +5129,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
     }
 //</editor-fold> 
-
     //<editor-fold defaultstate="collapsed" desc=" enrollment_student_loaded_subjects "> 
     public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
     public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
@@ -5227,4 +5371,383 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }
 //</editor-fold> 
 
+    //<editor-fold defaultstate="collapsed" desc=" list of programs ">
+    private void set_assessment() {
+
+        jProgressBar2.setString("Loading...Please wait...");
+        jProgressBar2.setIndeterminate(true);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+                if (assessments.isEmpty()) {
+                    jProgressBar2.setString("Finished...");
+                    jProgressBar2.setIndeterminate(false);
+
+                    jPanel35.removeAll();
+                    jPanel35.setLayout(new BorderLayout());
+                    jPanel35.setMinimumSize(new Dimension(626, 0));
+                    jPanel35.setMaximumSize(new Dimension(626, 0));
+                    jPanel35.setPreferredSize(new Dimension(626, 0));
+                    jPanel35.updateUI();
+                    return;
+                }
+                Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+
+                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+                String date = synsoftech.util.DateType.slash.format(new Date());
+                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+                String enrollment_id = "" + assessment.enrollment_id;
+                String enrollment_no = assessment.enrollment_no;
+                String student_id = "" + assessment.student_id;
+                String student_no = assessment.student_no;
+                String student_name = assessment.lname + ", " + assessment.fname + " " + assessment.mi;
+                String academic_year = assessment.academic_year;
+                String course_code = assessment.course_code;
+                String course_description = assessment.course_description;
+                int no_of_years = FitIn.toInt(assessment.term);
+                String level = assessment.level;
+                String college = assessment.college;
+                String department = assessment.department;
+                String year_level = assessment.year_level;
+                double tuition_amount = 11500;
+                double tuition_discount = 1000;
+                int no_of_units = 23;
+                double amount_per_unit = 500;
+                double miscellaneous_amount = 5000;
+                double miscellaneous_discount = 0;
+                double other_fees_amount = 1000;
+                double other_fees_discount = 0;
+                double total_discount = 1000;
+                double total_amount_due = 16500;
+                String home = System.getProperty("user.home");
+                String SUBREPORT_DIR = home + "\\cis\\";
+                List<Srpt_enrollment_assessment.field> fields = new ArrayList();
+                List<Srpt_enrollment_assessment.field> rpt_subjects = new ArrayList();
+
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+                    String subject_code = sub.subject_code;
+                    String subject_description = sub.description;
+                    String prerequisites = "";
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    String faculty_name = sub.faculty_name;
+                    String section = sub.section;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, subject_description, prerequisites, lec_units, lab_units, faculty_name, section, room, day);
+                    rpt_subjects.add(f);
+                }
+                List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
+                List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
+                int payment_count = 3;
+                for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
+                    Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount);
+                    rpt_mode_of_payments.add(mop0);
+                }
+
+                String assessed_by = enroll.assessed_by;
+
+                Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(school_name, address, date, contact_no, enrollment_id, enrollment_no, student_id, student_no, student_name, academic_year, course_code, course_description, no_of_years, level, college, department, year_level, tuition_amount, tuition_discount, no_of_units, amount_per_unit, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, total_discount, total_amount_due, SUBREPORT_DIR, rpt_subjects, rpt_mode_of_payments, assessed_by);
+
+                String jrxml = "enrollment_assessment.jrxml";
+                report_assessment(rpt, jrxml);
+                InputStream is = Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
+                try {
+                    JasperReport jasperReport = JasperCompileManager.compileReport(is);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
+                                                               setParameter(rpt), JasperUtil.emptyDatasource());
+
+                } catch (JRException ex) {
+                    Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+//                jTabbedPane2.setSelectedIndex(1);
+                jProgressBar2.setString("Finished...");
+                jProgressBar2.setIndeterminate(false);
+            }
+        });
+        t.start();
+
+    }
+
+    private void report_assessment(final Srpt_enrollment_assessment to, String jrxml_name) {
+        jPanel35.removeAll();
+        jPanel35.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_assessment(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel35.add(viewer);
+            jPanel35.setMinimumSize(new Dimension(626, 0));
+            jPanel35.setMaximumSize(new Dimension(626, 0));
+            jPanel35.setPreferredSize(new Dimension(626, 0));
+            jPanel35.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JRViewer get_viewer_assessment(Srpt_enrollment_assessment to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper2(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.emptyDatasource());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public static JasperReport compileJasper2(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_enrollment_assessment.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    JasperPrint jasperPrint = null;
+
+    private void print_assessment() {
+        try {
+            if (jasperPrint != null) {
+                JasperPrintManager.printReport(jasperPrint, false);
+            }
+
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, "Failed To Print, Please Check the Printer");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void enroll_student() {
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+        nd.do_pass();
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                proceed_to_enrollment_2();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void proceed_to_enrollment_2() {
+        Loader loader = new Loader(this);
+        loader.execute();
+    }
+
+    public class Loader extends SwingWorker {
+
+        private Loading dialog;
+
+        public Loader(JDialog dlg) {
+
+            dialog = new Loading();
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            int xSize = ((int) tk.getScreenSize().
+                    getWidth());
+            int ySize = ((int) tk.getScreenSize().
+                    getHeight());
+            dialog.setSize(xSize, ySize);
+            dialog.setPreferredSize(new Dimension(xSize, ySize));
+            dialog.setAlwaysOnTop(true);
+            addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if ("state".equals(evt.getPropertyName())) {
+                        if (getState() == SwingWorker.StateValue.STARTED) {
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (getState() == SwingWorker.StateValue.STARTED) {
+                                        dialog.setVisible(true);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+            enroll();
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            dialog.dispose();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    enrolled();
+                }
+            });
+        }
+
+    }
+
+    String stud_no = null;
+
+    private void enrolled() {
+
+    }
+
+    private void confirm_enroll() {
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                enroll();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void enroll() {
+
+        int id = 0;
+        int is_transferee = enroll.is_transferee;
+        int academic_year_id = enroll.academic_year_id;
+        String academic_year = enroll.academic_year;
+        String student_no = "";
+        String last_name = enroll.last_name;
+        String first_name = enroll.first_name;
+        String middle_name = enroll.middle_name;
+        String nick_name = enroll.nick_name;
+        String current_address = enroll.current_address;
+        String permanent_address = enroll.permanent_address;
+        String email_address = enroll.email_address;
+        String postal_code = enroll.postal_code;
+        String tel_no = enroll.tel_no;
+        String mobile_no = enroll.mobile_no;
+        String date_of_birth = enroll.date_of_birth;
+        String place_of_birth = enroll.place_of_birth;
+        int age = enroll.age;
+        int gender = enroll.gender;
+        String citizenship = enroll.citizenship;
+        String religion = enroll.religion;
+        String civil_status = enroll.civil_status;
+        String spouse_name = enroll.spouse_name;
+        String date_of_communion = enroll.date_of_communion;
+        String date_of_confirmation = enroll.date_of_confirmation;
+        int is_right_handed = enroll.is_right_handed;
+        int is_indigenous = enroll.is_indigenous;
+        String indigenous_name = enroll.indigenous_name;
+        int level_id = enroll.level_id;
+        String level = enroll.level;
+        int college_id = enroll.college_id;
+        String college = enroll.college;
+        int department_id = enroll.department_id;
+        String department = enroll.department;
+        String year_level = enroll.year_level;
+        String year_level_status = enroll.year_level_status;
+        String preferred_course1 = enroll.preferred_course1;
+        String preferred_course2 = enroll.preferred_course2;
+        String preferred_course3 = enroll.preferred_course3;
+        String father_name = enroll.father_name;
+        String father_citizenship = enroll.father_citizenship;
+        String father_home_address = enroll.father_home_address;
+        String father_email_address = enroll.father_email_address;
+        String father_mobile_no = enroll.father_mobile_no;
+        String father_occupation = enroll.father_occupation;
+        String father_employer = enroll.father_employer;
+        String father_business_address = enroll.father_business_address;
+        String father_business_tel_no = enroll.father_business_tel_no;
+        String father_educational_attainment = enroll.father_educational_attainment;
+        String father_last_school_attended = enroll.father_last_school_attended;
+        String mother_name = enroll.mother_name;
+        String mother_citizenship = enroll.mother_citizenship;
+        String mother_home_address = enroll.mother_home_address;
+        String mother_email_address = enroll.mother_email_address;
+        String mother_mobile_no = enroll.mother_mobile_no;
+        String mother_occupation = enroll.mother_occupation;
+        String mother_employer = enroll.mother_employer;
+        String mother_business_address = enroll.mother_business_address;
+        String mother_business_tel_no = enroll.mother_business_tel_no;
+        String mother_educational_attainment = enroll.mother_educational_attainment;
+        String mother_last_school_attended = enroll.mother_last_school_attended;
+        String guardian_name = enroll.guardian_name;
+        String guardian_mailing_address = enroll.guardian_mailing_address;
+        String guardian_telephone_no = enroll.guardian_telephone_no;
+        String grade_school_name = enroll.grade_school_name;
+        String grade_school_region = enroll.grade_school_region;
+        String grade_school_school_year = enroll.grade_school_school_year;
+        String grade_school_awards = enroll.grade_school_awards;
+        String high_school_name = enroll.high_school_name;
+        String high_school_region = enroll.high_school_region;
+        String high_school_school_year = enroll.high_school_school_year;
+        String high_school_awards = enroll.high_school_awards;
+        String college_school_name = enroll.college_school_name;
+        String college_school_region = enroll.college_school_region;
+        String college_school_school_year = enroll.college_school_school_year;
+        String college_awards = enroll.college_awards;
+        String junior_high_name = enroll.junior_high_name;
+        String junior_high_region = enroll.junior_high_region;
+        String junior_high_year = enroll.junior_high_year;
+        String junior_high_awards = enroll.junior_high_awards;
+        String tesda_name = enroll.tesda_name;
+        String tesda_region = enroll.tesda_region;
+        String tesda_year = enroll.tesda_year;
+        String tesda_awards = enroll.tesda_awards;
+        String sibling1 = enroll.sibling1;
+        String sibling2 = enroll.sibling2;
+        String sibling3 = enroll.sibling3;
+        String sibling4 = enroll.sibling4;
+        String sibling5 = enroll.sibling5;
+        String sibling6 = enroll.sibling6;
+        String sibling7 = enroll.sibling7;
+        String sibling8 = enroll.sibling8;
+        String created_at = DateType.now();
+        String updated_at = DateType.now();
+        String created_by = MyUser.getUser_id();
+        String updated_by = MyUser.getUser_id();
+        int status = 0;
+        int is_uploaded = 0;
+
+        Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+        String en_no = Students.add_data_enroll(student, enroll);
+        Window p = (Window) this;
+        Dlg_student_enrollment_approved nd = Dlg_student_enrollment_approved.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(enroll, en_no);
+        nd.setCallback(new Dlg_student_enrollment_approved.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_student_enrollment_approved.OutputData data) {
+                closeDialog.ok();
+
+                jButton11.setEnabled(false);
+                set_assessment();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
 }

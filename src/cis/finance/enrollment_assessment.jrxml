@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="43" bottomMargin="20" uuid="f265f36c-6b77-4ccf-9a26-a2a9ede82276">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="226"/>
+	<property name="ireport.y" value="178"/>
 	<parameter name="school_name" class="java.lang.String"/>
 	<parameter name="address" class="java.lang.String"/>
 	<parameter name="date" class="java.lang.String"/>
@@ -124,7 +124,7 @@
 				</textElement>
 				<text><![CDATA[Student No.:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement uuid="cc19e5c3-ff4c-40c9-909f-34fb8836df58" x="357" y="90" width="112" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -177,9 +177,9 @@
 				<textFieldExpression><![CDATA[$P{academic_year}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="51" width="396" height="20"/>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" x="73" y="51" width="396" height="22"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
+					<font size="16" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<text><![CDATA[Assessment Form]]></text>
