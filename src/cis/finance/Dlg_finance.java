@@ -39,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
@@ -2624,7 +2625,12 @@ public class Dlg_finance extends javax.swing.JDialog {
                 tf_field135.setText(to.advised_by);
                 tf_field134.setText(to.approved_by);
 
-                set_assessment();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        set_assessment();
+                    }
+                });
 
             }
         });
@@ -2754,7 +2760,8 @@ public class Dlg_finance extends javax.swing.JDialog {
 
                 int payment_count = 3;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
-                    Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount);
+                    double balance = ea.amount - ea.paid;
+                    Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
                     rpt_mode_of_payments.add(mop0);
                 }
 

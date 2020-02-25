@@ -97,14 +97,35 @@ public class Srpt_enrollment_assessment {
         String mode;
         String date;
         double amount;
+        double paid;
+        double balance;
 
         public mode_of_payments() {
         }
 
-        public mode_of_payments(String mode, String date, double amount) {
+        public mode_of_payments(String mode, String date, double amount, double paid, double balance) {
             this.mode = mode;
             this.date = date;
             this.amount = amount;
+            this.paid = paid;
+            this.balance = balance;
+
+        }
+
+        public double getPaid() {
+            return paid;
+        }
+
+        public void setPaid(double paid) {
+            this.paid = paid;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+
+        public void setBalance(double balance) {
+            this.balance = balance;
         }
 
         public String getMode() {
@@ -284,10 +305,10 @@ public class Srpt_enrollment_assessment {
         List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
         int payment_count = 3;
         if (payment_count == 3) {
-            Srpt_enrollment_assessment.mode_of_payments mop0 = new mode_of_payments("Downpayment", date, 5000);
-            Srpt_enrollment_assessment.mode_of_payments mop1 = new mode_of_payments("1st Payment", date, 3833.33);
-            Srpt_enrollment_assessment.mode_of_payments mop2 = new mode_of_payments("2nd Payment", date, 3833.33);
-            Srpt_enrollment_assessment.mode_of_payments mop3 = new mode_of_payments("3rd Payment", date, 3833.33);
+            Srpt_enrollment_assessment.mode_of_payments mop0 = new mode_of_payments("Downpayment", date, 5000,0,0);
+            Srpt_enrollment_assessment.mode_of_payments mop1 = new mode_of_payments("1st Payment", date, 3833.33,0,0);
+            Srpt_enrollment_assessment.mode_of_payments mop2 = new mode_of_payments("2nd Payment", date, 3833.33,0,0);
+            Srpt_enrollment_assessment.mode_of_payments mop3 = new mode_of_payments("3rd Payment", date, 3833.33,0,0);
             rpt_mode_of_payments.add(mop0);
             rpt_mode_of_payments.add(mop1);
             rpt_mode_of_payments.add(mop2);
@@ -295,7 +316,7 @@ public class Srpt_enrollment_assessment {
         }
         String assessed_by = "Joey de Leon";
 
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(school_name, address, date, contact_no, enrollment_id, enrollment_no, student_id, student_no, student_name, academic_year, course_code, course_description, no_of_years, level, college, department, year_level, tuition_amount, tuition_discount, no_of_units, amount_per_unit, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, total_discount, total_amount_due, SUBREPORT_DIR, rpt_subjects, rpt_mode_of_payments,assessed_by);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(school_name, address, date, contact_no, enrollment_id, enrollment_no, student_id, student_no, student_name, academic_year, course_code, course_description, no_of_years, level, college, department, year_level, tuition_amount, tuition_discount, no_of_units, amount_per_unit, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, total_discount, total_amount_due, SUBREPORT_DIR, rpt_subjects, rpt_mode_of_payments, assessed_by);
 //        rpt.fields.addAll(fields);
         String jrxml = "enrollment_assessment.jrxml";
         JRViewer viewer = get_viewer(rpt, jrxml);

@@ -387,6 +387,100 @@ id int auto_increment primary key
 );
 
 
+drop table if exists enrollment_assessment_payments;
+create table enrollment_assessment_payments(
+id int auto_increment primary key
+,enrollment_assessment_id int
+,enrollment_id int
+,enrollment_no varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,amount_paid double
+,cash double
+,discount_name varchar(255)
+,discount_rate double
+,discount_amount double
+,discount_customer_name varchar(255)
+,discount_customer_id varchar(255)
+,check_bank varchar(255)
+,check_no varchar(255)
+,check_amount double
+,check_holder varchar(255)
+,check_date date
+,credit_card_type varchar(255)
+,credit_card_rate double
+,credit_card_amount double
+,credit_card_no varchar(255)
+,credit_card_holder varchar(255)
+,gift_certificate_from varchar(255)
+,gift_certificate_description varchar(255)
+,gift_certificate_no varchar(255)
+,gift_certificate_amount double
+,online_bank varchar(255)
+,online_reference_no varchar(255)
+,online_amount double
+,online_holder varchar(255)
+,online_date date
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+drop table if exists enrollment_assessment_payment_details;
+create table enrollment_assessment_payment_details(
+id int auto_increment primary key
+,enrollment_assessment_payment_id int
+,enrollment_assessment_id int
+,enrollment_id int
+,enrollment_no varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,mode varchar(255)
+,mode_order int
+,to_pay date
+,amount double
+,discount double
+,paid double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+
 alter table enrollments add student_id int after approved_date;
 alter table enrollments add date_enrolled datetime after approved_date;
 alter table enrollments change date_enrolled date_enrolled datetime;
+
+
+drop table if exists credit_cards;
+create table credit_cards(
+id int auto_increment primary key
+,card varchar(255)
+,amount double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+drop table if exists banks;
+create table banks(
+id int auto_increment primary key
+,bank varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+

@@ -35,7 +35,7 @@ public class Enrollment_assessment_payment_modes {
         public final String to_pay;
         public final double amount;
         public final double discount;
-        public final double paid;
+        public  double paid;
         public final String created_at;
         public final String updated_at;
         public final String created_by;
@@ -63,6 +63,15 @@ public class Enrollment_assessment_payment_modes {
             this.status = status;
             this.is_uploaded = is_uploaded;
         }
+
+        public double getPaid() {
+            return paid;
+        }
+
+        public void setPaid(double paid) {
+            this.paid = paid;
+        }
+        
     }
 
     public static void add_data(to_enrollment_assessment_payment_modes to_enrollment_assessment_payment_modes) {

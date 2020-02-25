@@ -9,12 +9,12 @@ import cis.academic.Dlg_academic_years;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
-import cis.deans_portal.Dlg_dean_portal_add_section;
 import cis.deans_portal.Dlg_deans_portal;
 import cis.departments.Dlg_departments;
 import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
+import cis.finance.Dlg_finance;
 import cis.subjects.Dlg_subjects;
 import cis.users.Dlg_users;
 import cis.users.MyUser;
@@ -787,6 +787,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     }
 
     private void t_accounting() {
+
+        Dlg_finance dtc = new Dlg_finance();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Finance");
 
     }
 
