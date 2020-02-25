@@ -239,7 +239,7 @@ public class Enrollment_assessments {
         }
     }
 
-    public static void add_data2(to_enrollment_assessments to_enrollment_assessments, List<to_enrollment_assessment_payment_modes> to_enrollment_assessment_payment_modes1) {
+    public static void add_data2(to_enrollment_assessments to_enrollment_assessments, List<to_enrollment_assessment_payment_modes> to_enrollment_assessment_payment_modes1, Enrollment_assessment_payments.to_enrollment_assessment_payments pay, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -363,7 +363,7 @@ public class Enrollment_assessments {
 
             PreparedStatement stmt = conn.prepareStatement("");
             stmt.addBatch(s0);
-            
+
             String s4 = "update enrollments set "
                     + " assessed_by_id = '" + MyUser.getUser_id() + "' "
                     + ",assessed_by = '" + MyUser.getUser_screen_name() + "' "
@@ -372,11 +372,11 @@ public class Enrollment_assessments {
                     + " ";
 
             stmt.addBatch(s4);
-          
+
             stmt.executeBatch();
 
             String s3 = "select "
-                    + "id"
+                    + " id"
                     + " from enrollment_assessments"
                     + " order by id desc limit 1";
 
@@ -387,6 +387,208 @@ public class Enrollment_assessments {
                 id2 = rs3.getInt(1);
             }
 
+            //insert payment
+            String s5 = "insert into enrollment_assessment_payments("
+                    + "enrollment_assessment_id"
+                    + ",enrollment_id"
+                    + ",enrollment_no"
+                    + ",academic_year_id"
+                    + ",academic_year"
+                    + ",amount_paid"
+                    + ",cash"
+                    + ",discount_name"
+                    + ",discount_rate"
+                    + ",discount_amount"
+                    + ",discount_customer_name"
+                    + ",discount_customer_id"
+                    + ",check_bank"
+                    + ",check_no"
+                    + ",check_amount"
+                    + ",check_holder"
+                    + ",check_date"
+                    + ",credit_card_type"
+                    + ",credit_card_rate"
+                    + ",credit_card_amount"
+                    + ",credit_card_no"
+                    + ",credit_card_holder"
+                    + ",gift_certificate_from"
+                    + ",gift_certificate_description"
+                    + ",gift_certificate_no"
+                    + ",gift_certificate_amount"
+                    + ",online_bank"
+                    + ",online_reference_no"
+                    + ",online_amount"
+                    + ",online_holder"
+                    + ",online_date"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + ")values("
+                    + ":enrollment_assessment_id"
+                    + ",:enrollment_id"
+                    + ",:enrollment_no"
+                    + ",:academic_year_id"
+                    + ",:academic_year"
+                    + ",:amount_paid"
+                    + ",:cash"
+                    + ",:discount_name"
+                    + ",:discount_rate"
+                    + ",:discount_amount"
+                    + ",:discount_customer_name"
+                    + ",:discount_customer_id"
+                    + ",:check_bank"
+                    + ",:check_no"
+                    + ",:check_amount"
+                    + ",:check_holder"
+                    + ",:check_date"
+                    + ",:credit_card_type"
+                    + ",:credit_card_rate"
+                    + ",:credit_card_amount"
+                    + ",:credit_card_no"
+                    + ",:credit_card_holder"
+                    + ",:gift_certificate_from"
+                    + ",:gift_certificate_description"
+                    + ",:gift_certificate_no"
+                    + ",:gift_certificate_amount"
+                    + ",:online_bank"
+                    + ",:online_reference_no"
+                    + ",:online_amount"
+                    + ",:online_holder"
+                    + ",:online_date"
+                    + ",:created_at"
+                    + ",:updated_at"
+                    + ",:created_by"
+                    + ",:updated_by"
+                    + ",:status"
+                    + ",:is_uploaded"
+                    + ")";
+
+            s5 = SqlStringUtil.parse(s5)
+                    .setNumber("enrollment_assessment_id", id2)
+                    .setNumber("enrollment_id", to_enrollment_assessments.enrollment_id)
+                    .setString("enrollment_no", to_enrollment_assessments.enrollment_no)
+                    .setNumber("academic_year_id", to_enrollment_assessments.academic_year_id)
+                    .setString("academic_year", to_enrollment_assessments.academic_year)
+                    .setNumber("amount_paid", pay.amount_paid)
+                    .setNumber("cash", pay.cash)
+                    .setString("discount_name", pay.discount_name)
+                    .setNumber("discount_rate", pay.discount_rate)
+                    .setNumber("discount_amount", pay.discount_amount)
+                    .setString("discount_customer_name", pay.discount_customer_name)
+                    .setString("discount_customer_id", pay.discount_customer_id)
+                    .setString("check_bank", pay.check_bank)
+                    .setString("check_no", pay.check_no)
+                    .setNumber("check_amount", pay.check_amount)
+                    .setString("check_holder", pay.check_holder)
+                    .setString("check_date", pay.check_date)
+                    .setString("credit_card_type", pay.credit_card_type)
+                    .setNumber("credit_card_rate", pay.credit_card_rate)
+                    .setNumber("credit_card_amount", pay.credit_card_amount)
+                    .setString("credit_card_no", pay.credit_card_no)
+                    .setString("credit_card_holder", pay.credit_card_holder)
+                    .setString("gift_certificate_from", pay.gift_certificate_from)
+                    .setString("gift_certificate_description", pay.gift_certificate_description)
+                    .setString("gift_certificate_no", pay.gift_certificate_no)
+                    .setNumber("gift_certificate_amount", pay.gift_certificate_amount)
+                    .setString("online_bank", pay.online_bank)
+                    .setString("online_reference_no", pay.online_reference_no)
+                    .setNumber("online_amount", pay.online_amount)
+                    .setString("online_holder", pay.online_holder)
+                    .setString("online_date", pay.online_date)
+                    .setString("created_at", to_enrollment_assessments.created_at)
+                    .setString("updated_at", to_enrollment_assessments.updated_at)
+                    .setString("created_by", to_enrollment_assessments.created_by)
+                    .setString("updated_by", to_enrollment_assessments.updated_by)
+                    .setNumber("status", to_enrollment_assessments.status)
+                    .setNumber("is_uploaded", to_enrollment_assessments.is_uploaded)
+                    .ok();
+
+            PreparedStatement stmt5 = conn.prepareStatement("");
+            stmt5.addBatch(s5);
+            stmt5.executeBatch();
+
+            //search payment id
+            String s6 = "select "
+                    + " id"
+                    + " from enrollment_assessment_payments"
+                    + " order by id desc limit 1";
+
+            Statement stmt6 = conn.createStatement();
+            ResultSet rs6 = stmt6.executeQuery(s6);
+            int id3 = 0;
+            if (rs6.next()) {
+                id3 = rs6.getInt(1);
+            }
+            //insert payment details
+            PreparedStatement stmt4 = conn.prepareStatement("");
+            for (Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details payment : payments) {
+                String s7 = "insert into enrollment_assessment_payment_details("
+                        + "enrollment_assessment_payment_id"
+                        + ",enrollment_assessment_id"
+                        + ",enrollment_id"
+                        + ",enrollment_no"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",mode"
+                        + ",mode_order"
+                        + ",to_pay"
+                        + ",amount"
+                        + ",discount"
+                        + ",paid"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":enrollment_assessment_payment_id"
+                        + ",:enrollment_assessment_id"
+                        + ",:enrollment_id"
+                        + ",:enrollment_no"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:mode"
+                        + ",:mode_order"
+                        + ",:to_pay"
+                        + ",:amount"
+                        + ",:discount"
+                        + ",:paid"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s7 = SqlStringUtil.parse(s7)
+                        .setNumber("enrollment_assessment_payment_id", id3)
+                        .setNumber("enrollment_assessment_id", id2)
+                        .setNumber("enrollment_id", to_enrollment_assessments.enrollment_id)
+                        .setString("enrollment_no", to_enrollment_assessments.enrollment_no)
+                        .setNumber("academic_year_id", to_enrollment_assessments.academic_year_id)
+                        .setString("academic_year", to_enrollment_assessments.academic_year)
+                        .setString("mode", payment.mode)
+                        .setNumber("mode_order", payment.mode_order)
+                        .setString("to_pay", payment.to_pay)
+                        .setNumber("amount", payment.amount)
+                        .setNumber("discount", payment.discount)
+                        .setNumber("paid", payment.paid)
+                        .setString("created_at", to_enrollment_assessments.created_at)
+                        .setString("updated_at", to_enrollment_assessments.updated_at)
+                        .setString("created_by", to_enrollment_assessments.created_by)
+                        .setString("updated_by", to_enrollment_assessments.updated_by)
+                        .setNumber("status", to_enrollment_assessments.status)
+                        .setNumber("is_uploaded", to_enrollment_assessments.is_uploaded)
+                        .ok();
+                stmt4.addBatch(s7);
+            }
+
+            // insert payment modes
             PreparedStatement stmt2 = conn.prepareStatement("");
             for (to_enrollment_assessment_payment_modes to_enrollment_assessment_payment_modes : to_enrollment_assessment_payment_modes1) {
                 String s2 = "insert into enrollment_assessment_payment_modes("
@@ -450,6 +652,7 @@ public class Enrollment_assessments {
                 stmt2.addBatch(s2);
             }
 
+            stmt4.executeBatch();
             stmt2.executeBatch();
             conn.commit();
 

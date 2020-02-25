@@ -770,8 +770,22 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
 
     private void t_enrollment() {
 
-        Dlg_student_enrollment dtc = new Dlg_student_enrollment();
-        MyFrame.set(dtc.getSurface(), jPanel1, "Enrollment");
+//        Dlg_student_enrollment dtc = new Dlg_student_enrollment();
+//        MyFrame.set(dtc.getSurface(), jPanel1, "Enrollment");
+        Window p = (Window) this;
+        Dlg_student_enrollment nd = Dlg_student_enrollment.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_student_enrollment.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_student_enrollment.OutputData data) {
+                closeDialog.ok();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 
     private void t_dean() {

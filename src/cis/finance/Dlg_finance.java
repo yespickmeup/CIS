@@ -2908,7 +2908,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 double other_fees_discount = data.other_fees_discount;
                 final Enrollment_assessments.to_enrollment_assessments enrollment = new Enrollment_assessments.to_enrollment_assessments(id, enrollment_id, enrollment_no, student_id, student_no, fname, lname, mi, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, year_level, year_level_status, level_id, level, college_id, college, department_id, department, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, mode_of_payment, created_at, updated_at, created_by, updated_by, status, is_uploaded);
 
-                Enrollment_assessments.add_data2(enrollment, data.payment_modes);
+                Enrollment_assessments.add_data2(enrollment, data.payment_modes, data.pay, data.enrollment_payments);
                 Alert.set(1, "");
                 jButton3.setEnabled(false);
                 set_assessment();

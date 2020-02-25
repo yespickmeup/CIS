@@ -2041,10 +2041,10 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                         return "/cis/icons2/correct (1).png";
                     }
                 case 8:
-                    if (tt.date_enrolled == null) {
+                    if (tt.assessed_date == null) {
                         return "/cis/icons2/quit.png";
                     } else {
-                        return "/cis/icons2/tick (2).png";
+                        return "/cis/icons2/correct (1).png";
                     }
                 case 9:
                     if (tt.date_enrolled == null) {

@@ -71,34 +71,12 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         public final double other_fees_amount;
         public final double other_fees_discount;
 
-        public final double amount_paid;
-        public final double cash;
-        public final String discount_name;
-        public final double discount_rate;
-        public final double discount_amount;
-        public final String discount_customer_name;
-        public final String discount_customer_id;
-        public final String check_bank;
-        public final String check_no;
-        public final double check_amount;
-        public final String check_holder;
-        public final String check_date;
-        public final String credit_card_type;
-        public final double credit_card_rate;
-        public final double credit_card_amount;
-        public final String credit_card_no;
-        public final String credit_card_holder;
-        public final String gift_certificate_from;
-        public final String gift_certificate_description;
-        public final String gift_certificate_no;
-        public final double gift_certificate_amount;
-        public final String online_bank;
-        public final String online_reference_no;
-        public final double online_amount;
-        public final String online_holder;
-        public final String online_date;
+        public final List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> enrollment_payments;
+        public final Enrollment_assessment_payments.to_enrollment_assessment_payments pay;
 
-        public OutputData(List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> payment_modes, double tuition_amount, int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount, double other_fees_amount, double other_fees_discount, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, String check_bank, String check_no, double check_amount, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String credit_card_holder, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date) {
+        public OutputData(List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> payment_modes, double tuition_amount,
+                 int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount,
+                 double other_fees_amount, double other_fees_discount, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> enrollment_payments, Enrollment_assessment_payments.to_enrollment_assessment_payments pay) {
             this.payment_modes = payment_modes;
             this.tuition_amount = tuition_amount;
             this.no_of_units = no_of_units;
@@ -108,32 +86,9 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
             this.miscellaneous_discount = miscellaneous_discount;
             this.other_fees_amount = other_fees_amount;
             this.other_fees_discount = other_fees_discount;
-            this.amount_paid = amount_paid;
-            this.cash = cash;
-            this.discount_name = discount_name;
-            this.discount_rate = discount_rate;
-            this.discount_amount = discount_amount;
-            this.discount_customer_name = discount_customer_name;
-            this.discount_customer_id = discount_customer_id;
-            this.check_bank = check_bank;
-            this.check_no = check_no;
-            this.check_amount = check_amount;
-            this.check_holder = check_holder;
-            this.check_date = check_date;
-            this.credit_card_type = credit_card_type;
-            this.credit_card_rate = credit_card_rate;
-            this.credit_card_amount = credit_card_amount;
-            this.credit_card_no = credit_card_no;
-            this.credit_card_holder = credit_card_holder;
-            this.gift_certificate_from = gift_certificate_from;
-            this.gift_certificate_description = gift_certificate_description;
-            this.gift_certificate_no = gift_certificate_no;
-            this.gift_certificate_amount = gift_certificate_amount;
-            this.online_bank = online_bank;
-            this.online_reference_no = online_reference_no;
-            this.online_amount = online_amount;
-            this.online_holder = online_holder;
-            this.online_date = online_date;
+
+            this.enrollment_payments = enrollment_payments;
+            this.pay = pay;
         }
 
     }
@@ -1587,13 +1542,40 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         String online_holder = "";
         String online_date = null;
 
+        int id1 = 0;
+        int enrollment_assessment_id = 0;
+        int enrollment_id = 0;
+        String enrollment_no = "";
+        int academic_year_id = 0;
+        String academic_year = "";
+        String created_at = "";
+        String updated_at = "";
+        String created_by = "";
+        String updated_by = "";
+        int status = 0;
+        int is_uploaded = 0;
+
+        Enrollment_assessment_payments.to_enrollment_assessment_payments pay1 = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id1, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, check_date, online_date, check_date, online_date, 0, 0);
+
         List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments = new ArrayList();
         List< Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> modes = tbl_mode_of_payments_ALM;
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes mode : modes) {
-            
+            int id = 0;
+            int enrollment_assessment_payment_id = 0;
+
+            String mode1 = mode.mode;
+            int mode_order = mode.mode_order;
+            String to_pay = mode.to_pay;
+            double amount = mode.amount;
+            double discount = mode.discount;
+            double paid = mode.paid;
+
+            Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details payment = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode1, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+            payments.add(payment);
         }
+
         if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData(datas, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date));
+            callback.ok(new CloseDialog(this), new OutputData(datas, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, payments, pay1));
         }
     }
 

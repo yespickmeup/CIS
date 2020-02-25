@@ -437,11 +437,10 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel46 = new javax.swing.JLabel();
         tf_field30 = new Field.Input();
         jPanel15 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        tf_field2 = new Field.Input();
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox8 = new javax.swing.JCheckBox();
         jCheckBox13 = new javax.swing.JCheckBox();
+        tf_field2 = new Field.Input();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -1346,7 +1345,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1354,7 +1353,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 1", jPanel4);
@@ -2222,7 +2221,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2234,18 +2233,12 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 2", jPanel5);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel8.setText("School Year:");
-
-        tf_field2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        tf_field2.setFocusable(false);
 
         buttonGroup3.add(jCheckBox7);
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -2265,38 +2258,35 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jCheckBox13.setEnabled(false);
         jCheckBox13.setFocusable(false);
 
+        tf_field2.setText("Sy");
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jCheckBox7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox13))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addComponent(jCheckBox7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox13)
+                .addGap(18, 18, 18)
+                .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jCheckBox13))
-                .addContainerGap())
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox7)
+                            .addComponent(jCheckBox8)
+                            .addComponent(jCheckBox13))
+                        .addContainerGap())
+                    .addComponent(tf_field2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -2510,7 +2500,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2670,6 +2659,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
         nationals = Countries.ret_data(" order by nationality");
         religions = Religions.ret_data(" order by religion asc ");
+        tf_field2.setVisible(false);
     }
 
     public void do_pass() {
@@ -2678,12 +2668,12 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
-//        this.dispose();
+        this.dispose();
     }
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
+                              KeyEvent.VK_F1, new KeyAction() {
 
                           @Override
                           public void actionPerformed(ActionEvent e) {
@@ -2975,8 +2965,8 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         String updated_by = MyUser.getUser_id();
         int status = 0;
         int is_uploaded = 0;
-        String date_enrolled="";
-        Enrollments.to_enrollments enroll = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded,date_enrolled);
+        String date_enrolled = "";
+        Enrollments.to_enrollments enroll = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled);
         String en_no = Enrollments.add_data(enroll);
         enroll.setEnrollment_no(en_no);
         enrollment = enroll;
