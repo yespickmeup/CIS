@@ -456,10 +456,10 @@ public class Dlg_student_enrollment_successful extends javax.swing.JDialog {
         BufferedImage img = null;
         try {
             img = ImageIO.read(sourceFile);
-            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+            Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),
                                                Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(dimg);
-            jLabel1.setIcon(imageIcon);
+            jLabel3.setIcon(imageIcon);
         } catch (IOException e) {
             System.out.println(e);
         }
