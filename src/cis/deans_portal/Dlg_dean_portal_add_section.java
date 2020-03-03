@@ -1225,8 +1225,8 @@ public class Dlg_dean_portal_add_section extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         Field.Combo tf_hour_from = (Field.Combo) tf_user_screen_name5;
         Field.Combo tf_mm_from = (Field.Combo) tf_user_screen_name6;

@@ -136,8 +136,8 @@ public class Srpt_academic_offering_subjects {
     }
 
     public static void main(String[] args) {
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         String course = "Bachelor of Science Major in Philosophy";
 

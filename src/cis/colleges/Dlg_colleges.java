@@ -512,8 +512,8 @@ public class Dlg_colleges extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         init_key();
         init_tbl_colleges(tbl_colleges);

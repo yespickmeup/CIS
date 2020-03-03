@@ -393,8 +393,8 @@ public class Dlg_other_school_fees extends javax.swing.JDialog {
 
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         init_tbl_miscellaneous_fees(tbl_miscellaneous_fees);
         ret_data();

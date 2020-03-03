@@ -963,8 +963,8 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
 
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         List<Faculty_member_designation_groups.to_faculty_member_designation_groups> groups = Faculty_member_designation_groups.ret_data(" order by group_name asc ");
 

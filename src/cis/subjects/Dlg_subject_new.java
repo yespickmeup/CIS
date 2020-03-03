@@ -549,8 +549,8 @@ public class Dlg_subject_new extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
         init_key();
 
         init_tbl_subject_prerequisites(tbl_subject_prerequisites);

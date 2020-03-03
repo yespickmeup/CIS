@@ -3819,8 +3819,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
 //        List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
 //

@@ -382,8 +382,8 @@ public class Dlg_faculty_member_designation_group extends javax.swing.JDialog {
 
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         init_tbl_faculty_member_designations(tbl_faculty_member_designations);
         ret_data();

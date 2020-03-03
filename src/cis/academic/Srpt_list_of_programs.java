@@ -148,8 +148,8 @@ public class Srpt_list_of_programs {
     }
 
     public static void main(String[] args) {
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
         String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
         String school_year = "2019-2020";
         String date_printed = "November 26, 2019";

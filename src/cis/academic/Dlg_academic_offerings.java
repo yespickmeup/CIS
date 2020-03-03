@@ -902,8 +902,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data("");
         deps = Departments.ret_data(" order by department_name  asc ");

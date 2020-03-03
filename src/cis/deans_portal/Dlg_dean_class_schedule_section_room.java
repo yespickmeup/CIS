@@ -999,8 +999,8 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         init_tbl_enrollment_offered_subject_section_room_schedules(tbl_enrollment_offered_subject_section_room_schedules);
     }
