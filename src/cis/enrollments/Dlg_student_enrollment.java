@@ -3472,8 +3472,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         if (!webcam_enable.equalsIgnoreCase("")) {
             try {
                 send_image_to_server(en_no);
-                ImageIcon imageIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png")).getImage().getScaledInstance(176, 144, Image.SCALE_DEFAULT));
-                jLabel3.setIcon(imageIcon);
+//                ImageIcon imageIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png")).getImage().getScaledInstance(176, 144, Image.SCALE_DEFAULT));
+//                jLabel3.setIcon(imageIcon);
+                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png"))); // NOI18N
             } catch (Exception e) {
                 System.out.println(e);
             }
