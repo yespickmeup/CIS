@@ -75,8 +75,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         public final Enrollment_assessment_payments.to_enrollment_assessment_payments pay;
 
         public OutputData(List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> payment_modes, double tuition_amount,
-                 int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount,
-                 double other_fees_amount, double other_fees_discount, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> enrollment_payments, Enrollment_assessment_payments.to_enrollment_assessment_payments pay) {
+                int no_of_units, double amount_per_unit, double tuition_discount, double miscellaneous_amount, double miscellaneous_discount,
+                double other_fees_amount, double other_fees_discount, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> enrollment_payments, Enrollment_assessment_payments.to_enrollment_assessment_payments pay) {
             this.payment_modes = payment_modes;
             this.tuition_amount = tuition_amount;
             this.no_of_units = no_of_units;
@@ -1683,6 +1683,9 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
 
         total_tendered = cash + check + credit_card;
         tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
+        if (total_tendered > tendered) {
+            tf_field20.setText(FitIn.fmt_wc_0(tendered));
+        }
         set_paid();
     }
 

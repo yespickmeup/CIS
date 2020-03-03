@@ -518,9 +518,8 @@ public class Dlg_colleges extends javax.swing.JDialog {
         init_key();
         init_tbl_colleges(tbl_colleges);
         ret_colleges();
-
     }
-
+    
     public void do_pass() {
 
     }

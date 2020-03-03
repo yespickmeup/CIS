@@ -371,8 +371,14 @@ public class Dlg_faculty_member_create_account extends javax.swing.JDialog {
             tf_field6.grabFocus();
             return;
         }
-        if (!user_name.equalsIgnoreCase(user.user_name)) {
-            List<Users.to_users> users = Users.ret_data(" where user_name like '" + user_name + "' ");
+        String u_name = "";
+        try {
+            u_name = user.user_name;
+        } catch (Exception e) {
+            u_name = "";
+        }
+        if (!user_name.equalsIgnoreCase(u_name)) {
+            List<Users.to_users> users = Users.ret_data(" where user_name like '" + user_name + "' limit 1");
             if (!users.isEmpty()) {
                 Alert.set(0, "Username already exists!");
                 tf_field6.grabFocus();

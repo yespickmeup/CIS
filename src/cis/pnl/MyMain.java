@@ -63,7 +63,11 @@ public class MyMain {
             System.setProperty("pool_host", prop.getProperty("pool_host", "localhost"));
             System.out.println("local_ip: " + System.getProperty("local_ip"));
             System.out.println("pool_host: " + System.getProperty("pool_host"));
+            System.setProperty("image_server", prop.getProperty("image_server", ""));
+            System.setProperty("webcam_enable", prop.getProperty("webcam_enable", "false"));
 
+//            System.out.println(System.getProperty("webcam_enable", ""));
+//            System.out.println(System.getProperty("image_server", ""));
             String where = "";
             List<Settings.to_settings> datas = Settings.ret_data(where);
             Settings.to_settings setting = datas.get(0);
@@ -110,7 +114,7 @@ public class MyMain {
     private void start() {
         Application.setSystemLookAndFeel();
         Pnl_Dashboard pnl = new Pnl_Dashboard();
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/cis/icons/icon_1.png"));
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/cis/icons/academika (Custom).png"));
         pnl.setIconImage(image);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().

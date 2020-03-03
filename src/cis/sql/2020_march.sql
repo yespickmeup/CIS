@@ -484,3 +484,10 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
+
+
+drop table if exists current_addresses;
+create table current_addresses(
+id int auto_increment primary key
+,address varchar(255)
+);

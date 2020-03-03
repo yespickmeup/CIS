@@ -5,8 +5,10 @@
  */
 package cis.pnl;
 
+import cis.colleges.Colleges;
 import cis.users.MyUser;
 import cis.users.User_previleges;
+import cis.users.Users;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -15,8 +17,10 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
+import synsoftech.fields.Field;
 
 /**
  *
@@ -264,7 +268,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/accounting.png"))); // NOI18N
-        jLabel10.setToolTipText("Accounting");
+        jLabel10.setToolTipText("Finance");
         jLabel10.setOpaque(true);
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -365,11 +369,11 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel9MouseEntered
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        ok("Accounting", jLabel10);
+        ok("Finance", jLabel10);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-        label("Accounting", jLabel10);
+        label("Finance", jLabel10);
     }//GEN-LAST:event_jLabel10MouseEntered
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
@@ -398,6 +402,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         init_key();
         hide2();
         set_previledge();
+        set_previleges2();
         hover();
 
     }
@@ -428,6 +433,19 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         JLabel[] lbl = {jLabel7, jLabel8, jLabel9, jLabel10, jLabel11};
         for (JLabel l : lbl) {
             l.setEnabled(false);
+        }
+    }
+
+    private void set_previleges2() {
+        int user_id = FitIn.toInt(MyUser.getUser_id());
+        List<Users.to_users> users = Users.ret_data(" where id='" + user_id + "' limit 1");
+        if (!users.isEmpty()) {
+            Users.to_users user = (Users.to_users) users.get(0);
+            List<Colleges.to_colleges> colleges = Colleges.ret_data(" where college_admin_id='" + user.faculty_id + "' limit 1");
+            if (!colleges.isEmpty()) {
+                jLabel8.setEnabled(true);
+                jLabel8.setBackground(new java.awt.Color(96, 188, 219));
+            }
         }
     }
 

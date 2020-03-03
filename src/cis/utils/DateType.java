@@ -6,6 +6,8 @@ package cis.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -406,5 +408,12 @@ public class DateType {
         }
         String listString = String.join("", s);
         return listString;
+    }
+
+    public static int calculateAge(int year, int month, int day) {
+        LocalDate start = LocalDate.of(year, month, day);
+        LocalDate end = LocalDate.now();
+        long years = ChronoUnit.YEARS.between(start, end);
+        return FitIn.toInt("" + years);
     }
 }

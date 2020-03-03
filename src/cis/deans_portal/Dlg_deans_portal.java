@@ -16,6 +16,7 @@ import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
 import cis.students.Students;
 import cis.users.MyUser;
+import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.TableRenderer;
@@ -354,17 +355,20 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 
         buttonGroup2.add(jCheckBox7);
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox7.setSelected(true);
         jCheckBox7.setText("New Student");
         jCheckBox7.setFocusable(false);
 
         buttonGroup2.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox8.setText("Transfer Student");
+        jCheckBox8.setEnabled(false);
         jCheckBox8.setFocusable(false);
 
         buttonGroup2.add(jCheckBox13);
         jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox13.setText("Returning Student");
+        jCheckBox13.setEnabled(false);
         jCheckBox13.setFocusable(false);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -372,8 +376,8 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 
         buttonGroup2.add(jCheckBox9);
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox9.setSelected(true);
         jCheckBox9.setText("All");
+        jCheckBox9.setEnabled(false);
         jCheckBox9.setFocusable(false);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -400,13 +404,13 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         });
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
+        jCheckBox10.setEnabled(false);
         jCheckBox10.setFocusable(false);
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox11.setSelected(true);
         jCheckBox11.setText("All");
+        jCheckBox11.setEnabled(false);
         jCheckBox11.setFocusable(false);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -1127,19 +1131,19 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field13ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        // TODO add your handling code here:
+        init_departments();
     }//GEN-LAST:event_tf_field14MouseClicked
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        // TODO add your handling code here:
+        init_departments();
     }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field15MouseClicked
-        // TODO add your handling code here:
+        init_colleges();
     }//GEN-LAST:event_tf_field15MouseClicked
 
     private void tf_field15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field15ActionPerformed
-        // TODO add your handling code here:
+        init_colleges();
     }//GEN-LAST:event_tf_field15ActionPerformed
 
     private void tf_field16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field16MouseClicked
@@ -1309,7 +1313,26 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
 
     public void do_pass() {
+        int user_id = FitIn.toInt(MyUser.getUser_id());
+        List<Users.to_users> users = Users.ret_data(" where id='" + user_id + "' limit 1");
+        if (!users.isEmpty()) {
+            Users.to_users user = (Users.to_users) users.get(0);
+            List<Colleges.to_colleges> colleges = Colleges.ret_data(" where college_admin_id='" + user.faculty_id + "' limit 1");
+            if (!colleges.isEmpty()) {
 
+                Colleges.to_colleges college = (Colleges.to_colleges) colleges.get(0);
+                Field.Combo co = (Field.Combo) tf_field14;
+                Field.Combo co2 = (Field.Combo) tf_field15;
+                co.setText("" + college.department_name);
+                co.setId("" + college.department_id);
+
+                co2.setText("" + college.college_name);
+                co2.setId("" + college.id);
+
+            }
+        } else {
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -1983,7 +2006,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     public static class TblenrollmentsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Enrollment No", "Name", "Gender", "Address", "Date Added", "Birthdate", "Advised", "Approved", "Assessed", "Enrolled", "encoded_by_id", "encoded_by", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Enrollment No", "Name", "Gender", "Course", "Date Added", "Birthdate", "Advised", "Approved", "Assessed", "Enrolled", "encoded_by_id", "encoded_by", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public TblenrollmentsModel(ListModel listmodel) {
@@ -2021,7 +2044,20 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                         return " Male";
                     }
                 case 3:
-                    return " " + tt.permanent_address;
+                    String college = tt.college;
+                    String course = tt.course_description;
+                    if (college == null) {
+                        college = "";
+                    }
+                    if (course == null) {
+                        course = "";
+                    }
+                    if (college.isEmpty() && course.isEmpty()) {
+                        return " ";
+                    } else {
+                        return " " + college + " - " + course;
+                    }
+
                 case 4:
                     return " " + DateType.convert_slash_datetime3(tt.created_at);
                 case 5:
@@ -2296,6 +2332,70 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         });
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
+    }
+
+    //Advising 
+    private void init_departments() {
+        Object[][] obj = new Object[deps.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field14.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field14, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field14;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field15;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+
+            }
+        });
+    }
+
+    private void init_colleges() {
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field15.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field15, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field15;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+
+            }
+
+        });
     }
 
 }
