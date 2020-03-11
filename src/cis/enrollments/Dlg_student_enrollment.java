@@ -991,6 +991,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         );
 
         jButton1.setText("Start");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -2972,8 +2973,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
+        System.setProperty("webcam_enable", "true");
 
         List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
 

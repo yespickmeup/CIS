@@ -305,7 +305,6 @@ public class Dlg_subjects extends javax.swing.JDialog {
         jLabel6.setText("Group:");
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setSelected(true);
         jCheckBox1.setText("All");
         jCheckBox1.setFocusable(false);
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -557,12 +556,39 @@ public class Dlg_subjects extends javax.swing.JDialog {
 
         init_tbl_subjects(tbl_subjects);
 
-        deps2 = Departments.ret_data(" order by department_name  asc ");
+        
 
         ret_subjects();
         tf_field3.setVisible(false);
         jCheckBox2.setVisible(false);
         jLabel10.setVisible(false);
+        
+         deps2 = Departments.ret_data(" order by department_name  asc ");
+        if (!deps2.isEmpty()) {
+            Departments.to_departments dep = (Departments.to_departments) deps2.get(0);
+            Field.Combo co = (Field.Combo) tf_field2;
+            co.setText("" + dep.department_name);
+            co.setId("" + dep.id);
+
+           
+
+            colleges = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+            Field.Combo co1 = (Field.Combo) tf_field3;
+            
+            if (!colleges.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges.get(0);
+                co1.setText("" + c.college_name);
+                co1.setId("" + c.id);
+
+               
+            } else {
+                
+                co1.setText("");
+                co1.setId("");
+                
+            }
+        }
+        
     }
 
     public void do_pass() {

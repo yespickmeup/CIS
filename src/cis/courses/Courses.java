@@ -132,6 +132,74 @@ public class Courses {
         }
     }
 
+    public static void add_data_list(List<to_courses> to_courses1) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("F");
+            for (to_courses to_courses : to_courses1) {
+                String s0 = "insert into courses("
+                        + "course_code"
+                        + ",course_description"
+                        + ",college_id"
+                        + ",college"
+                        + ",department_id"
+                        + ",department_name"
+                        + ",no_of_years"
+                        + ",studies"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":course_code"
+                        + ",:course_description"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:department_id"
+                        + ",:department_name"
+                        + ",:no_of_years"
+                        + ",:studies"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("course_code", to_courses.course_code)
+                        .setString("course_description", to_courses.course_description)
+                        .setNumber("college_id", to_courses.college_id)
+                        .setString("college", to_courses.college)
+                        .setNumber("department_id", to_courses.department_id)
+                        .setString("department_name", to_courses.department_name)
+                        .setNumber("no_of_years", to_courses.no_of_years)
+                        .setString("studies", to_courses.studies)
+                        .setString("created_at", to_courses.created_at)
+                        .setString("updated_at", to_courses.updated_at)
+                        .setString("created_by", to_courses.created_by)
+                        .setString("updated_by", to_courses.updated_by)
+                        .setNumber("status", to_courses.status)
+                        .setNumber("is_uploaded", to_courses.is_uploaded)
+                        .ok();
+
+                stmt.addBatch(s0);
+            }
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Courses.class, "Successfully Added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void update_data(to_courses to_courses) {
         try {
             Connection conn = MyConnection.connect();

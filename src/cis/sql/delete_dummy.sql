@@ -8,7 +8,7 @@
  * Created: Mar 3, 2020
  */
 
-delete from academic_offerings;
+delete from academic_offerings ;
 delete from academic_offering_subjects;
 delete from academic_offering_subject_prerequisites;
 delete from academic_offering_subject_sections;
@@ -17,8 +17,8 @@ delete from academic_year_fees;
 delete from academic_year_periods;
 delete from academic_year_period_schedules;
 delete from classrooms;
-delete from colleges;
-delete from courses;
+
+delete from courses where department_id=5;
 
 delete from enrollments;
 delete from enrollment_assessments;

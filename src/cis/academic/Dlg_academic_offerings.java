@@ -15,6 +15,7 @@ import cis.users.User_previleges;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -301,7 +302,6 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel9.setText("Department:");
 
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setSelected(true);
         jCheckBox4.setText("All");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,7 +460,6 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel11.setText("Department:");
 
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox6.setSelected(true);
         jCheckBox6.setText("All");
         jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -794,7 +793,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        // TODO add your handling code here:
+        ret_offerings();
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void tf_field5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field5MouseClicked
@@ -814,7 +813,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field6ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        // TODO add your handling code here:
+        ret_offerings();
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     private void tbl_coursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_coursesMouseClicked
@@ -907,7 +906,34 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
         acad_years = Academic_years.ret_data("");
         deps = Departments.ret_data(" order by department_name  asc ");
+        if (!deps.isEmpty()) {
+            Departments.to_departments dep = (Departments.to_departments) deps.get(0);
+            Field.Combo co = (Field.Combo) tf_field3;
+            co.setText("" + dep.department_name);
+            co.setId("" + dep.id);
 
+            Field.Combo co2 = (Field.Combo) tf_field5;
+            co2.setText("" + dep.department_name);
+            co2.setId("" + dep.id);
+
+            colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+            Field.Combo co1 = (Field.Combo) tf_field4;
+            Field.Combo co12 = (Field.Combo) tf_field6;
+            if (!colleges2.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                co1.setText("" + c.college_name);
+                co1.setId("" + c.id);
+
+                co12.setText("" + c.college_name);
+                co12.setId("" + c.id);
+            } else {
+
+                co1.setText("");
+                co1.setId("");
+                co12.setText("");
+                co12.setId("");
+            }
+        }
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {
@@ -1198,7 +1224,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
-
+                ret_offerings();
             }
         });
     }
@@ -1254,7 +1280,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field6;
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
-
+                ret_offerings();
             }
 
         });
@@ -1473,8 +1499,17 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
     private void ret_offerings() {
         Field.Combo tf = (Field.Combo) tf_field2;
-        String where = " where academic_year_id='" + tf.getId() + "' ";
+        Field.Combo dep = (Field.Combo) tf_field5;
+        Field.Combo col = (Field.Combo) tf_field6;
 
+        String where = " where academic_year_id='" + tf.getId() + "' ";
+        if (!jCheckBox6.isSelected()) {
+            where = where + " and department_id='" + dep.getId() + "' ";
+            if (!jCheckBox7.isSelected()) {
+                where = where + " and college_id='" + col.getId() + "' ";
+            }
+        }
+        where = where + " order by course_description asc ";
         List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
         loadData_offerings(datas);
         jLabel4.setText("" + datas.size());
@@ -1503,6 +1538,24 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 }
             });
             nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+        if (col == 8) {
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+//            nd.do_pass(services);
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Academic_offerings.delete_offering(to);
+                    Alert.set(3, "");
+                    ret_offerings();
+                }
+            });
+            nd.setLocationRelativeTo(jScrollPane2);
             nd.setVisible(true);
         }
     }

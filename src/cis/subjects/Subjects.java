@@ -217,6 +217,101 @@ public class Subjects {
         }
     }
 
+    public static void add_data_list(List<to_subjects> to_subjects1) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            for (to_subjects to_subjects : to_subjects1) {
+                String s0 = "insert into subjects("
+                        + " subject_code"
+                        + ",description"
+                        + ",level_id"
+                        + ",level"
+                        + ",college_id"
+                        + ",college"
+                        + ",department_id"
+                        + ",department"
+                        + ",course_id"
+                        + ",course_code"
+                        + ",course_description"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + ",amount"
+                        + ",prerequisites_course_ids"
+                        + ",subject_group"
+                        + ",subject_group_id"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + " :subject_code"
+                        + ",:description"
+                        + ",:level_id"
+                        + ",:level"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:department_id"
+                        + ",:department"
+                        + ",:course_id"
+                        + ",:course_code"
+                        + ",:course_description"
+                        + ",:lecture_units"
+                        + ",:lab_units"
+                        + ",:amount"
+                        + ",:prerequisites_course_ids"
+                        + ",:subject_group"
+                        + ",:subject_group_id"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("subject_code", to_subjects.subject_code)
+                        .setString("description", to_subjects.description)
+                        .setNumber("level_id", to_subjects.level_id)
+                        .setString("level", to_subjects.level)
+                        .setNumber("college_id", to_subjects.college_id)
+                        .setString("college", to_subjects.college)
+                        .setNumber("department_id", to_subjects.department_id)
+                        .setString("department", to_subjects.department)
+                        .setNumber("course_id", to_subjects.course_id)
+                        .setString("course_code", to_subjects.course_code)
+                        .setString("course_description", to_subjects.course_description)
+                        .setNumber("lecture_units", to_subjects.lecture_units)
+                        .setNumber("lab_units", to_subjects.lab_units)
+                        .setNumber("amount", to_subjects.amount)
+                        .setString("prerequisites_course_ids", to_subjects.prerequisites_course_ids)
+                        .setString("subject_group", to_subjects.subject_group)
+                        .setNumber("subject_group_id", to_subjects.subject_group_id)
+                        .setString("created_at", to_subjects.created_at)
+                        .setString("updated_at", to_subjects.updated_at)
+                        .setString("created_by", to_subjects.created_by)
+                        .setString("updated_by", to_subjects.updated_by)
+                        .setNumber("status", to_subjects.status)
+                        .setNumber("is_uploaded", to_subjects.is_uploaded)
+                        .ok();
+
+                stmt.addBatch(s0);
+            }
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Subjects.class, "Successfully Added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void update_data(to_subjects to_subjects) {
         try {
             Connection conn = MyConnection.connect();

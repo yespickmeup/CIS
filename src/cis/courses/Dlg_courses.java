@@ -19,6 +19,7 @@ import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -167,6 +168,12 @@ public class Dlg_courses extends javax.swing.JDialog {
         }
 
         Dlg_courses dialog = Dlg_courses.create(new javax.swing.JFrame(), true);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = ((int) tk.getScreenSize().
+                getWidth());
+        int ySize = ((int) tk.getScreenSize().
+                getHeight());
+        dialog.setSize(xSize, ySize);
         dialog.setVisible(true);
 
     }
@@ -236,6 +243,10 @@ public class Dlg_courses extends javax.swing.JDialog {
         jButton2 = new Button.Success();
         jLabel13 = new javax.swing.JLabel();
         jCheckBox6 = new javax.swing.JCheckBox();
+        jLabel14 = new javax.swing.JLabel();
+        tf_field6 = new Field.Combo();
+        jLabel15 = new javax.swing.JLabel();
+        tf_field7 = new Field.Combo();
 
         jMenuItem1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/group.png"))); // NOI18N
@@ -327,7 +338,6 @@ public class Dlg_courses extends javax.swing.JDialog {
         });
 
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setSelected(true);
         jCheckBox4.setText("All");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,7 +429,7 @@ public class Dlg_courses extends javax.swing.JDialog {
                     .addComponent(tf_field3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -484,6 +494,36 @@ public class Dlg_courses extends javax.swing.JDialog {
         jCheckBox6.setSelected(true);
         jCheckBox6.setText("Active/Inactive");
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("Department:");
+
+        tf_field6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field6MouseClicked(evt);
+            }
+        });
+        tf_field6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field6ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Level/College:");
+
+        tf_field7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field7MouseClicked(evt);
+            }
+        });
+        tf_field7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -510,12 +550,20 @@ public class Dlg_courses extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field4, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                .addComponent(tf_field4, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tf_field))))
+                            .addComponent(tf_field)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_field6)
+                            .addComponent(tf_field7))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -532,6 +580,14 @@ public class Dlg_courses extends javax.swing.JDialog {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,7 +597,7 @@ public class Dlg_courses extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50))
+                .addGap(5, 5, 5))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -559,7 +615,7 @@ public class Dlg_courses extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -647,6 +703,22 @@ public class Dlg_courses extends javax.swing.JDialog {
         ret_courses();
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
+    private void tf_field6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field6MouseClicked
+        init_departments2();
+    }//GEN-LAST:event_tf_field6MouseClicked
+
+    private void tf_field6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field6ActionPerformed
+        init_departments2();
+    }//GEN-LAST:event_tf_field6ActionPerformed
+
+    private void tf_field7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field7MouseClicked
+        init_colleges2();
+    }//GEN-LAST:event_tf_field7MouseClicked
+
+    private void tf_field7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field7ActionPerformed
+        init_colleges2();
+    }//GEN-LAST:event_tf_field7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -666,6 +738,8 @@ public class Dlg_courses extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -684,6 +758,8 @@ public class Dlg_courses extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field3;
     private javax.swing.JTextField tf_field4;
     private javax.swing.JTextField tf_field5;
+    private javax.swing.JTextField tf_field6;
+    private javax.swing.JTextField tf_field7;
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
@@ -693,6 +769,38 @@ public class Dlg_courses extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
+        deps2 = deps;
+        if (!deps.isEmpty()) {
+            Departments.to_departments dep = (Departments.to_departments) deps.get(0);
+            Field.Combo co = (Field.Combo) tf_field2;
+            Field.Combo co2 = (Field.Combo) tf_field6;
+            co.setText("" + dep.department_name);
+            co.setId("" + dep.id);
+
+            co2.setText("" + dep.department_name);
+            co2.setId("" + dep.id);
+
+            colleges = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+            colleges2 = colleges;
+            Field.Combo co1 = (Field.Combo) tf_field3;
+            Field.Combo co12 = (Field.Combo) tf_field7;
+            if (!colleges.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges.get(0);
+                co1.setText("" + c.college_name);
+                co1.setId("" + c.id);
+
+                co12.setText("" + c.college_name);
+                co12.setId("" + c.id);
+
+            } else {
+
+                co1.setText("");
+                co1.setId("");
+                co12.setText("");
+                co12.setId("");
+
+            }
+        }
 
         init_tbl_courses(tbl_courses);
         ret_courses();
@@ -721,13 +829,13 @@ public class Dlg_courses extends javax.swing.JDialog {
     // </editor-fold>
 
     List<Departments.to_departments> deps = new ArrayList();
+    List<Departments.to_departments> deps2 = new ArrayList();
 
     private void init_departments() {
         Object[][] obj = new Object[deps.size()][1];
         int i = 0;
         for (Departments.to_departments to : deps) {
-            obj[i][0
-                    ] = " " + to.department_name;
+            obj[i][0] = " " + to.department_name;
             i++;
         }
         JLabel[] labels = {};
@@ -758,7 +866,43 @@ public class Dlg_courses extends javax.swing.JDialog {
         });
     }
 
+    private void init_departments2() {
+        Object[][] obj = new Object[deps2.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps2) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field6.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field6, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field6;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field7;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+
+            }
+        });
+    }
+
     List<Colleges.to_colleges> colleges = new ArrayList();
+    List<Colleges.to_colleges> colleges2 = new ArrayList();
 
     private void init_colleges() {
         Field.Combo co = (Field.Combo) tf_field2;
@@ -783,6 +927,33 @@ public class Dlg_courses extends javax.swing.JDialog {
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
                 ret_courses();
+            }
+        });
+    }
+
+    private void init_colleges2() {
+        Field.Combo co = (Field.Combo) tf_field7;
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field7.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field7, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field7;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+
             }
         });
     }
@@ -818,7 +989,6 @@ public class Dlg_courses extends javax.swing.JDialog {
         });
     }
 
-   
     //<editor-fold defaultstate="collapsed" desc=" courses "> 
     public static ArrayListModel tbl_courses_ALM;
     public static TblcoursesModel tbl_courses_M;
@@ -966,6 +1136,7 @@ public class Dlg_courses extends javax.swing.JDialog {
             Field.Combo dep = (Field.Combo) tf_field3;
             where = where + " and college_id='" + dep.getId() + "' ";
         }
+//        System.out.println(where);
         List<to_courses> courses = Courses.ret_data(where);
         loadData_courses(courses);
         jLabel2.setText("" + courses.size());
@@ -983,14 +1154,16 @@ public class Dlg_courses extends javax.swing.JDialog {
 
     private void save_course() {
         int row = tbl_courses.getSelectedRow();
+        Field.Combo dep = (Field.Combo) tf_field6;
+        Field.Combo col = (Field.Combo) tf_field7;
         if (row < 0) {
             int id = 0;
             String course_code = tf_field5.getText();
             String course_description = tf_field.getText();
-            int college_id = 0;
-            String college = "";
-            int department_id = 0;
-            String department_name = "";
+            int college_id = FitIn.toInt(col.getId());
+            String college = col.getText();
+            int department_id = FitIn.toInt(dep.getId());
+            String department_name = dep.getText();
             int no_of_years = FitIn.toInt(tf_field1.getText());
             String studies = tf_field4.getText();
             String created_at = DateType.now();
@@ -1025,10 +1198,10 @@ public class Dlg_courses extends javax.swing.JDialog {
             int id = to.id;
             String course_code = tf_field5.getText();
             String course_description = tf_field.getText();
-            int college_id = to.college_id;
-            String college = to.college;
-            int department_id = to.department_id;
-            String department_name = to.department_name;
+            int college_id = FitIn.toInt(col.getId());
+            String college = col.getText();
+            int department_id = FitIn.toInt(dep.getId());
+            String department_name = dep.getText();
             int no_of_years = FitIn.toInt(tf_field1.getText());
             String studies = tf_field4.getText();
             String created_at = to.created_at;
@@ -1095,6 +1268,8 @@ public class Dlg_courses extends javax.swing.JDialog {
             }
             tbl_courses_M.fireTableDataChanged();
         } else {
+            Field.Combo dep = (Field.Combo) tf_field6;
+            Field.Combo col2 = (Field.Combo) tf_field7;
             tf_field5.setText(to.course_code);
             tf_field.setText(to.course_description);
             if (to.status == 1) {
@@ -1104,6 +1279,25 @@ public class Dlg_courses extends javax.swing.JDialog {
             }
             tf_field1.setText("" + to.no_of_years);
             tf_field4.setText(to.studies);
+            dep.setText(to.department_name);
+            dep.setId("" + to.department_id);
+
+            col2.setText(to.college);
+            col2.setId("" + to.college_id);
+
+            String where = " where department_id='" + to.department_id + "'";
+//            System.out.println(where);
+            colleges2 = Colleges.ret_data(where);
+
+            Field.Combo co12 = (Field.Combo) tf_field7;
+            if (!colleges2.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                co12.setText("" + c.college_name);
+                co12.setId("" + c.id);
+            } else {
+                co12.setText("");
+                co12.setId("");
+            }
         }
 
     }

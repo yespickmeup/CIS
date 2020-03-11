@@ -575,6 +575,7 @@ public class Dlg_subject_new extends javax.swing.JDialog {
         gr.setText(to.subject_group + " - " + to.department);
         gr.setId("" + to.subject_group_id);
         ret_sp();
+        group = Subject_groupings.ret_data(" where department_id='" + to.department_id + "' order by description,department asc ");
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">

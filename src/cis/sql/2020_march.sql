@@ -491,3 +491,76 @@ create table current_addresses(
 id int auto_increment primary key
 ,address varchar(255)
 );
+
+
+drop table if exists creditable_subjects;
+create table creditable_subjects(
+id int auto_increment primary key
+,academic_offering_id int
+,academic_year_id int
+,academic_year varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,subject_id int
+,subject_code varchar(255)
+,subject_description varchar(255)
+,credit_subject_code varchar(255)
+,credit_subject_description varchar(255)
+,credit_subject_lec_units int
+,credit_subject_lab_units int
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+
+drop table if exists enrollment_student_credited_subjects;
+create table enrollment_student_credited_subjects(
+id int auto_increment primary key
+,enrollment_id int
+,enrollment_no varchar(255)
+,student_id int
+,student_no varchar(255)
+,student_name varchar(255)
+,academic_offering_id int
+,academic_year_id int
+,academic_year varchar(255)
+,level_id int
+,level varchar(255)
+,college_id int
+,college varchar(255)
+,department_id int
+,department varchar(255)
+,course_id int
+,course_code varchar(255)
+,course_description varchar(255)
+,subject_id int
+,subject_code varchar(255)
+,subject_description varchar(255)
+,credit_subject_code varchar(255)
+,credit_subject_description varchar(255)
+,credit_subject_lec_units int
+,credit_subject_lab_units int
+,final_grade double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+);
+
+alter table academic_offerings add 
+
+
+

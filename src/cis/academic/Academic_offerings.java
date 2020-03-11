@@ -73,7 +73,7 @@ public class Academic_offerings {
         public void setSelected(boolean selected) {
             this.selected = selected;
         }
-        
+
     }
 
     public static void add_data(to_academic_offerings to_academic_offerings) {
@@ -295,6 +295,47 @@ public class Academic_offerings {
         }
     }
 
+    public static void delete_offering(to_academic_offerings to_academic_offerings) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            String s0 = "delete from academic_offerings  "
+                    + " where id='" + to_academic_offerings.id + "' "
+                    + " ";
+
+            stmt.addBatch(s0);
+
+            String s2 = "delete from academic_offering_subjects  "
+                    + " where academic_offering_id='" + to_academic_offerings.id + "' "
+                    + " ";
+            stmt.addBatch(s2);
+
+            String s3 = "delete from academic_offering_subject_prerequisites  "
+                    + " where academic_offering_id='" + to_academic_offerings.id + "' "
+                    + " ";
+            stmt.addBatch(s3);
+
+            String s4 = "delete from academic_offering_subject_sections  "
+                    + " where academic_offering_id='" + to_academic_offerings.id + "' "
+                    + " ";
+            stmt.addBatch(s4);
+
+            String s5 = "delete from academic_offering_subject_sections  "
+                    + " where academic_offering_id='" + to_academic_offerings.id + "' "
+                    + " ";
+            stmt.addBatch(s5);
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Academic_offerings.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static List<to_academic_offerings> ret_data(String where) {
         List<to_academic_offerings> datas = new ArrayList();
         try {
@@ -320,7 +361,7 @@ public class Academic_offerings {
                     + ",is_uploaded"
                     + " from academic_offerings"
                     + " " + where;
-            
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
             while (rs.next()) {
@@ -342,8 +383,8 @@ public class Academic_offerings {
                 String updated_by = rs.getString(16);
                 int status = rs.getInt(17);
                 int is_uploaded = rs.getInt(18);
-               
-                to_academic_offerings to = new to_academic_offerings(id, academic_year_id, academic_year, course_id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
+
+                to_academic_offerings to = new to_academic_offerings(id, academic_year_id, academic_year, course_id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                 datas.add(to);
             }
             return datas;
