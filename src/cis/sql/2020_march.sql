@@ -560,7 +560,15 @@ id int auto_increment primary key
 ,is_uploaded int
 );
 
-alter table academic_offerings add 
+
+
+
+alter table students add course_id int ;
+alter table students add course_code varchar(255);
+alter table students add course_description varchar(255);
+alter table students add date_enrolled date;
+
+
 
 
 

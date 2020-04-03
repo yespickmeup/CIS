@@ -15,6 +15,7 @@ import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
 import cis.finance.Dlg_finance;
+import cis.students.Dlg_students_master_list;
 import cis.subjects.Dlg_subjects;
 import cis.users.Dlg_users;
 import cis.users.MyUser;
@@ -737,7 +738,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Users")) {
                     m_users();
                 }
-
+                if (data.stmt.equals("Students")) {
+                    m_students();
+                }
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" Reports ">
                 //</editor-fold>
@@ -857,6 +860,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private void m_users() {
         Dlg_users dtc = new Dlg_users();
         MyFrame.set2(dtc.getSurface(), jPanel1, "Users", dtc.getWidth(), dtc.getHeight());
+    }
+
+    private void m_students() {
+        Dlg_students_master_list dtc = new Dlg_students_master_list();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Students");
     }
 
 }

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cis.enrollments;
+package cis.students;
 
 import cis.academic.Academic_years;
+import cis.academic.Dlg_academic_years;
 import cis.colleges.Colleges;
 import cis.combo.Combo;
 import cis.combo.Countries;
@@ -27,7 +28,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -35,40 +35,31 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
-import synsoftech.panels.Loading;
 
 /**
  *
- * @author Ronescape
+ * @author User
  */
-public class Dlg_student_enrollment extends javax.swing.JDialog {
+public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 
     /**
-     * Creates new form Dlg_student_enrollment
+     * Creates new form Dlg_student_masterlist_new_record
      */
     //<editor-fold defaultstate="collapsed" desc=" callback ">
     private Callback callback;
@@ -87,37 +78,44 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     }
 
     public static class OutputData {
+
+        public final Students.to_students student;
+
+        public OutputData(Students.to_students student) {
+            this.student = student;
+        }
+
     }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_student_enrollment(java.awt.Frame parent, boolean modal) {
+    private Dlg_student_masterlist_new_record(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_student_enrollment(java.awt.Dialog parent, boolean modal) {
+    private Dlg_student_masterlist_new_record(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_student_enrollment() {
+    public Dlg_student_masterlist_new_record() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_student_enrollment myRef;
+    private Dlg_student_masterlist_new_record myRef;
 
-    private void setThisRef(Dlg_student_enrollment myRef) {
+    private void setThisRef(Dlg_student_masterlist_new_record myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_student_enrollment> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_student_masterlist_new_record> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -125,7 +123,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_student_enrollment create(java.awt.Window parent, boolean modal) {
+    public static Dlg_student_masterlist_new_record create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -135,14 +133,14 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_student_enrollment create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_student_masterlist_new_record create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_student_enrollment dialog = dialogContainer.get(parent);
+            Dlg_student_masterlist_new_record dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_student_enrollment((java.awt.Frame) parent, false);
+                dialog = new Dlg_student_masterlist_new_record((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -156,10 +154,10 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_student_enrollment dialog = dialogContainer.get(parent);
+            Dlg_student_masterlist_new_record dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_student_enrollment((java.awt.Dialog) parent, false);
+                dialog = new Dlg_student_masterlist_new_record((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -186,13 +184,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_student_enrollment dialog = Dlg_student_enrollment.create(new javax.swing.JFrame(), true);
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xSize = ((int) tk.getScreenSize().
-                getWidth());
-        int ySize = ((int) tk.getScreenSize().
-                getHeight());
-        dialog.setSize(xSize, ySize);
+        Dlg_student_masterlist_new_record dialog = Dlg_student_masterlist_new_record.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -231,10 +223,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -305,11 +293,21 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         tf_field13 = new Field.Input();
         jButton2 = new Button.Primary();
         jButton5 = new Button.Default();
-        jLabel2 = new javax.swing.JLabel();
         tf_field125 = new Field.Combo();
         tf_field126 = new Field.Combo();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        tf_field127 = new Field.Combo();
+        jLabel76 = new javax.swing.JLabel();
+        tf_field128 = new Field.Combo();
+        jLabel77 = new javax.swing.JLabel();
+        tf_field129 = new Field.Combo();
+        jButton8 = new javax.swing.JButton();
+        jLabel78 = new javax.swing.JLabel();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jLabel79 = new javax.swing.JLabel();
+        jCheckBox8 = new javax.swing.JCheckBox();
         jPanel21 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -467,11 +465,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel64 = new javax.swing.JLabel();
         tf_field103 = new Field.Input();
         jLabel65 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        tf_field2 = new Field.Input();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -491,7 +484,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Civil Status:");
 
-        buttonGroup2.add(jCheckBox3);
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox3.setSelected(true);
         jCheckBox3.setText("Single");
@@ -509,7 +501,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
         jDateChooser2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        buttonGroup2.add(jCheckBox4);
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox4.setText("Married");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -518,7 +509,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             }
         });
 
-        buttonGroup2.add(jCheckBox5);
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox5.setText("Widow");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -530,7 +520,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel31.setText("Confirmation:");
 
-        buttonGroup2.add(jCheckBox6);
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox6.setText("Annulled");
         jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
@@ -550,19 +539,18 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Are you:");
 
-        buttonGroup4.add(jCheckBox9);
+        buttonGroup1.add(jCheckBox9);
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox9.setSelected(true);
         jCheckBox9.setText("Left Handed");
 
-        buttonGroup4.add(jCheckBox10);
+        buttonGroup1.add(jCheckBox10);
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox10.setText("Right Handed");
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel67.setText("Member of Indigenous Community?");
 
-        buttonGroup5.add(jCheckBox11);
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox11.setText("Yes");
         jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
@@ -571,7 +559,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             }
         });
 
-        buttonGroup5.add(jCheckBox12);
         jCheckBox12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox12.setSelected(true);
         jCheckBox12.setText("No");
@@ -621,7 +608,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                                 .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                                 .addComponent(jLabel28)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,12 +729,10 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Gender:");
 
-        buttonGroup1.add(jCheckBox1);
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Male");
 
-        buttonGroup1.add(jCheckBox2);
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox2.setText("Female");
 
@@ -1123,10 +1108,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(93, 147, 196));
-        jLabel2.setText("Student Enrollment Application");
-
         tf_field125.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tf_field125.setFocusable(false);
         tf_field125.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1159,6 +1140,75 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel74.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel74.setText("Level/College:");
 
+        jLabel75.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel75.setText("Course/Program:");
+
+        tf_field127.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field127.setFocusable(false);
+        tf_field127.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field127MouseClicked(evt);
+            }
+        });
+        tf_field127.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field127ActionPerformed(evt);
+            }
+        });
+
+        jLabel76.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel76.setText("Year:");
+
+        tf_field128.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field128.setFocusable(false);
+        tf_field128.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field128MouseClicked(evt);
+            }
+        });
+        tf_field128.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field128ActionPerformed(evt);
+            }
+        });
+
+        jLabel77.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel77.setText("Academic Year:");
+
+        tf_field129.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field129.setFocusable(false);
+        tf_field129.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field129MouseClicked(evt);
+            }
+        });
+        tf_field129.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field129ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/cog.png"))); // NOI18N
+        jButton8.setFocusable(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jLabel78.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel78.setText("Transferee:");
+
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jCheckBox7.setText("Yes/No");
+
+        jLabel79.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel79.setText("Status:");
+
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jCheckBox8.setSelected(true);
+        jCheckBox8.setText("Regular/Irregular");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -1176,38 +1226,72 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_field126, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                            .addComponent(tf_field125))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)))
-                .addContainerGap())
+                            .addComponent(tf_field127)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(tf_field129)
+                                .addGap(0, 0, 0)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel76, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_field125)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox7))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(10, 10, 10))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field129, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
+                        .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_field125, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
+                .addGap(1, 1, 1)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field127, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
         jTabbedPane1.addTab("Step 1", jPanel4);
@@ -1671,7 +1755,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 2", jPanel21);
@@ -2482,80 +2566,25 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 3", jPanel5);
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-
-        buttonGroup3.add(jCheckBox7);
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setSelected(true);
-        jCheckBox7.setText("New Student");
-        jCheckBox7.setFocusable(false);
-
-        buttonGroup3.add(jCheckBox8);
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox8.setText("Transfer Student");
-        jCheckBox8.setEnabled(false);
-        jCheckBox8.setFocusable(false);
-
-        buttonGroup3.add(jCheckBox13);
-        jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox13.setText("Returning Student");
-        jCheckBox13.setEnabled(false);
-        jCheckBox13.setFocusable(false);
-
-        tf_field2.setText("Sy");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jCheckBox7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox13)
-                .addGap(18, 18, 18)
-                .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox13))
-                        .addContainerGap())
-                    .addComponent(tf_field2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2563,7 +2592,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2572,99 +2603,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        init_religions();
-    }//GEN-LAST:event_tf_field17ActionPerformed
-
-    private void tf_field89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field89ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field89ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        check_input();
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        clear_fields();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        proceed_to_enrollment();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void tf_field23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field23ActionPerformed
-        init_regions(tf_field23);
-    }//GEN-LAST:event_tf_field23ActionPerformed
-
-    private void tf_field121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field121ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field121ActionPerformed
-
-    private void tf_field16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field16ActionPerformed
-        init_nationalities();
-    }//GEN-LAST:event_tf_field16ActionPerformed
-
-    private void tf_field16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field16MouseClicked
-        init_nationalities();
-    }//GEN-LAST:event_tf_field16MouseClicked
-
-    private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
-        init_religions();
-    }//GEN-LAST:event_tf_field17MouseClicked
-
-    private void tf_field105ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field105ActionPerformed
-        init_indigenous();
-    }//GEN-LAST:event_tf_field105ActionPerformed
-
-    private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
-        init_regions(tf_field22);
-    }//GEN-LAST:event_tf_field22ActionPerformed
-
-    private void tf_field22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field22MouseClicked
-        init_regions(tf_field22);
-    }//GEN-LAST:event_tf_field22MouseClicked
-
-    private void tf_field107ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field107ActionPerformed
-        init_regions(tf_field107);
-    }//GEN-LAST:event_tf_field107ActionPerformed
-
-    private void tf_field107MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field107MouseClicked
-        init_regions(tf_field107);
-    }//GEN-LAST:event_tf_field107MouseClicked
-
-    private void tf_field23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field23MouseClicked
-        init_regions(tf_field23);
-    }//GEN-LAST:event_tf_field23MouseClicked
-
-    private void tf_field110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field110ActionPerformed
-        init_regions(tf_field110);
-    }//GEN-LAST:event_tf_field110ActionPerformed
-
-    private void tf_field110MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field110MouseClicked
-        init_regions(tf_field110);
-    }//GEN-LAST:event_tf_field110MouseClicked
-
-    private void tf_field24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field24ActionPerformed
-        init_regions(tf_field24);
-    }//GEN-LAST:event_tf_field24ActionPerformed
-
-    private void tf_field24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field24MouseClicked
-        init_regions(tf_field24);
-    }//GEN-LAST:event_tf_field24MouseClicked
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         check_status();
@@ -2690,17 +2628,49 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         check_indigenous();
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
-    private void tf_field104ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field104ActionPerformed
-        init_addresses(tf_field104);
-    }//GEN-LAST:event_tf_field104ActionPerformed
+    private void tf_field105ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field105ActionPerformed
+        init_indigenous();
+    }//GEN-LAST:event_tf_field105ActionPerformed
+
+    private void tf_field16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field16MouseClicked
+        init_nationalities();
+    }//GEN-LAST:event_tf_field16MouseClicked
+
+    private void tf_field16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field16ActionPerformed
+        init_nationalities();
+    }//GEN-LAST:event_tf_field16ActionPerformed
+
+    private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
+        init_religions();
+    }//GEN-LAST:event_tf_field17MouseClicked
+
+    private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
+        init_religions();
+    }//GEN-LAST:event_tf_field17ActionPerformed
+
+    private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
+        init_addresses(tf_field14);
+    }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field9ActionPerformed
         init_addresses(tf_field9);
     }//GEN-LAST:event_tf_field9ActionPerformed
 
-    private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        init_addresses(tf_field14);
-    }//GEN-LAST:event_tf_field14ActionPerformed
+    private void tf_field104ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field104ActionPerformed
+        init_addresses(tf_field104);
+    }//GEN-LAST:event_tf_field104ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        init_camera();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        check_input();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+//        clear_fields();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tf_field125MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field125MouseClicked
         init_colleges();
@@ -2718,9 +2688,97 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         init_departments();
     }//GEN-LAST:event_tf_field126ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        init_camera();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void tf_field22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field22MouseClicked
+        init_regions(tf_field22);
+    }//GEN-LAST:event_tf_field22MouseClicked
+
+    private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
+        init_regions(tf_field22);
+    }//GEN-LAST:event_tf_field22ActionPerformed
+
+    private void tf_field107MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field107MouseClicked
+        init_regions(tf_field107);
+    }//GEN-LAST:event_tf_field107MouseClicked
+
+    private void tf_field107ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field107ActionPerformed
+        init_regions(tf_field107);
+    }//GEN-LAST:event_tf_field107ActionPerformed
+
+    private void tf_field23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field23MouseClicked
+        init_regions(tf_field23);
+    }//GEN-LAST:event_tf_field23MouseClicked
+
+    private void tf_field23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field23ActionPerformed
+        init_regions(tf_field23);
+    }//GEN-LAST:event_tf_field23ActionPerformed
+
+    private void tf_field110MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field110MouseClicked
+        init_regions(tf_field110);
+    }//GEN-LAST:event_tf_field110MouseClicked
+
+    private void tf_field110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field110ActionPerformed
+        init_regions(tf_field110);
+    }//GEN-LAST:event_tf_field110ActionPerformed
+
+    private void tf_field24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field24MouseClicked
+        init_regions(tf_field24);
+    }//GEN-LAST:event_tf_field24MouseClicked
+
+    private void tf_field24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field24ActionPerformed
+        init_regions(tf_field24);
+    }//GEN-LAST:event_tf_field24ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void tf_field89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field89ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field89ActionPerformed
+
+    private void tf_field121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field121ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field121ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        confirm_ok();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field127MouseClicked
+
+    private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field127ActionPerformed
+
+    private void tf_field128MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field128MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field128MouseClicked
+
+    private void tf_field128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field128ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field128ActionPerformed
+
+    private void tf_field129MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field129MouseClicked
+        init_academic_years();
+    }//GEN-LAST:event_tf_field129MouseClicked
+
+    private void tf_field129ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field129ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field129ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        academic_year();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2728,10 +2786,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2739,11 +2793,11 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
@@ -2763,7 +2817,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2820,13 +2873,17 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
@@ -2876,6 +2933,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field124;
     private javax.swing.JTextField tf_field125;
     private javax.swing.JTextField tf_field126;
+    private javax.swing.JTextField tf_field127;
+    private javax.swing.JTextField tf_field128;
+    private javax.swing.JTextField tf_field129;
     private javax.swing.JTextField tf_field13;
     private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
@@ -2883,7 +2943,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field17;
     private javax.swing.JTextField tf_field18;
     private javax.swing.JTextField tf_field19;
-    private javax.swing.JTextField tf_field2;
     private javax.swing.JTextField tf_field20;
     private javax.swing.JTextField tf_field21;
     private javax.swing.JTextField tf_field22;
@@ -2970,25 +3029,29 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field98;
     private javax.swing.JTextField tf_field99;
     // End of variables declaration//GEN-END:variables
+
     private void myInit() {
-        init_key();
 
         System.setProperty("pool_db", "db_cis_cosca");
         System.setProperty("pool_password", "password");
         System.setProperty("webcam_enable", "true");
-
-        List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
-
+        init_key();
+        acad_years = Academic_years.ret_data(" order by Date(date_from) desc ");
         if (!acad_years.isEmpty()) {
-            Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
-            Field.Input year = (Field.Input) tf_field2;
-            year.setText(to.years);
-            year.setId("" + to.id);
+            for (Academic_years.to_academic_years to : acad_years) {
+                if (to.status == 1) {
+                    Field.Combo year = (Field.Combo) tf_field129;
+                    year.setText(to.years);
+                    year.setId("" + to.id);
+                    break;
+                }
+            }
         }
+
         nationals = Countries.ret_data(" order by nationality");
         religions = Religions.ret_data(" order by religion asc ");
-        tf_field2.setVisible(false);
-        jLabel2.setVisible(false);
+//        tf_field2.setVisible(false);
+//        jLabel2.setVisible(false);
         jDateChooser1.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -3006,7 +3069,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             Field.Combo co = (Field.Combo) tf_field126;
             co.setText("" + dep.department_name);
             co.setId("" + dep.id);
-
             colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
             Field.Combo co1 = (Field.Combo) tf_field125;
             if (!colleges2.isEmpty()) {
@@ -3040,8 +3102,11 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     }
 
-    List<Departments.to_departments> deps = new ArrayList();
-    List<Colleges.to_colleges> colleges2 = new ArrayList();
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    private final Dimension size = WebcamResolution.QQVGA.getSize();
+    private List<Webcam> webcams = new ArrayList();
+    private final List<WebcamPanel> panels = new ArrayList<>();
+    CardLayout card;
 
     public void do_pass() {
 
@@ -3049,15 +3114,12 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
-        for (WebcamPanel panel : panels) {
-            panel.stop();
-        }
         this.dispose();
     }
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_F1, new KeyAction() {
+                              KeyEvent.VK_ESCAPE, new KeyAction() {
 
                           @Override
                           public void actionPerformed(ActionEvent e) {
@@ -3067,105 +3129,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                       });
     }
     // </editor-fold>
-
-    private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3, JTextField tf4, JTextField tf5, JTextField tf6, JTextField tf7) {
-        String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText() + "%" + tf4.getText() + "%" + tf5.getText() + "%" + tf6.getText() + "%" + tf7.getText();
-        return ret;
-    }
-
-    private void check_input() {
-        if (tf_field5.getText().isEmpty()) {
-            tf_field5.grabFocus();
-            Alert.set(0, "Input First name");
-            return;
-        }
-        if (tf_field7.getText().isEmpty()) {
-            tf_field7.grabFocus();
-            Alert.set(0, "Input Last name");
-            return;
-        }
-        int age = FitIn.toInt(tf_field15.getText());
-        if (age <= 3) {
-            Alert.set(0, "Input Birthdate");
-            return;
-        }
-
-        int updated = 0;
-        if (!tf_field104.getText().isEmpty()) {
-            List<Current_addresses.to_current_addresses> result = addresses
-                    .stream()
-                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field104.getText().toLowerCase()))
-                    .collect(Collectors.toList());
-            if (result.isEmpty()) {
-                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field104.getText());
-                Current_addresses.add_data(add);
-                updated = 1;
-            }
-        }
-        if (!tf_field9.getText().isEmpty()) {
-            List<Current_addresses.to_current_addresses> result = addresses
-                    .stream()
-                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field9.getText().toLowerCase()))
-                    .collect(Collectors.toList());
-            if (result.isEmpty()) {
-                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field9.getText());
-                Current_addresses.add_data(add);
-                updated = 1;
-            }
-        }
-        if (!tf_field14.getText().isEmpty()) {
-            List<Current_addresses.to_current_addresses> result = addresses
-                    .stream()
-                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field14.getText().toLowerCase()))
-                    .collect(Collectors.toList());
-            if (result.isEmpty()) {
-                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field14.getText());
-                Current_addresses.add_data(add);
-                updated = 1;
-            }
-        }
-        if (updated == 1) {
-            addresses = Current_addresses.ret_data(" order by address asc ");
-        }
-        jTabbedPane1.setSelectedIndex(1);
-    }
-
-    private void check_status() {
-        if (jCheckBox4.isSelected()) {
-            tf_field18.setEnabled(true);
-        } else {
-            tf_field18.setEnabled(false);
-            tf_field18.setText("");
-        }
-    }
-
-    private void check_indigenous() {
-        if (jCheckBox11.isSelected()) {
-            tf_field105.setEnabled(true);
-        } else {
-            tf_field105.setEnabled(false);
-            tf_field105.setText("");
-        }
-    }
-
-    private void clear_fields() {
-        JTextField[] tfs = {tf_field2, tf_field7, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
-            tf_field16, tf_field17, tf_field18, tf_field28, tf_field29, tf_field30, tf_field31, tf_field33, tf_field35, tf_field36, tf_field42, tf_field40, tf_field43,
-            tf_field44, tf_field51, tf_field47, tf_field48, tf_field32, tf_field34, tf_field37, tf_field38, tf_field39, tf_field41, tf_field45, tf_field46, tf_field52,
-            tf_field49, tf_field50, tf_field101, tf_field102, tf_field103, tf_field19, tf_field22, tf_field25, tf_field20, tf_field23, tf_field26, tf_field21, tf_field24, tf_field27,
-            tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64,
-            tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76,
-            tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95,
-            tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100,
-            tf_field104, tf_field112, tf_field113, tf_field114, tf_field115, tf_field116, tf_field106, tf_field108, tf_field109, tf_field111, tf_field115,};
-        enrollment = null;
-        for (JTextField tf : tfs) {
-            tf.setText("");
-        }
-        tf_field15.setText("");
-        tf_field5.grabFocus();
-        jTabbedPane1.setSelectedIndex(0);
-    }
 
     //<editor-fold defaultstate="collapsed" desc=" Combos ">
     List<Countries.to_countries> nationals = new ArrayList();
@@ -3305,403 +3268,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     }
 
     //</editor-fold>
-    private void enroll() {
-
-        int id = 0;
-        String enrollment_no = "";
-        int is_transferee = 0;
-        if (jCheckBox8.isSelected()) {
-            is_transferee = 1;
-        }
-        Field.Input ay = (Field.Input) tf_field2;
-        int academic_year_id = FitIn.toInt(ay.getId());
-        String academic_year = ay.getText();
-        int curriculum_id = 0;
-        int course_id = 0;
-        String course_code = "";
-        String course_description = "";
-        String term = "";
-        String encoded_by_id = MyUser.getUser_id();
-        String encoded_by = MyUser.getUser_screen_name();
-        String encoded_date = DateType.now();
-        String assessed_by_id = "";
-        String assessed_by = "";
-        String assessed_date = null;
-        String advised_by_id = "";
-        String advised_by = "";
-        String advised_date = null;
-        String approved_by_id = "";
-        String approved_by = "";
-        String approved_date = null;
-        String student_no = null;
-        String last_name = tf_field7.getText();
-        String first_name = tf_field5.getText();
-        String middle_name = tf_field6.getText();
-        String nick_name = tf_field8.getText();
-        String current_address = tf_field104.getText();
-        String permanent_address = tf_field9.getText();
-        String email_address = tf_field11.getText();
-        String postal_code = tf_field10.getText();
-        String tel_no = tf_field12.getText();
-        String mobile_no = tf_field13.getText();
-        String date_of_birth = DateType.sf.format(jDateChooser1.getDate());
-        String place_of_birth = tf_field14.getText();
-        int age = FitIn.toInt(tf_field15.getText());
-        int gender = 0;
-        if (jCheckBox1.isSelected()) {
-            gender = 1;
-        }
-        String citizenship = tf_field16.getText();
-        String religion = tf_field17.getText();
-        String civil_status = "1";
-        if (jCheckBox4.isSelected()) {
-            civil_status = "2";
-        }
-        if (jCheckBox5.isSelected()) {
-            civil_status = "3";
-        }
-        if (jCheckBox6.isSelected()) {
-            civil_status = "4";
-        }
-        String spouse_name = tf_field18.getText();
-        String date_of_communion = null;
-        String date_of_confirmation = null;
-        try {
-            date_of_communion = DateType.sf.format(jDateChooser2.getDate());
-            date_of_confirmation = DateType.sf.format(jDateChooser3.getDate());
-        } catch (Exception e) {
-        }
-        
-        int is_right_hande = 0;
-        if (jCheckBox10.isSelected()) {
-            is_right_hande = 1;
-        }
-
-        int is_indigenous = 0;
-        if (jCheckBox11.isSelected()) {
-            is_indigenous = 1;
-        }
-        String indigenous_name = tf_field105.getText();
-
-        int level_id = 0;
-        String level = null;
-        int college_id = 0;
-        String college = null;
-        int department_id = 0;
-        String department = null;
-        String year_level = null;
-        String year_level_status = null;
-
-        String preferred_course1 = tf_field28.getText();
-        String preferred_course2 = tf_field29.getText();
-        String preferred_course3 = tf_field30.getText();
-
-        String father_name = tf_field31.getText();
-        String father_citizenship = tf_field33.getText();
-        String father_home_address = tf_field35.getText();
-        String father_email_address = tf_field36.getText();
-        String father_mobile_no = tf_field42.getText();
-        String father_occupation = tf_field40.getText();
-        String father_employer = tf_field43.getText();
-        String father_business_address = tf_field44.getText();
-        String father_business_tel_no = tf_field51.getText();
-        String father_educational_attainment = tf_field47.getText();
-        String father_last_school_attended = tf_field48.getText();
-
-        String mother_name = tf_field32.getText();
-        String mother_citizenship = tf_field34.getText();
-        String mother_home_address = tf_field37.getText();
-        String mother_email_address = tf_field38.getText();
-        String mother_mobile_no = tf_field39.getText();
-        String mother_occupation = tf_field41.getText();
-        String mother_employer = tf_field45.getText();
-        String mother_business_address = tf_field46.getText();
-        String mother_business_tel_no = tf_field52.getText();
-        String mother_educational_attainment = tf_field49.getText();
-        String mother_last_school_attended = tf_field50.getText();
-
-        String guardian_name = tf_field101.getText();
-        String guardian_mailing_address = tf_field102.getText();
-        String guardian_telephone_no = tf_field103.getText();
-
-        String grade_school_name = tf_field19.getText();
-        String grade_school_region = tf_field22.getText();
-        String grade_school_school_year = tf_field25.getText();
-        String grade_school_awards = tf_field112.getText();
-
-        String high_school_name = tf_field20.getText();
-        String high_school_region = tf_field23.getText();
-        String high_school_school_year = tf_field26.getText();
-        String high_school_awards = tf_field114.getText();
-
-        String college_school_name = tf_field21.getText();
-        String college_school_region = tf_field24.getText();
-        String college_school_school_year = tf_field27.getText();
-        String college_awards = tf_field116.getText();
-
-        String junior_high_name = tf_field106.getText();
-        String junior_high_region = tf_field107.getText();
-        String junior_high_year = tf_field108.getText();
-        String junior_high_awards = tf_field113.getText();
-
-        String tesda_name = tf_field109.getText();
-        String tesda_region = tf_field110.getText();
-        String tesda_year = tf_field111.getText();
-        String tesda_awards = tf_field115.getText();
-
-        String sibling1 = concat_s(tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field117);
-        String sibling2 = concat_s(tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64, tf_field118);
-        String sibling3 = concat_s(tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field119);
-        String sibling4 = concat_s(tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76, tf_field120);
-        String sibling5 = concat_s(tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field121);
-        String sibling6 = concat_s(tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95, tf_field122);
-        String sibling7 = concat_s(tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field122);
-        String sibling8 = concat_s(tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100, tf_field124);
-
-        String created_at = DateType.now();
-        String updated_at = DateType.now();
-        String created_by = MyUser.getUser_id();
-        String updated_by = MyUser.getUser_id();
-        int status = 0;
-        int is_uploaded = 0;
-        String date_enrolled = "";
-        Enrollments.to_enrollments enroll = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled);
-        String en_no = Enrollments.add_data(enroll);
-        enroll.setEnrollment_no(en_no);
-        enrollment = enroll;
-
-        String webcam_enable = System.getProperty("webcam_enable", "false");
-        if (!webcam_enable.equalsIgnoreCase("")) {
-            try {
-                send_image_to_server(en_no);
-//                ImageIcon imageIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png")).getImage().getScaledInstance(176, 144, Image.SCALE_DEFAULT));
-//                jLabel3.setIcon(imageIcon);
-                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png"))); // NOI18N
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-
-    }
-
-    private void send_image_to_server(String enrollment_no) throws IOException {
-
-        String image_server = System.getProperty("image_server", "192.168.10.127"); //
-        if (!image_server.isEmpty()) {
-            FileInputStream inputStream = null;
-            
-            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-            String orig_file = home + "\\images_cis\\image.jpg";
-            File sourceFile = new File(orig_file);
-            File destinationFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");
-            File destinationFile2 = new File( home + "\\images_cis\\enrollments\\" + enrollment_no + ".jpg");
-            inputStream = new FileInputStream(sourceFile);
-            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-            FileOutputStream outputStream2 = new FileOutputStream(destinationFile2);
-            FileChannel inChannel = inputStream.getChannel();
-            FileChannel inChannel2 = inputStream.getChannel();
-            FileChannel outChannel = outputStream.getChannel();
-            FileChannel outChannel2 = outputStream2.getChannel();
-            try {
-                inChannel.transferTo(0, inChannel.size(), outChannel);
-                inChannel2.transferTo(0, inChannel2.size(), outChannel2);
-
-            } finally {
-                inChannel.close();
-                outChannel.close();
-                inputStream.close();
-                outputStream.close();
-
-                inChannel2.close();
-                outChannel2.close();
-//                inputStream2.close();
-                outputStream2.close();
-                
-                if (sourceFile.delete()) {
-                    System.out.println("Local image deleted");
-                } else {
-                    System.out.println("Failed to delete local image");
-                }
-            }
-        }
-
-    }
-    Enrollments.to_enrollments enrollment = null;
-
-    private void proceed_to_enrollment() {
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
-        nd.do_pass();
-        nd.setCallback(new Dlg_confirm_action.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-                proceed_to_enrollment_2();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private void proceed_to_enrollment_2() {
-        Loader loader = new Loader(this);
-        loader.execute();
-    }
-
-    public class Loader extends SwingWorker {
-
-        private Loading dialog;
-
-        public Loader(JDialog dlg) {
-
-            dialog = new Loading();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            int xSize = ((int) tk.getScreenSize().
-                    getWidth());
-            int ySize = ((int) tk.getScreenSize().
-                    getHeight());
-            dialog.setSize(xSize, ySize);
-            dialog.setPreferredSize(new Dimension(xSize, ySize));
-            dialog.setAlwaysOnTop(true);
-            addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("state".equals(evt.getPropertyName())) {
-                        if (getState() == SwingWorker.StateValue.STARTED) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (getState() == SwingWorker.StateValue.STARTED) {
-                                        dialog.setVisible(true);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-        }
-
-        @Override
-        protected Object doInBackground() throws Exception {
-            enroll();
-            return null;
-        }
-
-        @Override
-        protected void done() {
-            dialog.dispose();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    enrolled();
-                }
-            });
-        }
-
-    }
-
-    private void enrolled() {
-        Window p = (Window) this;
-        Dlg_student_enrollment_successful nd = Dlg_student_enrollment_successful.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(enrollment);
-        nd.setCallback(new Dlg_student_enrollment_successful.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_student_enrollment_successful.OutputData data) {
-                closeDialog.ok();
-                enrollment = null;
-                clear_fields();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private void init_departments() {
-        Object[][] obj = new Object[deps.size()][1];
-        int i = 0;
-        for (Departments.to_departments to : deps) {
-            obj[i][0] = " " + to.department_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field126.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field126, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Departments.to_departments to = deps.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field126;
-                co.setText("" + to.department_name);
-                co.setId("" + to.id);
-
-                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
-                Field.Combo co1 = (Field.Combo) tf_field125;
-                if (!colleges2.isEmpty()) {
-                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
-                } else {
-                    co1.setText("");
-                    co1.setId("");
-                }
-
-            }
-        });
-
-    }
-
-    private void init_colleges() {
-
-        Object[][] obj = new Object[colleges2.size()][1];
-        int i = 0;
-        for (Colleges.to_colleges to : colleges2) {
-            obj[i][0] = " " + to.college_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field125.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field125, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Colleges.to_colleges to = colleges2.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field125;
-                co.setText("" + to.college_name);
-                co.setId("" + to.id);
-            }
-
-        });
-    }
-
-    private void init_card() {
-
-        card = new CardLayout();
-        jPanel24.setLayout(card);
-        jPanel24.setPreferredSize(new Dimension(154, 120));
-
-        jPanel24.add(jPanel25, "1");
-        jPanel24.add(jLabel3, "2");
-
-        card.show(jPanel24, "2");
-
-    }
-
-    private final Dimension size = WebcamResolution.QQVGA.getSize();
-    private List<Webcam> webcams = new ArrayList();
-    private final List<WebcamPanel> panels = new ArrayList<>();
-    CardLayout card;
-
     private void init_camera() {
 
         //<editor-fold defaultstate="collapsed" desc=" camera ">
@@ -3799,4 +3365,408 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         //</editor-fold>
     }
 
+    private void init_card() {
+
+        card = new CardLayout();
+        jPanel24.setLayout(card);
+        jPanel24.setPreferredSize(new Dimension(154, 120));
+
+        jPanel24.add(jPanel25, "1");
+        jPanel24.add(jLabel3, "2");
+
+        card.show(jPanel24, "2");
+
+    }
+
+    List<Departments.to_departments> deps = new ArrayList();
+    List<Colleges.to_colleges> colleges2 = new ArrayList();
+
+    private void init_departments() {
+        Object[][] obj = new Object[deps.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field126.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field126, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field126;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field125;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+
+            }
+        });
+
+    }
+
+    private void init_colleges() {
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field125.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field125, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field125;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+            }
+
+        });
+    }
+
+    private void check_status() {
+        if (jCheckBox4.isSelected()) {
+            tf_field18.setEnabled(true);
+        } else {
+            tf_field18.setEnabled(false);
+            tf_field18.setText("");
+        }
+    }
+
+    private void check_indigenous() {
+        if (jCheckBox11.isSelected()) {
+            tf_field105.setEnabled(true);
+        } else {
+            tf_field105.setEnabled(false);
+            tf_field105.setText("");
+        }
+    }
+
+    private void clear_fields() {
+        JTextField[] tfs = {tf_field7, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
+            tf_field16, tf_field17, tf_field18, tf_field28, tf_field29, tf_field30, tf_field31, tf_field33, tf_field35, tf_field36, tf_field42, tf_field40, tf_field43,
+            tf_field44, tf_field51, tf_field47, tf_field48, tf_field32, tf_field34, tf_field37, tf_field38, tf_field39, tf_field41, tf_field45, tf_field46, tf_field52,
+            tf_field49, tf_field50, tf_field101, tf_field102, tf_field103, tf_field19, tf_field22, tf_field25, tf_field20, tf_field23, tf_field26, tf_field21, tf_field24, tf_field27,
+            tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64,
+            tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76,
+            tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95,
+            tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100,
+            tf_field104, tf_field112, tf_field113, tf_field114, tf_field115, tf_field116, tf_field106, tf_field108, tf_field109, tf_field111, tf_field115,};
+//        enrollment = null;
+        for (JTextField tf : tfs) {
+            tf.setText("");
+        }
+        tf_field15.setText("");
+        tf_field5.grabFocus();
+        jTabbedPane1.setSelectedIndex(0);
+
+    }
+
+    //<editor-fold defaultstate="collapsed" desc=" Combos ">
+    private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3, JTextField tf4, JTextField tf5, JTextField tf6, JTextField tf7) {
+        String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText() + "%" + tf4.getText() + "%" + tf5.getText() + "%" + tf6.getText() + "%" + tf7.getText();
+        return ret;
+    }
+
+    private void check_input() {
+        if (tf_field5.getText().isEmpty()) {
+            tf_field5.grabFocus();
+            Alert.set(0, "Input First name");
+            return;
+        }
+        if (tf_field7.getText().isEmpty()) {
+            tf_field7.grabFocus();
+            Alert.set(0, "Input Last name");
+            return;
+        }
+        int age = FitIn.toInt(tf_field15.getText());
+        if (age <= 3) {
+            Alert.set(0, "Input Birthdate");
+            return;
+        }
+
+        int updated = 0;
+        if (!tf_field104.getText().isEmpty()) {
+            List<Current_addresses.to_current_addresses> result = addresses
+                    .stream()
+                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field104.getText().toLowerCase()))
+                    .collect(Collectors.toList());
+            if (result.isEmpty()) {
+                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field104.getText());
+                Current_addresses.add_data(add);
+                updated = 1;
+            }
+        }
+        if (!tf_field9.getText().isEmpty()) {
+            List<Current_addresses.to_current_addresses> result = addresses
+                    .stream()
+                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field9.getText().toLowerCase()))
+                    .collect(Collectors.toList());
+            if (result.isEmpty()) {
+                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field9.getText());
+                Current_addresses.add_data(add);
+                updated = 1;
+            }
+        }
+        if (!tf_field14.getText().isEmpty()) {
+            List<Current_addresses.to_current_addresses> result = addresses
+                    .stream()
+                    .filter(x -> x.address.toLowerCase().equalsIgnoreCase(tf_field14.getText().toLowerCase()))
+                    .collect(Collectors.toList());
+            if (result.isEmpty()) {
+                Current_addresses.to_current_addresses add = new Current_addresses.to_current_addresses(age, tf_field14.getText());
+                Current_addresses.add_data(add);
+                updated = 1;
+            }
+        }
+        if (updated == 1) {
+            addresses = Current_addresses.ret_data(" order by address asc ");
+        }
+        jTabbedPane1.setSelectedIndex(1);
+    }
+
+    private void academic_year() {
+        Window p = (Window) this;
+        Dlg_academic_years nd = Dlg_academic_years.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_academic_years.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_academic_years.OutputData data) {
+                closeDialog.ok();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void init_academic_years() {
+        Object[][] obj = new Object[acad_years.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field129.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field129, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field129;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+
+            }
+        });
+    }
+
+    private void ok1() {
+
+        int id = 0;
+        int is_transferee = 0;
+        if (jCheckBox7.isSelected()) {
+            is_transferee = 1;
+        }
+        Field.Combo ay = (Field.Combo) tf_field129;
+
+        int academic_year_id = FitIn.toInt(ay.getId());
+        String academic_year = ay.getText();
+        String student_no = "";
+        String last_name = tf_field7.getText();
+        String first_name = tf_field5.getText();
+        String middle_name = tf_field6.getText();
+        String nick_name = tf_field8.getText();
+        String current_address = tf_field104.getText();
+        String permanent_address = tf_field9.getText();
+        String email_address = tf_field11.getText();
+        String postal_code = tf_field10.getText();
+        String tel_no = tf_field12.getText();
+        String mobile_no = tf_field13.getText();
+        String date_of_birth = DateType.sf.format(jDateChooser1.getDate());
+        String place_of_birth = tf_field14.getText();
+        int age = FitIn.toInt(tf_field15.getText());
+        int gender = 0;
+        if (jCheckBox1.isSelected()) {
+            gender = 1;
+        }
+
+        String citizenship = tf_field16.getText();
+        String religion = tf_field17.getText();
+        String civil_status = "1";
+        if (jCheckBox4.isSelected()) {
+            civil_status = "2";
+        }
+        if (jCheckBox5.isSelected()) {
+            civil_status = "3";
+        }
+        if (jCheckBox6.isSelected()) {
+            civil_status = "4";
+        }
+        String spouse_name = tf_field18.getText();
+        String date_of_communion = null;
+        String date_of_confirmation = null;
+        try {
+            date_of_communion = DateType.sf.format(jDateChooser2.getDate());
+            date_of_confirmation = DateType.sf.format(jDateChooser3.getDate());
+        } catch (Exception e) {
+        }
+
+        int is_right_hande = 0;
+        if (jCheckBox10.isSelected()) {
+            is_right_hande = 1;
+        }
+
+        int is_indigenous = 0;
+        if (jCheckBox11.isSelected()) {
+            is_indigenous = 1;
+        }
+        String indigenous_name = tf_field105.getText();
+
+        Field.Combo lb = (Field.Combo) tf_field127;
+        Field.Combo co = (Field.Combo) tf_field125;
+        Field.Combo de = (Field.Combo) tf_field126;
+
+        int level_id = FitIn.toInt(lb.getId());
+        String level = lb.getText();
+        int college_id = FitIn.toInt(co.getId());
+        String college = co.getText();
+        int department_id = FitIn.toInt(de.getId());
+        String department = de.getText();
+        String year_level = tf_field128.getText();
+        String year_level_status = "Regular";
+        if (!jCheckBox8.isSelected()) {
+            year_level_status = "Irregular";
+        }
+
+        String preferred_course1 = tf_field28.getText();
+        String preferred_course2 = tf_field29.getText();
+        String preferred_course3 = tf_field30.getText();
+
+        String father_name = tf_field31.getText();
+        String father_citizenship = tf_field33.getText();
+        String father_home_address = tf_field35.getText();
+        String father_email_address = tf_field36.getText();
+        String father_mobile_no = tf_field42.getText();
+        String father_occupation = tf_field40.getText();
+        String father_employer = tf_field43.getText();
+        String father_business_address = tf_field44.getText();
+        String father_business_tel_no = tf_field51.getText();
+        String father_educational_attainment = tf_field47.getText();
+        String father_last_school_attended = tf_field48.getText();
+
+        String mother_name = tf_field32.getText();
+        String mother_citizenship = tf_field34.getText();
+        String mother_home_address = tf_field37.getText();
+        String mother_email_address = tf_field38.getText();
+        String mother_mobile_no = tf_field39.getText();
+        String mother_occupation = tf_field41.getText();
+        String mother_employer = tf_field45.getText();
+        String mother_business_address = tf_field46.getText();
+        String mother_business_tel_no = tf_field52.getText();
+        String mother_educational_attainment = tf_field49.getText();
+        String mother_last_school_attended = tf_field50.getText();
+
+        String guardian_name = tf_field101.getText();
+        String guardian_mailing_address = tf_field102.getText();
+        String guardian_telephone_no = tf_field103.getText();
+
+        String grade_school_name = tf_field19.getText();
+        String grade_school_region = tf_field22.getText();
+        String grade_school_school_year = tf_field25.getText();
+        String grade_school_awards = tf_field112.getText();
+
+        String high_school_name = tf_field20.getText();
+        String high_school_region = tf_field23.getText();
+        String high_school_school_year = tf_field26.getText();
+        String high_school_awards = tf_field114.getText();
+
+        String college_school_name = tf_field21.getText();
+        String college_school_region = tf_field24.getText();
+        String college_school_school_year = tf_field27.getText();
+        String college_awards = tf_field116.getText();
+
+        String junior_high_name = tf_field106.getText();
+        String junior_high_region = tf_field107.getText();
+        String junior_high_year = tf_field108.getText();
+        String junior_high_awards = tf_field113.getText();
+
+        String tesda_name = tf_field109.getText();
+        String tesda_region = tf_field110.getText();
+        String tesda_year = tf_field111.getText();
+        String tesda_awards = tf_field115.getText();
+
+        String sibling1 = concat_s(tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field117);
+        String sibling2 = concat_s(tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64, tf_field118);
+        String sibling3 = concat_s(tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field119);
+        String sibling4 = concat_s(tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76, tf_field120);
+        String sibling5 = concat_s(tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field121);
+        String sibling6 = concat_s(tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95, tf_field122);
+        String sibling7 = concat_s(tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field122);
+        String sibling8 = concat_s(tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100, tf_field124);
+
+        String created_at = DateType.now();
+        String updated_at = DateType.now();
+        String created_by = MyUser.getUser_id();
+        String updated_by = MyUser.getUser_id();
+        int status = 0;
+        int is_uploaded = 0;
+        String date_enrolled = null;
+        int is_right_handed = 1;
+        if (jCheckBox9.isSelected()) {
+            is_right_handed = 0;
+        }
+        int course_id = 0;
+        String course_code = "";
+        String course_description = "";
+        Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled);
+
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData(student));
+        }
+    }
+
+    private void confirm_ok() {
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                ok1();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+    
 }

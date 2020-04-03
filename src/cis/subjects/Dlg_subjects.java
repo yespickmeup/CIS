@@ -555,9 +555,7 @@ public class Dlg_subjects extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
 
         init_tbl_subjects(tbl_subjects);
-
-        
-
+    
         ret_subjects();
         tf_field3.setVisible(false);
         jCheckBox2.setVisible(false);

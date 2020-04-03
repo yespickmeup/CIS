@@ -85,7 +85,7 @@ insert into user_default_privileges(account,privilege)values('Maintenance','Depa
 insert into user_default_privileges(account,privilege)values('Maintenance','Faculty and Staff');
 insert into user_default_privileges(account,privilege)values('Maintenance','Subjects');
 insert into user_default_privileges(account,privilege)values('Maintenance','Users');
-in
+insert into user_default_privileges(account,privilege)values('Maintenance','Students Masterlist');
 
 
 alter table academic_offering_subjects add faculty_id int after is_uploaded  ;
