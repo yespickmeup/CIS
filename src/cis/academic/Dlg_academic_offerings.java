@@ -901,10 +901,10 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
-        acad_years = Academic_years.ret_data("");
+        acad_years = Academic_years.ret_data(" order by id asc ");
         deps = Departments.ret_data(" order by department_name  asc ");
         if (!deps.isEmpty()) {
             Departments.to_departments dep = (Departments.to_departments) deps.get(0);
@@ -1003,7 +1003,6 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 co.setText("" + to.years);
                 co.setId("" + to.id);
                 ret_offerings();
-
             }
         });
     }

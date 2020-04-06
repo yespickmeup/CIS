@@ -71,8 +71,8 @@ public class Academic_offering_subjects {
         public void setSelected(boolean selected) {
             this.selected = selected;
         }
-        
-        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int faculty_id, String faculty_name, String room, String schedule, int room_id,boolean selected) {
+
+        public to_academic_offering_subjects(int id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int faculty_id, String faculty_name, String room, String schedule, int room_id, boolean selected) {
             this.id = id;
             this.academic_offering_id = academic_offering_id;
             this.academic_year_id = academic_year_id;
@@ -111,9 +111,9 @@ public class Academic_offering_subjects {
             this.room = room;
             this.schedule = schedule;
             this.room_id = room_id;
-            this.selected=selected;
+            this.selected = selected;
         }
-        
+
     }
 
     public static void add_data(to_academic_offering_subjects to_academic_offering_subjects, List<Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites> to_academic_offering_subject_prerequisites1) {
@@ -240,6 +240,242 @@ public class Academic_offering_subjects {
                     .ok();
 
             stmt.addBatch(s0);
+
+            for (Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites to_academic_offering_subject_prerequisites : to_academic_offering_subject_prerequisites1) {
+                String s2 = "insert into academic_offering_subject_prerequisites("
+                        + "academic_offering_id"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",level_id"
+                        + ",level"
+                        + ",college_id"
+                        + ",college"
+                        + ",department_id"
+                        + ",department"
+                        + ",course_id"
+                        + ",course_code"
+                        + ",course_description"
+                        + ",term"
+                        + ",year_level"
+                        + ",ref_subject_id"
+                        + ",main_subject_id"
+                        + ",subject_code"
+                        + ",description"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + ",remarks"
+                        + ",subject_group"
+                        + ",subject_group_id"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":academic_offering_id"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:level_id"
+                        + ",:level"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:department_id"
+                        + ",:department"
+                        + ",:course_id"
+                        + ",:course_code"
+                        + ",:course_description"
+                        + ",:term"
+                        + ",:year_level"
+                        + ",:ref_subject_id"
+                        + ",:main_subject_id"
+                        + ",:subject_code"
+                        + ",:description"
+                        + ",:lecture_units"
+                        + ",:lab_units"
+                        + ",:remarks"
+                        + ",:subject_group"
+                        + ",:subject_group_id"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s2 = SqlStringUtil.parse(s2)
+                        .setNumber("academic_offering_id", to_academic_offering_subject_prerequisites.academic_offering_id)
+                        .setNumber("academic_year_id", to_academic_offering_subject_prerequisites.academic_year_id)
+                        .setString("academic_year", to_academic_offering_subject_prerequisites.academic_year)
+                        .setNumber("level_id", to_academic_offering_subject_prerequisites.level_id)
+                        .setString("level", to_academic_offering_subject_prerequisites.level)
+                        .setNumber("college_id", to_academic_offering_subject_prerequisites.college_id)
+                        .setString("college", to_academic_offering_subject_prerequisites.college)
+                        .setNumber("department_id", to_academic_offering_subject_prerequisites.department_id)
+                        .setString("department", to_academic_offering_subject_prerequisites.department)
+                        .setNumber("course_id", to_academic_offering_subject_prerequisites.course_id)
+                        .setString("course_code", to_academic_offering_subject_prerequisites.course_code)
+                        .setString("course_description", to_academic_offering_subject_prerequisites.course_description)
+                        .setString("term", to_academic_offering_subject_prerequisites.term)
+                        .setString("year_level", to_academic_offering_subject_prerequisites.year_level)
+                        .setNumber("ref_subject_id", to_academic_offering_subject_prerequisites.ref_subject_id)
+                        .setNumber("main_subject_id", to_academic_offering_subject_prerequisites.main_subject_id)
+                        .setString("subject_code", to_academic_offering_subject_prerequisites.subject_code)
+                        .setString("description", to_academic_offering_subject_prerequisites.description)
+                        .setNumber("lecture_units", to_academic_offering_subject_prerequisites.lecture_units)
+                        .setNumber("lab_units", to_academic_offering_subject_prerequisites.lab_units)
+                        .setString("remarks", to_academic_offering_subject_prerequisites.remarks)
+                        .setString("subject_group", to_academic_offering_subject_prerequisites.subject_group)
+                        .setNumber("subject_group_id", to_academic_offering_subject_prerequisites.subject_group_id)
+                        .setString("created_at", to_academic_offering_subject_prerequisites.created_at)
+                        .setString("updated_at", to_academic_offering_subject_prerequisites.updated_at)
+                        .setString("created_by", to_academic_offering_subject_prerequisites.created_by)
+                        .setString("updated_by", to_academic_offering_subject_prerequisites.updated_by)
+                        .setNumber("status", to_academic_offering_subject_prerequisites.status)
+                        .setNumber("is_uploaded", to_academic_offering_subject_prerequisites.is_uploaded)
+                        .ok();
+
+                stmt.addBatch(s2);
+            }
+
+            stmt.executeBatch();
+
+            conn.commit();
+            Lg.s(Academic_offering_subjects.class, "Successfully Added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void add_data_list(List<to_academic_offering_subjects> to_academic_offering_subjects1, List<Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites> to_academic_offering_subject_prerequisites1) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            for (to_academic_offering_subjects to_academic_offering_subjects : to_academic_offering_subjects1) {
+                String s0 = "insert into academic_offering_subjects("
+                        + "academic_offering_id"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",level_id"
+                        + ",level"
+                        + ",college_id"
+                        + ",college"
+                        + ",department_id"
+                        + ",department"
+                        + ",course_id"
+                        + ",course_code"
+                        + ",course_description"
+                        + ",term"
+                        + ",year_level"
+                        + ",subject_id"
+                        + ",subject_code"
+                        + ",description"
+                        + ",units"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + ",amount"
+                        + ",is_lab"
+                        + ",max_students"
+                        + ",prerequisite_subject_ids"
+                        + ",subject_group"
+                        + ",subject_group_id"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ",faculty_id"
+                        + ",faculty_name"
+                        + ",room"
+                        + ",schedule"
+                        + ",room_id"
+                        + ")values("
+                        + ":academic_offering_id"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:level_id"
+                        + ",:level"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:department_id"
+                        + ",:department"
+                        + ",:course_id"
+                        + ",:course_code"
+                        + ",:course_description"
+                        + ",:term"
+                        + ",:year_level"
+                        + ",:subject_id"
+                        + ",:subject_code"
+                        + ",:description"
+                        + ",:units"
+                        + ",:lecture_units"
+                        + ",:lab_units"
+                        + ",:amount"
+                        + ",:is_lab"
+                        + ",:max_students"
+                        + ",:prerequisite_subject_ids"
+                        + ",:subject_group"
+                        + ",:subject_group_id"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ",:faculty_id"
+                        + ",:faculty_name"
+                        + ",:room"
+                        + ",:schedule"
+                        + ",:room_id"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setNumber("academic_offering_id", to_academic_offering_subjects.academic_offering_id)
+                        .setNumber("academic_year_id", to_academic_offering_subjects.academic_year_id)
+                        .setString("academic_year", to_academic_offering_subjects.academic_year)
+                        .setNumber("level_id", to_academic_offering_subjects.level_id)
+                        .setString("level", to_academic_offering_subjects.level)
+                        .setNumber("college_id", to_academic_offering_subjects.college_id)
+                        .setString("college", to_academic_offering_subjects.college)
+                        .setNumber("department_id", to_academic_offering_subjects.department_id)
+                        .setString("department", to_academic_offering_subjects.department)
+                        .setNumber("course_id", to_academic_offering_subjects.course_id)
+                        .setString("course_code", to_academic_offering_subjects.course_code)
+                        .setString("course_description", to_academic_offering_subjects.course_description)
+                        .setString("term", to_academic_offering_subjects.term)
+                        .setString("year_level", to_academic_offering_subjects.year_level)
+                        .setNumber("subject_id", to_academic_offering_subjects.subject_id)
+                        .setString("subject_code", to_academic_offering_subjects.subject_code)
+                        .setString("description", to_academic_offering_subjects.description)
+                        .setNumber("units", to_academic_offering_subjects.units)
+                        .setNumber("lecture_units", to_academic_offering_subjects.lecture_units)
+                        .setNumber("lab_units", to_academic_offering_subjects.lab_units)
+                        .setNumber("amount", to_academic_offering_subjects.amount)
+                        .setNumber("is_lab", to_academic_offering_subjects.is_lab)
+                        .setNumber("max_students", to_academic_offering_subjects.max_students)
+                        .setString("prerequisite_subject_ids", to_academic_offering_subjects.prerequisite_subject_ids)
+                        .setString("subject_group", to_academic_offering_subjects.subject_group)
+                        .setNumber("subject_group_id", to_academic_offering_subjects.subject_group_id)
+                        .setString("created_at", to_academic_offering_subjects.created_at)
+                        .setString("updated_at", to_academic_offering_subjects.updated_at)
+                        .setString("created_by", to_academic_offering_subjects.created_by)
+                        .setString("updated_by", to_academic_offering_subjects.updated_by)
+                        .setNumber("status", to_academic_offering_subjects.status)
+                        .setNumber("is_uploaded", to_academic_offering_subjects.is_uploaded)
+                        .setNumber("faculty_id", to_academic_offering_subjects.faculty_id)
+                        .setString("faculty_name", to_academic_offering_subjects.faculty_name)
+                        .setString("room", to_academic_offering_subjects.room)
+                        .setString("schedule", to_academic_offering_subjects.schedule)
+                        .setNumber("room_id", to_academic_offering_subjects.room_id)
+                        .ok();
+
+                stmt.addBatch(s0);
+            }
 
             for (Academic_offering_subject_prerequisites.to_academic_offering_subject_prerequisites to_academic_offering_subject_prerequisites : to_academic_offering_subject_prerequisites1) {
                 String s2 = "insert into academic_offering_subject_prerequisites("
@@ -491,7 +727,7 @@ public class Academic_offering_subjects {
             MyConnection.close();
         }
     }
-    
+
     public static void delete_data(to_academic_offering_subjects to_academic_offering_subjects) {
         try {
             Connection conn = MyConnection.connect();
@@ -598,7 +834,7 @@ public class Academic_offering_subjects {
                 String schedule = rs.getString(37);
                 int room_id = rs.getInt(38);
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id,false);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id, false);
                 datas.add(to);
             }
             return datas;
@@ -708,7 +944,7 @@ public class Academic_offering_subjects {
                         + ",remarks"
                         + " from academic_offering_subject_prerequisites"
                         + " where academic_offering_id='" + academic_offering_id + "' and ref_subject_id='" + subject_id + "' ";
-
+//                System.out.println(s2);
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
                 String pres = "";
@@ -730,7 +966,7 @@ public class Academic_offering_subjects {
 
                 }
 
-                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id,false);
+                to_academic_offering_subjects to = new to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, pres, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id, false);
                 datas.add(to);
             }
             return datas;
