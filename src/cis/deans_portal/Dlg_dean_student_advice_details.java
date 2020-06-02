@@ -4209,6 +4209,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             });
 
         }
+        ret_loaded_subjects();
     }
 
     private void check_status() {
@@ -5360,7 +5361,10 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 }
             }
             if (exist == 0) {
-                to_add.add(to);
+                if (to.status == 1) {
+                    to_add.add(to);
+                }
+
             }
         }
 

@@ -9,6 +9,7 @@ import cis.academic.Academic_offering_subjects;
 import cis.academic.Dlg_academic_offerings;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections;
+import cis.utils.Alert;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
@@ -721,6 +722,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             return;
         }
         to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+        if (to.status == 0) {
+            Alert.set(0, "Subject not yet open!");
+            return;
+        }
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(to));
         }

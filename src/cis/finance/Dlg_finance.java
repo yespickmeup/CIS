@@ -1764,7 +1764,7 @@ public class Dlg_finance extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-        
+
         deps = Departments.ret_data(" order by department_name  asc ");
 
         acad_years = Academic_years.ret_data(" where status=1 ");
@@ -1984,7 +1984,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 co.setText("" + to.course_description);
                 co.setId("" + to.id);
 
-                String[] year = {"First Year", "Second Year", "Third Year", "Fourt Year", "Fifth Year", "Sixth Year"};
+                String[] year = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year", "Sixth Year"};
                 for (int i = 0; i < to.no_of_years; i++) {
                     list_year2.add(year[i]);
                 }
@@ -2648,48 +2648,19 @@ public class Dlg_finance extends javax.swing.JDialog {
                 tf_field135.setText(to.advised_by);
                 tf_field134.setText(to.approved_by);
 
-                String image_server = System.getProperty("image_server", "192.168.10.127");
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String image_server = System.getProperty("image_server", "");
 
-                if (!image_server.isEmpty()) {
-                   String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + to.enrollment_no + ".jpg";
+                        if (!image_server.isEmpty()) {
+                            String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + to.enrollment_no + ".jpg";
 //            System.out.println("source: " + source);
-                    File sourceFile = new File(source);
-                    if (sourceFile.exists()) {
-                        BufferedImage img = null;
-                        try {
-                            img = ImageIO.read(sourceFile);
-                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                                                               Image.SCALE_SMOOTH);
-                            ImageIcon imageIcon = new ImageIcon(dimg);
-                            jLabel1.setIcon(imageIcon);
-                        } catch (IOException e) {
-                            System.out.println(e);
-                        }
-                    } else {
-
-                        try {
-                            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-                            FileInputStream inputStream = null;
-                            File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + to.enrollment_no + ".jpg");
-                            File destinationFile = new File(home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg");
-                            inputStream = new FileInputStream(sourceFile1);
-                            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-                            FileChannel inChannel = inputStream.getChannel();
-                            FileChannel outChannel = outputStream.getChannel();
-                            try {
-                                inChannel.transferTo(0, inChannel.size(), outChannel);
-
-                            } finally {
-                                inChannel.close();
-                                outChannel.close();
-                                inputStream.close();
-                                outputStream.close();
-
-                                String orig_file = home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg";
-                                File sourceFile2 = new File(orig_file);
+                            File sourceFile = new File(source);
+                            if (sourceFile.exists()) {
                                 BufferedImage img = null;
                                 try {
-                                    img = ImageIO.read(sourceFile2);
+                                    img = ImageIO.read(sourceFile);
                                     Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
                                                                        Image.SCALE_SMOOTH);
                                     ImageIcon imageIcon = new ImageIcon(dimg);
@@ -2697,13 +2668,48 @@ public class Dlg_finance extends javax.swing.JDialog {
                                 } catch (IOException e) {
                                     System.out.println(e);
                                 }
-                            }
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }
-                    }
+                            } else {
 
-                }
+                                try {
+                                    String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+                                    FileInputStream inputStream = null;
+                                    File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + to.enrollment_no + ".jpg");
+                                    File destinationFile = new File(home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg");
+                                    inputStream = new FileInputStream(sourceFile1);
+                                    FileOutputStream outputStream = new FileOutputStream(destinationFile);
+                                    FileChannel inChannel = inputStream.getChannel();
+                                    FileChannel outChannel = outputStream.getChannel();
+                                    try {
+                                        inChannel.transferTo(0, inChannel.size(), outChannel);
+
+                                    } finally {
+                                        inChannel.close();
+                                        outChannel.close();
+                                        inputStream.close();
+                                        outputStream.close();
+
+                                        String orig_file = home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg";
+                                        File sourceFile2 = new File(orig_file);
+                                        BufferedImage img = null;
+                                        try {
+                                            img = ImageIO.read(sourceFile2);
+                                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                                                                               Image.SCALE_SMOOTH);
+                                            ImageIcon imageIcon = new ImageIcon(dimg);
+                                            jLabel1.setIcon(imageIcon);
+                                        } catch (IOException e) {
+                                            System.out.println(e);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println(e);
+                                }
+                            }
+
+                        }
+
+                    }
+                });
 
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -2805,16 +2811,17 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String college = assessment.college;
                 String department = assessment.department;
                 String year_level = assessment.year_level;
-                double tuition_amount = 11500;
-                double tuition_discount = 1000;
-                int no_of_units = 23;
-                double amount_per_unit = 500;
-                double miscellaneous_amount = 5000;
+
+                double tuition_amount = 0;
+                double tuition_discount = 0;
+                int no_of_units = 0;
+                double amount_per_unit = 0;
+                double miscellaneous_amount = 0;
                 double miscellaneous_discount = 0;
-                double other_fees_amount = 1000;
+                double other_fees_amount = 0;
                 double other_fees_discount = 0;
-                double total_discount = 1000;
-                double total_amount_due = 16500;
+                double total_discount = 0;
+                double total_amount_due = 0;
                 String home = System.getProperty("user.home");
                 String SUBREPORT_DIR = home + "\\cis\\";
                 List<Srpt_enrollment_assessment.field> fields = new ArrayList();
@@ -2828,13 +2835,68 @@ public class Dlg_finance extends javax.swing.JDialog {
                     String prerequisites = "";
                     double lec_units = sub.lecture_units;
                     double lab_units = sub.lab_units;
+//                    System.out.println("lec_units: "+lec_units +" + "+lab_units);
+
                     String faculty_name = sub.faculty_name;
                     String section = sub.section;
                     String room = sub.room;
                     String day = DateType.mwf(sub.day);
                     Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, subject_description, prerequisites, lec_units, lab_units, faculty_name, section, room, day);
                     rpt_subjects.add(f);
+                    no_of_units += sub.lecture_units + sub.lab_units;
                 }
+                //get tuition
+
+                String where = " where id<>0 ";
+                where = where + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=0 ";
+                List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+
+                if (!datas.isEmpty()) {
+
+                    Academic_year_fees.to_academic_year_fees to = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+
+                    if (to.is_per_unit == 0) {
+                        tuition_amount = to.amount;
+                    } else {
+                        amount_per_unit = to.per_unit;
+                        tuition_amount = to.per_unit * no_of_units;
+                    }
+
+                }
+                //get misc
+                String where2 = " where id<>0 ";
+                where2 = where2 + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=1 ";
+
+                List<Academic_year_fees.to_academic_year_fees> misc = Miscellaneous_fees.ret_data2(where2);
+
+                double amount = 0;
+                for (Academic_year_fees.to_academic_year_fees to : misc) {
+                    miscellaneous_amount += to.amount;
+                }
+                //get other fees     
+                String where3 = " where id<>0 ";
+                where3 = where3 + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=2 ";
+                List<Academic_year_fees.to_academic_year_fees> others = Miscellaneous_fees.ret_data3(where3);
+
+                for (Academic_year_fees.to_academic_year_fees to : datas) {
+                    other_fees_amount += to.amount;
+                }
+                total_amount_due = tuition_amount + miscellaneous_amount + other_fees_amount;
                 List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
                 List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
 

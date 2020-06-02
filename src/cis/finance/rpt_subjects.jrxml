@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f59ba956-a391-4239-a37b-a42858e0b907">
-	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="subject_code" class="java.lang.String"/>
@@ -17,6 +17,9 @@
 	</variable>
 	<variable name="lec_units_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{lec_units}+$F{lec_units}]]></variableExpression>
+	</variable>
+	<variable name="lec_units_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{lec_units} +$F{lab_units}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -122,6 +125,11 @@
 				</textElement>
 				<text><![CDATA[Units]]></text>
 			</staticText>
+			<staticText>
+				<reportElement uuid="85249a84-e701-4a41-a6ac-a2d8da671420" x="197" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[lec_units]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -208,7 +216,13 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="15" splitType="Stretch">
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch">
 			<textField>
 				<reportElement uuid="bc46bbab-de77-4812-8805-09cc3ad0474b" x="153" y="0" width="203" height="15"/>
 				<box>
@@ -240,23 +254,18 @@
 				</textElement>
 				<text><![CDATA[No. of units:]]></text>
 			</staticText>
-			<textField pattern="###0">
-				<reportElement uuid="d8cbee6c-1416-4cfd-a9ac-ac81792a430f" x="425" y="0" width="43" height="15"/>
+			<textField pattern="###0" isBlankWhenNull="false">
+				<reportElement uuid="611062f4-85fe-4db5-9139-60ea5863b436" mode="Transparent" x="426" y="0" width="42" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<bottomPen lineWidth="0.2"/>
 					<rightPen lineWidth="0.2"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{lec_units_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{lec_units_2}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

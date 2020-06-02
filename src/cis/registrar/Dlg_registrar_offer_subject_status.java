@@ -817,7 +817,29 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
         int col = tbl_enrollment_offered_subject_sections.getSelectedColumn();
         if (col == 7) {
-
+            if (to.day.isEmpty() || to.room.isEmpty() || to.faculty_name.isEmpty()) {
+                Alert.set(0, "Room/Faculty assignment not yet set");
+                return;
+            }
+            if (to.status == 1) {
+                Alert.set(0, "Section already open");
+                return;
+            }
+            Window p = (Window) this;
+            Dlg_registrar_offer_subject_status_update nd = Dlg_registrar_offer_subject_status_update.create(p, true);
+            nd.setTitle("");
+//            nd.do_pass(services);
+            nd.setCallback(new Dlg_registrar_offer_subject_status_update.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_update.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_offered_subject_sections.update_status(to, 1);
+                    Alert.set(2, "");
+                    ret_eos();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
         }
         if (col == 8) {
             Window p = (Window) this;

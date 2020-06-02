@@ -360,6 +360,28 @@ public class Enrollment_offered_subject_sections {
         }
     }
 
+    public static void update_status(to_enrollment_offered_subject_sections to_enrollment_offered_subject_sections, int status) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollment_offered_subject_sections set "
+                    + " status= :status "
+                    + " where id='" + to_enrollment_offered_subject_sections.id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("status", status)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollment_offered_subject_sections.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_enrollment_offered_subject_sections to_enrollment_offered_subject_sections) {
         try {
             Connection conn = MyConnection.connect();
