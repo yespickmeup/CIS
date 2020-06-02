@@ -363,12 +363,26 @@ public class Enrollment_offered_subject_sections {
     public static void delete_data(to_enrollment_offered_subject_sections to_enrollment_offered_subject_sections) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
             String s0 = "delete from enrollment_offered_subject_sections  "
                     + " where id='" + to_enrollment_offered_subject_sections.id + "' "
                     + " ";
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            String s3 = "delete from enrollment_offered_subject_section_instructors  "
+                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subject_sections.enrollment_offered_subject_id + "' "
+                    + " ";
+            stmt.addBatch(s3);
+
+            String s4 = "delete from enrollment_offered_subject_section_room_schedules  "
+                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subject_sections.enrollment_offered_subject_id + "' "
+                    + " ";
+            stmt.addBatch(s4);
+
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Enrollment_offered_subject_sections.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);

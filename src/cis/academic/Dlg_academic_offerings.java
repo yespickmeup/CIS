@@ -901,8 +901,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" order by id asc ");
         deps = Departments.ret_data(" order by department_name  asc ");
@@ -1509,6 +1509,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             }
         }
         where = where + " order by course_description asc ";
+       
         List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
         loadData_offerings(datas);
         jLabel4.setText("" + datas.size());

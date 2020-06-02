@@ -2973,9 +2973,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
-        System.setProperty("webcam_enable", "true");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
+//        System.setProperty("webcam_enable", "true");
 
         List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
 
@@ -2985,6 +2985,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             year.setText(to.years);
             year.setId("" + to.id);
         }
+        
         nationals = Countries.ret_data(" order by nationality");
         religions = Religions.ret_data(" order by religion asc ");
         tf_field2.setVisible(false);

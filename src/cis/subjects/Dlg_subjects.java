@@ -551,42 +551,39 @@ public class Dlg_subjects extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         init_tbl_subjects(tbl_subjects);
-    
-        ret_subjects();
+
         tf_field3.setVisible(false);
         jCheckBox2.setVisible(false);
         jLabel10.setVisible(false);
-        
-         deps2 = Departments.ret_data(" order by department_name  asc ");
+
+        deps2 = Departments.ret_data(" order by department_name  asc ");
         if (!deps2.isEmpty()) {
             Departments.to_departments dep = (Departments.to_departments) deps2.get(0);
             Field.Combo co = (Field.Combo) tf_field2;
             co.setText("" + dep.department_name);
             co.setId("" + dep.id);
 
-           
-
             colleges = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
             Field.Combo co1 = (Field.Combo) tf_field3;
-            
+
             if (!colleges.isEmpty()) {
                 Colleges.to_colleges c = (Colleges.to_colleges) colleges.get(0);
                 co1.setText("" + c.college_name);
                 co1.setId("" + c.id);
 
-               
             } else {
-                
+
                 co1.setText("");
                 co1.setId("");
-                
+
             }
         }
-        
+        ret_subjects();
+
     }
 
     public void do_pass() {
@@ -801,7 +798,8 @@ public class Dlg_subjects extends javax.swing.JDialog {
                 String updated_by = MyUser.getUser_id();
                 int status = 1;
                 int is_uploaded = 0;
-                Subjects.to_subjects subject = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                boolean selected = false;
+                Subjects.to_subjects subject = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
                 Subjects.add_data(subject, data.prerequisites);
                 Alert.set(1, level);
                 ret_subjects();
@@ -875,7 +873,8 @@ public class Dlg_subjects extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 1;
                     int is_uploaded = 2;
-                    Subjects.to_subjects subject = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    boolean selected = false;
+                    Subjects.to_subjects subject = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
                     Subjects.update_data(subject);
                     Alert.set(2, "");
                     ret_subjects();

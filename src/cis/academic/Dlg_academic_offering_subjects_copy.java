@@ -564,6 +564,7 @@ public class Dlg_academic_offering_subjects_copy extends javax.swing.JDialog {
                 }
                 co.setText("" + to.years);
                 co.setId("" + to.id);
+//                System.out.println("acad year id: " + to.id);
                 ret_aosp();
 
             }
@@ -802,6 +803,7 @@ public class Dlg_academic_offering_subjects_copy extends javax.swing.JDialog {
         Field.Input co = (Field.Input) tf_field2;
         if (!ay.getText().isEmpty()) {
             String where = " where academic_year_id='" + ay.getId() + "' and course_id='" + co.getId() + "' order by course_description asc ";
+            System.out.println("where2: " + where);
             List<Academic_offering_subjects.to_academic_offering_subjects> aosp = Academic_offering_subjects.ret_data_with_prerequisites(where);
             loadData_academic_offering_subjects(aosp);
             jLabel2.setText("" + aosp.size());
@@ -855,15 +857,16 @@ public class Dlg_academic_offering_subjects_copy extends javax.swing.JDialog {
             if (to.isSelected()) {
                 int id = 0;
                 int academic_offering_id = tao.id;
-                int academic_year_id = FitIn.toInt(ay.getId());
-                String academic_year = ay.getText();
+                int academic_year_id = tao.academic_year_id;
+//                System.out.println("tao.academic_year_id: "+tao.academic_year_id);
+                String academic_year = tao.academic_year;
                 int level_id = to.level_id;
                 String level = to.level;
                 int college_id = to.college_id;
                 String college = to.college;
                 int department_id = to.department_id;
                 String department = to.department;
-                int course_id = tao.college_id;
+                int course_id = tao.course_id;
                 String course_code = tao.course_code;
                 String course_description = tao.course_description;
                 String term = to.term;
@@ -893,7 +896,8 @@ public class Dlg_academic_offering_subjects_copy extends javax.swing.JDialog {
                 int room_id = to.room_id;
                 boolean selected = true;
 
-                Academic_offering_subjects.to_academic_offering_subjects to2 = new Academic_offering_subjects.to_academic_offering_subjects(id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id, selected);
+                Academic_offering_subjects.to_academic_offering_subjects to2 = new Academic_offering_subjects.to_academic_offering_subjects(id
+                        , academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded, faculty_id, faculty_name, room, schedule, room_id, selected);
                 to_be_added.add(to2);
 
                 if (!to.prerequisite_subject_ids.isEmpty()) {

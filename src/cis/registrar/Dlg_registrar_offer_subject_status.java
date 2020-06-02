@@ -8,7 +8,11 @@ package cis.registrar;
 import cis.academic.Dlg_academic_offerings;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subjects;
+import cis.users.MyUser;
+import cis.utils.Alert;
+import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
@@ -32,6 +36,7 @@ import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
+import synsoftech.util.ImageRenderer;
 
 /**
  *
@@ -214,15 +219,12 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         tf_field5 = new Field.Input();
         jLabel13 = new javax.swing.JLabel();
+        jButton1 = new Button.Primary();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_enrollment_offered_subject_sections = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton13 = new Button.Success();
-        jButton14 = new Button.Default();
-        jButton15 = new Button.Warning();
-        jButton16 = new Button.Dangerous();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -296,6 +298,13 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Laboratory:");
 
+        jButton1.setText("Add new section");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -317,15 +326,15 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addContainerGap())))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,8 +355,9 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                    .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -394,46 +404,13 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addContainerGap())
         );
-
-        jButton13.setText("Open");
-        jButton13.setFocusable(false);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
-        jButton14.setText("Repost");
-        jButton14.setFocusable(false);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-
-        jButton15.setText("Close");
-        jButton15.setFocusable(false);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
-        jButton16.setText("Drop");
-        jButton16.setEnabled(false);
-        jButton16.setFocusable(false);
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -442,14 +419,6 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
@@ -461,13 +430,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -509,51 +472,33 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field5ActionPerformed
 
     private void tbl_enrollment_offered_subject_sectionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
-//        select_section();
+        select_section();
     }//GEN-LAST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        do_open();
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        do_post();
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        add_new_section();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable tbl_enrollment_offered_subject_sections;
-    private javax.swing.JTextField tf_field2;
     private javax.swing.JTextField tf_field3;
     private javax.swing.JTextField tf_field4;
     private javax.swing.JTextField tf_field5;
@@ -574,12 +519,12 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         tf_field5.setText("" + to.lab_units);
 
         if (to.status == 0) {
-            jButton14.setEnabled(false);
-            jButton15.setEnabled(false);
+//            jButton14.setEnabled(false);
+//            jButton15.setEnabled(false);
 
         }
         if (to.status == 1) {
-            jButton13.setEnabled(false);
+//            jButton13.setEnabled(false);
         }
 
         ret_eos();
@@ -613,7 +558,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
         tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subject_sections.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 60, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 60, 30, 30, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
             if (i == 5) {
                 continue;
@@ -630,6 +575,9 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         TableColumnModel tcm = tbl_enrollment_offered_subject_sections.getColumnModel();
         TableColumn tm = tcm.getColumn(3);
         tm.setCellRenderer(new Dlg_academic_offerings.Html());
+
+        tbl_enrollment_offered_subject_sections.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+        tbl_enrollment_offered_subject_sections.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
     }
 
     public static class Html extends DefaultTableCellRenderer {
@@ -656,7 +604,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
     public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Section", "Max", "Room", "Day", "Time", "Instructor", "Status", "room", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Section", "Max", "Room", "Day", "Time", "Instructor", "Status", "", "", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
@@ -717,9 +665,9 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                         return " Dropped";
                     }
                 case 7:
-                    return tt.room;
+                    return "/cis/icons/cog.png";
                 case 8:
-                    return tt.schedule;
+                    return "/cis/icons/remove11.png";
                 case 9:
                     return tt.created_at;
                 case 10:
@@ -787,6 +735,107 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
     private void ok_open() {
         if (callback != null) {
             callback.open(new CloseDialog(this), new OutputData());
+        }
+    }
+
+    private void add_new_section() {
+        Window p = (Window) this;
+        Dlg_registrar_offer_subject_status_new_section nd = Dlg_registrar_offer_subject_status_new_section.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_registrar_offer_subject_status_new_section.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_new_section.OutputData data) {
+
+                List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = tbl_enrollment_offered_subject_sections_ALM;
+                for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections eos : datas) {
+                    if (eos.section.equalsIgnoreCase(data.section_name)) {
+                        Alert.set(0, "Section name already exists");
+                        return;
+                    }
+                }
+                closeDialog.ok();
+
+                int id = 0;
+                int enrollment_offered_subject_id = enroll.id;
+                int academic_offering_subject_id = enroll.academic_offering_subject_id;
+                int academic_offering_id = enroll.academic_offering_id;
+                int academic_year_id = enroll.academic_year_id;
+                String academic_year = enroll.academic_year;
+                int level_id = enroll.level_id;
+                String level = enroll.level;
+                int college_id = enroll.college_id;
+                String college = enroll.college;
+                int department_id = enroll.department_id;
+                String department = enroll.department;
+                int course_id = enroll.course_id;
+                String course_code = enroll.course_code;
+                String course_description = enroll.course_description;
+                String term = enroll.term;
+                String year_level = enroll.year_level;
+                int subject_id = enroll.subject_id;
+                String subject_code = enroll.subject_code;
+                String description = enroll.description;
+                double units = enroll.units;
+                double lecture_units = enroll.lecture_units;
+                double lab_units = enroll.lab_units;
+                double amount = enroll.amount;
+                int is_lab = enroll.is_lab;
+                int max_students = data.max_students;
+                String faculty_id = "";
+                String faculty_name = "";
+                String section = data.section_name;
+                int room_id = 0;
+                String room = "";
+                String schedule = "";
+                String day = "";
+                String time = "";
+                String start_time = null;
+                String closing_time = null;
+                String created_at = DateType.now();
+                String updated_at = DateType.now();
+                String created_by = MyUser.getUser_id();
+                String updated_by = MyUser.getUser_id();
+                int status = 0;
+                int is_uploaded = 0;
+                Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = new Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections(0, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                Enrollment_offered_subject_sections.add_data(to);
+                Alert.set(1, "");
+                ret_eos();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void select_section() {
+        int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+        int col = tbl_enrollment_offered_subject_sections.getSelectedColumn();
+        if (col == 7) {
+
+        }
+        if (col == 8) {
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+//            nd.do_pass(services);
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_offered_subject_sections.delete_data(to);
+                    Alert.set(3, "");
+                    ret_eos();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
         }
     }
 }

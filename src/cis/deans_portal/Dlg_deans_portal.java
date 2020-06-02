@@ -1282,8 +1282,8 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
         init_key();
         acad_years = Academic_years.ret_data("");
         if (!acad_years.isEmpty()) {
@@ -2055,7 +2055,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     if (college.isEmpty() && course.isEmpty()) {
                         return " ";
                     } else {
-                        return " " + college + " - " + course;
+                        return " " + course + " - " + college;
                     }
 
                 case 4:
@@ -2330,7 +2330,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 ret_enrollments();
             }
         });
-        nd.setLocationRelativeTo(this);
+        nd.setLocationRelativeTo(null);
         nd.setVisible(true);
     }
 

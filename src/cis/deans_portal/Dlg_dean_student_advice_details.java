@@ -9,9 +9,9 @@ import cis.academic.Academic_offering_subjects;
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_year_periods;
+import cis.academic.Academic_years;
 import cis.academic.Srpt_academic_offering_subjects;
 import cis.enrollments.Dlg_student_enrollment_approved;
-import cis.enrollments.Dlg_student_enrollment_successful;
 import cis.enrollments.Enrollment_department_requirements;
 import cis.enrollments.Enrollment_department_requirements.to_enrollment_department_requirements;
 import cis.enrollments.Enrollment_offered_subject_sections;
@@ -3821,14 +3821,15 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-//        List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
-//
-//        if (!acad_years.isEmpty()) {
-//            Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
+        List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
+
+        if (!acad_years.isEmpty()) {
+            Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
 //            Field.Input year = (Field.Input) tf_field2;
 //            year.setText(to.years);
 //            year.setId("" + to.id);
-//        }
+            academic_year_id = to.id;
+        }
         init_tbl_enrollment_department_requirements(tbl_enrollment_department_requirements);
         init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
         init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
@@ -3837,6 +3838,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
     Enrollments.to_enrollments enroll = null;
     int academic_offering_id = 0;
+    int academic_year_id = 0;
 
     public void do_pass(Enrollments.to_enrollments student, int is_dean) {
         if (is_dean == 0) {
@@ -4144,49 +4146,19 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         });
 
         //set image 
-        String image_server = System.getProperty("image_server", "192.168.10.127");
+        String image_server = System.getProperty("image_server", "");
 
         if (!image_server.isEmpty()) {
-            String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + student.enrollment_no + ".jpg";
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + student.enrollment_no + ".jpg";
 //            System.out.println("source: " + source);
-            File sourceFile = new File(source);
-            if (sourceFile.exists()) {
-                BufferedImage img = null;
-                try {
-                    img = ImageIO.read(sourceFile);
-                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                                                       Image.SCALE_SMOOTH);
-                    ImageIcon imageIcon = new ImageIcon(dimg);
-                    jLabel1.setIcon(imageIcon);
-                } catch (IOException e) {
-                    System.out.println(e);
-                }
-//
-            } else {
-
-                try {
-                    String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-                    FileInputStream inputStream = null;
-                    File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + student.enrollment_no + ".jpg");
-                    File destinationFile = new File(home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg");
-                    inputStream = new FileInputStream(sourceFile1);
-                    FileOutputStream outputStream = new FileOutputStream(destinationFile);
-                    FileChannel inChannel = inputStream.getChannel();
-                    FileChannel outChannel = outputStream.getChannel();
-                    try {
-                        inChannel.transferTo(0, inChannel.size(), outChannel);
-
-                    } finally {
-                        inChannel.close();
-                        outChannel.close();
-                        inputStream.close();
-                        outputStream.close();
-
-                        String orig_file = home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg";
-                        File sourceFile2 = new File(orig_file);
+                    File sourceFile = new File(source);
+                    if (sourceFile.exists()) {
                         BufferedImage img = null;
                         try {
-                            img = ImageIO.read(sourceFile2);
+                            img = ImageIO.read(sourceFile);
                             Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
                                                                Image.SCALE_SMOOTH);
                             ImageIcon imageIcon = new ImageIcon(dimg);
@@ -4194,12 +4166,48 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         } catch (IOException e) {
                             System.out.println(e);
                         }
-                    }
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+//
+                    } else {
 
-            }
+                        try {
+                            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+                            FileInputStream inputStream = null;
+                            File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + student.enrollment_no + ".jpg");
+                            File destinationFile = new File(home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg");
+                            inputStream = new FileInputStream(sourceFile1);
+                            FileOutputStream outputStream = new FileOutputStream(destinationFile);
+                            FileChannel inChannel = inputStream.getChannel();
+                            FileChannel outChannel = outputStream.getChannel();
+                            try {
+                                inChannel.transferTo(0, inChannel.size(), outChannel);
+
+                            } finally {
+                                inChannel.close();
+                                outChannel.close();
+                                inputStream.close();
+                                outputStream.close();
+
+                                String orig_file = home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg";
+                                File sourceFile2 = new File(orig_file);
+                                BufferedImage img = null;
+                                try {
+                                    img = ImageIO.read(sourceFile2);
+                                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                                                                       Image.SCALE_SMOOTH);
+                                    ImageIcon imageIcon = new ImageIcon(dimg);
+                                    jLabel1.setIcon(imageIcon);
+                                } catch (IOException e) {
+                                    System.out.println(e);
+                                }
+                            }
+                        } catch (IOException e) {
+                            System.out.println(e);
+                        }
+
+                    }
+                }
+            });
+
         }
     }
 
@@ -5252,10 +5260,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             Window p = (Window) this;
             Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
             nd.setTitle("");
-            nd.do_pass(to);
+            nd.do_pass(to, academic_year_id);
             nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
 
                 @Override
+
                 public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
                     closeDialog.ok();
                     int id = 0;
@@ -5357,7 +5366,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         List< Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads = new ArrayList();
         for (to_academic_offering_subjects to : to_add) {
-            String where3 = " where academic_offering_subject_id='" + to.id + "' order by section asc ";
+//            String where3 = " where academic_offering_subject_id='" + to.id + "' order by section asc ";
+            String where3 = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + to.subject_id + "' order by section asc ";
 
             List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where3);
             if (datas.size() > 0) {
@@ -5375,7 +5385,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 int enrollment_offered_subject_id = sec.enrollment_offered_subject_id;
                 int academic_offering_subject_id = to.id;
                 int academic_offering_id1 = to.academic_offering_id;
-                int academic_year_id = to.academic_year_id;
+                int academic_year_id1 = to.academic_year_id;
                 String academic_year = to.academic_year;
                 int level_id = to.level_id;
                 String level = to.level;
@@ -5410,7 +5420,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 int status = 0;
                 int is_uploaded = 0;
                 if (!day.isEmpty()) {
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                     loads.add(load);
                 }
 
@@ -6071,7 +6081,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private void send_image_to_server(String enrollment_no, String student_no) throws IOException {
 
         FileInputStream inputStream = null;
-        String image_server = System.getProperty("image_server", "192.168.10.127");
+        String image_server = System.getProperty("image_server", "");
         System.out.println("image_server: " + image_server);
         if (!image_server.isEmpty()) {
             File sourceFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");

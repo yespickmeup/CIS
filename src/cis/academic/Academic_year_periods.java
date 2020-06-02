@@ -120,17 +120,20 @@ public class Academic_year_periods {
             if (to_academic_year_periods.period.equals("Semester")) {
                 periods.add("First Semester");
                 periods.add("Second Semester");
+                periods.add("Summer Class");
             }
             if (to_academic_year_periods.period.equals("Trimester")) {
                 periods.add("First Trimester");
                 periods.add("Second Trimester");
                 periods.add("Third Trimester");
+                periods.add("Summer Class");
             }
             if (to_academic_year_periods.period.equals("Four Quarters")) {
                 periods.add("First Quarter");
                 periods.add("Second Quarter");
                 periods.add("Third Quarter");
                 periods.add("Fourth Quarter");
+                periods.add("Summer Class");
             }
             if (!periods.isEmpty()) {
 

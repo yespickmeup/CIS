@@ -539,8 +539,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 
     Academic_offering_subjects.to_academic_offering_subjects aos = null;
+    int academic_year_id = 0;
 
-    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to) {
+    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1) {
+        academic_year_id = academic_year_id1;
         aos = to;
         tf_field2.setText(to.subject_code);
         jTextArea1.setText(to.description);
@@ -703,7 +705,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 
     private void ret_eos() {
-        String where = " where academic_offering_subject_id='" + aos.id + "' order by section asc ";
+        String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' order by section asc ";
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());

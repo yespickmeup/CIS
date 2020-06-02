@@ -3032,9 +3032,10 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
-        System.setProperty("webcam_enable", "true");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
+//        System.setProperty("webcam_enable", "true");
+        
         init_key();
         acad_years = Academic_years.ret_data(" order by Date(date_from) desc ");
         if (!acad_years.isEmpty()) {
@@ -3047,7 +3048,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
                 }
             }
         }
-
+                
         nationals = Countries.ret_data(" order by nationality");
         religions = Religions.ret_data(" order by religion asc ");
 //        tf_field2.setVisible(false);
@@ -3768,5 +3769,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
+    
     
 }

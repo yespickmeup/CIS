@@ -109,7 +109,7 @@ public class Enrollment_offered_subjects {
         }
     }
 
-    public static void add_data(List<to_enrollment_offered_subjects> to_enrollment_offered_subjects1, int no_of_sections) {
+    public static void add_data(List<to_enrollment_offered_subjects> to_enrollment_offered_subjects1, int no_of_sections, String section_name) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -283,6 +283,9 @@ public class Enrollment_offered_subjects {
                     String faculty_id = to_enrollment_offered_subjects.faculty_id;
                     String faculty_name = to_enrollment_offered_subjects.faculty_name;
                     String section = sections[i];
+                    if (no_of_sections == 1) {
+                        section = section_name;
+                    }
                     int room_id = to_enrollment_offered_subjects.room_id;
                     String room = to_enrollment_offered_subjects.room;
                     String schedule = to_enrollment_offered_subjects.schedule;
@@ -595,12 +598,31 @@ public class Enrollment_offered_subjects {
     public static void delete_data(to_enrollment_offered_subjects to_enrollment_offered_subjects) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
             String s0 = "delete from enrollment_offered_subjects  "
                     + " where id='" + to_enrollment_offered_subjects.id + "' "
                     + " ";
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            String s2 = "delete from enrollment_offered_subject_sections  "
+                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subjects.id + "' "
+                    + " ";
+            stmt.addBatch(s2);
+
+            String s3 = "delete from enrollment_offered_subject_section_instructors  "
+                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subjects.id + "' "
+                    + " ";
+            stmt.addBatch(s3);
+
+            String s4 = "delete from enrollment_offered_subject_section_room_schedules  "
+                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subjects.id + "' "
+                    + " ";
+            stmt.addBatch(s4);
+
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Enrollment_offered_subjects.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);

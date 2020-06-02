@@ -856,6 +856,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             } catch (ParseException ex) {
                 Logger.getLogger(Dlg_academic_years.class.getName()).log(Level.SEVERE, null, ex);
             }
+            tbl_academic_year_period_schedules_ALM.clear();
             ret_periods(to);
         }
     }
@@ -950,7 +951,6 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     }
 
     private void ret_periods(Academic_years.to_academic_years to) {
-
         String where = " ";
         List<Departments.to_departments> datas = Departments.ret_periods(where, "" + to.id);
         loadData_colleges(datas);
@@ -979,7 +979,6 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_academic_year_periods.OutputData data) {
                         closeDialog.ok();
-
                         int id = 0;
                         int academic_year_id = acad.id;
                         int department_id = dep.id;
@@ -1010,6 +1009,12 @@ public class Dlg_academic_years extends javax.swing.JDialog {
 
                         ret_periods(acad);
                     }
+
+                    @Override
+                    public void period(CloseDialog closeDialog, Dlg_academic_year_periods.OutputData2 data) {
+                        closeDialog.ok();
+                    }
+
                 });
                 nd.setLocationRelativeTo(this);
                 nd.setVisible(true);
@@ -1065,12 +1070,51 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                         if (!dep.updated_by.equalsIgnoreCase(period)) {
                             Academic_year_periods.update_data2(to);
                             Alert.set(2, "");
-
                             ret_periods(acad);
-                            
+
                         }
 
                     }
+
+                    @Override
+                    public void period(CloseDialog closeDialog, Dlg_academic_year_periods.OutputData2 data) {
+                        closeDialog.ok();
+                        String where = " where academic_year_period_id = '" + FitIn.toInt(dep.created_by) + "' and period like '" + FitIn.toInt(dep.created_by) + "' ";
+                        List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(where);
+                        if (periods.isEmpty()) {
+                            int id = 0;
+                            int academic_year_period_id = FitIn.toInt(dep.created_by);
+                            List<Academic_year_periods.to_academic_year_periods> acad_year_periods = Academic_year_periods.ret_data(" where id='" + academic_year_period_id + "' ");
+                            int department_id = 0;
+                            String department = "";
+                            if (!acad_year_periods.isEmpty()) {
+                                Academic_year_periods.to_academic_year_periods acad_year_period = acad_year_periods.get(0);
+                                department_id = acad_year_period.department_id;
+                                department = acad_year_period.department;
+                            }
+                            int academic_year_id = acad.id;
+                            String years = acad.years;
+                            String period = data.period;
+                            String date_from = null;
+                            String date_to = null;
+                            String created_at = DateType.now();
+                            String updated_at = DateType.now();
+                            String created_by = MyUser.getUser_id();
+                            String updated_by = MyUser.getUser_id();
+                            int status = 0;
+                            int is_uploaded = 0;
+
+                            Academic_year_period_schedules.to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                            Academic_year_period_schedules.add_data(to);
+                            Alert.set(1, "");
+                            ret_periods(acad);
+
+                        } else {
+                            Alert.set(0, "Period already added");
+
+                        }
+                    }
+
                 });
                 nd.setLocationRelativeTo(this);
                 nd.setVisible(true);
@@ -1111,6 +1155,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     public static void loadData_academic_year_period_schedules(List<to_academic_year_period_schedules> acc) {
         tbl_academic_year_period_schedules_ALM.clear();
         tbl_academic_year_period_schedules_ALM.addAll(acc);
+
     }
 
     public static class Tblacademic_year_period_schedulesModel extends AbstractTableAdapter {
@@ -1206,7 +1251,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         Departments.to_departments to = (Departments.to_departments) tbl_colleges_ALM.get(row);
 
         String where = " where academic_year_period_id='" + to.created_by + "' ";
-       
+
         List<Academic_year_period_schedules.to_academic_year_period_schedules> datas = Academic_year_period_schedules.ret_data(where);
         loadData_academic_year_period_schedules(datas);
         jLabel9.setText("" + datas.size());

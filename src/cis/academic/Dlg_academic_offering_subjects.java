@@ -1290,7 +1290,7 @@ public class Dlg_academic_offering_subjects extends javax.swing.JDialog {
             Field.Combo co = (Field.Combo) tf_field10;
             where = where + " and subject_group_id='" + co.getId() + "' ";
         }
-//        System.out.println(where);
+//        System.out.println("where: "+where);
         List<Academic_offering_subjects.to_academic_offering_subjects> aosp = Academic_offering_subjects.ret_data_with_prerequisites(where);
         loadData_academic_offering_subjects(aosp);
         jLabel2.setText("" + aosp.size());

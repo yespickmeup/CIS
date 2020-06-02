@@ -5,6 +5,8 @@
  */
 package cis.academic;
 
+import cis.utils.Alert;
+import cis.utils.Dlg_confirm_action;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -13,15 +15,16 @@ import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import synsoftech.fields.Button;
+import synsoftech.fields.Field;
 
 /**
  *
- * @author Ronescape
+ * @author User
  */
-public class Dlg_academic_year_periods extends javax.swing.JDialog {
+public class Dlg_academic_year_period_add extends javax.swing.JDialog {
 
     /**
-     * Creates new form Dlg_academic_year_periods
+     * Creates new form Dlg_academic_year_period_add
      */
     //<editor-fold defaultstate="collapsed" desc=" callback ">
     private Callback callback;
@@ -34,8 +37,6 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
     public static interface Callback {
 
         void ok(CloseDialog closeDialog, OutputData data);
-
-        void period(CloseDialog closeDialog, OutputData2 data);
     }
 
     public static class InputData {
@@ -43,19 +44,9 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
 
     public static class OutputData {
 
-        public final int period;
-
-        public OutputData(int period) {
-            this.period = period;
-        }
-
-    }
-
-    public static class OutputData2 {
-
         public final String period;
 
-        public OutputData2(String period) {
+        public OutputData(String period) {
             this.period = period;
         }
 
@@ -63,33 +54,33 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_academic_year_periods(java.awt.Frame parent, boolean modal) {
+    private Dlg_academic_year_period_add(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_academic_year_periods(java.awt.Dialog parent, boolean modal) {
+    private Dlg_academic_year_period_add(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_academic_year_periods() {
+    public Dlg_academic_year_period_add() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_academic_year_periods myRef;
+    private Dlg_academic_year_period_add myRef;
 
-    private void setThisRef(Dlg_academic_year_periods myRef) {
+    private void setThisRef(Dlg_academic_year_period_add myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_academic_year_periods> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_academic_year_period_add> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -97,7 +88,7 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_academic_year_periods create(java.awt.Window parent, boolean modal) {
+    public static Dlg_academic_year_period_add create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -107,14 +98,14 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_academic_year_periods create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_academic_year_period_add create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_academic_year_periods dialog = dialogContainer.get(parent);
+            Dlg_academic_year_period_add dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_academic_year_periods((java.awt.Frame) parent, false);
+                dialog = new Dlg_academic_year_period_add((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -128,10 +119,10 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_academic_year_periods dialog = dialogContainer.get(parent);
+            Dlg_academic_year_period_add dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_academic_year_periods((java.awt.Dialog) parent, false);
+                dialog = new Dlg_academic_year_period_add((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -158,7 +149,7 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_academic_year_periods dialog = Dlg_academic_year_periods.create(new javax.swing.JFrame(), true);
+        Dlg_academic_year_period_add dialog = Dlg_academic_year_period_add.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -196,45 +187,20 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        tf_field = new Field.Input();
         jButton5 = new Button.Default();
         jButton2 = new Button.Success();
-        jButton6 = new Button.Default();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Choose Period:");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Period:");
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Whole");
-        jCheckBox1.setFocusable(false);
-
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox2.setText("Semester");
-        jCheckBox2.setFocusable(false);
-
-        buttonGroup1.add(jCheckBox3);
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox3.setText("Trimester");
-        jCheckBox3.setFocusable(false);
-
-        buttonGroup1.add(jCheckBox4);
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setText("Four Quarters");
-        jCheckBox4.setFocusable(false);
+        tf_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jButton5.setText("Cancel");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -243,18 +209,10 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Save");
+        jButton2.setText("Ok");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/plus.png"))); // NOI18N
-        jButton6.setText("Add Period");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -262,46 +220,32 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addContainerGap(115, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field)))
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox4)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,7 +256,7 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -323,49 +267,27 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ok();
+        prompt_ok();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        add_period();
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField tf_field;
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
         init_key();
-        jButton6.setVisible(false);
     }
 
-    public void do_pass(int period) {
-        if (period == 1) {
-            jCheckBox1.setSelected(true);
-        }
-        if (period == 2) {
-            jCheckBox2.setSelected(true);
-        }
-        if (period == 3) {
-            jCheckBox3.setSelected(true);
-        }
-        if (period == 4) {
-            jCheckBox4.setSelected(true);
-        }
-        jButton6.setVisible(true);
+    public void do_pass() {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -386,43 +308,36 @@ public class Dlg_academic_year_periods extends javax.swing.JDialog {
     }
     // </editor-fold>
 
-    private void ok() {
-        int period = 1;
-        if (jCheckBox2.isSelected()) {
-            period = 2;
+    private void prompt_ok() {
+        String period = tf_field.getText();
+        if (period.isEmpty()) {
+            Alert.set(0, "Input period!");
+            return;
         }
-        if (jCheckBox3.isSelected()) {
-            period = 3;
-        }
-        if (jCheckBox4.isSelected()) {
-            period = 4;
-        }
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData(period));
-        }
-    }
-
-    private void period(String period) {
-        if (callback != null) {
-            callback.period(new CloseDialog(this), new OutputData2(period));
-        }
-    }
-
-    private void add_period() {
-
         Window p = (Window) this;
-        Dlg_academic_year_period_add nd = Dlg_academic_year_period_add.create(p, true);
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
         nd.setTitle("");
 //        nd.do_pass(services);
-        nd.setCallback(new Dlg_academic_year_period_add.Callback() {
+        nd.setCallback(new Dlg_confirm_action.Callback() {
 
             @Override
-            public void ok(CloseDialog closeDialog, Dlg_academic_year_period_add.OutputData data) {
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                period(data.period);
+                ok2();
             }
         });
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
+    }
+
+    private void ok2() {
+        String period = tf_field.getText();
+        if (period.isEmpty()) {
+            Alert.set(0, "Input period!");
+            return;
+        }
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData(period));
+        }
     }
 }

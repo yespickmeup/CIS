@@ -48,8 +48,8 @@ public class Subjects {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
-
-        public to_subjects(int id, String subject_code, String description, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, double lecture_units, double lab_units, double amount, String prerequisites_course_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public boolean selected;
+        public to_subjects(int id, String subject_code, String description, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, double lecture_units, double lab_units, double amount, String prerequisites_course_ids, String subject_group, int subject_group_id, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded,boolean selected) {
             this.id = id;
             this.subject_code = subject_code;
             this.description = description;
@@ -74,7 +74,17 @@ public class Subjects {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.selected=selected;
         }
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
+        
     }
 
     public static void add_data(to_subjects to_subjects, List<Subject_prerequisites.to_subject_prerequisites> prerequisites1) {
@@ -455,8 +465,8 @@ public class Subjects {
                 String updated_by = rs.getString(22);
                 int status = rs.getInt(23);
                 int is_uploaded = rs.getInt(24);
-
-                to_subjects to = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                boolean selected=false;
+                to_subjects to = new to_subjects(id, subject_code, description, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, lecture_units, lab_units, amount, prerequisites_course_ids, subject_group, subject_group_id, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
                 datas.add(to);
             }
             return datas;
