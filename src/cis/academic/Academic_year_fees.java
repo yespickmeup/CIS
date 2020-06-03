@@ -47,8 +47,9 @@ public class Academic_year_fees {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final double lab_unit_amount;
 
-        public to_academic_year_fees(int id, int academic_year_id, String academic_year, int department_id, String department, int level_id, String level, int course_id, String course, String period, int group_id, String group_name, int fee_id, String fee, double amount, int is_per_unit, double per_unit, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_academic_year_fees(int id, int academic_year_id, String academic_year, int department_id, String department, int level_id, String level, int course_id, String course, String period, int group_id, String group_name, int fee_id, String fee, double amount, int is_per_unit, double per_unit, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded,double lab_unit_amount) {
             this.id = id;
             this.academic_year_id = academic_year_id;
             this.academic_year = academic_year;
@@ -72,6 +73,7 @@ public class Academic_year_fees {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.lab_unit_amount=lab_unit_amount;
         }
     }
 
@@ -101,6 +103,7 @@ public class Academic_year_fees {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",lab_unit_amount"
                     + ")values("
                     + ":academic_year_id"
                     + ",:academic_year"
@@ -124,6 +127,7 @@ public class Academic_year_fees {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:lab_unit_amount"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -149,6 +153,7 @@ public class Academic_year_fees {
                     .setString("updated_by", to_academic_year_fees.updated_by)
                     .setNumber("status", to_academic_year_fees.status)
                     .setNumber("is_uploaded", to_academic_year_fees.is_uploaded)
+                    .setNumber("lab_unit_amount",to_academic_year_fees.lab_unit_amount)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -187,6 +192,7 @@ public class Academic_year_fees {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",lab_unit_amount= :lab_unit_amount"
                     + " where id='" + to_academic_year_fees.id + "' "
                     + " ";
 
@@ -213,6 +219,7 @@ public class Academic_year_fees {
                     .setString("updated_by", to_academic_year_fees.updated_by)
                     .setNumber("status", to_academic_year_fees.status)
                     .setNumber("is_uploaded", to_academic_year_fees.is_uploaded)
+                    .setNumber("lab_unit_amount",to_academic_year_fees.lab_unit_amount)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -254,6 +261,7 @@ public class Academic_year_fees {
                     + " amount= :amount "
                     + " ,is_per_unit= :is_per_unit "
                     + " ,per_unit= :per_unit "
+                    + ",lab_unit_amount= :lab_unit_amount"
                     + " where id='" + to_academic_year_fees.id + "' "
                     + " ";
 
@@ -261,7 +269,9 @@ public class Academic_year_fees {
                     .setNumber("amount", to_academic_year_fees.amount)
                     .setNumber("is_per_unit", to_academic_year_fees.is_per_unit)
                     .setNumber("per_unit", to_academic_year_fees.per_unit)
+                    .setNumber("lab_unit_amount",to_academic_year_fees.lab_unit_amount)
                     .ok();
+            
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
@@ -319,6 +329,7 @@ public class Academic_year_fees {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",lab_unit_amount"
                     + " from academic_year_fees"
                     + " " + where;
 
@@ -348,8 +359,8 @@ public class Academic_year_fees {
                 String updated_by = rs.getString(21);
                 int status = rs.getInt(22);
                 int is_uploaded = rs.getInt(23);
-
-                to_academic_year_fees to = new to_academic_year_fees(id, academic_year_id, academic_year, department_id, department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                double lab_unit_amount=rs.getDouble(24);
+                to_academic_year_fees to = new to_academic_year_fees(id, academic_year_id, academic_year, department_id, department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded,lab_unit_amount);
                 datas.add(to);
             }
             return datas;

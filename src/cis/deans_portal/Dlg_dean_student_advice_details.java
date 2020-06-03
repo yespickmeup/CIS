@@ -8,6 +8,7 @@ package cis.deans_portal;
 import cis.academic.Academic_offering_subjects;
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_fees;
 import cis.academic.Academic_year_periods;
 import cis.academic.Academic_years;
 import cis.academic.Srpt_academic_offering_subjects;
@@ -21,6 +22,7 @@ import cis.enrollments.Enrollments;
 import cis.finance.Dlg_finance;
 import cis.finance.Enrollment_assessment_payment_modes;
 import cis.finance.Enrollment_assessments;
+import cis.finance.Miscellaneous_fees;
 import cis.finance.Srpt_enrollment_assessment;
 import cis.students.Students;
 import cis.users.MyUser;
@@ -5733,23 +5735,25 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String college = assessment.college;
                 String department = assessment.department;
                 String year_level = assessment.year_level;
-                double tuition_amount = 11500;
-                double tuition_discount = 1000;
-                int no_of_units = 23;
-                double amount_per_unit = 500;
-                double miscellaneous_amount = 5000;
+
+                double tuition_amount = 0;
+                double tuition_discount = 0;
+                int no_of_units = 0;
+                double amount_per_unit = 0;
+                double miscellaneous_amount = 0;
                 double miscellaneous_discount = 0;
-                double other_fees_amount = 1000;
+                double other_fees_amount = 0;
                 double other_fees_discount = 0;
-                double total_discount = 1000;
-                double total_amount_due = 16500;
+                double total_discount = 0;
+                double total_amount_due = 0;
+
                 String home = System.getProperty("user.home");
                 String SUBREPORT_DIR = home + "\\cis\\";
                 List<Srpt_enrollment_assessment.field> fields = new ArrayList();
                 List<Srpt_enrollment_assessment.field> rpt_subjects = new ArrayList();
 
                 List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' ");
-
+                double no_of_units_lab = 0;
                 for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
                     String subject_code = sub.subject_code;
                     String subject_description = sub.description;
@@ -5762,7 +5766,64 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String day = DateType.mwf(sub.day);
                     Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, subject_description, prerequisites, lec_units, lab_units, faculty_name, section, room, day);
                     rpt_subjects.add(f);
+                    no_of_units += sub.lecture_units;
+                    no_of_units_lab += sub.lab_units;
                 }
+
+                //get tuition
+                String where = " where id<>0 ";
+                where = where + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=0 ";
+                List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+
+                if (!datas.isEmpty()) {
+
+                    Academic_year_fees.to_academic_year_fees to = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+
+                    if (to.is_per_unit == 0) {
+                        tuition_amount = to.amount;
+                    } else {
+                        amount_per_unit = to.per_unit;
+                        double total_lec_amount = to.per_unit * no_of_units;
+                        double total_lab_amount = to.lab_unit_amount * no_of_units_lab;
+                        tuition_amount = total_lec_amount + total_lab_amount;
+                    }
+
+                }
+                //get misc
+                String where2 = " where id<>0 ";
+                where2 = where2 + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=1 ";
+
+                List<Academic_year_fees.to_academic_year_fees> misc = Miscellaneous_fees.ret_data2(where2);
+
+                double amount = 0;
+                for (Academic_year_fees.to_academic_year_fees to : misc) {
+                    miscellaneous_amount += to.amount;
+                }
+                //get other fees     
+                String where3 = " where id<>0 ";
+                where3 = where3 + " and academic_year_id='" + assessment.academic_year_id + "' "
+                        + " and department_id='" + assessment.department_id + "' "
+                        + " and level_id='" + assessment.level_id + "' "
+                        + " and course_id='" + assessment.course_id + "' "
+                        + " and period like '" + tf_field128.getText() + "' "
+                        + " and group_id=2 ";
+                List<Academic_year_fees.to_academic_year_fees> others = Miscellaneous_fees.ret_data3(where3);
+
+                for (Academic_year_fees.to_academic_year_fees to : datas) {
+                    other_fees_amount += to.amount;
+                }
+                total_amount_due = tuition_amount + miscellaneous_amount + other_fees_amount;
+
                 List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
                 List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
 

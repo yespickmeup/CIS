@@ -234,6 +234,7 @@ public class Miscellaneous_fees {
                 int fee_id = id;
                 int is_per_unit=0;
                 double per_unit=0;
+                double lab_unit_amount=0;
                 String s2 = "select "
                         + "id"
                         + ",academic_year_id"
@@ -258,6 +259,7 @@ public class Miscellaneous_fees {
                         + ",updated_by"
                         + ",status"
                         + ",is_uploaded"
+                        + ",lab_unit_amount"
                         + " from academic_year_fees"
                         + " " + where + " and fee_id='" + id + "' ";
 
@@ -280,9 +282,10 @@ public class Miscellaneous_fees {
                     amount = rs2.getDouble(15);
                     is_per_unit=rs2.getInt(16);
                     per_unit=rs2.getDouble(17);
+                    lab_unit_amount=rs2.getDouble(24);
                 }
                 to_academic_year_fees to = new to_academic_year_fees(id2, academic_year_id, academic_year, department_id, department, level_id, level, course_id, course
-                        , period, group_id, group_name, fee_id, fee, amount,is_per_unit,per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                        , period, group_id, group_name, fee_id, fee, amount,is_per_unit,per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded,lab_unit_amount);
                 datas.add(to);
             }
             return datas;
@@ -339,7 +342,7 @@ public class Miscellaneous_fees {
                 int fee_id = id;
                 int is_per_unit=0;
                 double per_unit=0;
-
+                double lab_unit_amount=0;
                 String s2 = "select "
                         + "id"
                         + ",academic_year_id"
@@ -364,6 +367,7 @@ public class Miscellaneous_fees {
                         + ",updated_by"
                         + ",status"
                         + ",is_uploaded"
+                        + ",lab_unit_amount"
                         + " from academic_year_fees"
                         + " " + where + " and fee_id='" + id + "' ";
 
@@ -386,9 +390,10 @@ public class Miscellaneous_fees {
                     amount = rs2.getDouble(15);
                     is_per_unit=rs2.getInt(16);
                     per_unit=rs2.getDouble(17);
+                    lab_unit_amount=rs2.getDouble(24);
                 }
                 to_academic_year_fees to = new to_academic_year_fees(id2, academic_year_id, academic_year, department_id, department, level_id, level, course_id, course
-                        , period, group_id, group_name, fee_id, fee, amount,is_per_unit,per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                        , period, group_id, group_name, fee_id, fee, amount,is_per_unit,per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded,lab_unit_amount);
                 datas.add(to);
             }
             return datas;
