@@ -125,11 +125,6 @@
 				</textElement>
 				<text><![CDATA[Units]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="85249a84-e701-4a41-a6ac-a2d8da671420" x="197" y="0" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[lec_units]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
