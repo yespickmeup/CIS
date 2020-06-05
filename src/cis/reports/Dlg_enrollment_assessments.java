@@ -5,8 +5,13 @@
  */
 package cis.reports;
 
+import cis.academic.Academic_year_fees;
+import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
+import cis.finance.Enrollment_assessment_payment_modes;
+import cis.finance.Miscellaneous_fees;
+import cis.users.MyUser;
 import cis.utils.DateType;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -35,7 +40,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
@@ -799,67 +803,179 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             @Override
             public void run() {
 
-                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
-                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
-                String date = synsoftech.util.DateType.slash.format(new Date());
-                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
-
-                String home = System.getProperty("user.home");
-                String SUBREPORT_DIR = home + "\\cis\\";
-
-                String printed_by = "Administrator";
-                String school_year = "2020 - 2021";
-                String semester = "First Semester";
-
-                String student_no = "2020001";
-                String student_name = "Ronald Pascua";
-                String student_course = "Bachelor of Science in Information Technology";
-                String student_year_level = "First Year";
-                List<  Srpt_enrollment_assessment.field> fields = new ArrayList();
-                for (int i = 0; i < 10; i++) {
-                    String subject_code = "BA0" + i;
-                    String description = "Physical Education";
-                    double lec_units = 3;
-                    double lab_units = 0;
-                    double lec_amount = 385;
-                    double lab_amount = 500;
-                    String room = "Room1";
-                    String day = "MWF";
-                    String time = "8:00am - 9:00am";
-                    String instructor = "Juan Dela Cruz";
-                    double amount = 2000;
-                    Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
-                    fields.add(f);
+                List<to_enrollments> enrollments = tbl_enrollments_ALM;
+                List<to_enrollments> selected = new ArrayList();
+                for (to_enrollments enroll : enrollments) {
+                    if (enroll.isSelected()) {
+                        selected.add(enroll);
+                    }
                 }
-                List<Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
-                List<Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
-                for (int i = 0; i < 10; i++) {
-                    Srpt_enrollment_assessment.field_misc f = new Srpt_enrollment_assessment.field_misc("Miscelleneous", 200);
-                    misc.add(f);
-                }
-                for (int i = 0; i < 14; i++) {
-                    Srpt_enrollment_assessment.field_misc f = new Srpt_enrollment_assessment.field_misc("Other Fees", 100);
-                    rpt_fees.add(f);
+                if (selected.size() > 0) {
+                    to_enrollments enroll = (to_enrollments) selected.get(0);
+                    JasperPrint jp1 = setJasperPrint(enroll);
+                    if (selected.size() > 1) {
+                        for (int i = 1; i < selected.size(); i++) {
+                            to_enrollments to = (to_enrollments) selected.get(i);
+                            JasperPrint jp2 = setJasperPrint(to);
+                            List<JRPrintPage> object = jp2.getPages();
+                            for (JRPrintPage obj : object) {
+                                jp1.addPage(obj);
+                            }
+                        }
+                    }
+                    JasperViewer jasperViewer = new JasperViewer(jp1, false);
+                    JPanel pnl = (javax.swing.JPanel) jasperViewer.getContentPane();
+                    jPanel5.removeAll();
+                    jPanel5.setLayout(new BorderLayout());
+                    try {
+                        jPanel5.add(pnl);
+                        jPanel5.updateUI();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    jProgressBar1.setString("Finished...");
+                    jProgressBar1.setIndeterminate(false);
                 }
 
-                List<Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
-
-                double total_assessment = 1000;
-                double downpayment = 500;
-                double payable = 500;
-
-                Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable);
-                rpt_summary.add(f2);
-                String jrxml = "rpt_enrollment_assessment.jrxml";
-                Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary);
-                rpt.fields.addAll(fields);
-                report_assessment(rpt, jrxml);
-
-                jProgressBar1.setString("Finished...");
-                jProgressBar1.setIndeterminate(false);
             }
         });
         t.start();
+
+    }
+
+    private JasperPrint setJasperPrint(to_enrollments to) {
+        String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+        String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+        String date = synsoftech.util.DateType.slash.format(new Date());
+        String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+
+        String home = System.getProperty("user.home");
+        String SUBREPORT_DIR = home + "\\cis\\";
+
+        String printed_by = MyUser.getUser_screen_name();
+        String school_year = to.academic_year;
+        String semester = to.term;
+        String student_no = to.student_no;
+        String student_name = to.last_name + ", " + to.first_name + " " + to.middle_name;
+        String student_course = to.course_code + " - " + to.course_description;
+        String student_year_level = to.year_level;
+
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' ");
+        double no_of_units_lab = 0;
+        List<Srpt_enrollment_assessment.field> fields = new ArrayList();
+
+        //ret tuition amount
+        String where = " where id<>0 ";
+        where = where + " and academic_year_id='" + to.academic_year_id + "' "
+                + " and department_id='" + to.department_id + "' "
+                + " and level_id='" + to.level_id + "' "
+                + " and course_id='" + to.course_id + "' "
+                + " and period like '" + to.year_level + "' "
+                + " and group_id=0 ";
+        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+        double tuition_amount = 0;
+        double lec_amount_per_unit = 0;
+        double lab_amount_per_unit = 0;
+        double total_assessment = 0;
+        double tution_fee = 0;
+        double misc_fee = 0;
+        double other_fee = 0;
+        double downpayment = 0;
+        double payable = 0;
+
+        if (!datas.isEmpty()) {
+            Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+            if (ayf.is_per_unit == 0) {
+                tuition_amount = ayf.amount;
+            } else {
+                lec_amount_per_unit = ayf.per_unit;
+                lab_amount_per_unit = ayf.lab_unit_amount;
+            }
+        }
+
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+            String subject_code = sub.subject_code;
+            String description = sub.description;
+            double lec_units = sub.lecture_units;
+            double lab_units = sub.lab_units;
+            double lec_amount = lec_units * lec_amount_per_unit;
+            double lec_amount2=lec_amount;
+            lec_amount = lec_amount_per_unit;
+            double lab_amount = lab_units * lab_amount_per_unit;
+            double lab_amount2=lab_amount;
+            lab_amount = lab_amount_per_unit;
+            String room = sub.room;
+            String day = DateType.mwf(sub.day);
+            String time = sub.time;
+            String instructor = sub.faculty_name;
+            double amount = lec_amount2 + lab_amount2;
+            tution_fee += amount;
+            Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+            fields.add(f);
+        }
+
+        List<Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+
+        String where2 = " where id<>0 ";
+        where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
+                + " and department_id='" + to.department_id + "' "
+                + " and level_id='" + to.level_id + "' "
+                + " and course_id='" + to.course_id + "' "
+                + " and period like '" + to.year_level + "' "
+                + " and group_id=1 ";
+
+        String where3 = " where id<>0 ";
+        where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
+                + " and department_id='" + to.department_id + "' "
+                + " and level_id='" + to.level_id + "' "
+                + " and course_id='" + to.course_id + "' "
+                + " and period like '" + to.year_level + "' "
+                + " and group_id=2 ";
+
+        List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+        List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+        System.out.println(where3);
+        List<Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+        for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
+            Srpt_enrollment_assessment.field_misc f = new Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+            misc.add(f);
+            misc_fee += fee.amount;
+        }
+
+        for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
+            Srpt_enrollment_assessment.field_misc f = new Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+            rpt_fees.add(f);
+            other_fee += fee.amount;
+        }
+
+        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + to.id + "' ");
+        List<Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
+
+        int payment_count = 3;
+        total_assessment = tution_fee + misc_fee + other_fee;
+        payable = total_assessment - downpayment;
+        for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
+            double balance = ea.amount - ea.paid;
+            downpayment += ea.paid;
+            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
+            rpt_summary.add(f2);
+        }
+
+        String jrxml = "rpt_enrollment_assessment.jrxml";
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary);
+        rpt.fields.addAll(fields);
+
+        JasperPrint jp1 = null;
+        try {
+
+            JasperPrint report = new JasperPrint();
+
+            jp1 = JasperFillManager.fillReport(compileJasper(jrxml), JasperUtil.setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
+            return jp1;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
 
     }
 
@@ -867,10 +983,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         jPanel5.removeAll();
         jPanel5.setLayout(new BorderLayout());
         try {
-//            JasperViewer viewer =
             JPanel pnl = get_viewer_assessment(to, jrxml_name);
-//            pnl.add(viewer);
-//            pnl.setVisible(true);
             jPanel5.add(pnl);
             jPanel5.updateUI();
         } catch (Exception e) {

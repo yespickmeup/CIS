@@ -2217,6 +2217,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 + " and group_id=1 ";
 
         List<Academic_year_fees.to_academic_year_fees> datas = Miscellaneous_fees.ret_data2(where);
+//        System.out.println(where);
         loadData_miscellaneous_fees(datas);
 
         double amount = 0;
@@ -2878,8 +2879,6 @@ public class Dlg_finance extends javax.swing.JDialog {
                     String prerequisites = "";
                     double lec_units = sub.lecture_units;
                     double lab_units = sub.lab_units;
-//                    System.out.println("lec_units: "+lec_units +" + "+lab_units);
-
                     String faculty_name = sub.faculty_name;
                     String section = sub.section;
                     String room = sub.room;
@@ -2950,6 +2949,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
+                   
                     rpt_mode_of_payments.add(mop0);
                 }
 

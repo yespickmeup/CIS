@@ -72,15 +72,66 @@ public class Srpt_enrollment_assessment {
         double total_assessment;
         double downpayment;
         double payable;
+        String mode;
+        String date;
+        double amount;
+        double paid;
+        double balance;
 
         public field_summary() {
         }
 
-        public field_summary(double total_assessment, double downpayment, double payable) {
+        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance) {
             this.total_assessment = total_assessment;
             this.downpayment = downpayment;
             this.payable = payable;
+            this.mode = mode;
+            this.date = date;
+            this.amount = amount;
+            this.paid = paid;
+            this.balance = balance;
         }
+
+        public String getMode() {
+            return mode;
+        }
+
+        public void setMode(String mode) {
+            this.mode = mode;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
+
+        public double getPaid() {
+            return paid;
+        }
+
+        public void setPaid(double paid) {
+            this.paid = paid;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+
+        public void setBalance(double balance) {
+            this.balance = balance;
+        }
+
 
         public double getTotal_assessment() {
             return total_assessment;
@@ -309,8 +360,11 @@ public class Srpt_enrollment_assessment {
         double downpayment = 500;
         double payable = 500;
 
-        field_summary f2 = new field_summary(total_assessment, downpayment, payable);
+        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0);
         rpt_summary.add(f2);
+        
+        
+        
         String jrxml = "rpt_enrollment_assessment.jrxml";
         Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary);
         rpt.fields.addAll(fields);

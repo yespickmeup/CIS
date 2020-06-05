@@ -2377,7 +2377,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         });
 
         jLabel74.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel74.setText("Level:");
+        jLabel74.setText("Level/College:");
 
         tf_field126.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field126.setFocusable(false);
@@ -4128,6 +4128,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         }
                         if (!list_period.isEmpty()) {
                             tf_field129.setText("" + list_period.get(0));
+                            period_term= "" + list_period.get(0);
                         }
 
                     }
@@ -4213,6 +4214,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         }
         ret_loaded_subjects();
     }
+
+    String period_term = "First Semester";
 
     private void check_status() {
         if (jCheckBox4.isSelected()) {
@@ -4551,8 +4554,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         int status = 0;
         int is_uploaded = 0;
         String date_enrolled = "";
-        int student_id=0;
-        Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled,student_id,false);
+        int student_id = 0;
+        Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false);
 
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
@@ -5660,7 +5663,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                     closeDialog.ok();
-                    Enrollments.approve_advising(enroll);
+                    Enrollments.approve_advising(enroll,period_term);
                     Alert.set(2, "");
                     ok2();
                 }

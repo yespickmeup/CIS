@@ -9,61 +9,88 @@
 	<field name="total_assessment" class="java.lang.Double"/>
 	<field name="downpayment" class="java.lang.Double"/>
 	<field name="payable" class="java.lang.Double"/>
+	<field name="mode" class="java.lang.String"/>
+	<field name="date" class="java.lang.String"/>
+	<field name="amount" class="java.lang.Double"/>
+	<field name="paid" class="java.lang.Double"/>
+	<field name="balance" class="java.lang.Double"/>
+	<variable name="balance_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="30" y="0" width="108" height="15"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total Assessment:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="30" y="28" width="108" height="15"/>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="0" y="0" width="211" height="18" backcolor="#EEEEEE"/>
 				<box>
 					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="5"/>
 				</textElement>
-				<text><![CDATA[Payable Balance:]]></text>
+				<text><![CDATA[Mode of Payment]]></text>
 			</staticText>
-			<textField pattern="#,##0.00">
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="138" y="28" width="70" height="15"/>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="59" y="18" width="49" height="13" backcolor="#EEEEEE"/>
 				<box>
 					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
-					<paragraph leftIndent="2"/>
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{payable}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="138" y="14" width="70" height="15"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{downpayment}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="138" y="0" width="70" height="15"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{total_assessment}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
 			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="30" y="14" width="108" height="15"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="11"/>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="108" y="18" width="49" height="13" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
 				</textElement>
-				<text><![CDATA[Downpayment:]]></text>
+				<text><![CDATA[Paid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="157" y="18" width="54" height="13" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="0" y="18" width="59" height="13" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Mode]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -74,7 +101,64 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band splitType="Stretch"/>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement uuid="7d8b8c15-9a02-4897-92ae-2981c7191093" x="0" y="0" width="59" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="1b534019-595d-4379-b295-c58688b19799" x="157" y="0" width="54" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="1b534019-595d-4379-b295-c58688b19799" x="108" y="0" width="49" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paid}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="1b534019-595d-4379-b295-c58688b19799" x="59" y="0" width="49" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band splitType="Stretch"/>
@@ -83,6 +167,89 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="0" y="30" width="108" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Total Assessment:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="0" y="58" width="108" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Payable Balance:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="108" y="58" width="103" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{balance_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="108" y="44" width="103" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{downpayment}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="108" y="30" width="103" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_assessment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="0" y="44" width="108" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Downpayment:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00bdf243-5860-4fa5-8dc1-61c71ac090f1" mode="Opaque" x="0" y="0" width="157" height="15" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Total Balance]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement uuid="2224ad45-0665-48b3-a2c1-9f3beae75f9f" mode="Opaque" x="157" y="0" width="54" height="15" forecolor="#000000" backcolor="#EEEEEE"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{balance_1}]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>
