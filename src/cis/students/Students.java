@@ -246,7 +246,7 @@ public class Students {
             PreparedStatement stmt3 = conn.prepareStatement("");
 
             int year = FitIn.toInt(DateType.y.format(new Date()));
-            String id = "" + year + "00000000";
+            String id = "" + year + "0000";
 
             String s1 = "select max(id) from students where Year(created_at)='" + year + "' ";
             Statement stmt = conn.createStatement();
@@ -264,7 +264,7 @@ public class Students {
             }
 
             if (id == null) {
-                id = "" + year + "00000000";
+                id = "" + year + "0000";
             }
             id = ReceiptIncrementor.increment(id);
 

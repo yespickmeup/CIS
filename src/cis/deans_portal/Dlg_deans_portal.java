@@ -1282,10 +1282,10 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
         init_key();
-        acad_years = Academic_years.ret_data("");
+        acad_years = Academic_years.ret_data(" where status=1");
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {

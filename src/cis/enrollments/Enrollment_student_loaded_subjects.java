@@ -5,6 +5,8 @@
  */
 package cis.enrollments;
 
+import cis.reports.Srpt_list_of_students;
+import cis.reports.Srpt_list_of_students_with_subjects;
 import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
@@ -790,6 +792,84 @@ public class Enrollment_student_loaded_subjects {
                 datas.add(to);
             }
             return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void ret_total_units(List<Srpt_list_of_students.field> fields) {
+
+        try {
+            Connection conn = MyConnection.connect();
+            for (Srpt_list_of_students.field field : fields) {
+                String s0 = "select "
+                        + "id"
+                        + ",sum(lecture_units+lab_units)"
+                        + " from enrollment_student_loaded_subjects"
+                        + " where enrollment_id='" + field.getEnrollment_id() + "' ";
+
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(s0);
+                double total_units = 0;
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    total_units += rs.getInt(2);
+                }
+                field.setNo_of_units(total_units);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static List<Srpt_list_of_students_with_subjects.field> ret_subjects(List<Srpt_list_of_students.field> fields) {
+
+        List<Srpt_list_of_students_with_subjects.field> list = new ArrayList();
+        try {
+            Connection conn = MyConnection.connect();
+            for (Srpt_list_of_students.field field : fields) {
+                String s0 = "select "
+                        + "id"
+                        + ",subject_id"
+                        + ",subject_code"
+                        + ",description"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + " from enrollment_student_loaded_subjects"
+                        + " where enrollment_id='" + field.getEnrollment_id() + "' ";
+
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(s0);
+                int i = 1;
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    int subject_id = rs.getInt(2);
+                    String subject_code = rs.getString(3);
+                    String description = rs.getString(4);
+                    int lecture_units = rs.getInt(5);
+                    int lab_units = rs.getInt(6);
+
+                    String name = field.getName();
+                    String course = field.getCourse();
+                    double no_of_units = 0;
+
+                    int no = i;
+
+                    double lec_units = lecture_units;
+
+                    Srpt_list_of_students_with_subjects.field f = new Srpt_list_of_students_with_subjects.field(field.getEnrollment_id(), field.getStudent_no(), name, course, no, subject_code, description, lec_units, lab_units);
+                    list.add(f);
+                    i++;
+                }
+
+            }
+
+            return list;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
