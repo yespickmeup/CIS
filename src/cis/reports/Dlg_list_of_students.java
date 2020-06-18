@@ -271,6 +271,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         jCheckBox16 = new javax.swing.JCheckBox();
         jCheckBox17 = new javax.swing.JCheckBox();
         jCheckBox18 = new javax.swing.JCheckBox();
+        jCheckBox19 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -506,6 +507,16 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup2.add(jCheckBox19);
+        jCheckBox19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox19.setText("Enrollment Summary");
+        jCheckBox19.setFocusable(false);
+        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox19ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -570,6 +581,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                                 .addComponent(jCheckBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox19)
                                 .addContainerGap())))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -580,7 +593,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox16)
                     .addComponent(jCheckBox17)
-                    .addComponent(jCheckBox18))
+                    .addComponent(jCheckBox18)
+                    .addComponent(jCheckBox19))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -828,6 +842,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox18ActionPerformed
 
+    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox19ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -845,6 +863,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox16;
     private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox18;
+    private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -1431,14 +1450,49 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     List<Srpt_list_of_students_with_subjects.field> fields2 = Enrollment_student_loaded_subjects.ret_subjects(fields);
                     rpt.fields.addAll(fields2);
                     report_list_of_students_with_subjects(rpt, jrxml);
+                } else if (jCheckBox18.isSelected()) {
+                    jrxml = "rpt_enrollment_list.jrxml";
+                    String department = "All";
+                    String college = "All";
+                    if (!jCheckBox10.isSelected()) {
+                        department = tf_field14.getText();
+                    }
+                    if (!jCheckBox11.isSelected()) {
+                        college = tf_field15.getText();
+                    }
+                    List<Srpt_enrollment_list.field> f_list = new ArrayList();
+                    for (to_enrollments enroll : enrollments) {
+                        if (enroll.isSelected()) {
+                            String course_id = "" + enroll.course_id;
+                            String student_no = enroll.student_no;
+                            String name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+                            String course = enroll.course_code + " - " + enroll.course_description;
+                            String enrollment_id = "" + enroll.id;
+                            String date_enrolled = DateType.convert_slash_datetime(enroll.date_enrolled);
+                            int age = enroll.age;
+                            String gender = "Male";
+                            if (enroll.age == 0) {
+                                gender = "Female";
+                            }
+                            String bday = DateType.convert_slash_datetime2(enroll.date_of_birth);
+                            String year_level = enroll.year_level;
+                            Srpt_enrollment_list.field f = new Srpt_enrollment_list.field(course_id, enrollment_id, student_no, name, course, date_enrolled, age, gender, bday, year_level);
+                            f_list.add(f);
+
+                        }
+
+                    }
+                    Srpt_enrollment_list rpt = new Srpt_enrollment_list(business_name, address, contact_no, date, printed_by, school_year, semester, department, college);
+                    rpt.fields.addAll(f_list);
+                    report_enrollment_list(rpt, jrxml);
                 } else {
 
                 }
-
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);
             }
-        });
+        }
+        );
         t.start();
 
     }
@@ -1477,6 +1531,23 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         }
     }
 
+    private void report_enrollment_list(final Srpt_enrollment_list to, String jrxml_name) {
+        jPanel5.removeAll();
+        jPanel5.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_enrollment_list(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel5.add(viewer);
+
+            jPanel5.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static JRViewer get_viewer_assessment(Srpt_list_of_students to, String rpt_name) {
         try {
             return JasperUtil.getJasperViewer(
@@ -1501,6 +1572,18 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         }
     }
 
+    public static JRViewer get_viewer_enrollment_list(Srpt_enrollment_list to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper3(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.makeDatasource(to.fields));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
     public static JasperReport compileJasper(String rpt_name) {
         try {
             String jrxml = rpt_name;
@@ -1517,6 +1600,18 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         try {
             String jrxml = rpt_name;
             InputStream is = Srpt_list_of_students_with_subjects.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JasperReport compileJasper3(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_enrollment_list.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;
