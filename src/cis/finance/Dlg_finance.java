@@ -1796,8 +1796,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 

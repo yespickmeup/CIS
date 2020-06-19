@@ -5,7 +5,14 @@
  */
 package cis.reports;
 
+import cis.academic.Academic_offerings;
+import cis.enrollments.Enrollments;
+import cis.utils.MyConnection;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -289,4 +296,201 @@ public class Srpt_enrollment_summary {
                 JasperUtil.setParameter(to),
                 JasperUtil.makeDatasource(to.fields));
     }
+
+    public static Srpt_enrollment_summary ret_data(String acad_year_id, List<String> colleges, Srpt_enrollment_summary rpt) {
+        List<Srpt_enrollment_summary.field> datas = new ArrayList();
+        try {
+            Connection conn = MyConnection.connect();
+            int continuing_1st = 0;
+            int continuing_2nd = 0;
+            int continuing_3rd = 0;
+            int continuing_4th = 0;
+            int continuing_5th = 0;
+            int new_1st = 0;
+            int new_2nd = 0;
+            int new_3rd = 0;
+            int new_4th = 0;
+            int new_5th = 0;
+            int transferee_1st = 0;
+            int transferee_2nd = 0;
+            int transferee_3rd = 0;
+            int transferee_4th = 0;
+            int transferee_5th = 0;
+
+            for (String col : colleges) {
+                String s0 = "select "
+                        + "id"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",course_id"
+                        + ",course_code"
+                        + ",course_description"
+                        + ",college_id"
+                        + ",college"
+                        + ",department_id"
+                        + ",department_name"
+                        + ",no_of_years"
+                        + ",studies"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + " from academic_offerings"
+                        + " where academic_year_id='" + acad_year_id + "' and college_id='" + col + "' ";
+//                System.out.println(s0);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(s0);
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    int academic_year_id = rs.getInt(2);
+                    String academic_year = rs.getString(3);
+                    int course_id = rs.getInt(4);
+                    String course_code = rs.getString(5);
+                    String course_description = rs.getString(6);
+                    int college_id = rs.getInt(7);
+                    String college = rs.getString(8);
+                    int department_id = rs.getInt(9);
+                    String department_name = rs.getString(10);
+                    int no_of_years = rs.getInt(11);
+                    String studies = rs.getString(12);
+                    String created_at = rs.getString(13);
+                    String updated_at = rs.getString(14);
+                    String created_by = rs.getString(15);
+                    String updated_by = rs.getString(16);
+                    int status = rs.getInt(17);
+                    int is_uploaded = rs.getInt(18);
+
+                    String s2 = "select "
+                            + "id"
+                            + ",academic_year_id"
+                            + ",course_id"
+                            + ",student_no"
+                            + ",last_name"
+                            + ",first_name"
+                            + ",middle_name"
+                            + ",gender"
+                            + ",year_level"
+                            + ",is_transferee"
+                            + " from enrollments"
+                            + " where academic_year_id='" + acad_year_id + "' and course_id='" + course_id + "' and date_enrolled is not null ";
+
+                    String college_code = "" + college_id;
+                    String college2 = college;
+                    String course = course_code + " - " + course_description;
+                    int first_female = 0;
+                    int first_male = 0;
+                    int second_female = 0;
+                    int second_male = 0;
+                    int third_female = 0;
+                    int third_male = 0;
+                    int fourth_female = 0;
+                    int fourth_male = 0;
+                    int fifth_female = 0;
+                    int fifth_male = 0;
+
+                    Statement stmt2 = conn.createStatement();
+                    ResultSet rs2 = stmt2.executeQuery(s2);
+                    while (rs2.next()) {
+                        int id2 = rs2.getInt(1);
+                        int academic_year_id2 = rs2.getInt(2);
+                        int course_id2 = rs2.getInt(3);
+                        String student_no = rs2.getString(4);
+                        String last_name = rs2.getString(5);
+                        String first_name = rs2.getString(6);
+                        String middle_name = rs2.getString(7);
+                        int gender = rs2.getInt(8);
+
+                        String year_level = rs2.getString(9);
+                        int is_transferee = rs2.getInt(10);
+                        if (year_level.equalsIgnoreCase("First Year")) {
+                            if (gender == 0) {
+                                first_female++;
+                            } else {
+                                first_male++;
+                            }
+                            if (is_transferee == 0) {
+                                new_1st++;
+                            } else if (is_transferee == 1) {
+                                transferee_1st++;
+                            } else {
+                                continuing_1st++;
+                            }
+                        }
+                        if (year_level.equalsIgnoreCase("Second Year")) {
+                            if (gender == 0) {
+                                second_female++;
+                            } else {
+                                second_male++;
+                            }
+                            if (is_transferee == 0) {
+                                new_2nd++;
+                            } else if (is_transferee == 1) {
+                                transferee_2nd++;
+                            } else {
+                                continuing_2nd++;
+                            }
+                        }
+                        if (year_level.equalsIgnoreCase("Third Year")) {
+                            if (gender == 0) {
+                                third_female++;
+                            } else {
+                                third_male++;
+                            }
+                            if (is_transferee == 0) {
+                                new_3rd++;
+                            } else if (is_transferee == 1) {
+                                transferee_3rd++;
+                            } else {
+                                continuing_3rd++;
+                            }
+                        }
+
+                        if (year_level.equalsIgnoreCase("Fourth Year")) {
+                            if (gender == 0) {
+                                fourth_female++;
+                            } else {
+                                fourth_male++;
+                            }
+                            if (is_transferee == 0) {
+                                new_4th++;
+                            } else if (is_transferee == 1) {
+                                transferee_4th++;
+                            } else {
+                                continuing_4th++;
+                            }
+                        }
+                        if (year_level.equalsIgnoreCase("Fifth Year")) {
+                            if (gender == 0) {
+                                fifth_female++;
+                            } else {
+                                fifth_male++;
+                            }
+
+                            if (is_transferee == 0) {
+                                new_5th++;
+                            } else if (is_transferee == 1) {
+                                transferee_5th++;
+                            } else {
+                                continuing_5th++;
+                            }
+                        }
+                    }
+
+                    Srpt_enrollment_summary.field f = new field(college_code, college2, course, first_female, first_male, second_female, second_male, third_female, third_male, fourth_female, fourth_male, fifth_female, fifth_male);
+                    datas.add(f);
+                }
+            }
+            Srpt_enrollment_summary rpt2 = new Srpt_enrollment_summary(rpt.business_name, rpt.address, rpt.contact_no, rpt.date, rpt.printed_by,
+                     rpt.school_year, rpt.semester, rpt.department, continuing_1st, continuing_2nd, continuing_3rd, continuing_4th, continuing_5th, new_1st, new_2nd, new_3rd, new_4th, new_5th, transferee_1st, transferee_2nd, transferee_3rd, transferee_4th, transferee_5th);
+            rpt2.fields.addAll(datas);
+            return rpt2;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
 }

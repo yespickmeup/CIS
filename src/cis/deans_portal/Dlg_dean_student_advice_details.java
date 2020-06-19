@@ -3851,7 +3851,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 }
                 jButton9.setVisible(false);
                 jTabbedPane2.setSelectedIndex(3);
-                set_assessment();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        set_assessment();
+                    }
+                });
+
             } else {
                 jTabbedPane2.remove(3);
             }
@@ -4128,7 +4134,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         }
                         if (!list_period.isEmpty()) {
                             tf_field129.setText("" + list_period.get(0));
-                            period_term= "" + list_period.get(0);
+                            period_term = "" + list_period.get(0);
                         }
 
                     }
@@ -5663,7 +5669,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                     closeDialog.ok();
-                    Enrollments.approve_advising(enroll,period_term);
+                    Enrollments.approve_advising(enroll, period_term);
                     Alert.set(2, "");
                     ok2();
                 }
@@ -6121,11 +6127,20 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         String course_code = "";
         String course_description = "";
         String date_enrolled = null;
-        Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled);
+        double balance = 0;
+        double prepaid = 0;
+
+        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
+        for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
+            balance += ea.amount - ea.paid;
+        }
+
+        Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
         String en_no = Students.add_data_enroll(student, enroll);
         try {
             send_image_to_server(enroll.enrollment_no, en_no);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
 
@@ -6140,7 +6155,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 closeDialog.ok();
 
                 jButton11.setEnabled(false);
-                set_assessment();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        set_assessment();
+                    }
+                });
+
             }
         });
         nd.setLocationRelativeTo(this);

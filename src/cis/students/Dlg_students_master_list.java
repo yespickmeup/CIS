@@ -495,8 +495,8 @@ public class Dlg_students_master_list extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
         init_key();
         init_tbl_students(tbl_students);
         deps = Departments.ret_data(" order by department_name  asc ");
