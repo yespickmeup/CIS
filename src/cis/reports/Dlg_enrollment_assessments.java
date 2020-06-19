@@ -1426,7 +1426,9 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             lab_amount = lab_amount_per_unit;
             String room = sub.room;
             String day = DateType.mwf(sub.day);
-            String time = sub.time;
+            String time = DateType.daytime(sub.day);
+            time = time.replaceAll("WFM", "MWF");
+            time = time.replaceAll("FM", "MF");
             String instructor = sub.faculty_name;
             double amount = lec_amount2 + lab_amount2;
             tution_fee += amount;

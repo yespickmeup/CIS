@@ -5,9 +5,8 @@
  */
 package cis.reports;
 
-import cis.enrollments.Enrollment_offered_subject_section_instructors;
 import cis.enrollments.Enrollment_offered_subject_sections;
-import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -24,7 +23,6 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import synsoftech.util.DateType;
 
 /**
  *
@@ -300,7 +298,7 @@ public class Srpt_class_list {
         List<Srpt_class_list.field> datas = new ArrayList();
         try {
             Connection conn = MyConnection.connect();
-            System.out.println("sections: " + sections.size());
+//            System.out.println("sections: " + sections.size());
             for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section : sections) {
                 String s0 = "select "
                         + "id"
@@ -380,7 +378,14 @@ public class Srpt_class_list {
                     my_schedule = rs.getString(27);
                     my_day = rs.getString(28);
                     my_day = cis.utils.DateType.mwf(my_day);
-                    my_time = rs.getString(29);
+                    my_time = rs.getString(28);
+//                    my_time = rs.getString(29);
+                    if (!my_time.isEmpty()) {
+                        my_time = DateType.daytime(my_time);
+                    }
+                    my_time = my_time.replaceAll("WFM", "MWF");
+                    my_time = my_time.replaceAll("FM", "MF");
+
                     String start_time = rs.getString(30);
                     String closing_time = rs.getString(31);
                     String created_at = rs.getString(32);
