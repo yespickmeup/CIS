@@ -5,6 +5,7 @@
  */
 package cis.reports;
 
+import cis.utils.DateType;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,13 +17,12 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import synsoftech.util.DateType;
 
 /**
  *
  * @author User
  */
-public class Srpt_list_of_students {
+public class Srpt_subject_offerings {
 
     public final String business_name;
     public final String address;
@@ -31,10 +31,11 @@ public class Srpt_list_of_students {
     public final String printed_by;
     public final String school_year;
     public final String semester;
-
+    public final String department;
+    public final String college;
     public final List<field> fields;
 
-    public Srpt_list_of_students(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester) {
+    public Srpt_subject_offerings(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester, String department, String college) {
         this.business_name = business_name;
         this.address = address;
         this.contact_no = contact_no;
@@ -42,66 +43,58 @@ public class Srpt_list_of_students {
         this.printed_by = printed_by;
         this.school_year = school_year;
         this.semester = semester;
+        this.department = department;
+        this.college = college;
         this.fields = new ArrayList();
     }
 
     public static class field {
 
-        String enrollment_id;
-        String student_no;
-        String name;
-        String course;
-        double no_of_units;
+        String subject_code;
+        String description;
+        double lec_units;
+        double lab_units;
 
         public field() {
         }
 
-        public field(String enrollment_id,String student_no, String name, String course, double no_of_units) {
-            this.enrollment_id=enrollment_id;
-            this.student_no = student_no;
-            this.name = name;
-            this.course = course;
-            this.no_of_units = no_of_units;
+        public field(String subject_code, String description, double lec_units, double lab_units) {
+            this.subject_code = subject_code;
+            this.description = description;
+            this.lec_units = lec_units;
+            this.lab_units = lab_units;
         }
 
-        public String getEnrollment_id() {
-            return enrollment_id;
+        public String getSubject_code() {
+            return subject_code;
         }
 
-        public void setEnrollment_id(String enrollment_id) {
-            this.enrollment_id = enrollment_id;
+        public void setSubject_code(String subject_code) {
+            this.subject_code = subject_code;
         }
 
-        public String getStudent_no() {
-            return student_no;
+        public String getDescription() {
+            return description;
         }
 
-        public void setStudent_no(String student_no) {
-            this.student_no = student_no;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
-        public String getName() {
-            return name;
+        public double getLec_units() {
+            return lec_units;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setLec_units(double lec_units) {
+            this.lec_units = lec_units;
         }
 
-        public String getCourse() {
-            return course;
+        public double getLab_units() {
+            return lab_units;
         }
 
-        public void setCourse(String course) {
-            this.course = course;
-        }
-
-        public double getNo_of_units() {
-            return no_of_units;
-        }
-
-        public void setNo_of_units(double no_of_units) {
-            this.no_of_units = no_of_units;
+        public void setLab_units(double lab_units) {
+            this.lab_units = lab_units;
         }
     }
 
@@ -113,18 +106,22 @@ public class Srpt_list_of_students {
         String printed_by = "Administrator";
         String school_year = "2020 - 2021";
         String semester = "First Semester";
+
+        String department = "";
+
         List<field> fields = new ArrayList();
         for (int i = 0; i < 20; i++) {
-            String student_no = "2020000" + i;
-            String name = "Juan Dela Cruz";
-            String course = "BSIT-1";
-            double no_of_units = i;
-            field f = new field("",student_no, name, course, no_of_units);
+            String subject_code = "NSTP1";
+            String description = "National Service Training Program 1";
+            subject_code = subject_code + " - " + description;
+            double lec_units = 3;
+            double lab_units = 0;
+            field f = new field(subject_code, description, lec_units, lab_units);
             fields.add(f);
         }
-        
-        String jrxml = "rpt_list_of_students.jrxml";
-        Srpt_list_of_students rpt = new Srpt_list_of_students(business_name, address, contact_no, date, printed_by, school_year, semester);
+        String jrxml = "rpt_subject_offerings.jrxml";
+
+        Srpt_subject_offerings rpt = new Srpt_subject_offerings(business_name, address, contact_no, date, printed_by, school_year, semester, department, date);
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);
         JFrame f = Application.launchMainFrame3(viewer, "Sample", true);
@@ -134,7 +131,7 @@ public class Srpt_list_of_students {
     public static JasperReport compileJasper(String jrxml) {
         try {
 
-            InputStream is = Srpt_list_of_students.class.getResourceAsStream(jrxml);
+            InputStream is = Srpt_subject_offerings.class.getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
 
             return jasper;
@@ -143,11 +140,12 @@ public class Srpt_list_of_students {
         }
     }
 
-    public static JRViewer get_viewer(Srpt_list_of_students to, String jrxml) {
+    public static JRViewer get_viewer(Srpt_subject_offerings to, String jrxml) {
 
         return JasperUtil.getJasperViewer(
                 compileJasper(jrxml),
                 JasperUtil.setParameter(to),
                 JasperUtil.makeDatasource(to.fields));
     }
+
 }

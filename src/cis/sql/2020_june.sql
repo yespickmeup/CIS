@@ -16,3 +16,7 @@ alter table students add balance double default 0;
 alter table students add prepaid double default 0;
 
 
+insert into user_default_privileges(account,privilege)values('Reports','Subject Offerings');
+insert into user_default_privileges(account,privilege)values('Reports','Accounts Receivables');
+
+

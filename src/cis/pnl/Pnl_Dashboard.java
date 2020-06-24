@@ -6,6 +6,7 @@ package cis.pnl;
 
 import cis.academic.Dlg_academic_offerings;
 import cis.academic.Dlg_academic_years;
+import cis.accounts_receivables.Dlg_accounts_receivables;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
@@ -18,6 +19,7 @@ import cis.finance.Dlg_finance;
 import cis.reports.Dlg_class_list;
 import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_list_of_students;
+import cis.reports.Dlg_subject_offerings;
 import cis.students.Dlg_students_master_list;
 import cis.subjects.Dlg_subjects;
 import cis.users.Dlg_users;
@@ -755,6 +757,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Class List")) {
                     r_class_list();
                 }
+                if (data.stmt.equals("Subject Offerings")) {
+                    r_subject_offerings();
+                }
+
+                if (data.stmt.equals("Accounts Receivables")) {
+                    r_accounts_receivables();
+                }
 
                 //</editor-fold>
             }
@@ -899,6 +908,19 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Dlg_class_list dtc = new Dlg_class_list();
 //        dtc.do_pass();
         MyFrame.set(dtc.getSurface(), jPanel1, "Class List");
+    }
+
+    private void r_subject_offerings() {
+
+        Dlg_subject_offerings dtc = new Dlg_subject_offerings();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Subject Offerings");
+    }
+
+    private void r_accounts_receivables() {
+
+        Dlg_accounts_receivables dtc = new Dlg_accounts_receivables();
+        dtc.do_pass();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Accounts Receivables");
     }
 
 }
