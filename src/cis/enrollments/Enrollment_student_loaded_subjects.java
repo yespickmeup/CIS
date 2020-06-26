@@ -566,6 +566,23 @@ public class Enrollment_student_loaded_subjects {
         }
     }
 
+     public static void delete_data2(int id) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "delete from enrollment_student_loaded_subjects  "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollment_student_loaded_subjects.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+     
     public static List<to_enrollment_student_loaded_subjects> ret_data(String where) {
         List<to_enrollment_student_loaded_subjects> datas = new ArrayList();
 
