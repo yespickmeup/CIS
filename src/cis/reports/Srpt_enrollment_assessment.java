@@ -44,8 +44,9 @@ public class Srpt_enrollment_assessment {
     public final double downpayment;
     public final double payable;
     public final List<field_summary> rpt_summary;
+    public final double tuition_fee;
 
-    public Srpt_enrollment_assessment(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester, String student_no, String student_name, String student_course, String student_year_level, String SUBREPORT_DIR, List<field_misc> misc, List<field_misc> rpt_fees, double total_assessment, double downpayment, double payable, List<field_summary> rpt_summary) {
+    public Srpt_enrollment_assessment(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester, String student_no, String student_name, String student_course, String student_year_level, String SUBREPORT_DIR, List<field_misc> misc, List<field_misc> rpt_fees, double total_assessment, double downpayment, double payable, List<field_summary> rpt_summary,double tuition_fee) {
         this.business_name = business_name;
         this.address = address;
         this.contact_no = contact_no;
@@ -65,6 +66,7 @@ public class Srpt_enrollment_assessment {
         this.downpayment = downpayment;
         this.payable = payable;
         this.rpt_summary = rpt_summary;
+        this.tuition_fee=tuition_fee;
     }
 
     public static class field_summary {
@@ -77,11 +79,11 @@ public class Srpt_enrollment_assessment {
         double amount;
         double paid;
         double balance;
-
+        double tuition_fee;
         public field_summary() {
         }
 
-        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance) {
+        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance,double tuition_fee) {
             this.total_assessment = total_assessment;
             this.downpayment = downpayment;
             this.payable = payable;
@@ -90,8 +92,18 @@ public class Srpt_enrollment_assessment {
             this.amount = amount;
             this.paid = paid;
             this.balance = balance;
+            this.tuition_fee=tuition_fee;
         }
 
+        public double getTuition_fee() {
+            return tuition_fee;
+        }
+
+        public void setTuition_fee(double tuition_fee) {
+            this.tuition_fee = tuition_fee;
+        }
+
+        
         public String getMode() {
             return mode;
         }
@@ -359,14 +371,15 @@ public class Srpt_enrollment_assessment {
         double total_assessment = 1000;
         double downpayment = 500;
         double payable = 500;
-
-        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0);
+        double tuition_fee= 100;
+        
+        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0,tuition_fee);
         rpt_summary.add(f2);
         
         
         
         String jrxml = "rpt_enrollment_assessment.jrxml";
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary,tuition_fee);
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);
         JFrame f = Application.launchMainFrame3(viewer, "Sample", true);

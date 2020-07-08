@@ -9,6 +9,7 @@ import cis.academic.Academic_offering_subjects;
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_year_fees;
+import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_year_periods;
 import cis.academic.Academic_years;
 import cis.academic.Srpt_academic_offering_subjects;
@@ -519,6 +520,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel77 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tf_field130 = new javax.swing.JTextArea();
+        tf_field135 = new Field.Combo();
+        jLabel84 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel25 = new javax.swing.JPanel();
@@ -2468,7 +2471,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         });
 
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel79.setText("Period:");
+        jLabel79.setText("Year Level:");
 
         tf_field128.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field128.setText("First Year");
@@ -2529,6 +2532,23 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         tf_field130.setFocusable(false);
         jScrollPane2.setViewportView(tf_field130);
 
+        tf_field135.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field135.setText("First Semester");
+        tf_field135.setFocusable(false);
+        tf_field135.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field135MouseClicked(evt);
+            }
+        });
+        tf_field135.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field135ActionPerformed(evt);
+            }
+        });
+
+        jLabel84.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel84.setText("Period:");
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -2547,9 +2567,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                             .addComponent(jLabel73, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(tf_field128)
-                                .addGap(230, 230, 230))
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tf_field125)
                             .addComponent(tf_field126)
@@ -2557,10 +2574,16 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                             .addGroup(jPanel21Layout.createSequentialGroup()
                                 .addComponent(tf_field131, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tf_field132, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel21Layout.createSequentialGroup()
+                                .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field135, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -2594,7 +2617,10 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field135, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3509,6 +3535,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         check_indigenous();
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
+    private void tf_field135MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field135MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field135MouseClicked
+
+    private void tf_field135ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field135ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field135ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3633,6 +3667,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -3723,6 +3758,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field132;
     private javax.swing.JTextField tf_field133;
     private javax.swing.JTextField tf_field134;
+    private javax.swing.JTextField tf_field135;
     private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
@@ -3854,7 +3890,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        set_assessment();
+                        set_assessment2();
                     }
                 });
 
@@ -4068,6 +4104,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         cou.setId("" + enroll.course_id);
         cou.setText(enroll.course_code);
+        tf_field2.setText(enroll.course_code);
         tf_field130.setText(enroll.course_description);
         tf_field132.setText(enroll.term);
 
@@ -4112,7 +4149,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
                         String[] semester = {"First Semester", "Second Semester", "Summer Class"};
                         String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
-                        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year","Fifth Year"};
+                        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
 
                         for (int i = 0; i < course.no_of_years; i++) {
                             list_year2.add(years[i]);
@@ -4561,7 +4598,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         int is_uploaded = 0;
         String date_enrolled = "";
         int student_id = 0;
-        Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false);
+        String period = "";
+        Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period);
 
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
@@ -4644,11 +4682,18 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 lev.setId("" + off.college_id);
                 lev.setText(off.college);
 
-                String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year"};
+                String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
                 for (int i = 0; i < off.no_of_years; i++) {
                     list_year.add(years[i]);
                 }
-
+                String period = "First Semester";
+                String where = " where academic_year_id='" + academic_year_id + "' and department_id ='" + dep.getId() + "' and status=1 ";
+                List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(where);
+                if (!periods.isEmpty()) {
+                    Academic_year_period_schedules.to_academic_year_period_schedules per = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
+                    period = per.period;
+                    tf_field135.setText(period);
+                }
             }
         });
     }
@@ -4680,8 +4725,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String department = dep.getText();
                 String year_level = tf_field128.getText();
                 String term = tf_field132.getText();
-
-                Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term);
+                String period = tf_field135.getText();
+                Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period);
                 Alert.set(2, "");
 
                 tf_field2.setText(course_code);
@@ -4717,7 +4762,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         String[] semester = {"First Semester", "Second Semester", "Summer Class"};
         String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
-        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year","Fifth Year"};
+        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
 
         for (int i = 0; i < no_of_years; i++) {
             list_year2.add(years[i]);
@@ -5705,11 +5750,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //</editor-fold> 
 
     //<editor-fold defaultstate="collapsed" desc=" list of programs ">
-    private void set_assessment() {
+    private void set_assessment2() {
 
         jProgressBar2.setString("Loading...Please wait...");
         jProgressBar2.setIndeterminate(true);
         Thread t = new Thread(new Runnable() {
+
             @Override
             public void run() {
 
@@ -5726,149 +5772,156 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     jPanel35.updateUI();
                     return;
                 }
+
                 Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
 
-                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
                 String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
                 String date = synsoftech.util.DateType.slash.format(new Date());
                 String contact_no = System.getProperty("contact_no", "(035) 225 4831");
-                String enrollment_id = "" + assessment.enrollment_id;
-                String enrollment_no = assessment.enrollment_no;
-                String student_id = "" + assessment.student_id;
-                String student_no = assessment.student_no;
-                String student_name = assessment.lname + ", " + assessment.fname + " " + assessment.mi;
-                String academic_year = assessment.academic_year;
-                String course_code = assessment.course_code;
-                String course_description = assessment.course_description;
-                int no_of_years = FitIn.toInt(assessment.term);
-                String level = assessment.level;
-                String college = assessment.college;
-                String department = assessment.department;
-                String year_level = assessment.year_level;
-
-                double tuition_amount = 0;
-                double tuition_discount = 0;
-                int no_of_units = 0;
-                double amount_per_unit = 0;
-                double miscellaneous_amount = 0;
-                double miscellaneous_discount = 0;
-                double other_fees_amount = 0;
-                double other_fees_discount = 0;
-                double total_discount = 0;
-                double total_amount_due = 0;
 
                 String home = System.getProperty("user.home");
                 String SUBREPORT_DIR = home + "\\cis\\";
-                List<Srpt_enrollment_assessment.field> fields = new ArrayList();
-                List<Srpt_enrollment_assessment.field> rpt_subjects = new ArrayList();
+
+                String printed_by = MyUser.getUser_screen_name();
+                String school_year = enroll.academic_year;
+                String semester = enroll.term;
+                String student_no = enroll.student_no;
+                String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+                String student_course = enroll.course_code + " - " + enroll.course_description;
+                String student_year_level = enroll.year_level;
 
                 List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' ");
                 double no_of_units_lab = 0;
-                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
-                    String subject_code = sub.subject_code;
-                    String subject_description = sub.description;
-                    String prerequisites = "";
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    String faculty_name = sub.faculty_name;
-                    String section = sub.section;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, subject_description, prerequisites, lec_units, lab_units, faculty_name, section, room, day);
-                    rpt_subjects.add(f);
-                    no_of_units += sub.lecture_units;
-                    no_of_units_lab += sub.lab_units;
-                }
+                List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
-                //get tuition
+                //ret tuition amount
                 String where = " where id<>0 ";
-                where = where + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=0 ";
                 List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+                double tuition_amount = 0;
+                double lec_amount_per_unit = 0;
+                double lab_amount_per_unit = 0;
+                double total_assessment = 0;
+                double tution_fee = 0;
+                double misc_fee = 0;
+                double other_fee = 0;
+                double downpayment = 0;
+                double payable = 0;
 
                 if (!datas.isEmpty()) {
-
-                    Academic_year_fees.to_academic_year_fees to = (Academic_year_fees.to_academic_year_fees) datas.get(0);
-
-                    if (to.is_per_unit == 0) {
-                        tuition_amount = to.amount;
+                    Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+                    if (ayf.is_per_unit == 0) {
+                        tuition_amount = ayf.amount;
                     } else {
-                        amount_per_unit = to.per_unit;
-                        double total_lec_amount = to.per_unit * no_of_units;
-                        double total_lab_amount = to.lab_unit_amount * no_of_units_lab;
-                        tuition_amount = total_lec_amount + total_lab_amount;
+                        lec_amount_per_unit = ayf.per_unit;
+                        lab_amount_per_unit = ayf.lab_unit_amount;
                     }
-
                 }
-                //get misc
+
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+                    String subject_code = sub.subject_code;
+                    String description = sub.description;
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    double lec_amount = lec_units * lec_amount_per_unit;
+                    double lec_amount2 = lec_amount;
+                    lec_amount = lec_amount_per_unit;
+                    double lab_amount = lab_units * lab_amount_per_unit;
+                    double lab_amount2 = lab_amount;
+                    lab_amount = lab_amount_per_unit;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    String time = DateType.daytime(sub.day);
+                    time = time.replaceAll("WFM", "MWF");
+                    time = time.replaceAll("FM", "MF");
+                    String instructor = sub.faculty_name;
+                    double amount = lec_amount2 + lab_amount2;
+                    tution_fee += amount;
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+                    fields.add(f);
+                }
+
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+
                 String where2 = " where id<>0 ";
-                where2 = where2 + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=1 ";
 
-                List<Academic_year_fees.to_academic_year_fees> misc = Miscellaneous_fees.ret_data2(where2);
-
-                double amount = 0;
-                for (Academic_year_fees.to_academic_year_fees to : misc) {
-                    miscellaneous_amount += to.amount;
-                }
-                //get other fees     
                 String where3 = " where id<>0 ";
-                where3 = where3 + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=2 ";
-                List<Academic_year_fees.to_academic_year_fees> others = Miscellaneous_fees.ret_data3(where3);
 
-                for (Academic_year_fees.to_academic_year_fees to : datas) {
-                    other_fees_amount += to.amount;
+                List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+                List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+//        System.out.println(where3);
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+                for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
+                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+                    misc.add(f);
+                    misc_fee += fee.amount;
                 }
-                total_amount_due = tuition_amount + miscellaneous_amount + other_fees_amount;
 
-                List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
+                for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
+                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+                    rpt_fees.add(f);
+                    other_fee += fee.amount;
+                }
+
                 List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+                List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
                 int payment_count = 3;
+                double tuition_fee = tuition_amount;
+
+                total_assessment = tution_fee + misc_fee + other_fee;
+                payable = total_assessment - downpayment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
-                    Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
-                    rpt_mode_of_payments.add(mop0);
+                    downpayment += ea.paid;
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee);
+                    rpt_summary.add(f2);
                 }
 
-                String assessed_by = enroll.assessed_by;
-
-                Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(school_name, address, date, contact_no, enrollment_id, enrollment_no, student_id, student_no, student_name, academic_year, course_code, course_description, no_of_years, level, college, department, year_level, tuition_amount, tuition_discount, no_of_units, amount_per_unit, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, total_discount, total_amount_due, SUBREPORT_DIR, rpt_subjects, rpt_mode_of_payments, assessed_by);
-
-                String jrxml = "enrollment_assessment.jrxml";
+                String jrxml = "rpt_enrollment_assessment.jrxml";
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee);
+                rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
-                InputStream is = Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
+                InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
                 try {
                     JasperReport jasperReport = JasperCompileManager.compileReport(is);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
-                                                               setParameter(rpt), JasperUtil.emptyDatasource());
+                                                               setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
 
                 } catch (JRException ex) {
                     Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
                 }
-//                jTabbedPane2.setSelectedIndex(1);
+
                 jProgressBar2.setString("Finished...");
                 jProgressBar2.setIndeterminate(false);
             }
         });
         t.start();
+    }
+
+    private void set_assessment() {
 
     }
 
-    private void report_assessment(final Srpt_enrollment_assessment to, String jrxml_name) {
+    private void report_assessment(final cis.reports.Srpt_enrollment_assessment to, String jrxml_name) {
         jPanel35.removeAll();
         jPanel35.setLayout(new BorderLayout());
         try {
@@ -5887,12 +5940,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         }
     }
 
-    public static JRViewer get_viewer_assessment(Srpt_enrollment_assessment to, String rpt_name) {
+    public static JRViewer get_viewer_assessment(cis.reports.Srpt_enrollment_assessment to, String rpt_name) {
         try {
             return JasperUtil.getJasperViewer(
                     compileJasper2(rpt_name),
                     JasperUtil.setParameter(to),
-                    JasperUtil.emptyDatasource());
+                    JasperUtil.makeDatasource(to.fields));
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -5902,7 +5955,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     public static JasperReport compileJasper2(String rpt_name) {
         try {
             String jrxml = rpt_name;
-            InputStream is = Srpt_enrollment_assessment.class.
+            InputStream is = cis.reports.Srpt_enrollment_assessment.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;
@@ -6158,7 +6211,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        set_assessment();
+                        set_assessment2();
                     }
                 });
 

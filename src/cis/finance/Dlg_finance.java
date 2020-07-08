@@ -13,6 +13,8 @@ import cis.courses.Courses;
 import cis.departments.Departments;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
+import cis.students.Students;
+import cis.students.Students_curriculum;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -21,6 +23,8 @@ import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -48,6 +52,7 @@ import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
@@ -236,8 +241,47 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel46 = new javax.swing.JLabel();
+        jCheckBox8 = new javax.swing.JCheckBox();
+        jCheckBox9 = new javax.swing.JCheckBox();
+        tf_field25 = new Field.Search();
+        jLabel47 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        tf_field9 = new Field.Input();
+        jLabel17 = new javax.swing.JLabel();
+        tf_field10 = new Field.Input();
+        jLabel18 = new javax.swing.JLabel();
+        tf_field11 = new Field.Input();
+        jLabel19 = new javax.swing.JLabel();
+        tf_field12 = new Field.Input();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel78 = new javax.swing.JLabel();
+        tf_field136 = new Field.Input();
+        jLabel85 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tf_field138 = new javax.swing.JTextArea();
+        jLabel86 = new javax.swing.JLabel();
+        tf_field127 = new Field.Input();
+        jLabel87 = new javax.swing.JLabel();
+        tf_field139 = new Field.Input();
+        jLabel88 = new javax.swing.JLabel();
+        tf_field140 = new Field.Input();
+        jPanel25 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbl_fees = new javax.swing.JTable();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton6 = new Button.Success();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -288,11 +332,16 @@ public class Dlg_finance extends javax.swing.JDialog {
         tf_field129 = new Field.Combo();
         jButton4 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jButton5 = new Button.Info();
-        jPanel18 = new javax.swing.JPanel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel19 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -339,6 +388,435 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel46.setText("Search by:");
+
+        buttonGroup3.add(jCheckBox8);
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox8.setSelected(true);
+        jCheckBox8.setText("Student No");
+
+        buttonGroup3.add(jCheckBox9);
+        jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox9.setText("Name");
+
+        tf_field25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field25MouseClicked(evt);
+            }
+        });
+        tf_field25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field25ActionPerformed(evt);
+            }
+        });
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel47.setText("Search:");
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Student Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel22.setOpaque(false);
+        jPanel22.setPreferredSize(new java.awt.Dimension(154, 120));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png"))); // NOI18N
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
+        );
+
+        jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel23.setOpaque(false);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("First Name:");
+
+        tf_field9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field9.setFocusable(false);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Middle Name:");
+
+        tf_field10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field10.setFocusable(false);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("Last Name:");
+
+        tf_field11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field11.setFocusable(false);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setText("Student No.:");
+
+        tf_field12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field12.setFocusable(false);
+        tf_field12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field12ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_field10)
+                    .addComponent(tf_field11)
+                    .addComponent(tf_field9)
+                    .addComponent(tf_field12))
+                .addContainerGap())
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel78.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel78.setText("Course Code:");
+
+        tf_field136.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field136.setFocusable(false);
+        tf_field136.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field136MouseClicked(evt);
+            }
+        });
+        tf_field136.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field136ActionPerformed(evt);
+            }
+        });
+
+        jLabel85.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel85.setText("Description:");
+
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane5.setFocusable(false);
+
+        tf_field138.setColumns(20);
+        tf_field138.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_field138.setLineWrap(true);
+        tf_field138.setRows(5);
+        tf_field138.setFocusable(false);
+        jScrollPane5.setViewportView(tf_field138);
+
+        jLabel86.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel86.setText("Department:");
+
+        tf_field127.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field127.setFocusable(false);
+        tf_field127.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field127MouseClicked(evt);
+            }
+        });
+        tf_field127.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field127ActionPerformed(evt);
+            }
+        });
+
+        jLabel87.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel87.setText("Level/College:");
+
+        tf_field139.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field139.setFocusable(false);
+        tf_field139.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field139MouseClicked(evt);
+            }
+        });
+        tf_field139.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field139ActionPerformed(evt);
+            }
+        });
+
+        jLabel88.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel88.setText("Year:");
+
+        tf_field140.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field140.setText("First Year");
+        tf_field140.setFocusable(false);
+        tf_field140.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field140MouseClicked(evt);
+            }
+        });
+        tf_field140.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field140ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel78, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(jLabel87, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel88, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel86, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tf_field139, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_field127, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                    .addComponent(tf_field136, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field140))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field136, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel86, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field127, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field139, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field140, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(222, 222, 222))
+        );
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jCheckBox8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox9)
+                        .addGap(219, 242, Short.MAX_VALUE))
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(tf_field25)))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox8)
+                    .addComponent(jCheckBox9))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        tbl_fees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbl_fees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_feesMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tbl_fees);
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
+        );
+
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("0.00");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setText("Amount Due:");
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton6.setText("Pay");
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Payment", jPanel18);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -867,20 +1345,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Assessment", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setMinimumSize(new java.awt.Dimension(626, 0));
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         jLabel5.setText("Status:");
 
         jProgressBar1.setString("");
@@ -893,6 +1357,73 @@ public class Dlg_finance extends javax.swing.JDialog {
             }
         });
 
+        jTabbedPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
+
+        jLabel2.setText("Total no. of subjects:");
+
+        jLabel3.setText("0");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap())
+        );
+
+        jTabbedPane3.addTab("Subjects Added", jPanel19);
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setMinimumSize(new java.awt.Dimension(626, 0));
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 549, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Print Preview", jPanel17);
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -900,7 +1431,7 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -916,8 +1447,8 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(jTabbedPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
@@ -930,11 +1461,11 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,21 +1478,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         );
 
         jTabbedPane1.addTab("Assessment", jPanel9);
-
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1224, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Payment", jPanel18);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1248,7 +1764,7 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1436,7 +1952,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Print Preview", jPanel8);
@@ -1446,16 +1962,16 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(127, Short.MAX_VALUE)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jTabbedPane2)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Maintenance", jPanel2);
@@ -1687,6 +2203,54 @@ public class Dlg_finance extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_field24ActionPerformed
 
+    private void tf_field25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field25MouseClicked
+        init_search_student();
+    }//GEN-LAST:event_tf_field25MouseClicked
+
+    private void tf_field25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field25ActionPerformed
+        init_search_student();
+    }//GEN-LAST:event_tf_field25ActionPerformed
+
+    private void tf_field12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field12ActionPerformed
+
+    private void tf_field136MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field136MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field136MouseClicked
+
+    private void tf_field136ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field136ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field136ActionPerformed
+
+    private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field127MouseClicked
+
+    private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field127ActionPerformed
+
+    private void tf_field139MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field139MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field139MouseClicked
+
+    private void tf_field139ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field139ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field139ActionPerformed
+
+    private void tf_field140MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field140MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field140MouseClicked
+
+    private void tf_field140ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field140ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field140ActionPerformed
+
+    private void tbl_feesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_feesMouseClicked
+        select_payment();
+    }//GEN-LAST:event_tbl_feesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1694,12 +2258,14 @@ public class Dlg_finance extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -1707,12 +2273,20 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
+    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1723,23 +2297,33 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1750,7 +2334,15 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1762,12 +2354,22 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_fees;
     private javax.swing.JTable tbl_miscellaneous_fees;
     private javax.swing.JTable tbl_other_fees;
+    private javax.swing.JTextField tf_field10;
+    private javax.swing.JTextField tf_field11;
+    private javax.swing.JTextField tf_field12;
     private javax.swing.JTextField tf_field125;
     private javax.swing.JTextField tf_field126;
+    private javax.swing.JTextField tf_field127;
     private javax.swing.JTextField tf_field128;
     private javax.swing.JTextField tf_field129;
     private javax.swing.JTextArea tf_field130;
@@ -1776,7 +2378,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field133;
     private javax.swing.JTextField tf_field134;
     private javax.swing.JTextField tf_field135;
+    private javax.swing.JTextField tf_field136;
+    private javax.swing.JTextArea tf_field138;
+    private javax.swing.JTextField tf_field139;
     private javax.swing.JTextField tf_field14;
+    private javax.swing.JTextField tf_field140;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
     private javax.swing.JTextField tf_field17;
@@ -1787,17 +2393,19 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field22;
     private javax.swing.JTextField tf_field23;
     private javax.swing.JTextField tf_field24;
+    private javax.swing.JTextField tf_field25;
     private javax.swing.JTextField tf_field5;
     private javax.swing.JTextField tf_field6;
     private javax.swing.JTextField tf_field7;
     private javax.swing.JTextField tf_field8;
+    private javax.swing.JTextField tf_field9;
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -1813,7 +2421,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         ret_mode_of_payments();
         init_tbl_miscellaneous_fees(tbl_miscellaneous_fees);
         init_tbl_other_fees(tbl_other_fees);
+        init_tbl_added_subjectssubjects(jTable1);
+        init_tbl_fees(tbl_fees);
         jButton3.setEnabled(false);
+        tf_field25.grabFocus();
     }
 
     int academic_year_id = 0;
@@ -2636,7 +3247,17 @@ public class Dlg_finance extends javax.swing.JDialog {
     Enrollments.to_enrollments enroll = null;
 
     private void init_students() {
-        String where = "";
+        String where = " where id<>0 ";
+        if (jCheckBox5.isSelected()) {
+            where = where + " and student_no like '%" + tf_field23.getText() + "%' ";
+        } else if (jCheckBox6.isSelected()) {
+            where = where + " and concat(first_name,space(1),last_name) like '%" + tf_field23.getText() + "%' "
+                    + " or concat(last_name,space(1),first_name) like '%" + tf_field23.getText() + "%'";
+        } else {
+            where = where + " and enrollment_no like '%" + tf_field23.getText() + "%' ";
+        }
+        where = where + " order by last_name asc ";
+
         List<Enrollments.to_enrollments> datas = Enrollments.ret_data(where);
         Object[][] obj = new Object[datas.size()][5];
         int i = 0;
@@ -2692,6 +3313,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 tf_field135.setText(to.advised_by);
                 tf_field134.setText(to.approved_by);
 
+                ret_added_subjects(to);
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -2758,7 +3380,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        set_assessment();
+                        set_assessment2();
                     }
                 });
 
@@ -2815,11 +3437,12 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     //<editor-fold defaultstate="collapsed" desc=" list of programs ">
-    private void set_assessment() {
-
+    private void set_assessment2() {
+        jTabbedPane3.setSelectedIndex(1);
         jProgressBar1.setString("Loading...Please wait...");
         jProgressBar1.setIndeterminate(true);
         Thread t = new Thread(new Runnable() {
+
             @Override
             public void run() {
 
@@ -2836,148 +3459,154 @@ public class Dlg_finance extends javax.swing.JDialog {
                     jPanel17.updateUI();
                     return;
                 }
-                Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
 
-                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
                 String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
                 String date = synsoftech.util.DateType.slash.format(new Date());
                 String contact_no = System.getProperty("contact_no", "(035) 225 4831");
-                String enrollment_id = "" + assessment.enrollment_id;
-                String enrollment_no = assessment.enrollment_no;
-                String student_id = "" + assessment.student_id;
-                String student_no = assessment.student_no;
-                String student_name = assessment.lname + ", " + assessment.fname + " " + assessment.mi;
-                String academic_year = assessment.academic_year;
-                String course_code = assessment.course_code;
-                String course_description = assessment.course_description;
-                int no_of_years = FitIn.toInt(assessment.term);
-                String level = assessment.level;
-                String college = assessment.college;
-                String department = assessment.department;
-                String year_level = assessment.year_level;
 
-                double tuition_amount = 0;
-                double tuition_discount = 0;
-                int no_of_units = 0;
-                double amount_per_unit = 0;
-                double miscellaneous_amount = 0;
-                double miscellaneous_discount = 0;
-                double other_fees_amount = 0;
-                double other_fees_discount = 0;
-                double total_discount = 0;
-                double total_amount_due = 0;
                 String home = System.getProperty("user.home");
                 String SUBREPORT_DIR = home + "\\cis\\";
-                List<Srpt_enrollment_assessment.field> fields = new ArrayList();
-                List<Srpt_enrollment_assessment.field> rpt_subjects = new ArrayList();
+
+                String printed_by = MyUser.getUser_screen_name();
+                String school_year = enroll.academic_year;
+                String semester = enroll.term;
+                String student_no = enroll.student_no;
+                String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+                String student_course = enroll.course_code + " - " + enroll.course_description;
+                String student_year_level = enroll.year_level;
 
                 List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' ");
                 double no_of_units_lab = 0;
-                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
-                    String subject_code = sub.subject_code;
-                    String subject_description = sub.description;
-                    String prerequisites = "";
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    String faculty_name = sub.faculty_name;
-                    String section = sub.section;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, subject_description, prerequisites, lec_units, lab_units, faculty_name, section, room, day);
-                    rpt_subjects.add(f);
-                    no_of_units += sub.lecture_units;
-                    no_of_units_lab += sub.lab_units;
-                }
-                //get tuition
+                List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
+                //ret tuition amount
                 String where = " where id<>0 ";
-                where = where + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=0 ";
                 List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+                double tuition_amount = 0;
+                double lec_amount_per_unit = 0;
+                double lab_amount_per_unit = 0;
+                double total_assessment = 0;
+                double tution_fee = 0;
+                double misc_fee = 0;
+                double other_fee = 0;
+                double downpayment = 0;
+                double payable = 0;
 
                 if (!datas.isEmpty()) {
-
-                    Academic_year_fees.to_academic_year_fees to = (Academic_year_fees.to_academic_year_fees) datas.get(0);
-
-                    if (to.is_per_unit == 0) {
-                        tuition_amount = to.amount;
+                    Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+                    if (ayf.is_per_unit == 0) {
+                        tuition_amount = ayf.amount;
                     } else {
-                        amount_per_unit = to.per_unit;
-                        double total_lec_amount = to.per_unit * no_of_units;
-                        double total_lab_amount = to.lab_unit_amount * no_of_units_lab;
-                        tuition_amount = total_lec_amount + total_lab_amount;
+                        lec_amount_per_unit = ayf.per_unit;
+                        lab_amount_per_unit = ayf.lab_unit_amount;
                     }
-
                 }
-                //get misc
+
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+                    String subject_code = sub.subject_code;
+                    String description = sub.description;
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    double lec_amount = lec_units * lec_amount_per_unit;
+                    double lec_amount2 = lec_amount;
+                    lec_amount = lec_amount_per_unit;
+                    double lab_amount = lab_units * lab_amount_per_unit;
+                    double lab_amount2 = lab_amount;
+                    lab_amount = lab_amount_per_unit;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    String time = DateType.daytime(sub.day);
+                    time = time.replaceAll("WFM", "MWF");
+                    time = time.replaceAll("FM", "MF");
+                    String instructor = sub.faculty_name;
+                    double amount = lec_amount2 + lab_amount2;
+                    tution_fee += amount;
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+                    fields.add(f);
+                }
+
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+
                 String where2 = " where id<>0 ";
-                where2 = where2 + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=1 ";
 
-                List<Academic_year_fees.to_academic_year_fees> misc = Miscellaneous_fees.ret_data2(where2);
-
-                double amount = 0;
-                for (Academic_year_fees.to_academic_year_fees to : misc) {
-                    miscellaneous_amount += to.amount;
-                }
-                //get other fees     
                 String where3 = " where id<>0 ";
-                where3 = where3 + " and academic_year_id='" + assessment.academic_year_id + "' "
-                        + " and department_id='" + assessment.department_id + "' "
-                        + " and level_id='" + assessment.level_id + "' "
-                        + " and course_id='" + assessment.course_id + "' "
-                        + " and period like '" + tf_field128.getText() + "' "
+                where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                        + " and department_id='" + enroll.department_id + "' "
+                        + " and level_id='" + enroll.level_id + "' "
+                        + " and course_id='" + enroll.course_id + "' "
+                        + " and period like '" + enroll.year_level + "' "
                         + " and group_id=2 ";
-                List<Academic_year_fees.to_academic_year_fees> others = Miscellaneous_fees.ret_data3(where3);
 
-                for (Academic_year_fees.to_academic_year_fees to : datas) {
-                    other_fees_amount += to.amount;
+                List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+                List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+//        System.out.println(where3);
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+                for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
+                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+                    misc.add(f);
+                    misc_fee += fee.amount;
                 }
-                total_amount_due = tuition_amount + miscellaneous_amount + other_fees_amount;
-                List<Srpt_enrollment_assessment.mode_of_payments> rpt_mode_of_payments = new ArrayList();
+
+                for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
+                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+                    rpt_fees.add(f);
+                    other_fee += fee.amount;
+                }
+
                 List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+                List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
                 int payment_count = 3;
+                double tuition_fee = tuition_amount;
+
+                total_assessment = tution_fee + misc_fee + other_fee;
+                payable = total_assessment - downpayment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
-                    Srpt_enrollment_assessment.mode_of_payments mop0 = new Srpt_enrollment_assessment.mode_of_payments(ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
-                   
-                    rpt_mode_of_payments.add(mop0);
+                    downpayment += ea.paid;
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee);
+                    rpt_summary.add(f2);
                 }
 
-                String assessed_by = enroll.assessed_by;
-
-                Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(school_name, address, date, contact_no, enrollment_id, enrollment_no, student_id, student_no, student_name, academic_year, course_code, course_description, no_of_years, level, college, department, year_level, tuition_amount, tuition_discount, no_of_units, amount_per_unit, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, total_discount, total_amount_due, SUBREPORT_DIR, rpt_subjects, rpt_mode_of_payments, assessed_by);
-
-                String jrxml = "enrollment_assessment.jrxml";
+                String jrxml = "rpt_enrollment_assessment.jrxml";
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee);
+                rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
-                InputStream is = Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
+                InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
                 try {
                     JasperReport jasperReport = JasperCompileManager.compileReport(is);
                     jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
-                                                               setParameter(rpt), JasperUtil.emptyDatasource());
+                                                               setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
 
                 } catch (JRException ex) {
                     Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
                 }
-//                jTabbedPane2.setSelectedIndex(1);
+
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);
             }
         });
         t.start();
+    }
+
+    private void set_assessment() {
 
     }
 
-    private void report_assessment(final Srpt_enrollment_assessment to, String jrxml_name) {
+    private void report_assessment(final cis.reports.Srpt_enrollment_assessment to, String jrxml_name) {
         jPanel17.removeAll();
         jPanel17.setLayout(new BorderLayout());
         try {
@@ -2996,12 +3625,12 @@ public class Dlg_finance extends javax.swing.JDialog {
         }
     }
 
-    public static JRViewer get_viewer_assessment(Srpt_enrollment_assessment to, String rpt_name) {
+    public static JRViewer get_viewer_assessment(cis.reports.Srpt_enrollment_assessment to, String rpt_name) {
         try {
             return JasperUtil.getJasperViewer(
                     compileJasper(rpt_name),
                     JasperUtil.setParameter(to),
-                    JasperUtil.emptyDatasource());
+                    JasperUtil.makeDatasource(to.fields));
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -3011,7 +3640,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     public static JasperReport compileJasper(String rpt_name) {
         try {
             String jrxml = rpt_name;
-            InputStream is = Srpt_enrollment_assessment.class.
+            InputStream is = cis.reports.Srpt_enrollment_assessment.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;
@@ -3105,4 +3734,317 @@ public class Dlg_finance extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
+
+    //<editor-fold defaultstate="collapsed" desc=" table added subjects "> 
+    public static ArrayListModel tbl_added_subjects_ALM;
+    public static Tbl_added_subjects_Model tbl_added_subjects_M;
+
+    public static void init_tbl_added_subjectssubjects(JTable tbl_added_subjects) {
+        tbl_added_subjects_ALM = new ArrayListModel();
+        tbl_added_subjects_M = new Tbl_added_subjects_Model(tbl_added_subjects_ALM);
+        tbl_added_subjects.setModel(tbl_added_subjects_M);
+        tbl_added_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_added_subjects.setRowHeight(25);
+        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 0, 0};
+        for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
+            if (i == 1) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_added_subjects, i, tbl_widths_enrollment_student_loaded_subjects[i]);
+        }
+        Dimension d = tbl_added_subjects.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_added_subjects.getTableHeader().setPreferredSize(d);
+        tbl_added_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_added_subjects.setRowHeight(25);
+        tbl_added_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_added_subjects.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
+    }
+
+    public static void loadData_added_subjects(List<Students_curriculum.curriculum> acc) {
+        tbl_added_subjects_ALM.clear();
+        tbl_added_subjects_ALM.addAll(acc);
+
+    }
+
+    public static class Tbl_added_subjects_Model extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Subject Code", "Description", "Units", "Section", "Status", ""
+        };
+
+        public Tbl_added_subjects_Model(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 1000) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            Students_curriculum.curriculum tt = (Students_curriculum.curriculum) getRow(row);
+            switch (col) {
+                case 0:
+                    return " " + tt.subject_code;
+                case 1:
+                    return " " + tt.subject_description;
+                case 2:
+                    return " " + (tt.lab_units + tt.lec_units);
+                case 3:
+                    return " " + tt.section;
+                case 4:
+                    if (tt.status == -1) {
+                        return " ";
+                    } else if (tt.status == 0) {
+                        return " Added";
+                    } else if (tt.status == 1) {
+                        return " Enrolled";
+                    } else if (tt.status == 2) {
+                        return " Passed";
+                    } else if (tt.status == 3) {
+                        return " Failed";
+                    } else {
+                        return " Dropped";
+                    }
+                default:
+                    if (tt.status == 1) {
+                        return "/cis/icons2/quit.png";
+                    } else if (tt.status == -1) {
+                        return "/cis/icons2/plus.png";
+                    } else {
+                        return "/cis/icons/remove11.png";
+                    }
+
+            }
+        }
+    }
+
+    private void ret_added_subjects(Enrollments.to_enrollments to) {
+        Field.Input st = (Field.Input) tf_field8;
+
+        String where = " where enrollment_id = '" + to.id + "' and status=0 order by description asc ";
+        List<Students_curriculum.curriculum> subjects = Students_curriculum.ret_added_subjects(where);
+        loadData_added_subjects(subjects);
+        jLabel3.setText("" + subjects.size());
+    }
+    //</editor-fold>
+
+    Students.to_students pay_student = null;
+
+    //<editor-fold defaultstate="collapsed" desc=" Payment ">
+    private void init_search_student() {
+        String where = " where id<>0 ";
+        if (jCheckBox8.isSelected()) {
+            where = where + " and student_no like '%" + tf_field25.getText() + "%' ";
+        } else {
+            where = where + " and concat(first_name,space(1),last_name) like '%" + tf_field25.getText() + "%' "
+                    + " or concat(last_name,space(1),first_name) like '%" + tf_field25.getText() + "%'";
+        }
+        where = where + " order by last_name asc ";
+        List<Students.to_students> datas = Students.ret_data(where);
+        Object[][] obj = new Object[datas.size()][5];
+        int i = 0;
+        for (Students.to_students to : datas) {
+            obj[i][0] = " " + to.student_no;
+            obj[i][1] = " " + to.first_name;
+            obj[i][2] = " " + to.middle_name;
+            obj[i][3] = " " + to.last_name;
+            obj[i][4] = " " + to.permanent_address;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {100, 150, 100, 150, 200};
+        int width = 0;
+        String[] col_names = {"", "", "", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup2(tf_field25, obj, labels, tbl_widths_customers, col_names, 690);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Students.to_students stud = (Students.to_students) datas.get(data.selected_row);
+                pay_student = stud;
+                Field.Search tf = (Field.Search) tf_field25;
+                Field.Input student = (Field.Input) tf_field12;
+
+                student.setText(stud.student_no);
+                student.setId("" + stud.id);
+
+                tf_field9.setText(stud.first_name);
+                tf_field10.setText(stud.middle_name);
+                tf_field11.setText(stud.last_name);
+                tf_field136.setText(stud.course_code);
+                tf_field138.setText(stud.course_description);
+                tf_field127.setText(stud.department);
+                tf_field139.setText(stud.college);
+                tf_field140.setText(stud.year_level);
+                ret_fees();
+            }
+        });
+    }
+
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc=" Table fees"> 
+    public static ArrayListModel tbl_fees_ALM;
+    public static Tbl_fees_Model tbl_fees_M;
+
+    public static void init_tbl_fees(JTable tbl_fees) {
+        tbl_fees_ALM = new ArrayListModel();
+        tbl_fees_M = new Tbl_fees_Model(tbl_fees_ALM);
+        tbl_fees.setModel(tbl_fees_M);
+        tbl_fees.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_fees.setRowHeight(25);
+        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 80, 80, 60, 80, 80, 30};
+        for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
+            if (i == 0) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_fees, i, tbl_widths_enrollment_student_loaded_subjects[i]);
+        }
+        Dimension d = tbl_fees.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_fees.getTableHeader().setPreferredSize(d);
+        tbl_fees.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_fees.setRowHeight(35);
+        tbl_fees.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_fees.getColumnModel().getColumn(0).setCellRenderer(new Html());
+        TableWidthUtilities.setColumnRightRenderer(tbl_fees, 2);
+        TableWidthUtilities.setColumnRightRenderer(tbl_fees, 3);
+        TableWidthUtilities.setColumnRightRenderer(tbl_fees, 4);
+        TableWidthUtilities.setColumnRightRenderer(tbl_fees, 5);
+    }
+
+    static class Html extends DefaultTableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            JLabel lbl = new JLabel();
+            lbl.setText(value.toString());
+            lbl.setOpaque(true);
+            lbl.setBackground(Color.white);
+            if (selected) {
+                lbl.setBackground(new java.awt.Color(4, 176, 217));
+                lbl.setForeground(new java.awt.Color(0, 0, 0));
+            }
+            return lbl;
+        }
+    }
+
+    public static void loadData_fees(List<Finance.fees> acc) {
+        tbl_fees_ALM.clear();
+        tbl_fees_ALM.addAll(acc);
+
+    }
+
+    public static class Tbl_fees_Model extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Desciption", "Date", "Amount", "Interest", "Paid", "Balance", ""
+        };
+
+        public Tbl_fees_Model(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 6) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            Finance.fees tt = (Finance.fees) getRow(row);
+            switch (col) {
+                case 0:
+                    return "" + tt.title;
+                case 1:
+                    return " " + tt.date;
+                case 2:
+                    return " " + FitIn.fmt_wc_0(tt.amount) + " ";
+                case 3:
+                    return " " + FitIn.fmt_wc_0(tt.interest) + " ";
+                case 4:
+                    return " " + FitIn.fmt_wc_0(tt.paid) + " ";
+                case 5:
+                    return " " + FitIn.fmt_wc_0(tt.balance) + " ";
+                default:
+                    return tt.selected;
+
+            }
+        }
+    }
+
+    private void ret_fees() {
+        Field.Input student = (Field.Input) tf_field12;
+        String where = " where studn";
+        List<Finance.fees> datas = Finance.ret_data(pay_student);
+        loadData_fees(datas);
+        double balance = 0;
+        for (Finance.fees fee : datas) {
+            balance += fee.balance;
+        }
+
+        jLabel6.setText(FitIn.fmt_wc_0(balance));
+//        jLabel7.setText("" + datas.size());
+    }
+
+    private void select_payment() {
+        int row = tbl_fees.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        Finance.fees to = (Finance.fees) tbl_fees_ALM.get(row);
+        if (to.trans_type == 2) { //added subjects
+            Window p = (Window) this;
+            Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(pay_student);
+            nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
+                    closeDialog.ok();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+        if (to.trans_type == 3) { //drop subjects
+            Window p = (Window) this;
+            Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
+            nd.setTitle("");
+            nd.do_pass2(pay_student);
+            nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
+                    closeDialog.ok();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+    }
+//</editor-fold>
 }

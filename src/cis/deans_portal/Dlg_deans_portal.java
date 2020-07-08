@@ -6,6 +6,7 @@
 package cis.deans_portal;
 
 import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_periods;
 import cis.academic.Academic_years;
 import cis.academic.Dlg_academic_offering_subjects;
 import cis.academic.Srpt_list_of_programs;
@@ -18,6 +19,7 @@ import cis.students.Students;
 import cis.users.MyUser;
 import cis.users.Users;
 import cis.utils.Alert;
+import cis.utils.Combo;
 import cis.utils.DateType;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
@@ -248,6 +250,15 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jButton11 = new Button.Info();
         jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox11 = new javax.swing.JCheckBox();
+        jCheckBox17 = new javax.swing.JCheckBox();
+        tf_field18 = new Field.Combo();
+        jLabel30 = new javax.swing.JLabel();
+        tf_field19 = new Field.Combo();
+        jCheckBox18 = new javax.swing.JCheckBox();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jCheckBox19 = new javax.swing.JCheckBox();
+        tf_field20 = new Field.Combo();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tbl_enrollments = new javax.swing.JTable();
@@ -327,6 +338,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jLabel23.setText("Department:");
 
         tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field14.setFocusable(false);
         tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field14MouseClicked(evt);
@@ -339,6 +351,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         });
 
         tf_field15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field15.setFocusable(false);
         tf_field15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field15MouseClicked(evt);
@@ -358,6 +371,11 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jCheckBox7.setSelected(true);
         jCheckBox7.setText("New Student");
         jCheckBox7.setFocusable(false);
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -404,14 +422,99 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         });
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
-        jCheckBox10.setEnabled(false);
         jCheckBox10.setFocusable(false);
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox11.setSelected(true);
         jCheckBox11.setText("All");
-        jCheckBox11.setEnabled(false);
         jCheckBox11.setFocusable(false);
+        jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox11ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox17.setSelected(true);
+        jCheckBox17.setText("All");
+        jCheckBox17.setFocusable(false);
+        jCheckBox17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox17ActionPerformed(evt);
+            }
+        });
+
+        tf_field18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field18.setText("First Year");
+        tf_field18.setFocusable(false);
+        tf_field18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field18MouseClicked(evt);
+            }
+        });
+        tf_field18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field18ActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel30.setText("Year Level:");
+
+        tf_field19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field19.setText("First Semester");
+        tf_field19.setFocusable(false);
+        tf_field19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field19MouseClicked(evt);
+            }
+        });
+        tf_field19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field19ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox18.setSelected(true);
+        jCheckBox18.setText("All");
+        jCheckBox18.setFocusable(false);
+        jCheckBox18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox18ActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel31.setText("Period:");
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel32.setText("Course:");
+
+        jCheckBox19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox19.setSelected(true);
+        jCheckBox19.setText("All");
+        jCheckBox19.setFocusable(false);
+        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox19ActionPerformed(evt);
+            }
+        });
+
+        tf_field20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field20.setFocusable(false);
+        tf_field20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field20MouseClicked(evt);
+            }
+        });
+        tf_field20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field20ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -422,12 +525,20 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(jCheckBox19, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(tf_field20))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field15, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tf_field14)
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addComponent(jCheckBox7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -435,7 +546,20 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(tf_field14)))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(tf_field15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel22Layout.createSequentialGroup()
@@ -467,17 +591,32 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox10))
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox10))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox11, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox17)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox18)))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCheckBox19, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -491,7 +630,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
@@ -537,7 +676,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -555,8 +694,8 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1151,7 +1290,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field16MouseClicked
 
     private void tf_field16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field16ActionPerformed
-        // TODO add your handling code here:
+        ret_enrollments();
     }//GEN-LAST:event_tf_field16ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1202,6 +1341,50 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         init_colleges2();
     }//GEN-LAST:event_tf_field6MouseClicked
 
+    private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
+        init_year_levels();
+    }//GEN-LAST:event_tf_field18MouseClicked
+
+    private void tf_field18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field18ActionPerformed
+        init_year_levels();
+    }//GEN-LAST:event_tf_field18ActionPerformed
+
+    private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
+        init_periods();
+    }//GEN-LAST:event_tf_field19MouseClicked
+
+    private void tf_field19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field19ActionPerformed
+        init_periods();
+    }//GEN-LAST:event_tf_field19ActionPerformed
+
+    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox19ActionPerformed
+
+    private void tf_field20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field20MouseClicked
+        init_courses();
+    }//GEN-LAST:event_tf_field20MouseClicked
+
+    private void tf_field20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field20ActionPerformed
+        init_courses();
+    }//GEN-LAST:event_tf_field20ActionPerformed
+
+    private void jCheckBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox18ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox18ActionPerformed
+
+    private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox17ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1218,6 +1401,9 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
     private javax.swing.JCheckBox jCheckBox16;
+    private javax.swing.JCheckBox jCheckBox17;
+    private javax.swing.JCheckBox jCheckBox18;
+    private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
@@ -1236,6 +1422,9 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1272,7 +1461,10 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
     private javax.swing.JTextField tf_field17;
+    private javax.swing.JTextField tf_field18;
+    private javax.swing.JTextField tf_field19;
     private javax.swing.JTextField tf_field2;
+    private javax.swing.JTextField tf_field20;
     private javax.swing.JTextField tf_field3;
     private javax.swing.JTextField tf_field5;
     private javax.swing.JTextField tf_field6;
@@ -1282,10 +1474,11 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
         init_key();
         acad_years = Academic_years.ret_data(" where status=1");
+        year_levels = Combo.year_levels();
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {
@@ -1298,13 +1491,29 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     year2.setId("" + to1.id);
                     year3.setText(to1.years);
                     year3.setId("" + to1.id);
-
                     break;
                 }
             }
         }
-
         deps = Departments.ret_data(" order by department_name  asc ");
+        if (!deps.isEmpty()) {
+            Departments.to_departments to = (Departments.to_departments) deps.get(0);
+            Field.Combo dep = (Field.Combo) tf_field14;
+            dep.setId("" + to.id);
+            dep.setText("" + to.department_name);
+
+            colleges2 = Colleges.ret_data(" where department_id='" + dep.getId() + "' ");
+            Field.Combo co1 = (Field.Combo) tf_field15;
+            if (!colleges2.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                co1.setText("" + c.college_name);
+                co1.setId("" + c.id);
+            } else {
+                co1.setText("");
+                co1.setId("");
+            }
+            ret_periods();
+        }
         init_tbl_offerings(tbl_offerings);
         init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
         init_tbl_enrollments(tbl_enrollments);
@@ -2306,7 +2515,35 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 //</editor-fold> 
 
     private void ret_enrollments() {
-        String where = "";
+        Field.Combo year = (Field.Combo) tf_field2;
+        String where = " where id<>0 and academic_year_id='" + year.getId() + "' ";
+        if (!jCheckBox10.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field14;
+            where = where + " and department_id = '" + dep.getId() + "' ";
+        }
+        if (!jCheckBox11.isSelected()) {
+            Field.Combo col = (Field.Combo) tf_field15;
+            where = where + " and college_id = '" + col.getId() + "' ";
+        }
+
+        if (!jCheckBox19.isSelected()) {
+            Field.Combo course = (Field.Combo) tf_field20;
+            where = where + " and course_id = '" + course.getId() + "' ";
+        }
+        if (!jCheckBox17.isSelected()) {
+            Field.Combo year_level = (Field.Combo) tf_field18;
+            where = where + " and year_level like '" + year_level.getText() + "' ";
+        }
+        if (!jCheckBox18.isSelected()) {
+            Field.Combo period = (Field.Combo) tf_field19;
+            where = where + " and period like '" + period.getText() + "' ";
+        }
+        if (!jCheckBox7.isSelected()) {
+            where = where + " and is_transferee = 0 ";
+        }
+        where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field16.getText() + "%' ";
+        where = where + " order by last_name asc ";
+//        System.out.println(where);
         List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
         loadData_enrollments(enrollments);
         jLabel28.setText("" + enrollments.size());
@@ -2366,7 +2603,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
-
+                ret_periods();
             }
         });
     }
@@ -2392,9 +2629,114 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field15;
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
-
+                ret_enrollments();
             }
 
+        });
+    }
+
+    private void init_courses() {
+        Field.Input year3 = (Field.Input) tf_field13;
+        String where = " where id<>0 ";
+
+        Field.Combo dep = (Field.Combo) tf_field14;
+        Field.Combo col = (Field.Combo) tf_field15;
+
+        where = where + " and department_id = '" + dep.getId() + "' ";
+        where = where + " and college_id = '" + col.getId() + "' ";
+
+        where = where + " and course_code like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
+                + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "' and course_description like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
+                + " order by course_description asc ";
+        List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
+        Object[][] obj = new Object[offer.size()][2];
+        int i = 0;
+        for (Academic_offerings.to_academic_offerings to : offer) {
+            obj[i][0] = " " + to.course_code;
+            obj[i][1] = " " + to.course_description;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {80, tf_field20.getWidth() - 80};
+        int width = 0;
+        String[] col_names = {"", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup2(tf_field20, obj, labels, tbl_widths_customers, col_names, tf_field20.getWidth());
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
+//                no_of_years = off.no_of_years;
+//                set_periods();
+                Field.Combo cou = (Field.Combo) tf_field20;
+                cou.setText(off.course_code + " - " + off.course_description);
+                cou.setId("" + off.course_id);
+//                ret_data();
+                ret_enrollments();
+            }
+        });
+    }
+
+    List<String> year_levels = new ArrayList();
+
+    private void init_year_levels() {
+        Object[][] obj = new Object[year_levels.size()][1];
+        int i = 0;
+        for (String to : year_levels) {
+            obj[i][0] = " " + to;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field18.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field18, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = year_levels.get(data.selected_row);
+                tf_field18.setText("" + to);
+                ret_enrollments();
+            }
+        });
+    }
+
+    List<String> periods = new ArrayList();
+
+    private void ret_periods() {
+        Field.Input year = (Field.Input) tf_field13;
+        Field.Combo dep = (Field.Combo) tf_field14;
+        String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
+        List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
+        if (!periods1.isEmpty()) {
+            Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+            String per = acad.period;
+            periods = Combo.periods(per);
+//            System.out.println("" + periods.size());
+        }
+    }
+
+    private void init_periods() {
+        Object[][] obj = new Object[periods.size()][1];
+        int i = 0;
+        for (String to : periods) {
+            obj[i][0] = " " + to;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field19.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field19, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = periods.get(data.selected_row);
+                tf_field19.setText("" + to);
+                ret_enrollments();
+            }
         });
     }
 

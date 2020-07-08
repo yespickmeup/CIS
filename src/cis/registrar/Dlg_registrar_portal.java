@@ -26,6 +26,7 @@ import cis.subjects.Subject_groupings;
 import cis.subjects.Subjects;
 import cis.users.MyUser;
 import cis.utils.Alert;
+import cis.utils.Combo;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.Dlg_confirm_delete2;
@@ -238,8 +239,41 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        tf_field14 = new Field.Input();
+        jLabel30 = new javax.swing.JLabel();
+        tf_field22 = new Field.Combo();
+        tf_field23 = new Field.Combo();
+        jLabel31 = new javax.swing.JLabel();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
+        jCheckBox22 = new javax.swing.JCheckBox();
+        jLabel32 = new javax.swing.JLabel();
+        jCheckBox9 = new javax.swing.JCheckBox();
+        jLabel33 = new javax.swing.JLabel();
+        tf_field24 = new Field.Combo();
+        jButton11 = new Button.Info();
+        jCheckBox23 = new javax.swing.JCheckBox();
+        jCheckBox24 = new javax.swing.JCheckBox();
+        jLabel41 = new javax.swing.JLabel();
+        tf_field28 = new Field.Combo();
+        jCheckBox30 = new javax.swing.JCheckBox();
+        jCheckBox31 = new javax.swing.JCheckBox();
+        tf_field29 = new Field.Combo();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jCheckBox32 = new javax.swing.JCheckBox();
+        tf_field30 = new Field.Combo();
+        jPanel24 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbl_enrollments = new javax.swing.JTable();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -299,29 +333,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         tbl_dropped_subjects = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel23 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        tf_field14 = new Field.Input();
-        jLabel30 = new javax.swing.JLabel();
-        tf_field22 = new Field.Combo();
-        tf_field23 = new Field.Combo();
-        jLabel31 = new javax.swing.JLabel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox22 = new javax.swing.JCheckBox();
-        jLabel32 = new javax.swing.JLabel();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jLabel33 = new javax.swing.JLabel();
-        tf_field24 = new Field.Combo();
-        jButton11 = new Button.Info();
-        jCheckBox23 = new javax.swing.JCheckBox();
-        jCheckBox24 = new javax.swing.JCheckBox();
-        jPanel24 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tbl_enrollments = new javax.swing.JTable();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
@@ -400,6 +411,385 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel29.setText("School Year:");
+
+        tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field14.setFocusable(false);
+        tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field14MouseClicked(evt);
+            }
+        });
+        tf_field14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field14ActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel30.setText("Department:");
+
+        tf_field22.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field22MouseClicked(evt);
+            }
+        });
+        tf_field22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field22ActionPerformed(evt);
+            }
+        });
+
+        tf_field23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field23MouseClicked(evt);
+            }
+        });
+        tf_field23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field23ActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel31.setText("Level/College:");
+
+        buttonGroup3.add(jCheckBox7);
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox7.setSelected(true);
+        jCheckBox7.setText("New Student");
+        jCheckBox7.setFocusable(false);
+
+        buttonGroup3.add(jCheckBox8);
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox8.setText("Transfer Student");
+        jCheckBox8.setEnabled(false);
+        jCheckBox8.setFocusable(false);
+
+        buttonGroup3.add(jCheckBox22);
+        jCheckBox22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox22.setText("Returning Student");
+        jCheckBox22.setEnabled(false);
+        jCheckBox22.setFocusable(false);
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel32.setText("Type:");
+
+        buttonGroup3.add(jCheckBox9);
+        jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox9.setText("All");
+        jCheckBox9.setEnabled(false);
+        jCheckBox9.setFocusable(false);
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Name:");
+
+        tf_field24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field24MouseClicked(evt);
+            }
+        });
+        tf_field24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field24ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton11.setText("Search");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox23.setSelected(true);
+        jCheckBox23.setText("All");
+        jCheckBox23.setFocusable(false);
+        jCheckBox23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox23ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox24.setSelected(true);
+        jCheckBox24.setText("All");
+        jCheckBox24.setFocusable(false);
+        jCheckBox24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox24ActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel41.setText("Year Level:");
+
+        tf_field28.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field28.setText("First Year");
+        tf_field28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field28MouseClicked(evt);
+            }
+        });
+        tf_field28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field28ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox30.setSelected(true);
+        jCheckBox30.setText("All");
+        jCheckBox30.setFocusable(false);
+        jCheckBox30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox30ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox31.setSelected(true);
+        jCheckBox31.setText("All");
+        jCheckBox31.setFocusable(false);
+        jCheckBox31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox31ActionPerformed(evt);
+            }
+        });
+
+        tf_field29.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field29.setText("First Semester");
+        tf_field29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field29MouseClicked(evt);
+            }
+        });
+        tf_field29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field29ActionPerformed(evt);
+            }
+        });
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel43.setText("Period:");
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel45.setText("Course:");
+
+        jCheckBox32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox32.setSelected(true);
+        jCheckBox32.setText("All");
+        jCheckBox32.setFocusable(false);
+        jCheckBox32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox32ActionPerformed(evt);
+            }
+        });
+
+        tf_field30.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field30MouseClicked(evt);
+            }
+        });
+        tf_field30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field30ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_field22)
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tf_field23, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel23Layout.createSequentialGroup()
+                                        .addComponent(jCheckBox7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBox8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jCheckBox22, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel41)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field28, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field29, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel23Layout.createSequentialGroup()
+                                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_field24, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                                        .addComponent(jCheckBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(437, 437, 437)))
+                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox23, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBox24, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(jCheckBox32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(tf_field30)))
+                .addContainerGap())
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox23))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox24, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox30)
+                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox31)))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox32, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox7)
+                            .addComponent(jCheckBox8)
+                            .addComponent(jCheckBox22)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox9))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_field24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
+
+        tbl_enrollments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbl_enrollments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_enrollmentsMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tbl_enrollments);
+
+        jLabel34.setText("No. of rows:");
+
+        jLabel35.setText("0");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel35))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Applications", jPanel2);
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -879,7 +1269,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1088,258 +1478,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         );
 
         jTabbedPane1.addTab("Add/Drop Subject", jPanel12);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("School Year:");
-
-        tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field14.setFocusable(false);
-        tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field14MouseClicked(evt);
-            }
-        });
-        tf_field14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field14ActionPerformed(evt);
-            }
-        });
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel30.setText("Department:");
-
-        tf_field22.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field22MouseClicked(evt);
-            }
-        });
-        tf_field22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field22ActionPerformed(evt);
-            }
-        });
-
-        tf_field23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field23MouseClicked(evt);
-            }
-        });
-        tf_field23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field23ActionPerformed(evt);
-            }
-        });
-
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel31.setText("Level/College:");
-
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setText("New Student");
-        jCheckBox7.setFocusable(false);
-
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox8.setText("Transfer Student");
-        jCheckBox8.setFocusable(false);
-
-        jCheckBox22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox22.setText("Returning Student");
-        jCheckBox22.setFocusable(false);
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel32.setText("Type:");
-
-        jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox9.setSelected(true);
-        jCheckBox9.setText("All");
-        jCheckBox9.setFocusable(false);
-
-        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel33.setText("Name:");
-
-        tf_field24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field24MouseClicked(evt);
-            }
-        });
-        tf_field24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field24ActionPerformed(evt);
-            }
-        });
-
-        jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton11.setText("Search");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox23.setSelected(true);
-        jCheckBox23.setText("All");
-        jCheckBox23.setFocusable(false);
-
-        jCheckBox24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox24.setSelected(true);
-        jCheckBox24.setText("All");
-        jCheckBox24.setFocusable(false);
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field23, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addComponent(jCheckBox7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox22, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(tf_field22)))
-                    .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel23Layout.createSequentialGroup()
-                                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tf_field24, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                                        .addComponent(jCheckBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(437, 437, 437)))
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox23, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox24, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 319, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox23))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox24, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox22)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox9))
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_field24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
-
-        tbl_enrollments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tbl_enrollments.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_enrollmentsMouseClicked(evt);
-            }
-        });
-        jScrollPane7.setViewportView(tbl_enrollments);
-
-        jLabel34.setText("No. of rows:");
-
-        jLabel35.setText("0");
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(jLabel34)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel35))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Applications", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1684,7 +1822,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_field)
-                            .addComponent(tf_field3, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                            .addComponent(tf_field3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                             .addComponent(tf_field2)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1783,7 +1921,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -2102,7 +2240,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2113,7 +2251,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -2169,11 +2307,11 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1005, Short.MAX_VALUE)
+            .addGap(0, 1049, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Certification of Grades", jPanel15);
@@ -2184,11 +2322,11 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1005, Short.MAX_VALUE)
+            .addGap(0, 1049, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Transcript of Records", jPanel16);
@@ -2224,9 +2362,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(10, 10, 10)
                 .addComponent(jTabbedPane1)
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2392,19 +2530,19 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field22MouseClicked
-        // TODO add your handling code here:
+        init_departments();
     }//GEN-LAST:event_tf_field22MouseClicked
 
     private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
-        // TODO add your handling code here:
+        init_departments();
     }//GEN-LAST:event_tf_field22ActionPerformed
 
     private void tf_field23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field23MouseClicked
-        // TODO add your handling code here:
+        init_colleges();
     }//GEN-LAST:event_tf_field23MouseClicked
 
     private void tf_field23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field23ActionPerformed
-        // TODO add your handling code here:
+        init_colleges();
     }//GEN-LAST:event_tf_field23ActionPerformed
 
     private void tf_field24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field24MouseClicked
@@ -2412,7 +2550,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field24MouseClicked
 
     private void tf_field24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field24ActionPerformed
-        // TODO add your handling code here:
+        ret_enrollments();
     }//GEN-LAST:event_tf_field24ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -2580,6 +2718,50 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         select_dropped_subjects();
     }//GEN-LAST:event_tbl_dropped_subjectsMouseClicked
 
+    private void tf_field28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field28MouseClicked
+        init_year_levels();
+    }//GEN-LAST:event_tf_field28MouseClicked
+
+    private void tf_field28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field28ActionPerformed
+        init_year_levels();
+    }//GEN-LAST:event_tf_field28ActionPerformed
+
+    private void jCheckBox30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox30ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox30ActionPerformed
+
+    private void jCheckBox31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox31ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox31ActionPerformed
+
+    private void tf_field29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field29MouseClicked
+        init_periods();
+    }//GEN-LAST:event_tf_field29MouseClicked
+
+    private void tf_field29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field29ActionPerformed
+        init_periods();
+    }//GEN-LAST:event_tf_field29ActionPerformed
+
+    private void jCheckBox32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox32ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox32ActionPerformed
+
+    private void tf_field30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field30MouseClicked
+        init_courses();
+    }//GEN-LAST:event_tf_field30MouseClicked
+
+    private void tf_field30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field30ActionPerformed
+        init_courses();
+    }//GEN-LAST:event_tf_field30ActionPerformed
+
+    private void jCheckBox23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox23ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox23ActionPerformed
+
+    private void jCheckBox24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox24ActionPerformed
+        ret_enrollments();
+    }//GEN-LAST:event_jCheckBox24ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2587,6 +2769,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton3;
@@ -2613,6 +2796,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox28;
     private javax.swing.JCheckBox jCheckBox29;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox30;
+    private javax.swing.JCheckBox jCheckBox31;
+    private javax.swing.JCheckBox jCheckBox32;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
@@ -2651,8 +2837,11 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2735,7 +2924,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field25;
     private javax.swing.JTextField tf_field26;
     private javax.swing.JTextField tf_field27;
+    private javax.swing.JTextField tf_field28;
+    private javax.swing.JTextField tf_field29;
     private javax.swing.JTextField tf_field3;
+    private javax.swing.JTextField tf_field30;
     private javax.swing.JTextField tf_field4;
     private javax.swing.JTextField tf_field5;
     private javax.swing.JTextField tf_field6;
@@ -2758,16 +2950,21 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
+        year_levels = Combo.year_levels();
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 acad = to1;
                 Field.Combo year = (Field.Combo) tf_field20;
                 Field.Input year2 = (Field.Input) tf_field25;
+                Field.Input year3 = (Field.Input) tf_field14;
+
                 year.setText(to1.years);
                 year.setId("" + to1.id);
 
                 year2.setText(to1.years);
                 year2.setId("" + to1.id);
+                year3.setText(to1.years);
+                year3.setId("" + to1.id);
 
             }
             List<Academic_year_period_schedules.to_academic_year_period_schedules> schedules = Academic_year_period_schedules.ret_data(" where status=1");
@@ -2791,6 +2988,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         if (!deps2.isEmpty()) {
             Departments.to_departments dep = (Departments.to_departments) deps2.get(0);
             Field.Combo co = (Field.Combo) tf_field2;
+            Field.Combo co3 = (Field.Combo) tf_field22;
             co.setText("" + dep.department_name);
             co.setId("" + dep.id);
 
@@ -2798,6 +2996,21 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             co2.setText("" + dep.department_name);
             co2.setId("" + dep.id);
 
+            co3.setText("" + dep.department_name);
+            co3.setId("" + dep.id);
+
+            colleges2 = Colleges.ret_data(" where department_id='" + co2.getId() + "' ");
+            Field.Combo co1 = (Field.Combo) tf_field23;
+            if (!colleges2.isEmpty()) {
+                Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                co1.setText("" + c.college_name);
+                co1.setId("" + c.id);
+            } else {
+                co1.setText("");
+                co1.setId("");
+            }
+
+            ret_periods();
         }
         ret_offering_subjects();
         ret_opened_subjects();
@@ -4118,10 +4331,38 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 //</editor-fold> 
 
     private void ret_enrollments() {
-        String where = "";
+        Field.Input year = (Field.Input) tf_field14;
+        String where = " where id<>0 and academic_year_id='" + year.getId() + "' ";
+        if (!jCheckBox23.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field22;
+            where = where + " and department_id = '" + dep.getId() + "' ";
+        }
+        if (!jCheckBox24.isSelected()) {
+            Field.Combo col = (Field.Combo) tf_field23;
+            where = where + " and college_id = '" + col.getId() + "' ";
+        }
+
+        if (!jCheckBox32.isSelected()) {
+            Field.Combo course = (Field.Combo) tf_field30;
+            where = where + " and course_id = '" + course.getId() + "' ";
+        }
+        if (!jCheckBox30.isSelected()) {
+            Field.Combo year_level = (Field.Combo) tf_field28;
+            where = where + " and year_level like '" + year_level.getText() + "' ";
+        }
+        if (!jCheckBox31.isSelected()) {
+            Field.Combo period = (Field.Combo) tf_field29;
+            where = where + " and period like '" + period.getText() + "' ";
+        }
+        if (!jCheckBox7.isSelected()) {
+            where = where + " and is_transferee = 0 ";
+        }
+        where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field24.getText() + "%' ";
+        where = where + " order by last_name asc ";
+
         List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
         loadData_enrollments(enrollments);
-        jLabel28.setText("" + enrollments.size());
+        jLabel35.setText("" + enrollments.size());
     }
 
     private void select_enrollment() {
@@ -4780,7 +5021,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 //</editor-fold> 
 
-//<editor-fold defaultstate="collapsed" desc=" table added subjects "> 
+    //<editor-fold defaultstate="collapsed" desc=" table added subjects "> 
     public static ArrayListModel tbl_added_subjects_ALM;
     public static Tbl_added_subjects_Model tbl_added_subjects_M;
 
@@ -5032,13 +5273,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         int col = tbl_dropped_subjects.getSelectedColumn();
         if (col == 5) {
             Students_curriculum.curriculum to = (Students_curriculum.curriculum) tbl_dropped_subjects_ALM.get(row);
-            if(to.status==0){
+            if (to.status == 0) {
                 Window p = (Window) this;
                 Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
                 nd.setTitle("");
 //                nd.do_pass(services);
                 nd.setCallback(new Dlg_confirm_delete.Callback() {
-                    
+
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
                         closeDialog.ok();
@@ -5053,4 +5294,174 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
     }
 //</editor-fold>
+
+    List<String> periods = new ArrayList();
+
+    private void ret_periods() {
+        Field.Input year = (Field.Input) tf_field14;
+        Field.Combo dep = (Field.Combo) tf_field22;
+        String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
+        List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
+        if (!periods1.isEmpty()) {
+            Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+            String per = acad.period;
+            periods = Combo.periods(per);
+//            System.out.println("peiord: " + periods.size());
+        }
+    }
+
+    private void init_periods() {
+        Object[][] obj = new Object[periods.size()][1];
+        int i = 0;
+        for (String to : periods) {
+            obj[i][0] = " " + to;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field29.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field29, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = periods.get(data.selected_row);
+                tf_field29.setText("" + to);
+                ret_enrollments();
+            }
+        });
+    }
+
+    List<String> year_levels = new ArrayList();
+
+    private void init_year_levels() {
+        Object[][] obj = new Object[year_levels.size()][1];
+        int i = 0;
+        for (String to : year_levels) {
+            obj[i][0] = " " + to;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field28.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field28, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = year_levels.get(data.selected_row);
+                tf_field28.setText("" + to);
+                ret_enrollments();
+            }
+        });
+    }
+
+    private void init_courses() {
+        Field.Input year3 = (Field.Input) tf_field14;
+        String where = " where id<>0 ";
+
+        Field.Combo dep = (Field.Combo) tf_field22;
+        Field.Combo col = (Field.Combo) tf_field23;
+
+        where = where + " and department_id = '" + dep.getId() + "' ";
+        where = where + " and college_id = '" + col.getId() + "' ";
+
+        where = where + " and course_code like '%" + tf_field30.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
+                + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "' and course_description like '%" + tf_field30.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
+                + " order by course_description asc ";
+        List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
+        Object[][] obj = new Object[offer.size()][2];
+        int i = 0;
+        for (Academic_offerings.to_academic_offerings to : offer) {
+            obj[i][0] = " " + to.course_code;
+            obj[i][1] = " " + to.course_description;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {80, tf_field30.getWidth() - 80};
+        int width = 0;
+        String[] col_names = {"", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup2(tf_field30, obj, labels, tbl_widths_customers, col_names, tf_field30.getWidth());
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
+//                no_of_years = off.no_of_years;
+//                set_periods();
+                Field.Combo cou = (Field.Combo) tf_field30;
+                cou.setText(off.course_code + " - " + off.course_description);
+                cou.setId("" + off.course_id);
+//                ret_data();
+                ret_enrollments();
+            }
+        });
+    }
+
+    private void init_departments() {
+        Object[][] obj = new Object[deps.size()][1];
+        int i = 0;
+        for (Departments.to_departments to : deps) {
+            obj[i][0] = " " + to.department_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field22.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field22, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Departments.to_departments to = deps.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field22;
+                co.setText("" + to.department_name);
+                co.setId("" + to.id);
+
+                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+                Field.Combo co1 = (Field.Combo) tf_field23;
+                if (!colleges2.isEmpty()) {
+                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                } else {
+                    co1.setText("");
+                    co1.setId("");
+                }
+                ret_periods();
+                ret_enrollments();
+            }
+        });
+    }
+
+    private void init_colleges() {
+
+        Object[][] obj = new Object[colleges2.size()][1];
+        int i = 0;
+        for (Colleges.to_colleges to : colleges2) {
+            obj[i][0] = " " + to.college_name;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field23.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field23, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Colleges.to_colleges to = colleges2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field23;
+                co.setText("" + to.college_name);
+                co.setId("" + to.id);
+                ret_enrollments();
+            }
+
+        });
+    }
+
 }

@@ -801,8 +801,8 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
         if (!acad_years.isEmpty()) {
@@ -1474,17 +1474,19 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         List<Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
         int payment_count = 3;
+        double tuition_fee = tuition_amount;
+       
         total_assessment = tution_fee + misc_fee + other_fee;
         payable = total_assessment - downpayment;
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
             double balance = ea.amount - ea.paid;
             downpayment += ea.paid;
-            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance);
+            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance,tuition_fee);
             rpt_summary.add(f2);
         }
 
         String jrxml = "rpt_enrollment_assessment.jrxml";
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary,tuition_fee);
         rpt.fields.addAll(fields);
 
         JasperPrint jp1 = null;

@@ -322,7 +322,7 @@ public class Students_curriculum {
                 String subject_description = description;
                 double lec_units = lecture_units;
 
-                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lec_units, section, status, academic_offering_subject_id);
+                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id);
                 datas.add(cu);
             }
             return datas;
@@ -442,7 +442,7 @@ public class Students_curriculum {
                 String subject_description = description;
                 double lec_units = lecture_units;
                 academic_offering_subject_id=enrollment_student_loaded_subject_id;
-                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lec_units, section, status, academic_offering_subject_id);
+                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id);
                 datas.add(cu);
             }
             return datas;

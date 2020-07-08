@@ -403,7 +403,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         });
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Semester:");
+        jLabel26.setText("Period:");
 
         tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field17.setFocusable(false);
