@@ -2947,8 +2947,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jCheckBox14.setVisible(false);
         tf_field16.setVisible(false);
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();

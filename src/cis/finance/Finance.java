@@ -68,6 +68,22 @@ public class Finance {
         }
     }
 
+    public static class transactions {
+
+        public final int id;
+        public final String date;
+        public final String trans_type;
+        public final double amount;
+
+        public transactions(int id, String date, String trans_type, double amount) {
+            this.id = id;
+            this.date = date;
+            this.trans_type = trans_type;
+            this.amount = amount;
+        }
+
+    }
+
     public static List<fees> ret_data(Students.to_students stud) {
         List<fees> datas = new ArrayList();
 
@@ -375,6 +391,65 @@ public class Finance {
         } finally {
             MyConnection.close();
         }
-
     }
+
+    public static List<Finance.transactions> ret_transactions(Students.to_students student) {
+        List<Finance.transactions> datas = new ArrayList();
+
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "select "
+                    + " eap.id"
+                    + ",eap.amount_paid"
+                    + ",eap.created_at"
+                    + " from enrollment_assessment_payments eap "
+                    + " join enrollment_assessments ea "
+                    + " on eap.enrollment_assessment_id = ea.id "
+                    + " where ea.student_id='" + student.id + "' "
+                    + " order by eap.created_at desc ";
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(s0);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                double amount_paid = rs.getDouble(2);
+                String created_at = rs.getString(3);
+                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Assessment Payment", amount_paid);
+                datas.add(to);
+            }
+
+            String s2 = "select "
+                    + "id"
+                    + ",trans_type"
+                    + ",amount_paid"
+                    + ",created_at"
+                    + " from enrollment_sls_payments"
+                    + " where student_id='" + student.id + "' ";
+
+            Statement stmt2 = conn.createStatement();
+            ResultSet rs2 = stmt2.executeQuery(s2);
+            while (rs2.next()) {
+                int id = rs2.getInt(1);
+                int trans_type = rs2.getInt(2);
+                double amount_paid = rs2.getDouble(3);
+                String created_at = rs2.getString(4);
+                if (trans_type == 1) {
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid);
+                    datas.add(to);
+                }
+                if (trans_type == 2) {
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid);
+                    datas.add(to);
+                }
+
+            }
+
+            return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
 }

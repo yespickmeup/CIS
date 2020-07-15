@@ -263,6 +263,8 @@ public class Dlg_finance extends javax.swing.JDialog {
         tf_field11 = new Field.Input();
         jLabel19 = new javax.swing.JLabel();
         tf_field12 = new Field.Input();
+        jButton7 = new javax.swing.JButton();
+        jXCollapsiblePane1 = new org.jdesktop.swingx.JXCollapsiblePane();
         jPanel24 = new javax.swing.JPanel();
         jLabel78 = new javax.swing.JLabel();
         tf_field136 = new Field.Input();
@@ -275,6 +277,9 @@ public class Dlg_finance extends javax.swing.JDialog {
         tf_field139 = new Field.Input();
         jLabel88 = new javax.swing.JLabel();
         tf_field140 = new Field.Input();
+        jPanel27 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbl_transactions = new javax.swing.JTable();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_fees = new javax.swing.JTable();
@@ -482,6 +487,15 @@ public class Dlg_finance extends javax.swing.JDialog {
             }
         });
 
+        jButton7.setText("+");
+        jButton7.setToolTipText("More Details");
+        jButton7.setFocusable(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
@@ -498,7 +512,10 @@ public class Dlg_finance extends javax.swing.JDialog {
                     .addComponent(tf_field10)
                     .addComponent(tf_field11)
                     .addComponent(tf_field9)
-                    .addComponent(tf_field12))
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addComponent(tf_field12)
+                        .addGap(0, 0, 0)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
@@ -507,7 +524,8 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -651,6 +669,8 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jXCollapsiblePane1.getContentPane().add(jPanel24);
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -658,11 +678,11 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jXCollapsiblePane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -671,10 +691,42 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                .addGap(1, 1, 1)
-                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222))
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jXCollapsiblePane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transactions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+
+        tbl_transactions.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tbl_transactions);
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -689,13 +741,13 @@ public class Dlg_finance extends javax.swing.JDialog {
                         .addGap(5, 5, 5)
                         .addComponent(jCheckBox8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox9)
-                        .addGap(219, 242, Short.MAX_VALUE))
+                        .addComponent(jCheckBox9))
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(tf_field25)))
+                        .addComponent(tf_field25))
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -711,8 +763,10 @@ public class Dlg_finance extends javax.swing.JDialog {
                     .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
@@ -742,14 +796,14 @@ public class Dlg_finance extends javax.swing.JDialog {
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1466,11 +1520,11 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1967,9 +2021,9 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
+                .addContainerGap(132, Short.MAX_VALUE)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2260,6 +2314,15 @@ public class Dlg_finance extends javax.swing.JDialog {
         fees_payment();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        if (jXCollapsiblePane1.isCollapsed()) {
+            jXCollapsiblePane1.setCollapsed(false);
+        } else {
+            jXCollapsiblePane1.setCollapsed(true);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2275,6 +2338,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -2352,6 +2416,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2366,13 +2431,16 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
+    private org.jdesktop.swingx.JXCollapsiblePane jXCollapsiblePane1;
     private javax.swing.JTable tbl_fees;
     private javax.swing.JTable tbl_miscellaneous_fees;
     private javax.swing.JTable tbl_other_fees;
+    private javax.swing.JTable tbl_transactions;
     private javax.swing.JTextField tf_field10;
     private javax.swing.JTextField tf_field11;
     private javax.swing.JTextField tf_field12;
@@ -2413,8 +2481,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -2432,6 +2500,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         init_tbl_other_fees(tbl_other_fees);
         init_tbl_added_subjectssubjects(jTable1);
         init_tbl_fees(tbl_fees);
+        init_tbl_transactionssubjects(tbl_transactions);
         jButton3.setEnabled(false);
         tf_field25.grabFocus();
     }
@@ -3900,6 +3969,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 tf_field139.setText(stud.college);
                 tf_field140.setText(stud.year_level);
                 ret_fees();
+                ret_transactions();
             }
         });
     }
@@ -4050,6 +4120,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
                         closeDialog.ok();
                         ret_fees();
+                        ret_transactions();
                     }
                 });
                 nd.setLocationRelativeTo(this);
@@ -4065,6 +4136,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
                         closeDialog.ok();
                         ret_fees();
+                        ret_transactions();
                     }
                 });
                 nd.setLocationRelativeTo(this);
@@ -4097,10 +4169,94 @@ public class Dlg_finance extends javax.swing.JDialog {
             public void ok(CloseDialog closeDialog, Dlg_finance_payment.OutputData data) {
                 closeDialog.ok();
                 ret_fees();
+                ret_transactions();
             }
         });
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
+    }
+
+    //<editor-fold defaultstate="collapsed" desc=" transactions ">
+    //<editor-fold defaultstate="collapsed" desc=" table added subjects "> 
+    public static ArrayListModel tbl_transactions_ALM;
+    public static Tbl_transactions_Model tbl_transactions_M;
+
+    public static void init_tbl_transactionssubjects(JTable tbl_transactions) {
+        tbl_transactions_ALM = new ArrayListModel();
+        tbl_transactions_M = new Tbl_transactions_Model(tbl_transactions_ALM);
+        tbl_transactions.setModel(tbl_transactions_M);
+        tbl_transactions.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_transactions.setRowHeight(25);
+        int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 30, 0, 0};
+        for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
+            if (i == 1) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_transactions, i, tbl_widths_enrollment_student_loaded_subjects[i]);
+        }
+        Dimension d = tbl_transactions.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_transactions.getTableHeader().setPreferredSize(d);
+        tbl_transactions.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_transactions.setRowHeight(25);
+        tbl_transactions.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_transactions.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
+        TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 2);
+    }
+
+    public static void loadData_transactions(List<Finance.transactions> acc) {
+        tbl_transactions_ALM.clear();
+        tbl_transactions_ALM.addAll(acc);
 
     }
+
+    public static class Tbl_transactions_Model extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Date", "Transactions", "Amount", "", "Status", ""
+        };
+
+        public Tbl_transactions_Model(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 1000) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            Finance.transactions tt = (Finance.transactions) getRow(row);
+            switch (col) {
+                case 0:
+                    return " " + tt.date;
+                case 1:
+                    return " " + tt.trans_type;
+                case 2:
+                    return " " + FitIn.fmt_wc_0(tt.amount) + " ";
+
+                default:
+                    return "/cis/icons/tool.png";
+
+            }
+        }
+    }
+
+    private void ret_transactions() {
+        List<Finance.transactions> transactions = Finance.ret_transactions(pay_student);
+        loadData_transactions(transactions);
+    }
+    //</editor-fold>
 }
