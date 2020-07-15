@@ -5,7 +5,6 @@
  */
 package cis.finance;
 
-import cis.academic.Academic_year_fees;
 import cis.students.Students;
 import cis.utils.MyConnection;
 import java.sql.Connection;
@@ -14,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import mijzcx.synapse.desk.utils.FitIn;
-import synsoftech.fields.Field;
 import synsoftech.util.DateType;
 
 /**
@@ -36,8 +33,10 @@ public class Finance {
         public final double balance;
         public boolean selected;
         public final int trans_type;
+        public double new_payment;
+        public final String mode;
 
-        public fees(int id, String title, String date, String deadline, double amount, double interest, double paid, double balance, boolean selected, int trans_type) {
+        public fees(int id, String title, String date, String deadline, double amount, double interest, double paid, double balance, boolean selected, int trans_type, double new_payment, String mode) {
             this.id = id;
             this.title = title;
             this.date = date;
@@ -48,6 +47,16 @@ public class Finance {
             this.balance = balance;
             this.selected = selected;
             this.trans_type = trans_type;
+            this.new_payment = new_payment;
+            this.mode = mode;
+        }
+
+        public double getNew_payment() {
+            return new_payment;
+        }
+
+        public void setNew_payment(double new_payment) {
+            this.new_payment = new_payment;
         }
 
         public boolean isSelected() {
@@ -93,9 +102,11 @@ public class Finance {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
+
             while (rs.next()) {
                 int id = rs.getInt(1);
                 int enrollment_assessment_id = rs.getInt(2);
+
                 int enrollment_id = rs.getInt(3);
                 String enrollment_no = rs.getString(4);
                 int academic_year_id = rs.getInt(5);
@@ -129,8 +140,29 @@ public class Finance {
                 double paid2 = paid;
                 double balance = amount2 - paid2;
                 boolean selected = false;
-                fees f = new fees(id, title, date, deadline, amount, interest, paid, balance, selected, 1);
-                datas.add(f);
+
+                String s10 = "select "
+                        + "id"
+                        + ",paid"
+                        + " from enrollment_assessment_payment_details"
+                        + " where enrollment_assessment_id='" + enrollment_assessment_id + "' "
+                        + " and mode like '" + mode + "' and mode_order=100 ";
+
+                Statement stmt10 = conn.createStatement();
+                ResultSet rs10 = stmt10.executeQuery(s10);
+                double payment = 0;
+                while (rs10.next()) {
+                    int id10 = rs10.getInt(1);
+                    payment += rs10.getDouble(2);
+
+                }
+                paid2 = paid2 + payment;
+                balance = balance - payment;
+                fees f = new fees(id, title, date, deadline, amount, interest, paid2, balance, selected, 1, 0, mode);
+                if (balance > 0) {
+                    datas.add(f);
+                }
+
             }
 
             //<editor-fold defaultstate="collapsed" desc=" Search Academic Year feess ">
@@ -179,6 +211,7 @@ public class Finance {
                     + ",lecture_units"
                     + ",lab_units"
                     + ",created_at"
+                    + ",id"
                     + " from enrollment_student_loaded_subjects"
                     + " where student_id='" + stud.id + "' and status=0 ";
 
@@ -190,19 +223,37 @@ public class Finance {
             while (rs2.next()) {
                 int subject_id = rs2.getInt(1);
                 String subject_code = rs2.getString(2);
-                if (added_subjects == 0) {
-                    subject_codes = subject_code;
-                } else {
-                    subject_codes = subject_codes + ", " + subject_code;
-                }
                 String description = rs2.getString(3);
                 int lecture_units = rs2.getInt(4);
                 int lab_units = rs2.getInt(5);
                 String created_at = rs2.getString(6);
-                added_subjects_date = DateType.convert_slash_datetime(created_at);
-                no_of_units_lec += lecture_units;
-                no_of_units_lab += lab_units;
-                added_subjects++;
+                int idd = rs2.getInt(7);
+
+                String s3 = "select "
+                        + " id"
+                        + " from enrollment_sls_payment_details "
+                        + " where enrollment_sls_id = '" + idd + "'  and status=1 and trans_type=1 ";
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+
+                int is_paid = 0;
+                if (rs3.next()) {
+                    is_paid = 1;
+                }
+                if (is_paid == 0) {
+                    if (added_subjects == 0) {
+                        subject_codes = subject_code;
+                    } else {
+                        subject_codes = subject_codes + ", " + subject_code;
+                    }
+
+                    added_subjects_date = DateType.convert_slash_datetime(created_at);
+                    no_of_units_lec += lecture_units;
+                    no_of_units_lab += lab_units;
+                    added_subjects++;
+                }
+
             }
             double amount2 = 0;
 
@@ -229,7 +280,7 @@ public class Finance {
             boolean selected = false;
 
             if (added_subjects != 0) {
-                fees f = new fees(0, title, date, deadline, amount2, interest, paid2, balance, selected, 2);
+                fees f = new fees(0, title, date, deadline, amount2, interest, paid2, balance, selected, 2, 0, "Add Subject");
                 datas.add(f);
             }
             //</editor-fold>
@@ -242,6 +293,7 @@ public class Finance {
                     + ",lecture_units"
                     + ",lab_units"
                     + ",created_at"
+                    + ",id"
                     + " from enrollment_student_loaded_subjects_drop_requests"
                     + " where student_id='" + stud.id + "' and status=0 ";
 
@@ -255,19 +307,38 @@ public class Finance {
             while (rs4.next()) {
                 int subject_id = rs4.getInt(1);
                 String subject_code = rs4.getString(2);
-                if (dropped_subjects2 == 0) {
-                    subject_codes2 = subject_code;
-                } else {
-                    subject_codes2 = subject_codes2 + ", " + subject_code;
-                }
                 String description = rs4.getString(3);
                 int lecture_units = rs4.getInt(4);
                 int lab_units = rs4.getInt(5);
                 String created_at = rs4.getString(6);
-                added_subjects_date2 = DateType.convert_slash_datetime(created_at);
-                no_of_units_lec2 += lecture_units;
-                no_of_units_lab2 += lab_units;
-                dropped_subjects2++;
+                int idd = rs4.getInt(7);
+
+                String s3 = "select "
+                        + " id"
+                        + " from enrollment_sls_payment_details "
+                        + " where enrollment_sls_id = '" + idd + "'  and status=1 and trans_type=2 ";
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+
+                int is_paid = 0;
+                if (rs3.next()) {
+                    is_paid = 1;
+                }
+
+                if (is_paid == 0) {
+                    if (dropped_subjects2 == 0) {
+                        subject_codes2 = subject_code;
+                    } else {
+                        subject_codes2 = subject_codes2 + ", " + subject_code;
+                    }
+
+                    added_subjects_date2 = DateType.convert_slash_datetime(created_at);
+                    no_of_units_lec2 += lecture_units;
+                    no_of_units_lab2 += lab_units;
+                    dropped_subjects2++;
+                }
+
             }
             double amount3 = 0;
 
@@ -294,7 +365,7 @@ public class Finance {
             boolean selected2 = false;
 
             if (dropped_subjects2 != 0) {
-                fees f = new fees(0, title2, date2, deadline2, amount3, interest2, paid3, balance2, selected2, 3);
+                fees f = new fees(0, title2, date2, deadline2, amount3, interest2, paid3, balance2, selected2, 3, 0, "Drop Subject");
                 datas.add(f);
             }
             //</editor-fold>

@@ -10,6 +10,7 @@ import cis.students.Students_curriculum;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -22,7 +23,6 @@ import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import synsoftech.fields.Button;
-import synsoftech.fields.Field;
 import synsoftech.util.ImageRenderer;
 
 /**
@@ -327,7 +327,7 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        ok();
+        payment();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -352,17 +352,25 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
         init_tbl_dropped_subjectssubjects(tbl_droped_subjects);
     }
 
-    public void do_pass(Students.to_students student) {
-        ret_added_subjects(student.id);
-        jScrollPane2.setVisible(false);
+    Students.to_students pay_student = null;
 
+    int is_drop = 0;
+
+    public void do_pass(Students.to_students student) {
+        pay_student = student;
+        ret_added_subjects(student.id);
+
+        jScrollPane2.setVisible(false);
         jScrollPane1.setMinimumSize(new Dimension(544, 200));
     }
 
     public void do_pass2(Students.to_students student) {
+        pay_student = student;
+        is_drop = 1;
+        ret_dropped_subjects(student.id);
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Drop Subjects", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jScrollPane1.setVisible(false);
-         jScrollPane2.setMinimumSize(new Dimension(544, 200));
+        jScrollPane2.setMinimumSize(new Dimension(544, 200));
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -393,7 +401,7 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
         tbl_added_subjects.setModel(tbl_added_subjects_M);
         tbl_added_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_added_subjects.setRowHeight(25);
-        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 0, 0};
+        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 50, 50};
         for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -406,7 +414,7 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
         tbl_added_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_added_subjects.setRowHeight(25);
         tbl_added_subjects.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_added_subjects.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
+        tbl_added_subjects.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
     }
 
     public static void loadData_added_subjects(List<Students_curriculum.curriculum> acc) {
@@ -418,7 +426,7 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
     public static class Tbl_added_subjects_Model extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Subject Code", "Description", "Units", "Section", "Status", ""
+            "Subject Code", "Description", "Units", "Section", "Status", "Paid"
         };
 
         public Tbl_added_subjects_Model(ListModel listmodel) {
@@ -454,26 +462,16 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
                 case 3:
                     return " " + tt.section;
                 case 4:
-                    if (tt.status == -1) {
-                        return " ";
-                    } else if (tt.status == 0) {
-                        return " Added";
-                    } else if (tt.status == 1) {
-                        return " Enrolled";
-                    } else if (tt.status == 2) {
-                        return " Passed";
-                    } else if (tt.status == 3) {
-                        return " Failed";
+                    if (tt.status == 0) {
+                        return "";
                     } else {
-                        return " Dropped";
+                        return "/cis/icons2/tick (2).png";
                     }
                 default:
-                    if (tt.status == 1) {
-                        return "/cis/icons2/quit.png";
-                    } else if (tt.status == -1) {
-                        return "/cis/icons2/plus.png";
+                    if (tt.is_paid == 0) {
+                        return " Unpaid";
                     } else {
-                        return "/cis/icons/remove11.png";
+                        return " Paid";
                     }
 
             }
@@ -594,4 +592,28 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
         jLabel2.setText("" + subjects.size());
     }
 //</editor-fold>
+
+    private void payment() {
+        Window p = (Window) this;
+        Dlg_finance_student_payment_details_subjects_payment nd = Dlg_finance_student_payment_details_subjects_payment.create(p, true);
+        nd.setTitle("");
+        System.out.println("pay_student: " + pay_student.id);
+        nd.do_pass(pay_student, tbl_added_subjects_ALM, tbl_dropped_subjects_ALM, is_drop);
+        nd.setCallback(new Dlg_finance_student_payment_details_subjects_payment.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects_payment.OutputData data) {
+                closeDialog.ok();
+                ok2();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void ok2() {
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData());
+        }
+    }
 }

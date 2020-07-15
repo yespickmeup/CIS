@@ -280,7 +280,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tf_field18" min="-2" pref="102" max="-2" attributes="0"/>
+                                      <Component id="tf_fixed_amount" min="-2" pref="102" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -291,7 +291,7 @@
                                       <Component id="tf_field22" min="-2" pref="99" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="tf_field134" max="32767" attributes="0"/>
+                                      <Component id="tf_tuition_fee" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel35" min="-2" pref="97" max="-2" attributes="0"/>
                                   </Group>
@@ -308,14 +308,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel80" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="tf_field134" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="tf_tuition_fee" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel35" alignment="3" pref="25" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel33" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="tf_field18" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="tf_fixed_amount" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel34" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="tf_field22" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -358,7 +358,7 @@
                 <Property name="text" type="java.lang.String" value="Tuition Fee:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_field134">
+            <Component class="javax.swing.JTextField" name="tf_tuition_fee">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
@@ -366,8 +366,8 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field134MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_field134ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_tuition_feeMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_tuition_feeActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
@@ -450,7 +450,7 @@
                 <Property name="text" type="java.lang.String" value="Fixed Amount:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_field18">
+            <Component class="javax.swing.JTextField" name="tf_fixed_amount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
@@ -460,8 +460,8 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field18MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_field18ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_fixed_amountMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_fixed_amountActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>

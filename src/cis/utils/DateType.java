@@ -247,6 +247,21 @@ public class DateType {
         date = DateType.slash.format(d);
         return date;
     }
+     public static String convert_dash_date5(String datetime) {
+        String date = "";
+        Date d = new Date();
+        if (datetime.isEmpty()) {
+            datetime = DateType.slash.format(new Date());
+        }
+        try {
+            d = DateType.slash.parse(datetime);
+        } catch (ParseException ex) {
+            Logger.getLogger(DateType.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        date = DateType.sf.format(d);
+        return date;
+    }
 
     public static String convert_dash_date3(String datetime) {
         String date = "";

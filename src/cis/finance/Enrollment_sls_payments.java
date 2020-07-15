@@ -67,8 +67,13 @@ public class Enrollment_sls_payments {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final int student_id;
+        public final String student_no;
+        public final String first_name;
+        public final String middle_name;
+        public final String last_name;
 
-        public to_enrollment_sls_payments(int id, int trans_type, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, String check_bank, String check_no, double check_amount, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String credit_card_holder, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, int lecture_units, int lab_units, double lec_amount, double lab_amount, double fee_amount, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_sls_payments(int id, int trans_type, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, String check_bank, String check_no, double check_amount, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String credit_card_holder, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, int lecture_units, int lab_units, double lec_amount, double lab_amount, double fee_amount, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int student_id, String student_no, String first_name, String middle_name, String last_name) {
             this.id = id;
             this.trans_type = trans_type;
             this.enrollment_id = enrollment_id;
@@ -112,10 +117,15 @@ public class Enrollment_sls_payments {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.student_id = student_id;
+            this.student_no = student_no;
+            this.first_name = first_name;
+            this.middle_name = middle_name;
+            this.last_name = last_name;
         }
     }
 
-    public static void add_data(to_enrollment_sls_payments to_enrollment_sls_payments) {
+    public static void add_data(to_enrollment_sls_payments to_enrollment_sls_payments, List<Enrollment_sls_payment_details.to_enrollment_sls_payment_details> subjects) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "insert into enrollment_sls_payments("
@@ -161,6 +171,11 @@ public class Enrollment_sls_payments {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",first_name"
+                    + ",middle_name"
+                    + ",last_name"
                     + ")values("
                     + ":trans_type"
                     + ",:enrollment_id"
@@ -204,6 +219,11 @@ public class Enrollment_sls_payments {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:student_id"
+                    + ",:student_no"
+                    + ",:first_name"
+                    + ",:middle_name"
+                    + ",:last_name"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -249,10 +269,117 @@ public class Enrollment_sls_payments {
                     .setString("updated_by", to_enrollment_sls_payments.updated_by)
                     .setNumber("status", to_enrollment_sls_payments.status)
                     .setNumber("is_uploaded", to_enrollment_sls_payments.is_uploaded)
+                    .setNumber("student_id", to_enrollment_sls_payments.student_id)
+                    .setString("student_no", to_enrollment_sls_payments.student_no)
+                    .setString("first_name", to_enrollment_sls_payments.first_name)
+                    .setString("middle_name", to_enrollment_sls_payments.middle_name)
+                    .setString("last_name", to_enrollment_sls_payments.last_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
+
+            String s3 = "select "
+                    + " id"
+                    + " from enrollment_sls_payments where student_id = '" + to_enrollment_sls_payments.student_id + "'"
+                    + " order by id desc limit 1";
+
+            Statement stmt3 = conn.createStatement();
+            ResultSet rs3 = stmt3.executeQuery(s3);
+            int sls_id = 0;
+            if (rs3.next()) {
+                sls_id = rs3.getInt(1);
+            }
+
+            PreparedStatement stmt2 = conn.prepareStatement("");
+            for (Enrollment_sls_payment_details.to_enrollment_sls_payment_details to_enrollment_sls_payment_details : subjects) {
+                String s2 = "insert into enrollment_sls_payment_details("
+                        + "enrollment_sls_payment_id"
+                        + ",enrollment_sls_id"
+                        + ",trans_type"
+                        + ",enrollment_id"
+                        + ",enrollment_no"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",subject_id"
+                        + ",subject_code"
+                        + ",description"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + ",lec_amount"
+                        + ",lab_amount"
+                        + ",fee_amount"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ",student_id"
+                        + ",student_no"
+                        + ",first_name"
+                        + ",middle_name"
+                        + ",last_name"
+                        + ")values("
+                        + ":enrollment_sls_payment_id"
+                        + ",:enrollment_sls_id"
+                        + ",:trans_type"
+                        + ",:enrollment_id"
+                        + ",:enrollment_no"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:subject_id"
+                        + ",:subject_code"
+                        + ",:description"
+                        + ",:lecture_units"
+                        + ",:lab_units"
+                        + ",:lec_amount"
+                        + ",:lab_amount"
+                        + ",:fee_amount"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ",:student_id"
+                        + ",:student_no"
+                        + ",:first_name"
+                        + ",:middle_name"
+                        + ",:last_name"
+                        + ")";
+
+                s2 = SqlStringUtil.parse(s2)
+                        .setNumber("enrollment_sls_payment_id", sls_id)
+                        .setNumber("enrollment_sls_id", to_enrollment_sls_payment_details.enrollment_sls_id)
+                        .setNumber("trans_type", to_enrollment_sls_payment_details.trans_type)
+                        .setNumber("enrollment_id", to_enrollment_sls_payment_details.enrollment_id)
+                        .setString("enrollment_no", to_enrollment_sls_payment_details.enrollment_no)
+                        .setNumber("academic_year_id", to_enrollment_sls_payment_details.academic_year_id)
+                        .setString("academic_year", to_enrollment_sls_payment_details.academic_year)
+                        .setNumber("subject_id", to_enrollment_sls_payment_details.subject_id)
+                        .setString("subject_code", to_enrollment_sls_payment_details.subject_code)
+                        .setString("description", to_enrollment_sls_payment_details.description)
+                        .setNumber("lecture_units", to_enrollment_sls_payment_details.lecture_units)
+                        .setNumber("lab_units", to_enrollment_sls_payment_details.lab_units)
+                        .setNumber("lec_amount", to_enrollment_sls_payment_details.lec_amount)
+                        .setNumber("lab_amount", to_enrollment_sls_payment_details.lab_amount)
+                        .setNumber("fee_amount", to_enrollment_sls_payment_details.fee_amount)
+                        .setString("created_at", to_enrollment_sls_payment_details.created_at)
+                        .setString("updated_at", to_enrollment_sls_payment_details.updated_at)
+                        .setString("created_by", to_enrollment_sls_payment_details.created_by)
+                        .setString("updated_by", to_enrollment_sls_payment_details.updated_by)
+                        .setNumber("status", to_enrollment_sls_payment_details.status)
+                        .setNumber("is_uploaded", to_enrollment_sls_payment_details.is_uploaded)
+                        .setNumber("student_id", to_enrollment_sls_payment_details.student_id)
+                        .setString("student_no", to_enrollment_sls_payment_details.student_no)
+                        .setString("first_name", to_enrollment_sls_payment_details.first_name)
+                        .setString("middle_name", to_enrollment_sls_payment_details.middle_name)
+                        .setString("last_name", to_enrollment_sls_payment_details.last_name)
+                        .ok();
+                stmt2.addBatch(s2);
+            }
+            stmt2.executeBatch();
             Lg.s(Enrollment_sls_payments.class, "Successfully Added");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -307,6 +434,11 @@ public class Enrollment_sls_payments {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",student_id= :student_id "
+                    + ",student_no= :student_no "
+                    + ",first_name= :first_name "
+                    + ",middle_name= :middle_name "
+                    + ",last_name= :last_name "
                     + " where id='" + to_enrollment_sls_payments.id + "' "
                     + " ";
 
@@ -353,6 +485,11 @@ public class Enrollment_sls_payments {
                     .setString("updated_by", to_enrollment_sls_payments.updated_by)
                     .setNumber("status", to_enrollment_sls_payments.status)
                     .setNumber("is_uploaded", to_enrollment_sls_payments.is_uploaded)
+                    .setNumber("student_id", to_enrollment_sls_payments.student_id)
+                    .setString("student_no", to_enrollment_sls_payments.student_no)
+                    .setString("first_name", to_enrollment_sls_payments.first_name)
+                    .setString("middle_name", to_enrollment_sls_payments.middle_name)
+                    .setString("last_name", to_enrollment_sls_payments.last_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -431,6 +568,11 @@ public class Enrollment_sls_payments {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",first_name"
+                    + ",middle_name"
+                    + ",last_name"
                     + " from enrollment_sls_payments"
                     + " " + where;
 
@@ -480,8 +622,13 @@ public class Enrollment_sls_payments {
                 String updated_by = rs.getString(41);
                 int status = rs.getInt(42);
                 int is_uploaded = rs.getInt(43);
+                int student_id = rs.getInt(44);
+                String student_no = rs.getString(45);
+                String first_name = rs.getString(46);
+                String middle_name = rs.getString(47);
+                String last_name = rs.getString(48);
 
-                to_enrollment_sls_payments to = new to_enrollment_sls_payments(id, trans_type, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, lecture_units, lab_units, lec_amount, lab_amount, fee_amount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_sls_payments to = new to_enrollment_sls_payments(id, trans_type, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, lecture_units, lab_units, lec_amount, lab_amount, fee_amount, created_at, updated_at, created_by, updated_by, status, is_uploaded, student_id, student_no, first_name, middle_name, last_name);
                 datas.add(to);
             }
             return datas;

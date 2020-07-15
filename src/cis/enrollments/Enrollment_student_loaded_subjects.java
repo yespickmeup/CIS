@@ -566,7 +566,7 @@ public class Enrollment_student_loaded_subjects {
         }
     }
 
-     public static void delete_data2(int id) {
+    public static void delete_data2(int id) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "delete from enrollment_student_loaded_subjects  "
@@ -582,7 +582,24 @@ public class Enrollment_student_loaded_subjects {
             MyConnection.close();
         }
     }
-     
+
+    public static void approve_subject(int id) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollment_student_loaded_subjects  set status=1 "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollment_student_loaded_subjects.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static List<to_enrollment_student_loaded_subjects> ret_data(String where) {
         List<to_enrollment_student_loaded_subjects> datas = new ArrayList();
 

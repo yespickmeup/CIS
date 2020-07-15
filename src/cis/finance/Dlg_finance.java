@@ -399,11 +399,11 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         buttonGroup3.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox8.setSelected(true);
         jCheckBox8.setText("Student No");
 
         buttonGroup3.add(jCheckBox9);
         jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox9.setSelected(true);
         jCheckBox9.setText("Name");
 
         tf_field25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -765,6 +765,11 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton6.setText("Pay");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -2251,6 +2256,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         select_payment();
     }//GEN-LAST:event_tbl_feesMouseClicked
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        fees_payment();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3727,7 +3736,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 Enrollment_assessments.add_data2(enrollment, data.payment_modes, data.pay, data.enrollment_payments);
                 Alert.set(1, "");
                 jButton3.setEnabled(false);
-                set_assessment();
+                set_assessment2();
 
             }
         });
@@ -4017,34 +4026,81 @@ public class Dlg_finance extends javax.swing.JDialog {
             return;
         }
         Finance.fees to = (Finance.fees) tbl_fees_ALM.get(row);
-        if (to.trans_type == 2) { //added subjects
-            Window p = (Window) this;
-            Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(pay_student);
-            nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
-                    closeDialog.ok();
+        int col = tbl_fees.getSelectedColumn();
+//        System.out.println("trans: " + to.trans_type);
+        if (col == 6) {
+
+            if (to.trans_type == 1) {
+                if (to.isSelected()) {
+                    to.setSelected(false);
+                } else {
+                    to.setSelected(true);
                 }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
+                tbl_fees_M.fireTableDataChanged();
+            }
+
+        } else {
+            if (to.trans_type == 2) { //added subjects
+                Window p = (Window) this;
+                Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(pay_student);
+                nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
+                        closeDialog.ok();
+                        ret_fees();
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+            if (to.trans_type == 3) { //drop subjects
+                Window p = (Window) this;
+                Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
+                nd.setTitle("");
+                nd.do_pass2(pay_student);
+                nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
+                        closeDialog.ok();
+                        ret_fees();
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
         }
-        if (to.trans_type == 3) { //drop subjects
-            Window p = (Window) this;
-            Dlg_finance_student_payment_details_subjects nd = Dlg_finance_student_payment_details_subjects.create(p, true);
-            nd.setTitle("");
-            nd.do_pass2(pay_student);
-            nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
-                    closeDialog.ok();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
+
     }
 //</editor-fold>
+
+    private void fees_payment() {
+        List<Finance.fees> fees = tbl_fees_ALM;
+        List<Finance.fees> selected = new ArrayList();
+        for (Finance.fees fee : fees) {
+            if (fee.isSelected()) {
+                selected.add(fee);
+            }
+        }
+        if (selected.isEmpty()) {
+            Alert.set(0, "Select Fee/s to pay!");
+            return;
+        }
+        Window p = (Window) this;
+        Dlg_finance_payment nd = Dlg_finance_payment.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(selected);
+        nd.setCallback(new Dlg_finance_payment.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_finance_payment.OutputData data) {
+                closeDialog.ok();
+                ret_fees();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+
+    }
 }

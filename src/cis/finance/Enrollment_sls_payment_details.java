@@ -46,8 +46,13 @@ public class Enrollment_sls_payment_details {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final int student_id;
+        public final String student_no;
+        public final String first_name;
+        public final String middle_name;
+        public final String last_name;
 
-        public to_enrollment_sls_payment_details(int id, int enrollment_sls_payment_id, int enrollment_sls_id, int trans_type, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, int subject_id, String subject_code, String description, int lecture_units, int lab_units, double lec_amount, double lab_amount, double fee_amount, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_sls_payment_details(int id, int enrollment_sls_payment_id, int enrollment_sls_id, int trans_type, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, int subject_id, String subject_code, String description, int lecture_units, int lab_units, double lec_amount, double lab_amount, double fee_amount, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int student_id, String student_no, String first_name, String middle_name, String last_name) {
             this.id = id;
             this.enrollment_sls_payment_id = enrollment_sls_payment_id;
             this.enrollment_sls_id = enrollment_sls_id;
@@ -70,6 +75,11 @@ public class Enrollment_sls_payment_details {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.student_id = student_id;
+            this.student_no = student_no;
+            this.first_name = first_name;
+            this.middle_name = middle_name;
+            this.last_name = last_name;
         }
     }
 
@@ -98,6 +108,11 @@ public class Enrollment_sls_payment_details {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",first_name"
+                    + ",middle_name"
+                    + ",last_name"
                     + ")values("
                     + ":enrollment_sls_payment_id"
                     + ",:enrollment_sls_id"
@@ -120,6 +135,11 @@ public class Enrollment_sls_payment_details {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:student_id"
+                    + ",:student_no"
+                    + ",:first_name"
+                    + ",:middle_name"
+                    + ",:last_name"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -144,6 +164,11 @@ public class Enrollment_sls_payment_details {
                     .setString("updated_by", to_enrollment_sls_payment_details.updated_by)
                     .setNumber("status", to_enrollment_sls_payment_details.status)
                     .setNumber("is_uploaded", to_enrollment_sls_payment_details.is_uploaded)
+                    .setNumber("student_id", to_enrollment_sls_payment_details.student_id)
+                    .setString("student_no", to_enrollment_sls_payment_details.student_no)
+                    .setString("first_name", to_enrollment_sls_payment_details.first_name)
+                    .setString("middle_name", to_enrollment_sls_payment_details.middle_name)
+                    .setString("last_name", to_enrollment_sls_payment_details.last_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -181,6 +206,11 @@ public class Enrollment_sls_payment_details {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",student_id= :student_id "
+                    + ",student_no= :student_no "
+                    + ",first_name= :first_name "
+                    + ",middle_name= :middle_name "
+                    + ",last_name= :last_name "
                     + " where id='" + to_enrollment_sls_payment_details.id + "' "
                     + " ";
 
@@ -206,6 +236,11 @@ public class Enrollment_sls_payment_details {
                     .setString("updated_by", to_enrollment_sls_payment_details.updated_by)
                     .setNumber("status", to_enrollment_sls_payment_details.status)
                     .setNumber("is_uploaded", to_enrollment_sls_payment_details.is_uploaded)
+                    .setNumber("student_id", to_enrollment_sls_payment_details.student_id)
+                    .setString("student_no", to_enrollment_sls_payment_details.student_no)
+                    .setString("first_name", to_enrollment_sls_payment_details.first_name)
+                    .setString("middle_name", to_enrollment_sls_payment_details.middle_name)
+                    .setString("last_name", to_enrollment_sls_payment_details.last_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -263,6 +298,11 @@ public class Enrollment_sls_payment_details {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",first_name"
+                    + ",middle_name"
+                    + ",last_name"
                     + " from enrollment_sls_payment_details"
                     + " " + where;
 
@@ -291,8 +331,13 @@ public class Enrollment_sls_payment_details {
                 String updated_by = rs.getString(20);
                 int status = rs.getInt(21);
                 int is_uploaded = rs.getInt(22);
+                int student_id = rs.getInt(23);
+                String student_no = rs.getString(24);
+                String first_name = rs.getString(25);
+                String middle_name = rs.getString(26);
+                String last_name = rs.getString(27);
 
-                to_enrollment_sls_payment_details to = new to_enrollment_sls_payment_details(id, enrollment_sls_payment_id, enrollment_sls_id, trans_type, enrollment_id, enrollment_no, academic_year_id, academic_year, subject_id, subject_code, description, lecture_units, lab_units, lec_amount, lab_amount, fee_amount, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_sls_payment_details to = new to_enrollment_sls_payment_details(id, enrollment_sls_payment_id, enrollment_sls_id, trans_type, enrollment_id, enrollment_no, academic_year_id, academic_year, subject_id, subject_code, description, lecture_units, lab_units, lec_amount, lab_amount, fee_amount, created_at, updated_at, created_by, updated_by, status, is_uploaded, student_id, student_no, first_name, middle_name, last_name);
                 datas.add(to);
             }
             return datas;

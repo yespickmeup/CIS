@@ -410,7 +410,7 @@ public class Enrollment_student_loaded_subjects_drop_requests {
         }
     }
 
-       public static void delete_data2(int id) {
+    public static void delete_data2(int id) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "delete from enrollment_student_loaded_subjects_drop_requests  "
@@ -426,7 +426,33 @@ public class Enrollment_student_loaded_subjects_drop_requests {
             MyConnection.close();
         }
     }
-       
+
+    public static void approve_data(int id, int sls_id) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "update  enrollment_student_loaded_subjects_drop_requests  set status=1 "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.addBatch(s0);
+
+            String s2 = "update  enrollment_student_loaded_subjects  set status=4 "
+                    + " where id='" + sls_id + "' "
+                    + " ";
+
+            stmt.addBatch(s2);
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Enrollment_student_loaded_subjects_drop_requests.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static List<to_enrollment_student_loaded_subjects_drop_requests> ret_data(String where) {
         List<to_enrollment_student_loaded_subjects_drop_requests> datas = new ArrayList();
 

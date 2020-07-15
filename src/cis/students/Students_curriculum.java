@@ -41,8 +41,10 @@ public class Students_curriculum {
         public String section;
         public int status;
         public final int academic_offering_subject_id;
+        public final int is_paid;
+        public final int sls_id;
 
-        public curriculum(int id, int academic_year_id, int department_id, String department, int college_id, String college, int course_id, String course_code, String course_description, String year_level, String term, int subject_id, String subject_code, String subject_description, double lec_units, double lab_units, String section, int status, int academic_offering_subject_id) {
+        public curriculum(int id, int academic_year_id, int department_id, String department, int college_id, String college, int course_id, String course_code, String course_description, String year_level, String term, int subject_id, String subject_code, String subject_description, double lec_units, double lab_units, String section, int status, int academic_offering_subject_id, int is_paid,int sls_id) {
             this.id = id;
             this.academic_year_id = academic_year_id;
             this.department_id = department_id;
@@ -62,6 +64,8 @@ public class Students_curriculum {
             this.section = section;
             this.status = status;
             this.academic_offering_subject_id = academic_offering_subject_id;
+            this.is_paid = is_paid;
+            this.sls_id=sls_id;
         }
 
         public String getSection() {
@@ -201,8 +205,8 @@ public class Students_curriculum {
                     academic_offering_subject_id = rs2.getInt(5);
                     id = id2;
                 }
-
-                curriculum cu = new curriculum(id2, academic_year_id2, department_id, department, college_id, college, course_id2, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id);
+                int is_paid = 0;
+                curriculum cu = new curriculum(id2, academic_year_id2, department_id, department, college_id, college, course_id2, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id, is_paid,id);
                 datas.add(cu);
             }
 
@@ -322,7 +326,19 @@ public class Students_curriculum {
                 String subject_description = description;
                 double lec_units = lecture_units;
 
-                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id);
+                String s3 = "select "
+                        + " id"
+                        + " from enrollment_sls_payment_details "
+                        + " where enrollment_sls_id = '" + id + "'  ";
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+
+                int is_paid = 0;
+                if (rs3.next()) {
+                    is_paid = 1;
+                }
+                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id, is_paid,id);
                 datas.add(cu);
             }
             return datas;
@@ -441,8 +457,21 @@ public class Students_curriculum {
                 int enrollment_student_loaded_subject_id = rs.getInt(47);
                 String subject_description = description;
                 double lec_units = lecture_units;
-                academic_offering_subject_id=enrollment_student_loaded_subject_id;
-                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id);
+                academic_offering_subject_id = enrollment_student_loaded_subject_id;
+
+                String s3 = "select "
+                        + " id"
+                        + " from enrollment_sls_payment_details "
+                        + " where enrollment_sls_id = '" + id + "' and status=1 and trans_type=2 ";
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+                int is_paid = 0;
+                if (rs3.next()) {
+                    is_paid = 1;
+                }
+
+                curriculum cu = new curriculum(id, academic_year_id, department_id, department, college_id, college, course_id, course_code, course_description, year_level, term, subject_id, subject_code, subject_description, lec_units, lab_units, section, status, academic_offering_subject_id, is_paid,enrollment_student_loaded_subject_id);
                 datas.add(cu);
             }
             return datas;

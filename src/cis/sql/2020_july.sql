@@ -54,7 +54,11 @@ id int auto_increment primary key
 ,updated_by varchar(255)
 ,status int
 ,is_uploaded int
-
+,student_id int
+,student_no varchar(255)
+,first_name varchar(255)
+,middle_name varchar(255)
+,last_name varchar(255)
 );
 
 drop table if exists enrollment_sls_payment_details;
@@ -81,6 +85,11 @@ id int auto_increment primary key
 ,updated_by varchar(255)
 ,status int
 ,is_uploaded int
+,student_id int
+,student_no varchar(255)
+,first_name varchar(255)
+,middle_name varchar(255)
+,last_name varchar(255)
 );
 
 alter table academic_year_fees add lab_unit_amount double default 0;

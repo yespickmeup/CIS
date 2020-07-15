@@ -240,7 +240,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         jButton4 = new Button.Default();
         jPanel2 = new javax.swing.JPanel();
         jLabel80 = new javax.swing.JLabel();
-        tf_field134 = new Field.Input();
+        tf_tuition_fee = new Field.Input();
         jLabel81 = new javax.swing.JLabel();
         tf_field135 = new Field.Input();
         jLabel82 = new javax.swing.JLabel();
@@ -248,7 +248,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         jLabel83 = new javax.swing.JLabel();
         tf_field137 = new Field.Input();
         jLabel33 = new javax.swing.JLabel();
-        tf_field18 = new Field.Input();
+        tf_fixed_amount = new Field.Input();
         tf_field19 = new Field.Input();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -370,16 +370,16 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         jLabel80.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel80.setText("Tuition Fee:");
 
-        tf_field134.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tf_field134.setFocusable(false);
-        tf_field134.addMouseListener(new java.awt.event.MouseAdapter() {
+        tf_tuition_fee.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_tuition_fee.setFocusable(false);
+        tf_tuition_fee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field134MouseClicked(evt);
+                tf_tuition_feeMouseClicked(evt);
             }
         });
-        tf_field134.addActionListener(new java.awt.event.ActionListener() {
+        tf_tuition_fee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field134ActionPerformed(evt);
+                tf_tuition_feeActionPerformed(evt);
             }
         });
 
@@ -434,18 +434,18 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel33.setText("Fixed Amount:");
 
-        tf_field18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        tf_field18.setText("0.00");
-        tf_field18.setFocusable(false);
-        tf_field18.addMouseListener(new java.awt.event.MouseAdapter() {
+        tf_fixed_amount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_fixed_amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        tf_fixed_amount.setText("0.00");
+        tf_fixed_amount.setFocusable(false);
+        tf_fixed_amount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field18MouseClicked(evt);
+                tf_fixed_amountMouseClicked(evt);
             }
         });
-        tf_field18.addActionListener(new java.awt.event.ActionListener() {
+        tf_fixed_amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field18ActionPerformed(evt);
+                tf_fixed_amountActionPerformed(evt);
             }
         });
 
@@ -515,7 +515,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel33)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_fixed_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel43)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -525,7 +525,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tf_field134)
+                                .addComponent(tf_tuition_fee)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
@@ -536,13 +536,13 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field134, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_tuition_fee, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_fixed_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1062,13 +1062,13 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         disposed();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void tf_field134MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field134MouseClicked
+    private void tf_tuition_feeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_tuition_feeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field134MouseClicked
+    }//GEN-LAST:event_tf_tuition_feeMouseClicked
 
-    private void tf_field134ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field134ActionPerformed
+    private void tf_tuition_feeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_tuition_feeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field134ActionPerformed
+    }//GEN-LAST:event_tf_tuition_feeActionPerformed
 
     private void tf_field135MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field135MouseClicked
         // TODO add your handling code here:
@@ -1094,13 +1094,13 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_field137ActionPerformed
 
-    private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
+    private void tf_fixed_amountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_fixed_amountMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field18MouseClicked
+    }//GEN-LAST:event_tf_fixed_amountMouseClicked
 
-    private void tf_field18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field18ActionPerformed
+    private void tf_fixed_amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fixed_amountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field18ActionPerformed
+    }//GEN-LAST:event_tf_fixed_amountActionPerformed
 
     private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
         // TODO add your handling code here:
@@ -1230,18 +1230,18 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field131;
     private javax.swing.JTextField tf_field132;
     private javax.swing.JTextField tf_field133;
-    private javax.swing.JTextField tf_field134;
     private javax.swing.JTextField tf_field135;
     private javax.swing.JTextField tf_field136;
     private javax.swing.JTextField tf_field137;
-    private javax.swing.JTextField tf_field18;
     private javax.swing.JTextField tf_field19;
     private javax.swing.JTextField tf_field20;
     private javax.swing.JTextField tf_field21;
     private javax.swing.JTextField tf_field22;
+    private javax.swing.JTextField tf_fixed_amount;
     private javax.swing.JTextField tf_prepaid_customer_id3;
     private javax.swing.JTextField tf_prepaid_customer_id4;
     private javax.swing.JTextField tf_prepaid_customer_id5;
+    private javax.swing.JTextField tf_tuition_fee;
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
@@ -1270,7 +1270,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         if (!datas.isEmpty()) {
 
             Academic_year_fees.to_academic_year_fees to2 = (Academic_year_fees.to_academic_year_fees) datas.get(0);
-            Field.Input amount = (Field.Input) tf_field18;
+            Field.Input amount = (Field.Input) tf_fixed_amount;
             Field.Input per_unit = (Field.Input) tf_field19;
             if (to2.is_per_unit == 0) {
                 tf_field19.setEnabled(false);
@@ -1279,8 +1279,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                 amount.setText(FitIn.fmt_wc_0(to2.amount));
                 amount.setId("" + to.id);
             } else {
-                tf_field18.setEnabled(false);
-                tf_field18.setText("");
+                tf_fixed_amount.setEnabled(false);
+                tf_fixed_amount.setText("");
                 per_unit.setText(FitIn.fmt_wc_0(to2.per_unit));
                 tf_field22.setText(FitIn.fmt_wc_0(to2.lab_unit_amount));
             }
@@ -1296,15 +1296,15 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         }
         jLabel35.setText("" + no_of_units_lec + " unit/s");
         
-        if (!tf_field18.isEnabled()) { //per unit
+        if (!tf_fixed_amount.isEnabled()) { //per unit
             double total_lec_amount = FitIn.toDouble(tf_field19.getText()) * no_of_units_lec;
             double total_lab_amount = FitIn.toDouble(tf_field22.getText()) * no_of_units_lab;
             double amount = total_lec_amount + total_lab_amount;
 
-            tf_field134.setText(FitIn.fmt_wc_0(amount));
+            tf_tuition_fee.setText(FitIn.fmt_wc_0(amount));
         } else {
-            double amount = FitIn.toDouble(tf_field18.getText());
-            tf_field134.setText(FitIn.fmt_wc_0(amount));
+            double amount = FitIn.toDouble(tf_fixed_amount.getText());
+            tf_tuition_fee.setText(FitIn.fmt_wc_0(amount));
         }
 
         //Search Miscellaneous
@@ -1338,7 +1338,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
             amount3 += mis.amount;
         }
         tf_field136.setText(FitIn.fmt_wc_0(amount3));
-        double total = FitIn.toDouble(tf_field134.getText()) + amount + amount3;
+        double total = FitIn.toDouble(tf_tuition_fee.getText()) + amount + amount3;
         tf_field137.setText(FitIn.fmt_wc_0(total));
         change_payment_modes();// 
         tf_field21.grabFocus();
@@ -1549,7 +1549,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
 
     private void ok() {
         List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> datas = tbl_mode_of_payments_ALM;
-        double tuition_amount = FitIn.toDouble(tf_field134.getText());  //unit/s
+        double tuition_amount = FitIn.toDouble(tf_tuition_fee.getText());  //unit/s
         String un = jLabel35.getText();
         un = un.replaceAll(" unit/s", "");
         int no_of_units = FitIn.toInt(un);

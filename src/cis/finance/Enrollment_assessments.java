@@ -657,9 +657,226 @@ public class Enrollment_assessments {
                     + " where enrollment_id='" + to_enrollment_assessments.enrollment_id + "' "
                     + " ";
             stmt2.addBatch(s7);
-            
+
             stmt4.executeBatch();
             stmt2.executeBatch();
+            conn.commit();
+
+            Lg.s(Enrollment_assessments.class, "Successfully Added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+
+            String s5 = "insert into enrollment_assessment_payments("
+                    + "enrollment_assessment_id"
+                    + ",enrollment_id"
+                    + ",enrollment_no"
+                    + ",academic_year_id"
+                    + ",academic_year"
+                    + ",amount_paid"
+                    + ",cash"
+                    + ",discount_name"
+                    + ",discount_rate"
+                    + ",discount_amount"
+                    + ",discount_customer_name"
+                    + ",discount_customer_id"
+                    + ",check_bank"
+                    + ",check_no"
+                    + ",check_amount"
+                    + ",check_holder"
+                    + ",check_date"
+                    + ",credit_card_type"
+                    + ",credit_card_rate"
+                    + ",credit_card_amount"
+                    + ",credit_card_no"
+                    + ",credit_card_holder"
+                    + ",gift_certificate_from"
+                    + ",gift_certificate_description"
+                    + ",gift_certificate_no"
+                    + ",gift_certificate_amount"
+                    + ",online_bank"
+                    + ",online_reference_no"
+                    + ",online_amount"
+                    + ",online_holder"
+                    + ",online_date"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + ")values("
+                    + ":enrollment_assessment_id"
+                    + ",:enrollment_id"
+                    + ",:enrollment_no"
+                    + ",:academic_year_id"
+                    + ",:academic_year"
+                    + ",:amount_paid"
+                    + ",:cash"
+                    + ",:discount_name"
+                    + ",:discount_rate"
+                    + ",:discount_amount"
+                    + ",:discount_customer_name"
+                    + ",:discount_customer_id"
+                    + ",:check_bank"
+                    + ",:check_no"
+                    + ",:check_amount"
+                    + ",:check_holder"
+                    + ",:check_date"
+                    + ",:credit_card_type"
+                    + ",:credit_card_rate"
+                    + ",:credit_card_amount"
+                    + ",:credit_card_no"
+                    + ",:credit_card_holder"
+                    + ",:gift_certificate_from"
+                    + ",:gift_certificate_description"
+                    + ",:gift_certificate_no"
+                    + ",:gift_certificate_amount"
+                    + ",:online_bank"
+                    + ",:online_reference_no"
+                    + ",:online_amount"
+                    + ",:online_holder"
+                    + ",:online_date"
+                    + ",:created_at"
+                    + ",:updated_at"
+                    + ",:created_by"
+                    + ",:updated_by"
+                    + ",:status"
+                    + ",:is_uploaded"
+                    + ")";
+
+            s5 = SqlStringUtil.parse(s5)
+                    .setNumber("enrollment_assessment_id", to_enrollment_assessment_payments.enrollment_assessment_id)
+                    .setNumber("enrollment_id", to_enrollment_assessment_payments.enrollment_id)
+                    .setString("enrollment_no", to_enrollment_assessment_payments.enrollment_no)
+                    .setNumber("academic_year_id", to_enrollment_assessment_payments.academic_year_id)
+                    .setString("academic_year", to_enrollment_assessment_payments.academic_year)
+                    .setNumber("amount_paid", to_enrollment_assessment_payments.amount_paid)
+                    .setNumber("cash", to_enrollment_assessment_payments.cash)
+                    .setString("discount_name", to_enrollment_assessment_payments.discount_name)
+                    .setNumber("discount_rate", to_enrollment_assessment_payments.discount_rate)
+                    .setNumber("discount_amount", to_enrollment_assessment_payments.discount_amount)
+                    .setString("discount_customer_name", to_enrollment_assessment_payments.discount_customer_name)
+                    .setString("discount_customer_id", to_enrollment_assessment_payments.discount_customer_id)
+                    .setString("check_bank", to_enrollment_assessment_payments.check_bank)
+                    .setString("check_no", to_enrollment_assessment_payments.check_no)
+                    .setNumber("check_amount", to_enrollment_assessment_payments.check_amount)
+                    .setString("check_holder", to_enrollment_assessment_payments.check_holder)
+                    .setString("check_date", to_enrollment_assessment_payments.check_date)
+                    .setString("credit_card_type", to_enrollment_assessment_payments.credit_card_type)
+                    .setNumber("credit_card_rate", to_enrollment_assessment_payments.credit_card_rate)
+                    .setNumber("credit_card_amount", to_enrollment_assessment_payments.credit_card_amount)
+                    .setString("credit_card_no", to_enrollment_assessment_payments.credit_card_no)
+                    .setString("credit_card_holder", to_enrollment_assessment_payments.credit_card_holder)
+                    .setString("gift_certificate_from", to_enrollment_assessment_payments.gift_certificate_from)
+                    .setString("gift_certificate_description", to_enrollment_assessment_payments.gift_certificate_description)
+                    .setString("gift_certificate_no", to_enrollment_assessment_payments.gift_certificate_no)
+                    .setNumber("gift_certificate_amount", to_enrollment_assessment_payments.gift_certificate_amount)
+                    .setString("online_bank", to_enrollment_assessment_payments.online_bank)
+                    .setString("online_reference_no", to_enrollment_assessment_payments.online_reference_no)
+                    .setNumber("online_amount", to_enrollment_assessment_payments.online_amount)
+                    .setString("online_holder", to_enrollment_assessment_payments.online_holder)
+                    .setString("online_date", to_enrollment_assessment_payments.online_date)
+                    .setString("created_at", to_enrollment_assessment_payments.created_at)
+                    .setString("updated_at", to_enrollment_assessment_payments.updated_at)
+                    .setString("created_by", to_enrollment_assessment_payments.created_by)
+                    .setString("updated_by", to_enrollment_assessment_payments.updated_by)
+                    .setNumber("status", to_enrollment_assessment_payments.status)
+                    .setNumber("is_uploaded", to_enrollment_assessment_payments.is_uploaded)
+                    .ok();
+
+            PreparedStatement stmt5 = conn.prepareStatement("");
+            stmt5.addBatch(s5);
+            stmt5.executeBatch();
+
+            //search payment id
+            String s6 = "select "
+                    + " id"
+                    + " from enrollment_assessment_payments "
+                    + " order by id desc limit 1";
+
+            Statement stmt6 = conn.createStatement();
+            ResultSet rs6 = stmt6.executeQuery(s6);
+            int id3 = 0;
+            if (rs6.next()) {
+                id3 = rs6.getInt(1);
+            }
+            //insert payment details
+            PreparedStatement stmt4 = conn.prepareStatement("");
+            for (Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details payment : payments) {
+                String s7 = "insert into enrollment_assessment_payment_details("
+                        + "enrollment_assessment_payment_id"
+                        + ",enrollment_assessment_id"
+                        + ",enrollment_id"
+                        + ",enrollment_no"
+                        + ",academic_year_id"
+                        + ",academic_year"
+                        + ",mode"
+                        + ",mode_order"
+                        + ",to_pay"
+                        + ",amount"
+                        + ",discount"
+                        + ",paid"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":enrollment_assessment_payment_id"
+                        + ",:enrollment_assessment_id"
+                        + ",:enrollment_id"
+                        + ",:enrollment_no"
+                        + ",:academic_year_id"
+                        + ",:academic_year"
+                        + ",:mode"
+                        + ",:mode_order"
+                        + ",:to_pay"
+                        + ",:amount"
+                        + ",:discount"
+                        + ",:paid"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s7 = SqlStringUtil.parse(s7)
+                        .setNumber("enrollment_assessment_payment_id", id3)
+                        .setNumber("enrollment_assessment_id", to_enrollment_assessment_payments.enrollment_assessment_id)
+                        .setNumber("enrollment_id", to_enrollment_assessment_payments.enrollment_id)
+                        .setString("enrollment_no", to_enrollment_assessment_payments.enrollment_no)
+                        .setNumber("academic_year_id", to_enrollment_assessment_payments.academic_year_id)
+                        .setString("academic_year", to_enrollment_assessment_payments.academic_year)
+                        .setString("mode", payment.mode)
+                        .setNumber("mode_order", payment.mode_order)
+                        .setString("to_pay", payment.to_pay)
+                        .setNumber("amount", payment.amount)
+                        .setNumber("discount", payment.discount)
+                        .setNumber("paid", payment.paid)
+                        .setString("created_at", payment.created_at)
+                        .setString("updated_at", payment.updated_at)
+                        .setString("created_by", payment.created_by)
+                        .setString("updated_by", payment.updated_by)
+                        .setNumber("status", payment.status)
+                        .setNumber("is_uploaded", payment.is_uploaded)
+                        .ok();
+                stmt4.addBatch(s7);
+            }
+
+            stmt4.executeBatch();
+
             conn.commit();
 
             Lg.s(Enrollment_assessments.class, "Successfully Added");
