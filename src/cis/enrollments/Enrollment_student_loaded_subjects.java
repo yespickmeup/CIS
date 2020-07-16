@@ -73,8 +73,9 @@ public class Enrollment_student_loaded_subjects {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final int is_added;
 
-        public to_enrollment_student_loaded_subjects(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname, int enrollment_offered_subject_section_id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, int lecture_units, int lab_units, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_student_loaded_subjects(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname, int enrollment_offered_subject_section_id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, int lecture_units, int lab_units, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int is_added) {
             this.id = id;
             this.enrollment_id = enrollment_id;
             this.enrollment_no = enrollment_no;
@@ -121,6 +122,7 @@ public class Enrollment_student_loaded_subjects {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.is_added = is_added;
         }
     }
 
@@ -173,6 +175,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",is_added"
                     + ")values("
                     + ":enrollment_id"
                     + ",:enrollment_no"
@@ -219,6 +222,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:is_added"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -267,6 +271,7 @@ public class Enrollment_student_loaded_subjects {
                     .setString("updated_by", to_enrollment_student_loaded_subjects.updated_by)
                     .setNumber("status", to_enrollment_student_loaded_subjects.status)
                     .setNumber("is_uploaded", to_enrollment_student_loaded_subjects.is_uploaded)
+                    .setNumber("is_added", to_enrollment_student_loaded_subjects.is_added)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -652,6 +657,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",is_added"
                     + " from enrollment_student_loaded_subjects"
                     + " " + where;
 
@@ -704,8 +710,8 @@ public class Enrollment_student_loaded_subjects {
                 String updated_by = rs.getString(44);
                 int status = rs.getInt(45);
                 int is_uploaded = rs.getInt(46);
-
-                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                int is_added = rs.getInt(47);
+                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added);
                 datas.add(to);
             }
             return datas;
@@ -768,6 +774,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",is_added"
                     + " from enrollment_student_loaded_subjects"
                     + " " + where;
 
@@ -820,9 +827,9 @@ public class Enrollment_student_loaded_subjects {
                 String updated_by = rs.getString(44);
                 int status = rs.getInt(45);
                 int is_uploaded = rs.getInt(46);
-
+                int is_added = rs.getInt(47);
                 day = DateType.mwf(day);
-                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added);
                 datas.add(to);
             }
             return datas;

@@ -6,6 +6,7 @@
 package cis.finance;
 
 import cis.finance.Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes;
+import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.DateType;
 import cis.utils.MyConnection;
@@ -670,7 +671,7 @@ public class Enrollment_assessments {
         }
     }
 
-    public static void add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments) {
+    public static void add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments, Students.to_students student) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -875,8 +876,31 @@ public class Enrollment_assessments {
                 stmt4.addBatch(s7);
             }
 
-            stmt4.executeBatch();
+            String s10 = "select "
+                    + "id"
+                    + ",balance"
+                    + ",prepaid"
+                    + " from students"
+                    + " where id='" + student.id + "' ";
+            Statement stmt10 = conn.createStatement();
+            ResultSet rs10 = stmt10.executeQuery(s10);
+            double balance = 0;
+            if (rs10.next()) {
+                balance = rs10.getDouble(2);
+            }
+            double new_balance = balance - to_enrollment_assessment_payments.amount_paid;
+//            System.out.println("balance: " + balance + " - " + to_enrollment_assessment_payments.amount_paid);
+            String s11 = "update students set "
+                    + " balance= :balance "
+                    + " where id='" + student.id + "' "
+                    + " ";
 
+            s11 = SqlStringUtil.parse(s11)
+                    .setNumber("balance", new_balance)
+                    .ok();
+            stmt4.addBatch(s11);
+
+            stmt4.executeBatch();
             conn.commit();
 
             Lg.s(Enrollment_assessments.class, "Successfully Added");

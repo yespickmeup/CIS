@@ -710,6 +710,11 @@ public class Dlg_finance extends javax.swing.JDialog {
 
             }
         ));
+        tbl_transactions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_transactionsMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(tbl_transactions);
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
@@ -2323,6 +2328,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void tbl_transactionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_transactionsMouseClicked
+        select_transaction();
+    }//GEN-LAST:event_tbl_transactionsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2481,8 +2490,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -3554,7 +3563,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String student_course = enroll.course_code + " - " + enroll.course_description;
                 String student_year_level = enroll.year_level;
 
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' ");
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=0 ");
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -4162,7 +4171,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         Window p = (Window) this;
         Dlg_finance_payment nd = Dlg_finance_payment.create(p, true);
         nd.setTitle("");
-        nd.do_pass(selected);
+        nd.do_pass(selected, pay_student);
         nd.setCallback(new Dlg_finance_payment.Callback() {
 
             @Override
@@ -4257,6 +4266,30 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void ret_transactions() {
         List<Finance.transactions> transactions = Finance.ret_transactions(pay_student);
         loadData_transactions(transactions);
+    }
+
+    private void select_transaction() {
+        int row = tbl_transactions.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = tbl_transactions.getSelectedColumn();
+        if (col == 3) {
+            Finance.transactions to = (Finance.transactions) tbl_transactions_ALM.get(row);
+            Window p = (Window) this;
+            Dlg_finance_transaction_reports nd = Dlg_finance_transaction_reports.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_finance_transaction_reports.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_finance_transaction_reports.OutputData data) {
+                    closeDialog.ok();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
     }
     //</editor-fold>
 }

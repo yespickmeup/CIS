@@ -7,6 +7,7 @@ package cis.finance;
 
 import cis.banks.Banks;
 import cis.credit_cards.Credit_cards;
+import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -866,8 +867,11 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         init_tbl_mode_of_payments(tbl_mode_of_payments);
         tf_field21.grabFocus();
     }
+    
+    Students.to_students pay_stud=null;
 
-    public void do_pass(List<Finance.fees> fees) {
+    public void do_pass(List<Finance.fees> fees,Students.to_students stud) {
+        pay_stud = stud;
         loadData_mode_of_payments(fees);
         jLabel2.setText("" + fees.size());
         double amount = 0;
@@ -1157,6 +1161,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         String ea_enrollment_no = "";
         int ea_academic_year_id = 0;
         String ea_academic_year = "";
+        int student_id=0;
         if (!modes.isEmpty()) {
             Finance.fees fee = modes.get(0);
             String where = " where id='" + fee.id + "' ";
@@ -1226,7 +1231,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
             Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
             eapd.add(details);
         }
-        Enrollment_assessments.add_data3(eap, eapd);
+        Enrollment_assessments.add_data3(eap, eapd,pay_stud);
         Alert.set(1, "");
         ok();
 

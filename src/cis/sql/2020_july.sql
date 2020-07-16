@@ -95,3 +95,5 @@ id int auto_increment primary key
 alter table academic_year_fees add lab_unit_amount double default 0;
 alter table enrollments add period varchar(255);
 update enrollments set period = 'First Semester';
+
+alter table enrollment_student_loaded_subjects add is_added int default 0;

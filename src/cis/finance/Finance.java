@@ -11,7 +11,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import synsoftech.util.DateType;
 
@@ -68,20 +72,34 @@ public class Finance {
         }
     }
 
-    public static class transactions {
+    public static class transactions implements Comparable<transactions> {
 
         public final int id;
         public final String date;
         public final String trans_type;
         public final double amount;
+        public Date created;
 
-        public transactions(int id, String date, String trans_type, double amount) {
+        public transactions(int id, String date, String trans_type, double amount, Date created) {
             this.id = id;
             this.date = date;
             this.trans_type = trans_type;
             this.amount = amount;
+            this.created = created;
         }
 
+        public Date getCreated() {
+            return created;
+        }
+
+        public void setCreated(Date created) {
+            this.created = created;
+        }
+
+        @Override
+        public int compareTo(transactions o) {
+            return getCreated().compareTo(o.getCreated());
+        }
     }
 
     public static List<fees> ret_data(Students.to_students stud) {
@@ -300,7 +318,6 @@ public class Finance {
                 datas.add(f);
             }
             //</editor-fold>
-
             //<editor-fold defaultstate="collapsed" desc=" Drop subjects ">
             String s4 = "select "
                     + "subject_id"
@@ -398,6 +415,45 @@ public class Finance {
 
         try {
             Connection conn = MyConnection.connect();
+
+            String s4 = "select "
+                    + "id"
+                    + ",created_at"
+                    + " from enrollment_assessments"
+                    + " where student_id='" + student.id + "' ";
+
+            Statement stmt4 = conn.createStatement();
+            ResultSet rs4 = stmt4.executeQuery(s4);
+            while (rs4.next()) {
+                int id = rs4.getInt(1);
+                String created_at = rs4.getString(2);
+                String s5 = "select "
+                        + " amount"
+                        + " from enrollment_assessment_payment_modes"
+                        + " where enrollment_assessment_id='" + id + "' ";
+
+                Statement stmt5 = conn.createStatement();
+                ResultSet rs5 = stmt5.executeQuery(s5);
+                double amount = 0;
+                while (rs5.next()) {
+                    amount += rs5.getDouble(1);
+                }
+                Date d = new Date();
+                try {
+                    // 2020-07-15 10:28:47
+                    d = DateType.datetime.parse(created_at);
+                    int hour = d.getHours();
+                    String sf = DateType.sf.format(d);
+                    String date = sf + " " + hour + ":00:00";
+                    d = DateType.datetime.parse(date);
+                } catch (ParseException ex) {
+                    d = new Date();
+                }
+
+                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Assessment", amount, d);
+                datas.add(to);
+            }
+
             String s0 = "select "
                     + " eap.id"
                     + ",eap.amount_paid"
@@ -414,7 +470,14 @@ public class Finance {
                 int id = rs.getInt(1);
                 double amount_paid = rs.getDouble(2);
                 String created_at = rs.getString(3);
-                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Assessment Payment", amount_paid);
+                Date d = new Date();
+                try {
+                    d = DateType.datetime.parse(created_at);
+                } catch (ParseException ex) {
+                    d = new Date();
+                }
+
+                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Tuition Payment", amount_paid, d);
                 datas.add(to);
             }
 
@@ -433,17 +496,28 @@ public class Finance {
                 int trans_type = rs2.getInt(2);
                 double amount_paid = rs2.getDouble(3);
                 String created_at = rs2.getString(4);
+                Date d = new Date();
+                try {
+                    d = DateType.datetime.parse(created_at);
+                } catch (ParseException ex) {
+                    d = new Date();
+                }
                 if (trans_type == 1) {
-                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid);
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d);
                     datas.add(to);
                 }
                 if (trans_type == 2) {
-                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid);
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d);
                     datas.add(to);
                 }
 
             }
 
+            Collections.sort(datas, new Comparator<Finance.transactions>() {
+                         public int compare(Finance.transactions o1, Finance.transactions o2) {
+                             return o2.getCreated().compareTo(o1.getCreated());
+                         }
+                     });
             return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
