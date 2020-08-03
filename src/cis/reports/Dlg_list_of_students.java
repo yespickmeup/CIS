@@ -272,6 +272,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         jCheckBox17 = new javax.swing.JCheckBox();
         jCheckBox18 = new javax.swing.JCheckBox();
         jCheckBox19 = new javax.swing.JCheckBox();
+        jCheckBox20 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -517,6 +518,16 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup2.add(jCheckBox20);
+        jCheckBox20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox20.setText("Enrollment Summary 2");
+        jCheckBox20.setFocusable(false);
+        jCheckBox20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox20ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -583,6 +594,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                                 .addComponent(jCheckBox18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox20)
                                 .addContainerGap())))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -594,7 +607,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     .addComponent(jCheckBox16)
                     .addComponent(jCheckBox17)
                     .addComponent(jCheckBox18)
-                    .addComponent(jCheckBox19))
+                    .addComponent(jCheckBox19)
+                    .addComponent(jCheckBox20))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -858,6 +872,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         jCheckBox14.setVisible(false);
     }//GEN-LAST:event_jCheckBox19ActionPerformed
 
+    private void jCheckBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -876,6 +894,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
+    private javax.swing.JCheckBox jCheckBox20;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -907,8 +926,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
         if (!acad_years.isEmpty()) {
