@@ -1385,7 +1385,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1509,9 +1509,9 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(0, 0, 0)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(5, 5, 5)
                 .addComponent(jTabbedPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2490,8 +2490,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -3564,6 +3564,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String student_year_level = enroll.year_level;
 
                 List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=0 ");
+               
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -3590,9 +3591,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                     Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
                     if (ayf.is_per_unit == 0) {
                         tuition_amount = ayf.amount;
+                        tution_fee = tuition_amount;
                     } else {
                         lec_amount_per_unit = ayf.per_unit;
                         lab_amount_per_unit = ayf.lab_unit_amount;
+                      
                     }
                 }
 
@@ -3614,6 +3617,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     time = time.replaceAll("FM", "MF");
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
+                  
                     tution_fee += amount;
                     cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
                     fields.add(f);
@@ -3659,17 +3663,18 @@ public class Dlg_finance extends javax.swing.JDialog {
                 int payment_count = 3;
                 double tuition_fee = tuition_amount;
 
-                total_assessment = tution_fee + misc_fee + other_fee;
+                total_assessment = tution_fee + other_fee + misc_fee;
+
                 payable = total_assessment - downpayment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee);
                     rpt_summary.add(f2);
                 }
 
                 String jrxml = "rpt_enrollment_assessment.jrxml";
-                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee);
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tution_fee, misc_fee);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);

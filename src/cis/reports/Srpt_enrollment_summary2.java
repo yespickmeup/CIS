@@ -160,7 +160,17 @@ public class Srpt_enrollment_summary2 {
         String department = "";
 
         for (int i = 0; i < 20; i++) {
-
+            String student_no = "00000000" + i;
+            String last_name = "Dela Cruz";
+            String first_name = "Juan";
+            String middle_name = "A. ";
+            String gender = "M";
+            String year_level = "4th";
+            String course = "BSIT";
+            String subjects_enrolled = "Compo,Comsci";
+            double no_of_units = 6;
+            field f = new field(student_no, last_name, first_name, middle_name, gender, year_level, course, subjects_enrolled, no_of_units);
+            fields.add(f);
         }
         String jrxml = "rpt_enrollment_summary2.jrxml";
 

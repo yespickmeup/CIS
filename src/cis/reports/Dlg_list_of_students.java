@@ -479,7 +479,6 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
 
         buttonGroup2.add(jCheckBox16);
         jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox16.setSelected(true);
         jCheckBox16.setText("List");
         jCheckBox16.setFocusable(false);
         jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
@@ -520,7 +519,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
 
         buttonGroup2.add(jCheckBox20);
         jCheckBox20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox20.setText("Enrollment Summary 2");
+        jCheckBox20.setSelected(true);
+        jCheckBox20.setText("Enrollment Summary [ CHED ]");
         jCheckBox20.setFocusable(false);
         jCheckBox20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -926,8 +926,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
         if (!acad_years.isEmpty()) {
@@ -1516,6 +1516,25 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     Srpt_enrollment_list rpt = new Srpt_enrollment_list(business_name, address, contact_no, date, printed_by, school_year, semester, department, college);
                     rpt.fields.addAll(f_list);
                     report_enrollment_list(rpt, jrxml);
+                } else if (jCheckBox20.isSelected()) {
+
+                    String department = "All";
+                    if (!jCheckBox10.isSelected()) {
+                        department = tf_field14.getText();
+                    }
+                    List<to_enrollments> selected = new ArrayList();
+                    for (to_enrollments enroll : enrollments) {
+                        if (enroll.isSelected()) {
+                            selected.add(enroll);
+                        }
+                    }
+                    List<Srpt_enrollment_summary2.field> fields5 = Srpt_enrollment_summary.ret_data(selected);
+
+                    jrxml = "rpt_enrollment_summary2.jrxml";
+                    Srpt_enrollment_summary2 rpt = new Srpt_enrollment_summary2(business_name, address, contact_no, date, printed_by, school_year, semester, department);
+                    rpt.fields.addAll(fields5);
+                    report_enrollment_summary2(rpt, jrxml);
+
                 } else {
 
                     List<String> selected_colleges = new ArrayList();
@@ -1634,6 +1653,23 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         }
     }
 
+    private void report_enrollment_summary2(final Srpt_enrollment_summary2 to, String jrxml_name) {
+        jPanel5.removeAll();
+        jPanel5.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_summary2(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel5.add(viewer);
+
+            jPanel5.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static JRViewer get_viewer_assessment(Srpt_list_of_students to, String rpt_name) {
         try {
             return JasperUtil.getJasperViewer(
@@ -1682,6 +1718,18 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         }
     }
 
+    public static JRViewer get_viewer_summary2(Srpt_enrollment_summary2 to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper5(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.makeDatasource(to.fields));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
     public static JasperReport compileJasper(String rpt_name) {
         try {
             String jrxml = rpt_name;
@@ -1722,6 +1770,18 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         try {
             String jrxml = rpt_name;
             InputStream is = Srpt_enrollment_summary.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JasperReport compileJasper5(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_enrollment_summary2.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;

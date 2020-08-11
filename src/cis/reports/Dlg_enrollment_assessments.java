@@ -1380,7 +1380,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         String student_course = to.course_code + " - " + to.course_description;
         String student_year_level = to.year_level;
 
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=0 ");
         double no_of_units_lab = 0;
         List<Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -1407,6 +1407,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
             if (ayf.is_per_unit == 0) {
                 tuition_amount = ayf.amount;
+                tution_fee=tuition_amount;
             } else {
                 lec_amount_per_unit = ayf.per_unit;
                 lab_amount_per_unit = ayf.lab_unit_amount;
@@ -1474,19 +1475,20 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         List<Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
         int payment_count = 3;
-        double tuition_fee = tuition_amount;
+//        System.out.println("tution_fee: "+tution_fee);
+        double tuition_fee = tution_fee;
        
-        total_assessment = tution_fee + misc_fee + other_fee;
+        total_assessment = tution_fee  + other_fee+misc_fee;
         payable = total_assessment - downpayment;
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
             double balance = ea.amount - ea.paid;
             downpayment += ea.paid;
-            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance,tuition_fee);
+            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance,tuition_fee,misc_fee,other_fee);
             rpt_summary.add(f2);
         }
 
         String jrxml = "rpt_enrollment_assessment.jrxml";
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary,tuition_fee);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary,tuition_fee,misc_fee);
         rpt.fields.addAll(fields);
 
         JasperPrint jp1 = null;

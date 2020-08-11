@@ -483,9 +483,80 @@ public class Srpt_enrollment_summary {
                 }
             }
             Srpt_enrollment_summary rpt2 = new Srpt_enrollment_summary(rpt.business_name, rpt.address, rpt.contact_no, rpt.date, rpt.printed_by,
-                     rpt.school_year, rpt.semester, rpt.department, continuing_1st, continuing_2nd, continuing_3rd, continuing_4th, continuing_5th, new_1st, new_2nd, new_3rd, new_4th, new_5th, transferee_1st, transferee_2nd, transferee_3rd, transferee_4th, transferee_5th);
+                                                                       rpt.school_year, rpt.semester, rpt.department, continuing_1st, continuing_2nd, continuing_3rd, continuing_4th, continuing_5th, new_1st, new_2nd, new_3rd, new_4th, new_5th, transferee_1st, transferee_2nd, transferee_3rd, transferee_4th, transferee_5th);
             rpt2.fields.addAll(datas);
             return rpt2;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static List<Srpt_enrollment_summary2.field> ret_data(List<Enrollments.to_enrollments> selected) {
+        List<Srpt_enrollment_summary2.field> datas = new ArrayList();
+
+        try {
+            Connection conn = MyConnection.connect();
+            for (Enrollments.to_enrollments enroll : selected) {
+                String year_level="";
+                try {
+                    if (enroll.year_level.equalsIgnoreCase("First Year")) {
+                        year_level = "1st";
+                    } else if (year_level.equalsIgnoreCase("Second Year")) {
+                        year_level = "2nd";
+                    } else if (year_level.equalsIgnoreCase("Third Year")) {
+                        year_level = "3rd";
+                    } else if (year_level.equalsIgnoreCase("Fourth Year")) {
+                        year_level = "4th";
+                    } else {
+                        year_level = "5th";
+                    }
+                } catch (Exception e) {
+                    year_level = "";
+                }
+
+                String course = enroll.course_code;
+
+                String s2 = "select "
+                        + "id"
+                        + ",subject_id"
+                        + ",subject_code"
+                        + ",description"
+                        + ",lecture_units"
+                        + ",lab_units"
+                        + " from enrollment_student_loaded_subjects"
+                        + " where enrollment_id='" + enroll.id + "' and status<2  ";
+
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s2);
+                int i = 0;
+                String subjects_enrolled = "";
+                double no_of_units = 0;
+                while (rs2.next()) {
+                    int id2 = rs2.getInt(1);
+                    int subject_id = rs2.getInt(2);
+                    String subject_code = rs2.getString(3);
+                    String description = rs2.getString(4);
+                    int lecture_units = rs2.getInt(5);
+                    int lab_units = rs2.getInt(6);
+                    double total_units = lecture_units + lab_units;
+                    no_of_units += total_units;
+                    if (i == 0) {
+                        subjects_enrolled = subject_code;
+                    } else {
+                        subjects_enrolled = subjects_enrolled + ", " + subject_code;
+                    }
+                    i++;
+                }
+                String gen = "Male";
+                if (enroll.gender == 0) {
+                    gen = "Female";
+                }
+                Srpt_enrollment_summary2.field f = new Srpt_enrollment_summary2.field(enroll.student_no, enroll.last_name, enroll.first_name, enroll.middle_name, gen, year_level, course, subjects_enrolled, no_of_units);
+                datas.add(f);
+            }
+            return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

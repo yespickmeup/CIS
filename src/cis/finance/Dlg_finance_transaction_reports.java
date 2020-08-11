@@ -533,17 +533,17 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                 int payment_count = 3;
                 double tuition_fee = tuition_amount;
 
-                total_assessment = tution_fee + misc_fee + other_fee;
+                total_assessment = tution_fee  + other_fee+misc_fee;
                 payable = total_assessment - downpayment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee,misc_fee,other_fee);
                     rpt_summary.add(f2);
                 }
 
                 String jrxml = "rpt_enrollment_assessment.jrxml";
-                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee);
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee,misc_fee);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
