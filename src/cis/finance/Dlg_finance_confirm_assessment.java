@@ -1287,15 +1287,18 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         }
 
         // Search Tuition Details
-        int no_of_units_lec = 0;
-        int no_of_units_lab = 0;
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "'");
+        double no_of_units_lec = 0;
+        double no_of_units_lab = 0;
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' ");
         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
             no_of_units_lec += (subject.lecture_units);
             no_of_units_lab += (subject.lab_units);
         }
-        jLabel35.setText("" + no_of_units_lec + " unit/s");
-        
+        double total_units = no_of_units_lec + no_of_units_lab;
+//        System.out.println("no_of_units_lec: "+no_of_units_lec);
+//        System.out.println("no_of_units_lab: "+no_of_units_lab);
+        jLabel35.setText("" + total_units + " unit/s");
+
         if (!tf_fixed_amount.isEnabled()) { //per unit
             double total_lec_amount = FitIn.toDouble(tf_field19.getText()) * no_of_units_lec;
             double total_lab_amount = FitIn.toDouble(tf_field22.getText()) * no_of_units_lab;
@@ -1331,7 +1334,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                 + " and course_id='" + to.course_id + "' "
                 + " and period like '" + to.year_level + "' "
                 + " and group_id=2 ";
-        
+
         List<Academic_year_fees.to_academic_year_fees> datas3 = Miscellaneous_fees.ret_data3(where3);
         double amount3 = 0;
         for (Academic_year_fees.to_academic_year_fees mis : datas3) {
@@ -1750,6 +1753,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                 } else {
                     mode.setPaid(0);
                 }
+               
             }
         }
         tbl_mode_of_payments_M.fireTableDataChanged();

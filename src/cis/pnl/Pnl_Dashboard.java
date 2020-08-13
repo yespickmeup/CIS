@@ -7,6 +7,7 @@ package cis.pnl;
 import cis.academic.Dlg_academic_offerings;
 import cis.academic.Dlg_academic_years;
 import cis.accounts_receivables.Dlg_accounts_receivables;
+import cis.adjustments.Assessment_adjustments;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
@@ -29,6 +30,7 @@ import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.DeEncrypter;
+import cis.utils.Dlg_confirm_action;
 import cis.utils.MyFrame;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -89,6 +91,8 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -233,6 +237,16 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(93, 147, 196));
         jLabel32.setText("Synapse Software Technologies");
 
+        jButton1.setText("Run Script");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jProgressBar1.setString("");
+        jProgressBar1.setStringPainted(true);
+
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
         loginLayout.setHorizontalGroup(
@@ -247,13 +261,15 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(loginLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         loginLayout.setVerticalGroup(
@@ -280,7 +296,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(1, 1, 1)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -442,6 +461,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         check_credentials();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        run_script();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +491,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -487,6 +511,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPanel login;
     private javax.swing.JPanel pnl_login;
     private javax.swing.JPanel pnl_main_holder;
@@ -496,6 +521,14 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
 
     private void myInit() {
 
+        String env = System.getProperty("environment", "production");
+        if (env.equalsIgnoreCase("development")) {
+            jButton1.setVisible(true);
+            jProgressBar1.setVisible(true);
+        } else {
+            jButton1.setVisible(false);
+            jProgressBar1.setVisible(false);
+        }
         String business_name = System.getProperty("business_name", "Synapse Software Technologies");
         jLabel32.setText(business_name);
         jPanel6.setVisible(false);
@@ -923,4 +956,35 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         MyFrame.set(dtc.getSurface(), jPanel1, "Accounts Receivables");
     }
 
+    private void run_script() {
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                script();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void script() {
+        jProgressBar1.setString("Loading...Please wait...");
+        jProgressBar1.setIndeterminate(true);
+        jButton1.setEnabled(false);
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Assessment_adjustments.run_adjustment();
+                jProgressBar1.setString("Finished...");
+                jProgressBar1.setIndeterminate(false);
+                jButton1.setEnabled(true);
+            }
+        });
+        t.start();
+    }
 }

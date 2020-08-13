@@ -84,10 +84,11 @@ public class Srpt_enrollment_assessment {
         double tuition_fee;
         double misc_fee;
         double other_fee;
+        double sub_total;
         public field_summary() {
         }
 
-        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance,double tuition_fee,double misc_fee,double other_fee) {
+        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance,double tuition_fee,double misc_fee,double other_fee,double sub_total) {
             this.total_assessment = total_assessment;
             this.downpayment = downpayment;
             this.payable = payable;
@@ -99,8 +100,18 @@ public class Srpt_enrollment_assessment {
             this.tuition_fee=tuition_fee;
             this.misc_fee=misc_fee;
             this.other_fee=other_fee;
+            this.sub_total=sub_total;
         }
 
+        public double getSub_total() {
+            return sub_total;
+        }
+
+        public void setSub_total(double sub_total) {
+            this.sub_total = sub_total;
+        }
+
+        
         public double getOther_fee() {
             return other_fee;
         }
@@ -399,7 +410,8 @@ public class Srpt_enrollment_assessment {
         double tuition_fee= 100;
         double misc_fee=0;
         double other_fee=0;
-        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0,tuition_fee,misc_fee,other_fee);
+        double sub_total=0;
+        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0,tuition_fee,misc_fee,other_fee,sub_total);
         rpt_summary.add(f2);
         
         

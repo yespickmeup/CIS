@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
@@ -582,7 +583,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
         tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subject_sections.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 90, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 90, 90, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
             if (i == 5) {
                 continue;
@@ -625,7 +626,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Section", "Max", "Room", "Day", "Time", "Instructor", "Status", "room", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Section", "Max", "Room", "Day", "Time", "Instructor", "Capacity", "Status", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
@@ -676,17 +677,25 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 case 5:
                     return " " + tt.faculty_name;
                 case 6:
+                    return " " + tt.created_by;
+                case 7:
                     if (tt.status == 0) {
                         return " Posted";
                     } else if (tt.status == 1) {
-                        return " Open";
+                        String[] cap = tt.created_by.split(" of ");
+                        int min = FitIn.toInt(cap[0]);
+                        int max = FitIn.toInt(cap[1]);
+                        if (min >= max) {
+                            return " Full";
+                        } else {
+                            return " Open";
+                        }
+
                     } else if (tt.status == 2) {
                         return " Closed";
                     } else {
                         return " Dropped";
                     }
-                case 7:
-                    return tt.room;
                 case 8:
                     return tt.schedule;
                 case 9:
@@ -725,6 +734,15 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         if (to.status == 0) {
             Alert.set(0, "Subject not yet open!");
             return;
+        }
+        if (to.status == 1) {
+            String[] cap = to.created_by.split(" of ");
+            int min = FitIn.toInt(cap[0]);
+            int max = FitIn.toInt(cap[1]);
+            if (min >= max) {
+                Alert.set(0, "Section already full!");
+                return;
+            }
         }
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(to));

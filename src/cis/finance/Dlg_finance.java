@@ -3666,10 +3666,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 total_assessment = tution_fee + other_fee + misc_fee;
 
                 payable = total_assessment - downpayment;
+                double sub_total=total_assessment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee,sub_total);
                     rpt_summary.add(f2);
                 }
 
@@ -3677,6 +3678,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tution_fee, misc_fee);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
+                
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
                 try {
                     JasperReport jasperReport = JasperCompileManager.compileReport(is);
