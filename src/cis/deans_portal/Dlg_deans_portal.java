@@ -288,7 +288,6 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jCheckBox14 = new javax.swing.JCheckBox();
         jCheckBox15 = new javax.swing.JCheckBox();
         jLabel29 = new javax.swing.JLabel();
-        jCheckBox16 = new javax.swing.JCheckBox();
         tf_field17 = new Field.Combo();
         jButton12 = new Button.Info();
         jPanel10 = new javax.swing.JPanel();
@@ -728,8 +727,10 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Level/College:");
+        jLabel14.setEnabled(false);
 
         tf_field7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field7.setEnabled(false);
         tf_field7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field7MouseClicked(evt);
@@ -755,8 +756,10 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Course/Program:");
+        jLabel15.setEnabled(false);
 
         tf_field9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field9.setEnabled(false);
         tf_field9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field9MouseClicked(evt);
@@ -821,7 +824,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -843,33 +846,44 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+            .addGap(0, 311, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Print Preview", jPanel12);
 
         jCheckBox12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox12.setSelected(true);
         jCheckBox12.setText("All");
         jCheckBox12.setFocusable(false);
+        jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox12ActionPerformed(evt);
+            }
+        });
 
         jCheckBox14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox14.setSelected(true);
         jCheckBox14.setText("All");
+        jCheckBox14.setEnabled(false);
         jCheckBox14.setFocusable(false);
+        jCheckBox14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox14ActionPerformed(evt);
+            }
+        });
 
         jCheckBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox15.setSelected(true);
         jCheckBox15.setText("All");
+        jCheckBox15.setEnabled(false);
         jCheckBox15.setFocusable(false);
+        jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox15ActionPerformed(evt);
+            }
+        });
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("Year:");
-
-        jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox16.setSelected(true);
-        jCheckBox16.setText("All");
-        jCheckBox16.setFocusable(false);
+        jLabel29.setText("Code/Description:");
 
         tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field17.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -900,20 +914,11 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(428, 428, 428))
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(tf_field9))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
@@ -930,8 +935,15 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                                     .addComponent(jCheckBox14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_field7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tf_field8, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(tf_field8)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addComponent(tf_field7, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_field9, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -950,17 +962,14 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox14))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox14)
                     .addComponent(tf_field9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox15))
+                    .addComponent(jCheckBox15)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox16)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addComponent(jTabbedPane5)
@@ -1306,7 +1315,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        // TODO add your handling code here:
+       ret_subjects();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1385,6 +1394,18 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         ret_enrollments();
     }//GEN-LAST:event_jCheckBox11ActionPerformed
 
+    private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_jCheckBox12ActionPerformed
+
+    private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_jCheckBox14ActionPerformed
+
+    private void jCheckBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox15ActionPerformed
+        ret_subjects();
+    }//GEN-LAST:event_jCheckBox15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1400,7 +1421,6 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
     private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
@@ -1629,6 +1649,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
+                ret_subjects();
 
             }
         });
@@ -1685,7 +1706,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field7;
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
-
+                ret_subjects();
             }
 
         });
@@ -2145,9 +2166,18 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         Field.Combo col = (Field.Combo) tf_field7;
         Field.Combo cou = (Field.Combo) tf_field9;
 
-        String where = " where academic_year_id='" + year.getId() + "' "
-                + "   order by course_description asc ";
-//        System.out.println(where);
+        String where = " where eos.id<>0 ";
+        if (!jCheckBox12.isSelected()) {
+            where = where + " and eos.department_id='" + dep.getId() + "' "
+                    + " and eos.description like '%" + tf_field17.getText() + "%' "
+                    + " or eos.id<>0  and eos.department_id='" + dep.getId() + "' and eos.subject_code like '%" + tf_field17.getText() + "%' ";
+        } else {
+            where = where + " and eos.description like '%" + tf_field17.getText() + "%' "
+                    + " and eos.subject_code like '%" + tf_field17.getText() + "%' ";
+        }
+
+        where = where + " order by eos.description asc ";
+//        System.out.println("where+ " + where);
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> subjects = Enrollment_offered_subjects.ret_data2(where);
         loadData_academic_offering_subjects(subjects);
         jLabel7.setText("" + subjects.size());

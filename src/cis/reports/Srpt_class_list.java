@@ -76,11 +76,13 @@ public class Srpt_class_list {
         String student_name;
         String course;
         String year_level;
+        String contact_no;
+        String email_address;
 
         public field() {
         }
 
-        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level) {
+        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address) {
             this.section_id = section_id;
             this.subject_code = subject_code;
             this.description = description;
@@ -97,6 +99,24 @@ public class Srpt_class_list {
             this.student_name = student_name;
             this.course = course;
             this.year_level = year_level;
+            this.contact_no = contact_no;
+            this.email_address = email_address;
+        }
+
+        public String getContact_no() {
+            return contact_no;
+        }
+
+        public void setContact_no(String contact_no) {
+            this.contact_no = contact_no;
+        }
+
+        public String getEmail_address() {
+            return email_address;
+        }
+
+        public void setEmail_address(String email_address) {
+            this.email_address = email_address;
         }
 
         public String getStudent_no() {
@@ -260,7 +280,9 @@ public class Srpt_class_list {
             String student_name = "Juan dela Cruz" + i;
             String course = "OfCourse";
             String year_level1 = "First Year";
-            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1);
+            String contact_no1 = "";
+            String email_address = "";
+            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address);
             fields.add(f);
         }
         String jrxml = "rpt_class_list.jrxml";
@@ -300,6 +322,7 @@ public class Srpt_class_list {
             Connection conn = MyConnection.connect();
 //            System.out.println("sections: " + sections.size());
             for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section : sections) {
+//                System.out.println("id: "+section.id);
                 String s0 = "select "
                         + "id"
                         + ",enrollment_offered_subject_section_id"
@@ -340,6 +363,7 @@ public class Srpt_class_list {
                         + ",is_uploaded"
                         + " from enrollment_offered_subject_section_instructors"
                         + " where enrollment_offered_subject_section_id='" + section.id + "' ";
+
                 String my_faculty_id = "";
                 String my_faculty_name = "";
                 String my_room = "";
@@ -378,13 +402,16 @@ public class Srpt_class_list {
                     my_schedule = rs.getString(27);
                     my_day = rs.getString(28);
                     my_day = cis.utils.DateType.mwf(my_day);
-                    my_time = rs.getString(28);
+//                    my_time = rs.getString(28);
+//                    System.out.println("section: " + section.section);
+//                    my_time = section.time;
 //                    my_time = rs.getString(29);
-                    if (!my_time.isEmpty()) {
-                        my_time = DateType.daytime(my_time);
-                    }
-                    my_time = my_time.replaceAll("WFM", "MWF");
-                    my_time = my_time.replaceAll("FM", "MF");
+//                    System.out.println("my_time: " + my_time);
+//                    if (!my_time.isEmpty()) {
+//                        my_time = DateType.daytime(my_time);
+//                    }
+//                    my_time = my_time.replaceAll("WFM", "MWF");
+//                    my_time = my_time.replaceAll("FM", "MF");
 
                     String start_time = rs.getString(30);
                     String closing_time = rs.getString(31);
@@ -396,6 +423,44 @@ public class Srpt_class_list {
                     int is_uploaded = rs.getInt(37);
 
                 }
+
+                //check time
+                String s3 = "select "
+                        + " room "
+                        + ", day"
+                        + ",concat(start_time,'/',closing_time) as time"
+                        + " from enrollment_offered_subject_section_room_schedules"
+                        + " where enrollment_offered_subject_section_id='" + section.id + "'  "; //group by room_id
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+                int i = 0;
+                String day = "";
+                while (rs3.next()) {
+                    String day2 = rs3.getString(2);
+                    String s = rs3.getString(3);
+                    String[] ss = s.split("/");
+                    String otime = ss[0];
+                    String ctime = ss[1];
+                    otime = DateType.convert_datetime_to_hour_minute(otime);
+                    ctime = DateType.convert_datetime_to_hour_minute(ctime);
+                    s = otime + "-" + ctime;
+                    day2 = day2 + ": " + s;
+
+                    if (i == 0) {
+                        day = "&nbsp;&nbsp;" + day2;
+                    } else {
+                        day = day + "<br>" + "&nbsp;&nbsp;" + day2;
+                    }
+                    i++;
+                }
+                my_time = day;
+                if (!my_time.isEmpty()) {
+                    my_time = DateType.daytime(my_time);
+                }
+                my_time = my_time.replaceAll("WFM", "MWF");
+                my_time = my_time.replaceAll("FM", "MF");
+//                System.out.println("my_time: "+my_time);
                 //<editor-fold defaultstate="collapsed" desc=" students ">
                 String s2 = "select "
                         + "id"
@@ -410,7 +475,7 @@ public class Srpt_class_list {
                         + ",term"
                         + ",year_level"
                         + " from enrollment_student_loaded_subjects"
-                        + " where enrollment_offered_subject_section_id ='" + section.id + "' ";
+                        + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 ";
 
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
@@ -434,12 +499,27 @@ public class Srpt_class_list {
                     int max_students = section.max_students;
 
                     String student_name = lname + ", " + fname + " " + mi;
-                    String course = course_code2 + " - " + course_description2;
+                    String course = course_code2 ;
                     String year_level1 = year_level2;
+
+                    String contact_no1 = "";
+                    String email_address = "";
+                    String s4 = "select "
+                            + "student_no"
+                            + ",mobile_no"
+                            + ",email_address"
+                            + " from students"
+                            + " where id ='" + student_id + "' ";
+                    Statement stmt4 = conn.createStatement();
+                    ResultSet rs4 = stmt4.executeQuery(s4);
+                    if (rs4.next()) {
+                        contact_no1 = rs4.getString(2);
+                        email_address = rs4.getString(3);
+                    }
 
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address);
                     datas.add(f);
                 }
                 //</editor-fold>

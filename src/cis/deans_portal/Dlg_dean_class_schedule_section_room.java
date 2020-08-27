@@ -10,10 +10,12 @@ import cis.classrooms.Dlg_classrooms;
 import cis.enrollments.Enrollment_offered_subject_section_room_schedules;
 import cis.enrollments.Enrollment_offered_subject_section_room_schedules.to_enrollment_offered_subject_section_room_schedules;
 import cis.enrollments.Enrollment_offered_subject_sections;
+import cis.test.Time;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_action4;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
@@ -22,9 +24,12 @@ import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -229,6 +234,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         jLabel20 = new javax.swing.JLabel();
         tf_user_screen_name3 = new Field.Combo();
         tf_user_screen_name4 = new Field.Combo();
+        jButton8 = new javax.swing.JButton();
         jButton15 = new Button.Success();
         jButton14 = new Button.Default();
         jPanel3 = new javax.swing.JPanel();
@@ -334,6 +340,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
 
         tf_user_screen_name6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tf_user_screen_name6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tf_user_screen_name6.setText("00");
         tf_user_screen_name6.setFocusable(false);
         tf_user_screen_name6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -411,6 +418,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
 
         tf_user_screen_name3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tf_user_screen_name3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tf_user_screen_name3.setText("00");
         tf_user_screen_name3.setFocusable(false);
         tf_user_screen_name3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -464,6 +472,15 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/focus.png"))); // NOI18N
+        jButton8.setBorder(null);
+        jButton8.setFocusable(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -483,10 +500,12 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
                         .addComponent(jCheckBox7))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(tf_field13)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                                .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel21Layout.createSequentialGroup()
                                 .addComponent(jCheckBox1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -511,7 +530,8 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
                             .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -688,6 +708,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         });
 
         jCheckBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox15.setSelected(true);
         jCheckBox15.setText("All");
 
         buttonGroup1.add(jCheckBox16);
@@ -943,6 +964,10 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         select_schedule();
     }//GEN-LAST:event_tbl_enrollment_offered_subject_section_room_schedulesMouseClicked
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        view_room_schedules();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -954,6 +979,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -1039,7 +1065,7 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         tbl_enrollment_offered_subject_section_room_schedules.setModel(tbl_enrollment_offered_subject_section_room_schedules_M);
         tbl_enrollment_offered_subject_section_room_schedules.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subject_section_room_schedules.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_section_room_schedules = {100, 100, 80, 120, 150, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subject_section_room_schedules = {100, 100, 80, 120, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subject_section_room_schedules.length; i < n; i++) {
             if (i == 0) {
                 continue;
@@ -1183,7 +1209,9 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         }
 
         String where = " where day like '%" + day + "%' and enrollment_offered_subject_section_id='" + section.id + "' order by start_time asc ";
+
         List<to_enrollment_offered_subject_section_room_schedules> datas = Enrollment_offered_subject_section_room_schedules.ret_data(where);
+
         loadData_enrollment_offered_subject_section_room_schedules(datas);
         jLabel4.setText("" + datas.size());
     }
@@ -1352,28 +1380,13 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
 
     private void save_schedule() {
         List<String> days = new ArrayList();
-        if (jCheckBox1.isSelected()) {
-            days.add("Monday");
-        }
-        if (jCheckBox2.isSelected()) {
-            days.add("Tuesday");
-        }
-        if (jCheckBox3.isSelected()) {
-            days.add("Wednesday");
-        }
-        if (jCheckBox4.isSelected()) {
-            days.add("Thursday");
-        }
-        if (jCheckBox5.isSelected()) {
-            days.add("Friday");
-        }
-        if (jCheckBox6.isSelected()) {
-            days.add("Saturday");
-        }
-        if (jCheckBox7.isSelected()) {
-            days.add("Sunday");
-        }
+        List<String> days2 = new ArrayList();
+
         Field.Combo ro = (Field.Combo) tf_field13;
+        if (ro.getId() == null || ro.getText().isEmpty()) {
+            Alert.set(0, "Select a room");
+            return;
+        }
         int id = 0;
         int enrollment_offered_subject_section_id = section.id;
         int enrollment_offered_subject_id = section.enrollment_offered_subject_id;
@@ -1415,12 +1428,98 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         String closing_time = "" + hour2 + ":" + tf_user_screen_name3.getText() + ":00 ";
         closing_time = date + closing_time;
 
+        if (jCheckBox1.isSelected()) {
+            days.add("Monday");
+        }
+        if (jCheckBox2.isSelected()) {
+            days.add("Tuesday");
+        }
+        if (jCheckBox3.isSelected()) {
+            days.add("Wednesday");
+        }
+        if (jCheckBox4.isSelected()) {
+            days.add("Thursday");
+        }
+        if (jCheckBox5.isSelected()) {
+            days.add("Friday");
+        }
+        if (jCheckBox6.isSelected()) {
+            days.add("Saturday");
+        }
+        if (jCheckBox7.isSelected()) {
+            days.add("Sunday");
+        }
+
         String created_at = DateType.now();
         String updated_at = DateType.now();
         String created_by = MyUser.getUser_id();
         String updated_by = MyUser.getUser_id();
         int status = section.status;
         int is_uploaded = section.is_uploaded;
+
+        //check if room is occupied at this time and day
+        String where = " where academic_year_id='" + section.academic_year_id + "' ";
+        if (section.department.toUpperCase().contains("TERTIARY") || section.department.toUpperCase().contains("SENIOR")) {
+            where = where + " and department_id='" + section.department_id + "' and term like '" + section.term + "' ";
+
+        } else {
+            where = where + " and department_id='" + section.department_id + "' ";
+        }
+
+        where = where + "  and room_id='" + ro.getId() + "' order by start_time asc ";
+//        System.out.println(where);
+
+        //end of checking
+        //Check if exists
+//        String where = " where enrollment_offered_subject_section_id='" + section.id + "' order by start_time asc ";
+        List<to_enrollment_offered_subject_section_room_schedules> datas = Enrollment_offered_subject_section_room_schedules.ret_data(where);
+
+        for (String day1 : days) {
+            int exists = 0;
+            for (to_enrollment_offered_subject_section_room_schedules to : datas) {
+                if (room.equalsIgnoreCase(to.room) && day1.equalsIgnoreCase(to.day) && subject_id == to.subject_id) {
+                    try {
+                        Date min = synsoftech.util.DateType.datetime.parse(to.start_time);
+                        Date max = synsoftech.util.DateType.datetime.parse(to.closing_time);
+                        Date d1 = synsoftech.util.DateType.datetime.parse(start_time);
+                        Date d2 = synsoftech.util.DateType.datetime.parse(closing_time);
+
+                        boolean ret = d1.compareTo(min) >= 0 && d1.compareTo(max) <= 0;
+                        boolean ret2 = d2.compareTo(min) >= 0 && d2.compareTo(max) <= 0;
+                        if (ret) {
+                            exists = 1;
+                            break;
+                        }
+                        if (ret2) {
+                            exists = 1;
+                            break;
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Time.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            if (exists == 0) {
+                days2.add(day1);
+            } else {
+                Window p = (Window) this;
+                Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
+                nd.setTitle("");
+                nd.do_pass("<html>Room: <b>" + ro.getText() + "</b> Day: <b>" + day1 + "</b> Time: <b>" + start_time + " - " + closing_time + "</b> Conflict of schedule!</html>");
+
+                nd.setCallback(new Dlg_confirm_action4.Callback() {
+
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
+                        closeDialog.ok();
+
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+        }
+
         Enrollment_offered_subject_section_room_schedules.to_enrollment_offered_subject_section_room_schedules to_room = new to_enrollment_offered_subject_section_room_schedules(id, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
 
         Window p = (Window) this;
@@ -1428,12 +1527,11 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         nd.setTitle("");
 //        nd.do_pass(services);
         nd.setCallback(new Dlg_confirm_action.Callback() {
-
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                System.out.println("to_room: "+to_room);
-                Enrollment_offered_subject_section_room_schedules.add_data(to_room, days);
+//                System.out.println("to_room: " + to_room);
+                Enrollment_offered_subject_section_room_schedules.add_data(to_room, days2);
                 Alert.set(1, "");
                 ret_schedules();
             }
@@ -1474,5 +1572,27 @@ public class Dlg_dean_class_schedule_section_room extends javax.swing.JDialog {
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData());
         }
+    }
+
+    private void view_room_schedules() {
+
+        Field.Combo room = (Field.Combo) tf_field13;
+        if (room.getId() == null || room.getId().isEmpty()) {
+            return;
+        }
+        Window p = (Window) this;
+        Dlg_room_schedules nd = Dlg_room_schedules.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(room.getId(), room.getText(), section);
+        nd.setCallback(new Dlg_room_schedules.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_room_schedules.OutputData data) {
+                closeDialog.ok();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 }

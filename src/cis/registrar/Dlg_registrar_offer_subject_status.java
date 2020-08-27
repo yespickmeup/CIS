@@ -799,7 +799,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                 String updated_by = MyUser.getUser_id();
                 int status = 0;
                 int is_uploaded = 0;
-                Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = new Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections(0, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = new Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections(0, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
                 Enrollment_offered_subject_sections.add_data(to);
                 Alert.set(1, "");
                 ret_eos();

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" orientation="Landscape" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6a4d97ff-b8dd-4136-b031-f29659e8f21a">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="261"/>
 	<parameter name="business_name" class="java.lang.String"/>
 	<parameter name="address" class="java.lang.String"/>
 	<parameter name="contact_no" class="java.lang.String"/>
@@ -30,6 +30,8 @@
 	<field name="student_name" class="java.lang.String"/>
 	<field name="course" class="java.lang.String"/>
 	<field name="year_level" class="java.lang.String"/>
+	<field name="contact_no" class="java.lang.String"/>
+	<field name="email_address" class="java.lang.String"/>
 	<variable name="student_name_1" class="java.lang.Integer" resetType="Group" resetGroup="section" calculation="Count">
 		<variableExpression><![CDATA[$F{student_name}]]></variableExpression>
 	</variable>
@@ -326,7 +328,7 @@
 					<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="3a52e2c5-83c5-4564-a13d-1a6b9cad52ae" x="0" y="80" width="100" height="20"/>
+					<reportElement uuid="3a52e2c5-83c5-4564-a13d-1a6b9cad52ae" x="0" y="80" width="64" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -339,7 +341,7 @@
 					<text><![CDATA[Student No]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="35cd90db-6ddc-4ce4-b68d-1cfa2ff03429" x="100" y="80" width="205" height="20"/>
+					<reportElement uuid="35cd90db-6ddc-4ce4-b68d-1cfa2ff03429" x="64" y="80" width="172" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -352,7 +354,7 @@
 					<text><![CDATA[Name]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="ec041479-eb34-4183-a699-f0755f77f028" x="305" y="80" width="200" height="20"/>
+					<reportElement uuid="ec041479-eb34-4183-a699-f0755f77f028" x="236" y="80" width="53" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -365,7 +367,7 @@
 					<text><![CDATA[Course]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="39cf2cab-a344-49b2-981c-2d8e34b0f717" x="505" y="80" width="67" height="20"/>
+					<reportElement uuid="39cf2cab-a344-49b2-981c-2d8e34b0f717" x="520" y="80" width="52" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -376,6 +378,32 @@
 						<paragraph leftIndent="2"/>
 					</textElement>
 					<text><![CDATA[Year Level]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ec041479-eb34-4183-a699-f0755f77f028" x="289" y="80" width="88" height="20"/>
+					<box>
+						<topPen lineWidth="0.2"/>
+						<leftPen lineWidth="0.2"/>
+						<bottomPen lineWidth="0.2"/>
+						<rightPen lineWidth="0.2"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Contact No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ec041479-eb34-4183-a699-f0755f77f028" x="377" y="80" width="143" height="20"/>
+					<box>
+						<topPen lineWidth="0.2"/>
+						<leftPen lineWidth="0.2"/>
+						<bottomPen lineWidth="0.2"/>
+						<rightPen lineWidth="0.2"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Contact No]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -502,7 +530,7 @@
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement uuid="39076929-6978-4e44-adb7-fe52131e400b" x="0" y="0" width="100" height="15"/>
+				<reportElement uuid="39076929-6978-4e44-adb7-fe52131e400b" x="0" y="0" width="64" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -516,7 +544,7 @@
 				<textFieldExpression><![CDATA[$F{student_no}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ab0ba35e-9161-4b9a-a4eb-dc43c519dbdd" x="100" y="0" width="205" height="15"/>
+				<reportElement uuid="ab0ba35e-9161-4b9a-a4eb-dc43c519dbdd" x="64" y="0" width="172" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -530,7 +558,7 @@
 				<textFieldExpression><![CDATA[$F{student_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="efc8f005-8fc7-4357-a507-9c275820d522" x="305" y="0" width="200" height="15"/>
+				<reportElement uuid="efc8f005-8fc7-4357-a507-9c275820d522" x="236" y="0" width="53" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -538,13 +566,13 @@
 					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{course}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="66cae471-62d3-4a34-95c6-8bfdbf8828ed" x="505" y="0" width="67" height="15"/>
+				<reportElement uuid="66cae471-62d3-4a34-95c6-8bfdbf8828ed" x="520" y="0" width="52" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -552,9 +580,38 @@
 					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{year_level}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efc8f005-8fc7-4357-a507-9c275820d522" x="289" y="0" width="88" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contact_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efc8f005-8fc7-4357-a507-9c275820d522" x="377" y="0" width="143" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email_address}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

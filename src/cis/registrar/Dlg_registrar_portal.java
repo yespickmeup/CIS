@@ -3471,6 +3471,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             Alert.set(0, "Subject already added!");
             return;
         }
+        
         int col = tbl_academic_offering_subjects.getSelectedColumn();
         if (col == 4) {
             Window p = (Window) this;
@@ -3703,25 +3704,25 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
     private void ret_opened_subjects() {
 
-        String where = " where id<>0 ";
+        String where = " where eos.id<>0 ";
         String where2 = "";
         String search = tf_field18.getText();
         if (!jCheckBox13.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field15;
             Field.Combo gr = (Field.Combo) tf_field17;
 
-            where = where + " and department_id='" + dep.getId() + "' ";
-            where2 = where2 + "  or department_id='" + dep.getId() + "' ";
+            where = where + " and eos.department_id='" + dep.getId() + "' ";
+            where2 = where2 + "  or eos.department_id='" + dep.getId() + "' ";
 
             if (!jCheckBox15.isSelected()) {
-                where = where + " and subject_group_id='" + gr.getId() + "' ";
-                where2 = where2 + " and subject_group_id='" + gr.getId() + "' ";
+                where = where + " and eos.subject_group_id='" + gr.getId() + "' ";
+                where2 = where2 + " and eos.subject_group_id='" + gr.getId() + "' ";
             }
-            where = where + " and subject_code like '%" + search + "%' ";
+            where = where + " and eos.subject_code like '%" + search + "%' ";
 
-            where = where + where2 + " and description like '%" + search + "%' order by description desc ";
+            where = where + where2 + " and eos.description like '%" + search + "%' order by eos.description desc ";
         } else {
-            where = " where subject_code like '%" + search + "%' or description like '%" + search + "%' order by description desc ";
+            where = " where eos.subject_code like '%" + search + "%' or eos.description like '%" + search + "%' order by eos.description desc ";
         }
 
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);
@@ -4853,7 +4854,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Academic_offering_subjects.to_academic_offering_subjects aos = null;
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
-                    nd.do_pass(aos, aos.academic_year_id);
+                    nd.do_pass(aos, aos.academic_year_id,enroll);
                 }
                 final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
                 nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
@@ -4925,6 +4926,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
                 nd.setTitle("");
                 nd.do_pass("<html>Are you sure you want to delete <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
+               
                 nd.setCallback(new Dlg_confirm_delete2.Callback() {
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {

@@ -5,8 +5,15 @@
  */
 package cis.test;
 
+import cis.enrollments.Enrollment_offered_subject_section_room_schedules;
+import cis.enrollments.Enrollment_offered_subject_section_room_schedules.to_enrollment_offered_subject_section_room_schedules;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import synsoftech.util.DateType;
 
 /**
  *
@@ -40,6 +47,48 @@ public class Time {
             this.time = time;
         }
 
+    }
+
+    public static void main3(String[] args) {
+//        where day like '%%' and enrollment_offered_subject_section_id='79' order by start_time asc 
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
+        List<String> days = new ArrayList();
+        days.add("Monday");
+        days.add("Tuesday");
+        days.add("Wednesday");
+        days.add("Thursday");
+        days.add("Friday");
+        days.add("Saturday");
+        days.add("Sunday");
+        String room = "MM7";
+        String time1 = "2019-01-01 12:00:00.0";
+        String time2 = "2019-01-01 15:00:00.0";
+
+        String where = " where day like '%" + "" + "%' and enrollment_offered_subject_section_id='" + "434" + "' order by start_time asc ";
+        List<to_enrollment_offered_subject_section_room_schedules> datas = Enrollment_offered_subject_section_room_schedules.ret_data(where);
+
+        for (to_enrollment_offered_subject_section_room_schedules to : datas) {
+            
+            for (String day : days) {
+
+                if (room.equalsIgnoreCase(to.room) && day.equalsIgnoreCase(to.day)) {
+                    try {
+                        Date min = DateType.datetime.parse(to.start_time);
+                        Date max = DateType.datetime.parse(to.closing_time);
+                        Date d1 = DateType.datetime.parse(time1);
+
+                        boolean ret = d1.compareTo(min) >= 0 && d1.compareTo(max) <= 0;
+                        if (!ret) {
+
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Time.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        }
     }
 
     public static void main(String[] args) {

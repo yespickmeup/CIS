@@ -6,20 +6,12 @@
 package cis.reports;
 
 import cis.academic.Academic_offerings;
-import cis.academic.Academic_year_fees;
 import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
 import cis.enrollments.Enrollment_offered_subject_sections;
-import cis.enrollments.Enrollment_student_loaded_subjects;
-import cis.enrollments.Enrollments;
-import cis.enrollments.Enrollments.to_enrollments;
-import cis.finance.Enrollment_assessment_payment_modes;
-import cis.finance.Miscellaneous_fees;
-import static cis.reports.Dlg_list_of_students.compileJasper;
-import static cis.reports.Dlg_list_of_students.get_viewer_assessment;
-import cis.users.MyUser;
+import cis.enrollments.Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections;
 import cis.utils.DateType;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
@@ -57,13 +49,9 @@ import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import net.sf.jasperreports.view.JasperViewer;
 import org.jfree.ui.Align;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
@@ -444,7 +432,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         });
 
         tf_field5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field5.setEnabled(false);
         tf_field5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_field5ActionPerformed(evt);
@@ -453,7 +440,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Search:");
-        jLabel12.setEnabled(false);
 
         jCheckBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox15.setSelected(true);
@@ -853,7 +839,8 @@ public class Dlg_class_list extends javax.swing.JDialog {
         tbl_enrollments.setModel(tbl_enrollments_M);
         tbl_enrollments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollments.setRowHeight(25);
-        int[] tbl_widths_enrollments = {80, 100, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        int[] tbl_widths_enrollments = {80, 100, 80, 80, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollments.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -946,12 +933,12 @@ public class Dlg_class_list extends javax.swing.JDialog {
         public void mouseClicked(MouseEvent e) {
             handleClickEvent(e);
             ((JTableHeader) e.getSource()).repaint();
-            List<to_enrollments> datas = tbl_enrollments_ALM;
+            List<to_enrollment_offered_subject_sections> datas = tbl_enrollments_ALM;
             boolean selected = false;
             if (this.isSelected()) {
                 selected = true;
             }
-            for (to_enrollments to : datas) {
+            for (to_enrollment_offered_subject_sections to : datas) {
                 to.setSelected(selected);
             }
             e.consume();
@@ -1000,7 +987,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
         @Override
         public Class getColumnClass(int col) {
-            if (col == 7) {
+            if (col == 4) {
                 return Boolean.class;
             }
             return Object.class;
@@ -1020,7 +1007,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 case 3:
                     return " " + (tt.lecture_units + tt.lab_units);
                 case 4:
-                    return " " + tt.section;
+                    return tt.selected;
                 case 5:
                     return " " + DateType.convert_slash_datetime(tt.created_at);
                 case 6:
@@ -1254,7 +1241,13 @@ public class Dlg_class_list extends javax.swing.JDialog {
     private void ret_data() {
         Field.Input year = (Field.Input) tf_field13;
 
-        String where = " where academic_year_id='" + year.getId() + "' and term like '" + tf_field17.getText() + "' ";
+        String where = " where academic_year_id='" + year.getId() + "' and term like '" + tf_field17.getText() + "' and subject_code like '%" + tf_field5.getText() + "%' "
+                + "  ";
+        if (!jCheckBox10.isSelected()) {
+            Field.Combo dep = (Field.Combo) tf_field14;
+            where = where + " and department_id = '" + dep.getId() + "' ";
+        }
+        where = where + " or  academic_year_id='" + year.getId() + "' and term like '" + tf_field17.getText() + "' and description like '%" + tf_field5.getText() + "%' ";
         if (!jCheckBox10.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field14;
             where = where + " and department_id = '" + dep.getId() + "' ";
@@ -1271,20 +1264,20 @@ public class Dlg_class_list extends javax.swing.JDialog {
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
 
     private void select_enrollment() {
-//        int row = tbl_enrollments.getSelectedRow();
-//        if (row < 0) {
-//            return;
-//        }
-//        to_enrollments to = (to_enrollments) tbl_enrollments_ALM.get(row);
-//        int col = tbl_enrollments.getSelectedColumn();
-//        if (col == 7) {
-//            if (to.isSelected()) {
-//                to.setSelected(false);
-//            } else {
-//                to.setSelected(true);
-//            }
-//            tbl_enrollments_M.fireTableDataChanged();
-//        }
+        int row = tbl_enrollments.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollments_ALM.get(row);
+        int col = tbl_enrollments.getSelectedColumn();
+        if (col == 4) {
+            if (to.isSelected()) {
+                to.setSelected(false);
+            } else {
+                to.setSelected(true);
+            }
+            tbl_enrollments_M.fireTableDataChanged();
+        }
     }
 
     private void set_assessment() {
@@ -1318,7 +1311,14 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 String room = "";
 
                 List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = tbl_enrollments_ALM;
-                List<Srpt_class_list.field> fields = Srpt_class_list.ret_data(datas);
+                List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> selected = new ArrayList();
+                for (to_enrollment_offered_subject_sections to : datas) {
+                    if (to.selected) {
+                        selected.add(to);
+                    }
+                }
+
+                List<Srpt_class_list.field> fields = Srpt_class_list.ret_data(selected);
                 String jrxml = "rpt_class_list.jrxml";
                 Srpt_class_list rpt = new Srpt_class_list(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room);
 

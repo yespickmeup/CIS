@@ -1502,9 +1502,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                             String date_enrolled = DateType.convert_slash_datetime(enroll.date_enrolled);
                             int age = enroll.age;
                             String gender = "Male";
-                            if (enroll.age == 0) {
+                            if (enroll.gender == 0) {
                                 gender = "Female";
                             }
+                           
                             String bday = DateType.convert_slash_datetime2(enroll.date_of_birth);
                             String year_level = enroll.year_level;
                             Srpt_enrollment_list.field f = new Srpt_enrollment_list.field(course_id, enrollment_id, student_no, name, course, date_enrolled, age, gender, bday, year_level);
