@@ -867,10 +867,23 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         init_tbl_mode_of_payments(tbl_mode_of_payments);
         tf_field21.grabFocus();
     }
-    
-    Students.to_students pay_stud=null;
 
-    public void do_pass(List<Finance.fees> fees,Students.to_students stud) {
+    Students.to_students pay_stud = null;
+
+    public void do_pass(List<Finance.fees> fees, Students.to_students stud) {
+        pay_stud = stud;
+        loadData_mode_of_payments(fees);
+        jLabel2.setText("" + fees.size());
+        double amount = 0;
+        for (Finance.fees fee : fees) {
+            amount += fee.balance;
+        }
+        tf_field137.setText(FitIn.fmt_wc_0(amount));
+    }
+    int is_adjustment = 0;
+
+    public void do_pass2F(List<Finance.fees> fees, Students.to_students stud) {
+        is_adjustment = 1;
         pay_stud = stud;
         loadData_mode_of_payments(fees);
         jLabel2.setText("" + fees.size());
@@ -1143,7 +1156,12 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                pay();
+                if (is_adjustment == 1) {
+                    
+                } else {
+                    pay();
+                }
+
             }
         });
         nd.setLocationRelativeTo(this);
@@ -1161,7 +1179,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         String ea_enrollment_no = "";
         int ea_academic_year_id = 0;
         String ea_academic_year = "";
-        int student_id=0;
+        int student_id = 0;
         if (!modes.isEmpty()) {
             Finance.fees fee = modes.get(0);
             String where = " where id='" + fee.id + "' ";
@@ -1220,18 +1238,21 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         List<Finance.fees> list = tbl_mode_of_payments_ALM;
         List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> eapd = new ArrayList();
         for (Finance.fees fee : list) {
-            int id1 = 0;
-            int enrollment_assessment_payment_id = 0;
-            String mode = fee.mode;
-            int mode_order = 100;
-            String to_pay = DateType.convert_dash_date5(fee.date);
-            double amount = fee.amount - fee.paid;
-            double discount = 0;
-            double paid = fee.new_payment;
-            Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
-            eapd.add(details);
+            if (fee.trans_type == 1) {
+                int id1 = 0;
+                int enrollment_assessment_payment_id = 0;
+                String mode = fee.mode;
+                int mode_order = 100;
+                String to_pay = DateType.convert_dash_date5(fee.date);
+                double amount = fee.amount - fee.paid;
+                double discount = 0;
+                double paid = fee.new_payment;
+                Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                eapd.add(details);
+            }
+
         }
-        Enrollment_assessments.add_data3(eap, eapd,pay_stud);
+        Enrollment_assessments.add_data3(eap, eapd, pay_stud);
         Alert.set(1, "");
         ok();
 

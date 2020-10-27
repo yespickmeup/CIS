@@ -402,6 +402,83 @@ public class Finance {
                 datas.add(f);
             }
             //</editor-fold>
+
+            //<editor-fold defaultstate="collapsed" desc=" Adjustments ">
+            String s5 = "select "
+                    + "id"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",fname"
+                    + ",mi"
+                    + ",lname"
+                    + ",is_transferee"
+                    + ",academic_year"
+                    + ",academic_year_id"
+                    + ",course_id"
+                    + ",course_code"
+                    + ",course_description"
+                    + ",year_level"
+                    + ",term"
+                    + ",department_id"
+                    + ",department"
+                    + ",college_id"
+                    + ",college"
+                    + ",adjustment_amount"
+                    + ",paid"
+                    + ",remarks"
+                    + ",status"
+                    + ",created_at"
+                    + ",created_by"
+                    + ",updated_at"
+                    + ",updated_by"
+                    + " from student_balance_adjustments"
+                    + " where student_id='" + stud.id + "' ";
+
+            Statement stmt5 = conn.createStatement();
+            ResultSet rs5 = stmt.executeQuery(s5);
+            while (rs5.next()) {
+                int id = rs5.getInt(1);
+                int student_id = rs5.getInt(2);
+                String student_no = rs5.getString(3);
+                String fname = rs5.getString(4);
+                String mi = rs5.getString(5);
+                String lname = rs5.getString(6);
+                int is_transferee = rs5.getInt(7);
+                String academic_year = rs5.getString(8);
+                int academic_year_id = rs5.getInt(9);
+                int course_id = rs5.getInt(10);
+                String course_code = rs5.getString(11);
+                String course_description = rs5.getString(12);
+                String year_level = rs5.getString(13);
+                String term = rs5.getString(14);
+                int department_id = rs5.getInt(15);
+                String department = rs5.getString(16);
+                int college_id = rs5.getInt(17);
+                String college = rs5.getString(18);
+                double adjustment_amount = rs5.getDouble(19);
+                double paid = rs5.getDouble(20);
+                String remarks = rs5.getString(21);
+                int status = rs5.getInt(22);
+                String created_at = rs5.getString(23);
+                int created_by = rs5.getInt(24);
+                String updated_at = rs5.getString(25);
+                int updated_by = rs5.getInt(26);
+
+                double balance3 = adjustment_amount - paid;
+                if (balance3 > 0) {
+                  
+                    String title3
+                            = "<html><body>"
+                            + "&nbsp <font color=\"black\";size=\"4\"><b>" + "Adjustment - Balance" + "</b> ( " + DateType.convert_slash_datetime(created_at) + ")  </font><br>"
+                            + "&nbsp <font size=\"2\"> " + "Remarks: " + " (" + remarks + ")</font><br>"
+                            + "</body>"
+                            + "</html>";
+                    fees f2 = new fees(id, title3, DateType.convert_slash_datetime(created_at), deadline2, adjustment_amount, 0, paid, balance3, selected2, 5, 0, "Adjustment - Balance");
+                    datas.add(f2);
+                }
+            }
+            //</editor-fold>
+
             return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);

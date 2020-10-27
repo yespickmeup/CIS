@@ -3564,7 +3564,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String student_year_level = enroll.year_level;
 
                 List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 ");
-               
+
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -3595,7 +3595,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     } else {
                         lec_amount_per_unit = ayf.per_unit;
                         lab_amount_per_unit = ayf.lab_unit_amount;
-                      
+
                     }
                 }
 
@@ -3617,7 +3617,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     time = time.replaceAll("FM", "MF");
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
-                  
+
                     tution_fee += amount;
                     cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
                     fields.add(f);
@@ -3666,11 +3666,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 total_assessment = tution_fee + other_fee + misc_fee;
 
                 payable = total_assessment - downpayment;
-                double sub_total=total_assessment;
+                double sub_total = total_assessment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee,sub_total);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee, sub_total);
                     rpt_summary.add(f2);
                 }
 
@@ -3678,7 +3678,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tution_fee, misc_fee);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
-                
+
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
                 try {
                     JasperReport jasperReport = JasperCompileManager.compileReport(is);
@@ -4113,9 +4113,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         }
         Finance.fees to = (Finance.fees) tbl_fees_ALM.get(row);
         int col = tbl_fees.getSelectedColumn();
-//        System.out.println("trans: " + to.trans_type);
         if (col == 6) {
-
             if (to.trans_type == 1) {
                 if (to.isSelected()) {
                     to.setSelected(false);
@@ -4124,7 +4122,6 @@ public class Dlg_finance extends javax.swing.JDialog {
                 }
                 tbl_fees_M.fireTableDataChanged();
             }
-
         } else {
             if (to.trans_type == 2) { //added subjects
                 Window p = (Window) this;
@@ -4150,6 +4147,30 @@ public class Dlg_finance extends javax.swing.JDialog {
                 nd.setCallback(new Dlg_finance_student_payment_details_subjects.Callback() {
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
+                        closeDialog.ok();
+                        ret_fees();
+                        ret_transactions();
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+            if (to.trans_type == 5) { //balance adjustment
+
+                List<Finance.fees> selected = new ArrayList();
+                selected.add(to);
+                if (selected.isEmpty()) {
+                    Alert.set(0, "Select Fee/s to pay!");
+                    return;
+                }
+                Window p = (Window) this;
+                Dlg_finance_payment nd = Dlg_finance_payment.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(selected, pay_student);
+                nd.setCallback(new Dlg_finance_payment.Callback() {
+
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_finance_payment.OutputData data) {
                         closeDialog.ok();
                         ret_fees();
                         ret_transactions();

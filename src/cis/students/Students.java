@@ -598,7 +598,7 @@ public class Students {
                 student_id = rs11.getInt(1);
             }
             student_id++;
-
+            
             String s5 = " update enrollments set student_no='" + id + "',student_id='" + student_id + "',date_enrolled='" + DateType.now() + "' where id='" + enroll.id + "'";
             stmt3.addBatch(s5);
 

@@ -597,7 +597,7 @@ public class Dlg_finance_student_payment_details_subjects extends javax.swing.JD
         Window p = (Window) this;
         Dlg_finance_student_payment_details_subjects_payment nd = Dlg_finance_student_payment_details_subjects_payment.create(p, true);
         nd.setTitle("");
-        System.out.println("pay_student: " + pay_student.id);
+//        System.out.println("pay_student: " + pay_student.id);
         nd.do_pass(pay_student, tbl_added_subjects_ALM, tbl_dropped_subjects_ALM, is_drop);
         nd.setCallback(new Dlg_finance_student_payment_details_subjects_payment.Callback() {
 

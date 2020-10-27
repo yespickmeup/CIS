@@ -499,17 +499,18 @@ public class Srpt_enrollment_summary {
         try {
             Connection conn = MyConnection.connect();
             for (Enrollments.to_enrollments enroll : selected) {
-                String year_level="";
+                String year_level = "";
                 try {
                     if (enroll.year_level.equalsIgnoreCase("First Year")) {
                         year_level = "1st";
-                    } else if (year_level.equalsIgnoreCase("Second Year")) {
+                    } else if (enroll.year_level.equalsIgnoreCase("Second Year")) {
                         year_level = "2nd";
-                    } else if (year_level.equalsIgnoreCase("Third Year")) {
+                    } else if (enroll.year_level.equalsIgnoreCase("Third Year")) {
                         year_level = "3rd";
-                    } else if (year_level.equalsIgnoreCase("Fourth Year")) {
+                    } else if (enroll.year_level.equalsIgnoreCase("Fourth Year")) {
                         year_level = "4th";
                     } else {
+
                         year_level = "5th";
                     }
                 } catch (Exception e) {
