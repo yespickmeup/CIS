@@ -776,9 +776,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Users")) {
                     m_users();
                 }
-                if (data.stmt.equals("Students")) {
+
+                if (data.stmt.equals("Student Masterlist")) {
                     m_students();
                 }
+
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" Reports ">
                 if (data.stmt.equals("Student Reports")) {

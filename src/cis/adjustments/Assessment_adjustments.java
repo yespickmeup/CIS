@@ -10,6 +10,8 @@ import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.finance.Enrollment_assessment_payment_modes;
 import cis.finance.Enrollment_assessment_payments;
 import cis.finance.Enrollment_assessments.to_enrollment_assessments;
+import cis.finance.Finance;
+import cis.students.Students;
 import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
@@ -28,9 +30,36 @@ import mijzcx.synapse.desk.utils.Lg;
  */
 public class Assessment_adjustments {
 
+    private static void set_balance() {
+        List<Students.to_students> students = Students.ret_data("");
+        for (Students.to_students student : students) {
+            List<Finance.fees> datas = Finance.ret_data(student);
+            double balance = 0;
+            for (Finance.fees fee : datas) {
+                balance += fee.balance;
+            }
+            try {
+                Connection conn = MyConnection.connect();
+                conn.setAutoCommit(false);
+                PreparedStatement stmt = conn.prepareStatement("");
+
+                String stud = " update students set balance='" + balance + "' where id='" + student.id + "' ";
+                stmt.addBatch(stud);
+
+                stmt.executeBatch();
+                conn.commit();
+                Lg.s(Assessment_adjustments.class, "Successfully Updated");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                MyConnection.close();
+            }
+        }
+    }
+
     public static void run_adjustment() {
 
-        String where2 = "  ";
+        String where2 = " where id=12  ";
 
         List<to_enrollment_assessments> assessments = ret_data(where2);
         int not_equal_units = 0;
@@ -102,6 +131,8 @@ public class Assessment_adjustments {
                 PreparedStatement stmt = conn.prepareStatement("");
                 String up1 = " update enrollment_assessments set tuition_amount='" + tuition_amount + "',no_of_units='" + total_units + "' where id='" + to.id + "' ";
                 stmt.addBatch(up1);
+                String stud = " update students set balance='" + payable + "' where id='" + to.student_id + "' ";
+                stmt.addBatch(stud);
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes mode : modes) {
                     double balance = mode.amount - mode.paid;
                     System.out.println("        " + mode.mode + " | " + mode.amount + " | " + mode.paid + " | " + balance);
@@ -128,7 +159,7 @@ public class Assessment_adjustments {
     public static void main(String[] args) {
         System.setProperty("pool_db", "db_cis_cosca");
         System.setProperty("pool_password", "password");
-
+        set_balance();
     }
 
     private static List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> mode_of_payment(int payment_mode_no, double total, double downpayment2) {

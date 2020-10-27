@@ -252,7 +252,7 @@ public class Students {
             int year = FitIn.toInt(DateType.y.format(new Date()));
             String id = "" + year + "0000";
 
-            String s1 = "select max(id) from students where Year(created_at)='" + year + "' ";
+            String s1 = "select max(id) from students where Year(created_at)='" + year + "' and is_transferee=0 ";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s1);
             if (rs.next()) {
@@ -632,26 +632,6 @@ public class Students {
             int year = FitIn.toInt(DateType.y.format(new Date()));
             String id = "" + year + "0000";
 
-            String s1 = "select max(id) from students where Year(created_at)='" + year + "' ";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(s1);
-            if (rs.next()) {
-                id = rs.getString(1);
-
-                String s2 = "select student_no,id from students where id='" + id + "'";
-                Statement stmt2 = conn.createStatement();
-                ResultSet rs2 = stmt2.executeQuery(s2);
-                if (rs2.next()) {
-                    id = rs2.getString(1);
-
-                }
-            }
-
-            if (id == null) {
-                id = "" + year + "0000";
-            }
-            id = ReceiptIncrementor.increment(id);
-
             String s0 = "insert into students("
                     + "is_transferee"
                     + ",academic_year_id"
@@ -866,7 +846,7 @@ public class Students {
                     .setNumber("is_transferee", to_students.is_transferee)
                     .setNumber("academic_year_id", to_students.academic_year_id)
                     .setString("academic_year", to_students.academic_year)
-                    .setString("student_no", id)
+                    .setString("student_no", to_students.student_no)
                     .setString("last_name", to_students.last_name)
                     .setString("first_name", to_students.first_name)
                     .setString("middle_name", to_students.middle_name)
@@ -1539,6 +1519,218 @@ public class Students {
         }
     }
 
+    public static void manual_update(to_students to_students) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update students set "
+                    + " is_transferee= :is_transferee "
+                    + ",academic_year_id= :academic_year_id "
+                    + ",academic_year= :academic_year "
+                    + ",student_no= :student_no "
+                    + ",last_name= :last_name "
+                    + ",first_name= :first_name "
+                    + ",middle_name= :middle_name "
+                    + ",nick_name= :nick_name "
+                    + ",current_address= :current_address "
+                    + ",permanent_address= :permanent_address "
+                    + ",email_address= :email_address "
+                    + ",postal_code= :postal_code "
+                    + ",tel_no= :tel_no "
+                    + ",mobile_no= :mobile_no "
+                    + ",date_of_birth= :date_of_birth "
+                    + ",place_of_birth= :place_of_birth "
+                    + ",age= :age "
+                    + ",gender= :gender "
+                    + ",citizenship= :citizenship "
+                    + ",religion= :religion "
+                    + ",civil_status= :civil_status "
+                    + ",spouse_name= :spouse_name "
+                    + ",date_of_communion= :date_of_communion "
+                    + ",date_of_confirmation= :date_of_confirmation "
+                    + ",is_right_handed= :is_right_handed "
+                    + ",is_indigenous= :is_indigenous "
+                    + ",indigenous_name= :indigenous_name "
+                    + ",level_id= :level_id "
+                    + ",level= :level "
+                    + ",college_id= :college_id "
+                    + ",college= :college "
+                    + ",department_id= :department_id "
+                    + ",department= :department "
+                    + ",year_level= :year_level "
+                    + ",year_level_status= :year_level_status "
+                    + ",preferred_course1= :preferred_course1 "
+                    + ",preferred_course2= :preferred_course2 "
+                    + ",preferred_course3= :preferred_course3 "
+                    + ",father_name= :father_name "
+                    + ",father_citizenship= :father_citizenship "
+                    + ",father_home_address= :father_home_address "
+                    + ",father_email_address= :father_email_address "
+                    + ",father_mobile_no= :father_mobile_no "
+                    + ",father_occupation= :father_occupation "
+                    + ",father_employer= :father_employer "
+                    + ",father_business_address= :father_business_address "
+                    + ",father_business_tel_no= :father_business_tel_no "
+                    + ",father_educational_attainment= :father_educational_attainment "
+                    + ",father_last_school_attended= :father_last_school_attended "
+                    + ",mother_name= :mother_name "
+                    + ",mother_citizenship= :mother_citizenship "
+                    + ",mother_home_address= :mother_home_address "
+                    + ",mother_email_address= :mother_email_address "
+                    + ",mother_mobile_no= :mother_mobile_no "
+                    + ",mother_occupation= :mother_occupation "
+                    + ",mother_employer= :mother_employer "
+                    + ",mother_business_address= :mother_business_address "
+                    + ",mother_business_tel_no= :mother_business_tel_no "
+                    + ",mother_educational_attainment= :mother_educational_attainment "
+                    + ",mother_last_school_attended= :mother_last_school_attended "
+                    + ",guardian_name= :guardian_name "
+                    + ",guardian_mailing_address= :guardian_mailing_address "
+                    + ",guardian_telephone_no= :guardian_telephone_no "
+                    + ",grade_school_name= :grade_school_name "
+                    + ",grade_school_region= :grade_school_region "
+                    + ",grade_school_school_year= :grade_school_school_year "
+                    + ",grade_school_awards= :grade_school_awards "
+                    + ",high_school_name= :high_school_name "
+                    + ",high_school_region= :high_school_region "
+                    + ",high_school_school_year= :high_school_school_year "
+                    + ",high_school_awards= :high_school_awards "
+                    + ",college_school_name= :college_school_name "
+                    + ",college_school_region= :college_school_region "
+                    + ",college_school_school_year= :college_school_school_year "
+                    + ",college_awards= :college_awards "
+                    + ",junior_high_name= :junior_high_name "
+                    + ",junior_high_region= :junior_high_region "
+                    + ",junior_high_year= :junior_high_year "
+                    + ",junior_high_awards= :junior_high_awards "
+                    + ",tesda_name= :tesda_name "
+                    + ",tesda_region= :tesda_region "
+                    + ",tesda_year= :tesda_year "
+                    + ",tesda_awards= :tesda_awards "
+                    + ",sibling1= :sibling1 "
+                    + ",sibling2= :sibling2 "
+                    + ",sibling3= :sibling3 "
+                    + ",sibling4= :sibling4 "
+                    + ",sibling5= :sibling5 "
+                    + ",sibling6= :sibling6 "
+                    + ",sibling7= :sibling7 "
+                    + ",sibling8= :sibling8 "
+                    + ",updated_at= :updated_at "
+                    + ",updated_by= :updated_by "
+                    + ",course_id= :course_id "
+                    + ",course_code= :course_code "
+                    + ",course_description= :course_description "
+                    + " where id='" + to_students.id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("is_transferee", to_students.is_transferee)
+                    .setNumber("academic_year_id", to_students.academic_year_id)
+                    .setString("academic_year", to_students.academic_year)
+                    .setString("student_no", to_students.student_no)
+                    .setString("last_name", to_students.last_name)
+                    .setString("first_name", to_students.first_name)
+                    .setString("middle_name", to_students.middle_name)
+                    .setString("nick_name", to_students.nick_name)
+                    .setString("current_address", to_students.current_address)
+                    .setString("permanent_address", to_students.permanent_address)
+                    .setString("email_address", to_students.email_address)
+                    .setString("postal_code", to_students.postal_code)
+                    .setString("tel_no", to_students.tel_no)
+                    .setString("mobile_no", to_students.mobile_no)
+                    .setString("date_of_birth", to_students.date_of_birth)
+                    .setString("place_of_birth", to_students.place_of_birth)
+                    .setNumber("age", to_students.age)
+                    .setNumber("gender", to_students.gender)
+                    .setString("citizenship", to_students.citizenship)
+                    .setString("religion", to_students.religion)
+                    .setString("civil_status", to_students.civil_status)
+                    .setString("spouse_name", to_students.spouse_name)
+                    .setString("date_of_communion", to_students.date_of_communion)
+                    .setString("date_of_confirmation", to_students.date_of_confirmation)
+                    .setNumber("is_right_handed", to_students.is_right_handed)
+                    .setNumber("is_indigenous", to_students.is_indigenous)
+                    .setString("indigenous_name", to_students.indigenous_name)
+                    .setNumber("level_id", to_students.level_id)
+                    .setString("level", to_students.level)
+                    .setNumber("college_id", to_students.college_id)
+                    .setString("college", to_students.college)
+                    .setNumber("department_id", to_students.department_id)
+                    .setString("department", to_students.department)
+                    .setString("year_level", to_students.year_level)
+                    .setString("year_level_status", to_students.year_level_status)
+                    .setString("preferred_course1", to_students.preferred_course1)
+                    .setString("preferred_course2", to_students.preferred_course2)
+                    .setString("preferred_course3", to_students.preferred_course3)
+                    .setString("father_name", to_students.father_name)
+                    .setString("father_citizenship", to_students.father_citizenship)
+                    .setString("father_home_address", to_students.father_home_address)
+                    .setString("father_email_address", to_students.father_email_address)
+                    .setString("father_mobile_no", to_students.father_mobile_no)
+                    .setString("father_occupation", to_students.father_occupation)
+                    .setString("father_employer", to_students.father_employer)
+                    .setString("father_business_address", to_students.father_business_address)
+                    .setString("father_business_tel_no", to_students.father_business_tel_no)
+                    .setString("father_educational_attainment", to_students.father_educational_attainment)
+                    .setString("father_last_school_attended", to_students.father_last_school_attended)
+                    .setString("mother_name", to_students.mother_name)
+                    .setString("mother_citizenship", to_students.mother_citizenship)
+                    .setString("mother_home_address", to_students.mother_home_address)
+                    .setString("mother_email_address", to_students.mother_email_address)
+                    .setString("mother_mobile_no", to_students.mother_mobile_no)
+                    .setString("mother_occupation", to_students.mother_occupation)
+                    .setString("mother_employer", to_students.mother_employer)
+                    .setString("mother_business_address", to_students.mother_business_address)
+                    .setString("mother_business_tel_no", to_students.mother_business_tel_no)
+                    .setString("mother_educational_attainment", to_students.mother_educational_attainment)
+                    .setString("mother_last_school_attended", to_students.mother_last_school_attended)
+                    .setString("guardian_name", to_students.guardian_name)
+                    .setString("guardian_mailing_address", to_students.guardian_mailing_address)
+                    .setString("guardian_telephone_no", to_students.guardian_telephone_no)
+                    .setString("grade_school_name", to_students.grade_school_name)
+                    .setString("grade_school_region", to_students.grade_school_region)
+                    .setString("grade_school_school_year", to_students.grade_school_school_year)
+                    .setString("grade_school_awards", to_students.grade_school_awards)
+                    .setString("high_school_name", to_students.high_school_name)
+                    .setString("high_school_region", to_students.high_school_region)
+                    .setString("high_school_school_year", to_students.high_school_school_year)
+                    .setString("high_school_awards", to_students.high_school_awards)
+                    .setString("college_school_name", to_students.college_school_name)
+                    .setString("college_school_region", to_students.college_school_region)
+                    .setString("college_school_school_year", to_students.college_school_school_year)
+                    .setString("college_awards", to_students.college_awards)
+                    .setString("junior_high_name", to_students.junior_high_name)
+                    .setString("junior_high_region", to_students.junior_high_region)
+                    .setString("junior_high_year", to_students.junior_high_year)
+                    .setString("junior_high_awards", to_students.junior_high_awards)
+                    .setString("tesda_name", to_students.tesda_name)
+                    .setString("tesda_region", to_students.tesda_region)
+                    .setString("tesda_year", to_students.tesda_year)
+                    .setString("tesda_awards", to_students.tesda_awards)
+                    .setString("sibling1", to_students.sibling1)
+                    .setString("sibling2", to_students.sibling2)
+                    .setString("sibling3", to_students.sibling3)
+                    .setString("sibling4", to_students.sibling4)
+                    .setString("sibling5", to_students.sibling5)
+                    .setString("sibling6", to_students.sibling6)
+                    .setString("sibling7", to_students.sibling7)
+                    .setString("sibling8", to_students.sibling8)
+                    .setString("updated_at", to_students.updated_at)
+                    .setString("updated_by", to_students.updated_by)
+                    .setNumber("course_id", to_students.course_id)
+                    .setString("course_code", to_students.course_code)
+                    .setString("course_description", to_students.course_description)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Students.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_students to_students) {
         try {
             Connection conn = MyConnection.connect();
@@ -1774,9 +1966,9 @@ public class Students {
                 String course_code = rs.getString(100);
                 String course_description = rs.getString(101);
                 String date_enrolled = rs.getString(102);
-                double balance=rs.getDouble(103);
-                double prepaid=rs.getDouble(104);
-                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled,balance,prepaid);
+                double balance = rs.getDouble(103);
+                double prepaid = rs.getDouble(104);
+                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
                 datas.add(to);
             }
             return datas;

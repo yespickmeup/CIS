@@ -2949,7 +2949,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
         if (!acad_years.isEmpty()) {
@@ -3471,7 +3470,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             Alert.set(0, "Subject already added!");
             return;
         }
-        
+
         int col = tbl_academic_offering_subjects.getSelectedColumn();
         if (col == 4) {
             Window p = (Window) this;
@@ -4846,7 +4845,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         Students_curriculum.curriculum to = (Students_curriculum.curriculum) tbl_enrollment_student_loaded_subjects_ALM.get(row);
         int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
         if (col == 5) {
-            if (to.status == -1 || to.status==4) {
+            if (to.status == -1 || to.status == 4) {
                 List<Academic_offering_subjects.to_academic_offering_subjects> aoss = Academic_offering_subjects.ret_data(" where subject_id = '" + to.subject_id + "' and course_id ='" + to.course_id + "' and academic_year_id='" + to.academic_year_id + "' ");
                 Window p = (Window) this;
                 Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
@@ -4854,7 +4853,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Academic_offering_subjects.to_academic_offering_subjects aos = null;
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
-                    nd.do_pass(aos, aos.academic_year_id,enroll);
+                    nd.do_pass(aos, aos.academic_year_id, enroll);
                 }
                 final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
                 nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
@@ -4910,7 +4909,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         String updated_by = MyUser.getUser_id();
                         int status = 0;
                         int is_uploaded = 0;
-                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded,1);
+                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1);
                         Enrollment_student_loaded_subjects.add_data(load);
 
                         ret_enrolled_subjects();
@@ -4926,7 +4925,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
                 nd.setTitle("");
                 nd.do_pass("<html>Are you sure you want to delete <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
-               
+
                 nd.setCallback(new Dlg_confirm_delete2.Callback() {
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
@@ -5296,6 +5295,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         int col = tbl_dropped_subjects.getSelectedColumn();
         if (col == 5) {
             Students_curriculum.curriculum to = (Students_curriculum.curriculum) tbl_dropped_subjects_ALM.get(row);
+            System.out.println("sls_id: " + to.sls_id);
             if (to.status == 0) {
                 if (to.is_paid == 1) {
                     Window p = (Window) this;
@@ -5306,6 +5306,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         @Override
                         public void ok(CloseDialog closeDialog, Dlg_confirm_action3.OutputData data) {
                             closeDialog.ok();
+
                             Enrollment_student_loaded_subjects_drop_requests.approve_data(to.id, to.sls_id);
                             ret_dropped_subjects();
                             ret_enrolled_subjects();

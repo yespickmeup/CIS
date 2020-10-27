@@ -3872,7 +3872,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
         List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
-
         if (!acad_years.isEmpty()) {
             Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
 //            Field.Input year = (Field.Input) tf_field2;
@@ -3905,7 +3904,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         set_assessment2();
                     }
                 });
-
             } else {
                 jTabbedPane2.remove(3);
             }
@@ -5835,7 +5833,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String student_course = enroll.course_code + " - " + enroll.course_description;
                 String student_year_level = enroll.year_level;
 
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=0 ");
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 

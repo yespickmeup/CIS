@@ -14,6 +14,7 @@ import cis.combo.Countries;
 import cis.combo.Indigenous_peoples;
 import cis.combo.Religions;
 import cis.current_addresses.Current_addresses;
+import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.departments.Departments;
 import cis.users.MyUser;
 import cis.utils.Alert;
@@ -38,10 +39,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -58,7 +61,7 @@ import synsoftech.fields.Field;
  *
  * @author User
  */
-public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
+public class Dlg_student_masterlist_edit_record extends javax.swing.JDialog {
 
     /**
      * Creates new form Dlg_student_masterlist_new_record
@@ -91,33 +94,33 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_student_masterlist_new_record(java.awt.Frame parent, boolean modal) {
+    private Dlg_student_masterlist_edit_record(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_student_masterlist_new_record(java.awt.Dialog parent, boolean modal) {
+    private Dlg_student_masterlist_edit_record(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_student_masterlist_new_record() {
+    public Dlg_student_masterlist_edit_record() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_student_masterlist_new_record myRef;
+    private Dlg_student_masterlist_edit_record myRef;
 
-    private void setThisRef(Dlg_student_masterlist_new_record myRef) {
+    private void setThisRef(Dlg_student_masterlist_edit_record myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_student_masterlist_new_record> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_student_masterlist_edit_record> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -125,7 +128,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_student_masterlist_new_record create(java.awt.Window parent, boolean modal) {
+    public static Dlg_student_masterlist_edit_record create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -135,14 +138,14 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_student_masterlist_new_record create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_student_masterlist_edit_record create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_student_masterlist_new_record dialog = dialogContainer.get(parent);
+            Dlg_student_masterlist_edit_record dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_student_masterlist_new_record((java.awt.Frame) parent, false);
+                dialog = new Dlg_student_masterlist_edit_record((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -156,10 +159,10 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_student_masterlist_new_record dialog = dialogContainer.get(parent);
+            Dlg_student_masterlist_edit_record dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_student_masterlist_new_record((java.awt.Dialog) parent, false);
+                dialog = new Dlg_student_masterlist_edit_record((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -186,7 +189,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_student_masterlist_new_record dialog = Dlg_student_masterlist_new_record.create(new javax.swing.JFrame(), true);
+        Dlg_student_masterlist_edit_record dialog = Dlg_student_masterlist_edit_record.create(new javax.swing.JFrame(), true);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().
                 getWidth());
@@ -304,7 +307,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         jLabel20 = new javax.swing.JLabel();
         tf_field13 = new Field.Input();
         jButton2 = new Button.Primary();
-        jButton5 = new Button.Default();
         tf_field125 = new Field.Combo();
         tf_field126 = new Field.Combo();
         jLabel73 = new javax.swing.JLabel();
@@ -1136,14 +1138,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton5.setText("Clear");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         tf_field125.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tf_field125.setFocusable(false);
         tf_field125.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1255,12 +1249,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(438, 438, 438))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1293,6 +1281,10 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(498, 498, 498))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1325,9 +1317,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -2705,10 +2695,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         check_input();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//        clear_fields();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void tf_field125MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field125MouseClicked
         init_colleges();
     }//GEN-LAST:event_tf_field125MouseClicked
@@ -2833,7 +2819,6 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -3154,8 +3139,219 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
     private final List<WebcamPanel> panels = new ArrayList<>();
     CardLayout card;
 
-    public void do_pass() {
+    Students.to_students student1 = null;
 
+    public void do_pass(Students.to_students student) {
+        student1 = student;
+        tf_field130.setText(student.student_no);
+        tf_field5.setText(student.first_name);
+        tf_field6.setText(student.middle_name);
+
+        tf_field7.setText(student.last_name);
+        tf_field8.setText(student.nick_name);
+
+        tf_field104.setText(student.current_address);
+        tf_field9.setText(student.permanent_address);
+        tf_field10.setText(student.postal_code);
+        tf_field11.setText(student.email_address);
+        tf_field12.setText(student.tel_no);
+        tf_field13.setText(student.mobile_no);
+
+        try {
+            Date d = DateType.sf.parse(student.date_of_birth);
+            jDateChooser1.setDate(d);
+        } catch (ParseException ex) {
+            Logger.getLogger(Dlg_dean_student_advice_details.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tf_field15.setText("" + student.age);
+        if (student.gender == 1) {
+            jCheckBox1.setSelected(true);
+        } else {
+            jCheckBox2.setSelected(true);
+        }
+
+        tf_field14.setText(student.place_of_birth);
+        tf_field16.setText(student.citizenship);
+        tf_field17.setText(student.religion);
+
+        if (student.civil_status.equals("1")) {
+            jCheckBox3.setSelected(true);
+        } else if (student.civil_status.equals("2")) {
+            jCheckBox4.setSelected(true);
+        } else if (student.civil_status.equals("3")) {
+            jCheckBox5.setSelected(true);
+        } else {
+            jCheckBox6.setSelected(true);
+        }
+
+        try {
+            if (student.date_of_communion != null) {
+                Date d1 = DateType.sf.parse(student.date_of_communion);
+                jDateChooser2.setDate(d1);
+            }
+            if (student.date_of_confirmation != null) {
+                Date d2 = DateType.sf.parse(student.date_of_confirmation);
+                jDateChooser3.setDate(d2);
+            }
+
+        } catch (ParseException ex) {
+
+        }
+        tf_field18.setText(student.spouse_name);
+        tf_field105.setText(student.indigenous_name);
+        if (student.is_right_handed == 1) {
+            jCheckBox10.setSelected(true);
+        } else {
+            jCheckBox9.setSelected(true);
+        }
+
+        tf_field19.setText(student.grade_school_name);
+        tf_field22.setText(student.grade_school_region);
+        tf_field25.setText(student.grade_school_school_year);
+        tf_field112.setText(student.grade_school_awards);
+
+        tf_field106.setText(student.junior_high_name);
+        tf_field107.setText(student.junior_high_region);
+        tf_field108.setText(student.junior_high_year);
+        tf_field113.setText(student.junior_high_awards);
+
+        tf_field20.setText(student.high_school_name);
+        tf_field23.setText(student.high_school_region);
+        tf_field26.setText(student.high_school_school_year);
+        tf_field114.setText(student.high_school_awards);
+
+        tf_field21.setText(student.college_school_name);
+        tf_field24.setText(student.college_school_region);
+        tf_field27.setText(student.college_school_school_year);
+        tf_field116.setText(student.college_awards);
+
+        tf_field109.setText(student.tesda_name);
+        tf_field110.setText(student.tesda_region);
+        tf_field111.setText(student.tesda_year);
+        tf_field115.setText(student.tesda_awards);
+
+        tf_field28.setText(student.preferred_course1);
+        tf_field29.setText(student.preferred_course2);
+        tf_field30.setText(student.preferred_course3);
+
+        tf_field31.setText(student.father_name);
+        tf_field33.setText(student.father_citizenship);
+        tf_field35.setText(student.father_home_address);
+        tf_field36.setText(student.father_email_address);
+        tf_field42.setText(student.father_mobile_no);
+        tf_field40.setText(student.father_occupation);
+        tf_field43.setText(student.father_employer);
+        tf_field44.setText(student.father_business_address);
+        tf_field51.setText(student.father_business_tel_no);
+        tf_field47.setText(student.father_educational_attainment);
+        tf_field48.setText(student.father_last_school_attended);
+
+        tf_field32.setText(student.mother_name);
+        tf_field34.setText(student.mother_citizenship);
+        tf_field37.setText(student.mother_home_address);
+        tf_field38.setText(student.mother_email_address);
+        tf_field39.setText(student.mother_mobile_no);
+        tf_field41.setText(student.mother_occupation);
+        tf_field45.setText(student.mother_employer);
+        tf_field46.setText(student.mother_business_address);
+        tf_field52.setText(student.mother_business_tel_no);
+        tf_field49.setText(student.mother_educational_attainment);
+        tf_field50.setText(student.mother_last_school_attended);
+
+        tf_field101.setText(student.guardian_name);
+        tf_field102.setText(student.guardian_mailing_address);
+        tf_field103.setText(student.guardian_telephone_no);
+
+        String[] siblings1 = student.sibling1.split("%");
+        String[] siblings2 = student.sibling2.split("%");
+        String[] siblings3 = student.sibling3.split("%");
+        String[] siblings4 = student.sibling4.split("%");
+        String[] siblings5 = student.sibling5.split("%");
+        String[] siblings6 = student.sibling6.split("%");
+        String[] siblings7 = student.sibling7.split("%");
+        String[] siblings8 = student.sibling8.split("%");
+
+        try {
+            tf_field53.setText(siblings1[0]);
+            tf_field54.setText(siblings1[1]);
+            tf_field55.setText(siblings1[2]);
+            tf_field56.setText(siblings1[3]);
+            tf_field57.setText(siblings1[4]);
+            tf_field58.setText(siblings1[5]);
+            tf_field117.setText(siblings1[6]);
+
+            tf_field59.setText(siblings2[0]);
+            tf_field60.setText(siblings2[1]);
+            tf_field61.setText(siblings2[2]);
+            tf_field62.setText(siblings2[3]);
+            tf_field63.setText(siblings2[4]);
+            tf_field64.setText(siblings2[5]);
+            tf_field118.setText(siblings2[6]);
+
+            tf_field65.setText(siblings3[0]);
+            tf_field66.setText(siblings3[1]);
+            tf_field67.setText(siblings3[2]);
+            tf_field68.setText(siblings3[3]);
+            tf_field69.setText(siblings3[4]);
+            tf_field70.setText(siblings3[5]);
+            tf_field119.setText(siblings3[6]);
+
+            tf_field71.setText(siblings4[0]);
+            tf_field72.setText(siblings4[1]);
+            tf_field73.setText(siblings4[2]);
+            tf_field74.setText(siblings4[3]);
+            tf_field75.setText(siblings4[4]);
+            tf_field76.setText(siblings4[5]);
+            tf_field120.setText(siblings4[6]);
+
+            tf_field83.setText(siblings5[0]);
+            tf_field85.setText(siblings5[1]);
+            tf_field86.setText(siblings5[2]);
+            tf_field87.setText(siblings5[3]);
+            tf_field88.setText(siblings5[4]);
+            tf_field89.setText(siblings5[5]);
+            tf_field121.setText(siblings5[6]);
+
+            tf_field90.setText(siblings6[0]);
+            tf_field91.setText(siblings6[1]);
+            tf_field92.setText(siblings6[2]);
+            tf_field93.setText(siblings6[3]);
+            tf_field94.setText(siblings6[4]);
+            tf_field95.setText(siblings6[5]);
+            tf_field122.setText(siblings6[6]);
+
+            tf_field77.setText(siblings7[0]);
+            tf_field78.setText(siblings7[1]);
+            tf_field79.setText(siblings7[2]);
+            tf_field80.setText(siblings7[3]);
+            tf_field81.setText(siblings7[4]);
+            tf_field82.setText(siblings7[5]);
+            tf_field123.setText(siblings7[6]);
+
+            tf_field84.setText(siblings8[0]);
+            tf_field96.setText(siblings8[1]);
+            tf_field97.setText(siblings8[2]);
+            tf_field98.setText(siblings8[3]);
+            tf_field99.setText(siblings8[4]);
+            tf_field100.setText(siblings8[5]);
+            tf_field124.setText(siblings8[6]);
+        } catch (Exception e) {
+        }
+
+        Field.Combo cou = (Field.Combo) tf_field127;
+        Field.Combo dep = (Field.Combo) tf_field126;
+        Field.Combo lev = (Field.Combo) tf_field125;
+
+        cou.setId("" + student.course_id);
+        cou.setText(student.course_description);
+
+        dep.setId("" + student.department_id);
+        dep.setText(student.department);
+
+        lev.setId("" + student.college_id);
+        lev.setText(student.college);
+        
+        tf_field128.setText(student.year_level);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -3540,7 +3736,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
             Alert.set(0, "Input Student No");
             return;
         }
-        String where = " where student_no like '" + tf_field130.getText() + "' ";
+        String where = " where student_no like '" + tf_field130.getText() + "' and id<>'" + student1.id + "' ";
         List<Students.to_students> students = Students.ret_data(where);
         if (!students.isEmpty()) {
             Alert.set(0, "Student No already exists!");
@@ -3647,7 +3843,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 
     private void ok1() {
 
-        int id = 0;
+        int id = student1.id;
         int is_transferee = 2;
         if (jCheckBox7.isSelected()) {
             is_transferee = 1;
@@ -3826,7 +4022,7 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
 
     private void confirm_ok() {
 
-        List<Students.to_students> students = Students.ret_data(" where student_no like '" + tf_field130.getText() + "'");
+        List<Students.to_students> students = Students.ret_data(" where student_no like '" + tf_field130.getText() + "' and id<>'" + student1.id + "' ");
         if (!students.isEmpty()) {
             Alert.set(0, "Student no already exists!");
             tf_field130.grabFocus();
@@ -3859,10 +4055,11 @@ public class Dlg_student_masterlist_new_record extends javax.swing.JDialog {
         where = where + " and department_id = '" + dep.getId() + "' ";
         where = where + " and college_id = '" + col.getId() + "' ";
 
-        where = where + " and course_code like '%" + tf_field127.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
-                + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "' and course_description like '%" + tf_field127.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
+        where = where + "  and academic_year_id='" + year3.getId() + "' and status=1 "
+                + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "'  and academic_year_id='" + year3.getId() + "'  and status=1 "
                 + " order by course_description asc ";
 
+//        System.out.println(where);
         List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
         Object[][] obj = new Object[offer.size()][2];
         int i = 0;

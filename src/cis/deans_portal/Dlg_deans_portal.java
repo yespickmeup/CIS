@@ -15,12 +15,12 @@ import cis.departments.Departments;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
-import cis.students.Students;
 import cis.users.MyUser;
 import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.Combo;
 import cis.utils.DateType;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -1315,7 +1315,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-       ret_subjects();
+        ret_subjects();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -2218,7 +2218,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         tbl_enrollments.setModel(tbl_enrollments_M);
         tbl_enrollments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollments.setRowHeight(25);
-        int[] tbl_widths_enrollments = {100, 100, 60, 120, 140, 80, 60, 70, 70, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollments = {100, 100, 60, 120, 140, 80, 60, 70, 70, 70, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollments.length; i < n; i++) {
             if (i == 1 || i == 3) {
                 continue;
@@ -2245,7 +2245,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     public static class TblenrollmentsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Enrollment No", "Name", "Gender", "Course", "Date Added", "Birthdate", "Advised", "Approved", "Assessed", "Enrolled", "encoded_by_id", "encoded_by", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Enrollment No", "Name", "Gender", "Course", "Date Added", "Birthdate", "Advised", "Approved", "Assessed", "Enrolled", "", "encoded_by", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public TblenrollmentsModel(ListModel listmodel) {
@@ -2296,7 +2296,6 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                     } else {
                         return " " + course + " - " + college;
                     }
-
                 case 4:
                     return " " + DateType.convert_slash_datetime3(tt.created_at);
                 case 5:
@@ -2328,7 +2327,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                         return "/cis/icons2/tick (2).png";
                     }
                 case 10:
-                    return tt.encoded_by_id;
+                    return " Delete";
                 case 11:
                     return tt.encoded_by;
                 case 12:
@@ -2584,21 +2583,47 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         if (row < 0) {
             return;
         }
+        int col = tbl_enrollments.getSelectedColumn();
         Enrollments.to_enrollments enroll = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
-        Window p = (Window) this;
-        Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(enroll, 1);
-        nd.setCallback(new Dlg_dean_student_advice_details.Callback() {
 
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_details.OutputData data) {
-                closeDialog.ok();
-                ret_enrollments();
+        if (col == 6) {
+
+            Window p = (Window) this;
+            Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(enroll, 1);
+            nd.setCallback(new Dlg_dean_student_advice_details.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_details.OutputData data) {
+                    closeDialog.ok();
+                    ret_enrollments();
+                }
+            });
+            nd.setLocationRelativeTo(null);
+            nd.setVisible(true);
+        }
+        if (col == 10) {
+            if (enroll.advised_date != null) {
+                Alert.set(0, "Cannot delete record!");
+                return;
             }
-        });
-        nd.setLocationRelativeTo(null);
-        nd.setVisible(true);
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Enrollments.delete_data(enroll);
+                    Alert.set(3, "");
+                    ret_enrollments();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+
     }
 
     //Advising 

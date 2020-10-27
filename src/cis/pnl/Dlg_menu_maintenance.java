@@ -375,7 +375,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/book (1)_1.png"))); // NOI18N
-        jLabel17.setToolTipText("Subjects");
+        jLabel17.setToolTipText("Student Masterlist");
         jLabel17.setOpaque(true);
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -546,11 +546,11 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel16MouseEntered
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-        ok("Students", jLabel17);
+        ok("Student Masterlist", jLabel17);
     }//GEN-LAST:event_jLabel17MouseClicked
 
     private void jLabel17MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseEntered
-        label("Students", jLabel17);
+        label("Student Masterlist", jLabel17);
     }//GEN-LAST:event_jLabel17MouseEntered
 
     /**
@@ -658,7 +658,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
                 jLabel7.setEnabled(true);
                 jLabel7.setBackground(new java.awt.Color(96, 188, 219));
             }
-            if (to.privilege.equalsIgnoreCase("Students Masterlist - (View)")) {
+            if (to.privilege.equalsIgnoreCase("Student Masterlist - (View)")) {
                 jLabel17.setEnabled(true);
                 jLabel17.setBackground(new java.awt.Color(96, 188, 219));
             }

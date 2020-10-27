@@ -5,6 +5,8 @@
  */
 package cis.enrollments;
 
+import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
 import cis.colleges.Colleges;
 import cis.combo.Combo;
@@ -12,7 +14,9 @@ import cis.combo.Countries;
 import cis.combo.Indigenous_peoples;
 import cis.combo.Religions;
 import cis.current_addresses.Current_addresses;
+import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.departments.Departments;
+import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -40,6 +44,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -305,11 +310,18 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         tf_field13 = new Field.Input();
         jButton2 = new Button.Primary();
         jButton5 = new Button.Default();
-        jLabel2 = new javax.swing.JLabel();
         tf_field125 = new Field.Combo();
         tf_field126 = new Field.Combo();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        tf_field127 = new Field.Combo();
+        jLabel76 = new javax.swing.JLabel();
+        tf_field128 = new Field.Combo();
+        jLabel77 = new javax.swing.JLabel();
+        tf_field129 = new Field.Search();
+        jLabel78 = new javax.swing.JLabel();
+        tf_field130 = new Field.Input();
         jPanel21 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -1123,12 +1135,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(93, 147, 196));
-        jLabel2.setText("Student Enrollment Application");
-
         tf_field125.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tf_field125.setFocusable(false);
         tf_field125.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field125MouseClicked(evt);
@@ -1141,7 +1148,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         });
 
         tf_field126.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tf_field126.setFocusable(false);
         tf_field126.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field126MouseClicked(evt);
@@ -1153,11 +1159,72 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             }
         });
 
-        jLabel73.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel73.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel73.setText("Department:");
 
-        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel74.setText("Level/College:");
+
+        jLabel75.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel75.setText("Course/Program:");
+
+        tf_field127.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field127.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field127MouseClicked(evt);
+            }
+        });
+        tf_field127.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field127ActionPerformed(evt);
+            }
+        });
+
+        jLabel76.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel76.setText("Year Level:");
+
+        tf_field128.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field128.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field128MouseClicked(evt);
+            }
+        });
+        tf_field128.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field128ActionPerformed(evt);
+            }
+        });
+
+        jLabel77.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel77.setText("Search:");
+
+        tf_field129.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field129.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field129MouseClicked(evt);
+            }
+        });
+        tf_field129.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field129ActionPerformed(evt);
+            }
+        });
+
+        jLabel78.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel78.setText("Student No.:");
+
+        tf_field130.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tf_field130.setFocusable(false);
+        tf_field130.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field130MouseClicked(evt);
+            }
+        });
+        tf_field130.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field130ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1173,17 +1240,32 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(438, 438, 438))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_field126, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                            .addComponent(tf_field125))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(tf_field127)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field125))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(tf_field129, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field130, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -1191,23 +1273,34 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field130, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field129, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(tf_field125, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
+                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field125, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_field127, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 1", jPanel4);
@@ -2494,18 +2587,31 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jCheckBox7.setSelected(true);
         jCheckBox7.setText("New Student");
         jCheckBox7.setFocusable(false);
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jCheckBox8);
         jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox8.setText("Transfer Student");
-        jCheckBox8.setEnabled(false);
         jCheckBox8.setFocusable(false);
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jCheckBox13);
         jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox13.setText("Returning Student");
-        jCheckBox13.setEnabled(false);
         jCheckBox13.setFocusable(false);
+        jCheckBox13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox13ActionPerformed(evt);
+            }
+        });
 
         tf_field2.setText("Sy");
 
@@ -2521,8 +2627,8 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox13)
                 .addGap(18, 18, 18)
-                .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2700,27 +2806,90 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
         init_addresses(tf_field14);
+
     }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field125MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field125MouseClicked
-        init_colleges();
+
+        if (tf_field125.isFocusable()) {
+            init_colleges();
+        }
     }//GEN-LAST:event_tf_field125MouseClicked
 
     private void tf_field125ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field125ActionPerformed
-        init_colleges();
+
+        if (tf_field125.isFocusable()) {
+            init_colleges();
+        }
     }//GEN-LAST:event_tf_field125ActionPerformed
 
     private void tf_field126MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field126MouseClicked
-        init_departments();
+
+        if (tf_field126.isFocusable()) {
+            init_departments();
+        }
     }//GEN-LAST:event_tf_field126MouseClicked
 
     private void tf_field126ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field126ActionPerformed
-        init_departments();
+
+        if (tf_field126.isFocusable()) {
+            init_departments();
+        }
+
     }//GEN-LAST:event_tf_field126ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         init_camera();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
+
+        if (tf_field127.isFocusable()) {
+            init_programs();
+        }
+    }//GEN-LAST:event_tf_field127MouseClicked
+
+    private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
+        if (tf_field127.isFocusable()) {
+            init_programs();
+        }
+    }//GEN-LAST:event_tf_field127ActionPerformed
+
+    private void tf_field128MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field128MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field128MouseClicked
+
+    private void tf_field128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field128ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field128ActionPerformed
+
+    private void tf_field129MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field129MouseClicked
+        init_student();
+    }//GEN-LAST:event_tf_field129MouseClicked
+
+    private void tf_field129ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field129ActionPerformed
+        init_student();
+    }//GEN-LAST:event_tf_field129ActionPerformed
+
+    private void tf_field130MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field130MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field130MouseClicked
+
+    private void tf_field130ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field130ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field130ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        select_student_type();
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        select_student_type();
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
+
+    private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
+        select_student_type();
+    }//GEN-LAST:event_jCheckBox13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2763,7 +2932,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2820,6 +2988,10 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2876,7 +3048,11 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field124;
     private javax.swing.JTextField tf_field125;
     private javax.swing.JTextField tf_field126;
+    private javax.swing.JTextField tf_field127;
+    private javax.swing.JTextField tf_field128;
+    private javax.swing.JTextField tf_field129;
     private javax.swing.JTextField tf_field13;
+    private javax.swing.JTextField tf_field130;
     private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
@@ -2973,8 +3149,8 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 //        System.setProperty("webcam_enable", "true");
 
         List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
@@ -2984,12 +3160,13 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             Field.Input year = (Field.Input) tf_field2;
             year.setText(to.years);
             year.setId("" + to.id);
+            acad_year = to.id;
         }
-        
+
         nationals = Countries.ret_data(" order by nationality");
         religions = Religions.ret_data(" order by religion asc ");
         tf_field2.setVisible(false);
-        jLabel2.setVisible(false);
+
         jDateChooser1.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -3037,10 +3214,14 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         addresses = Current_addresses.ret_data(" order by address asc ");
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
+        jLabel77.setVisible(false);
+        tf_field129.setVisible(false);
+        jLabel78.setVisible(false);
+        tf_field130.setVisible(false);
         tf_field5.grabFocus();
 
     }
-
+    int acad_year = 0;
     List<Departments.to_departments> deps = new ArrayList();
     List<Colleges.to_colleges> colleges2 = new ArrayList();
 
@@ -3165,6 +3346,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
         tf_field15.setText("");
         tf_field5.grabFocus();
+
         jTabbedPane1.setSelectedIndex(0);
     }
 
@@ -3314,13 +3496,26 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         if (jCheckBox8.isSelected()) {
             is_transferee = 1;
         }
+        if (jCheckBox13.isSelected()) {
+            is_transferee = 2;
+        }
         Field.Input ay = (Field.Input) tf_field2;
         int academic_year_id = FitIn.toInt(ay.getId());
         String academic_year = ay.getText();
         int curriculum_id = 0;
-        int course_id = 0;
+
+        Field.Combo tf_course = (Field.Combo) tf_field127;
+
+        int course_id = FitIn.toInt(tf_course.getId());
         String course_code = "";
         String course_description = "";
+        List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(" where course_id='" + course_id + "' and academic_year_id='" + academic_year_id + "' ");
+        if (!courses.isEmpty()) {
+            Academic_offerings.to_academic_offerings co2 = (Academic_offerings.to_academic_offerings) courses.get(0);
+            course_code = co2.course_code;
+            course_description = co2.course_description;
+        }
+
         String term = "";
         String encoded_by_id = MyUser.getUser_id();
         String encoded_by = MyUser.getUser_screen_name();
@@ -3372,7 +3567,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             date_of_confirmation = DateType.sf.format(jDateChooser3.getDate());
         } catch (Exception e) {
         }
-        
+
         int is_right_hande = 0;
         if (jCheckBox10.isSelected()) {
             is_right_hande = 1;
@@ -3384,13 +3579,16 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
         String indigenous_name = tf_field105.getText();
 
-        int level_id = 0;
-        String level = null;
-        int college_id = 0;
-        String college = null;
-        int department_id = 0;
-        String department = null;
-        String year_level = null;
+        Field.Combo tf_college = (Field.Combo) tf_field125;
+        Field.Combo tf_department = (Field.Combo) tf_field126;
+
+        int level_id = FitIn.toInt(tf_college.getId());
+        String level = tf_college.getText();
+        int college_id = FitIn.toInt(tf_college.getId());
+        String college = tf_college.getText();
+        int department_id = FitIn.toInt(tf_department.getId());
+        String department = tf_department.getText();
+        String year_level = tf_field128.getText();
         String year_level_status = null;
 
         String preferred_course1 = tf_field28.getText();
@@ -3466,9 +3664,14 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         int status = 0;
         int is_uploaded = 0;
         String date_enrolled = "";
-        int student_id=0;
-        String period="";
-        Enrollments.to_enrollments enroll = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled,student_id,false,period);
+        int student_id = 0;
+        if (jCheckBox13.isSelected()) {
+            Field.Input tf = (Field.Input) tf_field130;
+            student_id = FitIn.toInt(tf.getId());
+            student_no = tf.getText();
+        }
+        String period = "";
+        Enrollments.to_enrollments enroll = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period);
         String en_no = Enrollments.add_data(enroll);
         enroll.setEnrollment_no(en_no);
         enrollment = enroll;
@@ -3492,12 +3695,12 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         String image_server = System.getProperty("image_server", "192.168.10.127"); //
         if (!image_server.isEmpty()) {
             FileInputStream inputStream = null;
-            
+
             String home = System.getProperty("user.home", "C:\\Users\\Guinness");
             String orig_file = home + "\\images_cis\\image.jpg";
             File sourceFile = new File(orig_file);
             File destinationFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");
-            File destinationFile2 = new File( home + "\\images_cis\\enrollments\\" + enrollment_no + ".jpg");
+            File destinationFile2 = new File(home + "\\images_cis\\enrollments\\" + enrollment_no + ".jpg");
             inputStream = new FileInputStream(sourceFile);
             FileOutputStream outputStream = new FileOutputStream(destinationFile);
             FileOutputStream outputStream2 = new FileOutputStream(destinationFile2);
@@ -3519,7 +3722,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 outChannel2.close();
 //                inputStream2.close();
                 outputStream2.close();
-                
+
                 if (sourceFile.delete()) {
                     System.out.println("Local image deleted");
                 } else {
@@ -3802,4 +4005,319 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         //</editor-fold>
     }
 
+    private void select_student_type() {
+        if (jCheckBox13.isSelected()) {
+            jLabel77.setVisible(true);
+            tf_field129.setVisible(true);
+            jLabel78.setVisible(true);
+            tf_field130.setVisible(true);
+//            tf_field126.setFocusable(false);
+//            tf_field125.setFocusable(false);
+//            tf_field127.setFocusable(false);
+//            tf_field128.setFocusable(false);
+            tf_field129.grabFocus();
+        } else {
+            jLabel77.setVisible(false);
+            tf_field129.setVisible(false);
+            jLabel78.setVisible(false);
+            tf_field130.setVisible(false);
+//            tf_field126.setFocusable(true);
+//            tf_field125.setFocusable(true);
+//            tf_field127.setFocusable(true);
+//            tf_field128.setFocusable(true);
+            Field.Input tf2 = (Field.Input) tf_field130;
+            tf2.setText("");
+            tf2.setId(null);
+            clear_fields();
+            tf_field5.grabFocus();
+        }
+    }
+
+    private void init_student() {
+
+        String where = " where student_no like '%" + tf_field129.getText() + "%' and status=0 "
+                + " or concat(last_name,space(1),first_name) like '%" + tf_field129.getText() + "%' and status=0 "
+                + " order by last_name asc ";
+        List<Students.to_students> student = Students.ret_data(where);
+        Object[][] obj = new Object[student.size()][3];
+        int i = 0;
+        for (Students.to_students to : student) {
+            obj[i][0] = " " + to.student_no;
+            obj[i][1] = " " + to.last_name + ", " + to.first_name + " " + to.middle_name;
+            obj[i][2] = " " + to.course_code + " - " + to.year_level;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {100, tf_field129.getWidth() - 100, 150};
+        int width = 0;
+        String[] col_names = {"", "", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field129, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Field.Input tf = (Field.Input) tf_field130;
+                Students.to_students to = (Students.to_students) student.get(data.selected_row);
+                tf.setId("" + to.id);
+                tf.setText(to.student_no);
+                String where = " where student_id='" + to.id + "' and academic_year_id='" + acad_year + "' and advised_by IS NOT NULL order by id desc limit 1 ";
+//                List<Academic_year_period_schedules.to_academic_year_period_schedules> schedules = Academic_year_period_schedules.ret_data(where);
+                List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
+                if (!enrollments.isEmpty()) {
+                    Enrollments.to_enrollments to2 = (Enrollments.to_enrollments) enrollments.get(0);
+                    if (to2.encoded_date != null) {
+                        Alert.set(0, "Already enrolled!");
+                    } else {
+                        Alert.set(0, "Cannot proceed,Ongoing enrollment application!");
+                    }
+
+                    return;
+                }
+                set_student_details(to);
+            }
+        });
+    }
+
+    private void init_programs() {
+        Field.Input ay = (Field.Input) tf_field2;
+        int academic_year_id = FitIn.toInt(ay.getId());
+        Field.Combo dep = (Field.Combo) tf_field126;
+        Field.Combo col = (Field.Combo) tf_field125;
+        String where = " where academic_year_id='" + academic_year_id + "' and department_id='" + dep.getId() + "'  and college_id='" + col.getId() + "'  order by course_description asc ";
+        List<Academic_offerings.to_academic_offerings> offerings = Academic_offerings.ret_data(where);
+        Object[][] obj = new Object[offerings.size()][2];
+        int i = 0;
+        for (Academic_offerings.to_academic_offerings to : offerings) {
+            obj[i][0] = " " + to.course_code;
+            obj[i][1] = " " + to.course_description;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {100, tf_field127.getWidth() - 100};
+        int width = 0;
+        String[] col_names = {"", ""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field127, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_offerings.to_academic_offerings to = offerings.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field127;
+                co.setText("" + to.course_description);
+                co.setId("" + to.id);
+            }
+        });
+    }
+
+    private void set_student_details(Students.to_students student) {
+        tf_field130.setText(student.student_no);
+        tf_field5.setText(student.first_name);
+        tf_field6.setText(student.middle_name);
+
+        tf_field7.setText(student.last_name);
+        tf_field8.setText(student.nick_name);
+
+        tf_field104.setText(student.current_address);
+        tf_field9.setText(student.permanent_address);
+        tf_field10.setText(student.postal_code);
+        tf_field11.setText(student.email_address);
+        tf_field12.setText(student.tel_no);
+        tf_field13.setText(student.mobile_no);
+
+        try {
+            Date d = DateType.sf.parse(student.date_of_birth);
+            jDateChooser1.setDate(d);
+        } catch (ParseException ex) {
+            Logger.getLogger(Dlg_dean_student_advice_details.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tf_field15.setText("" + student.age);
+        if (student.gender == 1) {
+            jCheckBox1.setSelected(true);
+        } else {
+            jCheckBox2.setSelected(true);
+        }
+
+        tf_field14.setText(student.place_of_birth);
+        tf_field16.setText(student.citizenship);
+        tf_field17.setText(student.religion);
+
+        if (student.civil_status.equals("1")) {
+            jCheckBox3.setSelected(true);
+        } else if (student.civil_status.equals("2")) {
+            jCheckBox4.setSelected(true);
+        } else if (student.civil_status.equals("3")) {
+            jCheckBox5.setSelected(true);
+        } else {
+            jCheckBox6.setSelected(true);
+        }
+
+        try {
+            if (student.date_of_communion != null) {
+                Date d1 = DateType.sf.parse(student.date_of_communion);
+                jDateChooser2.setDate(d1);
+            }
+            if (student.date_of_confirmation != null) {
+                Date d2 = DateType.sf.parse(student.date_of_confirmation);
+                jDateChooser3.setDate(d2);
+            }
+
+        } catch (ParseException ex) {
+
+        }
+        tf_field18.setText(student.spouse_name);
+        tf_field105.setText(student.indigenous_name);
+        if (student.is_right_handed == 1) {
+            jCheckBox10.setSelected(true);
+        } else {
+            jCheckBox9.setSelected(true);
+        }
+
+        tf_field19.setText(student.grade_school_name);
+        tf_field22.setText(student.grade_school_region);
+        tf_field25.setText(student.grade_school_school_year);
+        tf_field112.setText(student.grade_school_awards);
+
+        tf_field106.setText(student.junior_high_name);
+        tf_field107.setText(student.junior_high_region);
+        tf_field108.setText(student.junior_high_year);
+        tf_field113.setText(student.junior_high_awards);
+
+        tf_field20.setText(student.high_school_name);
+        tf_field23.setText(student.high_school_region);
+        tf_field26.setText(student.high_school_school_year);
+        tf_field114.setText(student.high_school_awards);
+
+        tf_field21.setText(student.college_school_name);
+        tf_field24.setText(student.college_school_region);
+        tf_field27.setText(student.college_school_school_year);
+        tf_field116.setText(student.college_awards);
+
+        tf_field109.setText(student.tesda_name);
+        tf_field110.setText(student.tesda_region);
+        tf_field111.setText(student.tesda_year);
+        tf_field115.setText(student.tesda_awards);
+
+        tf_field28.setText(student.preferred_course1);
+        tf_field29.setText(student.preferred_course2);
+        tf_field30.setText(student.preferred_course3);
+
+        tf_field31.setText(student.father_name);
+        tf_field33.setText(student.father_citizenship);
+        tf_field35.setText(student.father_home_address);
+        tf_field36.setText(student.father_email_address);
+        tf_field42.setText(student.father_mobile_no);
+        tf_field40.setText(student.father_occupation);
+        tf_field43.setText(student.father_employer);
+        tf_field44.setText(student.father_business_address);
+        tf_field51.setText(student.father_business_tel_no);
+        tf_field47.setText(student.father_educational_attainment);
+        tf_field48.setText(student.father_last_school_attended);
+
+        tf_field32.setText(student.mother_name);
+        tf_field34.setText(student.mother_citizenship);
+        tf_field37.setText(student.mother_home_address);
+        tf_field38.setText(student.mother_email_address);
+        tf_field39.setText(student.mother_mobile_no);
+        tf_field41.setText(student.mother_occupation);
+        tf_field45.setText(student.mother_employer);
+        tf_field46.setText(student.mother_business_address);
+        tf_field52.setText(student.mother_business_tel_no);
+        tf_field49.setText(student.mother_educational_attainment);
+        tf_field50.setText(student.mother_last_school_attended);
+
+        tf_field101.setText(student.guardian_name);
+        tf_field102.setText(student.guardian_mailing_address);
+        tf_field103.setText(student.guardian_telephone_no);
+
+        String[] siblings1 = student.sibling1.split("%");
+        String[] siblings2 = student.sibling2.split("%");
+        String[] siblings3 = student.sibling3.split("%");
+        String[] siblings4 = student.sibling4.split("%");
+        String[] siblings5 = student.sibling5.split("%");
+        String[] siblings6 = student.sibling6.split("%");
+        String[] siblings7 = student.sibling7.split("%");
+        String[] siblings8 = student.sibling8.split("%");
+
+        try {
+            tf_field53.setText(siblings1[0]);
+            tf_field54.setText(siblings1[1]);
+            tf_field55.setText(siblings1[2]);
+            tf_field56.setText(siblings1[3]);
+            tf_field57.setText(siblings1[4]);
+            tf_field58.setText(siblings1[5]);
+            tf_field117.setText(siblings1[6]);
+
+            tf_field59.setText(siblings2[0]);
+            tf_field60.setText(siblings2[1]);
+            tf_field61.setText(siblings2[2]);
+            tf_field62.setText(siblings2[3]);
+            tf_field63.setText(siblings2[4]);
+            tf_field64.setText(siblings2[5]);
+            tf_field118.setText(siblings2[6]);
+
+            tf_field65.setText(siblings3[0]);
+            tf_field66.setText(siblings3[1]);
+            tf_field67.setText(siblings3[2]);
+            tf_field68.setText(siblings3[3]);
+            tf_field69.setText(siblings3[4]);
+            tf_field70.setText(siblings3[5]);
+            tf_field119.setText(siblings3[6]);
+
+            tf_field71.setText(siblings4[0]);
+            tf_field72.setText(siblings4[1]);
+            tf_field73.setText(siblings4[2]);
+            tf_field74.setText(siblings4[3]);
+            tf_field75.setText(siblings4[4]);
+            tf_field76.setText(siblings4[5]);
+            tf_field120.setText(siblings4[6]);
+
+            tf_field83.setText(siblings5[0]);
+            tf_field85.setText(siblings5[1]);
+            tf_field86.setText(siblings5[2]);
+            tf_field87.setText(siblings5[3]);
+            tf_field88.setText(siblings5[4]);
+            tf_field89.setText(siblings5[5]);
+            tf_field121.setText(siblings5[6]);
+
+            tf_field90.setText(siblings6[0]);
+            tf_field91.setText(siblings6[1]);
+            tf_field92.setText(siblings6[2]);
+            tf_field93.setText(siblings6[3]);
+            tf_field94.setText(siblings6[4]);
+            tf_field95.setText(siblings6[5]);
+            tf_field122.setText(siblings6[6]);
+
+            tf_field77.setText(siblings7[0]);
+            tf_field78.setText(siblings7[1]);
+            tf_field79.setText(siblings7[2]);
+            tf_field80.setText(siblings7[3]);
+            tf_field81.setText(siblings7[4]);
+            tf_field82.setText(siblings7[5]);
+            tf_field123.setText(siblings7[6]);
+
+            tf_field84.setText(siblings8[0]);
+            tf_field96.setText(siblings8[1]);
+            tf_field97.setText(siblings8[2]);
+            tf_field98.setText(siblings8[3]);
+            tf_field99.setText(siblings8[4]);
+            tf_field100.setText(siblings8[5]);
+            tf_field124.setText(siblings8[6]);
+        } catch (Exception e) {
+        }
+
+        Field.Combo cou = (Field.Combo) tf_field127;
+        Field.Combo dep = (Field.Combo) tf_field126;
+        Field.Combo lev = (Field.Combo) tf_field125;
+
+        cou.setId("" + student.course_id);
+        cou.setText(student.course_description);
+
+        dep.setId("" + student.department_id);
+        dep.setText(student.department);
+
+        lev.setId("" + student.college_id);
+        lev.setText(student.college);
+
+        tf_field128.setText(student.year_level);
+    }
 }

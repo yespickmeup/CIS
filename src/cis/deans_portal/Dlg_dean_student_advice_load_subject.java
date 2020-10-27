@@ -774,7 +774,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             }
         }
         if (callback != null) {
-//            callback.ok(new CloseDialog(this), new OutputData(to));
+            callback.ok(new CloseDialog(this), new OutputData(to));
         }
     }
 
