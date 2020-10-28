@@ -58,9 +58,7 @@ public class Assessment_adjustments {
     }
 
     public static void run_adjustment() {
-
-        String where2 = " where id=12  ";
-
+        String where2 = "   ";
         List<to_enrollment_assessments> assessments = ret_data(where2);
         int not_equal_units = 0;
         for (to_enrollment_assessments to : assessments) {

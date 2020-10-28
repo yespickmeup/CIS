@@ -201,6 +201,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -386,6 +387,21 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
             }
         });
 
+        jLabel18.setBackground(new java.awt.Color(234, 234, 234));
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/cashback.png"))); // NOI18N
+        jLabel18.setToolTipText("Balance Adjustment");
+        jLabel18.setOpaque(true);
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel18MouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -399,7 +415,9 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -439,7 +457,8 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -553,6 +572,14 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
         label("Student Masterlist", jLabel17);
     }//GEN-LAST:event_jLabel17MouseEntered
 
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        ok("Balance Adjustment", jLabel18);
+    }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jLabel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseEntered
+        label("Balance Adjustment", jLabel18);
+    }//GEN-LAST:event_jLabel18MouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -566,6 +593,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -582,7 +610,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
     }
 
     private void hover() {
-        JLabel[] lbl = {jLabel14, jLabel15, jLabel16, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel7, jLabel17};
+        JLabel[] lbl = {jLabel14, jLabel15, jLabel16, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel7, jLabel17, jLabel18};
         for (final JLabel l : lbl) {
             l.addMouseListener(new MouseAdapter() {
                 @Override
@@ -606,7 +634,7 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
     }
 
     private void hide2() {
-        JLabel[] lbl = {jLabel14, jLabel15, jLabel16, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel7, jLabel17};
+        JLabel[] lbl = {jLabel14, jLabel15, jLabel16, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel7, jLabel17, jLabel18};
         for (JLabel l : lbl) {
             l.setEnabled(false);
         }
@@ -662,6 +690,11 @@ public class Dlg_menu_maintenance extends javax.swing.JDialog {
                 jLabel17.setEnabled(true);
                 jLabel17.setBackground(new java.awt.Color(96, 188, 219));
             }
+            if (to.privilege.equalsIgnoreCase("Balance Adjustment - (View)")) {
+                jLabel18.setEnabled(true);
+                jLabel18.setBackground(new java.awt.Color(96, 188, 219));
+            }
+
         }
     }
 

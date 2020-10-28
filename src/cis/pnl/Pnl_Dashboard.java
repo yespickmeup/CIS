@@ -17,6 +17,7 @@ import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
 import cis.finance.Dlg_finance;
+import cis.finance.Dlg_students_balance_adjustments;
 import cis.reports.Dlg_class_list;
 import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_list_of_students;
@@ -780,6 +781,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Student Masterlist")) {
                     m_students();
                 }
+                if (data.stmt.equals("Balance Adjustment")) {
+                    m_balance_adjustment();
+                }
 
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" Reports ">
@@ -922,6 +926,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private void m_students() {
         Dlg_students_master_list dtc = new Dlg_students_master_list();
         MyFrame.set(dtc.getSurface(), jPanel1, "Students");
+    }
+    
+    private void m_balance_adjustment() {
+        Dlg_students_balance_adjustments dtc = new Dlg_students_balance_adjustments();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Balance Adjustment");
     }
 
     private void r_student_report() {

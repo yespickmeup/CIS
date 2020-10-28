@@ -9,6 +9,7 @@
  */
 
 insert into user_default_privileges(account,privilege)values('Maintenance','Student Masterlist');
+insert into user_default_privileges(account,privilege)values('Maintenance','Balance Adjustment');
 
 drop table if exists student_balance_adjustments;
 create table student_balance_adjustments(

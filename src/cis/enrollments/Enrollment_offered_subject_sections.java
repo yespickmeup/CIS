@@ -78,7 +78,6 @@ public class Enrollment_offered_subject_sections {
             this.selected = selected;
         }
 
-        
         public to_enrollment_offered_subject_sections(int id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, boolean selected) {
             this.id = id;
             this.enrollment_offered_subject_id = enrollment_offered_subject_id;
@@ -359,6 +358,28 @@ public class Enrollment_offered_subject_sections {
                     .setString("updated_by", to_enrollment_offered_subject_sections.updated_by)
                     .setNumber("status", to_enrollment_offered_subject_sections.status)
                     .setNumber("is_uploaded", to_enrollment_offered_subject_sections.is_uploaded)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Enrollment_offered_subject_sections.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void update_max_student(int id, double max_students) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update enrollment_offered_subject_sections set "
+                    + " max_students= :max_students "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("max_students", max_students)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
