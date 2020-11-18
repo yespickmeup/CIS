@@ -247,7 +247,8 @@ public class DateType {
         date = DateType.slash.format(d);
         return date;
     }
-     public static String convert_dash_date5(String datetime) {
+
+    public static String convert_dash_date5(String datetime) {
         String date = "";
         Date d = new Date();
         if (datetime.isEmpty()) {
@@ -488,6 +489,49 @@ public class DateType {
             i++;
         }
         return day;
+    }
+
+    public static String[] daytime2(String time2) {
+        String[] split = time2.split("<br>");
+        List<field> fields = new ArrayList();
+        for (String s : split) {
+            String t1 = s.replaceAll("&nbsp;&nbsp;", "");
+            int index1 = t1.indexOf(":");
+            String t2 = t1.substring(index1 + 2, t1.length());
+            String t3 = t1.substring(0, index1);
+
+            int exists = 0;
+            for (field f1 : fields) {
+                if (f1.time.equalsIgnoreCase(t2)) {
+                    exists = 1;
+                    String d = setDay(t3);
+                    f1.setDay(f1.getDay() + d);
+                    break;
+                }
+            }
+            if (exists == 0) {
+                String d = setDay(t3);
+                field f = new field(d, t2);
+                fields.add(f);
+            }
+        }
+        String day = "";
+        String time = "";
+        int i = 0;
+        for (field f1 : fields) {
+            if (i == 0) {
+                day = f1.day;
+                time = f1.time;
+            } else {
+                day = day + ", " + f1.day;
+                time = time + ", " + f1.time;
+            }
+            i++;
+        }
+        String[] ret=new String[2];
+        ret[0] = day;
+        ret[1] = time;
+        return ret;
     }
 
     public static String setDay(String day) {

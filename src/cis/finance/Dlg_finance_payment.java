@@ -1161,7 +1161,6 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 } else {
                     pay();
                 }
-
             }
         });
         nd.setLocationRelativeTo(this);
@@ -1169,11 +1168,8 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }
 
     private void pay() {
-
         List<Finance.fees> modes = tbl_mode_of_payments_ALM;
-
         int id = 0;
-
         int ea_id = 0;
         int ea_enrollment_id = 0;
         String ea_enrollment_no = "";
@@ -1250,12 +1246,10 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
                 eapd.add(details);
             }
-
         }
         Enrollment_assessments.add_data3(eap, eapd, pay_stud);
         Alert.set(1, "");
         ok();
-
     }
 
     private void ok() {

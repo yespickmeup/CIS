@@ -1561,7 +1561,7 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
             int status = 1;
             int is_uploaded = 0;
 
-            Faculty_members.to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+            Faculty_members.to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");
@@ -1615,7 +1615,7 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
             int status = to2.status;
             int is_uploaded = 2;
 
-            Faculty_members.to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+            Faculty_members.to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");

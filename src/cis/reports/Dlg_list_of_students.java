@@ -1530,7 +1530,6 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                         }
                     }
                     List<Srpt_enrollment_summary2.field> fields5 = Srpt_enrollment_summary.ret_data(selected);
-
                     jrxml = "rpt_enrollment_summary2.jrxml";
                     Srpt_enrollment_summary2 rpt = new Srpt_enrollment_summary2(business_name, address, contact_no, date, printed_by, school_year, semester, department);
                     rpt.fields.addAll(fields5);
@@ -1548,7 +1547,6 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                         }
                     }
                     Field.Input year3 = (Field.Input) tf_field13;
-
                     String department = tf_field14.getText();
                     if (jCheckBox10.isSelected()) {
                         department = "All";
@@ -1568,14 +1566,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     int transferee_3rd = 0;
                     int transferee_4th = 0;
                     int transferee_5th = 0;
-
                     jrxml = "rpt_enrollment_summary.jrxml";
                     Srpt_enrollment_summary rpt = new Srpt_enrollment_summary(business_name, address, contact_no, date, printed_by, school_year, semester, department, continuing_1st, continuing_2nd, continuing_3rd, continuing_4th, continuing_5th, new_1st, new_2nd, new_3rd, new_4th, new_5th, transferee_1st, transferee_2nd, transferee_3rd, transferee_4th, transferee_5th);
-
                     rpt = Srpt_enrollment_summary.ret_data(year3.getId(), selected_colleges, rpt);
-
                     report_enrollment_summary(rpt, jrxml);
-
                 }
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);

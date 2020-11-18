@@ -402,16 +402,6 @@ public class Srpt_class_list {
                     my_schedule = rs.getString(27);
                     my_day = rs.getString(28);
                     my_day = cis.utils.DateType.mwf(my_day);
-//                    my_time = rs.getString(28);
-//                    System.out.println("section: " + section.section);
-//                    my_time = section.time;
-//                    my_time = rs.getString(29);
-//                    System.out.println("my_time: " + my_time);
-//                    if (!my_time.isEmpty()) {
-//                        my_time = DateType.daytime(my_time);
-//                    }
-//                    my_time = my_time.replaceAll("WFM", "MWF");
-//                    my_time = my_time.replaceAll("FM", "MF");
 
                     String start_time = rs.getString(30);
                     String closing_time = rs.getString(31);
@@ -475,7 +465,7 @@ public class Srpt_class_list {
                         + ",term"
                         + ",year_level"
                         + " from enrollment_student_loaded_subjects"
-                        + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 ";
+                        + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
 
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
@@ -499,7 +489,7 @@ public class Srpt_class_list {
                     int max_students = section.max_students;
 
                     String student_name = lname + ", " + fname + " " + mi;
-                    String course = course_code2 ;
+                    String course = course_code2;
                     String year_level1 = year_level2;
 
                     String contact_no1 = "";

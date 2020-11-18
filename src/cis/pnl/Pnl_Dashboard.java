@@ -20,6 +20,7 @@ import cis.finance.Dlg_finance;
 import cis.finance.Dlg_students_balance_adjustments;
 import cis.reports.Dlg_class_list;
 import cis.reports.Dlg_enrollment_assessments;
+import cis.reports.Dlg_faculty_subject_loads;
 import cis.reports.Dlg_list_of_students;
 import cis.reports.Dlg_subject_offerings;
 import cis.students.Dlg_students_master_list;
@@ -803,7 +804,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Accounts Receivables")) {
                     r_accounts_receivables();
                 }
-
+                if (data.stmt.equals("Faculty Subject Loads")) {
+                     r_faculty_subject_loads();
+                }
                 //</editor-fold>
             }
 
@@ -927,7 +930,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Dlg_students_master_list dtc = new Dlg_students_master_list();
         MyFrame.set(dtc.getSurface(), jPanel1, "Students");
     }
-    
+
     private void m_balance_adjustment() {
         Dlg_students_balance_adjustments dtc = new Dlg_students_balance_adjustments();
         MyFrame.set(dtc.getSurface(), jPanel1, "Balance Adjustment");
@@ -967,6 +970,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         MyFrame.set(dtc.getSurface(), jPanel1, "Accounts Receivables");
     }
 
+    private void r_faculty_subject_loads() {
+
+        Dlg_faculty_subject_loads dtc = new Dlg_faculty_subject_loads();
+//        dtc.do_pass();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Faculty Subject Loads");
+    }
+
     private void run_script() {
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
@@ -975,7 +985,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                script();
+//                script();
             }
         });
         nd.setLocationRelativeTo(this);

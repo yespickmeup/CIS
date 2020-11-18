@@ -111,13 +111,7 @@ public class Srpt_subject_offerings {
 
         List<field> fields = new ArrayList();
         for (int i = 0; i < 20; i++) {
-            String subject_code = "NSTP1";
-            String description = "National Service Training Program 1";
-            subject_code = subject_code + " - " + description;
-            double lec_units = 3;
-            double lab_units = 0;
-            field f = new field(subject_code, description, lec_units, lab_units);
-            fields.add(f);
+           
         }
         String jrxml = "rpt_subject_offerings.jrxml";
 

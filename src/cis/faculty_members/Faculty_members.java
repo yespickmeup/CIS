@@ -49,8 +49,9 @@ public class Faculty_members {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public boolean selected;
 
-        public to_faculty_members(int id, String fname, String lname, String mi, int level_id, String level, int college_id, String college, int department_id, String department, int group_id, String group_name, int designation_id, String designation, int is_fulltime, int is_acad, int dean_college_id, String dean_college_name, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_faculty_members(int id, String fname, String lname, String mi, int level_id, String level, int college_id, String college, int department_id, String department, int group_id, String group_name, int designation_id, String designation, int is_fulltime, int is_acad, int dean_college_id, String dean_college_name, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded,boolean selected) {
             this.id = id;
             this.fname = fname;
             this.lname = lname;
@@ -75,7 +76,17 @@ public class Faculty_members {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.selected=selected;
         }
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
+        
     }
 
     public static void add_data(to_faculty_members to_faculty_members) {
@@ -311,7 +322,7 @@ public class Faculty_members {
                 int status = rs.getInt(23);
                 int is_uploaded = rs.getInt(24);
 
-                to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
                 datas.add(to);
             }
             return datas;
@@ -402,7 +413,7 @@ public class Faculty_members {
                     updated_by = rs2.getString(1);
                 }
 
-                to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_faculty_members to = new to_faculty_members(id, fname, lname, mi, level_id, level, college_id, college, department_id, department, group_id, group_name, designation_id, designation, is_fulltime, is_acad, dean_college_id, dean_college_name, created_at, updated_at, created_by, updated_by, status, is_uploaded,false);
                 datas.add(to);
             }
             return datas;

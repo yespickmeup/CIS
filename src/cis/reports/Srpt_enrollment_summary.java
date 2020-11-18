@@ -374,7 +374,8 @@ public class Srpt_enrollment_summary {
                             + ",year_level"
                             + ",is_transferee"
                             + " from enrollments"
-                            + " where academic_year_id='" + acad_year_id + "' and course_id='" + course_id + "' and date_enrolled is not null ";
+                            + " where academic_year_id='" + acad_year_id + "' and course_id='" + course_id + "' and date_enrolled is not null"
+                            + "   ";
 
                     String college_code = "" + college_id;
                     String college2 = college;
