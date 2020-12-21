@@ -9,3 +9,4 @@
  */
 
 insert into user_default_privileges(account,privilege)values('Reports','Faculty Subject Loads');
+
