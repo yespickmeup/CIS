@@ -246,13 +246,14 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jCheckBox12 = new javax.swing.JCheckBox();
         tf_field16 = new Field.Combo();
         jLabel26 = new javax.swing.JLabel();
-        tf_field17 = new Field.Input();
+        tf_field17 = new Field.Combo();
         jLabel27 = new javax.swing.JLabel();
         tf_field18 = new Field.Combo();
         jButton5 = new Button.Info();
         tf_field5 = new Field.Input();
         jLabel12 = new javax.swing.JLabel();
         jCheckBox15 = new javax.swing.JCheckBox();
+        jCheckBox16 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -312,7 +313,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jLabel23.setText("Department:");
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
         jCheckBox10.setFocusable(false);
         jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
@@ -390,7 +390,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
         });
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Semester:");
+        jLabel26.setText("Period:");
 
         tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field17.setFocusable(false);
@@ -452,6 +452,15 @@ public class Dlg_class_list extends javax.swing.JDialog {
             }
         });
 
+        jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox16.setText("All");
+        jCheckBox16.setFocusable(false);
+        jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -465,18 +474,19 @@ public class Dlg_class_list extends javax.swing.JDialog {
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field14, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                            .addComponent(tf_field14)
                             .addComponent(tf_field15))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,15 +502,14 @@ public class Dlg_class_list extends javax.swing.JDialog {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(tf_field16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tf_field5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(tf_field18))))
                 .addGap(0, 0, 0))
         );
         jPanel6Layout.setVerticalGroup(
@@ -520,18 +529,18 @@ public class Dlg_class_list extends javax.swing.JDialog {
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox16)))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jCheckBox12, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox15)))
+                            .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox15)))
+                    .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -704,11 +713,11 @@ public class Dlg_class_list extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field16ActionPerformed
 
     private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
@@ -739,6 +748,10 @@ public class Dlg_class_list extends javax.swing.JDialog {
         ret_data();
     }//GEN-LAST:event_jCheckBox15ActionPerformed
 
+    private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -750,6 +763,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox12;
     private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -784,25 +798,40 @@ public class Dlg_class_list extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
+
         if (!acad_years.isEmpty()) {
             Academic_years.to_academic_years to1 = acad_years.get(0);
             Field.Input year3 = (Field.Input) tf_field13;
             year3.setText(to1.years);
             year3.setId("" + to1.id);
+            acad = to1;
         }
 
         deps = Departments.ret_data(" order by department_name  asc ");
-        List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(" where status=1");
-        if (!periods.isEmpty()) {
-            Academic_year_period_schedules.to_academic_year_period_schedules period = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
-            Field.Input per = (Field.Input) tf_field17;
-            per.setText(period.period);
-            per.setId("" + period.id);
+        if (!deps.isEmpty()) {
+            Departments.to_departments to = (Departments.to_departments) deps.get(0);
+            Field.Combo dep = (Field.Combo) tf_field14;
+            dep.setId("" + to.id);
+            dep.setText("" + to.department_name);
+
+            String where = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + to.id + "'";
+            acad_schedules = Academic_year_period_schedules.ret_data(where);
+
+            if (!acad_schedules.isEmpty()) {
+                acad_schedule = acad_schedules.get(0);
+                Field.Input tf = (Field.Input) tf_field17;
+                tf.setText(acad_schedule.period);
+                tf.setId("" + acad_schedule.id);
+            }
         }
-        set_periods();
+
         init_tbl_enrollments(tbl_enrollments);
         ret_data();
     }
+    Academic_years.to_academic_years acad = null;
+    Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
 
     int no_of_years = 4;
     List<String> list_year = new ArrayList();
@@ -1252,7 +1281,9 @@ public class Dlg_class_list extends javax.swing.JDialog {
             Field.Combo dep = (Field.Combo) tf_field14;
             where = where + " and department_id = '" + dep.getId() + "' ";
         }
-
+        if (!jCheckBox16.isSelected()) {
+            where = where + " and term like '" + tf_field17.getText() + "' ";
+        }
         where = where + " order by description,section asc ";
 
         List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data(where);
@@ -1260,8 +1291,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jLabel2.setText("" + datas.size());
     }
 //</editor-fold> 
-
-    List<Academic_years.to_academic_years> acad_years = new ArrayList();
 
     private void select_enrollment() {
         int row = tbl_enrollments.getSelectedRow();
@@ -1406,6 +1435,20 @@ public class Dlg_class_list extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
+
+                String where2 = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + to.id + "'";
+                acad_schedules = Academic_year_period_schedules.ret_data(where2);
+
+                Field.Combo tf = (Field.Combo) tf_field17;
+                if (!acad_schedules.isEmpty()) {
+                    acad_schedule = acad_schedules.get(0);
+                    tf.setText(acad_schedule.period);
+                    tf.setId("" + acad_schedule.id);
+                } else {
+                    tf.setText("");
+                    tf.setId("");
+                }
+
                 ret_data();
 
             }
@@ -1507,6 +1550,36 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 ret_data();
             }
 
+        });
+    }
+
+    private void init_acad_period_schedules() {
+        Field.Combo dep = (Field.Combo) tf_field14;
+        acad_schedules.clear();
+        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+
+        Object[][] obj = new Object[acad_schedules.size()][1];
+        int i = 0;
+        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
+            obj[i][0] = " " + to.period;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field17.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field17, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_year_period_schedules.to_academic_year_period_schedules to = acad_schedules.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field17;
+                co.setText("" + to.period);
+                co.setId("" + to.id);
+
+                ret_data();
+            }
         });
     }
 

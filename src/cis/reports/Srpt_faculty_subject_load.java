@@ -69,11 +69,12 @@ public class Srpt_faculty_subject_load {
         String room;
         int no_of_students;
         String section;
+        int eoss_id;
 
         public field() {
         }
 
-        public field(String faculty_id, String faculty_name, int subject_id, String subject_description, String subject_code, String day, String time, double lec_units, double lab_units, String room, int no_of_students, String section) {
+        public field(String faculty_id, String faculty_name, int subject_id, String subject_description, String subject_code, String day, String time, double lec_units, double lab_units, String room, int no_of_students, String section, int eoss_id) {
             this.faculty_id = faculty_id;
             this.faculty_name = faculty_name;
             this.subject_id = subject_id;
@@ -86,6 +87,15 @@ public class Srpt_faculty_subject_load {
             this.room = room;
             this.no_of_students = no_of_students;
             this.section = section;
+            this.eoss_id = eoss_id;
+        }
+
+        public int getEoss_id() {
+            return eoss_id;
+        }
+
+        public void setEoss_id(int eoss_id) {
+            this.eoss_id = eoss_id;
         }
 
         public String getSection() {
@@ -201,7 +211,7 @@ public class Srpt_faculty_subject_load {
 
         String where = " where id<>0 ";
         List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data("order by lname asc ");
-        List<field> fields = ret_data(members, where);
+        List<field> fields = ret_data(members, where,"");
         String jrxml = "rpt_faculty_subject_loads.jrxml";
 
         Srpt_faculty_subject_load rpt = new Srpt_faculty_subject_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college);
@@ -231,7 +241,7 @@ public class Srpt_faculty_subject_load {
                 JasperUtil.makeDatasource(to.fields));
     }
 
-    public static List<field> ret_data(List<Faculty_members.to_faculty_members> members, String where) {
+    public static List<field> ret_data(List<Faculty_members.to_faculty_members> members, String where, String period) {
         List<field> datas = new ArrayList();
 
         try {
@@ -276,7 +286,7 @@ public class Srpt_faculty_subject_load {
                         + ",status"
                         + ",is_uploaded"
                         + " from enrollment_offered_subject_section_instructors "
-                        + " " + where + " and faculty_id='" + faculty.id + "' "
+                        + " " + where + " and faculty_id='" + faculty.id + "' and term like '" + period + "' "
                         + " order by description asc ";
 //                        + " group by enrollment_offered_subject_section_id ";
 
@@ -413,8 +423,8 @@ public class Srpt_faculty_subject_load {
                         no_of_students = rs4.getInt(1);
                     }
                     //</editor-fold>
-
-                    field f = new field(faculty_id, faculty_name, subject_id, subject_description, subject_code, day1, time1, lec_units, lab_units, room, no_of_students, section);
+//                    System.out.println("subject_description: "+subject_description);
+                    field f = new field(faculty_id, faculty_name, subject_id, subject_description, subject_code, day1, time1, lec_units, lab_units, room, no_of_students, section, enrollment_offered_subject_section_id);
                     datas.add(f);
                 }
 

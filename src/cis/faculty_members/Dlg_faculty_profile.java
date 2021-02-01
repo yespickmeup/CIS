@@ -5,6 +5,8 @@
  */
 package cis.faculty_members;
 
+import cis.academic.Academic_year_period_schedules;
+import cis.academic.Academic_years;
 import cis.reports.Srpt_faculty_subject_load;
 import cis.users.MyUser;
 import cis.users.User_previleges;
@@ -227,13 +229,14 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        tf_field19 = new Field.Input();
+        tf_field19 = new Field.Combo();
         jLabel29 = new javax.swing.JLabel();
-        tf_field21 = new Field.Input();
+        tf_field21 = new Field.Combo();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_subject_loads = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jCheckBox10 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -496,6 +499,15 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
 
         jLabel2.setText("0");
 
+        jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox10.setText("All");
+        jCheckBox10.setFocusable(false);
+        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -513,10 +525,12 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(34, 34, 34)
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field21)))
+                        .addComponent(jCheckBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -527,7 +541,8 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -631,11 +646,11 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field19ActionPerformed
 
     private void tf_field21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field21MouseClicked
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field21MouseClicked
 
     private void tf_field21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field21ActionPerformed
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field21ActionPerformed
 
     private void tf_field18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field18ActionPerformed
@@ -650,11 +665,16 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
         select_subject();
     }//GEN-LAST:event_tbl_subject_loadsMouseClicked
 
+    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
+        ret_subject_loads();
+    }//GEN-LAST:event_jCheckBox10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -695,6 +715,28 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
+//        MyUser.setUser_id("1");
+
+        acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
+
+        Field.Input dep = (Field.Input) tf_field12;
+        if (!acad_years.isEmpty()) {
+            for (Academic_years.to_academic_years to1 : acad_years) {
+                acad = to1;
+                Field.Combo year3 = (Field.Combo) tf_field19;
+
+                year3.setText(to1.years);
+                year3.setId("" + to1.id);
+            }
+            String where = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + dep.getId() + "'";
+            acad_schedules = Academic_year_period_schedules.ret_data(where);
+            if (!acad_schedules.isEmpty()) {
+                Field.Input tf = (Field.Input) tf_field19;
+                tf.setText(acad_schedule.period);
+                tf.setId("" + acad_schedule.id);
+            }
+        }
+
         init_tbl_miscellaneous_fees(tbl_subject_loads);
         tf_field18.setVisible(false);
         jLabel26.setVisible(false);
@@ -711,7 +753,7 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
             List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data(" where id='" + user.faculty_id + "' ");
             if (!members.isEmpty()) {
                 Faculty_members.to_faculty_members to = (Faculty_members.to_faculty_members) members.get(0);
-                faculty=to;
+                faculty = to;
                 tf_field11.setText(to.lname);
                 tf_field9.setText(to.fname);
                 tf_field10.setText(to.mi);
@@ -855,7 +897,11 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
             members.add(faculty);
         }
         String where = " where id<>0 ";
-        List<Srpt_faculty_subject_load.field> subjects = Srpt_faculty_subject_load.ret_data(members, where);
+        String period = tf_field21.getText();
+        if (jCheckBox10.isSelected()) {
+            period = "";
+        }
+        List<Srpt_faculty_subject_load.field> subjects = Srpt_faculty_subject_load.ret_data(members, where, period);
         loadData_miscellaneous_fees(subjects);
         jLabel2.setText("" + subjects.size());
     }
@@ -912,6 +958,19 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
                     tf_field17.setText("Inactive");
                 }
 
+                String where2 = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + to.id + "'";
+                acad_schedules = Academic_year_period_schedules.ret_data(where2);
+
+                Field.Combo tf = (Field.Combo) tf_field21;
+                if (!acad_schedules.isEmpty()) {
+                    acad_schedule = acad_schedules.get(0);
+                    tf.setText(acad_schedule.period);
+                    tf.setId("" + acad_schedule.id);
+                } else {
+                    tf.setText("");
+                    tf.setId("");
+                }
+
                 ret_subject_loads();
             }
         });
@@ -939,5 +998,65 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
+    }
+
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
+    Academic_years.to_academic_years acad = null;
+    Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
+
+    private void init_academic_years() {
+        Object[][] obj = new Object[acad_years.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field19.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field19, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field19;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+
+            }
+        });
+    }
+
+    private void init_acad_period_schedules() {
+        Field.Input dep = (Field.Input) tf_field21;
+        acad_schedules.clear();
+        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+
+        Object[][] obj = new Object[acad_schedules.size()][1];
+        int i = 0;
+        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
+            obj[i][0] = " " + to.period;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field21.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field21, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_year_period_schedules.to_academic_year_period_schedules to = acad_schedules.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field21;
+                co.setText("" + to.period);
+                co.setId("" + to.id);
+
+                ret_subject_loads();
+            }
+        });
     }
 }

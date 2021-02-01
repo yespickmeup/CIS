@@ -520,7 +520,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel77 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tf_field130 = new javax.swing.JTextArea();
-        tf_field135 = new Field.Combo();
+        tf_period = new Field.Combo();
         jLabel84 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -2537,17 +2537,16 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         tf_field130.setFocusable(false);
         jScrollPane2.setViewportView(tf_field130);
 
-        tf_field135.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field135.setText("First Semester");
-        tf_field135.setFocusable(false);
-        tf_field135.addMouseListener(new java.awt.event.MouseAdapter() {
+        tf_period.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_period.setFocusable(false);
+        tf_period.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field135MouseClicked(evt);
+                tf_periodMouseClicked(evt);
             }
         });
-        tf_field135.addActionListener(new java.awt.event.ActionListener() {
+        tf_period.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field135ActionPerformed(evt);
+                tf_periodActionPerformed(evt);
             }
         });
 
@@ -2588,7 +2587,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field135, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(tf_period, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -2623,7 +2622,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field135, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_period, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_field128, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -3543,13 +3542,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         check_indigenous();
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
-    private void tf_field135MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field135MouseClicked
+    private void tf_periodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_periodMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field135MouseClicked
+    }//GEN-LAST:event_tf_periodMouseClicked
 
-    private void tf_field135ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field135ActionPerformed
+    private void tf_periodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_periodActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field135ActionPerformed
+    }//GEN-LAST:event_tf_periodActionPerformed
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
         select_tab();
@@ -3770,7 +3769,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field132;
     private javax.swing.JTextField tf_field133;
     private javax.swing.JTextField tf_field134;
-    private javax.swing.JTextField tf_field135;
     private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
@@ -3865,6 +3863,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field98;
     private javax.swing.JTextField tf_field99;
     private javax.swing.JTextField tf_lastname;
+    private javax.swing.JTextField tf_period;
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
@@ -3893,9 +3892,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (is_dean == 0) {
             jButton9.setText("Approve Advising");
             if (student.advised_date != null && student.approved_date != null && student.assessed_date != null) {
-                if (student.student_no != null) {
-                    jButton11.setEnabled(false);
-                }
+//                if ((student.student_no != null) && (student.is_transferee !=2)) {
+//                    jButton11.setEnabled(false);
+//                }
                 jButton9.setVisible(false);
                 jTabbedPane2.setSelectedIndex(3);
                 SwingUtilities.invokeLater(new Runnable() {
@@ -3910,7 +3909,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         } else {
             jTabbedPane2.remove(3);
         }
+
         enroll = student;
+        set_loading_years(enroll.department_id, enroll.course_id);
         list_year2.clear();
         list_period.clear();
         list_year.clear();
@@ -4130,7 +4131,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         } else {
 
         }
-
+        tf_period.setText(enroll.period);
         if (enroll.course_id != 0) {
 
             SwingUtilities.invokeLater(new Runnable() {
@@ -4316,9 +4317,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     List<String> list_year = new ArrayList();
 
     private void init_years() {
-        Object[][] obj = new Object[list_year.size()][1];
+        Object[][] obj = new Object[list_year2.size()][1];
         int i = 0;
-        for (String to : list_year) {
+        for (String to : list_year2) {
             obj[i][0] = " " + to;
 
             i++;
@@ -4702,7 +4703,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 if (!periods.isEmpty()) {
                     Academic_year_period_schedules.to_academic_year_period_schedules per = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
                     period = per.period;
-                    tf_field135.setText(period);
+                    tf_period.setText(period);
                 }
             }
         });
@@ -4735,7 +4736,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String department = dep.getText();
                 String year_level = tf_field128.getText();
                 String term = tf_field132.getText();
-                String period = tf_field135.getText();
+                String period = tf_period.getText();
                 Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period);
                 Alert.set(2, "");
 
@@ -4781,7 +4782,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (!list_year2.isEmpty()) {
             tf_field4.setText("" + list_year2.get(0));
         }
-
+        System.out.println("list_year2: " + list_year2.size());
         if (period.equalsIgnoreCase("Semester")) {
             for (int i = 0; i < semester.length; i++) {
                 list_period.add(semester[i]);
@@ -5379,7 +5380,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 0;
                     int is_uploaded = 0;
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0);
+                    double final_grade = 0;
+                    String final_grade_remarks = "";
+                    String final_grade_created_at = DateType.now();
+                    String final_grade_created_by = "";
+                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by);
                     Enrollment_student_loaded_subjects.add_data(load);
                     Alert.set(1, "");
                     ret_loaded_subjects();
@@ -5501,8 +5506,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String updated_by = MyUser.getUser_id();
                 int status = 0;
                 int is_uploaded = 0;
+                double final_grade = 0;
+                String final_grade_remarks = "";
+                String final_grade_created_at = DateType.now();
+                String final_grade_created_by = "";
                 if (!day.isEmpty() && sec != null) {
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0);
+                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by);
                     loads.add(load);
                 } else {
                     not_loaded.add(to);

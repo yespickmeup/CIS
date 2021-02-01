@@ -254,7 +254,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         jCheckBox12 = new javax.swing.JCheckBox();
         tf_field16 = new Field.Combo();
         jLabel26 = new javax.swing.JLabel();
-        tf_field17 = new Field.Input();
+        tf_field17 = new Field.Combo();
         jLabel27 = new javax.swing.JLabel();
         tf_field18 = new Field.Combo();
         jCheckBox13 = new javax.swing.JCheckBox();
@@ -263,6 +263,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         tf_field5 = new Field.Input();
         jLabel12 = new javax.swing.JLabel();
         jCheckBox15 = new javax.swing.JCheckBox();
+        jCheckBox16 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -322,7 +323,6 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         jLabel23.setText("Department:");
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
         jCheckBox10.setFocusable(false);
         jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
@@ -394,7 +394,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         });
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Semester:");
+        jLabel26.setText("Period:");
 
         tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field17.setFocusable(false);
@@ -464,6 +464,15 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             }
         });
 
+        jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox16.setText("All");
+        jCheckBox16.setFocusable(false);
+        jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -477,18 +486,17 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_field14)
-                            .addComponent(tf_field15))
+                            .addComponent(tf_field15)
+                            .addComponent(tf_field14))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -502,54 +510,66 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                         .addGap(2, 2, 2)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(tf_field16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(tf_field5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCheckBox13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 496, Short.MAX_VALUE)
+                                .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(tf_field16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, 0))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox11, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jCheckBox12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox15)))
-                .addGap(4, 4, 4)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox10)
+                            .addComponent(tf_field13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox11, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox16))))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox12, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckBox15)))
+                        .addGap(10, 10, 10))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(tf_field18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox13)
                     .addComponent(jCheckBox14)
@@ -567,7 +587,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -579,7 +599,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -723,11 +743,11 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field16ActionPerformed
 
     private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        // TODO add your handling code here:
+        init_acad_period_schedules();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
@@ -758,6 +778,10 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         ret_data();
     }//GEN-LAST:event_jCheckBox15ActionPerformed
 
+    private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
+        ret_data();
+    }//GEN-LAST:event_jCheckBox16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -771,6 +795,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -810,20 +835,34 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             Field.Input year3 = (Field.Input) tf_field13;
             year3.setText(to1.years);
             year3.setId("" + to1.id);
+            acad = to1;
         }
 
         deps = Departments.ret_data(" order by department_name  asc ");
-        List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(" where status=1");
-        if (!periods.isEmpty()) {
-            Academic_year_period_schedules.to_academic_year_period_schedules period = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
-            Field.Input per = (Field.Input) tf_field17;
-            per.setText(period.period);
-            per.setId("" + period.id);
+        if (!deps.isEmpty()) {
+            Departments.to_departments to = (Departments.to_departments) deps.get(0);
+            Field.Combo dep = (Field.Combo) tf_field14;
+            dep.setId("" + to.id);
+            dep.setText("" + to.department_name);
+
+            String where = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + to.id + "'";
+            acad_schedules = Academic_year_period_schedules.ret_data(where);
+
+            if (!acad_schedules.isEmpty()) {
+                acad_schedule = acad_schedules.get(0);
+                Field.Input tf = (Field.Input) tf_field17;
+                tf.setText(acad_schedule.period);
+                tf.setId("" + acad_schedule.id);
+            }
         }
         set_periods();
         init_tbl_enrollments(tbl_enrollments);
         ret_data();
     }
+    Academic_years.to_academic_years acad = null;
+    Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
 
     int no_of_years = 4;
     List<String> list_year = new ArrayList();
@@ -1288,6 +1327,9 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         if (!jCheckBox15.isSelected()) {
             where = where + " and year_level like '" + tf_field18.getText() + "' ";
         }
+        if (!jCheckBox16.isSelected()) {
+            where = where + " and period like '" + tf_field17.getText() + "' ";
+        }
         where = where + " order by last_name asc ";
 //        System.out.println(where);
         List<to_enrollments> datas = Enrollments.ret_data(where);
@@ -1295,8 +1337,6 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         jLabel2.setText("" + datas.size());
     }
 //</editor-fold> 
-
-    List<Academic_years.to_academic_years> acad_years = new ArrayList();
 
     private void select_enrollment() {
         int row = tbl_enrollments.getSelectedRow();
@@ -1407,7 +1447,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
             if (ayf.is_per_unit == 0) {
                 tuition_amount = ayf.amount;
-                tution_fee=tuition_amount;
+                tution_fee = tuition_amount;
             } else {
                 lec_amount_per_unit = ayf.per_unit;
                 lab_amount_per_unit = ayf.lab_unit_amount;
@@ -1477,19 +1517,19 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         int payment_count = 3;
 //        System.out.println("tution_fee: "+tution_fee);
         double tuition_fee = tution_fee;
-       
-        total_assessment = tution_fee  + other_fee+misc_fee;
+
+        total_assessment = tution_fee + other_fee + misc_fee;
         payable = total_assessment - downpayment;
-        double sub_total=total_assessment;
+        double sub_total = total_assessment;
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
             double balance = ea.amount - ea.paid;
             downpayment += ea.paid;
-            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance,tuition_fee,misc_fee,other_fee,sub_total);
+            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total);
             rpt_summary.add(f2);
         }
 
         String jrxml = "rpt_enrollment_assessment.jrxml";
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary,tuition_fee,misc_fee);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee);
         rpt.fields.addAll(fields);
 
         JasperPrint jp1 = null;
@@ -1593,6 +1633,20 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                     co1.setText("");
                     co1.setId("");
                 }
+
+                String where2 = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + to.id + "'";
+                acad_schedules = Academic_year_period_schedules.ret_data(where2);
+
+                Field.Combo tf = (Field.Combo) tf_field17;
+                if (!acad_schedules.isEmpty()) {
+                    acad_schedule = acad_schedules.get(0);
+                    tf.setText(acad_schedule.period);
+                    tf.setId("" + acad_schedule.id);
+                } else {
+                    tf.setText("");
+                    tf.setId("");
+                }
+
                 ret_data();
 
             }
@@ -1694,6 +1748,36 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                 ret_data();
             }
 
+        });
+    }
+
+    private void init_acad_period_schedules() {
+        Field.Combo dep = (Field.Combo) tf_field14;
+        acad_schedules.clear();
+        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+
+        Object[][] obj = new Object[acad_schedules.size()][1];
+        int i = 0;
+        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
+            obj[i][0] = " " + to.period;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field17.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field17, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_year_period_schedules.to_academic_year_period_schedules to = acad_schedules.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf_field17;
+                co.setText("" + to.period);
+                co.setId("" + to.id);
+
+                ret_data();
+            }
         });
     }
 

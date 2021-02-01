@@ -297,7 +297,7 @@ public class Srpt_enrollment_summary {
                 JasperUtil.makeDatasource(to.fields));
     }
 
-    public static Srpt_enrollment_summary ret_data(String acad_year_id, List<String> colleges, Srpt_enrollment_summary rpt) {
+    public static Srpt_enrollment_summary ret_data(String acad_year_id, List<String> colleges, Srpt_enrollment_summary rpt, String term) {
         List<Srpt_enrollment_summary.field> datas = new ArrayList();
         try {
             Connection conn = MyConnection.connect();
@@ -374,7 +374,7 @@ public class Srpt_enrollment_summary {
                             + ",year_level"
                             + ",is_transferee"
                             + " from enrollments"
-                            + " where academic_year_id='" + acad_year_id + "' and course_id='" + course_id + "' and date_enrolled is not null"
+                            + " where academic_year_id='" + acad_year_id + "' and course_id='" + course_id + "' and period like '" + term + "' and date_enrolled is not null"
                             + "   ";
 
                     String college_code = "" + college_id;

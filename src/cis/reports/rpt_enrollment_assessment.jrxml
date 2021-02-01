@@ -334,16 +334,16 @@
 				<textFieldExpression><![CDATA[$P{school_year}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="467" y="116" width="105" height="20"/>
+				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="456" y="116" width="116" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<paragraph rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{semester}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="116" width="58" height="20"/>
+				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="116" width="47" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Semester:]]></text>
+				<text><![CDATA[Period:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="2" y="96" width="78" height="20"/>
@@ -380,14 +380,14 @@
 				<textFieldExpression><![CDATA[$P{student_course}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="467" y="136" width="105" height="20"/>
+				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="456" y="136" width="116" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<paragraph rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{student_year_level}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="136" width="58" height="20"/>
+				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="136" width="47" height="20"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[Level:]]></text>
 			</staticText>

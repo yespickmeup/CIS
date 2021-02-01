@@ -16,6 +16,7 @@ import cis.departments.Dlg_departments;
 import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
+import cis.faculty_members.Dlg_faculty_profile;
 import cis.finance.Dlg_finance;
 import cis.finance.Dlg_students_balance_adjustments;
 import cis.reports.Dlg_class_list;
@@ -805,7 +806,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     r_accounts_receivables();
                 }
                 if (data.stmt.equals("Faculty Subject Loads")) {
-                     r_faculty_subject_loads();
+                    r_faculty_subject_loads();
                 }
                 //</editor-fold>
             }
@@ -873,7 +874,8 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     }
 
     private void t_faculty() {
-
+        Dlg_faculty_profile dtc = new Dlg_faculty_profile();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Faculty");
     }
 
     private void m_academic_years() {

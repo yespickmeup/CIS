@@ -1514,7 +1514,7 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
         }
 
         where = where + " and concat(lname,' ',fname)  like '%" + tf_field13.getText() + "%' order by lname asc ";
-        System.out.println(where);
+//        System.out.println(where);
         List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data_with_account(where);
         loadData_faculty_members(members);
         jLabel2.setText("" + members.size());
