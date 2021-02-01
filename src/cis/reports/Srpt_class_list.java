@@ -78,11 +78,14 @@ public class Srpt_class_list {
         String year_level;
         String contact_no;
         String email_address;
-
+        int esls_id;
+        double final_grade;
+        String grade_remarks;
+        
         public field() {
         }
 
-        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address) {
+        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address,int esls_id,double final_grade,String grade_remarks) {
             this.section_id = section_id;
             this.subject_code = subject_code;
             this.description = description;
@@ -101,8 +104,39 @@ public class Srpt_class_list {
             this.year_level = year_level;
             this.contact_no = contact_no;
             this.email_address = email_address;
+            this.esls_id=esls_id;
+            this.final_grade=final_grade;
+            this.grade_remarks=grade_remarks;
         }
 
+        public double getFinal_grade() {
+            return final_grade;
+        }
+
+        public void setFinal_grade(double final_grade) {
+            this.final_grade = final_grade;
+        }
+
+        public String getGrade_remarks() {
+            return grade_remarks;
+        }
+
+        public void setGrade_remarks(String grade_remarks) {
+            this.grade_remarks = grade_remarks;
+        }
+
+      
+
+        
+        public int getEsls_id() {
+            return esls_id;
+        }
+
+        public void setEsls_id(int esls_id) {
+            this.esls_id = esls_id;
+        }
+
+        
         public String getContact_no() {
             return contact_no;
         }
@@ -282,7 +316,10 @@ public class Srpt_class_list {
             String year_level1 = "First Year";
             String contact_no1 = "";
             String email_address = "";
-            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address);
+            int esls_id=0;
+            double final_grade=0;
+            String grade_remarks="";
+            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address,esls_id,final_grade,grade_remarks);
             fields.add(f);
         }
         String jrxml = "rpt_class_list.jrxml";
@@ -464,6 +501,8 @@ public class Srpt_class_list {
                         + ",course_description"
                         + ",term"
                         + ",year_level"
+                        + ",final_grade"
+                        + ",ifnull(final_grade_remarks,'')"
                         + " from enrollment_student_loaded_subjects"
                         + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
 
@@ -481,7 +520,8 @@ public class Srpt_class_list {
                     String course_description2 = rs2.getString(9);
                     String term2 = rs2.getString(10);
                     String year_level2 = rs2.getString(11);
-
+                    double final_grade=rs2.getDouble(12);
+                    String grade_remarks=rs2.getString(13);
                     int section_id = section.id;
 
                     double lec_units = section.lecture_units;
@@ -509,7 +549,7 @@ public class Srpt_class_list {
 
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address,id2,final_grade,grade_remarks);
                     datas.add(f);
                 }
                 //</editor-fold>

@@ -782,6 +782,10 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
             }
         }
 
+        periods.add("");
+        periods.add("First Semester");
+        periods.add("Second Semester");
+        periods.add("Summer Class");
     }
 
     public void do_pass() {
@@ -1030,15 +1034,14 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
         });
     }
 
-    private void init_acad_period_schedules() {
-        Field.Input dep = (Field.Input) tf_field21;
-        acad_schedules.clear();
-        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+    List<String> periods = new ArrayList();
 
-        Object[][] obj = new Object[acad_schedules.size()][1];
+    private void init_acad_period_schedules() {
+
+        Object[][] obj = new Object[periods.size()][1];
         int i = 0;
-        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
-            obj[i][0] = " " + to.period;
+        for (String to : periods) {
+            obj[i][0] = " " + to;
             i++;
         }
         JLabel[] labels = {};
@@ -1050,10 +1053,9 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                Academic_year_period_schedules.to_academic_year_period_schedules to = acad_schedules.get(data.selected_row);
+                String to = periods.get(data.selected_row);
                 Field.Combo co = (Field.Combo) tf_field21;
-                co.setText("" + to.period);
-                co.setId("" + to.id);
+                co.setText("" + to);
 
                 ret_subject_loads();
             }

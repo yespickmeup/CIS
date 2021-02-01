@@ -25,6 +25,7 @@ id int auto_increment primary key
 ,fourth double
 ,fifth double
 ,sixth double
+,remarks varchar(255)
 ,created_at datetime
 ,created_by varchar(255)
 ,updated_at datetime

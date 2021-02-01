@@ -6,11 +6,16 @@
 package cis.faculty_members;
 
 import cis.enrollments.Enrollment_offered_subject_sections;
+import cis.enrollments.Enrollment_student_loaded_subject_grades;
 import cis.reports.Srpt_class_list;
 import cis.reports.Srpt_faculty_subject_load;
+import cis.users.MyUser;
+import cis.utils.Alert;
+import cis.utils.DateType;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -19,6 +24,7 @@ import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
@@ -308,14 +314,15 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,6 +356,11 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jLabel1.setText("No. of rows:");
@@ -417,6 +429,10 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        select_student();
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -448,11 +464,14 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
 
     private void myInit() {
         init_key();
-        
+
         init_tbl_miscellaneous_fees(jTable1);
     }
 
+    Srpt_faculty_subject_load.field subject = null;
+
     public void do_pass(Srpt_faculty_subject_load.field to) {
+        subject = to;
         tf_field16.setText(to.getSubject_code());
         tf_field18.setText(to.getSection());
         tf_field17.setText(to.getSubject_description());
@@ -461,7 +480,11 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
         jTextArea1.setText(to.getTime());
         tf_field21.setText(to.getDay());
 
-        String where = " where id='" + to.getEoss_id() + "'";
+        ret_data();
+    }
+
+    private void ret_data() {
+        String where = " where id='" + subject.getEoss_id() + "'";
         List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> sections = Enrollment_offered_subject_sections.ret_data(where);
         List<Srpt_class_list.field> fields = Srpt_class_list.ret_data(sections);
         loadData_miscellaneous_fees(fields);
@@ -562,13 +585,53 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
                 case 5:
                     return " " + tt.getEmail_address();
                 case 6:
-                    return " ";
+                    return " " + FitIn.fmt_woc_0(tt.getFinal_grade());
                 case 7:
-                    return " ";
+                    return " "+tt.getGrade_remarks();
                 default:
                     return "/cis/icons/cog.png";
             }
         }
     }
 
+    private void select_student() {
+        int row = jTable1.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = jTable1.getSelectedColumn();
+        if (col == 8) {
+            Srpt_class_list.field to = (Srpt_class_list.field) tbl_miscellaneous_fees_ALM.get(row);
+            Window p = (Window) this;
+            Dlg_faculty_profile_section_student_grades nd = Dlg_faculty_profile_section_student_grades.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_faculty_profile_section_student_grades.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_faculty_profile_section_student_grades.OutputData data) {
+                    closeDialog.ok();
+                    int id = 0;
+                    int enrollment_student_loaded_subject_id = to.getEsls_id();
+                    double first = data.first;
+                    double second = data.second;
+                    double third = data.third;
+                    double fourth = data.fourth;
+                    double fifth = data.fifth;
+                    double sixth = data.final_grade;
+                    String remarks = data.remarks;
+                    String created_at = DateType.now();
+                    String created_by = MyUser.getUser_id();
+                    String updated_att = DateType.now();
+                    String updated_by = MyUser.getUser_id();
+                    int status = 1;
+                    Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades to1 = new Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades(id, enrollment_student_loaded_subject_id, first, second, third, fourth, fifth, sixth, remarks, created_at, created_by, updated_att, updated_by, status);
+                    Enrollment_student_loaded_subject_grades.add_data(to1);
+                    Alert.set(1, "");
+                    ret_data();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+    }
 }
