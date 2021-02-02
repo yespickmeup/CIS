@@ -1414,7 +1414,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
 
         String printed_by = MyUser.getUser_screen_name();
         String school_year = to.academic_year;
-        String semester = to.term;
+        String semester = to.period;
         String student_no = to.student_no;
         String student_name = to.last_name + ", " + to.first_name + " " + to.middle_name;
         String student_course = to.course_code + " - " + to.course_description;
@@ -1473,7 +1473,9 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             String instructor = sub.faculty_name;
             double amount = lec_amount2 + lab_amount2;
             tution_fee += amount;
-            Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+            String section = sub.section;
+            Srpt_enrollment_assessment.field f = new Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section);
+
             fields.add(f);
         }
 
@@ -1524,7 +1526,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
             double balance = ea.amount - ea.paid;
             downpayment += ea.paid;
-            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total);
+            Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
             rpt_summary.add(f2);
         }
 

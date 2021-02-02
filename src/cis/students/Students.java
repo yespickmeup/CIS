@@ -242,6 +242,35 @@ public class Students {
         }
     }
 
+    public static void add_data_enroll2(to_students to_students, Enrollments.to_enrollments enroll) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt3 = conn.prepareStatement("");
+
+            String s5 = " update enrollments set student_no='" + to_students.student_no + "',student_id='" + to_students.id + "',date_enrolled='" + DateType.now() + "' where id='" + enroll.id + "'";
+            stmt3.addBatch(s5);
+
+            String s6 = " update enrollment_assessments set student_no='" + to_students.student_no + "',student_id='" + to_students.id + "' where enrollment_id='" + enroll.id + "'";
+            stmt3.addBatch(s6);
+
+            String s7 = " update enrollment_student_loaded_subjects set student_no='" + to_students.student_no + "',student_id='" + to_students.id + "' where enrollment_id='" + enroll.id + "'";
+            stmt3.addBatch(s7);
+
+            stmt3.executeBatch();
+
+            conn.commit();
+
+            Lg.s(Students.class, "Successfully Added");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static String add_data_enroll(to_students to_students, Enrollments.to_enrollments enroll) {
         try {
             Connection conn = MyConnection.connect();
@@ -598,7 +627,7 @@ public class Students {
                 student_id = rs11.getInt(1);
             }
             student_id++;
-            
+
             String s5 = " update enrollments set student_no='" + id + "',student_id='" + student_id + "',date_enrolled='" + DateType.now() + "' where id='" + enroll.id + "'";
             stmt3.addBatch(s5);
 

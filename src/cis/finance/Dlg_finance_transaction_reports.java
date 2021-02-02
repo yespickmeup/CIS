@@ -489,7 +489,7 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
                     tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount,sub.section);
                     fields.add(f);
                 }
 
@@ -539,7 +539,7 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee,misc_fee,other_fee,sub_total);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee,misc_fee,other_fee,sub_total,"");
                     rpt_summary.add(f2);
                 }
 

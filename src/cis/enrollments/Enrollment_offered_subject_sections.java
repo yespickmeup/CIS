@@ -392,6 +392,42 @@ public class Enrollment_offered_subject_sections {
         }
     }
 
+    public static void update_section_name(int id, String section) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "update enrollment_offered_subject_sections set "
+                    + " section= :section "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setString("section", section)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            String s2 = "update enrollment_offered_subject_section_instructors set "
+                    + " section= :section "
+                    + " where enrollment_offered_subject_section_id='" + id + "' "
+                    + " ";
+
+            s2 = SqlStringUtil.parse(s2)
+                    .setString("section", section)
+                    .ok();
+            stmt.addBatch(s2);
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Enrollment_offered_subject_sections.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void update_status(to_enrollment_offered_subject_sections to_enrollment_offered_subject_sections, int status) {
         try {
             Connection conn = MyConnection.connect();

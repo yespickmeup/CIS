@@ -877,5 +877,24 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
+        System.out.println("col: "+col);
+        if (col == 0) {
+            Window p = (Window) this;
+            Dlg_registrar_offer_subject_status_edit_section_name nd = Dlg_registrar_offer_subject_status_edit_section_name.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_registrar_offer_subject_status_edit_section_name.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_edit_section_name.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_offered_subject_sections.update_section_name(to.id, data.new_section_name);
+                    Alert.set(2, "");
+                    ret_eos();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
     }
 }

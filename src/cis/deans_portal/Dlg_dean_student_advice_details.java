@@ -5895,7 +5895,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
                     tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount,sub.section);
                     fields.add(f);
                 }
 
@@ -5945,7 +5945,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total);
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total,"");
                     rpt_summary.add(f2);
                 }
 
@@ -6131,11 +6131,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
     private void enroll() {
 
-        int id = 0;
+        int id = enroll.student_id;
+
         int is_transferee = enroll.is_transferee;
         int academic_year_id2 = enroll.academic_year_id;
         String academic_year = enroll.academic_year;
-        String student_no = "";
+        String student_no = enroll.student_no;
         String last_name = enroll.last_name;
         String first_name = enroll.first_name;
         String middle_name = enroll.middle_name;
@@ -6243,7 +6244,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         }
 
         Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
-        String en_no = Students.add_data_enroll(student, enroll);
+        String en_no = student.student_no;
+
+        if (student.student_no.isEmpty() || student.student_no == null) {
+            en_no = Students.add_data_enroll(student, enroll);
+        } else {
+            Students.add_data_enroll2(student, enroll);
+        }
+
         try {
             send_image_to_server(enroll.enrollment_no, en_no);
         } catch (IOException e) {

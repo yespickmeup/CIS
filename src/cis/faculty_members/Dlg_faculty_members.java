@@ -1674,10 +1674,8 @@ public class Dlg_faculty_members extends javax.swing.JDialog {
                     closeDialog.ok();
                     if (to.updated_by.isEmpty()) {
                         add_account(data.user_screen_name, data.user_name, data.password, to.id);
-
                     } else {
                         update_account(data.user_screen_name, data.user_name, data.password, to.id, FitIn.toInt(to.updated_by));
-
                     }
                 }
             });

@@ -32,6 +32,7 @@
 	<field name="time" class="java.lang.String"/>
 	<field name="instructor" class="java.lang.String"/>
 	<field name="amount" class="java.lang.Double"/>
+	<field name="section" class="java.lang.String"/>
 	<variable name="amount_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{amount}]]></variableExpression>
 	</variable>
@@ -60,7 +61,7 @@
 					<text><![CDATA[Code]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="5bad9dc3-9976-4aaf-a926-e038c92b1e9b" x="40" y="0" width="163" height="20"/>
+					<reportElement uuid="5bad9dc3-9976-4aaf-a926-e038c92b1e9b" x="68" y="0" width="162" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -74,20 +75,6 @@
 					<text><![CDATA[Description]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="3f3f1552-e4f4-4539-aab8-6bacf7d27e84" x="202" y="0" width="28" height="20"/>
-					<box>
-						<topPen lineWidth="0.2"/>
-						<leftPen lineWidth="0.2"/>
-						<bottomPen lineWidth="0.2"/>
-						<rightPen lineWidth="0.2"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="8"/>
-						<paragraph leftIndent="2"/>
-					</textElement>
-					<text><![CDATA[Lec]]></text>
-				</staticText>
-				<staticText>
 					<reportElement uuid="3f3f1552-e4f4-4539-aab8-6bacf7d27e84" x="230" y="0" width="28" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
@@ -99,7 +86,21 @@
 						<font size="8"/>
 						<paragraph leftIndent="2"/>
 					</textElement>
-					<text><![CDATA[Lab]]></text>
+					<text><![CDATA[Units]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3f3f1552-e4f4-4539-aab8-6bacf7d27e84" x="40" y="0" width="28" height="20"/>
+					<box>
+						<topPen lineWidth="0.2"/>
+						<leftPen lineWidth="0.2"/>
+						<bottomPen lineWidth="0.2"/>
+						<rightPen lineWidth="0.2"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Section]]></text>
 				</staticText>
 				<staticText>
 					<reportElement uuid="78a6edf2-23ff-438d-84bc-f31488df17c6" x="258" y="0" width="41" height="20"/>
@@ -190,7 +191,7 @@
 					<textFieldExpression><![CDATA[$V{amount_2}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.00">
-					<reportElement uuid="64f8fbb3-e346-4435-8777-24182f53280c" x="203" y="0" width="55" height="20"/>
+					<reportElement uuid="64f8fbb3-e346-4435-8777-24182f53280c" x="230" y="0" width="28" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -203,7 +204,7 @@
 					<textFieldExpression><![CDATA[$V{lec_units_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="997693f5-7669-4357-8a59-ade075ce730a" x="0" y="0" width="202" height="20"/>
+					<reportElement uuid="997693f5-7669-4357-8a59-ade075ce730a" x="0" y="0" width="230" height="20"/>
 					<box>
 						<topPen lineWidth="0.2"/>
 						<leftPen lineWidth="0.2"/>
@@ -423,7 +424,7 @@
 				<textFieldExpression><![CDATA[$F{subject_code}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="86bbe736-471b-4bbd-8b76-feaf350732aa" x="40" y="0" width="163" height="15"/>
+				<reportElement uuid="86bbe736-471b-4bbd-8b76-feaf350732aa" x="68" y="0" width="162" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -437,20 +438,6 @@
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement uuid="97178592-06ea-4de0-8cc8-4df399567a5a" x="202" y="0" width="28" height="15"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="7"/>
-					<paragraph leftIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lec_units}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
 				<reportElement uuid="97178592-06ea-4de0-8cc8-4df399567a5a" x="230" y="0" width="28" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
@@ -462,7 +449,21 @@
 					<font size="7"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{lab_units}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lec_units} +$F{lab_units}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="97178592-06ea-4de0-8cc8-4df399567a5a" x="40" y="0" width="28" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{section}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="6097b93f-71c9-4b6f-a4cc-870191fe140e" x="258" y="0" width="41" height="15"/>

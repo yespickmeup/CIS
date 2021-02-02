@@ -238,6 +238,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         tf_field26 = new Field.Input();
         jButton1 = new Button.Success();
         jButton2 = new Button.Default();
+        jCheckBox8 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -295,8 +296,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,7 +392,6 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         jCheckBox1.setBackground(new java.awt.Color(0, 102, 255));
         buttonGroup1.add(jCheckBox1);
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Passed");
 
         jCheckBox2.setBackground(java.awt.Color.red);
@@ -466,6 +465,12 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
             }
         });
 
+        jCheckBox8.setBackground(new java.awt.Color(204, 204, 204));
+        buttonGroup1.add(jCheckBox8);
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox8.setSelected(true);
+        jCheckBox8.setText("In Progress");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -476,21 +481,23 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jCheckBox5)
+                                .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox6))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox4)
+                                .addComponent(jCheckBox4))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox7)))
+                                .addComponent(jCheckBox5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,11 +563,12 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                     .addComponent(jCheckBox2)
                     .addComponent(jCheckBox3)
                     .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox7))
+                    .addComponent(jCheckBox8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6))
+                    .addComponent(jCheckBox6)
+                    .addComponent(jCheckBox7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -577,7 +585,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -646,6 +654,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -709,6 +718,8 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                 jCheckBox7.setSelected(true);
             } else if (to1.remarks.equalsIgnoreCase("No Attendance")) {
                 jCheckBox7.setSelected(true);
+            } else if (to1.remarks.equalsIgnoreCase("In Progress")) {
+                jCheckBox8.setSelected(true);
             } else {
                 jCheckBox7.setSelected(true);
             }
@@ -825,7 +836,10 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
             div++;
         }
         double final_grade = (first + second + third + fourth + fifth) / div;
-        String remarks = "Passed";
+        String remarks = "In Progress";
+        if (jCheckBox1.isSelected()) {
+            remarks = "Passed";
+        }
         if (jCheckBox2.isSelected()) {
             remarks = "Failed";
         }

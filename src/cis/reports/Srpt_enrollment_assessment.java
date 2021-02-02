@@ -85,10 +85,11 @@ public class Srpt_enrollment_assessment {
         double misc_fee;
         double other_fee;
         double sub_total;
+        String section;
         public field_summary() {
         }
 
-        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance,double tuition_fee,double misc_fee,double other_fee,double sub_total) {
+        public field_summary(double total_assessment, double downpayment, double payable, String mode, String date, double amount, double paid, double balance,double tuition_fee,double misc_fee,double other_fee,double sub_total,String section) {
             this.total_assessment = total_assessment;
             this.downpayment = downpayment;
             this.payable = payable;
@@ -101,8 +102,18 @@ public class Srpt_enrollment_assessment {
             this.misc_fee=misc_fee;
             this.other_fee=other_fee;
             this.sub_total=sub_total;
+            this.section=section;
         }
 
+        public String getSection() {
+            return section;
+        }
+
+        public void setSection(String section) {
+            this.section = section;
+        }
+
+        
         public double getSub_total() {
             return sub_total;
         }
@@ -251,11 +262,11 @@ public class Srpt_enrollment_assessment {
         String time;
         String instructor;
         double amount;
-
+        String section;
         public field() {
         }
 
-        public field(String subject_code, String description, double lec_units, double lab_units, double lec_amount, double lab_amount, String room, String day, String time, String instructor, double amount) {
+        public field(String subject_code, String description, double lec_units, double lab_units, double lec_amount, double lab_amount, String room, String day, String time, String instructor, double amount,String section) {
             this.subject_code = subject_code;
             this.description = description;
             this.lec_units = lec_units;
@@ -267,8 +278,18 @@ public class Srpt_enrollment_assessment {
             this.time = time;
             this.instructor = instructor;
             this.amount = amount;
+            this.section=section;
         }
 
+        public String getSection() {
+            return section;
+        }
+
+        public void setSection(String section) {
+            this.section = section;
+        }
+
+        
         public String getSubject_code() {
             return subject_code;
         }
@@ -389,7 +410,8 @@ public class Srpt_enrollment_assessment {
             String time = "8:00am - 9:00am";
             String instructor = "Juan Dela Cruz";
             double amount = 2000;
-            Srpt_enrollment_assessment.field f = new field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount);
+            String section="A";
+            Srpt_enrollment_assessment.field f = new field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount,section);
             fields.add(f);
         }
         List<field_misc> misc = new ArrayList();
@@ -411,7 +433,8 @@ public class Srpt_enrollment_assessment {
         double misc_fee=0;
         double other_fee=0;
         double sub_total=0;
-        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0,tuition_fee,misc_fee,other_fee,sub_total);
+        String section="";
+        field_summary f2 = new field_summary(total_assessment, downpayment, payable,"","",0,0,0,tuition_fee,misc_fee,other_fee,sub_total,section);
         rpt_summary.add(f2);
         
         
