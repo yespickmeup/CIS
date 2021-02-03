@@ -1447,7 +1447,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
 
         if (!jCheckBox21.isSelected()) {
             String period = tf_field17.getText();
-            where = where + " and term like '" + period + "' ";
+            where = where + " and period like '" + period + "' ";
         }
 
         where = where + " order by last_name asc ";

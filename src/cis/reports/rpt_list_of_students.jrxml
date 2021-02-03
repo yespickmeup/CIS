@@ -150,7 +150,7 @@
 					<bottomPen lineWidth="0.2"/>
 					<rightPen lineWidth="0.2"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle">
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>

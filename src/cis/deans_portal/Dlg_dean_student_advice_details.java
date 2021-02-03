@@ -4201,72 +4201,71 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 tf_field15.setText("" + age);
             }
         });
-
+        ret_loaded_subjects();
         //set image 
         String image_server = System.getProperty("image_server", "");
 
-        if (!image_server.isEmpty()) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + student.enrollment_no + ".jpg";
-//            System.out.println("source: " + source);
-                    File sourceFile = new File(source);
-                    if (sourceFile.exists()) {
-                        BufferedImage img = null;
-                        try {
-                            img = ImageIO.read(sourceFile);
-                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                                                               Image.SCALE_SMOOTH);
-                            ImageIcon imageIcon = new ImageIcon(dimg);
-                            jLabel1.setIcon(imageIcon);
-                        } catch (IOException e) {
-                            System.out.println(e);
-                        }
+//        if (!image_server.isEmpty()) {
+//            SwingUtilities.invokeLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + student.enrollment_no + ".jpg";
+////            System.out.println("source: " + source);
+//                    File sourceFile = new File(source);
+//                    if (sourceFile.exists()) {
+//                        BufferedImage img = null;
+//                        try {
+//                            img = ImageIO.read(sourceFile);
+//                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+//                                                               Image.SCALE_SMOOTH);
+//                            ImageIcon imageIcon = new ImageIcon(dimg);
+//                            jLabel1.setIcon(imageIcon);
+//                        } catch (IOException e) {
+//                            System.out.println(e);
+//                        }
+////
+//                    } else {
 //
-                    } else {
-
-                        try {
-                            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-                            FileInputStream inputStream = null;
-                            File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + student.enrollment_no + ".jpg");
-                            File destinationFile = new File(home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg");
-                            inputStream = new FileInputStream(sourceFile1);
-                            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-                            FileChannel inChannel = inputStream.getChannel();
-                            FileChannel outChannel = outputStream.getChannel();
-                            try {
-                                inChannel.transferTo(0, inChannel.size(), outChannel);
-
-                            } finally {
-                                inChannel.close();
-                                outChannel.close();
-                                inputStream.close();
-                                outputStream.close();
-
-                                String orig_file = home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg";
-                                File sourceFile2 = new File(orig_file);
-                                BufferedImage img = null;
-                                try {
-                                    img = ImageIO.read(sourceFile2);
-                                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                                                                       Image.SCALE_SMOOTH);
-                                    ImageIcon imageIcon = new ImageIcon(dimg);
-                                    jLabel1.setIcon(imageIcon);
-                                } catch (IOException e) {
-                                    System.out.println(e);
-                                }
-                            }
-                        } catch (IOException e) {
-                            System.out.println(e);
-                        }
-
-                    }
-                }
-            });
-
-        }
-        ret_loaded_subjects();
+//                        try {
+//                            String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+//                            FileInputStream inputStream = null;
+//                            File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + student.enrollment_no + ".jpg");
+//                            File destinationFile = new File(home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg");
+//                            inputStream = new FileInputStream(sourceFile1);
+//                            FileOutputStream outputStream = new FileOutputStream(destinationFile);
+//                            FileChannel inChannel = inputStream.getChannel();
+//                            FileChannel outChannel = outputStream.getChannel();
+//                            try {
+//                                inChannel.transferTo(0, inChannel.size(), outChannel);
+//
+//                            } finally {
+//                                inChannel.close();
+//                                outChannel.close();
+//                                inputStream.close();
+//                                outputStream.close();
+//
+//                                String orig_file = home + "\\images_cis\\enrollments\\" + student.enrollment_no + ".jpg";
+//                                File sourceFile2 = new File(orig_file);
+//                                BufferedImage img = null;
+//                                try {
+//                                    img = ImageIO.read(sourceFile2);
+//                                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+//                                                                       Image.SCALE_SMOOTH);
+//                                    ImageIcon imageIcon = new ImageIcon(dimg);
+//                                    jLabel1.setIcon(imageIcon);
+//                                } catch (IOException e) {
+//                                    System.out.println(e);
+//                                }
+//                            }
+//                        } catch (IOException e) {
+//                            System.out.println(e);
+//                        }
+//
+//                    }
+//                }
+//            });
+//
+//        }
     }
 
     String period_term = "First Semester";
@@ -5809,7 +5808,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
             @Override
             public void run() {
-
+//                System.out.println(" enroll.id : "+ enroll.id );
                 List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
                 if (assessments.isEmpty()) {
                     jProgressBar2.setString("Finished...");
@@ -5836,7 +5835,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
                 String printed_by = MyUser.getUser_screen_name();
                 String school_year = enroll.academic_year;
-                String semester = enroll.term;
+                String semester = enroll.period;
                 String student_no = enroll.student_no;
                 String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
                 String student_course = enroll.course_code + " - " + enroll.course_description;
@@ -5895,7 +5894,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
                     tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount,sub.section);
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
                     fields.add(f);
                 }
 
@@ -5945,7 +5944,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total,"");
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
                     rpt_summary.add(f2);
                 }
 
@@ -6246,7 +6245,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
         String en_no = student.student_no;
 
-        if (student.student_no.isEmpty() || student.student_no == null) {
+   
+        
+        if (student.student_no == null || student.student_no.isEmpty()) {
             en_no = Students.add_data_enroll(student, enroll);
         } else {
             Students.add_data_enroll2(student, enroll);

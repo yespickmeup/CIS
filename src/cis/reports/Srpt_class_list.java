@@ -545,8 +545,9 @@ public class Srpt_class_list {
                     if (rs4.next()) {
                         contact_no1 = rs4.getString(2);
                         email_address = rs4.getString(3);
+                      
                     }
-
+                      System.out.println("email_address: "+email_address);
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
                                                                         section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address,id2,final_grade,grade_remarks);
