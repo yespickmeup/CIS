@@ -5441,7 +5441,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         List<to_academic_offering_subjects> not_loaded = new ArrayList();
         for (to_academic_offering_subjects to : to_add) {
 //            String where3 = " where academic_offering_subject_id='" + to.id + "' order by section asc ";
-            String where3 = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + to.subject_id + "' order by section asc ";
+            String where3 = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + to.subject_id + "' and status<2 order by section asc ";
 
             List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where3);
 //            System.out.println("datas: " + datas.size());

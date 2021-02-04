@@ -28,6 +28,7 @@ import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.Combo;
 import cis.utils.DateType;
+import cis.utils.Dlg_confirm_action;
 import cis.utils.Dlg_confirm_action3;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.Dlg_confirm_delete2;
@@ -401,6 +402,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         tbl_enrollment_offered_subjects = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton4 = new Button.Success();
         jPanel13 = new javax.swing.JPanel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel15 = new javax.swing.JPanel();
@@ -903,7 +905,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -1455,7 +1457,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
@@ -1922,7 +1924,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -2234,6 +2236,14 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         jLabel8.setText("0");
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setText("Close Subject/Sections");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -2246,13 +2256,18 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -2312,7 +2327,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Certification of Grades", jPanel15);
@@ -2327,7 +2342,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jTabbedPane5.addTab("Transcript of Records", jPanel16);
@@ -2763,6 +2778,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         ret_enrollments();
     }//GEN-LAST:event_jCheckBox24ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        close_subjects();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2774,6 +2793,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -2949,6 +2969,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
+
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
 
@@ -3369,7 +3390,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
         Subjects.to_subjects to = (Subjects.to_subjects) to_check.get(0);
         int academic_year_id = acad.id;
-        String where = " where academic_year_id='" + academic_year_id + "' ";
+        String where = " where academic_year_id='" + academic_year_id + "'  ";
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data(where);
 
         for (Subjects.to_subjects sel : to_check) {
@@ -3449,7 +3470,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 0;
                     int is_uploaded = 0;
-                    Enrollment_offered_subjects.to_enrollment_offered_subjects to3 = new Enrollment_offered_subjects.to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id2, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    Enrollment_offered_subjects.to_enrollment_offered_subjects to3 = new Enrollment_offered_subjects.to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id2, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                     String where = " where subject_id ='" + subject_id + "' and academic_year_id='" + acad.id + "' and term like '" + tf_field26.getText() + "' ";
                     List<to_enrollment_offered_subjects> subject_exists = Enrollment_offered_subjects.ret_data(where);
                     if (subject_exists.isEmpty()) {
@@ -3541,7 +3562,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                     String updated_by = MyUser.getUser_id();
                     int status = 0;
                     int is_uploaded = 0;
-                    Enrollment_offered_subjects.to_enrollment_offered_subjects to = new Enrollment_offered_subjects.to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                    Enrollment_offered_subjects.to_enrollment_offered_subjects to = new Enrollment_offered_subjects.to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
 
                     List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = new ArrayList();
                     datas.add(to);
@@ -3569,13 +3590,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     public static ArrayListModel tbl_enrollment_offered_subjects_ALM;
     public static Tblenrollment_offered_subjectsModel tbl_enrollment_offered_subjects_M;
 
-    public static void init_tbl_enrollment_offered_subjects(JTable tbl_enrollment_offered_subjects) {
+    public void init_tbl_enrollment_offered_subjects(JTable tbl_enrollment_offered_subjects) {
         tbl_enrollment_offered_subjects_ALM = new ArrayListModel();
         tbl_enrollment_offered_subjects_M = new Tblenrollment_offered_subjectsModel(tbl_enrollment_offered_subjects_ALM);
         tbl_enrollment_offered_subjects.setModel(tbl_enrollment_offered_subjects_M);
         tbl_enrollment_offered_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subjects.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subjects = {70, 100, 50, 60, 60, 120, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subjects = {70, 100, 50, 60, 60, 120, 50, 30, 30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -3591,6 +3612,114 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         tbl_enrollment_offered_subjects.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
         tbl_enrollment_offered_subjects.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
+
+        TableColumn tc = tbl_enrollment_offered_subjects.getColumnModel().getColumn(9);
+        tc.setCellEditor(tbl_enrollment_offered_subjects.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(tbl_enrollment_offered_subjects.getDefaultRenderer(Boolean.class));
+        tc.setHeaderRenderer(new CheckBoxHeader2(new MyItemListener2()));
+    }
+
+    class MyItemListener2 implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            Object source = e.getSource();
+            if (source instanceof AbstractButton == false) {
+                return;
+            }
+            boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+            for (int x = 0, y = tbl_enrollment_offered_subjects.getRowCount(); x < y; x++) {
+                tbl_enrollment_offered_subjects.setValueAt(checked, x, 0);
+
+            }
+        }
+    }
+
+    class CheckBoxHeader2 extends JCheckBox
+            implements TableCellRenderer, MouseListener {
+
+        protected CheckBoxHeader2 rendererComponent;
+        protected int column;
+        protected boolean mousePressed = false;
+
+        public CheckBoxHeader2(ItemListener itemListener) {
+            rendererComponent = this;
+            rendererComponent.addItemListener(itemListener);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(
+                JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            if (table != null) {
+                JTableHeader header = table.getTableHeader();
+                if (header != null) {
+                    rendererComponent.setForeground(header.getForeground());
+                    rendererComponent.setBackground(new java.awt.Color(204, 204, 204));
+                    rendererComponent.setHorizontalAlignment(Align.CENTER);
+                    rendererComponent.setOpaque(true);
+                    header.addMouseListener(rendererComponent);
+                }
+            }
+            setColumn(column);
+            rendererComponent.setText("");
+            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+            return rendererComponent;
+        }
+
+        protected void setColumn(int column) {
+            this.column = column;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+
+        protected void handleClickEvent(MouseEvent e) {
+            if (mousePressed) {
+                mousePressed = false;
+                JTableHeader header = (JTableHeader) (e.getSource());
+                JTable tableView = header.getTable();
+                TableColumnModel columnModel = tableView.getColumnModel();
+                int viewColumn = columnModel.getColumnIndexAtX(e.getX());
+                int column1 = tableView.convertColumnIndexToModel(viewColumn);
+                if (viewColumn == this.column && e.getClickCount() == 1 && column1 != -1) {
+                    doClick();
+                }
+            }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            handleClickEvent(e);
+            ((JTableHeader) e.getSource()).repaint();
+            List<to_enrollment_offered_subjects> datas = tbl_enrollment_offered_subjects_ALM;
+            boolean selected = false;
+            if (this.isSelected()) {
+                selected = true;
+            }
+            for (to_enrollment_offered_subjects to : datas) {
+                to.setSelected(selected);
+            }
+            e.consume();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            mousePressed = true;
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
     }
 
     public static void loadData_enrollment_offered_subjects(List<to_enrollment_offered_subjects> acc) {
@@ -3601,7 +3730,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     public static class Tblenrollment_offered_subjectsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Code", "Description", "Units", "Count", "Section", "Instructor", "Status", "", "", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "faculty_id", "faculty_name", "room_id", "room", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Code", "Description", "Units", "Count", "Section", "Instructor", "Status", "", "", "", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "faculty_id", "faculty_name", "room_id", "room", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblenrollment_offered_subjectsModel(ListModel listmodel) {
@@ -3618,7 +3747,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         @Override
         public Class getColumnClass(int col) {
-            if (col == 1000) {
+            if (col == 9) {
                 return Boolean.class;
             }
             return Object.class;
@@ -3642,9 +3771,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                     return " " + tt.faculty_name;
                 case 6:
                     if (tt.status == 0) {
-                        return " Posted";
+                        return " ";
                     } else if (tt.status == 1) {
-                        return " Open";
+                        return " ";
                     } else if (tt.status == 2) {
                         return " Closed";
                     } else {
@@ -3655,7 +3784,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 case 8:
                     return "/cis/icons/remove11.png";
                 case 9:
-                    return tt.department_id;
+                    return tt.selected;
                 case 10:
                     return tt.department;
                 case 11:
@@ -3777,6 +3906,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             return;
         }
         Enrollment_offered_subjects.to_enrollment_offered_subjects to = (Enrollment_offered_subjects.to_enrollment_offered_subjects) tbl_enrollment_offered_subjects_ALM.get(row);
+
         int col = tbl_enrollment_offered_subjects.getSelectedColumn();
         if (col == 7) {
             Window p = (Window) this;
@@ -3834,8 +3964,43 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
+        if (col == 9) {
+            if (to.isSelected()) {
+                to.setSelected(false);
+            } else {
+                to.setSelected(true);
+            }
+            tbl_enrollment_offered_subjects_M.fireTableDataChanged();
+        }
     }
 
+    private void close_subjects() {
+//         Enrollment_offered_subjects.to_enrollment_offered_subjects to = (Enrollment_offered_subjects.to_enrollment_offered_subjects) tbl_enrollment_offered_subjects_ALM.get(row);
+        List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = tbl_enrollment_offered_subjects_ALM;
+        List<Enrollment_offered_subjects.to_enrollment_offered_subjects> selected = new ArrayList();
+
+        for (Enrollment_offered_subjects.to_enrollment_offered_subjects to : datas) {
+            if (to.isSelected()) {
+                selected.add(to);
+            }
+        }
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                Enrollment_offered_subjects.update_data_status_list(selected, 2);
+                Alert.set(2, "");
+                ret_opened_subjects();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
     List<Departments.to_departments> deps = new ArrayList();
 
     private void init_departments3() {

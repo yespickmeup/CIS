@@ -65,8 +65,9 @@ public class Enrollment_offered_subjects {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public boolean selected;
 
-        public to_enrollment_offered_subjects(int id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String faculty_id, String faculty_name, int room_id, String room, String schedule, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_offered_subjects(int id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String prerequisite_subject_ids, String subject_group, int subject_group_id, String faculty_id, String faculty_name, int room_id, String room, String schedule, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, boolean selected) {
             this.id = id;
             this.academic_offering_subject_id = academic_offering_subject_id;
             this.academic_offering_id = academic_offering_id;
@@ -106,7 +107,17 @@ public class Enrollment_offered_subjects {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.selected = selected;
         }
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
+
     }
 
     public static void add_data(List<to_enrollment_offered_subjects> to_enrollment_offered_subjects1, int no_of_sections, String section_name) {
@@ -595,6 +606,63 @@ public class Enrollment_offered_subjects {
         }
     }
 
+    public static void update_data_status_list(List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas, int status) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+            for (Enrollment_offered_subjects.to_enrollment_offered_subjects to : datas) {
+                String s0 = "update enrollment_offered_subjects set "
+                        + " status= :status "
+                        + " where id='" + to.id + "' "
+                        + " ";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setNumber("status", status)
+                        .ok();
+                stmt.addBatch(s0);
+
+                String s2 = "update enrollment_offered_subject_sections set "
+                        + " status= :status "
+                        + " where enrollment_offered_subject_id='" + to.id + "' "
+                        + " ";
+
+                s2 = SqlStringUtil.parse(s2)
+                        .setNumber("status", status)
+                        .ok();
+                stmt.addBatch(s2);
+
+                String s3 = "update enrollment_offered_subject_section_instructors set "
+                        + " status= :status "
+                        + " where enrollment_offered_subject_id='" + to.id + "' "
+                        + " ";
+
+                s3 = SqlStringUtil.parse(s3)
+                        .setNumber("status", status)
+                        .ok();
+                stmt.addBatch(s3);
+
+                String s4 = "update enrollment_offered_subject_section_room_schedules set "
+                        + " status= :status "
+                        + " where enrollment_offered_subject_id='" + to.id + "' "
+                        + " ";
+
+                s4 = SqlStringUtil.parse(s4)
+                        .setNumber("status", status)
+                        .ok();
+                stmt.addBatch(s4);
+            }
+
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Enrollment_offered_subjects.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_enrollment_offered_subjects to_enrollment_offered_subjects) {
         try {
             Connection conn = MyConnection.connect();
@@ -722,7 +790,7 @@ public class Enrollment_offered_subjects {
                 int status = rs.getInt(38);
                 int is_uploaded = rs.getInt(39);
 
-                to_enrollment_offered_subjects to = new to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_offered_subjects to = new to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                 datas.add(to);
             }
             return datas;
@@ -878,7 +946,7 @@ public class Enrollment_offered_subjects {
 
                 room = ReGroup.similar(l_rooms);
                 schedule = ReGroup.similar(l_day);
-                to_enrollment_offered_subjects to = new to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_offered_subjects to = new to_enrollment_offered_subjects(id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, prerequisite_subject_ids, subject_group, subject_group_id, faculty_id, faculty_name, room_id, room, schedule, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                 datas.add(to);
             }
             return datas;

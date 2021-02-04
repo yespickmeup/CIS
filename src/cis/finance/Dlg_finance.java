@@ -3765,6 +3765,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 }
 
                 List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+//                System.out.println("enrollment_id='" + enroll.id + "'");
                 List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
                 int payment_count = 3;

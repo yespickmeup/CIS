@@ -579,7 +579,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
         String where = " where enrollment_id='" + enroll.id + "' and status=1 ";
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -742,7 +742,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 
     private void ret_eos() {
-        String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' order by section asc ";
+        String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
