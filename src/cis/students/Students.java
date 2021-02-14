@@ -281,7 +281,7 @@ public class Students {
             int year = FitIn.toInt(DateType.y.format(new Date()));
             String id = "" + year + "0000";
 
-            String s1 = "select max(id) from students where Year(created_at)='" + year + "' and is_transferee=0 ";
+            String s1 = "select max(id) from students where Year(created_at)='" + year + "' order by id desc limit 1 ";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s1);
             if (rs.next()) {

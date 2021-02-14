@@ -5450,11 +5450,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec = null;
                 for (int i = 0; i < datas.size(); i++) {
                     Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec2 = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) datas.get(i);
+//                    System.out.println("sec2.created_by: "+sec2.created_by);
                     String[] cap = sec2.created_by.split(" of ");
                     int min = FitIn.toInt(cap[0]);
                     int max = FitIn.toInt(cap[1]);
+                   
                     if (min < max) {
                         sec = sec2;
+//                          System.out.println(sec.created_by);
                         break;
                     }
                 }
