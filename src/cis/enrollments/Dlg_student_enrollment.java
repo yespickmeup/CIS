@@ -4159,6 +4159,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     }
 
     private void set_student_details(Students.to_students student) {
+        
         tf_field130.setText(student.student_no);
         tf_field5.setText(student.first_name);
         tf_field6.setText(student.middle_name);

@@ -433,6 +433,7 @@ public class Enrollments {
                         + ",status"
                         + ",is_uploaded"
                         + ",period"
+                        + ",student_id"
                         + ")values("
                         + ":enrollment_no"
                         + ",:is_transferee"
@@ -550,6 +551,7 @@ public class Enrollments {
                         + ",:status"
                         + ",:is_uploaded"
                         + ",:period"
+                        + ",:student_id"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -669,6 +671,7 @@ public class Enrollments {
                         .setNumber("status", to_enrollments.status)
                         .setNumber("is_uploaded", to_enrollments.is_uploaded)
                         .setString("period", to_enrollments.period)
+                        .setNumber("student_id", to_enrollments.student_id)
                         .ok();
 
                 stmt3.addBatch(s0);

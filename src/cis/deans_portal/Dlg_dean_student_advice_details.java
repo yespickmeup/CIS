@@ -26,6 +26,7 @@ import cis.finance.Enrollment_assessments;
 import cis.finance.Miscellaneous_fees;
 import cis.finance.Srpt_enrollment_assessment;
 import cis.students.Students;
+import cis.test.DayCheck;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -3911,6 +3912,15 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         }
 
         enroll = student;
+        if (enroll.advised_date != null) {
+            jButton5.setEnabled(false);
+        }
+        if (enroll.approved_date != null) {
+            jButton9.setEnabled(false);
+        }
+        if (enroll.date_enrolled != null) {
+            jButton11.setEnabled(false);
+        }
         set_loading_years(enroll.department_id, enroll.course_id);
         list_year2.clear();
         list_period.clear();
@@ -5454,11 +5464,28 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String[] cap = sec2.created_by.split(" of ");
                     int min = FitIn.toInt(cap[0]);
                     int max = FitIn.toInt(cap[1]);
-                   
+
                     if (min < max) {
-                        sec = sec2;
-//                          System.out.println(sec.created_by);
-                        break;
+
+                        String[] days3 = sec2.day.split("<br>");
+                        boolean available = true;
+                        for (int ii = 0; ii < days3.length; ii++) {
+                            String d = days3[ii];
+                            d = d.replaceAll("&nbsp;&nbsp;", "");
+                            String[] dd = d.split(": ");
+                            String day1 = dd[0];
+
+                            List<String> schedules = new ArrayList();
+                            for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to2 : loaded) {
+                                schedules.add(to2.day);
+                            }
+                            available = DayCheck.compare_schedule(d, schedules);
+                        }
+                        if (!available) {
+                            sec = sec2;
+                            break;
+                        }
+
                     }
                 }
 
@@ -6248,14 +6275,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
         String en_no = student.student_no;
 
-   
-        
         if (student.student_no == null || student.student_no.isEmpty()) {
             en_no = Students.add_data_enroll(student, enroll);
         } else {
             Students.add_data_enroll2(student, enroll);
         }
-
+        jButton11.setEnabled(false);
         try {
             send_image_to_server(enroll.enrollment_no, en_no);
         } catch (IOException e) {

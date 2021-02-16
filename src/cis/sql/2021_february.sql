@@ -17,3 +17,18 @@ update students set academic_year="2020 - 2021" where academic_year like '';
 update enrollments set academic_year="2020 - 2021" where academic_year like '';
 update enrollment_assessments set academic_year="2020 - 2021" where academic_year like '';
 
+
+SELECT 
+    concat(last_name,space(1),first_name,space(1),middle_name) as name,
+    GROUP_CONCAT(id order by id asc separator ', ') as ids,
+    GROUP_CONCAT(student_no order by student_no asc separator ', ') as student_nos
+   
+FROM
+    students
+GROUP BY concat(last_name,space(1),first_name,space(1),middle_name)
+HAVING COUNT(concat(last_name,space(1),first_name,space(1),middle_name)) > 1;
+
+
+select student_id,student_no from enrollments where student_id=0 and student_no is not null;
+
+update enrollments ea set ea.student_id=(select s.id from students s where s.student_no=ea.student_no limit 1) where ea.student_id=0 and ea.student_no is not null;

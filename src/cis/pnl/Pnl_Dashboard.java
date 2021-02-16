@@ -8,6 +8,7 @@ import cis.academic.Dlg_academic_offerings;
 import cis.academic.Dlg_academic_years;
 import cis.accounts_receivables.Dlg_accounts_receivables;
 import cis.adjustments.Assessment_adjustments;
+import cis.adjustments.Student_ids;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
@@ -987,7 +988,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-//                script();
+                script();
             }
         });
         nd.setLocationRelativeTo(this);
@@ -1002,7 +1003,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                Assessment_adjustments.run_adjustment();
+                Student_ids.update();
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);
                 jButton1.setEnabled(true);

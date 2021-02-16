@@ -25,10 +25,13 @@ public class DateType {
     public static SimpleDateFormat sf2 = new SimpleDateFormat("MM-dd-yyyy");
     public static SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static SimpleDateFormat datetime2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa");
+    public static SimpleDateFormat datetime3 = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
     public static SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss aa");
     public static SimpleDateFormat time2 = new SimpleDateFormat("HH:mm aa");
+    public static SimpleDateFormat time4 = new SimpleDateFormat("HH:mm");
     public static SimpleDateFormat sf1 = new SimpleDateFormat("EEE, MMM dd,yyyy");
     public static SimpleDateFormat d = new SimpleDateFormat("dd");
+    public static SimpleDateFormat d2 = new SimpleDateFormat("EEEEEEEEEEE");
     public static SimpleDateFormat m = new SimpleDateFormat("MMMMMMMMMMM");
     public static SimpleDateFormat m1 = new SimpleDateFormat("MM");
     public static SimpleDateFormat y = new SimpleDateFormat("yyyy");
@@ -528,7 +531,7 @@ public class DateType {
             }
             i++;
         }
-        String[] ret=new String[2];
+        String[] ret = new String[2];
         ret[0] = day;
         ret[1] = time;
         return ret;

@@ -12,6 +12,7 @@ import cis.enrollments.Enrollment_offered_subject_sections.to_enrollment_offered
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
+import cis.test.DayCheck;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
@@ -566,8 +567,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     int academic_year_id = 0;
 
     List<to_enrollment_student_loaded_subjects> loaded = new ArrayList();
+    Enrollments.to_enrollments enroll = null;
 
-    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll) {
+    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll1) {
+        enroll = enroll1;
         academic_year_id = academic_year_id1;
         aos = to;
         tf_field2.setText(to.subject_code);
@@ -577,9 +580,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         jTextArea2.setText(to.prerequisite_subject_ids);
         ret_eos();
 
-        String where = " where enrollment_id='" + enroll.id + "' and status=1 ";
+        String where = " where enrollment_id='" + enroll.id + "' ";
+//        System.out.println(where);
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key">
@@ -764,7 +768,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             return;
         }
         if (to.status == 1) {
-            check_if_exists();
+
             String[] cap = to.created_by.split(" of ");
             int min = FitIn.toInt(cap[0]);
             int max = FitIn.toInt(cap[1]);
@@ -772,6 +776,26 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 Alert.set(0, "Section already full!");
                 return;
             }
+        }
+
+        boolean exist = false;
+        for (to_enrollment_student_loaded_subjects to2 : loaded) {
+            if (to2.subject_id == to.subject_id) {
+
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            Alert.set(0, "Subject already added!");
+            return;
+        }
+
+        boolean check = check_if_exists();
+
+        if (check) {
+            Alert.set(0, "Day/Time not available!");
+            return;
         }
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(to));
@@ -786,17 +810,22 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
         to_enrollment_offered_subject_sections eoss = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
 
-        for (to_enrollment_student_loaded_subjects to : loaded) {
-//            &nbsp;&nbsp;Monday: 10:00 AM-11:30 AM<br>&nbsp;&nbsp;Wednesday: 10:00 AM-11:30 AM
-            String[] days = to.day.split("<br>");
-            List<String> days2 = new ArrayList();
-            for (int i = 0; i < days.length; i++) {
-                String d = days[i];
-                d = d.replaceAll("&nbsp;&nbsp;", "");
-                String date = "2019-01-01 ";
-                
+        String[] days3 = eoss.day.split("<br>");
+        boolean available = true;
+        for (int i = 0; i < days3.length; i++) {
+            String d = days3[i];
+            d = d.replaceAll("&nbsp;&nbsp;", "");
+            String[] dd = d.split(": ");
+            String day1 = dd[0];
+
+            List<String> schedules = new ArrayList();
+            for (to_enrollment_student_loaded_subjects to : loaded) {
+                schedules.add(to.day);
             }
+            available = DayCheck.compare_schedule(d, schedules);
+
         }
-        return true;
+
+        return available;
     }
 }
