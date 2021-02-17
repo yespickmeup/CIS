@@ -14,12 +14,12 @@ import cis.enrollments.Enrollment_student_loaded_subjects.to_enrollment_student_
 import cis.enrollments.Enrollments;
 import cis.test.DayCheck;
 import cis.utils.Alert;
-import cis.utils.DateType;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -521,7 +521,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void tbl_enrollment_offered_subject_sectionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
-//        select_section();
+        select_section();
     }//GEN-LAST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -571,7 +571,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
     public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll1) {
         enroll = enroll1;
-        System.out.println("enroll1: "+enroll1.id);
+//        System.out.println("enroll1: " + enroll1.id);
         academic_year_id = academic_year_id1;
         aos = to;
         tf_field2.setText(to.subject_code);
@@ -582,7 +582,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         ret_eos();
 
         String where = " where enrollment_id='" + enroll.id + "' ";
-        
+
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
 
     }
@@ -750,7 +750,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
 //        System.out.println("where: "+where);
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
-        
+
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
         if (datas.size() > 0) {
@@ -830,5 +830,30 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
 
         return available;
+    }
+
+    private void select_section() {
+        int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+        int col = tbl_enrollment_offered_subject_sections.getSelectedColumn();
+        if (col == 6 || col == 7) {
+            Window p = (Window) this;
+            Dlg_dean_student_advice_load_subject_students nd = Dlg_dean_student_advice_load_subject_students.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_dean_student_advice_load_subject_students.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject_students.OutputData data) {
+                    closeDialog.ok();
+
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
     }
 }
