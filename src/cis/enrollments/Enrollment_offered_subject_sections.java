@@ -42,7 +42,7 @@ public class Enrollment_offered_subject_sections {
         public final String course_code;
         public final String course_description;
         public final String term;
-        public final String year_level;
+        public  String year_level;
         public final int subject_id;
         public final String subject_code;
         public final String description;
@@ -70,6 +70,15 @@ public class Enrollment_offered_subject_sections {
         public final int is_uploaded;
         public boolean selected;
 
+        public String getYear_level() {
+            return year_level;
+        }
+
+        public void setYear_level(String year_level) {
+            this.year_level = year_level;
+        }
+
+        
         public boolean isSelected() {
             return selected;
         }
@@ -749,6 +758,19 @@ public class Enrollment_offered_subject_sections {
                 if (rs4.next()) {
                     int count = rs4.getInt(1);
                     created_by = "" + count + " of " + max_students;
+                }
+
+                String s5 = "select "
+                        + "count(id)"
+                        + " from enrollment_student_loaded_subjects"
+                        + " where enrollment_offered_subject_section_id='" + id + "' and status=0 ";
+//                System.out.println(s5);
+                Statement stmt5 = conn.createStatement();
+                ResultSet rs5 = stmt5.executeQuery(s5);
+                updated_by = "";
+                if (rs5.next()) {
+                    int count = rs5.getInt(1);
+                    updated_by = "" + count;
                 }
 
                 to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);

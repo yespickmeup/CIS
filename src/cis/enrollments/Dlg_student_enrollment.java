@@ -40,7 +40,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -1187,6 +1186,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel76.setText("Year Level:");
 
         tf_field128.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field128.setText("First Year");
         tf_field128.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field128MouseClicked(evt);
@@ -3186,6 +3186,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             year.setText(to.years);
             year.setId("" + to.id);
             acad_year = to.id;
+           
 
         }
 
@@ -3378,7 +3379,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     }
 
     private void clear_fields() {
-        JTextField[] tfs = {tf_field2, tf_field7, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
+        JTextField[] tfs = {tf_field7, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
             tf_field16, tf_field17, tf_field18, tf_field28, tf_field29, tf_field30, tf_field31, tf_field33, tf_field35, tf_field36, tf_field42, tf_field40, tf_field43,
             tf_field44, tf_field51, tf_field47, tf_field48, tf_field32, tf_field34, tf_field37, tf_field38, tf_field39, tf_field41, tf_field45, tf_field46, tf_field52,
             tf_field49, tf_field50, tf_field101, tf_field102, tf_field103, tf_field19, tf_field22, tf_field25, tf_field20, tf_field23, tf_field26, tf_field21, tf_field24, tf_field27,
@@ -3393,7 +3394,10 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         }
         tf_field15.setText("");
         tf_field5.grabFocus();
-
+        Field.Input tf = (Field.Input) tf_field130;
+        tf.setText("");
+        tf.setId("");
+        tf_field129.setText("");
         jTabbedPane1.setSelectedIndex(0);
     }
 
@@ -4108,10 +4112,16 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 Students.to_students to = (Students.to_students) student.get(data.selected_row);
                 tf.setId("" + to.id);
                 tf.setText(to.student_no);
-                String where = " where student_id='" + to.id + "' and academic_year_id='" + acad_year + "' and period like '" + tf_field3.getText() + "' and advised_by IS NOT NULL order by id desc limit 1 ";
-//                List<Academic_year_period_schedules.to_academic_year_period_schedules> schedules = Academic_year_period_schedules.ret_data(where);
+
+                set_student_details(to);
+                set_period();
+
+                String where = " where student_id='" + to.id + "' and academic_year_id='" + acad_year + "' and period like '" + tf_field3.getText() + "'  order by id desc limit 1 ";
+
                 List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
+                System.out.println(where);
                 if (!enrollments.isEmpty()) {
+
                     Enrollments.to_enrollments to2 = (Enrollments.to_enrollments) enrollments.get(0);
                     if (to2.encoded_date != null) {
                         Alert.set(0, "Already enrolled!");
@@ -4119,10 +4129,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                         Alert.set(0, "Cannot proceed,Ongoing enrollment application!");
                     }
 
-                    return;
+                    clear_fields();
                 }
-                set_student_details(to);
-                set_period();
+
             }
         });
     }
@@ -4159,7 +4168,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     }
 
     private void set_student_details(Students.to_students student) {
-        
+
         tf_field130.setText(student.student_no);
         tf_field5.setText(student.first_name);
         tf_field6.setText(student.middle_name);

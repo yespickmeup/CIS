@@ -571,6 +571,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
     public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll1) {
         enroll = enroll1;
+        System.out.println("enroll1: "+enroll1.id);
         academic_year_id = academic_year_id1;
         aos = to;
         tf_field2.setText(to.subject_code);
@@ -581,7 +582,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         ret_eos();
 
         String where = " where enrollment_id='" + enroll.id + "' ";
-//        System.out.println(where);
+        
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
 
     }
@@ -614,7 +615,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
         tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subject_sections.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 90, 90, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 90, 90, 70, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
             if (i == 5) {
                 continue;
@@ -657,7 +658,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Section", "Max", "Room", "Day", "Time", "Instructor", "Capacity", "Status", "schedule", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Section", "Max", "Room", "Day", "Time", "Instructor", "Capacity", "Pending", "Status", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
@@ -710,6 +711,8 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 case 6:
                     return " " + tt.created_by;
                 case 7:
+                    return " " + tt.updated_by;
+                case 8:
                     if (tt.status == 0) {
                         return " Posted";
                     } else if (tt.status == 1) {
@@ -727,8 +730,6 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                     } else {
                         return " Dropped";
                     }
-                case 8:
-                    return tt.schedule;
                 case 9:
                     return tt.created_at;
                 case 10:
@@ -747,7 +748,9 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
     private void ret_eos() {
         String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
+//        System.out.println("where: "+where);
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
+        
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
         if (datas.size() > 0) {

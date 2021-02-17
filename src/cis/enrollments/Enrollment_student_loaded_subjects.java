@@ -292,12 +292,13 @@ public class Enrollment_student_loaded_subjects {
         }
     }
 
-    public static void add_data_all(List<to_enrollment_student_loaded_subjects> to_enrollment_student_loaded_subjects1) {
+    public static void add_data_all(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> to_enrollment_student_loaded_subjects1
+    ,int enrollment_id,String enrollment_no,int student_id,String student_no,String fname,String mi,String lname) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement("");
-            for (to_enrollment_student_loaded_subjects to_enrollment_student_loaded_subjects : to_enrollment_student_loaded_subjects1) {
+            for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to_enrollment_student_loaded_subjects : to_enrollment_student_loaded_subjects1) {
                 String s0 = "insert into enrollment_student_loaded_subjects("
                         + "enrollment_id"
                         + ",enrollment_no"
@@ -393,14 +394,14 @@ public class Enrollment_student_loaded_subjects {
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
-                        .setNumber("enrollment_id", to_enrollment_student_loaded_subjects.enrollment_id)
-                        .setString("enrollment_no", to_enrollment_student_loaded_subjects.enrollment_no)
-                        .setNumber("student_id", to_enrollment_student_loaded_subjects.student_id)
-                        .setString("student_no", to_enrollment_student_loaded_subjects.student_no)
-                        .setString("fname", to_enrollment_student_loaded_subjects.fname)
-                        .setString("mi", to_enrollment_student_loaded_subjects.mi)
-                        .setString("lname", to_enrollment_student_loaded_subjects.lname)
-                        .setNumber("enrollment_offered_subject_section_id", to_enrollment_student_loaded_subjects.enrollment_offered_subject_section_id)
+                        .setNumber("enrollment_id", enrollment_id)
+                        .setString("enrollment_no", enrollment_no)
+                        .setNumber("student_id", student_id)
+                        .setString("student_no",student_no)
+                        .setString("fname", fname)
+                        .setString("mi", mi)
+                        .setString("lname", lname)
+                        .setNumber("enrollment_offered_subject_section_id", to_enrollment_student_loaded_subjects.id)
                         .setNumber("enrollment_offered_subject_id", to_enrollment_student_loaded_subjects.enrollment_offered_subject_id)
                         .setNumber("academic_offering_subject_id", to_enrollment_student_loaded_subjects.academic_offering_subject_id)
                         .setNumber("academic_offering_id", to_enrollment_student_loaded_subjects.academic_offering_id)
@@ -436,7 +437,7 @@ public class Enrollment_student_loaded_subjects {
                         .setString("updated_at", to_enrollment_student_loaded_subjects.updated_at)
                         .setString("created_by", to_enrollment_student_loaded_subjects.created_by)
                         .setString("updated_by", to_enrollment_student_loaded_subjects.updated_by)
-                        .setNumber("status", to_enrollment_student_loaded_subjects.status)
+                        .setNumber("status", 0)
                         .setNumber("is_uploaded", to_enrollment_student_loaded_subjects.is_uploaded)
                         .ok();
                 stmt.addBatch(s0);

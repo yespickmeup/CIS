@@ -136,7 +136,8 @@ update students set student_no='20210074' where id=1605;
 update students set student_no='20210075' where id=1606;
 update students set student_no='20210076' where id=1607;
 
-update enrollments e set e.student_no=(select s.student_no from students s where e.student_id=s.id);
+update enrollments e set e.student_id=(select s.id from students s where e.student_no=s.student_no) where e.student_id=0 and e.student_no is not null;
+update enrollment_assessments e set e.student_id=(select s.id from students s where e.student_no=s.student_no) where e.student_id=0 and e.student_no is not null;
 
 update enrollment_student_loaded_subjects esls set esls.student_id=(select s.id from students s where esls.student_no=s.student_no limit 1) where student_id=0;
 

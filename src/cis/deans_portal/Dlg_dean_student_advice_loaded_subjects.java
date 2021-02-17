@@ -6,12 +6,15 @@
 package cis.deans_portal;
 
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
+import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.utils.Alert;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JTable;
@@ -50,6 +53,13 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
     }
 
     public static class OutputData {
+
+        public final List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> selected;
+
+        public OutputData(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> selected) {
+            this.selected = selected;
+        }
+
     }
 //</editor-fold>
 
@@ -220,6 +230,11 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
 
             }
         ));
+        init_tbl_added_subjectssubjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                init_tbl_added_subjectssubjectsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(init_tbl_added_subjectssubjects);
 
         jLabel1.setText("No. of rows:");
@@ -233,7 +248,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -294,7 +309,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,13 +336,13 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,6 +380,10 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
         ok();
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void init_tbl_added_subjectssubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_init_tbl_added_subjectssubjectsMouseClicked
+        select_section();
+    }//GEN-LAST:event_init_tbl_added_subjectssubjectsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -391,8 +410,33 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
     }
 
     public void do_pass(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads, List<to_academic_offering_subjects> not_loaded) {
-        loadData_added_subjects(loads);
-        jLabel2.setText("" + loads.size());
+
+        int i = 0;
+        String load_ids = "";
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load : loads) {
+           
+            if (i == 0) {
+                load_ids = "" + load.id;
+            } else {
+                load_ids = load_ids + "," + load.id;
+            }
+            i++;
+        }
+        String where = " where id IN(" + load_ids + ")";
+
+        if (!loads.isEmpty()) {
+            List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
+            for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to : datas) {
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load : loads) {
+                    if (to.enrollment_offered_subject_id == load.enrollment_offered_subject_id) {
+                        to.setYear_level(load.year_level);
+                        break;
+                    }
+                }
+            }
+            loadData_added_subjects(datas);
+            jLabel2.setText("" + loads.size());
+        }
 
         loadData_not_added_subjects(not_loaded);
         jLabel4.setText("" + not_loaded.size());
@@ -427,7 +471,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
         tbl_added_subjects.setModel(tbl_added_subjects_M);
         tbl_added_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_added_subjects.setRowHeight(25);
-        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 0, 0};
+        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 90, 70, 30};
         for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -440,10 +484,10 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
         tbl_added_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_added_subjects.setRowHeight(25);
         tbl_added_subjects.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_added_subjects.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
+//        tbl_added_subjects.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
     }
 
-    public static void loadData_added_subjects(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> acc) {
+    public static void loadData_added_subjects(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> acc) {
         tbl_added_subjects_ALM.clear();
         tbl_added_subjects_ALM.addAll(acc);
 
@@ -452,7 +496,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
     public static class Tbl_added_subjects_Model extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Subject Code", "Description", "Units", "Section", "Status", ""
+            "Subject Code", "Description", "Units", "Section", "Capacity", "Pending", ""
         };
 
         public Tbl_added_subjects_Model(ListModel listmodel) {
@@ -469,7 +513,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
 
         @Override
         public Class getColumnClass(int col) {
-            if (col == 1000) {
+            if (col == 6) {
                 return Boolean.class;
             }
             return Object.class;
@@ -477,7 +521,7 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
 
         @Override
         public Object getValueAt(int row, int col) {
-            Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tt = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) getRow(row);
+            Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections tt = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) getRow(row);
             switch (col) {
                 case 0:
                     return " " + tt.subject_code;
@@ -488,27 +532,11 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
                 case 3:
                     return " " + tt.section;
                 case 4:
-                    if (tt.status == -1) {
-                        return " ";
-                    } else if (tt.status == 0) {
-                        return " Added";
-                    } else if (tt.status == 1) {
-                        return " Enrolled";
-                    } else if (tt.status == 2) {
-                        return " Passed";
-                    } else if (tt.status == 3) {
-                        return " Failed";
-                    } else {
-                        return " Dropped";
-                    }
+                    return " " + tt.created_by;
+                case 5:
+                    return " " + tt.updated_by;
                 default:
-                    if (tt.status == 1) {
-                        return "/cis/icons2/quit.png";
-                    } else if (tt.status == -1) {
-                        return "/cis/icons2/plus.png";
-                    } else {
-                        return "/cis/icons/remove11.png";
-                    }
+                    return tt.selected;
 
             }
         }
@@ -611,9 +639,38 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
         }
     }
 
+    private void select_section() {
+        int row = init_tbl_added_subjectssubjects.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = init_tbl_added_subjectssubjects.getSelectedColumn();
+        if (col == 6) {
+            Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_added_subjects_ALM.get(row);
+            if (to.isSelected()) {
+                to.setSelected(false);
+            } else {
+                to.setSelected(true);
+            }
+            tbl_added_subjects_M.fireTableDataChanged();
+        }
+
+    }
+
     private void ok() {
+        List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = tbl_added_subjects_ALM;
+        List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> to_add = new ArrayList();
+        for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections data : datas) {
+            if (data.selected) {
+                to_add.add(data);
+            }
+        }
+        if (to_add.isEmpty()) {
+            Alert.set(0, "Select section/s");
+            return;
+        }
         if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
+            callback.ok(new CloseDialog(this), new OutputData(to_add));
         }
     }
 }

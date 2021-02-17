@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6a4d97ff-b8dd-4136-b031-f29659e8f21a">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="7" uuid="6a4d97ff-b8dd-4136-b031-f29659e8f21a">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="business_name" class="java.lang.String"/>
-	<parameter name="address" class="java.lang.String"/>
-	<parameter name="contact_no" class="java.lang.String"/>
-	<parameter name="date" class="java.lang.String"/>
-	<parameter name="printed_by" class="java.lang.String"/>
-	<parameter name="school_year" class="java.lang.String"/>
-	<parameter name="semester" class="java.lang.String"/>
-	<parameter name="student_no" class="java.lang.String"/>
-	<parameter name="student_name" class="java.lang.String"/>
-	<parameter name="student_course" class="java.lang.String"/>
-	<parameter name="student_year_level" class="java.lang.String"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
-	<parameter name="rpt_misc" class="java.util.List"/>
-	<parameter name="rpt_fees" class="java.util.List"/>
-	<parameter name="total_assessment" class="java.lang.Double"/>
-	<parameter name="downpayment" class="java.lang.Double"/>
-	<parameter name="payable" class="java.lang.Double"/>
-	<parameter name="rpt_summary" class="java.util.List"/>
-	<parameter name="rpt_added_subjects" class="java.util.List"/>
-	<parameter name="rpt_dropped_subjects" class="java.util.List"/>
 	<field name="subject_code" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
 	<field name="lec_units" class="java.lang.Double"/>
@@ -45,22 +25,7 @@
 		<variableExpression><![CDATA[$F{lec_units} + $F{lab_units}]]></variableExpression>
 	</variable>
 	<group name="misc">
-		<groupExpression><![CDATA[$P{rpt_misc}]]></groupExpression>
-		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band height="15">
-				<subreport>
-					<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="-22" y="0" width="601" height="15"/>
-					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_added_subjects}, false);]]></dataSourceExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_enrollment_assessment_subjects_added.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
-		</groupFooter>
-	</group>
-	<group name="drop">
-		<groupExpression><![CDATA[$P{rpt_dropped_subjects}]]></groupExpression>
+		<groupExpression><![CDATA[]]></groupExpression>
 		<groupHeader>
 			<band height="20">
 				<staticText>
@@ -311,95 +276,20 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="184" splitType="Stretch">
-			<textField>
-				<reportElement uuid="4f39a3cb-998d-4add-94df-c1b6c6423f79" x="0" y="14" width="572" height="20"/>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5bad9dc3-9976-4aaf-a926-e038c92b1e9b" x="0" y="0" width="572" height="16"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="9" isBold="true"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{business_name}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="5384929d-e305-420b-8ebe-36823a64fbb4" x="110" y="33" width="357" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="96" width="58" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[School Year:]]></text>
-			</staticText>
-			<textField>
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="467" y="96" width="105" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<paragraph rightIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{school_year}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="456" y="116" width="116" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<paragraph rightIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{semester}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="116" width="47" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Period:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="2" y="96" width="78" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Student No.:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="80" y="96" width="310" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{student_no}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="d8882fc9-02cd-4c2f-9ef8-5754665808d3" x="80" y="116" width="310" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{student_name}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="2" y="116" width="78" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Name:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="2" y="136" width="78" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Course:]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="79" y="136" width="311" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{student_course}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="333f6957-2627-4541-ae58-af023959fe7c" x="456" y="136" width="116" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<paragraph rightIndent="2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{student_year_level}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="409" y="136" width="47" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<text><![CDATA[Level:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="0940e311-f8e5-46ae-996b-6cd9d4a4b4ea" x="0" y="66" width="572" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Student Assessment]]></text>
+				<text><![CDATA[Dropped Subjects]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -546,22 +436,6 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="74" splitType="Stretch">
-			<subreport>
-				<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="146" y="2" width="179" height="15"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_fees}, false);]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_fees.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="-23" y="2" width="169" height="15"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_misc}, false);]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_misc.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="340" y="2" width="240" height="15"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_summary}, false);]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_enrollment_assessment_summary.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

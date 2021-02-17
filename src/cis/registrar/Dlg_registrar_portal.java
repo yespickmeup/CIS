@@ -2638,7 +2638,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field26ActionPerformed
 
     private void tf_field27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field27MouseClicked
-        init_students(tf_field27);
+//        init_students(tf_field27);
     }//GEN-LAST:event_tf_field27MouseClicked
 
     private void tf_field27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field27ActionPerformed
@@ -2969,7 +2969,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
 
@@ -4578,7 +4577,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             return;
         }
 
-        Enrollments.to_enrollments enroll = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
+        Enrollments.to_enrollments enroll1 = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
         int col = tbl_enrollments.getSelectedColumn();
         if (col == 10) {
             Window p = (Window) this;
@@ -4589,7 +4588,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
                     closeDialog.ok();
-                    Enrollments.delete_data2(enroll);
+                    Enrollments.delete_data2(enroll1);
                     Alert.set(3, "");
                     ret_enrollments();
                 }
@@ -4600,7 +4599,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             Window p = (Window) this;
             Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
             nd.setTitle("");
-            nd.do_pass(enroll, 0);
+            nd.do_pass(enroll1, 0);
             nd.setCallback(new Dlg_dean_student_advice_details.Callback() {
 
                 @Override
@@ -4809,6 +4808,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 tf_field9.setText(to.year_level);
 
                 List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(" where student_id='" + to.id + "' order by id desc limit 1");
+                System.out.println("enrollments: "+enrollments.size());
                 if (enrollments.isEmpty()) {
                     enroll = null;
                 } else {
@@ -5071,6 +5071,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
                 nd.setTitle("");
                 Academic_offering_subjects.to_academic_offering_subjects aos = null;
+            
+                
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
                     nd.do_pass(aos, aos.academic_year_id, enroll);

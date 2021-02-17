@@ -32,3 +32,5 @@ HAVING COUNT(concat(last_name,space(1),first_name,space(1),middle_name)) > 1;
 select student_id,student_no from enrollments where student_id=0 and student_no is not null;
 
 update enrollments ea set ea.student_id=(select s.id from students s where s.student_no=ea.student_no limit 1) where ea.student_id=0 and ea.student_no is not null;
+
+update enrollments e set e.student_id=(select ea.student_id from enrollment_assessments ea where e.enrollment_no=ea.enrollment_no limit 1),e.student_no=(select ea.student_no from enrollment_assessments ea where e.enrollment_no=ea.enrollment_no limit 1) where e.student_id=0 and e.student_no is null;

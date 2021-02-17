@@ -12,6 +12,7 @@ import cis.academic.Academic_years;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
 import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
 import cis.finance.Enrollment_assessment_payment_modes;
@@ -576,7 +577,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -599,9 +600,9 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -651,7 +652,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGap(0, 448, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1420,7 +1421,12 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         String student_course = to.course_code + " - " + to.course_description;
         String student_year_level = to.year_level;
 
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2  ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=0 ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=1  ");
+        List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + to.id + "' and status=1  ");
+
+        List<Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
+        List<Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
         double no_of_units_lab = 0;
         List<Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -1454,6 +1460,61 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             }
         }
 
+        //added subjects
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : added_subjects) {
+            String subject_code = sub.subject_code;
+            String description = sub.description;
+            double lec_units = sub.lecture_units;
+            double lab_units = sub.lab_units;
+            double lec_amount = lec_units * lec_amount_per_unit;
+            double lec_amount2 = lec_amount;
+            lec_amount = lec_amount_per_unit;
+            double lab_amount = lab_units * lab_amount_per_unit;
+            double lab_amount2 = lab_amount;
+            lab_amount = lab_amount_per_unit;
+            String room = sub.room;
+            String day = DateType.mwf(sub.day);
+            String time = DateType.daytime(sub.day);
+            time = time.replaceAll("WFM", "MWF");
+            time = time.replaceAll("FM", "MF");
+            String instructor = sub.faculty_name;
+            double amount = lec_amount2 + lab_amount2;
+            tution_fee += amount;
+            String section = sub.section;
+            String group = "Added Subjects";
+            Srpt_enrollment_assessment.field_add_subjects f = new Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+
+            rpt_added_subjects.add(f);
+        }
+        //Dropped subjects
+        for (Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests sub : dropped_subjects) {
+            String subject_code = sub.subject_code;
+            String description = sub.description;
+            double lec_units = sub.lecture_units;
+            double lab_units = sub.lab_units;
+            double lec_amount = lec_units * lec_amount_per_unit;
+            double lec_amount2 = lec_amount;
+            lec_amount = lec_amount_per_unit;
+            double lab_amount = lab_units * lab_amount_per_unit;
+            double lab_amount2 = lab_amount;
+            lab_amount = lab_amount_per_unit;
+            String room = sub.room;
+            String day = DateType.mwf(sub.day);
+            String time = DateType.daytime(sub.day);
+            time = time.replaceAll("WFM", "MWF");
+            time = time.replaceAll("FM", "MF");
+            String instructor = sub.faculty_name;
+            double amount = lec_amount2 + lab_amount2;
+//            amount=amount*-1;
+//            tution_fee += amount;
+            String section = sub.section;
+            String group = "Dropped Subjects";
+            Srpt_enrollment_assessment.field_add_subjects f = new Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+
+            rpt_dropped_subjects.add(f);
+        }
+        rpt_added_subjects.addAll(rpt_dropped_subjects);
+        //main subjects
         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
             String subject_code = sub.subject_code;
             String description = sub.description;
@@ -1531,7 +1592,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         }
 
         String jrxml = "rpt_enrollment_assessment.jrxml";
-        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee);
+        Srpt_enrollment_assessment rpt = new Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
         rpt.fields.addAll(fields);
 
         JasperPrint jp1 = null;

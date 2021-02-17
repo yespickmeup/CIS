@@ -7,6 +7,7 @@ package cis.finance;
 
 import cis.academic.Academic_year_fees;
 import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
 import cis.users.MyUser;
 import cis.utils.DateType;
@@ -437,7 +438,13 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                 String student_course = enroll.course_code + " - " + enroll.course_description;
                 String student_year_level = enroll.year_level;
 
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status=1 and is_added=0 ");
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=0 ");
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
+                List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
+
+                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
+                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
+
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
@@ -470,6 +477,61 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                     }
                 }
 
+                //added subjects
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : added_subjects) {
+                    String subject_code = sub.subject_code;
+                    String description = sub.description;
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    double lec_amount = lec_units * lec_amount_per_unit;
+                    double lec_amount2 = lec_amount;
+                    lec_amount = lec_amount_per_unit;
+                    double lab_amount = lab_units * lab_amount_per_unit;
+                    double lab_amount2 = lab_amount;
+                    lab_amount = lab_amount_per_unit;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    String time = DateType.daytime(sub.day);
+                    time = time.replaceAll("WFM", "MWF");
+                    time = time.replaceAll("FM", "MF");
+                    String instructor = sub.faculty_name;
+                    double amount = lec_amount2 + lab_amount2;
+                    tution_fee += amount;
+                    String section = sub.section;
+                    String group = "Added Subjects";
+                    cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+
+                    rpt_added_subjects.add(f);
+                }
+//Dropped subjects
+                for (Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests sub : dropped_subjects) {
+                    String subject_code = sub.subject_code;
+                    String description = sub.description;
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    double lec_amount = lec_units * lec_amount_per_unit;
+                    double lec_amount2 = lec_amount;
+                    lec_amount = lec_amount_per_unit;
+                    double lab_amount = lab_units * lab_amount_per_unit;
+                    double lab_amount2 = lab_amount;
+                    lab_amount = lab_amount_per_unit;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    String time = DateType.daytime(sub.day);
+                    time = time.replaceAll("WFM", "MWF");
+                    time = time.replaceAll("FM", "MF");
+                    String instructor = sub.faculty_name;
+                    double amount = lec_amount2 + lab_amount2;
+//                    amount = amount * -1;
+//                    tution_fee += amount;
+                    String section = sub.section;
+                    String group = "Dropped Subjects";
+                    cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+
+                    rpt_dropped_subjects.add(f);
+                }
+                rpt_added_subjects.addAll(rpt_dropped_subjects);
+                //Main items
                 for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
                     String subject_code = sub.subject_code;
                     String description = sub.description;
@@ -489,7 +551,7 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
                     tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount,sub.section);
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
                     fields.add(f);
                 }
 
@@ -533,18 +595,18 @@ public class Dlg_finance_transaction_reports extends javax.swing.JDialog {
                 int payment_count = 3;
                 double tuition_fee = tuition_amount;
 
-                total_assessment = tution_fee  + other_fee+misc_fee;
+                total_assessment = tution_fee + other_fee + misc_fee;
                 payable = total_assessment - downpayment;
-                double sub_total=total_assessment;
+                double sub_total = total_assessment;
                 for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
                     double balance = ea.amount - ea.paid;
                     downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee,misc_fee,other_fee,sub_total,"");
+                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
                     rpt_summary.add(f2);
                 }
 
                 String jrxml = "rpt_enrollment_assessment.jrxml";
-                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee,misc_fee);
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
