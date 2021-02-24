@@ -50,7 +50,13 @@
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band height="9"/>
+			<band height="15">
+				<subreport>
+					<reportElement uuid="1694845b-d6b0-47a3-b82a-9528e876badf" x="-22" y="0" width="601" height="15"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{rpt_added_subjects}, false);]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rpt_enrollment_assessment_subjects_added.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="drop">

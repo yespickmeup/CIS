@@ -1421,8 +1421,8 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         String student_course = to.course_code + " - " + to.course_description;
         String student_year_level = to.year_level;
 
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=0 ");
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=1  ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2  ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 and is_added=1  ");
         List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + to.id + "' and status=1  ");
 
         List<Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
