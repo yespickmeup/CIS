@@ -393,6 +393,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_enrollment_offered_subject_sectionsMouseClicked"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbl_enrollment_offered_subject_sectionsKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -402,6 +402,11 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 tbl_enrollment_offered_subject_sectionsMouseClicked(evt);
             }
         });
+        tbl_enrollment_offered_subject_sections.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbl_enrollment_offered_subject_sectionsKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbl_enrollment_offered_subject_sections);
 
         jLabel1.setText("No. of rows:");
@@ -527,6 +532,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         ret_eos();
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void tbl_enrollment_offered_subject_sectionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_sectionsKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_enrollment_offered_subject_sectionsKeyPressed
 
     /**
      * @param args the command line arguments
