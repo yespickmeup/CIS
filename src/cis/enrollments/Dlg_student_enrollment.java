@@ -4120,7 +4120,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 String where = " where student_id='" + to.id + "' and academic_year_id='" + acad_year + "' and period like '" + tf_field3.getText() + "'  order by id desc limit 1 ";
 
                 List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
-                System.out.println(where);
+//                System.out.println(where);
                 if (!enrollments.isEmpty()) {
 
                     Enrollments.to_enrollments to2 = (Enrollments.to_enrollments) enrollments.get(0);

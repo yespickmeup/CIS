@@ -3631,6 +3631,42 @@ public class Dlg_finance extends javax.swing.JDialog {
 
     //<editor-fold defaultstate="collapsed" desc=" list of programs ">
     private void set_assessment2() {
+
+        String where = " where id<>0 ";
+        where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=0 ";
+        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+
+        String where2 = " where id<>0 ";
+        where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=1 ";
+
+        String where3 = " where id<>0 ";
+        where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=2 ";
+
+        List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+        List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+
+        List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
+        List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
+
+        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
         jTabbedPane3.setSelectedIndex(1);
         jProgressBar1.setString("Loading...Please wait...");
         jProgressBar1.setIndeterminate(true);
@@ -3638,8 +3674,6 @@ public class Dlg_finance extends javax.swing.JDialog {
 
             @Override
             public void run() {
-
-                List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
 
                 if (assessments.isEmpty()) {
                     jProgressBar1.setString("Finished...");
@@ -3670,23 +3704,12 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String student_course = enroll.course_code + " - " + enroll.course_description;
                 String student_year_level = enroll.year_level;
 
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
-                List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
                 List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
                 List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
                 //ret tuition amount
-                String where = " where id<>0 ";
-                where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=0 ";
-                List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
                 double tuition_amount = 0;
                 double lec_amount_per_unit = 0;
                 double lab_amount_per_unit = 0;
@@ -3791,24 +3814,6 @@ public class Dlg_finance extends javax.swing.JDialog {
 
                 List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
 
-                String where2 = " where id<>0 ";
-                where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=1 ";
-
-                String where3 = " where id<>0 ";
-                where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=2 ";
-
-                List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
-                List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
 //        System.out.println(where3);
                 List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
                 for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
@@ -3823,8 +3828,6 @@ public class Dlg_finance extends javax.swing.JDialog {
                     other_fee += fee.amount;
                 }
 
-                List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
-//                System.out.println("enrollment_id='" + enroll.id + "'");
                 List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
                 int payment_count = 3;

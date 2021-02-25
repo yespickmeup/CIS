@@ -505,7 +505,7 @@ public class Srpt_class_list {
                         + ",ifnull(final_grade_remarks,'')"
                         + " from enrollment_student_loaded_subjects"
                         + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
-
+                System.out.println("section.id: "+section.id);
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
                 while (rs2.next()) {
@@ -547,7 +547,7 @@ public class Srpt_class_list {
                         email_address = rs4.getString(3);
                       
                     }
-                      System.out.println("email_address: "+email_address);
+//                      System.out.println("email_address: "+email_address);
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
                                                                         section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address,id2,final_grade,grade_remarks);

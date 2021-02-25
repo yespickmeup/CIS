@@ -5349,7 +5349,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private void ret_added_subjects() {
         Field.Input st = (Field.Input) tf_field8;
 
-        String where = " where student_id = '" + st.getId() + "' and status=0 order by description asc ";
+        String where = " where student_id = '" + st.getId() + "' and status=0 and is_added=1 order by description asc ";
         List<Students_curriculum.curriculum> subjects = Students_curriculum.ret_added_subjects(where);
 //        System.out.println("subjects: " + subjects.size());
         loadData_added_subjects(subjects);

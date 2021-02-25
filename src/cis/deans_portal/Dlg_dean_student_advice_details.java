@@ -5846,6 +5846,39 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     //<editor-fold defaultstate="collapsed" desc=" list of programs ">
     private void set_assessment2() {
 
+        String where = " where id<>0 ";
+        where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=0 ";
+        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+
+        String where2 = " where id<>0 ";
+        where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=1 ";
+
+        String where3 = " where id<>0 ";
+        where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                + " and department_id='" + enroll.department_id + "' "
+                + " and level_id='" + enroll.level_id + "' "
+                + " and course_id='" + enroll.course_id + "' "
+                + " and period like '" + enroll.year_level + "' "
+                + " and group_id=2 ";
+
+        List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+        List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
+        List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
+        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+        List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
         jProgressBar2.setString("Loading...Please wait...");
         jProgressBar2.setIndeterminate(true);
         Thread t = new Thread(new Runnable() {
@@ -5853,7 +5886,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             @Override
             public void run() {
 //                System.out.println(" enroll.id : "+ enroll.id );
-                List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+
                 if (assessments.isEmpty()) {
                     jProgressBar2.setString("Finished...");
                     jProgressBar2.setIndeterminate(false);
@@ -5885,24 +5918,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String student_course = enroll.course_code + " - " + enroll.course_description;
                 String student_year_level = enroll.year_level;
 
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
-                List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
-
                 List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
                 List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
                 double no_of_units_lab = 0;
                 List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
                 //ret tuition amount
-                String where = " where id<>0 ";
-                where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=0 ";
-                List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
                 double tuition_amount = 0;
                 double lec_amount_per_unit = 0;
                 double lab_amount_per_unit = 0;
@@ -6005,24 +6026,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
                 List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
 
-                String where2 = " where id<>0 ";
-                where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=1 ";
-
-                String where3 = " where id<>0 ";
-                where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                        + " and department_id='" + enroll.department_id + "' "
-                        + " and level_id='" + enroll.level_id + "' "
-                        + " and course_id='" + enroll.course_id + "' "
-                        + " and period like '" + enroll.year_level + "' "
-                        + " and group_id=2 ";
-
-                List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
-                List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
 //        System.out.println(where3);
                 List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
                 for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
@@ -6037,7 +6040,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     other_fee += fee.amount;
                 }
 
-                List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
                 List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
                 int payment_count = 3;
@@ -6232,7 +6234,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
-
+    
     private void enroll() {
 
         int id = enroll.student_id;
@@ -6350,17 +6352,17 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
         String en_no = student.student_no;
 
-        if (student.student_no == null || student.student_no.isEmpty()) {
+        if (student.id == 0) {
             en_no = Students.add_data_enroll(student, enroll);
         } else {
             Students.add_data_enroll2(student, enroll);
         }
         jButton11.setEnabled(false);
-        try {
-            send_image_to_server(enroll.enrollment_no, en_no);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+//        try {
+//            send_image_to_server(enroll.enrollment_no, en_no);
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        }
 
         Window p = (Window) this;
         Dlg_student_enrollment_approved nd = Dlg_student_enrollment_approved.create(p, true);
