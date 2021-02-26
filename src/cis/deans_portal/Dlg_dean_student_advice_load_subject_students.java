@@ -648,13 +648,14 @@ public class Dlg_dean_student_advice_load_subject_students extends javax.swing.J
         public final String student_no;
         public final String name;
         public boolean selected;
-
-        public students(int id, int student_id, String student_no, String name, boolean selected) {
+        public final String enrollment_id;
+        public students(int id, int student_id, String student_no, String name, boolean selected,String enrollment_id) {
             this.id = id;
             this.student_id = student_id;
             this.student_no = student_no;
             this.name = name;
             this.selected = selected;
+            this.enrollment_id=enrollment_id;
         }
 
         public boolean isSelected() {
@@ -754,7 +755,7 @@ public class Dlg_dean_student_advice_load_subject_students extends javax.swing.J
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            students stud = new students(id, student_id, student_no, name, selected);
+            students stud = new students(id, student_id, student_no, name, selected,"");
             students.add(stud);
         }
         loadData_approved_students(students);
@@ -847,7 +848,7 @@ public class Dlg_dean_student_advice_load_subject_students extends javax.swing.J
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            students stud = new students(id, student_id, student_no, name, selected);
+            students stud = new students(id, student_id, student_no, name, selected,""+to.enrollment_id);
             students.add(stud);
         }
         loadData_pending_students(students);

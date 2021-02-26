@@ -1604,7 +1604,7 @@ public class Dlg_users extends javax.swing.JDialog {
 
     private void add_users() {
         String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Users - (Add)" + "' limit 1";
-        System.out.println(wheree);
+       
         List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
         if (privileges.isEmpty()) {
             Alert.set(0, "Privilege not added!");

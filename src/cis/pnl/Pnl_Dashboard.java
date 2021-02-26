@@ -7,7 +7,6 @@ package cis.pnl;
 import cis.academic.Dlg_academic_offerings;
 import cis.academic.Dlg_academic_years;
 import cis.accounts_receivables.Dlg_accounts_receivables;
-import cis.adjustments.Assessment_adjustments;
 import cis.adjustments.Student_ids;
 import cis.classrooms.Dlg_classrooms;
 import cis.colleges.Dlg_colleges;
@@ -20,6 +19,7 @@ import cis.enrollments.Dlg_student_enrollment;
 import cis.faculty_members.Dlg_faculty_profile;
 import cis.finance.Dlg_finance;
 import cis.finance.Dlg_students_balance_adjustments;
+import cis.registrar.Dlg_registrar_student_transfer_section;
 import cis.reports.Dlg_class_list;
 import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_faculty_subject_loads;
@@ -747,7 +747,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Faculty")) {
                     t_faculty();
                 }
-
+                if (data.stmt.equals("Transfer Section")) {
+                    t_transfer_section() ;
+                }
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
                 if (data.stmt.equals("Academic Years")) {
@@ -877,6 +879,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private void t_faculty() {
         Dlg_faculty_profile dtc = new Dlg_faculty_profile();
         MyFrame.set(dtc.getSurface(), jPanel1, "Faculty");
+    }
+
+    private void t_transfer_section() {
+        Dlg_registrar_student_transfer_section dtc = new Dlg_registrar_student_transfer_section();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Transfer Section");
     }
 
     private void m_academic_years() {

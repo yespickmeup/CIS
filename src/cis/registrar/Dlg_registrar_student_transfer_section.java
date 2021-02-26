@@ -528,10 +528,11 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
                         .addGap(1, 1, 1)
                         .addComponent(jCheckBox15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -621,6 +622,11 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
 
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable2);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -830,6 +836,10 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
         select_enrolled();
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+      select_pending();
+    }//GEN-LAST:event_jTable2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -878,8 +888,8 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
 
     private void myInit() {
         init_key();
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
 
@@ -1280,6 +1290,9 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
 
+        tbl_approved_students_ALM.clear();
+        tbl_pending_students_ALM.clear();
+
     }
 
     //<editor-fold defaultstate="collapsed" desc=" approved students "> 
@@ -1375,7 +1388,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected);
+            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected,""+to.enrollment_id);
             students.add(stud);
         }
         loadData_approved_students(students);
@@ -1448,7 +1461,11 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
                 case 1:
                     return " " + tt.student_id;
                 case 2:
-                    return " " + tt.student_no;
+                    if(tt.student_no==null){
+                        return " ";
+                    }else{
+                        return " " + tt.student_no;
+                    }
                 case 3:
                     return " " + tt.name;
 
@@ -1475,7 +1492,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected);
+            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected,""+to.enrollment_id);
             students.add(stud);
         }
         loadData_pending_students(students);
@@ -1519,6 +1536,9 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
                 public void ok(CloseDialog closeDialog, Dlg_registrar_student_transfer_section_student.OutputData data) {
                     closeDialog.ok();
 
+                    ret_eos();
+                    tbl_approved_students_ALM.clear();
+                    tbl_pending_students_ALM.clear();
                 }
             });
             nd.setLocationRelativeTo(this);
@@ -1532,8 +1552,33 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
             return;
         }
 
-        Dlg_dean_student_advice_load_subject_students.students to = (Dlg_dean_student_advice_load_subject_students.students) tbl_approved_students_ALM.get(row);
+        Dlg_dean_student_advice_load_subject_students.students to = (Dlg_dean_student_advice_load_subject_students.students) tbl_pending_students_ALM.get(row);
+        int col = jTable2.getSelectedColumn();
+        if (col == 4) {
+            int row2 = tbl_enrollment_offered_subject_sections.getSelectedRow();
+            if (row2 < 0) {
+                return;
+            }
+            Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row2);
+            String period = tf_field17.getText();
+            Window p = (Window) this;
+            Dlg_registrar_student_transfer_section_student nd = Dlg_registrar_student_transfer_section_student.create(p, true);
+            nd.setTitle("");
+            nd.do_pass2(to, section, acad, period);
+            nd.setCallback(new Dlg_registrar_student_transfer_section_student.Callback() {
 
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_registrar_student_transfer_section_student.OutputData data) {
+                    closeDialog.ok();
+
+                    ret_eos();
+                    tbl_approved_students_ALM.clear();
+                    tbl_pending_students_ALM.clear();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
     }
 
 }

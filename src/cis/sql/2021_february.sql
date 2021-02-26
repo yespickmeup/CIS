@@ -36,9 +36,10 @@ update enrollments ea set ea.student_id=(select s.id from students s where s.stu
 update enrollments e set e.student_id=(select ea.student_id from enrollment_assessments ea where e.enrollment_no=ea.enrollment_no limit 1),e.student_no=(select ea.student_no from enrollment_assessments ea where e.enrollment_no=ea.enrollment_no limit 1) where e.student_id=0 and e.student_no is null;
 
 
+
+
+
 update enrollment_student_loaded_subjects ea set ea.student_id=(select s.id from students s where s.student_no=ea.student_no limit 1) where ea.student_id=0 and ea.student_no is not null;
-
-
 
 
 select count(es.id) from enrollment_student_loaded_subjects es join students s on es.student_id=s.id where es.status=0 and s.date_enrolled is not null;
@@ -54,6 +55,17 @@ update enrollments set period='Second Semester'  where period like '' and depart
 select s.id,s.student_no,(select e.created_at from enrollments e where Year(created_at)='2021' and e.student_id=s.id limit 1) from students s  ;
 
 
+drop table if exists enrollment_student_loaded_subject_transfers;
+create table enrollment_student_loaded_subject_transfers(
+id int auto_increment primary key
+,from_esls_id int
+,to_esls_id int
+,created_at datetime
+,created_by int
+,updated_at datetime
+,updated_by int
+,status int
+);
 
-
+insert into user_default_privileges(account,privilege)values('Transactions','Transfer Section');
 
