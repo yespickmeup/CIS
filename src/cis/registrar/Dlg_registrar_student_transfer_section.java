@@ -14,6 +14,8 @@ import cis.deans_portal.Dlg_dean_student_advice_load_subject_students;
 import cis.departments.Departments;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.utils.Alert;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -837,7 +839,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-      select_pending();
+        select_pending();
     }//GEN-LAST:event_jTable2MouseClicked
 
     /**
@@ -1388,7 +1390,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected,""+to.enrollment_id);
+            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected, "" + to.enrollment_id);
             students.add(stud);
         }
         loadData_approved_students(students);
@@ -1405,7 +1407,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
         tbl_pending_students.setModel(tbl_pending_students_M);
         tbl_pending_students.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_pending_students.setRowHeight(25);
-        int[] tbl_widths_pending_students = {0, 0, 100, 100, 30};
+        int[] tbl_widths_pending_students = {0, 0, 100, 100, 30, 30};
         for (int i = 0, n = tbl_widths_pending_students.length; i < n; i++) {
             if (i == 3) {
                 continue;
@@ -1419,6 +1421,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
         tbl_pending_students.setRowHeight(25);
         tbl_pending_students.setFont(new java.awt.Font("Arial", 0, 12));
         tbl_pending_students.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
+        tbl_pending_students.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
     }
 
     public static void loadData_pending_students(List<Dlg_dean_student_advice_load_subject_students.students> acc) {
@@ -1429,7 +1432,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
     public static class Tblpending_studentsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Id", "Student Id", "Student No", "Name", ""
+            "Id", "Student Id", "Student No", "Name", "", ""
         };
 
         public Tblpending_studentsModel(ListModel listmodel) {
@@ -1461,16 +1464,18 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
                 case 1:
                     return " " + tt.student_id;
                 case 2:
-                    if(tt.student_no==null){
+                    if (tt.student_no == null) {
                         return " ";
-                    }else{
+                    } else {
                         return " " + tt.student_no;
                     }
                 case 3:
                     return " " + tt.name;
 
-                default:
+                case 4:
                     return "/cis/icons2/checked.png";
+                default:
+                    return "/cis/icons/remove11.png";
             }
         }
     }
@@ -1483,6 +1488,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
         Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
 
         String where = " where enrollment_offered_subject_section_id='" + section.id + "' and status=0 order by lname asc ";
+//        System.out.println(where);
         List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data(where);
         List<Dlg_dean_student_advice_load_subject_students.students> students = new ArrayList();
         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to : datas) {
@@ -1492,7 +1498,7 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
             String name = to.lname + ", " + to.fname + " " + to.mi;
             boolean selected = false;
 
-            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected,""+to.enrollment_id);
+            Dlg_dean_student_advice_load_subject_students.students stud = new Dlg_dean_student_advice_load_subject_students.students(id, student_id, student_no, name, selected, "" + to.enrollment_id);
             students.add(stud);
         }
         loadData_pending_students(students);
@@ -1572,6 +1578,28 @@ public class Dlg_registrar_student_transfer_section extends javax.swing.JDialog 
                     closeDialog.ok();
 
                     ret_eos();
+                    tbl_approved_students_ALM.clear();
+                    tbl_pending_students_ALM.clear();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+        if (col == 5) {
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+            nd.do_pass();
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_student_loaded_subjects.delete_data2(to.id);
+                    Alert.set(3, "");
+                    ret_eos();
+                    
+                    
                     tbl_approved_students_ALM.clear();
                     tbl_pending_students_ALM.clear();
                 }

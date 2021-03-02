@@ -3396,8 +3396,8 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         tf_field15.setText("");
         tf_field5.grabFocus();
         Field.Input tf = (Field.Input) tf_field130;
-        tf.setText("");
-        tf.setId("");
+        tf.setText(null);
+        tf.setId(null);
         tf_field129.setText("");
         jTabbedPane1.setSelectedIndex(0);
     }
@@ -3728,17 +3728,17 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         enroll.setEnrollment_no(en_no);
         enrollment = enroll;
 
-        String webcam_enable = System.getProperty("webcam_enable", "false");
-        if (!webcam_enable.equalsIgnoreCase("")) {
-            try {
-                send_image_to_server(en_no);
-//                ImageIcon imageIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png")).getImage().getScaledInstance(176, 144, Image.SCALE_DEFAULT));
-//                jLabel3.setIcon(imageIcon);
-                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png"))); // NOI18N
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
+//        String webcam_enable = System.getProperty("webcam_enable", "false");
+//        if (!webcam_enable.equalsIgnoreCase("")) {
+//            try {
+//                send_image_to_server(en_no);
+////                ImageIcon imageIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png")).getImage().getScaledInstance(176, 144, Image.SCALE_DEFAULT));
+////                jLabel3.setIcon(imageIcon);
+//                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/user.png"))); // NOI18N
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//        }
 
     }
 

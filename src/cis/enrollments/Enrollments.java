@@ -434,6 +434,7 @@ public class Enrollments {
                         + ",is_uploaded"
                         + ",period"
                         + ",student_id"
+ 
                         + ")values("
                         + ":enrollment_no"
                         + ",:is_transferee"
@@ -552,6 +553,7 @@ public class Enrollments {
                         + ",:is_uploaded"
                         + ",:period"
                         + ",:student_id"
+        
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -700,7 +702,7 @@ public class Enrollments {
                         + ",approved_by_id"
                         + ",approved_by"
                         + ",approved_date"
-                        + ",student_no"
+
                         + ",last_name"
                         + ",first_name"
                         + ",middle_name"
@@ -817,7 +819,7 @@ public class Enrollments {
                         + ",:approved_by_id"
                         + ",:approved_by"
                         + ",:approved_date"
-                        + ",:student_no"
+
                         + ",:last_name"
                         + ",:first_name"
                         + ",:middle_name"
@@ -936,7 +938,7 @@ public class Enrollments {
                         .setString("approved_by_id", to_enrollments.approved_by_id)
                         .setString("approved_by", to_enrollments.approved_by)
                         .setString("approved_date", to_enrollments.approved_date)
-                        .setString("student_no", to_enrollments.student_no)
+
                         .setString("last_name", to_enrollments.last_name)
                         .setString("first_name", to_enrollments.first_name)
                         .setString("middle_name", to_enrollments.middle_name)
@@ -1138,7 +1140,7 @@ public class Enrollments {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
-                    + ",period= :period"
+//                    + ",period= :period"
                     + " where id='" + to_enrollments.id + "' "
                     + " ";
 
@@ -1228,7 +1230,7 @@ public class Enrollments {
                     .setString("updated_by", to_enrollments.updated_by)
                     .setNumber("status", to_enrollments.status)
                     .setNumber("is_uploaded", to_enrollments.is_uploaded)
-                    .setString("period", to_enrollments.period)
+//                    .setString("period", to_enrollments.period)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);

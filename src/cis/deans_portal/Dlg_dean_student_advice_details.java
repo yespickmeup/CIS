@@ -3910,7 +3910,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
         enroll = student;
         if (enroll.advised_date != null) {
-            jButton5.setEnabled(false);
+//            jButton5.setEnabled(false);
         }
         if (enroll.approved_date != null) {
             jButton9.setEnabled(false);
@@ -4307,7 +4307,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                           @Override
                           public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              ok();
+                              ok1();
                           }
                       });
     }
@@ -6234,7 +6234,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
-    
+
     private void enroll() {
 
         int id = enroll.student_id;
@@ -6423,6 +6423,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (tab == 2) {
             tf_field4.setText(tf_field128.getText());
             ret_offered_subjects();
+        }
+    }
+
+    private void ok1() {
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData());
         }
     }
 }

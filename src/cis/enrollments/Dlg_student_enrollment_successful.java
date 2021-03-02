@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -408,7 +407,7 @@ public class Dlg_student_enrollment_successful extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ok();
+        ok1();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -449,22 +448,22 @@ public class Dlg_student_enrollment_successful extends javax.swing.JDialog {
         tf_field9.setText(DateType.convert_slash_datetime2(enrollment.date_of_birth));
         tf_field10.setText(enrollment.enrollment_no);
 
-        String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-        String orig_file = home + "\\images_cis\\enrollments\\"+ enrollment.enrollment_no +".jpg";
-//        String image_server = System.getProperty("image_server", "192.168.10.127");
-//        String source = "\\\\" + image_server + "\\cis\\cis_images\\images_cis\\" + enrollment.enrollment_no + ".jpg";
-//            System.out.println("source: " + source);
-        File sourceFile = new File(orig_file);
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(sourceFile);
-            Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),
-                                               Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(dimg);
-            jLabel3.setIcon(imageIcon);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+//        String home = System.getProperty("user.home", "C:\\Users\\Guinness");
+//        String orig_file = home + "\\images_cis\\enrollments\\"+ enrollment.enrollment_no +".jpg";
+////        String image_server = System.getProperty("image_server", "192.168.10.127");
+////        String source = "\\\\" + image_server + "\\cis\\cis_images\\images_cis\\" + enrollment.enrollment_no + ".jpg";
+////            System.out.println("source: " + source);
+//        File sourceFile = new File(orig_file);
+//        BufferedImage img = null;
+//        try {
+//            img = ImageIO.read(sourceFile);
+//            Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),
+//                                               Image.SCALE_SMOOTH);
+//            ImageIcon imageIcon = new ImageIcon(dimg);
+//            jLabel3.setIcon(imageIcon);
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        }
 
     }
 
@@ -480,13 +479,13 @@ public class Dlg_student_enrollment_successful extends javax.swing.JDialog {
                           @Override
                           public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
+                              ok1();
                           }
                       });
     }
     // </editor-fold>
 
-    private void ok() {
+    private void ok1() {
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData());
         }

@@ -78,7 +78,7 @@ public class Enrollment_student_loaded_subjects {
         public final String final_grade_remarks;
         public final String final_grade_created_at;
         public final String final_grade_created_by;
-        
+
         public to_enrollment_student_loaded_subjects(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname, int enrollment_offered_subject_section_id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, int lecture_units, int lab_units, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int is_added, double final_grade, String final_grade_remarks, String final_grade_created_at, String final_grade_created_by) {
             this.id = id;
             this.enrollment_id = enrollment_id;
@@ -292,8 +292,8 @@ public class Enrollment_student_loaded_subjects {
         }
     }
 
-    public static void add_data_all(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> to_enrollment_student_loaded_subjects1
-    ,int enrollment_id,String enrollment_no,int student_id,String student_no,String fname,String mi,String lname) {
+    public static void add_data_all(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> to_enrollment_student_loaded_subjects1,
+             int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -397,7 +397,7 @@ public class Enrollment_student_loaded_subjects {
                         .setNumber("enrollment_id", enrollment_id)
                         .setString("enrollment_no", enrollment_no)
                         .setNumber("student_id", student_id)
-                        .setString("student_no",student_no)
+                        .setString("student_no", student_no)
                         .setString("fname", fname)
                         .setString("mi", mi)
                         .setString("lname", lname)
@@ -596,6 +596,7 @@ public class Enrollment_student_loaded_subjects {
             MyConnection.close();
         }
     }
+
 
     public static void approve_subject(int id) {
         try {
