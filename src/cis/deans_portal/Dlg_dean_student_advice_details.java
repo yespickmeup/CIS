@@ -6353,7 +6353,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         String en_no = student.student_no;
 
         if (student.id == 0) {
-            String where = " select id from students where id='" + student.id + "' limit 1 ";
+            String where = " select id from students where id='" + student.id + "' order id desc limit 1 ";
             List<Students.to_students> list = Students.ret_data(where);
             if (list.isEmpty()) {
                 en_no = Students.add_data_enroll(student, enroll);
