@@ -3887,6 +3887,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     int academic_year_id = 0;
 
     public void do_pass(Enrollments.to_enrollments student, int is_dean) {
+        enroll = student;
         if (is_dean == 0) {
             jButton9.setText("Approve Advising");
             if (student.advised_date != null && student.approved_date != null && student.assessed_date != null) {
@@ -3908,7 +3909,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             jTabbedPane2.remove(3);
         }
 
-        enroll = student;
         if (enroll.advised_date != null) {
 //            jButton5.setEnabled(false);
         }
