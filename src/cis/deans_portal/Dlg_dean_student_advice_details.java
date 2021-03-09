@@ -6238,7 +6238,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private void enroll() {
 
         int id = enroll.student_id;
-
+        System.out.println("Student Id: "+id);
         int is_transferee = enroll.is_transferee;
         int academic_year_id2 = enroll.academic_year_id;
         String academic_year = enroll.academic_year;
