@@ -3913,7 +3913,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //            jButton5.setEnabled(false);
         }
         if (enroll.approved_date != null) {
-            jButton9.setEnabled(false);
+//            jButton9.setEnabled(false);
         }
         if (enroll.date_enrolled != null) {
             jButton11.setEnabled(false);

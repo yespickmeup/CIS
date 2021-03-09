@@ -505,7 +505,7 @@ public class Srpt_class_list {
                         + ",ifnull(final_grade_remarks,'')"
                         + " from enrollment_student_loaded_subjects"
                         + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
-                System.out.println("section.id: "+section.id);
+//                System.out.println("section.id: "+section.id);
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
                 while (rs2.next()) {

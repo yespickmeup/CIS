@@ -869,7 +869,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_edit_max_students.OutputData data) {
                     closeDialog.ok();
-                    Enrollment_offered_subject_sections.update_max_student(to.id, data.max_students);
+                    Enrollment_offered_subject_sections.update_max_student(to.id, data.max_students,data.lec_units,data.lab_units);
                     Alert.set(2, "");
                     ret_eos();
                 }

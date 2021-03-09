@@ -35,7 +35,9 @@ update enrollments set period='Second Semester' where period like '' and departm
 SELECT 
     concat(last_name,space(1),first_name,space(1),middle_name) as name,
     GROUP_CONCAT(id order by id asc separator ', ') as ids,
-    GROUP_CONCAT(student_no order by student_no asc separator ', ') as student_nos
+    GROUP_CONCAT(student_no order by student_no asc separator ', ') as student_nos,
+    course_code,
+    GROUP_CONCAT(created_at)
    
 FROM
     students
@@ -43,5 +45,26 @@ GROUP BY concat(last_name,space(1),first_name,space(1),middle_name)
 HAVING COUNT(concat(last_name,space(1),first_name,space(1),middle_name)) > 1;
 
 
+-- 5
+SELECT 
+    concat(last_name,space(1),first_name,space(1),middle_name) as name,
+    GROUP_CONCAT(id order by id asc separator ', ') as ids,
+    GROUP_CONCAT(student_no order by student_no asc separator ', ') as student_nos
+FROM
+    enrollments
+GROUP BY concat(last_name,space(1),first_name,space(1),middle_name),date_of_birth
+HAVING COUNT(student_no) > 1;
 
 
+
+-- 03/09/2021
+-- 1
+select student_id, student_no,fname,lname,enrollment_id from enrollment_student_loaded_subjects where student_no is not null and student_id is null ;
+
+update enrollment_student_loaded_subjects es set es.student_id=(select s.id from students s where es.student_no=s.student_no) where es.student_no is not null and es.student_id is null ;
+
+select e.student_no,e.last_name,e.first_name,s.id from enrollments e left join students s on s.id=e.student_id;
+
+select student_id, student_no,first_name,last_name,id,created_at from enrollments where student_no is not null and student_id is null ;
+
+update enrollments es set es.student_id=(select s.id from students s where es.student_no=s.student_no) where es.student_no is not null and es.student_id is null ;

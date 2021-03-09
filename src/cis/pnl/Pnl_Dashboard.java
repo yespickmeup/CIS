@@ -748,7 +748,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     t_faculty();
                 }
                 if (data.stmt.equals("Transfer Section")) {
-                    t_transfer_section() ;
+                    t_transfer_section();
                 }
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
@@ -1011,6 +1011,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
             @Override
             public void run() {
                 Student_ids.update();
+//                Student_ids.update2();
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);
                 jButton1.setEnabled(true);

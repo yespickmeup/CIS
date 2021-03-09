@@ -5,7 +5,7 @@
  */
 package cis.registrar;
 
-import cis.enrollments.Enrollment_offered_subject_sections;
+import cis.enrollments.Enrollment_offered_subjects;
 import cis.utils.Alert;
 import cis.utils.Dlg_confirm_action;
 import java.awt.Window;
@@ -23,7 +23,7 @@ import synsoftech.fields.Field;
  *
  * @author User
  */
-public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.swing.JDialog {
+public class Dlg_registrar_offer_subject_edit_units extends javax.swing.JDialog {
 
     /**
      * Creates new form Dlg_registrar_offer_subject_status_edit_max_students
@@ -46,12 +46,11 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 
     public static class OutputData {
 
-        public final double max_students;
         public final double lec_units;
         public final double lab_units;
 
-        public OutputData(double max_students, double lec_units, double lab_units) {
-            this.max_students = max_students;
+        public OutputData(double lec_units, double lab_units) {
+
             this.lec_units = lec_units;
             this.lab_units = lab_units;
         }
@@ -60,33 +59,33 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_registrar_offer_subject_status_edit_max_students(java.awt.Frame parent, boolean modal) {
+    private Dlg_registrar_offer_subject_edit_units(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_registrar_offer_subject_status_edit_max_students(java.awt.Dialog parent, boolean modal) {
+    private Dlg_registrar_offer_subject_edit_units(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_registrar_offer_subject_status_edit_max_students() {
+    public Dlg_registrar_offer_subject_edit_units() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_registrar_offer_subject_status_edit_max_students myRef;
+    private Dlg_registrar_offer_subject_edit_units myRef;
 
-    private void setThisRef(Dlg_registrar_offer_subject_status_edit_max_students myRef) {
+    private void setThisRef(Dlg_registrar_offer_subject_edit_units myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_registrar_offer_subject_status_edit_max_students> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_registrar_offer_subject_edit_units> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -94,7 +93,7 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         }
     }
 
-    public static Dlg_registrar_offer_subject_status_edit_max_students create(java.awt.Window parent, boolean modal) {
+    public static Dlg_registrar_offer_subject_edit_units create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -104,14 +103,14 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 
     }
 
-    public static Dlg_registrar_offer_subject_status_edit_max_students create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_registrar_offer_subject_edit_units create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_registrar_offer_subject_status_edit_max_students dialog = dialogContainer.get(parent);
+            Dlg_registrar_offer_subject_edit_units dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_registrar_offer_subject_status_edit_max_students((java.awt.Frame) parent, false);
+                dialog = new Dlg_registrar_offer_subject_edit_units((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -125,10 +124,10 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_registrar_offer_subject_status_edit_max_students dialog = dialogContainer.get(parent);
+            Dlg_registrar_offer_subject_edit_units dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_registrar_offer_subject_status_edit_max_students((java.awt.Dialog) parent, false);
+                dialog = new Dlg_registrar_offer_subject_edit_units((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -155,7 +154,7 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
             throw new RuntimeException(e);
         }
 
-        Dlg_registrar_offer_subject_status_edit_max_students dialog = Dlg_registrar_offer_subject_status_edit_max_students.create(new javax.swing.JFrame(), true);
+        Dlg_registrar_offer_subject_edit_units dialog = Dlg_registrar_offer_subject_edit_units.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -195,8 +194,6 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        tf_field14 = new Field.Input();
         jLabel24 = new javax.swing.JLabel();
         tf_field16 = new Field.Input();
         jButton6 = new Button.Default();
@@ -213,23 +210,8 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 
         jPanel2.setOpaque(false);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setText("Max Students:");
-
-        tf_field14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field14MouseClicked(evt);
-            }
-        });
-        tf_field14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field14ActionPerformed(evt);
-            }
-        });
-
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel24.setText("Section Name:");
+        jLabel24.setText("Subject:");
 
         tf_field16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field16.setFocusable(false);
@@ -262,7 +244,6 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         jLabel23.setText("Lecture Units:");
 
         tf_field15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field15.setFocusable(false);
         tf_field15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field15MouseClicked(evt);
@@ -278,7 +259,6 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         jLabel25.setText("Lab Units:");
 
         tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field17.setFocusable(false);
         tf_field17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field17MouseClicked(evt);
@@ -295,10 +275,7 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,7 +291,7 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,13 +309,9 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -372,14 +345,6 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field14MouseClicked
-
-    private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field16MouseClicked
         // TODO add your handling code here:
@@ -420,13 +385,11 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField tf_field14;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
     private javax.swing.JTextField tf_field17;
@@ -436,9 +399,9 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
         init_key();
     }
 
-    public void do_pass(Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to) {
-        tf_field14.setText("" + to.max_students);
-        tf_field16.setText(to.section);
+    public void do_pass(Enrollment_offered_subjects.to_enrollment_offered_subjects to) {
+
+        tf_field16.setText(to.subject_code);
         tf_field15.setText("" + to.lecture_units);
         tf_field17.setText("" + to.lab_units);
     }
@@ -480,12 +443,6 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
     }
 
     private void ok1() {
-        double max = FitIn.toDouble(tf_field14.getText());
-        if (max < 1) {
-            Alert.set(0, "Enter max students!");
-            jPanel2.grabFocus();
-            return;
-        }
 
         double lec_units = FitIn.toDouble(tf_field15.getText());
         double lab_units = FitIn.toDouble(tf_field17.getText());
@@ -495,7 +452,7 @@ public class Dlg_registrar_offer_subject_status_edit_max_students extends javax.
             return;
         }
         if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData(max,lec_units,lab_units));
+            callback.ok(new CloseDialog(this), new OutputData(lec_units, lab_units));
         }
     }
 }

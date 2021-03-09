@@ -663,6 +663,45 @@ public class Enrollment_offered_subjects {
         }
     }
 
+    public static void update_units(int id, double lecture_units, double lab_units) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement("");
+
+            String s = "update enrollment_offered_subjects set "
+                    + " lecture_units= :lecture_units"
+                    + ",lab_units= :lab_units"
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s = SqlStringUtil.parse(s)
+                    .setNumber("lecture_units", lecture_units)
+                    .setNumber("lab_units", lab_units)
+                    .ok();
+            stmt.addBatch(s);
+            String s0 = "update enrollment_offered_subject_sections set "
+                    + " lecture_units= :lecture_units"
+                    + ",lab_units= :lab_units"
+                    + " where enrollment_offered_subject_id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("lecture_units", lecture_units)
+                    .setNumber("lab_units", lab_units)
+                    .ok();
+
+            stmt.addBatch(s0);
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Enrollment_offered_subject_sections.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_enrollment_offered_subjects to_enrollment_offered_subjects) {
         try {
             Connection conn = MyConnection.connect();

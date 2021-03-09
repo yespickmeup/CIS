@@ -2969,6 +2969,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
+        
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
 
@@ -3907,6 +3908,23 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         Enrollment_offered_subjects.to_enrollment_offered_subjects to = (Enrollment_offered_subjects.to_enrollment_offered_subjects) tbl_enrollment_offered_subjects_ALM.get(row);
 
         int col = tbl_enrollment_offered_subjects.getSelectedColumn();
+        if (col == 2) {
+            Window p = (Window) this;
+            Dlg_registrar_offer_subject_edit_units nd = Dlg_registrar_offer_subject_edit_units.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_registrar_offer_subject_edit_units.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_edit_units.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_offered_subjects.update_units(to.id, data.lec_units, data.lab_units);
+                    Alert.set(2, "");
+                    ret_opened_subjects();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
         if (col == 7) {
             Window p = (Window) this;
             Dlg_registrar_offer_subject_status nd = Dlg_registrar_offer_subject_status.create(p, true);
@@ -4808,7 +4826,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 tf_field9.setText(to.year_level);
 
                 List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(" where student_id='" + to.id + "' order by id desc limit 1");
-                System.out.println("enrollments: "+enrollments.size());
+                System.out.println("enrollments: " + enrollments.size());
                 if (enrollments.isEmpty()) {
                     enroll = null;
                 } else {
@@ -5071,8 +5089,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
                 nd.setTitle("");
                 Academic_offering_subjects.to_academic_offering_subjects aos = null;
-            
-                
+
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
                     nd.do_pass(aos, aos.academic_year_id, enroll);

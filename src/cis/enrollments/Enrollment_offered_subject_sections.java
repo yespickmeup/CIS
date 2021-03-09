@@ -42,7 +42,7 @@ public class Enrollment_offered_subject_sections {
         public final String course_code;
         public final String course_description;
         public final String term;
-        public  String year_level;
+        public String year_level;
         public final int subject_id;
         public final String subject_code;
         public final String description;
@@ -78,7 +78,6 @@ public class Enrollment_offered_subject_sections {
             this.year_level = year_level;
         }
 
-        
         public boolean isSelected() {
             return selected;
         }
@@ -379,16 +378,20 @@ public class Enrollment_offered_subject_sections {
         }
     }
 
-    public static void update_max_student(int id, double max_students) {
+    public static void update_max_student(int id, double max_students, double lecture_units, double lab_units) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update enrollment_offered_subject_sections set "
                     + " max_students= :max_students "
+                    //                    + ",lecture_units= :lecture_units"
+                    //                    + ",lab_units= :lab_units"
                     + " where id='" + id + "' "
                     + " ";
 
             s0 = SqlStringUtil.parse(s0)
                     .setNumber("max_students", max_students)
+                    //                    .setNumber("lecture_units", lecture_units)
+                    //                    .setNumber("lab_units", lab_units)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
