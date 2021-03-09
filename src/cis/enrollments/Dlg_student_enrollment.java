@@ -3187,7 +3187,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             year.setText(to.years);
             year.setId("" + to.id);
             acad_year = to.id;
-           
 
         }
 
@@ -3547,8 +3546,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         int is_transferee = 0;
         if (jCheckBox8.isSelected()) {
             is_transferee = 1;
-        }
-        if (jCheckBox13.isSelected()) {
+        } else if (jCheckBox13.isSelected()) {
             is_transferee = 2;
         }
         Field.Input ay = (Field.Input) tf_field2;
@@ -3739,7 +3737,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 //                System.out.println(e);
 //            }
 //        }
-
     }
 
     private void send_image_to_server(String enrollment_no) throws IOException {
