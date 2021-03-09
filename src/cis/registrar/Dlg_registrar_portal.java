@@ -516,7 +516,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
 
         jCheckBox23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox23.setSelected(true);
         jCheckBox23.setText("All");
         jCheckBox23.setFocusable(false);
         jCheckBox23.addActionListener(new java.awt.event.ActionListener() {
@@ -2969,7 +2968,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-        
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
 
@@ -4596,6 +4594,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
 
         Enrollments.to_enrollments enroll1 = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
+        System.out.println("enroll1: " + enroll.student_id);
         int col = tbl_enrollments.getSelectedColumn();
         if (col == 10) {
             Window p = (Window) this;
