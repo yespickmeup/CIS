@@ -4594,7 +4594,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
 
         Enrollments.to_enrollments enroll1 = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
-        System.out.println("enroll1: " + enroll1.student_id);
+//        System.out.println("enroll1: " + enroll1.student_id);
         int col = tbl_enrollments.getSelectedColumn();
         if (col == 10) {
             Window p = (Window) this;

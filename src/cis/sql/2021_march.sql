@@ -61,10 +61,10 @@ HAVING COUNT(student_no) > 1;
 -- 1
 select student_id, student_no,fname,lname,enrollment_id from enrollment_student_loaded_subjects where student_no is not null and student_id is null ;
 
-update enrollment_student_loaded_subjects es set es.student_id=(select s.id from students s where es.student_no=s.student_no) where es.student_no is not null and es.student_id is null ;
-
 select e.student_no,e.last_name,e.first_name,s.id from enrollments e left join students s on s.id=e.student_id;
 
 select student_id, student_no,first_name,last_name,id,created_at from enrollments where student_no is not null and student_id is null ;
 
 update enrollments es set es.student_id=(select s.id from students s where es.student_no=s.student_no) where es.student_no is not null and es.student_id is null ;
+
+update enrollment_student_loaded_subjects es set es.student_id=(select s.id from students s where es.student_no=s.student_no) where es.student_no is not null and es.student_id is null ;

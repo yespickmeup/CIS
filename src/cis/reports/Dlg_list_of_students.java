@@ -973,6 +973,13 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
             }
         }
 
+        list_year.add("");
+        list_year.add("First Year");
+        list_year.add("Second Year");
+        list_year.add("Third Year");
+        list_year.add("Fourth Year");
+        list_year.add("Fifth Year");
+        
         init_tbl_enrollments(tbl_enrollments);
         ret_data();
     }
@@ -1444,7 +1451,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         if (!jCheckBox15.isSelected()) {
             where = where + " and year_level like '" + tf_field18.getText() + "' ";
         }
-
+        
         if (!jCheckBox21.isSelected()) {
             String period = tf_field17.getText();
             where = where + " and period like '" + period + "' ";
