@@ -33,6 +33,7 @@ update enrollments set period='Second Semester' where period like '' and departm
 
 -- 4
 SELECT 
+    group_concat(id),
     concat(last_name,space(1),first_name,space(1),middle_name) as name,
     GROUP_CONCAT(id order by id asc separator ', ') as ids,
     GROUP_CONCAT(student_no order by student_no asc separator ', ') as student_nos,

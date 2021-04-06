@@ -1406,7 +1406,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
 
     private JasperPrint setJasperPrint(to_enrollments to) {
         String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
-        String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+        String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental");
         String date = synsoftech.util.DateType.slash.format(new Date());
         String contact_no = System.getProperty("contact_no", "(035) 225 4831");
 

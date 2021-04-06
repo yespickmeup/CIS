@@ -610,7 +610,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         jTextArea2.setText(to.prerequisite_subject_ids);
         ret_eos();
 
-        String where = " where enrollment_id='" + enroll.id + "' ";
+        String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
 
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
 
@@ -812,7 +812,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
         boolean exist = false;
         for (to_enrollment_student_loaded_subjects to2 : loaded) {
-            if (to2.subject_id == to.subject_id) {
+            if (to2.subject_id == to.subject_id  ) {
 
                 exist = true;
                 break;

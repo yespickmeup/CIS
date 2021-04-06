@@ -434,7 +434,6 @@ public class Enrollments {
                         + ",is_uploaded"
                         + ",period"
                         + ",student_id"
- 
                         + ")values("
                         + ":enrollment_no"
                         + ",:is_transferee"
@@ -553,7 +552,6 @@ public class Enrollments {
                         + ",:is_uploaded"
                         + ",:period"
                         + ",:student_id"
-        
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -702,7 +700,6 @@ public class Enrollments {
                         + ",approved_by_id"
                         + ",approved_by"
                         + ",approved_date"
-
                         + ",last_name"
                         + ",first_name"
                         + ",middle_name"
@@ -819,7 +816,6 @@ public class Enrollments {
                         + ",:approved_by_id"
                         + ",:approved_by"
                         + ",:approved_date"
-
                         + ",:last_name"
                         + ",:first_name"
                         + ",:middle_name"
@@ -938,7 +934,6 @@ public class Enrollments {
                         .setString("approved_by_id", to_enrollments.approved_by_id)
                         .setString("approved_by", to_enrollments.approved_by)
                         .setString("approved_date", to_enrollments.approved_date)
-
                         .setString("last_name", to_enrollments.last_name)
                         .setString("first_name", to_enrollments.first_name)
                         .setString("middle_name", to_enrollments.middle_name)
@@ -1140,7 +1135,7 @@ public class Enrollments {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
-//                    + ",period= :period"
+                    //                    + ",period= :period"
                     + " where id='" + to_enrollments.id + "' "
                     + " ";
 
@@ -1230,7 +1225,7 @@ public class Enrollments {
                     .setString("updated_by", to_enrollments.updated_by)
                     .setNumber("status", to_enrollments.status)
                     .setNumber("is_uploaded", to_enrollments.is_uploaded)
-//                    .setString("period", to_enrollments.period)
+                    //                    .setString("period", to_enrollments.period)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -1302,7 +1297,8 @@ public class Enrollments {
     }
 
     public static void update_enroll_course(int id, int course_id, String course_code, String course_description, int level_id, String level, int college_id,
-            String college, int department_id, String department, String year_level, String term, String period) {
+            String college, int department_id, String department, String year_level, String term, String period,
+            int academic_year_id, String academic_year) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update enrollments set "
@@ -1338,6 +1334,80 @@ public class Enrollments {
 //            System.out.println(s0);
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
+            Lg.s(Enrollments.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void update_shift_course(int id, int course_id, String course_code, String course_description, int level_id, String level, int college_id,
+            String college, int department_id, String department, String year_level, String term, String period,
+            int academic_year_id, String academic_year, int student_id) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "update enrollments set "
+                    + " course_id= :course_id "
+                    + ",course_code= :course_code "
+                    + ",course_description= :course_description "
+                    + ",level_id= :level_id "
+                    + ",level= :level "
+                    + ",college_id= :college_id "
+                    + ",college= :college "
+                    + ",department_id= :department_id "
+                    + ",department= :department "
+                    + ",year_level= :year_level "
+                    + ",term= :term"
+                    + ",period= :period"
+                    + ",academic_year_id= :academic_year_id"
+                    + ",academic_year= :academic_year"
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("course_id", course_id)
+                    .setString("course_code", course_code)
+                    .setString("course_description", course_description)
+                    .setNumber("level_id", level_id)
+                    .setString("level", level)
+                    .setNumber("college_id", college_id)
+                    .setString("college", college)
+                    .setNumber("department_id", department_id)
+                    .setString("department", department)
+                    .setString("year_level", year_level)
+                    .setString("term", term)
+                    .setString("period", period)
+                    .setNumber("academic_year_id", academic_year_id)
+                    .setString("academic_year", academic_year)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            if (student_id != 0) {
+                String s2 = "update students set "
+                        + " course_id= :course_id "
+                        + ",course_code= :course_code "
+                        + ",course_description= :course_description "
+                        + ",academic_year_id= :academic_year_id"
+                        + ",academic_year= :academic_year"
+                        + " where id='" + student_id + "' "
+                        + " ";
+
+                s2 = SqlStringUtil.parse(s2)
+                        .setNumber("course_id", course_id)
+                        .setString("course_code", course_code)
+                        .setString("course_description", course_description)
+                        .setNumber("academic_year_id", academic_year_id)
+                        .setString("academic_year", academic_year)
+                        .ok();
+                stmt.addBatch(s2);
+            }
+
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Enrollments.class, "Successfully Updated");
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -561,7 +561,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
 
         jCheckBox31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox31.setSelected(true);
         jCheckBox31.setText("All");
         jCheckBox31.setFocusable(false);
         jCheckBox31.addActionListener(new java.awt.event.ActionListener() {
@@ -2957,6 +2956,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
+
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
+        
         init_key();
         jPanel5.setVisible(false);
         tf_field3.setVisible(false);
@@ -2966,8 +2969,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jCheckBox14.setVisible(false);
         tf_field16.setVisible(false);
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
         year_levels = Combo.year_levels();
 
@@ -5588,8 +5589,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
         List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
         if (!periods1.isEmpty()) {
-            Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
-            String per = acad.period;
+            Academic_year_periods.to_academic_year_periods acad1 = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+            String per = acad1.period;
             periods = Combo.periods(per);
 //            System.out.println("peiord: " + periods.size());
         }
