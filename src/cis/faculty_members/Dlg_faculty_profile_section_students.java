@@ -463,6 +463,8 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
+
+        
         init_key();
 
         init_tbl_miscellaneous_fees(jTable1);
@@ -587,7 +589,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
                 case 6:
                     return " " + FitIn.fmt_woc_0(tt.getFinal_grade());
                 case 7:
-                    return " "+tt.getGrade_remarks();
+                    return " " + tt.getGrade_remarks();
                 default:
                     return "/cis/icons/cog.png";
             }
