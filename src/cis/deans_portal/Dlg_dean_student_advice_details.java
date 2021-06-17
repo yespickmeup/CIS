@@ -5379,7 +5379,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (!jCheckBox8.isSelected()) {
             where = where + " and term like '" + tf_field129.getText() + "' ";
         }
-        where = where + " and academic_offering_id='" + academic_offering_id + "' order by description asc  ";
+        where = where + " and academic_offering_id='" + academic_offering_id + "' order by subject_code,description asc  ";
 //        System.out.println("where: " + where);;
         List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
         loadData_academic_offering_subjects(subjects);

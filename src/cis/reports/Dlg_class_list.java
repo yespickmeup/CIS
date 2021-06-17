@@ -44,6 +44,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
@@ -334,7 +335,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         });
 
         tf_field15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field15.setEnabled(false);
         tf_field15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field15MouseClicked(evt);
@@ -349,7 +349,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox11.setSelected(true);
         jCheckBox11.setText("All");
-        jCheckBox11.setEnabled(false);
         jCheckBox11.setFocusable(false);
         jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,16 +358,13 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Level/College:");
-        jLabel24.setEnabled(false);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Course:");
-        jLabel25.setEnabled(false);
 
         jCheckBox12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox12.setSelected(true);
         jCheckBox12.setText("All");
-        jCheckBox12.setEnabled(false);
         jCheckBox12.setFocusable(false);
         jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +373,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         });
 
         tf_field16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field16.setEnabled(false);
         tf_field16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tf_field16MouseClicked(evt);
@@ -407,11 +402,9 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Year Level:");
-        jLabel27.setEnabled(false);
 
         tf_field18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field18.setText("First Year");
-        tf_field18.setEnabled(false);
         tf_field18.setFocusable(false);
         tf_field18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -444,7 +437,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jCheckBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox15.setSelected(true);
         jCheckBox15.setText("All");
-        jCheckBox15.setEnabled(false);
         jCheckBox15.setFocusable(false);
         jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -794,8 +786,8 @@ public class Dlg_class_list extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void myInit() {
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
 
@@ -824,7 +816,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 tf.setId("" + acad_schedule.id);
             }
         }
-
+        set_periods();
         init_tbl_enrollments(tbl_enrollments);
         ret_data();
     }
@@ -1270,23 +1262,36 @@ public class Dlg_class_list extends javax.swing.JDialog {
     private void ret_data() {
         Field.Input year = (Field.Input) tf_field13;
 
-        String where = " where academic_year_id='" + year.getId() + "' and term like '" + tf_field17.getText() + "' and subject_code like '%" + tf_field5.getText() + "%' "
+        String where = " where eoss.academic_year_id='" + year.getId() + "' and eoss.term like '" + tf_field17.getText() + "' and eoss.subject_code like '%" + tf_field5.getText() + "%' "
                 + "  ";
         if (!jCheckBox10.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field14;
-            where = where + " and department_id = '" + dep.getId() + "' ";
+            where = where + " and eoss.department_id = '" + dep.getId() + "' ";
         }
-        where = where + " or  academic_year_id='" + year.getId() + "' and term like '" + tf_field17.getText() + "' and description like '%" + tf_field5.getText() + "%' ";
+//        if (!jCheckBox11.isSelected()) {
+//            Field.Combo coll = (Field.Combo) tf_field15;
+//            where = where + " and eoss.college_id ='" + coll.getId() + "' ";
+//
+//        }
+        where = where + " or  eoss.academic_year_id='" + year.getId() + "' and eoss.term like '" + tf_field17.getText() + "' and eoss.description like '%" + tf_field5.getText() + "%' ";
         if (!jCheckBox10.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field14;
-            where = where + " and department_id = '" + dep.getId() + "' ";
+            where = where + " and eoss.department_id = '" + dep.getId() + "' ";
         }
         if (!jCheckBox16.isSelected()) {
-            where = where + " and term like '" + tf_field17.getText() + "' ";
+            where = where + " and eoss.term like '" + tf_field17.getText() + "' ";
         }
-        where = where + " order by description,section asc ";
+
+        if (!jCheckBox11.isSelected()) {
+            Field.Combo coll = (Field.Combo) tf_field15;
+            where = where + " and eoss.college_id ='" + coll.getId() + "' ";
+
+        }
+
+        where = where + " order by eoss.description,eoss.section asc ";
 
         List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data(where);
+//        System.out.println("size: "+datas.size());
         loadData_enrollments(datas);
         jLabel2.setText("" + datas.size());
     }
@@ -1346,7 +1351,17 @@ public class Dlg_class_list extends javax.swing.JDialog {
                         selected.add(to);
                     }
                 }
-                List<Srpt_class_list.field> fields = Srpt_class_list.ret_data(selected);
+                int college_id = 0;
+                if (!jCheckBox11.isSelected()) {
+                    Field.Combo col = (Field.Combo) tf_field15;
+                    college_id = FitIn.toInt(col.getId());
+                }
+                int course_id = 0;
+                if (!jCheckBox12.isSelected()) {
+                    Field.Combo course = (Field.Combo) tf_field16;
+                    course_id = FitIn.toInt(course.getId());
+                }
+                List<Srpt_class_list.field> fields = Srpt_class_list.ret_data2(selected, college_id, year_level, course_id);
                 String jrxml = "rpt_class_list.jrxml";
                 Srpt_class_list rpt = new Srpt_class_list(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room);
                 rpt.fields.addAll(fields);
@@ -1472,10 +1487,14 @@ public class Dlg_class_list extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
+                Field.Input year3 = (Field.Input) tf_field13;
+
                 Colleges.to_colleges to = colleges2.get(data.selected_row);
                 Field.Combo co = (Field.Combo) tf_field15;
                 co.setText("" + to.college_name);
                 co.setId("" + to.id);
+
+                ret_offer();
 
                 ret_data();
             }
@@ -1483,13 +1502,27 @@ public class Dlg_class_list extends javax.swing.JDialog {
         });
     }
 
-    private void init_courses() {
-        Field.Input year3 = (Field.Input) tf_field13;
+    List<Academic_offerings.to_academic_offerings> offer = new ArrayList();
 
+    private void ret_offer() {
+        Field.Input year3 = (Field.Input) tf_field13;
+        Field.Combo coll = (Field.Combo) tf_field15;
         String where = " where course_code like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
                 + " or course_description like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
                 + " order by course_description asc ";
-        List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
+        if (!jCheckBox11.isSelected()) {
+
+            where = " where course_code like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 and college_id='" + coll.getId() + "' "
+                    + " or course_description like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1  and college_id='" + coll.getId() + "' "
+                    + " order by course_description asc ";
+        }
+
+        offer = Academic_offerings.ret_data(where);
+    }
+
+    private void init_courses() {
+
+        ret_offer();
         Object[][] obj = new Object[offer.size()][2];
         int i = 0;
         for (Academic_offerings.to_academic_offerings to : offer) {
@@ -1519,9 +1552,9 @@ public class Dlg_class_list extends javax.swing.JDialog {
     }
 
     private void set_periods() {
-        list_year.clear();
+
         String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
-        for (int i = 0; i < no_of_years; i++) {
+        for (int i = 0; i < years.length; i++) {
             list_year.add(years[i]);
         }
         tf_field18.setText("First Year");
