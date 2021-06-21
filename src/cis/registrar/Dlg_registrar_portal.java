@@ -20,6 +20,7 @@ import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subject
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
+import cis.reports.Dlg_transcript_of_records;
 import cis.students.Students;
 import cis.students.Students_curriculum;
 import cis.subjects.Subject_groupings;
@@ -35,6 +36,7 @@ import cis.utils.Dlg_confirm_delete2;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -55,6 +57,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -405,8 +408,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jButton4 = new Button.Success();
         jPanel13 = new javax.swing.JPanel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
-        jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -414,6 +417,11 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2315,21 +2323,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         jTabbedPane5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1049, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
-        );
-
-        jTabbedPane5.addTab("Certification of Grades", jPanel15);
-
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
@@ -2344,6 +2337,21 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         );
 
         jTabbedPane5.addTab("Transcript of Records", jPanel16);
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1049, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 633, Short.MAX_VALUE)
+        );
+
+        jTabbedPane5.addTab("Certification of Grades", jPanel15);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -2780,6 +2788,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         close_subjects();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        select_documents();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2959,7 +2971,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         System.setProperty("pool_db", "db_cis_cosca");
         System.setProperty("pool_password", "password");
-        
+
         init_key();
         jPanel5.setVisible(false);
         tf_field3.setVisible(false);
@@ -5805,4 +5817,24 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         });
     }
 
+    int transcript_loaded = 0;
+
+    private void select_documents() {
+        int selected = jTabbedPane1.getSelectedIndex();
+        if (selected == 3) {
+            if (transcript_loaded == 0) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        jPanel16.setLayout(new BorderLayout());
+                        Dlg_transcript_of_records dlg = new Dlg_transcript_of_records();
+                        jPanel16.add(dlg.getSurface());
+                        jTabbedPane1.updateUI();
+                        transcript_loaded = 1;
+                    }
+                });
+
+            }
+        }
+    }
 }

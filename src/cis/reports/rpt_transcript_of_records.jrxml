@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74def21a-091e-477e-91ec-8b8a053803c2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="221"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="school_name" class="java.lang.String"/>
 	<parameter name="school_address" class="java.lang.String"/>
 	<parameter name="lname" class="java.lang.String"/>
@@ -122,7 +122,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="299" splitType="Stretch">
+		<band height="321" splitType="Stretch">
 			<textField>
 				<reportElement uuid="77e97820-a55b-48c6-b16e-afb96edaab00" x="108" y="32" width="323" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -145,7 +145,7 @@
 				<text><![CDATA[OFFICIAL TRANSCRIPT OF RECORDS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="109" width="40" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="109" width="61" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -153,29 +153,29 @@
 				<text><![CDATA[NAME:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="40" y="109" width="105" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="61" y="109" width="105" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{lname}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="40" y="129" width="105" height="15"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="61" y="129" width="105" height="15"/>
+				<textElement verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[LAST]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="145" y="109" width="105" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="166" y="109" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fname}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="145" y="129" width="105" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="166" y="129" width="120" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -183,7 +183,7 @@
 				<text><![CDATA[FIRST]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="250" y="129" width="71" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="286" y="129" width="111" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -191,30 +191,30 @@
 				<text><![CDATA[MIDDLE]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="250" y="109" width="71" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="286" y="109" width="111" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mname}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="321" y="109" width="53" height="20"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="144" width="61" height="31"/>
+				<textElement verticalAlignment="Top">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[COURSE:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="374" y="113" width="198" height="31"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="61" y="144" width="511" height="31"/>
 				<textElement verticalAlignment="Top">
-					<font size="10" isBold="true"/>
+					<font size="11" isBold="true"/>
 					<paragraph leftIndent="2" rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{course}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="144" width="61" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="179" width="61" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -222,14 +222,14 @@
 				<text><![CDATA[ADDRESS:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="61" y="144" width="320" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="61" y="179" width="320" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="144" width="89" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="179" width="89" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -237,14 +237,14 @@
 				<text><![CDATA[DATE OF BIRTH:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="144" width="102" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="179" width="102" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{bday}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="167" width="145" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="202" width="145" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -252,14 +252,14 @@
 				<text><![CDATA[SCHOOL LAST ATTENDED:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="145" y="167" width="229" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="145" y="202" width="236" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{school_last_attended}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="167" width="53" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="202" width="53" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -267,14 +267,14 @@
 				<text><![CDATA[YEAR:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="434" y="167" width="102" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="434" y="202" width="102" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{school_last_attended_date}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="187" width="145" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="222" width="145" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -282,14 +282,14 @@
 				<text><![CDATA[ENTRANCE CREDENTIAL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="145" y="187" width="229" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="145" y="222" width="236" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{entrance_credential}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="187" width="118" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="381" y="222" width="118" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -297,14 +297,14 @@
 				<text><![CDATA[DATE OF ADMISSION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="499" y="187" width="73" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="499" y="222" width="73" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{date_of_admission}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="224" width="235" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="259" width="235" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -312,7 +312,7 @@
 				<text><![CDATA[RECORDS OF PRELIMINARY EDUCATION:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="40" y="244" width="133" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="40" y="279" width="133" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -320,7 +320,7 @@
 				<text><![CDATA[ELEMENTARY SCHOOL:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="40" y="264" width="85" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="40" y="299" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -328,14 +328,14 @@
 				<text><![CDATA[HIGH SCHOOL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="173" y="244" width="244" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="173" y="279" width="244" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{elementary_school}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="417" y="244" width="53" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="417" y="279" width="53" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -343,7 +343,7 @@
 				<text><![CDATA[YEAR:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="417" y="264" width="53" height="20"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="417" y="299" width="53" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 					<paragraph leftIndent="2"/>
@@ -351,21 +351,21 @@
 				<text><![CDATA[YEAR:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="125" y="264" width="292" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="125" y="299" width="292" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{high_school}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="264" width="102" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="299" width="102" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{high_school_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="244" width="102" height="20"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="470" y="279" width="102" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
