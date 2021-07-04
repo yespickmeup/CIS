@@ -295,6 +295,29 @@ public class Academic_offerings {
         }
     }
 
+    public static void approve_pending(to_academic_offerings to_academic_offerings) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "update  academic_offerings  set status=1"
+                    + " where id='" + to_academic_offerings.id + "' and status=0 "
+                    + " ";
+
+            String s2 = "update academic_offering_subjects  set status=1"
+                    + " where academic_offering_id='" + to_academic_offerings.id + "' and status=0 "
+                    + " ";
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+            stmt.executeBatch();
+            conn.commit();
+            Lg.s(Academic_offerings.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_offering(to_academic_offerings to_academic_offerings) {
         try {
             Connection conn = MyConnection.connect();

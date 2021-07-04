@@ -148,8 +148,10 @@ public class Enrollments {
         public final int student_id;
         public boolean selected;
         public final String period;
+        public final String fb_account;
+        public final String blood_type;
 
-        public to_enrollments(int id, String enrollment_no, int is_transferee, int academic_year_id, String academic_year, int curriculum_id, int course_id, String course_code, String course_description, String term, String encoded_by_id, String encoded_by, String encoded_date, String assessed_by_id, String assessed_by, String assessed_date, String advised_by_id, String advised_by, String advised_date, String approved_by_id, String approved_by, String approved_date, String student_no, String last_name, String first_name, String middle_name, String nick_name, String current_address, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int is_indigenous, String indigenous_name, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String grade_school_awards, String high_school_name, String high_school_region, String high_school_school_year, String high_school_awards, String college_school_name, String college_school_region, String college_school_school_year, String college_awards, String junior_high_name, String junior_high_region, String junior_high_year, String junior_high_awards, String tesda_name, String tesda_region, String tesda_year, String tesda_awards, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, String date_enrolled, int student_id, boolean selected, String period) {
+        public to_enrollments(int id, String enrollment_no, int is_transferee, int academic_year_id, String academic_year, int curriculum_id, int course_id, String course_code, String course_description, String term, String encoded_by_id, String encoded_by, String encoded_date, String assessed_by_id, String assessed_by, String assessed_date, String advised_by_id, String advised_by, String advised_date, String approved_by_id, String approved_by, String approved_date, String student_no, String last_name, String first_name, String middle_name, String nick_name, String current_address, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int is_indigenous, String indigenous_name, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String grade_school_awards, String high_school_name, String high_school_region, String high_school_school_year, String high_school_awards, String college_school_name, String college_school_region, String college_school_school_year, String college_awards, String junior_high_name, String junior_high_region, String junior_high_year, String junior_high_awards, String tesda_name, String tesda_region, String tesda_year, String tesda_awards, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, String date_enrolled, int student_id, boolean selected, String period, String fb_account, String blood_type) {
             this.id = id;
             this.enrollment_no = enrollment_no;
             this.is_transferee = is_transferee;
@@ -270,6 +272,8 @@ public class Enrollments {
             this.student_id = student_id;
             this.selected = selected;
             this.period = period;
+            this.fb_account = fb_account;
+            this.blood_type = blood_type;
         }
 
         public String getEnrollment_no() {
@@ -434,6 +438,8 @@ public class Enrollments {
                         + ",is_uploaded"
                         + ",period"
                         + ",student_id"
+                        + ",fb_account"
+                        + ",blood_type"
                         + ")values("
                         + ":enrollment_no"
                         + ",:is_transferee"
@@ -552,6 +558,8 @@ public class Enrollments {
                         + ",:is_uploaded"
                         + ",:period"
                         + ",:student_id"
+                        + ",:fb_account"
+                        + ",blood_type"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -672,6 +680,8 @@ public class Enrollments {
                         .setNumber("is_uploaded", to_enrollments.is_uploaded)
                         .setString("period", to_enrollments.period)
                         .setNumber("student_id", to_enrollments.student_id)
+                        .setString("fb_account", to_enrollments.fb_account)
+                        .setString("blood_type", to_enrollments.blood_type)
                         .ok();
 
                 stmt3.addBatch(s0);
@@ -794,6 +804,8 @@ public class Enrollments {
                         + ",status"
                         + ",is_uploaded"
                         + ",period"
+                        + ",fb_account"
+                        + ",blood_type"
                         + ")values("
                         + ":enrollment_no"
                         + ",:is_transferee"
@@ -910,6 +922,8 @@ public class Enrollments {
                         + ",:status"
                         + ",:is_uploaded"
                         + ",:period"
+                        + ",:fb_account"
+                        + ",:blood_type"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -1028,6 +1042,8 @@ public class Enrollments {
                         .setNumber("status", to_enrollments.status)
                         .setNumber("is_uploaded", to_enrollments.is_uploaded)
                         .setString("period", to_enrollments.period)
+                        .setString("fb_account", to_enrollments.fb_account)
+                        .setString("blood_type", to_enrollments.blood_type)
                         .ok();
 
                 stmt3.addBatch(s0);
@@ -1135,6 +1151,8 @@ public class Enrollments {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",fb_account= :fb_account"
+                    + ",blood_type= :blood_type"
                     //                    + ",period= :period"
                     + " where id='" + to_enrollments.id + "' "
                     + " ";
@@ -1225,6 +1243,8 @@ public class Enrollments {
                     .setString("updated_by", to_enrollments.updated_by)
                     .setNumber("status", to_enrollments.status)
                     .setNumber("is_uploaded", to_enrollments.is_uploaded)
+                    .setString("fb_account", to_enrollments.fb_account)
+                    .setString("blood_type", to_enrollments.blood_type)
                     //                    .setString("period", to_enrollments.period)
                     .ok();
 
@@ -1609,6 +1629,8 @@ public class Enrollments {
                     + ",date_enrolled"
                     + ",student_id"
                     + ",period"
+                    + ",fb_account"
+                    + ",blood_type"
                     + " from enrollments"
                     + " " + where;
 
@@ -1734,9 +1756,11 @@ public class Enrollments {
                 String date_enrolled = rs.getString(117);
                 int student_id = rs.getInt(118);
                 String period = rs.getString(119);
+                String fb_account=rs.getString(120);
+                String blood_type=rs.getString(121);
 //                System.out.println("student_id2: "+student_id);
 //                System.out.println("Name: " + last_name + "," + first_name + " gender: " + gender);
-                to_enrollments to = new to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period);
+                to_enrollments to = new to_enrollments(id, enrollment_no, is_transferee, academic_year_id, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period,fb_account,blood_type);
                 datas.add(to);
             }
             return datas;

@@ -887,7 +887,7 @@ public class Dlg_academic_offering_subjects_copy extends javax.swing.JDialog {
                 String updated_at = DateType.now();
                 String created_by = MyUser.getUser_id();
                 String updated_by = MyUser.getUser_id();
-                int status = to.status;
+                int status = 0;
                 int is_uploaded = 0;
                 int faculty_id = to.faculty_id;
                 String faculty_name = to.faculty_name;

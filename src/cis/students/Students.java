@@ -6,6 +6,7 @@
 package cis.students;
 
 import cis.enrollments.Enrollments;
+import cis.users.MyUser;
 import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
@@ -249,12 +250,18 @@ public class Students {
 
             PreparedStatement stmt3 = conn.prepareStatement("");
 
-            String s5 = " update enrollments set date_enrolled='" + DateType.now() + "' where id='" + enroll.id + "'";
+            String s5 = " update enrollments set "
+                    + "date_enrolled='" + DateType.now() + "' "
+                    + ",approved_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",approved_date = '" + DateType.now() + "' "
+                    + "where id='" + enroll.id + "'";
             stmt3.addBatch(s5);
 
 //            String s6 = " update enrollment_assessments set student_no='" + to_students.student_no + "',student_id='" + to_students.id + "' where enrollment_id='" + enroll.id + "'";
 //            stmt3.addBatch(s6);
-
+            String s7 = " update enrollment_student_loaded_subjects set status=1 where enrollment_id='" + enroll.id + "'";
+            stmt3.addBatch(s7);
 //            String s7 = " update enrollment_student_loaded_subjects set student_no='" + to_students.student_no + "',student_id='" + to_students.id + "' where enrollment_id='" + enroll.id + "'";
 //            stmt3.addBatch(s7);
 
@@ -628,13 +635,19 @@ public class Students {
             }
             student_id++;
 
-            String s5 = " update enrollments set student_no='" + id + "',student_id='" + student_id + "',date_enrolled='" + DateType.now() + "' where id='" + enroll.id + "'";
+            String s5 = " update enrollments set "
+                    + "student_no='" + id + "',student_id='" + student_id + "'"
+                    + ",date_enrolled='" + DateType.now() + "' "
+                    + ",approved_by_id = '" + MyUser.getUser_id() + "' "
+                    + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
+                    + ",approved_date = '" + DateType.now() + "' "
+                    + "where id='" + enroll.id + "'";
             stmt3.addBatch(s5);
 
             String s6 = " update enrollment_assessments set student_no='" + id + "',student_id='" + student_id + "' where enrollment_id='" + enroll.id + "'";
             stmt3.addBatch(s6);
 
-            String s7 = " update enrollment_student_loaded_subjects set student_no='" + id + "',student_id='" + student_id + "' where enrollment_id='" + enroll.id + "'";
+            String s7 = " update enrollment_student_loaded_subjects set student_no='" + id + "',student_id='" + student_id + "',status=1,is_payed=1 where enrollment_id='" + enroll.id + "'";
             stmt3.addBatch(s7);
 
             stmt3.executeBatch();

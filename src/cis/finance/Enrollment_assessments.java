@@ -654,7 +654,7 @@ public class Enrollment_assessments {
             }
 
             String s7 = "update enrollment_student_loaded_subjects set "
-                    + " status= 1 "
+                    + " is_payed= 1 "
                     + " where enrollment_id='" + to_enrollment_assessments.enrollment_id + "' and status=0 "
                     + " ";
             stmt2.addBatch(s7);

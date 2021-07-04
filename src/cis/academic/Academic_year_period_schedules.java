@@ -39,8 +39,10 @@ public class Academic_year_period_schedules {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final String enrollment_starts;
+        public final String enrollment_ends;
 
-        public to_academic_year_period_schedules(int id, int academic_year_period_id, int academic_year_id, int department_id, String department, String years, String period, String date_from, String date_to, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_academic_year_period_schedules(int id, int academic_year_period_id, int academic_year_id, int department_id, String department, String years, String period, String date_from, String date_to, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, String enrollment_starts, String enrollment_ends) {
             this.id = id;
             this.academic_year_period_id = academic_year_period_id;
             this.academic_year_id = academic_year_id;
@@ -56,6 +58,8 @@ public class Academic_year_period_schedules {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.enrollment_starts = enrollment_starts;
+            this.enrollment_ends = enrollment_ends;
         }
     }
 
@@ -253,6 +257,8 @@ public class Academic_year_period_schedules {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",enrollment_starts"
+                    + ",enrollment_ends"
                     + " from academic_year_period_schedules"
                     + " " + where;
 
@@ -274,8 +280,10 @@ public class Academic_year_period_schedules {
                 String updated_by = rs.getString(13);
                 int status = rs.getInt(14);
                 int is_uploaded = rs.getInt(15);
-
-                to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                String enrollment_starts=rs.getString(16);
+                String enrollment_ends=rs.getString(17);
+                
+                to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends);
                 datas.add(to);
             }
             return datas;

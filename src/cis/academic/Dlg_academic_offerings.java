@@ -242,25 +242,30 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        tf_field2 = new Field.Combo();
-        jLabel11 = new javax.swing.JLabel();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        tf_field5 = new Field.Combo();
-        tf_field6 = new Field.Combo();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_offerings = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new Button.Info();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_offerings1 = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        tf_field2 = new Field.Combo();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        tf_field5 = new Field.Combo();
+        jCheckBox6 = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        tf_field6 = new Field.Combo();
         jButton7 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jButton3 = new Button.Info();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -427,7 +432,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -436,72 +441,14 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         );
 
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTabbedPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane2MouseClicked(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(373, 529));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Choose Year:");
-
-        tf_field2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field2.setFocusable(false);
-        tf_field2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field2MouseClicked(evt);
-            }
-        });
-        tf_field2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field2ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Department:");
-
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox6.setText("All");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
-            }
-        });
-
-        tf_field5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field5MouseClicked(evt);
-            }
-        });
-        tf_field5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field5ActionPerformed(evt);
-            }
-        });
-
-        tf_field6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field6MouseClicked(evt);
-            }
-        });
-        tf_field6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field6ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setSelected(true);
-        jCheckBox7.setText("All");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Level/College:");
 
         tbl_offerings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -525,17 +472,117 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
         jLabel4.setText("0");
 
-        jButton3.setText("Print Preview");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jProgressBar1.setString("");
         jProgressBar1.setStringPainted(true);
 
         jLabel5.setText("Status:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        jTabbedPane2.addTab("Offerings", jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setText("No. of rows:");
+
+        jLabel7.setText("0");
+
+        tbl_offerings1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbl_offerings1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_offerings1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbl_offerings1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(384, 384, 384)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addGap(5, 5, 5))
+        );
+
+        jTabbedPane2.addTab("For Approval", jPanel2);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Choose Year:");
+
+        tf_field2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field2.setFocusable(false);
+        tf_field2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field2MouseClicked(evt);
+            }
+        });
+        tf_field2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field2ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/settings.png"))); // NOI18N
         jButton5.setBorder(null);
@@ -553,6 +600,53 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             }
         });
 
+        tf_field5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field5MouseClicked(evt);
+            }
+        });
+        tf_field5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field5ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox6.setText("All");
+        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox6ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Department:");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Level/College:");
+
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox7.setSelected(true);
+        jCheckBox7.setText("All");
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
+
+        tf_field6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field6MouseClicked(evt);
+            }
+        });
+        tf_field6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field6ActionPerformed(evt);
+            }
+        });
+
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/settings.png"))); // NOI18N
         jButton7.setBorder(null);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -561,107 +655,79 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        jButton3.setText("Print Preview");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_field6, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_field6)
                                     .addComponent(tf_field5)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tf_field2)))
                         .addGap(0, 0, 0)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_field2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox6)))
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_field6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCheckBox7))
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel5))
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5))
+                .addContainerGap())
         );
-
-        jTabbedPane2.addTab("Offerings", jPanel4);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("List of Programs", jPanel2);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -671,7 +737,9 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -679,8 +747,11 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane2))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -709,7 +780,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -852,6 +923,14 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         colleges();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void tbl_offerings1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_offerings1MouseClicked
+        select_offering();
+    }//GEN-LAST:event_tbl_offerings1MouseClicked
+
+    private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
+        ret_offerings();
+    }//GEN-LAST:event_jTabbedPane2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -876,6 +955,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -886,13 +967,16 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable tbl_courses;
     private javax.swing.JTable tbl_offerings;
+    private javax.swing.JTable tbl_offerings1;
     private javax.swing.JTextField tf_field2;
     private javax.swing.JTextField tf_field3;
     private javax.swing.JTextField tf_field4;
@@ -951,6 +1035,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         init_tbl_offerings(tbl_offerings);
         ret_offerings();
 
+        init_tbl_offerings_for_approval(tbl_offerings1);
     }
 
     public void do_pass() {
@@ -1314,6 +1399,14 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
     private void save_offerings() {
 
+        String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Academic Offerings - (Add)" + "' limit 1";
+
+        List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
+        if (privileges.isEmpty()) {
+            Alert.set(0, "Privilege not added!");
+            return;
+        }
+
         List<Courses.to_courses> list = tbl_courses_ALM;
         List<Academic_offerings.to_academic_offerings> offerings = new ArrayList();
         Field.Combo year = (Field.Combo) tf_field2;
@@ -1336,7 +1429,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 String updated_at = DateType.now();
                 String created_by = MyUser.getUser_id();
                 String updated_by = MyUser.getUser_id();
-                int status = 1;
+                int status = 0;
                 int is_uploaded = 0;
                 Academic_offerings.to_academic_offerings offer = new Academic_offerings.to_academic_offerings(id, academic_year_id, academic_year, course_id, course_code, course_description, college_id, college, department_id, department_name, no_of_years, studies, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
                 offerings.add(offer);
@@ -1497,67 +1590,133 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     }
 
     private void ret_offerings() {
-        Field.Combo tf = (Field.Combo) tf_field2;
-        Field.Combo dep = (Field.Combo) tf_field5;
-        Field.Combo col = (Field.Combo) tf_field6;
+        if (jTabbedPane2.getSelectedIndex() == 0) {
+            Field.Combo tf = (Field.Combo) tf_field2;
+            Field.Combo dep = (Field.Combo) tf_field5;
+            Field.Combo col = (Field.Combo) tf_field6;
 
-        String where = " where academic_year_id='" + tf.getId() + "' ";
-        if (!jCheckBox6.isSelected()) {
-            where = where + " and department_id='" + dep.getId() + "' ";
-            if (!jCheckBox7.isSelected()) {
-                where = where + " and college_id='" + col.getId() + "' ";
+            String where = " where academic_year_id='" + tf.getId() + "' ";
+            if (!jCheckBox6.isSelected()) {
+                where = where + " and department_id='" + dep.getId() + "' ";
+                if (!jCheckBox7.isSelected()) {
+                    where = where + " and college_id='" + col.getId() + "' ";
+                }
             }
+            where = where + " order by course_description asc ";
+
+            List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
+            loadData_offerings(datas);
+            jLabel4.setText("" + datas.size());
+        } else {
+            ret_offerings_for_approval();
         }
-        where = where + " order by course_description asc ";
-       
-        List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
-        loadData_offerings(datas);
-        jLabel4.setText("" + datas.size());
 
     }
 //</editor-fold>
 
     private void select_offering() {
-        int row = tbl_offerings.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_offerings.getSelectedColumn();
-        Academic_offerings.to_academic_offerings to = (Academic_offerings.to_academic_offerings) tbl_offerings_ALM.get(row);
-        if (col == 7) {
-            Window p = (Window) this;
-            Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(to);
+        if (jTabbedPane2.getSelectedIndex() == 0) {
+            int row = tbl_offerings.getSelectedRow();
+            if (row < 0) {
+                return;
+            }
+            int col = tbl_offerings.getSelectedColumn();
+            Academic_offerings.to_academic_offerings to = (Academic_offerings.to_academic_offerings) tbl_offerings_ALM.get(row);
+            if (col == 7) {
+                Window p = (Window) this;
+                Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(to);
 //            System.out.println("offer: "+to.id);
-            nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
-                    closeDialog.ok();
+                nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
+                        closeDialog.ok();
 
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+            if (col == 8) {
+                if (to.status == 1) {
+                    Alert.set(0, "Cannot delete record, already approved!");
+                    return;
                 }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
-        if (col == 8) {
-            Window p = (Window) this;
-            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
-            nd.setTitle("");
+                String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Academic Offerings - (Delete)" + "' limit 1";
+
+                List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
+                if (privileges.isEmpty()) {
+                    Alert.set(0, "Privilege not added!");
+                    return;
+                }
+                Window p = (Window) this;
+                Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+                nd.setTitle("");
 //            nd.do_pass(services);
-            nd.setCallback(new Dlg_confirm_delete.Callback() {
+                nd.setCallback(new Dlg_confirm_delete.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                        closeDialog.ok();
+                        Academic_offerings.delete_offering(to);
+                        Alert.set(3, "");
+                        ret_offerings();
+                    }
+                });
+                nd.setLocationRelativeTo(jScrollPane2);
+                nd.setVisible(true);
+            }
+        } else {
+            int row = tbl_offerings1.getSelectedRow();
+            if (row < 0) {
+                return;
+            }
+            int col = tbl_offerings1.getSelectedColumn();
+            Academic_offerings.to_academic_offerings to = (Academic_offerings.to_academic_offerings) tbl_offerings_for_approval_ALM.get(row);
+            if (col == 7) {
+                Window p = (Window) this;
+                Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(to);
+//            System.out.println("offer: "+to.id);
+                nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
+                        closeDialog.ok();
 
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
-                    closeDialog.ok();
-                    Academic_offerings.delete_offering(to);
-                    Alert.set(3, "");
-                    ret_offerings();
+                        ret_offerings_for_approval();
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+            if (col == 8) {
+                String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Academic Offerings - (Delete)" + "' limit 1";
+
+                List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
+                if (privileges.isEmpty()) {
+                    Alert.set(0, "Privilege not added!");
+                    return;
                 }
-            });
-            nd.setLocationRelativeTo(jScrollPane2);
-            nd.setVisible(true);
+                Window p = (Window) this;
+                Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+                nd.setTitle("");
+//            nd.do_pass(services);
+                nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                        closeDialog.ok();
+                        Academic_offerings.delete_offering(to);
+                        Alert.set(3, "");
+                        ret_offerings();
+                    }
+                });
+                nd.setLocationRelativeTo(jScrollPane3);
+                nd.setVisible(true);
+            }
         }
+
     }
 
     //<editor-fold defaultstate="collapsed" desc=" list of programs ">
@@ -1720,4 +1879,158 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
+
+    //<editor-fold defaultstate="collapsed" desc=" For Approval ">
+    public static ArrayListModel tbl_offerings_for_approval_ALM;
+    public static TblofferingsApprovalModel tbl_offerings_for_approval_M;
+
+    public static void init_tbl_offerings_for_approval(JTable tbl_offerings) {
+        tbl_offerings_for_approval_ALM = new ArrayListModel();
+        tbl_offerings_for_approval_M = new TblofferingsApprovalModel(tbl_offerings_for_approval_ALM);
+        tbl_offerings.setModel(tbl_offerings_for_approval_M);
+        tbl_offerings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_offerings.setRowHeight(25);
+        int[] tbl_widths_courses = {90, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
+        for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
+            if (i == 1) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_offerings, i, tbl_widths_courses[i]);
+        }
+        Dimension d = tbl_offerings.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_offerings.setRowHeight(40);
+        tbl_offerings.getTableHeader().setPreferredSize(d);
+        tbl_offerings.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+
+        tbl_offerings.setFont(new java.awt.Font("Arial", 0, 12));
+
+        TableColumnModel tcm = tbl_offerings.getColumnModel();
+        TableColumn tm = tcm.getColumn(1);
+        tm.setCellRenderer(new Html3());
+
+    }
+
+    public static void loadData_offerings_for_approval(List<Academic_offerings.to_academic_offerings> acc) {
+        tbl_offerings_for_approval_ALM.clear();
+        tbl_offerings_for_approval_ALM.addAll(acc);
+    }
+
+    public static class Html3 extends DefaultTableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+            JLabel lbl = new JLabel();
+            lbl.setText(value.toString());
+            lbl.setOpaque(true);
+            lbl.setBackground(Color.white);
+            if (selected) {
+
+                lbl.setBackground(new java.awt.Color(0, 120, 215));
+                lbl.setForeground(new java.awt.Color(255, 255, 255));
+            }
+            return lbl;
+        }
+    }
+
+    public static class TblofferingsApprovalModel extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Code", "Description", "Years", "Studies", "Status", "", "", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+        };
+
+        public TblofferingsApprovalModel(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 6) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            Academic_offerings.to_academic_offerings tt = (Academic_offerings.to_academic_offerings) getRow(row);
+            switch (col) {
+                case 0:
+                    return " " + tt.course_code;
+                case 1:
+                    String des = tt.course_description;
+                    int syl = tt.course_description.length();
+                    if (syl > 50) {
+                        des = des.substring(0, 49) + "...";
+                    }
+                    String html = "<html><body>"
+                            + "&nbsp <b><font size=\"4\" > " + des + "</font></b><br>"
+                            + "&nbsp  " + tt.department_name + " - " + tt.college + "&emsp;" + "<br>"
+                            + "</body>"
+                            + "</html>";
+                    return html;
+
+                case 2:
+                    return " " + tt.no_of_years;
+                case 3:
+                    return " " + tt.studies;
+                case 4:
+                    if (tt.status == 0) {
+                        return " Inactive";
+                    } else {
+                        return " Active";
+                    }
+                case 5:
+                    return " Delete";
+                case 6:
+                    return tt.selected;
+                case 7:
+                    return " View";
+                case 8:
+                    return " Delete";
+                case 9:
+                    return tt.updated_at;
+                case 10:
+                    return tt.created_by;
+                case 11:
+                    return tt.updated_by;
+                case 12:
+                    return tt.status;
+                default:
+                    return tt.is_uploaded;
+            }
+        }
+    }
+
+    private void ret_offerings_for_approval() {
+        if (jTabbedPane2.getSelectedIndex() == 1) {
+            Field.Combo tf = (Field.Combo) tf_field2;
+            Field.Combo dep = (Field.Combo) tf_field5;
+            Field.Combo col = (Field.Combo) tf_field6;
+
+            String where = " where academic_year_id='" + tf.getId() + "' and status=0 ";
+            if (!jCheckBox6.isSelected()) {
+                where = where + " and department_id='" + dep.getId() + "' ";
+                if (!jCheckBox7.isSelected()) {
+                    where = where + " and college_id='" + col.getId() + "' ";
+                }
+            }
+            where = where + " order by course_description asc ";
+
+            List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
+            loadData_offerings_for_approval(datas);
+//            System.out.println(where);
+            jLabel7.setText("" + datas.size());
+        }
+
+    }
+    //</editor-fold>
 }

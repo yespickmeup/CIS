@@ -450,7 +450,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -568,8 +568,8 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     private void myInit() {
 
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         init_tbl_academic_years(tbl_academic_years);
         ret_years();
@@ -1103,8 +1103,9 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                             String updated_by = MyUser.getUser_id();
                             int status = 0;
                             int is_uploaded = 0;
-
-                            Academic_year_period_schedules.to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                            String enrollment_starts = "";
+                            String enrollment_ends = "";
+                            Academic_year_period_schedules.to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded, enrollment_starts, enrollment_ends);
                             Academic_year_period_schedules.add_data(to);
                             Alert.set(1, "");
                             ret_periods(acad);
@@ -1136,9 +1137,9 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         tbl_academic_year_period_schedules.setModel(tbl_academic_year_period_schedules_M);
         tbl_academic_year_period_schedules.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_academic_year_period_schedules.setRowHeight(25);
-        int[] tbl_widths_academic_year_period_schedules = {150, 120, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_academic_year_period_schedules = {130, 150, 150, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_academic_year_period_schedules.length; i < n; i++) {
-            if (i == 1) {
+            if (i == 0) {
                 continue;
             }
             TableWidthUtilities.setColumnWidth(tbl_academic_year_period_schedules, i, tbl_widths_academic_year_period_schedules[i]);
@@ -1149,7 +1150,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         tbl_academic_year_period_schedules.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_academic_year_period_schedules.setRowHeight(25);
         tbl_academic_year_period_schedules.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_academic_year_period_schedules.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
+        tbl_academic_year_period_schedules.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
     }
 
     public static void loadData_academic_year_period_schedules(List<to_academic_year_period_schedules> acc) {
@@ -1161,7 +1162,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     public static class Tblacademic_year_period_schedulesModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Period", "Schedule", "Status", "", "department", "years", "period", "date_from", "date_to", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Period", "Schedule", "Enrollment", "Status", "", "years", "period", "date_from", "date_to", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblacademic_year_period_schedulesModel(ListModel listmodel) {
@@ -1208,6 +1209,21 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                     }
 
                 case 2:
+                    String enrollment_starts = "";
+                    String enrollment_ends = "";
+                    if (tt.enrollment_starts != null) {
+                        enrollment_starts = DateType.convert_slash_datetime2(tt.enrollment_starts);
+                    }
+                    if (tt.enrollment_ends != null) {
+                        enrollment_ends = DateType.convert_slash_datetime2(tt.enrollment_ends);
+                    }
+
+                    if (enrollment_starts.isEmpty() && enrollment_ends.isEmpty()) {
+                        return " ";
+                    } else {
+                        return " " + enrollment_starts + " - " + enrollment_ends;
+                    }
+                case 3:
                     if (tt.status == 1) {
                         return " Open";
                     } else if (tt.status == 2) {
@@ -1215,10 +1231,8 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                     } else {
                         return " ";
                     }
-                case 3:
-                    return "/cis/icons/edit.png";
                 case 4:
-                    return tt.department;
+                    return "/cis/icons/edit.png";
                 case 5:
                     return tt.years;
                 case 6:
@@ -1264,7 +1278,23 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         }
         Academic_year_period_schedules.to_academic_year_period_schedules to = (Academic_year_period_schedules.to_academic_year_period_schedules) tbl_academic_year_period_schedules_ALM.get(row);
         int col = tbl_academic_year_period_schedules.getSelectedColumn();
-        if (col == 3) {
+        if (col == 2) {
+            Window p = (Window) this;
+            Dlg_academic_year_period_enrollment_schedule nd = Dlg_academic_year_period_enrollment_schedule.create(p, true);
+            nd.setTitle("");
+//            nd.do_pass(services);
+            nd.setCallback(new Dlg_academic_year_period_enrollment_schedule.Callback() {
+                
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_academic_year_period_enrollment_schedule.OutputData data) {
+                    closeDialog.ok();
+                    
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+        if (col == 4 || col == 1) {
             Window p = (Window) this;
             Dlg_academic_year_period_schedule_date nd = Dlg_academic_year_period_schedule_date.create(p, true);
             nd.setTitle("");
@@ -1281,13 +1311,12 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
-        if (col == 2) {
+        if (col == 3) {
             Window p = (Window) this;
             Dlg_academic_year_period_schedule_status nd = Dlg_academic_year_period_schedule_status.create(p, true);
             nd.setTitle("");
             nd.do_pass(to.status);
             nd.setCallback(new Dlg_academic_year_period_schedule_status.Callback() {
-
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_academic_year_period_schedule_status.OutputData data) {
                     closeDialog.ok();
