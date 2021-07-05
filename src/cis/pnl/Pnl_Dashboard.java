@@ -25,6 +25,7 @@ import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_faculty_subject_loads;
 import cis.reports.Dlg_list_of_students;
 import cis.reports.Dlg_subject_offerings;
+import cis.reports.Dlg_teachers_load;
 import cis.reports.Dlg_transcript_of_records;
 import cis.students.Dlg_students_master_list;
 import cis.subjects.Dlg_subjects;
@@ -815,6 +816,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Transcript of Records")) {
                     r_transacript_of_records();
                 }
+                if (data.stmt.equals("Teachers Load")) {
+                   r_teachers_load();
+                }
                 //</editor-fold>
             }
 
@@ -996,6 +1000,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Dlg_transcript_of_records dtc = new Dlg_transcript_of_records();
 //        dtc.do_pass();
         MyFrame.set(dtc.getSurface(), jPanel1, "Transcript_of_records");
+    }
+
+    private void r_teachers_load() {
+
+        Dlg_teachers_load dtc = new Dlg_teachers_load();
+//        dtc.do_pass();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Teachers Load");
     }
 
     private void run_script() {

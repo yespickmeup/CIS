@@ -96,7 +96,7 @@ id int auto_increment primary key
 );
 
 
-
+insert into user_default_privileges(account,privilege)values('Reports','Teachers Load');
 
 
 

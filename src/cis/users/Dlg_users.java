@@ -1377,10 +1377,10 @@ public class Dlg_users extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_host", "localhost");
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
-        MyUser.setUser_id("2");
+//        System.setProperty("pool_host", "localhost");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
+//        MyUser.setUser_id("2");
 
         tf_search.grabFocus();
         jPanel7.setVisible(false);
