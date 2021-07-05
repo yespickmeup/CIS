@@ -41,8 +41,10 @@ public class Academic_year_period_schedules {
         public final int is_uploaded;
         public final String enrollment_starts;
         public final String enrollment_ends;
+        public final String add_drop_starts;
+        public final String add_drop_ends;
 
-        public to_academic_year_period_schedules(int id, int academic_year_period_id, int academic_year_id, int department_id, String department, String years, String period, String date_from, String date_to, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, String enrollment_starts, String enrollment_ends) {
+        public to_academic_year_period_schedules(int id, int academic_year_period_id, int academic_year_id, int department_id, String department, String years, String period, String date_from, String date_to, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, String enrollment_starts, String enrollment_ends, String add_drop_starts, String add_drop_ends) {
             this.id = id;
             this.academic_year_period_id = academic_year_period_id;
             this.academic_year_id = academic_year_id;
@@ -60,6 +62,8 @@ public class Academic_year_period_schedules {
             this.is_uploaded = is_uploaded;
             this.enrollment_starts = enrollment_starts;
             this.enrollment_ends = enrollment_ends;
+            this.add_drop_starts = add_drop_starts;
+            this.add_drop_ends = add_drop_ends;
         }
     }
 
@@ -143,6 +147,8 @@ public class Academic_year_period_schedules {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",add_drop_starts= :add_drop_starts"
+                    + ",add_drop_ends= :add_drop_ends"
                     + " where id='" + to_academic_year_period_schedules.id + "' "
                     + " ";
 
@@ -161,6 +167,8 @@ public class Academic_year_period_schedules {
                     .setString("updated_by", to_academic_year_period_schedules.updated_by)
                     .setNumber("status", to_academic_year_period_schedules.status)
                     .setNumber("is_uploaded", to_academic_year_period_schedules.is_uploaded)
+                    .setString("add_drop_starts", to_academic_year_period_schedules.add_drop_starts)
+                    .setString("add_drop_ends", to_academic_year_period_schedules.add_drop_ends)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -197,6 +205,54 @@ public class Academic_year_period_schedules {
         }
     }
 
+    public static void update_enrollment(int id, String from, String to) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update academic_year_period_schedules set "
+                    + " enrollment_starts= :enrollment_starts "
+                    + ",enrollment_ends= :enrollment_ends "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setString("enrollment_starts", from)
+                    .setString("enrollment_ends", to)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Academic_year_period_schedules.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+     public static void update_add_drop(int id, String from, String to) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update academic_year_period_schedules set "
+                    + " add_drop_starts= :add_drop_starts "
+                    + ",add_drop_ends= :add_drop_ends "
+                    + " where id='" + id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setString("add_drop_starts", from)
+                    .setString("add_drop_ends", to)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Academic_year_period_schedules.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+     
     public static void update_status(int id, int status) {
         try {
             Connection conn = MyConnection.connect();
@@ -259,6 +315,8 @@ public class Academic_year_period_schedules {
                     + ",is_uploaded"
                     + ",enrollment_starts"
                     + ",enrollment_ends"
+                    + ",add_drop_starts"
+                    + ",add_drop_ends"
                     + " from academic_year_period_schedules"
                     + " " + where;
 
@@ -280,10 +338,13 @@ public class Academic_year_period_schedules {
                 String updated_by = rs.getString(13);
                 int status = rs.getInt(14);
                 int is_uploaded = rs.getInt(15);
-                String enrollment_starts=rs.getString(16);
-                String enrollment_ends=rs.getString(17);
-                
-                to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends);
+                String enrollment_starts = rs.getString(16);
+                String enrollment_ends = rs.getString(17);
+                String add_drop_starts = rs.getString(18);
+                String add_drop_ends = rs.getString(19);
+                to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by,
+                         updated_by, status, is_uploaded, enrollment_starts,
+                         enrollment_ends, add_drop_starts, add_drop_ends);
                 datas.add(to);
             }
             return datas;

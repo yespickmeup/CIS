@@ -7,6 +7,8 @@ package cis.finance;
 
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_year_fees;
+import cis.academic.Academic_year_other_fees;
+import cis.academic.Academic_year_other_fees.to_academic_year_other_fees;
 import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
 import cis.colleges.Colleges;
@@ -28,25 +30,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -357,15 +350,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
-        tf_field18 = new Field.Input();
-        jLabel34 = new javax.swing.JLabel();
-        tf_field19 = new Field.Input();
-        jButton15 = new Button.Success();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel45 = new javax.swing.JLabel();
-        tf_field24 = new Field.Input();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_miscellaneous_fees = new javax.swing.JTable();
@@ -393,6 +377,27 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel29 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         tf_field22 = new Field.Combo();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        tf_field18 = new Field.Input();
+        jLabel34 = new javax.swing.JLabel();
+        tf_field19 = new Field.Input();
+        jButton15 = new Button.Success();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel45 = new javax.swing.JLabel();
+        tf_field24 = new Field.Input();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        tf_field27 = new Field.Input();
+        jButton16 = new Button.Success();
+        tf_field28 = new Field.Input();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        tf_field29 = new Field.Input();
+        jCheckBox10 = new javax.swing.JCheckBox();
+        jLabel51 = new javax.swing.JLabel();
+        tf_field30 = new Field.Input();
         jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1078,10 +1083,12 @@ public class Dlg_finance extends javax.swing.JDialog {
                     .addComponent(jTabbedPane3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
@@ -1616,114 +1623,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tuition Fee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-
-        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel33.setText("Fixed Amount:");
-
-        tf_field18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field18.setText("0.00");
-        tf_field18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field18MouseClicked(evt);
-            }
-        });
-        tf_field18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field18ActionPerformed(evt);
-            }
-        });
-
-        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel34.setText("Per Unit:");
-
-        tf_field19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field19.setText("0.00");
-        tf_field19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field19MouseClicked(evt);
-            }
-        });
-        tf_field19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field19ActionPerformed(evt);
-            }
-        });
-
-        jButton15.setText("Save");
-        jButton15.setToolTipText("Save");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel45.setText("Lab Unit:");
-
-        tf_field24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field24.setText("0.00");
-        tf_field24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field24MouseClicked(evt);
-            }
-        });
-        tf_field24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field24ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_field18)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tf_field24))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_field19)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field24))
-                .addGap(5, 5, 5)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Miscellaneous Fees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -1894,7 +1793,7 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2041,6 +1940,259 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jTabbedPane4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Fixed Amount:");
+
+        tf_field18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field18.setText("0.00");
+        tf_field18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field18MouseClicked(evt);
+            }
+        });
+        tf_field18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field18ActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel34.setText("Per Unit:");
+
+        tf_field19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field19.setText("0.00");
+        tf_field19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field19MouseClicked(evt);
+            }
+        });
+        tf_field19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field19ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("Save");
+        jButton15.setToolTipText("Save");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel45.setText("Lab Unit:");
+
+        tf_field24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field24.setText("0.00");
+        tf_field24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field24MouseClicked(evt);
+            }
+        });
+        tf_field24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field24ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_field18)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_field24))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_field19)
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field24))
+                .addGap(5, 5, 5)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane4.addTab("Tuition Fee", jPanel4);
+
+        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel48.setText("Charge Add Subject:");
+
+        tf_field27.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field27.setText("0.00");
+        tf_field27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field27MouseClicked(evt);
+            }
+        });
+        tf_field27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field27ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setText("Save");
+        jButton16.setToolTipText("Save");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        tf_field28.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field28.setText("0.00");
+        tf_field28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field28MouseClicked(evt);
+            }
+        });
+        tf_field28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field28ActionPerformed(evt);
+            }
+        });
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel49.setText("Drop Subject:");
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel50.setText("Withdrawal of subject deduction of:");
+
+        tf_field29.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field29.setText("0.00");
+        tf_field29.setFocusable(false);
+        tf_field29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field29MouseClicked(evt);
+            }
+        });
+        tf_field29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field29ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCheckBox10.setSelected(true);
+        jCheckBox10.setText("Whole Amount");
+        jCheckBox10.setFocusable(false);
+        jCheckBox10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jCheckBox10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox10ActionPerformed(evt);
+            }
+        });
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel51.setText("Additional enrollment fee if late:");
+
+        tf_field30.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_field30.setText("0.00");
+        tf_field30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field30MouseClicked(evt);
+            }
+        });
+        tf_field30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field30ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_field29, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field30, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field27, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_field28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field27)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field29))
+                    .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_field30)))
+                .addContainerGap())
+        );
+
+        jTabbedPane4.addTab("Others", jPanel28);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -2053,16 +2205,16 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane4))
                 .addGap(25, 25, 25))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2418,6 +2570,52 @@ public class Dlg_finance extends javax.swing.JDialog {
         init_acad_period_schedules();
     }//GEN-LAST:event_tf_field26ActionPerformed
 
+    private void tf_field27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field27MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field27MouseClicked
+
+    private void tf_field27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field27ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        save_academic_other_fees();
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void tf_field28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field28MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field28MouseClicked
+
+    private void tf_field28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field28ActionPerformed
+
+    private void tf_field29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field29MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field29MouseClicked
+
+    private void tf_field29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field29ActionPerformed
+
+    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
+        if (jCheckBox10.isSelected()) {
+            tf_field29.setText("0.00");
+            tf_field29.setFocusable(false);
+        } else {
+
+            tf_field29.setFocusable(true);
+        }
+    }//GEN-LAST:event_jCheckBox10ActionPerformed
+
+    private void tf_field30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field30MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field30MouseClicked
+
+    private void tf_field30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field30ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2428,6 +2626,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2435,6 +2634,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox16;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -2477,7 +2677,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel73;
@@ -2515,6 +2719,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2533,6 +2738,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTable jTable1;
     private org.jdesktop.swingx.JXCollapsiblePane jXCollapsiblePane1;
     private javax.swing.JTable tbl_fees;
@@ -2571,6 +2777,10 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field24;
     private javax.swing.JTextField tf_field25;
     private javax.swing.JTextField tf_field26;
+    private javax.swing.JTextField tf_field27;
+    private javax.swing.JTextField tf_field28;
+    private javax.swing.JTextField tf_field29;
+    private javax.swing.JTextField tf_field30;
     private javax.swing.JTextField tf_field5;
     private javax.swing.JTextField tf_field6;
     private javax.swing.JTextField tf_field7;
@@ -2581,8 +2791,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
         deps = Departments.ret_data(" order by department_name  asc ");
 
         acad_years = Academic_years.ret_data(" where status=1 ");
@@ -2700,6 +2910,8 @@ public class Dlg_finance extends javax.swing.JDialog {
                 amount.setText("0.00");
                 amount.setId("0");
                 per_unit.setText("0.00");
+
+                ret_academic_other_fees();
             }
         });
     }
@@ -3321,6 +3533,118 @@ public class Dlg_finance extends javax.swing.JDialog {
             per_unit.setText("0.00");
             tf_field24.setText("0.00");
         }
+    }
+
+    private void ret_academic_other_fees() {
+        Field.Input acad2 = (Field.Input) tf_field14;
+        Field.Combo dep = (Field.Combo) tf_field15;
+        Field.Combo lev = (Field.Combo) tf_field22;
+        Field.Combo year = (Field.Combo) tf_field16;
+        Field.Combo per = (Field.Combo) tf_field17;
+
+        String where = " where id<>0 ";
+        where = where + " and academic_year_id='" + acad2.getId() + "' "
+                + " and department_id='" + dep.getId() + "' ";
+
+        List<Academic_year_other_fees.to_academic_year_other_fees> datas = Academic_year_other_fees.ret_data(where);
+
+        if (!datas.isEmpty()) {
+            for (Academic_year_other_fees.to_academic_year_other_fees data : datas) {
+
+                if (data.name.equalsIgnoreCase("Charge add subject")) {
+                    tf_field27.setText(FitIn.fmt_wc_0(data.amount1));
+                }
+                if (data.name.equalsIgnoreCase("Charge drop subject")) {
+                    tf_field28.setText(FitIn.fmt_wc_0(data.amount1));
+                }
+                if (data.name.equalsIgnoreCase("Withdrawal of subject deduction")) {
+                    if (data.remarks.equalsIgnoreCase("Full")) {
+                        jCheckBox10.setSelected(true);
+                        tf_field29.setFocusable(false);
+                        tf_field29.setText("0.00");
+                    } else {
+                        jCheckBox10.setSelected(true);
+                        tf_field29.setText(FitIn.fmt_wc_0(data.amount1));
+                    }
+
+                }
+                if (data.name.equalsIgnoreCase("Additional enrollment fee if late")) {
+                    tf_field30.setText(FitIn.fmt_wc_0(data.amount1));
+                }
+            }
+        } else {
+            tf_field27.setText(FitIn.fmt_wc_0("0.00"));
+            tf_field28.setText(FitIn.fmt_wc_0("0.00"));
+            tf_field29.setText(FitIn.fmt_wc_0("0.00"));
+            tf_field30.setText(FitIn.fmt_wc_0("0.00"));
+            jCheckBox10.setSelected(true);
+            tf_field29.setFocusable(false);
+        }
+
+    }
+
+    private void save_academic_other_fees() {
+
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                Field.Input acad2 = (Field.Input) tf_field14;
+                Field.Combo dep = (Field.Combo) tf_field15;
+                Field.Combo lev = (Field.Combo) tf_field22;
+                Field.Combo year = (Field.Combo) tf_field16;
+                Field.Combo per = (Field.Combo) tf_field17;
+
+                String where = " where id<>0 ";
+                where = where + " and academic_year_id='" + acad2.getId() + "' "
+                        + " and department_id='" + dep.getId() + "' ";
+                List<Academic_year_other_fees.to_academic_year_other_fees> datas = Academic_year_other_fees.ret_data(where);
+                String[] fees = {"Charge add subject", "Charge drop subject", "Withdrawal of subject deduction", "Additional enrollment fee if late"};
+                for (int i = 0; i < fees.length; i++) {
+                    String name = fees[i];
+                    Academic_year_other_fees.to_academic_year_other_fees to = null;
+                    for (Academic_year_other_fees.to_academic_year_other_fees data2 : datas) {
+                        if (data2.name.equalsIgnoreCase(name)) {
+                            to = data2;
+                        }
+                    }
+                    String remarks = "";
+                    double amount = 0;
+                    if (jCheckBox10.isSelected() && name.equalsIgnoreCase("Withdrawal of subject deduction")) {
+                        remarks = "Full";
+                    } else if (name.equalsIgnoreCase("Charge add subject")) {
+                        amount = FitIn.toDouble(tf_field27.getText());
+                    } else if (name.equalsIgnoreCase("Charge drop subject")) {
+                        amount = FitIn.toDouble(tf_field28.getText());
+                    } else if (!jCheckBox10.isSelected() && name.equalsIgnoreCase("Withdrawal of subject deduction")) {
+                        amount = FitIn.toDouble(tf_field29.getText());
+                    } else if (name.equalsIgnoreCase("Additional enrollment fee if late")) {
+                        amount = FitIn.toDouble(tf_field30.getText());
+                    }
+                    if (to == null) {
+                        to_academic_year_other_fees new_to = new to_academic_year_other_fees(0, FitIn.toInt(acad2.getId()), acad2.getText(), FitIn.toInt(dep.getId()),
+                                                                                             dep.getText(), 0, "", 0, "", name, remarks, amount,
+                                                                                             0, DateType.now(), DateType.now(), MyUser.getUser_id(), MyUser.getUser_id(), 1);
+                        Academic_year_other_fees.add_data(new_to);
+                    } else {
+
+                        to_academic_year_other_fees new_to = new to_academic_year_other_fees(to.id, FitIn.toInt(acad2.getId()), acad2.getText(), FitIn.toInt(dep.getId()),
+                                                                                             dep.getText(), 0, "", 0, "", name, remarks, amount,
+                                                                                             0, DateType.now(), DateType.now(), MyUser.getUser_id(), MyUser.getUser_id(), 1);
+                        Academic_year_other_fees.update_data2(new_to);
+                    }
+                }
+                Alert.set(0, "Successfully saved!");
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+
     }
 
     private void save_tuition_fee() {

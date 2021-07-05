@@ -398,7 +398,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -410,7 +410,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -450,7 +450,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -462,7 +462,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -476,26 +476,28 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1105,7 +1107,9 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                             int is_uploaded = 0;
                             String enrollment_starts = "";
                             String enrollment_ends = "";
-                            Academic_year_period_schedules.to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded, enrollment_starts, enrollment_ends);
+                            String add_drop_starts = "";
+                            String add_drop_ends = "";
+                            Academic_year_period_schedules.to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded, enrollment_starts, enrollment_ends, add_drop_ends, add_drop_ends);
                             Academic_year_period_schedules.add_data(to);
                             Alert.set(1, "");
                             ret_periods(acad);
@@ -1137,7 +1141,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         tbl_academic_year_period_schedules.setModel(tbl_academic_year_period_schedules_M);
         tbl_academic_year_period_schedules.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_academic_year_period_schedules.setRowHeight(25);
-        int[] tbl_widths_academic_year_period_schedules = {130, 150, 150, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_academic_year_period_schedules = {130, 150, 150, 150, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_academic_year_period_schedules.length; i < n; i++) {
             if (i == 0) {
                 continue;
@@ -1150,7 +1154,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
         tbl_academic_year_period_schedules.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_academic_year_period_schedules.setRowHeight(25);
         tbl_academic_year_period_schedules.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_academic_year_period_schedules.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
+        tbl_academic_year_period_schedules.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
     }
 
     public static void loadData_academic_year_period_schedules(List<to_academic_year_period_schedules> acc) {
@@ -1162,7 +1166,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     public static class Tblacademic_year_period_schedulesModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Period", "Schedule", "Enrollment", "Status", "", "years", "period", "date_from", "date_to", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Period", "Schedule", "Enrollment", "Add/Drop", "Status", "", "period", "date_from", "date_to", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblacademic_year_period_schedulesModel(ListModel listmodel) {
@@ -1224,6 +1228,21 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                         return " " + enrollment_starts + " - " + enrollment_ends;
                     }
                 case 3:
+                    String add_drop_starts = "";
+                    String add_drop_ends = "";
+                    if (tt.add_drop_starts != null) {
+                        add_drop_starts = DateType.convert_slash_datetime2(tt.add_drop_starts);
+                    }
+                    if (tt.add_drop_ends != null) {
+                        add_drop_ends = DateType.convert_slash_datetime2(tt.add_drop_ends);
+                    }
+
+                    if (add_drop_starts.isEmpty() && add_drop_ends.isEmpty()) {
+                        return " ";
+                    } else {
+                        return " " + add_drop_starts + " - " + add_drop_ends;
+                    }
+                case 4:
                     if (tt.status == 1) {
                         return " Open";
                     } else if (tt.status == 2) {
@@ -1231,10 +1250,8 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                     } else {
                         return " ";
                     }
-                case 4:
-                    return "/cis/icons/edit.png";
                 case 5:
-                    return tt.years;
+                    return "/cis/icons/edit.png";
                 case 6:
                     return tt.period;
                 case 7:
@@ -1284,17 +1301,19 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             nd.setTitle("");
 //            nd.do_pass(services);
             nd.setCallback(new Dlg_academic_year_period_enrollment_schedule.Callback() {
-                
+
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_academic_year_period_enrollment_schedule.OutputData data) {
                     closeDialog.ok();
-                    
+                    Academic_year_period_schedules.update_enrollment(to.id, data.from, data.to);
+                    Alert.set(2, "");
+                    ret_aps();
                 }
             });
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
-        if (col == 4 || col == 1) {
+        if (col == 5 || col == 1) {
             Window p = (Window) this;
             Dlg_academic_year_period_schedule_date nd = Dlg_academic_year_period_schedule_date.create(p, true);
             nd.setTitle("");
@@ -1311,7 +1330,7 @@ public class Dlg_academic_years extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
-        if (col == 3) {
+        if (col == 4) {
             Window p = (Window) this;
             Dlg_academic_year_period_schedule_status nd = Dlg_academic_year_period_schedule_status.create(p, true);
             nd.setTitle("");
@@ -1321,6 +1340,23 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                 public void ok(CloseDialog closeDialog, Dlg_academic_year_period_schedule_status.OutputData data) {
                     closeDialog.ok();
                     Academic_year_period_schedules.update_status(to.id, data.status);
+                    Alert.set(2, "");
+                    ret_aps();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+        if (col == 3) {
+            Window p = (Window) this;
+            Dlg_academic_year_period_schedule_date nd = Dlg_academic_year_period_schedule_date.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to.add_drop_starts, to.add_drop_ends);
+            nd.setCallback(new Dlg_academic_year_period_schedule_date.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_academic_year_period_schedule_date.OutputData data) {
+                    closeDialog.ok();
+                    Academic_year_period_schedules.update_add_drop(to.id, data.from, data.to);
                     Alert.set(2, "");
                     ret_aps();
                 }

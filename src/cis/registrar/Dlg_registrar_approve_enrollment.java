@@ -873,7 +873,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
     }
 
     private void ok1() {
-
+        
         if (!tf_field11.getText().equalsIgnoreCase("Okay for approval")) {
             Alert.set(0, "Please fix the subject load conflict/s");
             return;

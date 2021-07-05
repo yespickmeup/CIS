@@ -13,7 +13,9 @@ import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
 import cis.registrar.Dlg_registrar_student_transfer_section;
+import cis.school_settings.School_settings;
 import cis.test.DayCheck;
+import cis.users.Dlg_authenticate;
 import cis.users.MyUser;
 import cis.users.User_previleges;
 import cis.utils.Alert;
@@ -787,14 +789,14 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
     }
 //</editor-fold> 
-
+    
     private void ok() {
         int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
         if (row < 0) {
             return;
         }
         to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
-
+        double total_units = to.lab_units + to.lecture_units;
         if (to.status == 0) {
             Alert.set(0, "Subject not yet open!");
             return;
@@ -812,7 +814,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
         boolean exist = false;
         for (to_enrollment_student_loaded_subjects to2 : loaded) {
-            if (to2.subject_id == to.subject_id  ) {
+            if (to2.subject_id == to.subject_id) {
 
                 exist = true;
                 break;
@@ -829,6 +831,47 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             Alert.set(0, "Day/Time not available!");
             return;
         }
+
+        int count = Enrollments.ret_subject_load_count(enroll.id);
+        List<School_settings.to_school_settings> settings = School_settings.ret_data(" where name like 'Subject Loading overload' ");
+        double maxx = 0;
+        double load = 0;
+        if (!settings.isEmpty()) {
+            School_settings.to_school_settings set = (School_settings.to_school_settings) settings.get(0);
+            maxx = set.amount;
+            load = set.amount2;
+        }
+
+        if ((count + total_units) >= maxx) {
+
+            if ((count + total_units) > (maxx + load)) {
+//                System.out.println("setting: " + (maxx + load));
+//                System.out.println("count: " + (count + total_units));
+                Alert.set(0, "Cannot proceed, limit reached!");
+                return;
+            } else {
+                Alert.set(0, "Max subject load reached! Override to continue");
+                Window p = (Window) this;
+                Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+                nd.setTitle("");
+//                nd.do_pass(services);
+                nd.setCallback(new Dlg_authenticate.Callback() {
+
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+                        closeDialog.ok();
+                        ok2(to);
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+        }
+
+    }
+
+    private void ok2(to_enrollment_offered_subject_sections to) {
+
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(to));
         }

@@ -187,7 +187,7 @@ public class Dlg_confirm_action4 extends javax.swing.JDialog {
 
         jXLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jXLabel1.setText("a");
-        jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jXLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jXLabel1.setLineWrap(true);
 

@@ -20,7 +20,9 @@ import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
+import cis.utils.DateUtils1;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_action4;
 import cis.utils.TableRenderer;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamException;
@@ -40,7 +42,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -490,6 +491,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
         jLabel64 = new javax.swing.JLabel();
         tf_field103 = new Field.Input();
         jLabel65 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox8 = new javax.swing.JCheckBox();
@@ -2661,6 +2663,11 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGap(1, 1, 1))
         );
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.red);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Enrollment closed!");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -2673,9 +2680,12 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(432, 432, 432)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -2692,7 +2702,9 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Step 3", jPanel5);
@@ -3104,6 +3116,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -3316,7 +3329,8 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
 //        System.setProperty("webcam_enable", "true");
         List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
-
+        jLabel4.setVisible(false);
+        jButton3.setEnabled(false);
         if (!acad_years.isEmpty()) {
             Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
             Field.Input year = (Field.Input) tf_field2;
@@ -3324,6 +3338,61 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             year.setId("" + to.id);
             acad_year = to.id;
 
+            List<Academic_year_period_schedules.to_academic_year_period_schedules> schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + to.id + "' and status=1");
+            if (!schedules.isEmpty()) {
+                Academic_year_period_schedules.to_academic_year_period_schedules sched = (Academic_year_period_schedules.to_academic_year_period_schedules) schedules.get(0);
+                Date now = new Date();
+                try {
+                    Date starts = DateType.sf.parse(sched.enrollment_starts);
+                    Date ends = DateType.sf.parse(sched.enrollment_ends);
+                    int st = DateUtils1.count_days(now, starts);
+                    int en = DateUtils1.count_days(now, ends);
+//                    System.out.println("st: "+st);
+//                     System.out.println("en: "+en);
+                    if (st > 0) {
+                        jLabel4.setText("Enrollment not yet open");
+                        jLabel4.setVisible(true);
+                        Window p = (Window) this;
+                        Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
+                        nd.setTitle("");
+                        nd.do_pass("Enrollment not yet open");
+                        nd.setCallback(new Dlg_confirm_action4.Callback() {
+
+                            @Override
+                            public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
+                                closeDialog.ok();
+
+                            }
+                        });
+                        nd.setLocationRelativeTo(this);
+                        nd.setVisible(true);
+                    } else {
+                        if (en < 0) {
+                            jLabel4.setVisible(true);
+                            Window p = (Window) this;
+                            Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
+                            nd.setTitle("");
+                            nd.do_pass("Enrollment closed!");
+                            nd.setCallback(new Dlg_confirm_action4.Callback() {
+
+                                @Override
+                                public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
+                                    closeDialog.ok();
+
+                                }
+                            });
+                            nd.setLocationRelativeTo(this);
+                            nd.setVisible(true);
+                        } else {
+                            jButton3.setEnabled(true);
+                            jLabel4.setVisible(false);
+                        }
+                    }
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(Dlg_student_enrollment.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
 
         nationals = Countries.ret_data(" order by nationality");
@@ -3922,6 +3991,7 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
     Enrollments.to_enrollments enrollment = null;
 
     private void proceed_to_enrollment() {
+
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
         nd.setTitle("");

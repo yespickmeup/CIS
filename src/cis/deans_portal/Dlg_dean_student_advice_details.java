@@ -565,6 +565,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jButton7 = new Button.Info();
         jCheckBox13 = new javax.swing.JCheckBox();
         jCheckBox14 = new javax.swing.JCheckBox();
+        jLabel88 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
         jButton9 = new Button.Success();
         jPanel24 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
@@ -3081,6 +3083,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             }
         });
 
+        jLabel88.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel88.setText("Total units:");
+
+        jLabel89.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel89.setText("0");
+
         javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
         jPanel32.setLayout(jPanel32Layout);
         jPanel32Layout.setHorizontalGroup(
@@ -3093,7 +3101,10 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
                         .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3108,9 +3119,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                                 .addComponent(tf_field134)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel32Layout.createSequentialGroup()
-                                .addComponent(tf_field133)
-                                .addGap(6, 6, 6)))))
+                            .addComponent(tf_field133))))
                 .addContainerGap())
         );
         jPanel32Layout.setVerticalGroup(
@@ -3132,7 +3141,10 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel88)
+                        .addComponent(jLabel89)))
                 .addContainerGap())
         );
 
@@ -3781,6 +3793,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -5462,12 +5476,17 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel5.setText("" + subjects.size());
     }
 
+    private void check_subject_load_count() {
+
+    }
+
     private void select_aos() {
         int row = tbl_academic_offering_subjects.getSelectedRow();
         if (row < 0) {
             return;
         }
         to_academic_offering_subjects to = (to_academic_offering_subjects) tbl_academic_offering_subjects_ALM.get(row);
+
         int col = tbl_academic_offering_subjects.getSelectedColumn();
         if (col == 4) {
             Window p = (Window) this;
@@ -5707,7 +5726,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Window p = (Window) this;
         Dlg_dean_student_advice_loaded_subjects nd = Dlg_dean_student_advice_loaded_subjects.create(p, true);
         nd.setTitle("");
-        nd.do_pass(loads, not_loaded);
+        nd.do_pass(loads, not_loaded,enroll);
         nd.setCallback(new Dlg_dean_student_advice_loaded_subjects.Callback() {
 
             @Override
@@ -5923,6 +5942,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(where);
 
         loadData_enrollment_student_loaded_subjects(datas);
+        double total_units = 0;
+        for (to_enrollment_student_loaded_subjects to : datas) {
+            total_units += (to.lab_units + to.lecture_units);
+        }
+        jLabel89.setText("" + total_units);
         jLabel7.setText("" + datas.size());
     }
 

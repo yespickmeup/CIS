@@ -68,6 +68,32 @@ id int auto_increment primary key
 );
 
 insert into school_settings(name,remarks,amount,amount2)values('Subject Loading overload','Units',21,9);
+insert into school_settings(name,remarks,amount,amount2)values('Enrollment Closing','Days',21,9);
+
+alter table academic_year_period_schedules add add_drop_starts date;
+alter table academic_year_period_schedules add add_drop_ends date;
+
+drop table if exists academic_year_other_fees;
+create table academic_year_other_fees(
+id int auto_increment primary key
+,academic_year_id int
+,academic_year varchar(255)
+,department_id int
+,department varchar(255)
+,level_id int
+,level varchar(255)
+,course_id int
+,course varchar(255)
+,name varchar(255)
+,remarks varchar(255)
+,amount1 double
+,amount2 double
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+);
 
 
 

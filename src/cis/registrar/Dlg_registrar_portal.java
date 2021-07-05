@@ -15,6 +15,7 @@ import cis.courses.Courses;
 import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.deans_portal.Dlg_dean_student_advice_load_subject;
 import cis.departments.Departments;
+import cis.enrollments.Dlg_student_enrollment;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects;
@@ -29,8 +30,10 @@ import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.Combo;
 import cis.utils.DateType;
+import cis.utils.DateUtils1;
 import cis.utils.Dlg_confirm_action;
 import cis.utils.Dlg_confirm_action3;
+import cis.utils.Dlg_confirm_action4;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.Dlg_confirm_delete2;
 import cis.utils.TableRenderer;
@@ -47,9 +50,13 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import static java.lang.ProcessBuilder.Redirect.to;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -2969,8 +2976,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         init_key();
         jPanel5.setVisible(false);
@@ -3031,6 +3038,31 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 year3.setText(to1.years);
                 year3.setId("" + to1.id);
 
+                List<Academic_year_period_schedules.to_academic_year_period_schedules> schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + to1.id + "' and status=1");
+                if (!schedules.isEmpty()) {
+                    Academic_year_period_schedules.to_academic_year_period_schedules sched = (Academic_year_period_schedules.to_academic_year_period_schedules) schedules.get(0);
+                    Date now = new Date();
+                    try {
+                        Date starts = DateType.sf.parse(sched.add_drop_starts);
+                        Date ends = DateType.sf.parse(sched.add_drop_ends);
+                        int st = DateUtils1.count_days(now, starts);
+                        int en = DateUtils1.count_days(now, ends);
+
+                        if (st > 0) {
+                            add_drop = 40;
+                        } else {
+                            if (en <= 0) {
+                                add_drop = 0;
+                            } else {
+                                add_drop = 40;
+                            }
+                        }
+
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Dlg_student_enrollment.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
             }
             String where = "  where academic_year_id='" + acad.id + "' and status=1 and department_id='" + dep_id + "'";
             acad_schedules = Academic_year_period_schedules.ret_data(where);
@@ -3054,6 +3086,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         ret_opened_subjects();
         tf_field27.grabFocus();
     }
+    int add_drop = 40;
     Academic_years.to_academic_years acad = null;
     List<String> list_year2 = new ArrayList();
     List<String> list_period = new ArrayList();
@@ -4837,7 +4870,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 tf_field9.setText(to.year_level);
 
                 List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(" where student_id='" + to.id + "' order by id desc limit 1");
-                System.out.println("enrollments: " + enrollments.size());
+//                System.out.println("enrollments: " + enrollments.size());
                 if (enrollments.isEmpty()) {
                     enroll = null;
                 } else {
@@ -4941,13 +4974,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
     public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
 
-    public static void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
+    public void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
         tbl_enrollment_student_loaded_subjects_ALM = new ArrayListModel();
         tbl_enrollment_student_loaded_subjects_M = new Tblenrollment_student_loaded_subjectsModel(tbl_enrollment_student_loaded_subjects_ALM);
         tbl_enrollment_student_loaded_subjects.setModel(tbl_enrollment_student_loaded_subjects_M);
         tbl_enrollment_student_loaded_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_student_loaded_subjects.setRowHeight(25);
-        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 60, 30};
+        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 60, 60, add_drop};
         for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -5163,8 +5196,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         String final_grade_remarks = "";
                         String final_grade_created_at = DateType.now();
                         String final_grade_created_by = "";
-                        int is_payed=0;
-                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed);
+                        int is_payed = 0;
+                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed);
                         Enrollment_student_loaded_subjects.add_data(load);
 
                         ret_enrolled_subjects();

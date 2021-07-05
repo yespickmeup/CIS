@@ -168,7 +168,9 @@ public class Academic_year_periods {
                     String date_to = null;
                     String enrollment_starts="";
                     String enrollment_ends="";
-                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends);
+                    String add_drop_starts="";
+                    String add_drop_ends="";
+                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends,add_drop_starts,add_drop_ends);
                     String s2 = "insert into academic_year_period_schedules("
                             + "academic_year_period_id"
                             + ",academic_year_id"
@@ -344,7 +346,9 @@ public class Academic_year_periods {
                     String date_to = null;
                     String enrollment_starts="";
                     String enrollment_ends="";
-                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends);
+                    String add_drop_starts="";
+                    String add_drop_ends="";
+                    Academic_year_period_schedules.to_academic_year_period_schedules to_academic_year_period_schedules = new Academic_year_period_schedules.to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by, updated_by, status, is_uploaded,enrollment_starts,enrollment_ends,add_drop_starts,add_drop_ends);
                     String s2 = "insert into academic_year_period_schedules("
                             + "academic_year_period_id"
                             + ",academic_year_id"

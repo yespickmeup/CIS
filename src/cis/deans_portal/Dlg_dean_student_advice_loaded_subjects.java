@@ -8,10 +8,14 @@ package cis.deans_portal;
 import cis.academic.Academic_offering_subjects.to_academic_offering_subjects;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subjects;
+import cis.enrollments.Enrollments;
+import cis.school_settings.School_settings;
+import cis.users.Dlg_authenticate;
 import cis.utils.Alert;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -408,13 +412,14 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
         init_tbl_added_subjectssubjects(init_tbl_added_subjectssubjects);
         init_tbl_not_added_subjectssubjects(init_tbl_added_subjectssubjects1);
     }
+    Enrollments.to_enrollments enroll = null;
 
-    public void do_pass(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads, List<to_academic_offering_subjects> not_loaded) {
-
+    public void do_pass(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads, List<to_academic_offering_subjects> not_loaded, Enrollments.to_enrollments enr) {
+        enroll = enr;
         int i = 0;
         String load_ids = "";
         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load : loads) {
-           
+
             if (i == 0) {
                 load_ids = "" + load.id;
             } else {
@@ -669,6 +674,49 @@ public class Dlg_dean_student_advice_loaded_subjects extends javax.swing.JDialog
             Alert.set(0, "Select section/s");
             return;
         }
+        double total_units = 0;
+        for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections add : to_add) {
+            total_units += (add.lab_units + add.lecture_units);
+        }
+        int count = Enrollments.ret_subject_load_count(enroll.id);
+        List<School_settings.to_school_settings> settings = School_settings.ret_data(" where name like 'Subject Loading overload' ");
+        double maxx = 0;
+        double load = 0;
+        if (!settings.isEmpty()) {
+            School_settings.to_school_settings set = (School_settings.to_school_settings) settings.get(0);
+            maxx = set.amount;
+            load = set.amount2;
+        }
+
+        if ((count + total_units) >= maxx) {
+
+            if ((count + total_units) > (maxx + load)) {
+//                System.out.println("setting: " + (maxx + load));
+//                System.out.println("count: " + (count + total_units));
+                Alert.set(0, "Cannot proceed, limit reached!");
+                return;
+            } else {
+                Alert.set(0, "Max subject load reached! Override to continue");
+                Window p = (Window) this;
+                Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+                nd.setTitle("");
+//                nd.do_pass(services);
+                nd.setCallback(new Dlg_authenticate.Callback() {
+
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+                        closeDialog.ok();
+                        ok2(to_add);
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+        }
+
+    }
+
+    private void ok2(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> to_add) {
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(to_add));
         }
