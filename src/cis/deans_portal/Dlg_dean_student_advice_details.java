@@ -3289,7 +3289,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 543, Short.MAX_VALUE)
         );
 
         jLabel83.setText("Status:");
@@ -3327,7 +3327,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
-                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -3354,19 +3354,19 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jPanel33Layout.setHorizontalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel33Layout.createSequentialGroup()
-                .addGap(217, 217, 217)
+                .addGap(52, 52, 52)
                 .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(194, 194, 194))
+                .addGap(75, 75, 75))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(58, 58, 58))
+                .addGap(31, 31, 31))
         );
 
-        jTabbedPane2.addTab("Assessment", jPanel33);
+        jTabbedPane2.addTab("Print Preview", jPanel33);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -3986,7 +3986,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         init_tbl_enrollment_department_requirements(tbl_enrollment_department_requirements);
         init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
         init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-//        jButton9.setVisible(false);
+        jButton11.setVisible(false);
     }
 
     Enrollments.to_enrollments enroll = null;
@@ -3997,28 +3997,25 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     public void do_pass(Enrollments.to_enrollments student, int is_dean) {
         enroll = student;
         is_d = is_dean;
-        jTabbedPane2.remove(3);
+
         if (is_dean == 0) {
 
             jButton9.setText("APPROVE ENROLLMENT APPLICATION");
-//            jButton9.setVisible(false);
-//            if (student.advised_date != null && student.approved_date != null && student.assessed_date != null) {
-////                if ((student.student_no != null) && (student.is_transferee !=2)) {
-////                    jButton11.setEnabled(false);
-////                }
-//                jButton9.setVisible(false);
-//               
-//                SwingUtilities.invokeLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-////                        set_assessment2();
-//                    }
-//                });
-//            } else {
-//
-//            }
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    set_assessment2();
+                }
+            });
             jTabbedPane2.setSelectedIndex(2);
         } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    set_assessment3();
+                }
+            });
             jButton9.setText("FINISH ADVISING");
         }
 
@@ -5789,6 +5786,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         public static String[] COLUMNS = {
             "Subject Code", "Description", "Lec", "Lab", "Section", "Room", "Day", "Stat", "", "academic_offering_id", "academic_year_id", "academic_year", "level_id", "level", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "faculty_id", "faculty_name", "section", "room_id", "room", "schedule", "day", "time", "start_time", "closing_time", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
+
         public Tblenrollment_student_loaded_subjectsModel(ListModel listmodel) {
             super(listmodel, COLUMNS);
         }
@@ -6217,6 +6215,99 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
                 String jrxml = "rpt_enrollment_assessment.jrxml";
                 cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
+                rpt.fields.addAll(fields);
+                report_assessment(rpt, jrxml);
+                InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
+                try {
+                    JasperReport jasperReport = JasperCompileManager.compileReport(is);
+                    jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
+                                                               setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
+
+                } catch (JRException ex) {
+                    Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                jProgressBar2.setString("Finished...");
+                jProgressBar2.setIndeterminate(false);
+            }
+        });
+        t.start();
+    }
+
+    private void set_assessment3() {
+
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
+
+        jProgressBar2.setString("Loading...Please wait...");
+        jProgressBar2.setIndeterminate(true);
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+                String date = synsoftech.util.DateType.slash.format(new Date());
+                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+
+                String home = System.getProperty("user.home");
+                String SUBREPORT_DIR = home + "\\cis\\";
+
+                String printed_by = MyUser.getUser_screen_name();
+                String school_year = enroll.academic_year;
+                String semester = enroll.period;
+                String student_no = enroll.student_no;
+                String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+                String student_course = enroll.course_code + " - " + enroll.course_description;
+                String student_year_level = enroll.year_level;
+
+                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
+                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
+                double no_of_units_lab = 0;
+                List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
+
+                //ret tuition amount
+                double tuition_amount = 0;
+                double lec_amount_per_unit = 0;
+                double lab_amount_per_unit = 0;
+                double total_assessment = 0;
+                double tution_fee = 0;
+                double misc_fee = 0;
+                double other_fee = 0;
+                double downpayment = 0;
+                double payable = 0;
+
+                //Main Subjects
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+                    String subject_code = sub.subject_code;
+                    String description = sub.description;
+                    double lec_units = sub.lecture_units;
+                    double lab_units = sub.lab_units;
+                    double lec_amount = lec_units * lec_amount_per_unit;
+                    double lec_amount2 = lec_amount;
+                    lec_amount = lec_amount_per_unit;
+                    double lab_amount = lab_units * lab_amount_per_unit;
+                    double lab_amount2 = lab_amount;
+                    lab_amount = lab_amount_per_unit;
+                    String room = sub.room;
+                    String day = DateType.mwf(sub.day);
+                    String time = DateType.daytime(sub.day);
+                    time = time.replaceAll("WFM", "MWF");
+                    time = time.replaceAll("FM", "MF");
+                    String instructor = sub.faculty_name;
+                    double amount = lec_amount2 + lab_amount2;
+                    tution_fee += amount;
+                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
+                    fields.add(f);
+                }
+
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+                List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+                List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
+
+                String jrxml = "rpt_subject_load.jrxml";
+
+                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, 0, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
                 rpt.fields.addAll(fields);
                 report_assessment(rpt, jrxml);
                 InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);

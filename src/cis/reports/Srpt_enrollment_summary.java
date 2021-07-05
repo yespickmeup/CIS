@@ -528,7 +528,7 @@ public class Srpt_enrollment_summary {
                         + ",lecture_units"
                         + ",lab_units"
                         + " from enrollment_student_loaded_subjects"
-                        + " where enrollment_id='" + enroll.id + "' and status<2  ";
+                        + " where enrollment_id='" + enroll.id + "' and status=1 ";
 
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);

@@ -4,6 +4,7 @@
  */
 package cis.users;
 
+import cis.school_settings.Dlg_subject_load_overried;
 import cis.users.User_default_privileges.to_user_default_privileges;
 import cis.users.User_previlege_others.to_user_previlege_others;
 import cis.users.User_previleges.to_user_privileges;
@@ -1287,7 +1288,7 @@ public class Dlg_users extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_user_default_privelegesMouseClicked
 
     private void tbl_user_default_previlege_othersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_user_default_previlege_othersMouseClicked
-//        select_other_privilege();
+        select_other_privilege();
     }//GEN-LAST:event_tbl_user_default_previlege_othersMouseClicked
     /**
      * @param args the command line arguments
@@ -1375,10 +1376,12 @@ public class Dlg_users extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
-//        MyUser.setUser_id("2");
-        
+
+        System.setProperty("pool_host", "localhost");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
+        MyUser.setUser_id("2");
+
         tf_search.grabFocus();
         jPanel7.setVisible(false);
         init_key();
@@ -1395,8 +1398,9 @@ public class Dlg_users extends javax.swing.JDialog {
         init_tbl_user_default_previleges();
         data_cols_default();
         init_tbl_user_default_priveleges(tbl_user_default_priveleges);
+
         init_tbl_user_previleges();
-//        init_tbl_user_default_previlege_others(tbl_user_default_previlege_others);
+        init_tbl_user_default_previlege_others(tbl_user_default_previlege_others);
         Field.Combo cb = (Field.Combo) tf_from_location1;
         cb.setText("Transactions");
         cb.setId("1");
@@ -1604,7 +1608,7 @@ public class Dlg_users extends javax.swing.JDialog {
 
     private void add_users() {
         String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Users - (Add)" + "' limit 1";
-       
+
         List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
         if (privileges.isEmpty()) {
             Alert.set(0, "Privilege not added!");
@@ -1769,7 +1773,7 @@ public class Dlg_users extends javax.swing.JDialog {
 
     private void delete_users() {
         String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Users - (Delete)" + "' limit 1";
-        
+
         List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
         if (privileges.isEmpty()) {
             Alert.set(0, "Privilege not added!");
@@ -2565,272 +2569,294 @@ public class Dlg_users extends javax.swing.JDialog {
         }
         if (col == 8) {
             //others
-//            ret_user_privileges_others();
+            ret_user_privileges_others();
         }
 
     }
 
     //<editor-fold defaultstate="collapsed" desc=" user_default_previlege_others "> 
-//    public static ArrayListModel tbl_user_default_previlege_others_ALM;
-//    public static Tbluser_default_previlege_othersModel tbl_user_default_previlege_others_M;
-//
-//    public static void init_tbl_user_default_previlege_others(JTable tbl_user_default_previlege_others) {
-//        tbl_user_default_previlege_others_ALM = new ArrayListModel();
-//        tbl_user_default_previlege_others_M = new Tbluser_default_previlege_othersModel(tbl_user_default_previlege_others_ALM);
-//        tbl_user_default_previlege_others.setModel(tbl_user_default_previlege_others_M);
-//        tbl_user_default_previlege_others.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//        tbl_user_default_previlege_others.setRowHeight(25);
-//        int[] tbl_widths_user_default_previlege_others = {100, 60, 70, 60, 60, 60, 60};
-//        for (int i = 0, n = tbl_widths_user_default_previlege_others.length; i < n; i++) {
-//            if (i == 0) {
-//                continue;
-//            }
-//            TableWidthUtilities.setColumnWidth(tbl_user_default_previlege_others, i, tbl_widths_user_default_previlege_others[i]);
-//        }
-//        Dimension d = tbl_user_default_previlege_others.getTableHeader().getPreferredSize();
-//        d.height = 25;
-//        tbl_user_default_previlege_others.getTableHeader().setPreferredSize(d);
-//        tbl_user_default_previlege_others.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-//        tbl_user_default_previlege_others.setRowHeight(25);
-//        tbl_user_default_previlege_others.setFont(new java.awt.Font("Arial", 0, 12));
-//    }
-//
-//    public static void loadData_user_default_previlege_others(List<User_default_privelege_others.to_user_default_priveleges> acc) {
-//        tbl_user_default_previlege_others_ALM.clear();
-//        tbl_user_default_previlege_others_ALM.addAll(acc);
-//    }
-//
-//    public static class Tbluser_default_previlege_othersModel extends AbstractTableAdapter {
-//
-//        public static String[] COLUMNS = {
-//            "Name", "  View", "  Add/Post", " Edit", " Delete", "Finalize", "Report"};
-//
-//        public Tbluser_default_previlege_othersModel(ListModel listmodel) {
-//            super(listmodel, COLUMNS);
-//        }
-//
-//        @Override
-//        public boolean isCellEditable(int row, int column) {
-//            if (column == 100) {
-//                return true;
-//            }
-//            return false;
-//        }
-//
-//        @Override
-//        public Class getColumnClass(int col) {
-//            if (col == 1 || col == 2 || col == 3 || col == 4 || col == 5 || col == 6) {
-//                return Boolean.class;
-//            }
-//            return Object.class;
-//        }
-//
-//        @Override
-//        public Object getValueAt(int row, int col) {
-//            User_default_privelege_others.to_user_default_priveleges tt = (User_default_privelege_others.to_user_default_priveleges) getRow(row);
-//            switch (col) {
-//                case 0:
-//                    return " " + tt.name;
-//                case 1:
-//                    return tt.view;
-//                case 2:
-//                    return tt.add;
-//                case 3:
-//                    return tt.edit;
-//                case 4:
-//                    return tt.delete;
-//                case 5:
-//                    return tt.finalize;
-//
-//                default:
-//                    return tt.report;
-//            }
-//        }
-//    }
-//
-//    private void ret_user_privileges_others() {
-//        int row = tbl_user_default_priveleges.getSelectedRow();
-//        if (row < 0) {
-//            return;
-//        }
-//        int col = tbl_user_default_priveleges.getSelectedColumn();
-//        to_user_default_priveleges to = (to_user_default_priveleges) tbl_user_default_priveleges_ALM.get(row);
-//
-//        int row2 = tbl_users.getSelectedRow();
-//        if (row < 0) {
-//            return;
-//        }
-//        to_users user = (to_users) tbl_users_ALM.get(row2);
-//        String where = " where user_id='" + user.id + "' ";
-//        String where2 = " where account like '" + to.account + "' and account_name like '" + to.name + "' ";
-//        List<User_default_privelege_others.to_user_default_priveleges> others = User_default_privelege_others.ret_data(where, where2);
-//        loadData_user_default_previlege_others(others);
-//    }
-//
-//    private void select_other_privilege() {
-//        int row = tbl_user_default_previlege_others.getSelectedRow();
-//        if (row < 0) {
-//            return;
-//        }
-//        int col = tbl_user_default_previlege_others.getSelectedColumn();
-//        User_default_privelege_others.to_user_default_priveleges to = (User_default_privelege_others.to_user_default_priveleges) tbl_user_default_previlege_others_ALM.get(row);
-//
-//        int row2 = tbl_users.getSelectedRow();
-//        if (row < 0) {
-//            return;
-//        }
-//
-//        to_users user = (to_users) tbl_users_ALM.get(row2);
-//        if (col == 1) {
-//
-//            //view
-//            String pr = to.name + " - (View)";
-//            if (to.view) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//
-//        }
-//        if (col == 2) {
-//            //add
-//            String pr = to.name + " - (Add)";
-//            if (to.add) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//
-//        }
-//        if (col == 3) {
-//            //edit
-//            String pr = to.name + " - (Edit)";
-//            if (to.edit) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//
-//        }
-//        if (col == 4) {
-//            //delete
-//            String pr = to.name + " - (Delete)";
-//            if (to.delete) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//
-//        }
-//        if (col == 5) {
-//            //finalize
-//            String pr = to.name + " - (Finalize)";
-//            if (to.finalize) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//        }
-//        if (col == 6) {
-//            //report
-//            String pr = to.name + " - (Report)";
-//            if (to.report) {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                S1_user_previleges.delete_user_previleges_others_where(where);
-//                ret_user_privileges_others();
-//            } else {
-//                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
-//                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
-//                if (datas.isEmpty()) {
-//                    int id = 0;
-//                    String account = to.account;
-//                    String account_name = to.account_name;
-//                    String name = pr;
-//                    int status = 0;
-//                    String user_id = "" + user.id;
-//                    String user_name = user.user_name;
-//                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
-//                    User_previlege_others.add_data(tup);
-//                    ret_user_privileges_others();
-//                }
-//            }
-//
-//        }
-//    }
+    public static ArrayListModel tbl_user_default_previlege_others_ALM;
+    public static Tbluser_default_previlege_othersModel tbl_user_default_previlege_others_M;
+
+    public static void init_tbl_user_default_previlege_others(JTable tbl_user_default_previlege_others) {
+        tbl_user_default_previlege_others_ALM = new ArrayListModel();
+        tbl_user_default_previlege_others_M = new Tbluser_default_previlege_othersModel(tbl_user_default_previlege_others_ALM);
+        tbl_user_default_previlege_others.setModel(tbl_user_default_previlege_others_M);
+        tbl_user_default_previlege_others.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbl_user_default_previlege_others.setRowHeight(25);
+        int[] tbl_widths_user_default_previlege_others = {100, 60, 70, 60, 60, 60, 60, 30};
+        for (int i = 0, n = tbl_widths_user_default_previlege_others.length; i < n; i++) {
+            if (i == 0) {
+                continue;
+            }
+            TableWidthUtilities.setColumnWidth(tbl_user_default_previlege_others, i, tbl_widths_user_default_previlege_others[i]);
+        }
+        Dimension d = tbl_user_default_previlege_others.getTableHeader().getPreferredSize();
+        d.height = 25;
+        tbl_user_default_previlege_others.getTableHeader().setPreferredSize(d);
+        tbl_user_default_previlege_others.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_user_default_previlege_others.setRowHeight(25);
+        tbl_user_default_previlege_others.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_user_default_previlege_others.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+
+    }
+
+    public static void loadData_user_default_previlege_others(List<User_default_privelege_others.to_user_default_priveleges> acc) {
+        tbl_user_default_previlege_others_ALM.clear();
+        tbl_user_default_previlege_others_ALM.addAll(acc);
+    }
+
+    public static class Tbluser_default_previlege_othersModel extends AbstractTableAdapter {
+
+        public static String[] COLUMNS = {
+            "Name", "  View", "  Add/Post", " Edit", " Delete", "Finalize", "Report", ""};
+
+        public Tbluser_default_previlege_othersModel(ListModel listmodel) {
+            super(listmodel, COLUMNS);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 100) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public Class getColumnClass(int col) {
+            if (col == 1 || col == 2 || col == 3 || col == 4 || col == 5 || col == 6) {
+                return Boolean.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public Object getValueAt(int row, int col) {
+            User_default_privelege_others.to_user_default_priveleges tt = (User_default_privelege_others.to_user_default_priveleges) getRow(row);
+            switch (col) {
+                case 0:
+                    return " " + tt.name;
+                case 1:
+                    return tt.view;
+                case 2:
+                    return tt.add;
+                case 3:
+                    return tt.edit;
+                case 4:
+                    return tt.delete;
+                case 5:
+                    return tt.finalize;
+                case 6:
+                    return tt.finalize;
+
+                default:
+                    return "/cis/icons/cog.png";
+            }
+        }
+    }
+
+    private void ret_user_privileges_others() {
+        int row = tbl_user_default_priveleges.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = tbl_user_default_priveleges.getSelectedColumn();
+        to_user_default_privileges to = (to_user_default_privileges) tbl_user_default_priveleges_ALM.get(row);
+
+        int row2 = tbl_users.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        to_users user = (to_users) tbl_users_ALM.get(row2);
+        String where = " where user_id='" + user.id + "' ";
+        String where2 = " where account like '" + to.account + "' and account_name like '" + to.privilege + "' ";
+        List<User_default_privelege_others.to_user_default_priveleges> others = User_default_privelege_others.ret_data(where, where2);
+        loadData_user_default_previlege_others(others);
+    }
+
+    private void select_other_privilege() {
+        int row = tbl_user_default_previlege_others.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = tbl_user_default_previlege_others.getSelectedColumn();
+        User_default_privelege_others.to_user_default_priveleges to = (User_default_privelege_others.to_user_default_priveleges) tbl_user_default_previlege_others_ALM.get(row);
+
+        int row2 = tbl_users.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+
+        to_users user = (to_users) tbl_users_ALM.get(row2);
+        if (col == 1) {
+
+            //view
+            String pr = to.name + " - (View)";
+            if (to.view) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+
+        }
+        if (col == 2) {
+            //add
+            String pr = to.name + " - (Add)";
+            if (to.add) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+
+        }
+        if (col == 3) {
+            //edit
+            String pr = to.name + " - (Edit)";
+            if (to.edit) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+
+        }
+        if (col == 4) {
+            //delete
+            String pr = to.name + " - (Delete)";
+            if (to.delete) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+
+        }
+        if (col == 5) {
+            //finalize
+            String pr = to.name + " - (Finalize)";
+            if (to.finalize) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+        }
+        if (col == 6) {
+            //report
+            String pr = to.name + " - (Report)";
+            if (to.report) {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                S1_user_previleges.delete_user_previleges_others_where(where);
+                ret_user_privileges_others();
+            } else {
+                String where = " where name like '" + pr + "' and user_id='" + user.id + "' and account='" + to.account + "' and account_name='" + to.account_name + "' ";
+                List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(where);
+                if (datas.isEmpty()) {
+                    int id = 0;
+                    String account = to.account;
+                    String account_name = to.account_name;
+                    String name = pr;
+                    int status = 0;
+                    String user_id = "" + user.id;
+                    String user_name = user.user_name;
+                    User_previlege_others.to_user_previlege_others tup = new User_previlege_others.to_user_previlege_others(id, account, account_name, name, user_id, user_name);
+                    User_previlege_others.add_data(tup);
+                    ret_user_privileges_others();
+                }
+            }
+
+        }
+        if(col==7){
+            if(to.name.equalsIgnoreCase("Subject Overload Override")){
+                Window p = (Window) this;
+                Dlg_subject_load_overried nd = Dlg_subject_load_overried.create(p, true);
+                nd.setTitle("");
+//                nd.do_pass(services);
+                nd.setCallback(new Dlg_subject_load_overried.Callback() {
+                    
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_subject_load_overried.OutputData data) {
+                        closeDialog.ok();
+                        
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            }
+        }
+    }
 //</editor-fold> 
 }

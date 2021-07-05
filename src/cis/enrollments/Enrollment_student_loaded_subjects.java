@@ -920,7 +920,7 @@ public class Enrollment_student_loaded_subjects {
                         + ",lecture_units"
                         + ",lab_units"
                         + " from enrollment_student_loaded_subjects"
-                        + " where enrollment_id='" + field.getEnrollment_id() + "' ";
+                        + " where enrollment_id='" + field.getEnrollment_id() + "' and status=1 ";
 
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(s0);
