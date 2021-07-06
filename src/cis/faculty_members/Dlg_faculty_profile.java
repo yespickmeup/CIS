@@ -25,9 +25,11 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
@@ -638,11 +640,11 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field15ActionPerformed
 
     private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field19);
     }//GEN-LAST:event_tf_field19MouseClicked
 
     private void tf_field19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field19ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field19);
     }//GEN-LAST:event_tf_field19ActionPerformed
 
     private void tf_field21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field21MouseClicked
@@ -718,7 +720,7 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
 //        MyUser.setUser_id("1");
 
         acad_years = Academic_years.ret_data(" where status=1 order by id desc limit 1");
-
+        acad_years2 = Academic_years.ret_data(" order by id asc ");
         Field.Input dep = (Field.Input) tf_field12;
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
@@ -905,7 +907,8 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
         if (jCheckBox10.isSelected()) {
             period = "";
         }
-        List<Srpt_faculty_subject_load.field> subjects = Srpt_faculty_subject_load.ret_data(members, where, period);
+        Field.Combo ac = (Field.Combo) tf_field19;
+        List<Srpt_faculty_subject_load.field> subjects = Srpt_faculty_subject_load.ret_data(members, where, period, FitIn.toInt(ac.getId()));
         loadData_miscellaneous_fees(subjects);
         jLabel2.setText("" + subjects.size());
     }
@@ -1005,6 +1008,7 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
     }
 
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
     List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
     Academic_years.to_academic_years acad = null;
     Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
@@ -1057,6 +1061,31 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
                 Field.Combo co = (Field.Combo) tf_field21;
                 co.setText("" + to);
 
+                ret_subject_loads();
+            }
+        });
+    }
+
+    private void init_academic_years(JTextField tf) {
+        Object[][] obj = new Object[acad_years2.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years2) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
                 ret_subject_loads();
             }
         });

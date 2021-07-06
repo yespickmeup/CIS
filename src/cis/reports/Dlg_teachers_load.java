@@ -8,11 +8,9 @@ package cis.reports;
 import cis.academic.Academic_years;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
-import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.faculty_members.Faculty_member_designation_groups;
 import cis.faculty_members.Faculty_member_designations;
 import cis.faculty_members.Faculty_members;
-import static cis.reports.Dlg_class_list.tbl_enrollments_ALM;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -36,6 +34,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
@@ -689,11 +688,11 @@ public class Dlg_teachers_load extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-
+        init_periods();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        // TODO add your handling code here:
+//        init_academic_years(tf_field17);
     }//GEN-LAST:event_tf_field14MouseClicked
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
@@ -798,12 +797,12 @@ public class Dlg_teachers_load extends javax.swing.JDialog {
 
     private void myInit() {
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
-
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
+        
         init_key();
 
-        acad_years = Academic_years.ret_data(" ");
+        acad_years = Academic_years.ret_data(" order by id asc ");
 
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years acad : acad_years) {
@@ -1389,4 +1388,28 @@ public class Dlg_teachers_load extends javax.swing.JDialog {
         }
     }
 
+    private void init_academic_years(JTextField tf) {
+        Object[][] obj = new Object[acad_years.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+
+            }
+        });
+    }
 }

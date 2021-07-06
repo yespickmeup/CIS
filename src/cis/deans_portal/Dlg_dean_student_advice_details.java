@@ -518,11 +518,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         tf_field128 = new Field.Combo();
         jLabel75 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
-        tf_field131 = new Field.Input();
+        tf_course_code = new Field.Input();
         tf_field132 = new Field.Input();
         jLabel77 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tf_field130 = new javax.swing.JTextArea();
+        tf_course_description = new javax.swing.JTextArea();
         tf_period = new Field.Combo();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
@@ -2546,16 +2546,16 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel76.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel76.setText("Course Code:");
 
-        tf_field131.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field131.setFocusable(false);
-        tf_field131.addMouseListener(new java.awt.event.MouseAdapter() {
+        tf_course_code.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_course_code.setFocusable(false);
+        tf_course_code.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field131MouseClicked(evt);
+                tf_course_codeMouseClicked(evt);
             }
         });
-        tf_field131.addActionListener(new java.awt.event.ActionListener() {
+        tf_course_code.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field131ActionPerformed(evt);
+                tf_course_codeActionPerformed(evt);
             }
         });
 
@@ -2578,12 +2578,12 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane2.setFocusable(false);
 
-        tf_field130.setColumns(20);
-        tf_field130.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tf_field130.setLineWrap(true);
-        tf_field130.setRows(5);
-        tf_field130.setFocusable(false);
-        jScrollPane2.setViewportView(tf_field130);
+        tf_course_description.setColumns(20);
+        tf_course_description.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_course_description.setLineWrap(true);
+        tf_course_description.setRows(5);
+        tf_course_description.setFocusable(false);
+        jScrollPane2.setViewportView(tf_course_description);
 
         tf_period.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_period.setFocusable(false);
@@ -2640,7 +2640,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                             .addComponent(tf_field126)
                             .addComponent(tf_field127)
                             .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(tf_field131, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_course_code, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel77)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2670,7 +2670,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_field131, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_course_code, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_field132, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -3139,12 +3139,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
+                .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel88)
-                        .addComponent(jLabel89)))
+                        .addComponent(jLabel89))
+                    .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)))
                 .addContainerGap())
         );
 
@@ -3475,13 +3476,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //        init_years();
     }//GEN-LAST:event_tf_field128ActionPerformed
 
-    private void tf_field131MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field131MouseClicked
+    private void tf_course_codeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_course_codeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field131MouseClicked
+    }//GEN-LAST:event_tf_course_codeMouseClicked
 
-    private void tf_field131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field131ActionPerformed
+    private void tf_course_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_course_codeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_field131ActionPerformed
+    }//GEN-LAST:event_tf_course_codeActionPerformed
 
     private void tf_field132MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field132MouseClicked
         // TODO add your handling code here:
@@ -3846,6 +3847,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTable tbl_academic_offering_subjects;
     private javax.swing.JTable tbl_enrollment_department_requirements;
     private javax.swing.JTable tbl_enrollment_student_loaded_subjects;
+    private javax.swing.JTextField tf_course_code;
+    private javax.swing.JTextArea tf_course_description;
     private javax.swing.JTextField tf_field10;
     private javax.swing.JTextField tf_field100;
     private javax.swing.JTextField tf_field101;
@@ -3880,8 +3883,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field128;
     private javax.swing.JTextField tf_field129;
     private javax.swing.JTextField tf_field13;
-    private javax.swing.JTextArea tf_field130;
-    private javax.swing.JTextField tf_field131;
     private javax.swing.JTextField tf_field132;
     private javax.swing.JTextField tf_field133;
     private javax.swing.JTextField tf_field134;
@@ -4244,14 +4245,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         } catch (Exception e) {
         }
 
-        Field.Input cou = (Field.Input) tf_field131;
+        Field.Input cou = (Field.Input) tf_course_code;
         Field.Input dep = (Field.Input) tf_field125;
         Field.Input lev = (Field.Input) tf_field126;
 
         cou.setId("" + enroll.course_id);
         cou.setText(enroll.course_code);
         tf_field2.setText(enroll.course_code);
-        tf_field130.setText(enroll.course_description);
+        tf_course_description.setText(enroll.course_description);
 
         dep.setId("" + enroll.department_id);
         dep.setText(enroll.department);
@@ -4818,14 +4819,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             public void ok(TableRenderer.OutputData data) {
                 Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
 
-                Field.Input cou = (Field.Input) tf_field131;
+                Field.Input cou = (Field.Input) tf_course_code;
                 Field.Input dep = (Field.Input) tf_field125;
                 Field.Input lev = (Field.Input) tf_field126;
 
                 cou.setText(off.course_code);
                 cou.setId("" + off.course_id);
                 tf_field132.setText("" + off.no_of_years);
-                tf_field130.setText(off.course_description);
+                tf_course_description.setText(off.course_description);
 
                 dep.setId("" + off.department_id);
                 dep.setText(off.department_name);
@@ -4870,14 +4871,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                Field.Input cou = (Field.Input) tf_field131;
+                Field.Input cou = (Field.Input) tf_course_code;
                 Field.Input dep = (Field.Input) tf_field125;
                 Field.Input lev = (Field.Input) tf_field126;
 
                 int id = enroll.id;
                 int course_id = FitIn.toInt(cou.getId());
                 String course_code = cou.getText();
-                String course_description = tf_field130.getText();
+                String course_description = tf_course_description.getText();
                 int level_id = FitIn.toInt(lev.getId());
                 String level = lev.getText();
                 int college_id = FitIn.toInt(lev.getId());
@@ -5074,7 +5075,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (col == 1) {
             System.out.println("to: " + to.id);
             if (to.id == 0) {
-                Field.Input cou = (Field.Input) tf_field131;
+                Field.Input cou = (Field.Input) tf_course_code;
                 Field.Input dep = (Field.Input) tf_field125;
                 Field.Input lev = (Field.Input) tf_field126;
 
@@ -5154,7 +5155,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String school_year = enroll.academic_year;
                 String date_printed = DateType.month_date.format(new Date());
                 String printed_by = MyUser.getUser_screen_name();
-                Field.Input cou = (Field.Input) tf_field131;
+                Field.Input cou = (Field.Input) tf_course_code;
 
                 String where = " where academic_offering_id='" + cou.getId() + "' ";
                 List<Srpt_academic_offering_subjects.field> fields = Srpt_academic_offering_subjects.ret_data_with_prerequisites(where);
@@ -5481,6 +5482,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }
 
     private void select_aos() {
+        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+            Alert.set(0, "Cannot proceed, application already approved!");
+            return;
+        }
+        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+            Alert.set(0, "Cannot proceed, advising already finished!");
+            return;
+        }
         int row = tbl_academic_offering_subjects.getSelectedRow();
         if (row < 0) {
             return;
@@ -5569,6 +5578,14 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }
 
     private void add_all_load() {
+        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+            Alert.set(0, "Cannot proceed, application already approved!");
+            return;
+        }
+        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+            Alert.set(0, "Cannot proceed, advising already finished!");
+            return;
+        }
         List<to_academic_offering_subjects> subjects = tbl_academic_offering_subjects_ALM;
         List<to_academic_offering_subjects> subjects_selected = new ArrayList();
 
@@ -5726,7 +5743,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Window p = (Window) this;
         Dlg_dean_student_advice_loaded_subjects nd = Dlg_dean_student_advice_loaded_subjects.create(p, true);
         nd.setTitle("");
-        nd.do_pass(loads, not_loaded,enroll);
+        nd.do_pass(loads, not_loaded, enroll);
         nd.setCallback(new Dlg_dean_student_advice_loaded_subjects.Callback() {
 
             @Override

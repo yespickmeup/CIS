@@ -587,7 +587,7 @@ public class Srpt_teachers_load {
                         + " where faculty_id='" + faculty.id + "' "
                         + " and academic_year_id='" + academic_year_id1 + "' "
                         + " and term like '" + term1 + "' ";
-
+//                System.out.println(s0);
                 Statement stmt0 = conn.createStatement();
                 ResultSet rs0 = stmt0.executeQuery(s0);
                 String my_faculty_id = "";
@@ -599,6 +599,7 @@ public class Srpt_teachers_load {
                 while (rs0.next()) {
                     int id = rs0.getInt(1);
                     int enrollment_offered_subject_section_id = rs0.getInt(2);
+//                    System.out.println("id: "+id);
                     my_faculty_id = rs0.getString(3);
                     my_faculty_name = rs0.getString(4);
                     my_room = rs0.getString(5);
@@ -655,6 +656,7 @@ public class Srpt_teachers_load {
                     ResultSet rs = stmt.executeQuery(s2);
                     if (rs.next()) {
                         int id2 = rs.getInt(1);
+                       
                         int enrollment_offered_subject_id = rs.getInt(2);
                         int academic_offering_subject_id = rs.getInt(3);
                         int academic_offering_id = rs.getInt(4);
@@ -674,6 +676,7 @@ public class Srpt_teachers_load {
                         int subject_id = rs.getInt(18);
                         String subject_code = rs.getString(19);
                         String description = rs.getString(20);
+                      
                         double units = rs.getDouble(21);
                         double lecture_units = rs.getDouble(22);
                         double lab_units = rs.getDouble(23);
@@ -704,7 +707,7 @@ public class Srpt_teachers_load {
                                 + ", day"
                                 + ",concat(start_time,'/',closing_time) as time"
                                 + " from enrollment_offered_subject_section_room_schedules"
-                                + " where enrollment_offered_subject_section_id='" + section1.id + "'  "; //group by room_id
+                                + " where enrollment_offered_subject_section_id='" +enrollment_offered_subject_section_id + "'  "; //group by room_id
 
                         Statement stmt3 = conn.createStatement();
                         ResultSet rs3 = stmt3.executeQuery(s3);
@@ -751,12 +754,13 @@ public class Srpt_teachers_load {
                                 + ",final_grade"
                                 + ",ifnull(final_grade_remarks,'')"
                                 + " from enrollment_student_loaded_subjects"
-                                + " where enrollment_offered_subject_section_id ='" + section1.id + "' and status=1 order by lname asc ";
+                                + " where enrollment_offered_subject_section_id ='" +enrollment_offered_subject_section_id + "' and status=1 order by lname asc ";
 //                System.out.println("section.id: "+section.id);
                         Statement stmt4 = conn.createStatement();
                         ResultSet rs4 = stmt4.executeQuery(s4);
                         while (rs4.next()) {
                             int id4 = rs4.getInt(1);
+                         
                             int student_id = rs4.getInt(2);
                             String student_no = rs4.getString(3);
                             String fname = rs4.getString(4);

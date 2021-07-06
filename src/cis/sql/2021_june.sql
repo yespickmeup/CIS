@@ -98,5 +98,5 @@ id int auto_increment primary key
 
 insert into user_default_privileges(account,privilege)values('Reports','Teachers Load');
 
-
+update students set date_of_birth='2000-01-01',date_of_communion='2000-01-01',date_of_confirmation='2000-01-01',created_at='2000-01-01 12:01:01',updated_at='2000-01-01 12:01:01',date_enrolled='2000-01-01' where date_of_birth like '0000-00-00';
 

@@ -2163,26 +2163,28 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                                 .addComponent(tf_field17))
                             .addComponent(tf_field18)))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox25)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field25)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field26)))
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBox25))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field25, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_field26, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
@@ -2264,7 +2266,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2978,7 +2980,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-
         init_key();
         jPanel5.setVisible(false);
         tf_field3.setVisible(false);
@@ -3043,23 +3044,25 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                     Academic_year_period_schedules.to_academic_year_period_schedules sched = (Academic_year_period_schedules.to_academic_year_period_schedules) schedules.get(0);
                     Date now = new Date();
                     try {
-                        Date starts = DateType.sf.parse(sched.add_drop_starts);
-                        Date ends = DateType.sf.parse(sched.add_drop_ends);
-                        int st = DateUtils1.count_days(now, starts);
-                        int en = DateUtils1.count_days(now, ends);
+                        if (sched.add_drop_starts != null) {
+                            Date starts = DateType.sf.parse(sched.add_drop_starts);
+                            Date ends = DateType.sf.parse(sched.add_drop_ends);
+                            int st = DateUtils1.count_days(now, starts);
+                            int en = DateUtils1.count_days(now, ends);
 
-                        if (st > 0) {
-                            add_drop = 40;
-                        } else {
-                            if (en <= 0) {
-                                add_drop = 0;
-                            } else {
+                            if (st > 0) {
                                 add_drop = 40;
+                            } else {
+                                if (en <= 0) {
+                                    add_drop = 0;
+                                } else {
+                                    add_drop = 40;
+                                }
                             }
                         }
 
                     } catch (ParseException ex) {
-                        Logger.getLogger(Dlg_student_enrollment.class.getName()).log(Level.SEVERE, null, ex);
+
                     }
                 }
 
@@ -3368,27 +3371,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
     private void ret_offering_subjects() {
 
-//        Field.Combo ye = (Field.Combo) tf_field20;
-//        Field.Combo cou = (Field.Combo) tf_field13;
-//        Field.Combo lev = (Field.Combo) tf_field19;
-//        Field.Combo per = (Field.Combo) tf_field21;
-//
-//        String where = " where id<>0 ";
-//        if (!jCheckBox12.isSelected()) {
-//            where = where + " and academic_offering_id='" + cou.getId() + "' ";
-//        }
-//        if (!jCheckBox20.isSelected()) {
-//            where = where + " and year_level='" + lev.getText() + "' ";
-//        }
-//        if (!jCheckBox21.isSelected()) {
-//            where = where + " and term='" + per.getText() + "' ";
-//        }
-//        where = where + "  order by description asc ";
-//
-//        System.out.println(where);
-//        List<Academic_offering_subjects.to_academic_offering_subjects> datas = Academic_offering_subjects.ret_data(where);
-//        loadData_academic_offering_subjects(datas);
-//        jLabel6.setText("" + datas.size());
         String where = " where id<>0 ";
         String where2 = "";
         String search = tf_field4.getText();
@@ -3417,7 +3399,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 
     private void add_all_offering() {
-
+        if (tf_field26.getText().isEmpty()) {
+            Alert.set(0, "Please select period");
+            return;
+        }
         List<Subjects.to_subjects> to_check = new ArrayList();
         List< Subjects.to_subjects> to_add = new ArrayList();
         List< Subjects.to_subjects> selected = tbl_academic_offering_subjects_ALM;
@@ -3425,7 +3410,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         for (Subjects.to_subjects sel : selected) {
             if (sel.selected) {
                 to_check.add(sel);
-//                System.out.println(sel.description);
+
             }
         }
         if (to_check.isEmpty()) {
@@ -3434,13 +3419,16 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
         Subjects.to_subjects to = (Subjects.to_subjects) to_check.get(0);
         int academic_year_id = acad.id;
-        String where = " where academic_year_id='" + academic_year_id + "'  ";
+        String where = " where academic_year_id='" + academic_year_id + "' and term like '" + tf_field26.getText() + "' ";
+
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data(where);
 
         for (Subjects.to_subjects sel : to_check) {
+
             int exists = 0;
             for (Enrollment_offered_subjects.to_enrollment_offered_subjects to2 : datas) {
                 if (sel.id == to2.subject_id) {
+//                    System.out.println("subject: " + sel.id);
                     exists = 1;
                     break;
                 }
@@ -3449,7 +3437,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 to_add.add(sel);
             }
         }
-
+//        System.out.println("academic_year_id: " + academic_year_id);
+//        System.out.println("to_check: " + to_check);
+//        System.out.println("to_add: " + to_add.size());
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> open = new ArrayList();
         Window p = (Window) this;
         Dlg_registrar_open_subject_add_section nd = Dlg_registrar_open_subject_add_section.create(p, true);
@@ -3535,6 +3525,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 
     private void select_offering_subject() {
+        if (tf_field26.getText().isEmpty()) {
+            Alert.set(0, "Please select period");
+            return;
+        }
         int row = tbl_academic_offering_subjects.getSelectedRow();
         if (row < 0) {
             return;
@@ -5822,8 +5816,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
     private void init_acad_period_schedules() {
         Field.Combo dep = (Field.Combo) tf_field15;
+        Field.Combo acad = (Field.Combo) tf_field25;
         acad_schedules.clear();
-        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+        acad_schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "'  and department_id='" + dep.getId() + "'");
 
         Object[][] obj = new Object[acad_schedules.size()][1];
         int i = 0;

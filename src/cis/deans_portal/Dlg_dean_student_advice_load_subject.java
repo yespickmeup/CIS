@@ -612,7 +612,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         jTextArea2.setText(to.prerequisite_subject_ids);
         ret_eos();
 
-        String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
+        String where = " where enrollment_id='" + enroll.id + "' and status=1 ";
 
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
 
@@ -781,7 +781,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
 //        System.out.println("where: "+where);
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
-
+        
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
         if (datas.size() > 0) {
@@ -789,7 +789,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
     }
 //</editor-fold> 
-    
+
     private void ok() {
         int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
         if (row < 0) {
@@ -811,7 +811,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 return;
             }
         }
-
+        
         boolean exist = false;
         for (to_enrollment_student_loaded_subjects to2 : loaded) {
             if (to2.subject_id == to.subject_id) {
@@ -826,7 +826,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
 
         boolean check = check_if_exists();
-
+       
         if (check) {
             Alert.set(0, "Day/Time not available!");
             return;
@@ -841,7 +841,8 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             maxx = set.amount;
             load = set.amount2;
         }
-
+//        System.out.println("Count: "+(count + total_units));
+//        System.out.println("maxx: "+maxx);
         if ((count + total_units) >= maxx) {
 
             if ((count + total_units) > (maxx + load)) {
@@ -866,6 +867,8 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 nd.setLocationRelativeTo(this);
                 nd.setVisible(true);
             }
+        }else{
+             ok2(to);
         }
 
     }

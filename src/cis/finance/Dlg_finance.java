@@ -44,6 +44,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -2183,11 +2184,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                         .addComponent(tf_field29))
                     .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_field30)))
+                        .addComponent(tf_field30))
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -2290,11 +2291,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field14);
     }//GEN-LAST:event_tf_field14MouseClicked
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field14);
     }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field15MouseClicked
@@ -2551,11 +2552,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_transactionsMouseClicked
 
     private void tf_field13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field13MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13MouseClicked
 
     private void tf_field13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field13ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13ActionPerformed
 
     private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
@@ -2793,9 +2794,11 @@ public class Dlg_finance extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
+
         deps = Departments.ret_data(" order by department_name  asc ");
 
         acad_years = Academic_years.ret_data(" where status=1 ");
+        acad_years2 = Academic_years.ret_data(" order by id asc ");
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 Field.Input year = (Field.Input) tf_field14;
@@ -2823,6 +2826,7 @@ public class Dlg_finance extends javax.swing.JDialog {
 
     int academic_year_id = 0;
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
     List<Departments.to_departments> deps = new ArrayList();
 
     private void ret_mode_of_payments() {
@@ -3755,17 +3759,18 @@ public class Dlg_finance extends javax.swing.JDialog {
     Enrollments.to_enrollments enroll = null;
 
     private void init_students() {
-        String where = " where id<>0 ";
+        Field.Combo ac = (Field.Combo) tf_field13;
+        String where = " where id<>0 and academic_year_id='" + ac.getId() + "' ";
         if (jCheckBox5.isSelected()) {
             where = where + " and student_no like '%" + tf_field23.getText() + "%' ";
         } else if (jCheckBox6.isSelected()) {
 
             if (!jCheckBox16.isSelected()) {
                 where = where + " and concat(first_name,space(1),last_name) like '%" + tf_field23.getText() + "%' and period like '" + tf_field26.getText() + "' "
-                        + " or concat(last_name,space(1),first_name) like '%" + tf_field23.getText() + "%' and period like '" + tf_field26.getText() + "' ";
+                        + " or id<>0 and academic_year_id='" + ac.getId() + "' and concat(last_name,space(1),first_name) like '%" + tf_field23.getText() + "%' and period like '" + tf_field26.getText() + "' ";
             } else {
                 where = where + " and concat(first_name,space(1),last_name) like '%" + tf_field23.getText() + "%' "
-                        + " or concat(last_name,space(1),first_name) like '%" + tf_field23.getText() + "%'";
+                        + " or id<>0 and academic_year_id='" + ac.getId() + "' and concat(last_name,space(1),first_name) like '%" + tf_field23.getText() + "%'";
 
             }
         } else {
@@ -3787,11 +3792,11 @@ public class Dlg_finance extends javax.swing.JDialog {
             i++;
         }
         JLabel[] labels = {};
-        int[] tbl_widths_customers = {100, 150, 100, 150, 200};
+        int[] tbl_widths_customers = {100, 150, 100, 150, 300};
         int width = 0;
         String[] col_names = {"", "", "", "", ""};
         TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup2(tf_field23, obj, labels, tbl_widths_customers, col_names, 690);
+        TableRenderer.setPopup2(tf_field23, obj, labels, tbl_widths_customers, col_names, 800);
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
@@ -4845,6 +4850,31 @@ public class Dlg_finance extends javax.swing.JDialog {
                 co.setText("" + to);
 
                 ret_data();
+            }
+        });
+    }
+
+    private void init_academic_years(JTextField tf) {
+        Object[][] obj = new Object[acad_years2.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years2) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+
             }
         });
     }

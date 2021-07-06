@@ -211,7 +211,7 @@ public class Srpt_faculty_subject_load {
 
         String where = " where id<>0 ";
         List<Faculty_members.to_faculty_members> members = Faculty_members.ret_data("order by lname asc ");
-        List<field> fields = ret_data(members, where,"");
+        List<field> fields = ret_data(members, where, "",9);
         String jrxml = "rpt_faculty_subject_loads.jrxml";
 
         Srpt_faculty_subject_load rpt = new Srpt_faculty_subject_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college);
@@ -241,7 +241,7 @@ public class Srpt_faculty_subject_load {
                 JasperUtil.makeDatasource(to.fields));
     }
 
-    public static List<field> ret_data(List<Faculty_members.to_faculty_members> members, String where, String period) {
+    public static List<field> ret_data(List<Faculty_members.to_faculty_members> members, String where, String period, int academic_year_id1) {
         List<field> datas = new ArrayList();
 
         try {
@@ -287,6 +287,7 @@ public class Srpt_faculty_subject_load {
                         + ",is_uploaded"
                         + " from enrollment_offered_subject_section_instructors "
                         + " " + where + " and faculty_id='" + faculty.id + "' and term like '" + period + "' "
+                        + " and academic_year_id='" + academic_year_id1 + "' "
                         + " order by description asc ";
 //                        + " group by enrollment_offered_subject_section_id ";
 

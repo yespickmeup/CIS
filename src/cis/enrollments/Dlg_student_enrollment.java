@@ -3343,13 +3343,53 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                 Academic_year_period_schedules.to_academic_year_period_schedules sched = (Academic_year_period_schedules.to_academic_year_period_schedules) schedules.get(0);
                 Date now = new Date();
                 try {
-                    Date starts = DateType.sf.parse(sched.enrollment_starts);
-                    Date ends = DateType.sf.parse(sched.enrollment_ends);
-                    int st = DateUtils1.count_days(now, starts);
-                    int en = DateUtils1.count_days(now, ends);
+                    if (sched.enrollment_starts != null) {
+                        Date starts = DateType.sf.parse(sched.enrollment_starts);
+                        Date ends = DateType.sf.parse(sched.enrollment_ends);
+                        int st = DateUtils1.count_days(now, starts);
+                        int en = DateUtils1.count_days(now, ends);
 //                    System.out.println("st: "+st);
 //                     System.out.println("en: "+en);
-                    if (st > 0) {
+                        if (st > 0) {
+                            jLabel4.setText("Enrollment not yet open");
+                            jLabel4.setVisible(true);
+                            Window p = (Window) this;
+                            Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
+                            nd.setTitle("");
+                            nd.do_pass("Enrollment not yet open");
+                            nd.setCallback(new Dlg_confirm_action4.Callback() {
+
+                                @Override
+                                public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
+                                    closeDialog.ok();
+
+                                }
+                            });
+                            nd.setLocationRelativeTo(this);
+                            nd.setVisible(true);
+                        } else {
+                            if (en < 0) {
+                                jLabel4.setVisible(true);
+                                Window p = (Window) this;
+                                Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
+                                nd.setTitle("");
+                                nd.do_pass("Enrollment closed!");
+                                nd.setCallback(new Dlg_confirm_action4.Callback() {
+
+                                    @Override
+                                    public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
+                                        closeDialog.ok();
+
+                                    }
+                                });
+                                nd.setLocationRelativeTo(this);
+                                nd.setVisible(true);
+                            } else {
+                                jButton3.setEnabled(true);
+                                jLabel4.setVisible(false);
+                            }
+                        }
+                    } else {
                         jLabel4.setText("Enrollment not yet open");
                         jLabel4.setVisible(true);
                         Window p = (Window) this;
@@ -3366,27 +3406,6 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
                         });
                         nd.setLocationRelativeTo(this);
                         nd.setVisible(true);
-                    } else {
-                        if (en < 0) {
-                            jLabel4.setVisible(true);
-                            Window p = (Window) this;
-                            Dlg_confirm_action4 nd = Dlg_confirm_action4.create(p, true);
-                            nd.setTitle("");
-                            nd.do_pass("Enrollment closed!");
-                            nd.setCallback(new Dlg_confirm_action4.Callback() {
-
-                                @Override
-                                public void ok(CloseDialog closeDialog, Dlg_confirm_action4.OutputData data) {
-                                    closeDialog.ok();
-
-                                }
-                            });
-                            nd.setLocationRelativeTo(this);
-                            nd.setVisible(true);
-                        } else {
-                            jButton3.setEnabled(true);
-                            jLabel4.setVisible(false);
-                        }
                     }
 
                 } catch (ParseException ex) {

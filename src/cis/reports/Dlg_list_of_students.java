@@ -43,6 +43,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
@@ -247,7 +248,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        tf_field13 = new Field.Input();
+        tf_field13 = new Field.Combo();
         jLabel23 = new javax.swing.JLabel();
         jCheckBox10 = new javax.swing.JCheckBox();
         tf_field14 = new Field.Combo();
@@ -762,8 +763,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -789,11 +790,11 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_enrollmentsMouseClicked
 
     private void tf_field13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field13MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13MouseClicked
 
     private void tf_field13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field13ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
@@ -947,9 +948,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
+        acad_years2 = Academic_years.ret_data(" order by id asc ");
         if (!acad_years.isEmpty()) {
             Academic_years.to_academic_years to1 = acad_years.get(0);
-            Field.Input year3 = (Field.Input) tf_field13;
+            Field.Combo year3 = (Field.Combo) tf_field13;
             year3.setText(to1.years);
             year3.setId("" + to1.id);
             acad = to1;
@@ -979,13 +981,14 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         list_year.add("Third Year");
         list_year.add("Fourth Year");
         list_year.add("Fifth Year");
-        
+
         init_tbl_enrollments(tbl_enrollments);
         ret_data();
     }
     Academic_years.to_academic_years acad = null;
     Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
     List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
 
     int no_of_years = 4;
@@ -1430,7 +1433,8 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     }
 
     private void ret_data() {
-        String where = " where date_enrolled is not null ";
+        Field.Combo ac = (Field.Combo) tf_field13;
+        String where = " where date_enrolled is not null and academic_year_id='" + ac.getId() + "' ";
         if (!jCheckBox10.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field14;
             where = where + " and department_id = '" + dep.getId() + "' ";
@@ -1451,7 +1455,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         if (!jCheckBox15.isSelected()) {
             where = where + " and year_level like '" + tf_field18.getText() + "' ";
         }
-        
+
         if (!jCheckBox21.isSelected()) {
             String period = tf_field17.getText();
             where = where + " and period like '" + period + "' ";
@@ -1588,7 +1592,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                             selected_colleges.add("" + coll.id);
                         }
                     }
-                    Field.Input year3 = (Field.Input) tf_field13;
+                    Field.Combo year3 = (Field.Combo) tf_field13;
                     String department = tf_field14.getText();
                     if (jCheckBox10.isSelected()) {
                         department = "All";
@@ -1610,12 +1614,12 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
                     int transferee_5th = 0;
                     jrxml = "rpt_enrollment_summary.jrxml";
                     Srpt_enrollment_summary rpt = new Srpt_enrollment_summary(business_name, address, contact_no, date, printed_by, school_year, semester, department, continuing_1st, continuing_2nd, continuing_3rd, continuing_4th, continuing_5th, new_1st, new_2nd, new_3rd, new_4th, new_5th, transferee_1st, transferee_2nd, transferee_3rd, transferee_4th, transferee_5th);
-                   
-                    String term="";
+
+                    String term = "";
                     if (!jCheckBox21.isSelected()) {
-                        term=tf_field17.getText();
+                        term = tf_field17.getText();
                     }
-                    rpt = Srpt_enrollment_summary.ret_data(year3.getId(), selected_colleges, rpt,term);
+                    rpt = Srpt_enrollment_summary.ret_data(year3.getId(), selected_colleges, rpt, term);
                     report_enrollment_summary(rpt, jrxml);
                 }
                 jProgressBar1.setString("Finished...");
@@ -1915,7 +1919,7 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
     }
 
     private void init_courses() {
-        Field.Input year3 = (Field.Input) tf_field13;
+        Field.Combo year3 = (Field.Combo) tf_field13;
 
         String where = " where course_code like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
                 + " or course_description like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
@@ -1977,8 +1981,10 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
 
     private void init_acad_period_schedules() {
         Field.Combo dep = (Field.Combo) tf_field14;
+
+        Field.Combo acad1 = (Field.Combo) tf_field13;
         acad_schedules.clear();
-        acad_schedules = Academic_year_period_schedules.ret_data(" where status=1 and department_id='" + dep.getId() + "'");
+        acad_schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad1.getId() + "'  and department_id='" + dep.getId() + "'");
 
         Object[][] obj = new Object[acad_schedules.size()][1];
         int i = 0;
@@ -2005,4 +2011,28 @@ public class Dlg_list_of_students extends javax.swing.JDialog {
         });
     }
 
+    private void init_academic_years(JTextField tf) {
+        Object[][] obj = new Object[acad_years2.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years2) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+                ret_data();
+            }
+        });
+    }
 }

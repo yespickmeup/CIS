@@ -5,6 +5,7 @@
  */
 package cis.registrar;
 
+import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
@@ -664,7 +665,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field11ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           ret();
+        ret();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -710,7 +711,10 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
 
     private void ret() {
         List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(" where enrollment_id='" + enroll.id + "' and status=0  order by subject_code,description asc ");
-        loadData_added_subjects(datas);
+
+        List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> new_data = Enrollment_offered_subject_sections.ret_data3(datas);
+
+        loadData_added_subjects(new_data);
         jLabel2.setText("" + datas.size());
         tf_field3.setText(enroll.enrollment_no);
         tf_field4.setText(enroll.student_no);
@@ -721,9 +725,9 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
         tf_field9.setText(DateType.convert_slash_datetime2(enroll.advised_date));
         tf_field10.setText(DateType.convert_slash_datetime2(enroll.assessed_date));
         int conflicts = 0;
-        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to : datas) {
+        for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to : new_data) {
             String[] cap = to.created_by.split(" of ");
-
+            System.out.println("to.created_b: " + to.created_by);
             int min = FitIn.toInt(cap[0]);
             int max = FitIn.toInt(cap[1]);
             if (min == max || min > max) {
@@ -788,7 +792,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
 
     }
 
-    public static void loadData_added_subjects(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> acc) {
+    public static void loadData_added_subjects(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> acc) {
         tbl_added_subjects_ALM.clear();
         tbl_added_subjects_ALM.addAll(acc);
 
@@ -822,7 +826,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
 
         @Override
         public Object getValueAt(int row, int col) {
-            Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tt = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) getRow(row);
+            Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections tt = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) getRow(row);
             switch (col) {
                 case 0:
                     return " " + tt.subject_code;
@@ -873,7 +877,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
     }
 
     private void ok1() {
-        
+
         if (!tf_field11.getText().equalsIgnoreCase("Okay for approval")) {
             Alert.set(0, "Please fix the subject load conflict/s");
             return;

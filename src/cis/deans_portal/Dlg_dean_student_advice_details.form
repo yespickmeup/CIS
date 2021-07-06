@@ -3995,7 +3995,7 @@
                                           <Component id="tf_field126" alignment="0" max="32767" attributes="0"/>
                                           <Component id="tf_field127" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tf_field131" min="-2" pref="179" max="-2" attributes="0"/>
+                                              <Component id="tf_course_code" min="-2" pref="179" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -4033,7 +4033,7 @@
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel76" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="tf_field131" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="tf_course_code" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jLabel77" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="tf_field132" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jLabel85" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -4292,7 +4292,7 @@
                         <Property name="text" type="java.lang.String" value="Course Code:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="tf_field131">
+                    <Component class="javax.swing.JTextField" name="tf_course_code">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial" size="14" style="0"/>
@@ -4300,8 +4300,8 @@
                         <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field131MouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_field131ActionPerformed"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_course_codeMouseClicked"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_course_codeActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
@@ -4341,7 +4341,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="tf_field130">
+                        <Component class="javax.swing.JTextArea" name="tf_course_description">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -5020,12 +5020,14 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jScrollPane5" pref="447" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel88" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel89" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
