@@ -714,7 +714,7 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox15ActionPerformed
 
     private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
-       ret_data();
+        ret_data();
     }//GEN-LAST:event_jCheckBox16ActionPerformed
 
     /**
@@ -1372,26 +1372,36 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
                 String where = " where academic_offering_id='" + academic_offering_id + "' ";
 
                 List<Academic_offering_subjects.to_academic_offering_subjects> datas = Academic_offering_subjects.ret_data(where);
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where student_id='" + student_id + "' and academic_offering_id='" + academic_offering_id + "' and status=1 ");
+                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where student_id='" + student_id + "' and course_id='" + to.course_id + "' and status=1 ");
+
                 for (int i = 0; i < years.length; i++) {
                     for (int iii = 0; iii < period.length; iii++) {
                         for (Academic_offering_subjects.to_academic_offering_subjects to : datas) {
                             if (to.year_level.equalsIgnoreCase(years[i]) && to.term.equalsIgnoreCase(period[iii])) {
                                 String subject_code = to.subject_code;
                                 String description = to.description;
-                                double final_grade = 0;
-                                double re_exam = 0;
+                                String final_grade = "";
+                                String re_exam = "";
                                 double units = to.lab_units + to.lecture_units;
                                 int order = i;
                                 String year_level = years[i];
                                 String semester = period[iii];
+                                String status = "";
                                 for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
                                     if (to.subject_id == subject.subject_id) {
-                                        final_grade = subject.final_grade;
+                                        final_grade = "" + subject.final_grade;
+                                        if (subject.final_grade == 0) {
+                                            final_grade = "";
+                                        }
+                                        if (subject.final_grade_created_at != null && subject.status == 1) {
+                                            status = subject.final_grade_remarks;
+                                        } else if (subject.final_grade_created_at == null && subject.status == 1) {
+                                            status = "Ongoing";
+                                        }
                                         break;
                                     }
                                 }
-                                Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester);
+                                Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester,status);
                                 fields.add(f);
                             }
                         }

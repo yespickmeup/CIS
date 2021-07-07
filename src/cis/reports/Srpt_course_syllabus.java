@@ -29,7 +29,7 @@ import net.sf.jasperreports.swing.JRViewer;
  *
  * @author User
  */
-public class Srpt_transcript_of_records {
+public class Srpt_course_syllabus {
 
     public final String school_name;
     public final String school_address;
@@ -54,7 +54,7 @@ public class Srpt_transcript_of_records {
     public final String registrar;
     public final List<field> fields;
 
-    public Srpt_transcript_of_records(String school_name, String school_address, String lname, String fname, String mname, String sname, String address, String bday, String school_last_attended, String school_last_attended_date, String entrance_credential, String date_of_admission, String elementary_school, String elementary_school_date, String high_school, String high_school_date, String course_code, String course, String prepared_by, String verified_by, String registrar) {
+    public Srpt_course_syllabus(String school_name, String school_address, String lname, String fname, String mname, String sname, String address, String bday, String school_last_attended, String school_last_attended_date, String entrance_credential, String date_of_admission, String elementary_school, String elementary_school_date, String high_school, String high_school_date, String course_code, String course, String prepared_by, String verified_by, String registrar) {
         this.school_name = school_name;
         this.school_address = school_address;
         this.lname = lname;
@@ -90,7 +90,8 @@ public class Srpt_transcript_of_records {
         String year_level;
         String semester;
         String status;
-        public field(String subject_code, String description, String final_grade, String re_exam, double units, int order, String year_level, String semester,String status) {
+
+        public field(String subject_code, String description, String final_grade, String re_exam, double units, int order, String year_level, String semester, String status) {
             this.subject_code = subject_code;
             this.description = description;
             this.final_grade = final_grade;
@@ -99,7 +100,7 @@ public class Srpt_transcript_of_records {
             this.order = order;
             this.year_level = year_level;
             this.semester = semester;
-            this.status=status;
+            this.status = status;
         }
 
         public String getStatus() {
@@ -227,13 +228,14 @@ public class Srpt_transcript_of_records {
                         int order = i;
                         String year_level = years[i];
                         String semester = period[iii];
-                        String status="";
+                        String status = "";
                         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
                             if (to.subject_id == subject.subject_id) {
                                 final_grade = "" + subject.final_grade;
-                                if (subject.final_grade == 0) {
+                                if (FitIn.toDouble(final_grade) == 0) {
                                     final_grade = "";
                                 }
+                                
                                 if (subject.final_grade_created_at != null && subject.status == 1) {
                                     status = "Ok";
                                 } else if (subject.final_grade_created_at == null && subject.status == 1) {
@@ -242,7 +244,7 @@ public class Srpt_transcript_of_records {
                                 break;
                             }
                         }
-                        field f = new field(subject_code, description, final_grade, re_exam, units, order, year_level, semester,status);
+                        field f = new field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
                         fields.add(f);
                     }
                 }
@@ -251,7 +253,7 @@ public class Srpt_transcript_of_records {
 
         String jrxml = "rpt_transcript_of_records.jrxml";
 
-        Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar);
+        Srpt_course_syllabus rpt = new Srpt_course_syllabus(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar);
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);
         JFrame f = Application.launchMainFrame3(viewer, "Sample", true);
@@ -261,7 +263,7 @@ public class Srpt_transcript_of_records {
     public static JasperReport compileJasper(String jrxml) {
         try {
 
-            InputStream is = Srpt_transcript_of_records.class.getResourceAsStream(jrxml);
+            InputStream is = Srpt_course_syllabus.class.getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
 
             return jasper;
@@ -270,7 +272,7 @@ public class Srpt_transcript_of_records {
         }
     }
 
-    public static JRViewer get_viewer(Srpt_transcript_of_records to, String jrxml) {
+    public static JRViewer get_viewer(Srpt_course_syllabus to, String jrxml) {
 
         return JasperUtil.getJasperViewer(
                 compileJasper(jrxml),

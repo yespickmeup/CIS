@@ -41,6 +41,7 @@ import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -237,7 +238,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        tf_field13 = new Field.Input();
+        tf_field13 = new Field.Combo();
         jLabel23 = new javax.swing.JLabel();
         tf_field14 = new Field.Combo();
         tf_field15 = new Field.Combo();
@@ -1341,11 +1342,11 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_field3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field3MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field3);
     }//GEN-LAST:event_tf_field3MouseClicked
 
     private void tf_field3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field3ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field3);
     }//GEN-LAST:event_tf_field3ActionPerformed
 
     private void tf_field7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field7MouseClicked
@@ -1377,11 +1378,11 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_academic_offering_subjectsMouseClicked
 
     private void tf_field13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field13MouseClicked
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13MouseClicked
 
     private void tf_field13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field13ActionPerformed
-        // TODO add your handling code here:
+        init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
@@ -1641,13 +1642,14 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 //        System.setProperty("pool_password", "password");
         init_key();
         acad_years = Academic_years.ret_data(" where status=1");
+        acad_years2 = Academic_years.ret_data(" order by id asc ");
         year_levels = Combo.year_levels();
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 if (to1.status == 1) {
                     Field.Combo year = (Field.Combo) tf_field2;
                     Field.Combo year2 = (Field.Combo) tf_field3;
-                    Field.Input year3 = (Field.Input) tf_field13;
+                    Field.Combo year3 = (Field.Combo) tf_field13;
                     year.setText(to1.years);
                     year.setId("" + to1.id);
                     year2.setText(to1.years);
@@ -1687,6 +1689,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }
 
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
 
     public void do_pass() {
         int user_id = FitIn.toInt(MyUser.getUser_id());
@@ -2744,7 +2747,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 //</editor-fold> 
 
     private void ret_enrollments() {
-        Field.Combo year = (Field.Combo) tf_field2;
+        Field.Combo year = (Field.Combo) tf_field13;
         String where = " where id<>0 and academic_year_id='" + year.getId() + "' ";
         if (!jCheckBox10.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field14;
@@ -2896,7 +2899,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }
 
     private void init_courses() {
-        Field.Input year3 = (Field.Input) tf_field13;
+        Field.Combo year3 = (Field.Combo) tf_field13;
         String where = " where id<>0 ";
 
         Field.Combo dep = (Field.Combo) tf_field14;
@@ -2966,7 +2969,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     List<String> periods2 = new ArrayList();
 
     private void ret_periods() {
-        Field.Input year = (Field.Input) tf_field13;
+        Field.Combo year = (Field.Combo) tf_field13;
         Field.Combo dep = (Field.Combo) tf_field14;
         String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
         List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
@@ -2979,7 +2982,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }
 
     private void ret_periods2() {
-        Field.Input year = (Field.Input) tf_field13;
+        Field.Combo year = (Field.Combo) tf_field13;
         Field.Combo dep = (Field.Combo) tf_field8;
         String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
         List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
@@ -2992,7 +2995,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }
 
     private void init_periods() {
-        Field.Input acad = (Field.Input) tf_field13;
+        Field.Combo acad = (Field.Combo) tf_field13;
         Field.Combo dep = (Field.Combo) tf_field14;
         acad_schedules.clear();
         acad_schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "' and department_id='" + dep.getId() + "'");
@@ -3053,7 +3056,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule2 = null;
 
     private void set_period() {
-        Field.Input sy = (Field.Input) tf_field13;
+        Field.Combo sy = (Field.Combo) tf_field13;
         Field.Combo dep = (Field.Combo) tf_field14;
         String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
         acad_schedules = Academic_year_period_schedules.ret_data(where2);
@@ -3071,7 +3074,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }
 
     private void set_period2() {
-        Field.Input sy = (Field.Input) tf_field13;
+        Field.Combo sy = (Field.Combo) tf_field13;
         Field.Combo dep = (Field.Combo) tf_field8;
         String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
         acad_schedules2 = Academic_year_period_schedules.ret_data(where2);
@@ -3087,4 +3090,30 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
             tf.setId("");
         }
     }
+
+    private void init_academic_years(JTextField tf) {
+        Object[][] obj = new Object[acad_years2.size()][1];
+        int i = 0;
+        for (Academic_years.to_academic_years to : acad_years2) {
+            obj[i][0] = " " + to.years;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
+                Field.Combo co = (Field.Combo) tf;
+                co.setText("" + to.years);
+                co.setId("" + to.id);
+
+            }
+        });
+    }
+
 }
