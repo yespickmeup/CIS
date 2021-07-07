@@ -251,7 +251,7 @@ public class Students {
             PreparedStatement stmt3 = conn.prepareStatement("");
 
             String s5 = " update enrollments set "
-                    + "date_enrolled='" + DateType.now() + "' "
+                    + " date_enrolled='" + DateType.now() + "' "
                     + ",approved_by_id = '" + MyUser.getUser_id() + "' "
                     + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
                     + ",approved_date = '" + DateType.now() + "' "
@@ -649,6 +649,57 @@ public class Students {
 
             String s7 = " update enrollment_student_loaded_subjects set student_no='" + id + "',student_id='" + student_id + "',status=1,is_payed=1 where enrollment_id='" + enroll.id + "'";
             stmt3.addBatch(s7);
+
+            //Update Balance
+            String s10 = "select "
+                    + "id"
+                    + ",balance"
+                    + ",prepaid"
+                    + " from students"
+                    + " where id='" + student_id + "' ";
+            Statement stmt10 = conn.createStatement();
+            ResultSet rs10 = stmt10.executeQuery(s10);
+            double balance = 0;
+            if (rs10.next()) {
+                balance = rs10.getDouble(2);
+            }
+
+            String s13 = "select "
+                    + " other_fees_discount"
+                    + " from  enrollment_assessments "
+                    + " where student_id='" + student_id + "' ";
+
+            Statement stmt13 = conn.createStatement();
+            ResultSet rs13 = stmt13.executeQuery(s13);
+            double other_fees_discount = 0;
+            if (rs13.next()) {
+                other_fees_discount = rs13.getDouble(1);
+            }
+            
+             String s14 = "select "
+                    + " other_fees_discount"
+                    + " from  enrollment_assessments "
+                    + " where student_id='" + student_id + "' ";
+
+            Statement stmt14 = conn.createStatement();
+            ResultSet rs14 = stmt14.executeQuery(s14);
+            double paid = 0;
+            if (rs14.next()) {
+                paid = rs14.getDouble(1);
+            }
+            
+
+            double new_balance = balance + (other_fees_discount-paid);
+
+            String s15 = "update students set "
+                    + " balance= :balance "
+                    + " where student_no='" + id + "' "
+                    + " ";
+
+            s15 = SqlStringUtil.parse(s15)
+                    .setNumber("balance", new_balance)
+                    .ok();
+            stmt3.addBatch(s15);
 
             stmt3.executeBatch();
 

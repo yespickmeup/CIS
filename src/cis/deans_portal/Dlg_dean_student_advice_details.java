@@ -5521,11 +5521,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }
 
     private void select_aos() {
-        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
             Alert.set(0, "Cannot proceed, application already approved!");
             return;
         }
-        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
             Alert.set(0, "Cannot proceed, advising already finished!");
             return;
         }
@@ -5617,11 +5617,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }
 
     private void add_all_load() {
-        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
             Alert.set(0, "Cannot proceed, application already approved!");
             return;
         }
-        if (jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
             Alert.set(0, "Cannot proceed, advising already finished!");
             return;
         }
@@ -5986,7 +5986,11 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         Field.Combo year = (Field.Combo) tf_field133;
         Field.Combo period = (Field.Combo) tf_field134;
 
-        where = where + " and enrollment_id='" + enroll.id + "' ";
+        if (enroll.student_id != 0) {
+            where = where + " and student_id='" + enroll.student_id + "' ";
+        } else {
+            where = where + " and enrollment_no='" + enroll.enrollment_no + "' ";
+        }
         if (!jCheckBox13.isSelected()) {
             where = where + " and year_level like '" + year.getText() + "' ";
         }

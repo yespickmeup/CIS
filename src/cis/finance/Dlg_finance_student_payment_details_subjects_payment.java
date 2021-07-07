@@ -6,6 +6,8 @@
 package cis.finance;
 
 import cis.academic.Academic_year_fees;
+import cis.academic.Academic_year_other_fees;
+import cis.academic.Academic_years;
 import cis.banks.Banks;
 import cis.credit_cards.Credit_cards;
 import cis.students.Students;
@@ -206,6 +208,8 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
         jLabel35 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         tf_field22 = new Field.Input();
+        tf_fixed_amount1 = new Field.Input();
+        jLabel44 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel84 = new javax.swing.JLabel();
         tf_field20 = new Field.Input();
@@ -350,6 +354,24 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
             }
         });
 
+        tf_fixed_amount1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        tf_fixed_amount1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        tf_fixed_amount1.setText("0.00");
+        tf_fixed_amount1.setFocusable(false);
+        tf_fixed_amount1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_fixed_amount1MouseClicked(evt);
+            }
+        });
+        tf_fixed_amount1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_fixed_amount1ActionPerformed(evt);
+            }
+        });
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jLabel44.setText("Deduction Charge:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -357,6 +379,7 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(jLabel83, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -376,7 +399,10 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tf_field137)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tf_fixed_amount1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -406,7 +432,11 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(tf_fixed_amount1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -1080,6 +1110,14 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
         count_tender();
     }//GEN-LAST:event_tf_discountKeyReleased
 
+    private void tf_fixed_amount1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_fixed_amount1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_fixed_amount1MouseClicked
+
+    private void tf_fixed_amount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fixed_amount1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_fixed_amount1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1104,6 +1142,7 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel80;
@@ -1139,6 +1178,7 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
     private javax.swing.JTextField tf_field22;
     private javax.swing.JTextField tf_field23;
     private javax.swing.JTextField tf_fixed_amount;
+    private javax.swing.JTextField tf_fixed_amount1;
     private javax.swing.JTextField tf_prepaid_customer_id3;
     private javax.swing.JTextField tf_prepaid_customer_id4;
     private javax.swing.JTextField tf_prepaid_customer_id5;
@@ -1147,6 +1187,12 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
 
     private void myInit() {
         init_key();
+
+        acad_years = Academic_years.ret_data(" where status=1 ");
+        if (!acad_years.isEmpty()) {
+            Academic_years.to_academic_years acad = acad_years.get(0);
+            acad_year_id = acad.id;
+        }
         tf_field135.setVisible(false);
         tf_field136.setVisible(false);
         jLabel81.setVisible(false);
@@ -1155,7 +1201,8 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
         jLabel80.setVisible(false);
         jTabbedPane1.remove(3);
     }
-
+    int acad_year_id = 0;
+    List<Academic_years.to_academic_years> acad_years = new ArrayList();
     Students.to_students pay_stud = null;
     double total_lec_units = 0;
     double total_lab_units = 0;
@@ -1230,6 +1277,31 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
         double tender = FitIn.toDouble(tf_field20.getText());
         double change = tender - due;
         tf_field23.setText(FitIn.fmt_wc_0(change));
+
+        if (is_drop == 0) {
+            jLabel44.setVisible(false);
+            tf_fixed_amount1.setVisible(false);
+        } else {
+            jLabel44.setVisible(true);
+            tf_fixed_amount1.setVisible(true);
+
+            String where2 = " where "
+                    + " name like 'Withdrawal of subject deduction' "
+                    + " and academic_year_id='" + acad_year_id + "' "
+                    + " and department_id='" + pay_stud.department_id + "'  ";
+//            System.out.println(where2);
+            List<Academic_year_other_fees.to_academic_year_other_fees> fees = Academic_year_other_fees.ret_data(where2);
+
+            if (!fees.isEmpty()) {
+                Academic_year_other_fees.to_academic_year_other_fees fee = (Academic_year_other_fees.to_academic_year_other_fees) fees.get(0);
+                if (fee.remarks.equalsIgnoreCase("Full")) {
+                    tf_fixed_amount1.setText(tf_field137.getText());
+
+                } else {
+                    tf_fixed_amount1.setText(FitIn.fmt_wc_0(fee.amount1));
+                }
+            }
+        }
 
         tf_field21.grabFocus();
     }
@@ -1513,8 +1585,8 @@ public class Dlg_finance_student_payment_details_subjects_payment extends javax.
                 subjects.add(details);
             }
         }
-
-        Enrollment_sls_payments.add_data(payment, subjects);
+        double drop_charge=FitIn.toDouble(tf_fixed_amount1.getText());
+        Enrollment_sls_payments.add_data(payment, subjects, remaining, is_drop,drop_charge);
         Alert.set(1, "");
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData());

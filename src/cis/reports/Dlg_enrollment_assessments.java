@@ -1749,7 +1749,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     }
 
     private void init_courses() {
-        Field.Input year3 = (Field.Input) tf_field13;
+        Field.Combo year3 = (Field.Combo) tf_field13;
 
         String where = " where course_code like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
                 + " or course_description like '%" + tf_field16.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "

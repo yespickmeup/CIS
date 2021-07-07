@@ -100,3 +100,4 @@ insert into user_default_privileges(account,privilege)values('Reports','Teachers
 
 update students set date_of_birth='2000-01-01',date_of_communion='2000-01-01',date_of_confirmation='2000-01-01',created_at='2000-01-01 12:01:01',updated_at='2000-01-01 12:01:01',date_enrolled='2000-01-01' where date_of_birth like '0000-00-00';
 
+update enrollment_assessments ea set ea.student_id=(select s.id from students s where s.student_no=ea.student_no limit 1) where ea.student_id=0;

@@ -659,6 +659,33 @@ public class Enrollment_assessments {
                     + " ";
             stmt2.addBatch(s7);
 
+            if (to_enrollment_assessments.student_id != 0) {
+
+                String s10 = "select "
+                        + "id"
+                        + ",balance"
+                        + ",prepaid"
+                        + " from students"
+                        + " where id='" + to_enrollment_assessments.student_id + "' ";
+                Statement stmt10 = conn.createStatement();
+                ResultSet rs10 = stmt10.executeQuery(s10);
+                double balance = 0;
+                if (rs10.next()) {
+                    balance = rs10.getDouble(2);
+                }
+                double new_balance = balance + (to_enrollment_assessments.other_fees_discount - pay.amount_paid);
+
+                String s11 = "update students set "
+                        + " balance= :balance "
+                        + " where id='" + to_enrollment_assessments.student_id + "' "
+                        + " ";
+
+                s11 = SqlStringUtil.parse(s11)
+                        .setNumber("balance", new_balance)
+                        .ok();
+                stmt4.addBatch(s11);
+            }
+
             stmt4.executeBatch();
             stmt2.executeBatch();
             conn.commit();

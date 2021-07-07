@@ -125,9 +125,10 @@ public class Enrollment_sls_payments {
         }
     }
 
-    public static void add_data(to_enrollment_sls_payments to_enrollment_sls_payments, List<Enrollment_sls_payment_details.to_enrollment_sls_payment_details> subjects) {
+    public static void add_data(to_enrollment_sls_payments to_enrollment_sls_payments, List<Enrollment_sls_payment_details.to_enrollment_sls_payment_details> subjects, double remaining, int is_drop,double drop_charge) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
             String s0 = "insert into enrollment_sls_payments("
                     + "trans_type"
                     + ",enrollment_id"
@@ -379,7 +380,36 @@ public class Enrollment_sls_payments {
                         .ok();
                 stmt2.addBatch(s2);
             }
+
+//            //Payment
+            if (is_drop == 1) {
+                String s10 = "select "
+                        + "id"
+                        + ",balance"
+                        + ",prepaid"
+                        + " from students"
+                        + " where id='" + to_enrollment_sls_payments.student_id + "' ";
+                Statement stmt10 = conn.createStatement();
+                ResultSet rs10 = stmt10.executeQuery(s10);
+                double balance = 0;
+                if (rs10.next()) {
+                    balance = rs10.getDouble(2);
+                }
+                double new_balance = balance - (drop_charge);
+
+                String s11 = "update students set "
+                        + " balance= :balance "
+                        + " where id='" + to_enrollment_sls_payments.student_id + "' "
+                        + " ";
+
+                s11 = SqlStringUtil.parse(s11)
+                        .setNumber("balance", new_balance)
+                        .ok();
+                stmt2.addBatch(s11);
+            }
+
             stmt2.executeBatch();
+            conn.commit();
             Lg.s(Enrollment_sls_payments.class, "Successfully Added");
         } catch (SQLException e) {
             throw new RuntimeException(e);

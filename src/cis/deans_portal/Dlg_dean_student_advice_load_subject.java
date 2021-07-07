@@ -611,9 +611,9 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tf_field4.setText("" + to.lab_units);
         jTextArea2.setText(to.prerequisite_subject_ids);
         ret_eos();
-
-        String where = " where enrollment_id='" + enroll.id + "' and status=1 ";
-
+        
+        String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
+        
         loaded = Enrollment_student_loaded_subjects.ret_data(where);
 
     }
