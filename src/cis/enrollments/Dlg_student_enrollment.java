@@ -3538,6 +3538,61 @@ public class Dlg_student_enrollment extends javax.swing.JDialog {
             Alert.set(0, "Input Last name");
             return;
         }
+        if (tf_field6.getText().isEmpty()) {
+            tf_field6.grabFocus();
+            Alert.set(0, "Input middle name");
+            return;
+        }
+        if (tf_field104.getText().isEmpty()) {
+            tf_field104.grabFocus();
+            Alert.set(0, "Input current address");
+            return;
+        }
+        if (tf_field9.getText().isEmpty()) {
+            tf_field9.grabFocus();
+            Alert.set(0, "Input permanent address");
+            return;
+        }
+        if (tf_field10.getText().isEmpty()) {
+            tf_field10.grabFocus();
+            Alert.set(0, "Input postal code");
+            return;
+        }
+        if (tf_field11.getText().isEmpty()) {
+            tf_field11.grabFocus();
+            Alert.set(0, "Input email address");
+            return;
+        }
+        if (tf_field13.getText().isEmpty()) {
+            tf_field13.grabFocus();
+            Alert.set(0, "Input mobile number");
+            return;
+        }
+        if (tf_field14.getText().isEmpty()) {
+            tf_field14.grabFocus();
+            Alert.set(0, "Input birth place");
+            return;
+        }
+        if (tf_field16.getText().isEmpty()) {
+            tf_field16.grabFocus();
+            Alert.set(0, "Input citizenship");
+            return;
+        }
+        if (tf_field17.getText().isEmpty()) {
+            tf_field17.grabFocus();
+            Alert.set(0, "Input religion");
+            return;
+        }
+        if (tf_field134.getText().isEmpty()) {
+            tf_field134.grabFocus();
+            Alert.set(0, "Input facebook name");
+            return;
+        }
+        if (tf_field135.getText().isEmpty()) {
+            tf_field135.grabFocus();
+            Alert.set(0, "Input blood type");
+            return;
+        }
         int age = FitIn.toInt(tf_field15.getText());
         if (age <= 3) {
             Alert.set(0, "Input Birthdate");

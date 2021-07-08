@@ -81,11 +81,11 @@ public class Srpt_class_list {
         int esls_id;
         double final_grade;
         String grade_remarks;
-
+        String fb_name;
         public field() {
         }
 
-        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address, int esls_id, double final_grade, String grade_remarks) {
+        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address, int esls_id, double final_grade, String grade_remarks,String fb_name) {
             this.section_id = section_id;
             this.subject_code = subject_code;
             this.description = description;
@@ -107,8 +107,19 @@ public class Srpt_class_list {
             this.esls_id = esls_id;
             this.final_grade = final_grade;
             this.grade_remarks = grade_remarks;
+            this.fb_name=fb_name;
         }
 
+        
+        public String getFb_name() {
+            return fb_name;
+        }
+
+        public void setFb_name(String fb_name) {
+            this.fb_name = fb_name;
+        }
+
+        
         public double getFinal_grade() {
             return final_grade;
         }
@@ -315,7 +326,8 @@ public class Srpt_class_list {
             int esls_id = 0;
             double final_grade = 0;
             String grade_remarks = "";
-            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address, esls_id, final_grade, grade_remarks);
+            String fb_name="";
+            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address, esls_id, final_grade, grade_remarks,fb_name);
             fields.add(f);
         }
         String jrxml = "rpt_class_list.jrxml";
@@ -531,11 +543,13 @@ public class Srpt_class_list {
                     String contact_no1 = "";
                     String email_address = "";
                     int college_id = 0;
+                    String fb_name="";
                     String s4 = "select "
                             + "student_no"
                             + ",mobile_no"
                             + ",email_address"
                             + ",college_id"
+                            + ",fb_account"
                             + " from students"
                             + " where id ='" + student_id + "' ";
                     Statement stmt4 = conn.createStatement();
@@ -544,10 +558,11 @@ public class Srpt_class_list {
                         contact_no1 = rs4.getString(2);
                         email_address = rs4.getString(3);
                         college_id = rs4.getInt(4);
+                        fb_name=rs4.getString(5);
                     }
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks,fb_name);
 
                     datas.add(f);
 
@@ -746,11 +761,13 @@ public class Srpt_class_list {
                     String contact_no1 = "";
                     String email_address = "";
                     int college_id = 0;
+                    String fb_name="";
                     String s4 = "select "
                             + "student_no"
                             + ",mobile_no"
                             + ",email_address"
                             + ",college_id"
+                            + ",fb_account"
                             + " from students"
                             + " where id ='" + student_id + "' ";
                     Statement stmt4 = conn.createStatement();
@@ -759,10 +776,11 @@ public class Srpt_class_list {
                         contact_no1 = rs4.getString(2);
                         email_address = rs4.getString(3);
                         college_id = rs4.getInt(4);
+                        fb_name=rs4.getString(5);
                     }
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks,fb_name);
 
                   
                     if (course_id1 == 0) {

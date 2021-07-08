@@ -3387,9 +3387,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             }
             where = where + " and subject_code like '%" + search + "%' ";
 
-            where = where + where2 + " and description like '%" + search + "%' order by description desc ";
+            where = where + where2 + " and description like '%" + search + "%' order by subject_code,description asc ";
         } else {
-            where = " where subject_code like '%" + search + "%' or description like '%" + search + "%' order by description desc ";
+            where = " where subject_code like '%" + search + "%'  order by subject_code,description asc or description like '%" + search + "%' order by subject_code,description asc ";
         }
 
 //        System.out.println(where);
@@ -3914,7 +3914,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             where = where + " and eos.subject_code like '%" + search + "%'  ";
 
             where = where + where2 + " and eos.description like '%" + search + "%' "
-                    + " order by eos.description desc ";
+                    + " order by eos.subject_code,eos.description asc ";
         } else {
             Field.Combo dep = (Field.Combo) tf_field15;
 
@@ -3929,7 +3929,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             where = where + " and eos.subject_code like '%" + search + "%' ";
 
             where = where + where2 + " and eos.description like '%" + search + "%' "
-                    + " order by eos.description desc ";
+                    + " order by eos.subject_code,eos.description asc ";
         }
 //        System.out.println(where);
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);

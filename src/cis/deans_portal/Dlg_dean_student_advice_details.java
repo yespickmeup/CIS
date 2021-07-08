@@ -3412,7 +3412,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jProgressBar3.setStringPainted(true);
 
         jButton15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton15.setText("Generate Course Syllabus");
+        jButton15.setText("Generate Course Prospectus");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -3468,7 +3468,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 .addGap(31, 31, 31))
         );
 
-        jTabbedPane2.addTab("Course Syllabus", jPanel37);
+        jTabbedPane2.addTab("Course Prospectus", jPanel37);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -5509,8 +5509,9 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (!jCheckBox8.isSelected()) {
             where = where + " and term like '" + tf_field129.getText() + "' ";
         }
+        
         where = where + " and academic_offering_id='" + academic_offering_id + "' order by subject_code,description asc  ";
-//        System.out.println("where: " + where);;
+
         List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
         loadData_academic_offering_subjects(subjects);
         jLabel5.setText("" + subjects.size());

@@ -45,8 +45,9 @@ public class Srpt_teachers_load {
     public final String year_level;
     public final String room;
     public final List<field> fields;
+    public final double total_capacity;
 
-    public Srpt_teachers_load(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester, String department, String college, String year_level, String room) {
+    public Srpt_teachers_load(String business_name, String address, String contact_no, String date, String printed_by, String school_year, String semester, String department, String college, String year_level, String room,double total_capacity) {
         this.business_name = business_name;
         this.address = address;
         this.contact_no = contact_no;
@@ -59,6 +60,7 @@ public class Srpt_teachers_load {
         this.year_level = year_level;
         this.room = room;
         this.fields = new ArrayList();
+        this.total_capacity=total_capacity;
     }
 
     public static class field {
@@ -294,7 +296,7 @@ public class Srpt_teachers_load {
         String college = "";
         String year_level = "";
         String room = "";
-
+        double total_capacity=0;
         List<Srpt_teachers_load.field> fields = new ArrayList();
         for (int i = 0; i < 20; i++) {
             int section_id = 1;
@@ -323,7 +325,7 @@ public class Srpt_teachers_load {
         }
         String jrxml = "rpt_class_list.jrxml";
 
-        Srpt_teachers_load rpt = new Srpt_teachers_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room);
+        Srpt_teachers_load rpt = new Srpt_teachers_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room,total_capacity);
 
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);

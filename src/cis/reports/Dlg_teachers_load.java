@@ -797,8 +797,8 @@ public class Dlg_teachers_load extends javax.swing.JDialog {
 
     private void myInit() {
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
         
         init_key();
 
@@ -1334,8 +1334,13 @@ public class Dlg_teachers_load extends javax.swing.JDialog {
                 Field.Combo term = (Field.Combo) tf_field17;
 
                 List<Srpt_teachers_load.field> fields = Srpt_teachers_load.ret_data(selected_fm, FitIn.toInt(acad.getId()), term.getText());
+                double total_capacity=0;
+                
+                for(Srpt_teachers_load.field f:fields){
+                    
+                }
                 String jrxml = "rpt_teachers_load.jrxml";
-                Srpt_teachers_load rpt = new Srpt_teachers_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, "");
+                Srpt_teachers_load rpt = new Srpt_teachers_load(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, "",total_capacity);
                 rpt.fields.addAll(fields);
                 report_class_list(rpt, jrxml);
                 jProgressBar1.setString("Finished...");
