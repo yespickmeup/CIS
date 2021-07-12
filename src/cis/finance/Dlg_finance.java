@@ -2711,7 +2711,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        set_student_ledger();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
@@ -4826,7 +4826,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         tbl_transactions.setModel(tbl_transactions_M);
         tbl_transactions.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_transactions.setRowHeight(25);
-        int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 30, 0, 0};
+        int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 80, 80,30};
         for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -4839,8 +4839,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         tbl_transactions.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_transactions.setRowHeight(25);
         tbl_transactions.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_transactions.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
+        tbl_transactions.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
         TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 2);
+        TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 3);
+        TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 4);
     }
 
     public static void loadData_transactions(List<Finance.transactions> acc) {
@@ -4852,7 +4854,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     public static class Tbl_transactions_Model extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Date", "Transactions", "Amount", "", "Status", ""
+            "Date", "Transactions", "Debit", "Credit", "Balance", ""
         };
 
         public Tbl_transactions_Model(ListModel listmodel) {
@@ -4882,10 +4884,13 @@ public class Dlg_finance extends javax.swing.JDialog {
                 case 0:
                     return " " + tt.date;
                 case 1:
-                    return " " + tt.trans_type;
+                    return " " + tt.mode;
                 case 2:
-                    return " " + FitIn.fmt_wc_0(tt.amount) + " ";
-
+                    return " " + FitIn.fmt_wc_0(tt.debit) + " ";
+                case 3:
+                    return " " + FitIn.fmt_wc_0(tt.credit) + " ";
+                case 4:
+                    return " " + FitIn.fmt_wc_0(tt.balance) + " ";
                 default:
                     return "/cis/icons/tool.png";
 
@@ -5017,7 +5022,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     Srpt_student_payables.field f = new Srpt_student_payables.field(id, mode, year_level, academic_year, date, amount, interest, paid, balance);
                     fields.add(f);
                 }
-            
+
                 String jrxml = "rpt_student_payables.jrxml";
 
                 Srpt_student_payables rpt = new Srpt_student_payables(business_name, address, contact_no, date, student_no, student_name);
@@ -5090,6 +5095,119 @@ public class Dlg_finance extends javax.swing.JDialog {
         try {
             if (jasperPrint2 != null) {
                 JasperPrintManager.printReport(jasperPrint2, false);
+            }
+
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, "Failed To Print, Please Check the Printer");
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Student Ledger
+    private void set_student_ledger() {
+        jTabbedPane5.setSelectedIndex(2);
+        jProgressBar1.setString("Loading...Please wait...");
+        jProgressBar1.setIndeterminate(true);
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+                String date = DateType.slash.format(new Date());
+                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+                String printed_by = "Administrator";
+                String student_no = "00000001";
+                String student_name = "Ronald Pascua";
+                List<Srpt_student_ledger.field> fields = new ArrayList();
+                for (int i = 0; i < 10; i++) {
+                    int id = 0;
+                    String mode = "First Payment";
+                    String term = "First Semester";
+                    String year_level = "First Year";
+                    String academic_year = "2020-2021";
+                    String date2 = "09/11/2020";
+                    String debit = "" + (100 * i);
+                    String credit = "" + (150 * i);
+                    String interest = "";
+                    double balance = FitIn.toDouble(debit) - FitIn.toDouble(credit);
+                    Srpt_student_ledger.field f = new Srpt_student_ledger.field(id, mode, year_level, term, academic_year, date, debit, credit, interest, balance);
+                    fields.add(f);
+                }
+                String jrxml = "rpt_student_ledger.jrxml";
+
+                Srpt_student_ledger rpt = new Srpt_student_ledger(business_name, address, contact_no, date, student_no, student_name);
+
+                rpt.fields.addAll(fields);
+                report_student_ledger(rpt, jrxml);
+
+                InputStream is = Srpt_student_ledger.class.getResourceAsStream(jrxml);
+                try {
+                    JasperReport jasperReport = JasperCompileManager.compileReport(is);
+                    jasperPrint3 = JasperFillManager.fillReport(jasperReport, JasperUtil.
+                                                                setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
+
+                } catch (JRException ex) {
+                    Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                jProgressBar1.setString("Finished...");
+                jProgressBar1.setIndeterminate(false);
+            }
+        });
+        t.start();
+    }
+
+    private void report_student_ledger(final Srpt_student_ledger to, String jrxml_name) {
+        jPanel31.removeAll();
+        jPanel31.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_student_ledger(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel31.add(viewer);
+            jPanel31.setMinimumSize(new Dimension(626, 0));
+            jPanel31.setMaximumSize(new Dimension(626, 0));
+            jPanel31.setPreferredSize(new Dimension(626, 0));
+            jPanel31.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JRViewer get_viewer_student_ledger(Srpt_student_ledger to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper_student_ledger(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.makeDatasource(to.fields));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public static JasperReport compileJasper_student_ledger(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_student_ledger.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    JasperPrint jasperPrint3 = null;
+
+    private void print_student_ledger() {
+        try {
+            if (jasperPrint3 != null) {
+                JasperPrintManager.printReport(jasperPrint3, false);
             }
 
         } catch (JRException e) {

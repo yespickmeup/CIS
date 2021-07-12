@@ -83,13 +83,27 @@ public class Finance {
         public final String trans_type;
         public final double amount;
         public Date created;
+        public final String mode;
+        public final String year_level;
+        public final String term;
+        public final String academic_year;
+        public final double debit;
+        public final double credit;
+        public final double balance;
 
-        public transactions(int id, String date, String trans_type, double amount, Date created) {
+        public transactions(int id, String date, String trans_type, double amount, Date created, String mode, String year_level, String term, String academic_year, double debit, double credit, double balance) {
             this.id = id;
             this.date = date;
             this.trans_type = trans_type;
             this.amount = amount;
             this.created = created;
+            this.mode = mode;
+            this.year_level = year_level;
+            this.term = term;
+            this.academic_year = academic_year;
+            this.debit = debit;
+            this.credit = credit;
+            this.balance = balance;
         }
 
         public Date getCreated() {
@@ -523,21 +537,27 @@ public class Finance {
 
     public static List<Finance.transactions> ret_transactions(Students.to_students student) {
         List<Finance.transactions> datas = new ArrayList();
-
+        double balance = 0;
         try {
             Connection conn = MyConnection.connect();
 
             String s4 = "select "
-                    + "id"
-                    + ",created_at"
-                    + " from enrollment_assessments"
-                    + " where student_id='" + student.id + "' ";
+                    + "ea.id"
+                    + ",ea.created_at"
+                    + ",ea.year_level"
+                    + ",ea.academic_year"
+                    + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
+                    + " from enrollment_assessments ea"
+                    + " where ea.student_id='" + student.id + "' ";
 
             Statement stmt4 = conn.createStatement();
             ResultSet rs4 = stmt4.executeQuery(s4);
             while (rs4.next()) {
                 int id = rs4.getInt(1);
                 String created_at = rs4.getString(2);
+                String year_level = rs4.getString(3);
+                String academic_year = rs4.getString(4);
+                String period = rs4.getString(5);
                 String s5 = "select "
                         + " amount"
                         + " from enrollment_assessment_payment_modes"
@@ -550,18 +570,24 @@ public class Finance {
                     amount += rs5.getDouble(1);
                 }
                 Date d = new Date();
+                String mode = "Assessment";
+
+                double debit = amount;
+                double credit = 0;
+                balance += debit;
+
                 try {
                     // 2020-07-15 10:28:47
                     d = DateType.datetime.parse(created_at);
                     int hour = d.getHours();
                     String sf = DateType.sf.format(d);
-                    String date = sf + " " + hour + ":00:00";
+                    String date = sf + " " + "00" + ":00:01";
                     d = DateType.datetime.parse(date);
                 } catch (ParseException ex) {
                     d = new Date();
                 }
 
-                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Assessment", amount, d);
+                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount, d, mode, year_level, period, academic_year, debit, credit, balance);
                 datas.add(to);
             }
 
@@ -569,6 +595,9 @@ public class Finance {
                     + " eap.id"
                     + ",eap.amount_paid"
                     + ",eap.created_at"
+                    + ",ea.year_level"
+                    + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
+                    + ",ea.academic_year"
                     + " from enrollment_assessment_payments eap "
                     + " join enrollment_assessments ea "
                     + " on eap.enrollment_assessment_id = ea.id "
@@ -577,49 +606,81 @@ public class Finance {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
+
+            String mode = "Assessment Payment";
+            String year_level = "";
+            String term = "";
+            String academic_year = "";
+            double debit = 0;
+            double credit = 0;
+
             while (rs.next()) {
                 int id = rs.getInt(1);
                 double amount_paid = rs.getDouble(2);
                 String created_at = rs.getString(3);
+                year_level = rs.getString(4);
+                term = rs.getString(5);
+                academic_year = rs.getString(6);
                 Date d = new Date();
                 try {
                     d = DateType.datetime.parse(created_at);
                 } catch (ParseException ex) {
                     d = new Date();
                 }
+                credit = amount_paid;
+                balance -= credit;
 
-                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Tuition Payment", amount_paid, d);
+                Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount_paid, d, mode, year_level, term, academic_year, debit, credit, balance);
                 datas.add(to);
             }
 
             String s2 = "select "
-                    + "id"
-                    + ",trans_type"
-                    + ",amount_paid"
-                    + ",created_at"
-                    + " from enrollment_sls_payments"
-                    + " where student_id='" + student.id + "' ";
+                    + "ea.id"
+                    + ",ea.trans_type"
+                    + ",ea.amount_paid"
+                    + ",ea.created_at"
+                    + ",ea.academic_year"
+                    + ",(select e.year_level from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
+                    + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
+                    + " from enrollment_sls_payments ea "
+                    + " where ea.student_id='" + student.id + "' ";
 
             Statement stmt2 = conn.createStatement();
             ResultSet rs2 = stmt2.executeQuery(s2);
+            String mode2 = "";
+            String year_level2 = "";
+            String term2 = "";
+            String academic_year2 = "";
+            double debit2 = 0;
+            double credit2 = 0;
+
             while (rs2.next()) {
                 int id = rs2.getInt(1);
                 int trans_type = rs2.getInt(2);
                 double amount_paid = rs2.getDouble(3);
                 String created_at = rs2.getString(4);
+                year_level2 = rs2.getString(5);
+                term2 = rs2.getString(6);
+                academic_year2=rs2.getString(7);
                 Date d = new Date();
+
                 try {
                     d = DateType.datetime.parse(created_at);
                 } catch (ParseException ex) {
                     d = new Date();
                 }
+                credit = amount_paid;
+                balance -= credit;
+
                 if (trans_type == 1) {
-                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d);
-                    datas.add(to);
+                    debit2=amount_paid;
+                  Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, mode2, year_level2,term2, academic_year2, debit2, credit2, balance);
+                datas.add(to);
                 }
                 if (trans_type == 2) {
-                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d);
-                    datas.add(to);
+                    credit2=amount_paid;
+                   Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, mode2, year_level2,term2, academic_year2, debit2, credit2, balance);
+                datas.add(to);
                 }
 
             }

@@ -146,14 +146,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel18" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="tf_field12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel13" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="tf_field7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="tf_field13" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLabel19" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel18" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="tf_field12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -173,13 +175,13 @@
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel20" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="tf_field14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="tf_field6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="tf_field14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -187,9 +189,9 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   </Group>
