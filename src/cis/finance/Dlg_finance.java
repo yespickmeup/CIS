@@ -365,6 +365,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_other_fees = new javax.swing.JTable();
@@ -373,11 +374,12 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        tf_field14 = new Field.Input();
+        tf_field14 = new Field.Combo();
         tf_field15 = new Field.Combo();
         jLabel32 = new javax.swing.JLabel();
-        tf_field17 = new Field.Combo();
+        tf_period = new Field.Combo();
         jLabel30 = new javax.swing.JLabel();
         tf_field16 = new Field.Combo();
         jLabel31 = new javax.swing.JLabel();
@@ -1767,6 +1769,15 @@ public class Dlg_finance extends javax.swing.JDialog {
             }
         });
 
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/tool.png"))); // NOI18N
+        jButton10.setText("Copy");
+        jButton10.setFocusable(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1784,16 +1795,19 @@ public class Dlg_finance extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1857,6 +1871,15 @@ public class Dlg_finance extends javax.swing.JDialog {
             }
         });
 
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons/tool.png"))); // NOI18N
+        jButton11.setText("Copy");
+        jButton11.setFocusable(false);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -1874,16 +1897,19 @@ public class Dlg_finance extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1925,16 +1951,16 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Period:");
 
-        tf_field17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field17.setFocusable(false);
-        tf_field17.addMouseListener(new java.awt.event.MouseAdapter() {
+        tf_period.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_period.setFocusable(false);
+        tf_period.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_field17MouseClicked(evt);
+                tf_periodMouseClicked(evt);
             }
         });
-        tf_field17.addActionListener(new java.awt.event.ActionListener() {
+        tf_period.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_field17ActionPerformed(evt);
+                tf_periodActionPerformed(evt);
             }
         });
 
@@ -1986,7 +2012,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_period, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2011,7 +2037,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_period, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2023,11 +2053,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -2324,7 +2350,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Print Preview", jPanel8);
@@ -2343,7 +2369,7 @@ public class Dlg_finance extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jTabbedPane2)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Maintenance", jPanel2);
@@ -2403,13 +2429,13 @@ public class Dlg_finance extends javax.swing.JDialog {
         init_colleges();
     }//GEN-LAST:event_tf_field16ActionPerformed
 
-    private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
+    private void tf_periodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_periodMouseClicked
         init_years2();
-    }//GEN-LAST:event_tf_field17MouseClicked
+    }//GEN-LAST:event_tf_periodMouseClicked
 
-    private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
+    private void tf_periodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_periodActionPerformed
         init_years2();
-    }//GEN-LAST:event_tf_field17ActionPerformed
+    }//GEN-LAST:event_tf_periodActionPerformed
 
     private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
         // TODO add your handling code here:
@@ -2714,6 +2740,14 @@ public class Dlg_finance extends javax.swing.JDialog {
         set_student_ledger();
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        copy_fees();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        copy_other_fees();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2723,6 +2757,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
@@ -2871,7 +2907,6 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field140;
     private javax.swing.JTextField tf_field15;
     private javax.swing.JTextField tf_field16;
-    private javax.swing.JTextField tf_field17;
     private javax.swing.JTextField tf_field18;
     private javax.swing.JTextField tf_field19;
     private javax.swing.JTextField tf_field20;
@@ -2890,13 +2925,14 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field7;
     private javax.swing.JTextField tf_field8;
     private javax.swing.JTextField tf_field9;
+    private javax.swing.JTextField tf_period;
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -2904,7 +2940,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         acad_years2 = Academic_years.ret_data(" order by id asc ");
         if (!acad_years.isEmpty()) {
             for (Academic_years.to_academic_years to1 : acad_years) {
-                Field.Input year = (Field.Input) tf_field14;
+                Field.Combo year = (Field.Combo) tf_field14;
                 Field.Combo year2 = (Field.Combo) tf_field13;
                 year.setText(to1.years);
                 year.setId("" + to1.id);
@@ -2913,6 +2949,10 @@ public class Dlg_finance extends javax.swing.JDialog {
                 academic_year_id = to1.id;
             }
         }
+        acad_periods.add("");
+        acad_periods.add("First Semester");
+        acad_periods.add("Second Semester");
+        acad_periods.add("Summer Class");
         ret_mode_of_payments();
         init_tbl_miscellaneous_fees(tbl_miscellaneous_fees);
         init_tbl_other_fees(tbl_other_fees);
@@ -3001,9 +3041,9 @@ public class Dlg_finance extends javax.swing.JDialog {
                 Field.Combo ye = (Field.Combo) tf_field16;
                 ye.setId("");
                 ye.setText("");
-                Field.Combo pe = (Field.Combo) tf_field17;
-                pe.setId("");
-                pe.setText("");
+//                Field.Combo pe = (Field.Combo) tf_period;
+//                pe.setId("");
+//                pe.setText("");
 
                 tbl_miscellaneous_fees_ALM.clear();
                 tbl_other_fees_ALM.clear();
@@ -3049,11 +3089,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 co.setId("" + to.id);
 
                 Field.Combo year = (Field.Combo) tf_field16;
-                Field.Combo per = (Field.Combo) tf_field17;
+                Field.Combo per = (Field.Combo) tf_period;
                 year.setText("");
                 year.setId("");
-                per.setText("");
-                per.setId("");
+//                per.setText("");
+//                per.setId("");
                 tbl_miscellaneous_fees_ALM.clear();
                 tbl_other_fees_ALM.clear();
                 tf_field20.setText("0.00");
@@ -3071,29 +3111,34 @@ public class Dlg_finance extends javax.swing.JDialog {
         });
     }
 
+    List<String> acad_periods = new ArrayList();
+
     private void init_years2() {
-        Object[][] obj = new Object[list_year2.size()][1];
+        Object[][] obj = new Object[acad_periods.size()][1];
         int i = 0;
-        for (String to : list_year2) {
+        for (String to : acad_periods) {
             obj[i][0] = " " + to;
 
             i++;
         }
         JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field17.getWidth()};
+        int[] tbl_widths_customers = {tf_period.getWidth()};
         int width = 0;
         String[] col_names = {""};
         TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field17, obj, labels, tbl_widths_customers, col_names);
+        TableRenderer.setPopup(tf_period, obj, labels, tbl_widths_customers, col_names);
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                String to = list_year2.get(data.selected_row);
-                tf_field17.setText("" + to);
+                String to = acad_periods.get(data.selected_row);
+                tf_period.setText("" + to);
 
-                ret_data();
-                ret_data_other_fees();
-                ret_tuition_fee();
+                if (!tf_field16.getText().isEmpty()) {
+                    ret_tuition_fee();
+                    ret_data();
+                    ret_data_other_fees();
+                }
+
             }
         });
     }
@@ -3119,11 +3164,11 @@ public class Dlg_finance extends javax.swing.JDialog {
             i++;
         }
         JLabel[] labels = {};
-        int[] tbl_widths_customers = {80, 250, 60};
+        int[] tbl_widths_customers = {140, 270, 40};
         int width = 0;
         String[] col_names = {"", "", ""};
         TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup2(tf_field16, obj, labels, tbl_widths_customers, col_names, 390);
+        TableRenderer.setPopup2(tf_field16, obj, labels, tbl_widths_customers, col_names, 450);
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
@@ -3132,11 +3177,6 @@ public class Dlg_finance extends javax.swing.JDialog {
                 co.setText("" + to.course_description);
                 co.setId("" + to.id);
 
-                String[] year = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year", "Sixth Year"};
-                for (int i = 0; i < to.no_of_years; i++) {
-                    list_year2.add(year[i]);
-                }
-                tf_field17.setText(year[0]);
                 ret_data();
                 ret_data_other_fees();
                 ret_tuition_fee();
@@ -3316,22 +3356,32 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     private void ret_data() {
-        Field.Input acad = (Field.Input) tf_field14;
+        Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
-        Field.Combo per = (Field.Combo) tf_field17;
+        Field.Combo per = (Field.Combo) tf_period;
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + acad.getId() + "' "
-                + " and department_id='" + dep.getId() + "' "
-                + " and level_id='" + lev.getId() + "' "
-                + " and course_id='" + year.getId() + "' "
-                + " and period like '" + per.getText() + "' "
-                + " and group_id=1 ";
+        if (acad2.getId().equalsIgnoreCase("1") && !per.getText().equalsIgnoreCase("Summer Class") || acad2.getId().equalsIgnoreCase("9") && !per.getText().equalsIgnoreCase("Summer Class")) {
+
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like 'First Year' "
+                    + " and group_id=1 ";
+        } else {
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like '" + per.getText() + "' "
+                    + " and group_id=1 ";
+        }
 
         List<Academic_year_fees.to_academic_year_fees> datas = Miscellaneous_fees.ret_data2(where);
-//        System.out.println(where);
+
         loadData_miscellaneous_fees(datas);
 
         double amount = 0;
@@ -3343,19 +3393,29 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     private void ret_data_other_fees() {
-        Field.Input acad = (Field.Input) tf_field14;
+        Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
-        Field.Combo per = (Field.Combo) tf_field17;
+        Field.Combo per = (Field.Combo) tf_period;
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + acad.getId() + "' "
-                + " and department_id='" + dep.getId() + "' "
-                + " and level_id='" + lev.getId() + "' "
-                + " and course_id='" + year.getId() + "' "
-                + " and period like '" + per.getText() + "' "
-                + " and group_id=2 ";
+        if (acad2.getId().equalsIgnoreCase("1") && !per.getText().equalsIgnoreCase("Summer Class") || acad2.getId().equalsIgnoreCase("9") && !per.getText().equalsIgnoreCase("Summer Class")) {
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like 'First Year' "
+                    + " and group_id=2 ";
+        } else {
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like '" + per.getText() + "' "
+                    + " and group_id=2 ";
+        }
+
         List<Academic_year_fees.to_academic_year_fees> datas = Miscellaneous_fees.ret_data3(where);
         loadData_other_fees(datas);
 
@@ -3420,11 +3480,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 public void ok(CloseDialog closeDialog, Dlg_fee_amount.OutputData data) {
                     closeDialog.ok();
 
-                    Field.Input acad = (Field.Input) tf_field14;
+                    Field.Combo acad = (Field.Combo) tf_field14;
                     Field.Combo dep = (Field.Combo) tf_field15;
                     Field.Combo lev = (Field.Combo) tf_field22;
                     Field.Combo year = (Field.Combo) tf_field16;
-                    Field.Combo per = (Field.Combo) tf_field17;
+                    Field.Combo per = (Field.Combo) tf_period;
 
                     if (to.id == 0) {
                         int id = 0;
@@ -3520,11 +3580,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_fee_amount.OutputData data) {
                     closeDialog.ok();
-                    Field.Input acad = (Field.Input) tf_field14;
+                    Field.Combo acad = (Field.Combo) tf_field14;
                     Field.Combo dep = (Field.Combo) tf_field15;
                     Field.Combo lev = (Field.Combo) tf_field22;
                     Field.Combo year = (Field.Combo) tf_field16;
-                    Field.Combo per = (Field.Combo) tf_field17;
+                    Field.Combo per = (Field.Combo) tf_period;
 
                     if (to.id == 0) {
                         int id = 0;
@@ -3603,19 +3663,29 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     private void ret_tuition_fee() {
-        Field.Input acad = (Field.Input) tf_field14;
+        Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
-        Field.Combo per = (Field.Combo) tf_field17;
+        Field.Combo per = (Field.Combo) tf_period;
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + acad.getId() + "' "
-                + " and department_id='" + dep.getId() + "' "
-                + " and level_id='" + lev.getId() + "' "
-                + " and course_id='" + year.getId() + "' "
-                + " and period like '" + per.getText() + "' "
-                + " and group_id=0 ";
+        if (acad2.getId().equalsIgnoreCase("1") && !per.getText().equalsIgnoreCase("Summer Class") || acad2.getId().equalsIgnoreCase("9") && !per.getText().equalsIgnoreCase("Summer Class")) {
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like 'First Year' "
+                    + " and group_id=0 ";
+        } else {
+            where = where + " and academic_year_id='" + acad2.getId() + "' "
+                    + " and department_id='" + dep.getId() + "' "
+                    + " and level_id='" + lev.getId() + "' "
+                    + " and course_id='" + year.getId() + "' "
+                    + " and period like '" + per.getText() + "' "
+                    + " and group_id=0 ";
+        }
+
         List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
 
         if (!datas.isEmpty()) {
@@ -3643,11 +3713,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     private void ret_academic_other_fees() {
-        Field.Input acad2 = (Field.Input) tf_field14;
+        Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
-        Field.Combo per = (Field.Combo) tf_field17;
+        Field.Combo per = (Field.Combo) tf_period;
 
         String where = " where id<>0 ";
         where = where + " and academic_year_id='" + acad2.getId() + "' "
@@ -3701,11 +3771,11 @@ public class Dlg_finance extends javax.swing.JDialog {
             @Override
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
-                Field.Input acad2 = (Field.Input) tf_field14;
+                Field.Combo acad2 = (Field.Combo) tf_field14;
                 Field.Combo dep = (Field.Combo) tf_field15;
                 Field.Combo lev = (Field.Combo) tf_field22;
                 Field.Combo year = (Field.Combo) tf_field16;
-                Field.Combo per = (Field.Combo) tf_field17;
+                Field.Combo per = (Field.Combo) tf_period;
 
                 String where = " where id<>0 ";
                 where = where + " and academic_year_id='" + acad2.getId() + "' "
@@ -3756,19 +3826,19 @@ public class Dlg_finance extends javax.swing.JDialog {
 
     private void save_tuition_fee() {
 
-        Field.Input acad = (Field.Input) tf_field14;
+        Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
-        Field.Combo per = (Field.Combo) tf_field17;
+        Field.Combo per = (Field.Combo) tf_period;
 
         Field.Input amount2 = (Field.Input) tf_field18;
         Field.Input per_unit2 = (Field.Input) tf_field19;
         int id2 = FitIn.toInt(amount2.getId());
         if (id2 > 0) {
             int id = id2;
-            int academic_year_id2 = FitIn.toInt(acad.getId());
-            String academic_year = acad.getText();
+            int academic_year_id2 = FitIn.toInt(acad2.getId());
+            String academic_year = acad2.getText();
             int department_id = FitIn.toInt(dep.getId());
             String department = dep.getText();
             int level_id = FitIn.toInt(lev.getId());
@@ -3813,8 +3883,8 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         } else {
             int id = 0;
-            int academic_year_id1 = FitIn.toInt(acad.getId());
-            String academic_year = acad.getText();
+            int academic_year_id1 = FitIn.toInt(acad2.getId());
+            String academic_year = acad2.getText();
             int department_id = FitIn.toInt(dep.getId());
             String department = dep.getText();
             int level_id = FitIn.toInt(lev.getId());
@@ -3946,68 +4016,6 @@ public class Dlg_finance extends javax.swing.JDialog {
                         set_assessment2();
                     }
                 });
-//                SwingUtilities.invokeLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        String image_server = System.getProperty("image_server", "");
-//
-//                        if (!image_server.isEmpty()) {
-//                            String source = "\\\\" + image_server + "\\cis\\cis_images\\enrollments\\" + to.enrollment_no + ".jpg";
-////            System.out.println("source: " + source);
-//                            File sourceFile = new File(source);
-//                            if (sourceFile.exists()) {
-//                                BufferedImage img = null;
-//                                try {
-//                                    img = ImageIO.read(sourceFile);
-//                                    Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-//                                                                       Image.SCALE_SMOOTH);
-//                                    ImageIcon imageIcon = new ImageIcon(dimg);
-//                                    jLabel1.setIcon(imageIcon);
-//                                } catch (IOException e) {
-//                                    System.out.println(e);
-//                                }
-//                            } else {
-//
-//                                try {
-//                                    String home = System.getProperty("user.home", "C:\\Users\\Guinness");
-//                                    FileInputStream inputStream = null;
-//                                    File sourceFile1 = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + to.enrollment_no + ".jpg");
-//                                    File destinationFile = new File(home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg");
-//                                    inputStream = new FileInputStream(sourceFile1);
-//                                    FileOutputStream outputStream = new FileOutputStream(destinationFile);
-//                                    FileChannel inChannel = inputStream.getChannel();
-//                                    FileChannel outChannel = outputStream.getChannel();
-//                                    try {
-//                                        inChannel.transferTo(0, inChannel.size(), outChannel);
-//
-//                                    } finally {
-//                                        inChannel.close();
-//                                        outChannel.close();
-//                                        inputStream.close();
-//                                        outputStream.close();
-//
-//                                        String orig_file = home + "\\images_cis\\enrollments\\" + to.enrollment_no + ".jpg";
-//                                        File sourceFile2 = new File(orig_file);
-//                                        BufferedImage img = null;
-//                                        try {
-//                                            img = ImageIO.read(sourceFile2);
-//                                            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-//                                                                               Image.SCALE_SMOOTH);
-//                                            ImageIcon imageIcon = new ImageIcon(dimg);
-//                                            jLabel1.setIcon(imageIcon);
-//                                        } catch (IOException e) {
-//                                            System.out.println(e);
-//                                        }
-//                                    }
-//                                } catch (Exception e) {
-//                                    System.out.println(e);
-//                                }
-//                            }
-//
-//                        }
-//
-//                    }
-//                });
 
             }
         });
@@ -4065,29 +4073,54 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void set_assessment2() {
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=0 ";
-        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
-
-        String where2 = " where id<>0 ";
-        where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=1 ";
-
         String where3 = " where id<>0 ";
-        where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=2 ";
+        String where2 = " where id<>0 ";
+        if (enroll.academic_year_id == 1 && !enroll.period.equalsIgnoreCase("Summer Class") || enroll.academic_year_id == 9 && !enroll.period.equalsIgnoreCase("Summer Class")) {
+            
+            
+            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=0 ";
+
+            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=1 ";
+
+            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=2 ";
+        } else {
+            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=0 ";
+
+            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=1 ";
+
+            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=2 ";
+        }
+        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
 
         List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
         List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
@@ -4826,7 +4859,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         tbl_transactions.setModel(tbl_transactions_M);
         tbl_transactions.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_transactions.setRowHeight(25);
-        int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 80, 80,30};
+        int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 80, 80, 30};
         for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -4983,6 +5016,11 @@ public class Dlg_finance extends javax.swing.JDialog {
                 co.setText("" + to.years);
                 co.setId("" + to.id);
 
+                if (!tf_field16.getText().isEmpty()) {
+                    ret_tuition_fee();
+                    ret_data();
+                    ret_data_other_fees();
+                }
             }
         });
     }
@@ -5214,6 +5252,246 @@ public class Dlg_finance extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Failed To Print, Please Check the Printer");
             throw new RuntimeException(e);
         }
+    }
+
+    private void copy_fees() {
+        if (tf_field16.getText().isEmpty()) {
+            Alert.set(0, "Please select a course!");
+            return;
+        }
+        Field.Combo acad2 = (Field.Combo) tf_field14;
+        Field.Combo per = (Field.Combo) tf_period;
+        Field.Combo dep = (Field.Combo) tf_field15;
+        Field.Combo lev = (Field.Combo) tf_field22;
+        Field.Combo year = (Field.Combo) tf_field16;
+
+        String academic_year = acad2.getText();
+        String academic_year_id2 = acad2.getId();
+        String period = per.getText();
+        String period_id = per.getId();
+        String department = dep.getText();
+        String department_id = dep.getId();
+        String level = lev.getText();
+        String level_id = lev.getId();
+        String course = year.getText();
+        String course_id = year.getId();
+
+        Window p = (Window) this;
+        Dlg_finance_copy_fees nd = Dlg_finance_copy_fees.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(academic_year, academic_year_id2, period, period_id, department, department_id, level, level_id, course, course_id, 0);
+        nd.setCallback(new Dlg_finance_copy_fees.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_finance_copy_fees.OutputData data) {
+                closeDialog.ok();
+                Field.Combo acad = (Field.Combo) tf_field14;
+                Field.Combo dep = (Field.Combo) tf_field15;
+                Field.Combo lev = (Field.Combo) tf_field22;
+                Field.Combo year = (Field.Combo) tf_field16;
+                Field.Combo per = (Field.Combo) tf_period;
+                List<  Academic_year_fees.to_academic_year_fees> fees = tbl_miscellaneous_fees_ALM;
+                for (Academic_year_fees.to_academic_year_fees to : fees) {
+                    for (Academic_year_fees.to_academic_year_fees copy : data.fees) {
+                        if (to.fee.equalsIgnoreCase(copy.fee)) {
+
+                            if (to.id == 0) {
+                                int id = 0;
+                                int academic_year_id = FitIn.toInt(acad.getId());
+                                String academic_year = acad.getText();
+                                int department_id = FitIn.toInt(dep.getId());
+                                String department = dep.getText();
+                                int level_id = FitIn.toInt(lev.getId());
+                                String level = lev.getText();
+                                int course_id = FitIn.toInt(year.getId());
+                                String course = year.getText();
+                                String period = per.getText();
+                                int group_id = 1;
+                                String group_name = "misc";
+                                int fee_id = copy.fee_id;
+                                String fee = copy.fee;
+                                double amount = copy.amount;
+                                int is_per_unit = 0;
+                                if (jCheckBox1.isSelected()) {
+                                    is_per_unit = 1;
+                                }
+                                double per_unit = FitIn.toDouble(tf_field19.getText());
+                                String created_at = DateType.now();
+                                String updated_at = DateType.now();
+                                String created_by = MyUser.getUser_id();
+                                String updated_by = MyUser.getUser_id();
+                                int status = 0;
+                                int is_uploaded = 0;
+                                double lab_unit_amount = FitIn.toDouble(tf_field24.getText());
+                                Academic_year_fees.to_academic_year_fees fe = new Academic_year_fees.to_academic_year_fees(id, academic_year_id, academic_year, department_id,
+                                                                                                                           department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded, lab_unit_amount);
+                                Academic_year_fees.add_data(fe);
+
+                            } else {
+                                int id = to.id;
+                                int academic_year_id = FitIn.toInt(acad.getId());
+                                String academic_year = acad.getText();
+                                int department_id = FitIn.toInt(dep.getId());
+                                String department = dep.getText();
+                                int level_id = FitIn.toInt(lev.getId());
+                                String level = lev.getText();
+                                int course_id = FitIn.toInt(year.getId());
+                                String course = year.getText();
+                                String period = per.getText();
+                                int group_id = 1;
+                                String group_name = "misc";
+                                int fee_id = copy.fee_id;
+                                String fee = copy.fee;
+                                double amount = copy.amount;
+                                int is_per_unit = 0;
+                                if (jCheckBox1.isSelected()) {
+                                    is_per_unit = 1;
+                                }
+                                double per_unit = FitIn.toDouble(tf_field19.getText());
+                                String created_at = DateType.now();
+                                String updated_at = DateType.now();
+                                String created_by = MyUser.getUser_id();
+                                String updated_by = MyUser.getUser_id();
+                                int status = 0;
+                                int is_uploaded = 0;
+                                double lab_unit_amount = FitIn.toDouble(tf_field24.getText());
+
+                                Academic_year_fees.to_academic_year_fees fe = new Academic_year_fees.to_academic_year_fees(id, academic_year_id, academic_year, department_id,
+                                                                                                                           department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded, lab_unit_amount);
+                                Academic_year_fees.update_data2(fe);
+
+                            }
+                            break;
+                        }
+                    }
+
+                }
+                Alert.set(1, "");
+                ret_data();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
+    private void copy_other_fees() {
+        if (tf_field16.getText().isEmpty()) {
+            Alert.set(0, "Please select a course!");
+            return;
+        }
+        Field.Combo acad2 = (Field.Combo) tf_field14;
+        Field.Combo per = (Field.Combo) tf_period;
+        Field.Combo dep = (Field.Combo) tf_field15;
+        Field.Combo lev = (Field.Combo) tf_field22;
+        Field.Combo year = (Field.Combo) tf_field16;
+
+        String academic_year = acad2.getText();
+        String academic_year_id2 = acad2.getId();
+        String period = per.getText();
+        String period_id = per.getId();
+        String department = dep.getText();
+        String department_id = dep.getId();
+        String level = lev.getText();
+        String level_id = lev.getId();
+        String course = year.getText();
+        String course_id = year.getId();
+
+        Window p = (Window) this;
+        Dlg_finance_copy_fees nd = Dlg_finance_copy_fees.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(academic_year, academic_year_id2, period, period_id, department, department_id, level, level_id, course, course_id, 1);
+        nd.setCallback(new Dlg_finance_copy_fees.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_finance_copy_fees.OutputData data) {
+                closeDialog.ok();
+                Field.Combo acad = (Field.Combo) tf_field14;
+                Field.Combo dep = (Field.Combo) tf_field15;
+                Field.Combo lev = (Field.Combo) tf_field22;
+                Field.Combo year = (Field.Combo) tf_field16;
+                Field.Combo per = (Field.Combo) tf_period;
+                List<  Academic_year_fees.to_academic_year_fees> fees = tbl_other_fees_ALM;
+                for (Academic_year_fees.to_academic_year_fees to : fees) {
+                    for (Academic_year_fees.to_academic_year_fees copy : data.fees) {
+                        if (to.fee.equalsIgnoreCase(copy.fee)) {
+
+                            if (to.id == 0) {
+                                int id = 0;
+                                int academic_year_id = FitIn.toInt(acad.getId());
+                                String academic_year = acad.getText();
+                                int department_id = FitIn.toInt(dep.getId());
+                                String department = dep.getText();
+                                int level_id = FitIn.toInt(lev.getId());
+                                String level = lev.getText();
+                                int course_id = FitIn.toInt(year.getId());
+                                String course = year.getText();
+                                String period = per.getText();
+                                int group_id = 2;
+                                String group_name = "others";
+                                int fee_id = copy.fee_id;
+                                String fee = copy.fee;
+                                double amount = copy.amount;
+                                int is_per_unit = 0;
+                                if (jCheckBox1.isSelected()) {
+                                    is_per_unit = 1;
+                                }
+                                double per_unit = FitIn.toDouble(tf_field19.getText());
+                                String created_at = DateType.now();
+                                String updated_at = DateType.now();
+                                String created_by = MyUser.getUser_id();
+                                String updated_by = MyUser.getUser_id();
+                                int status = 0;
+                                int is_uploaded = 0;
+                                double lab_unit_amount = FitIn.toDouble(tf_field24.getText());
+                                Academic_year_fees.to_academic_year_fees fe = new Academic_year_fees.to_academic_year_fees(id, academic_year_id, academic_year, department_id,
+                                                                                                                           department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded, lab_unit_amount);
+                                Academic_year_fees.add_data(fe);
+
+                            } else {
+                                int id = to.id;
+                                int academic_year_id = FitIn.toInt(acad.getId());
+                                String academic_year = acad.getText();
+                                int department_id = FitIn.toInt(dep.getId());
+                                String department = dep.getText();
+                                int level_id = FitIn.toInt(lev.getId());
+                                String level = lev.getText();
+                                int course_id = FitIn.toInt(year.getId());
+                                String course = year.getText();
+                                String period = per.getText();
+                                int group_id = 1;
+                                String group_name = "misc";
+                                int fee_id = copy.fee_id;
+                                String fee = copy.fee;
+                                double amount = copy.amount;
+                                int is_per_unit = 0;
+                                if (jCheckBox1.isSelected()) {
+                                    is_per_unit = 1;
+                                }
+                                double per_unit = FitIn.toDouble(tf_field19.getText());
+                                String created_at = DateType.now();
+                                String updated_at = DateType.now();
+                                String created_by = MyUser.getUser_id();
+                                String updated_by = MyUser.getUser_id();
+                                int status = 0;
+                                int is_uploaded = 0;
+                                double lab_unit_amount = FitIn.toDouble(tf_field24.getText());
+
+                                Academic_year_fees.to_academic_year_fees fe = new Academic_year_fees.to_academic_year_fees(id, academic_year_id, academic_year, department_id,
+                                                                                                                           department, level_id, level, course_id, course, period, group_id, group_name, fee_id, fee, amount, is_per_unit, per_unit, created_at, updated_at, created_by, updated_by, status, is_uploaded, lab_unit_amount);
+                                Academic_year_fees.update_data2(fe);
+
+                            }
+                            break;
+                        }
+                    }
+
+                }
+                Alert.set(1, "");
+                ret_data_other_fees();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 
 }

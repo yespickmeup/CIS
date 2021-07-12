@@ -5509,7 +5509,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         if (!jCheckBox8.isSelected()) {
             where = where + " and term like '" + tf_field129.getText() + "' ";
         }
-        
+
         where = where + " and academic_offering_id='" + academic_offering_id + "' order by subject_code,description asc  ";
 
         List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
@@ -6090,29 +6090,53 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private void set_assessment2() {
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=0 ";
-        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
-
-        String where2 = " where id<>0 ";
-        where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=1 ";
-
         String where3 = " where id<>0 ";
-        where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                + " and department_id='" + enroll.department_id + "' "
-                + " and level_id='" + enroll.level_id + "' "
-                + " and course_id='" + enroll.course_id + "' "
-                + " and period like '" + enroll.year_level + "' "
-                + " and group_id=2 ";
+        String where2 = " where id<>0 ";
+        if (enroll.academic_year_id == 1 && !enroll.period.equalsIgnoreCase("Summer Class") || enroll.academic_year_id == 9 && !enroll.period.equalsIgnoreCase("Summer Class")) {
+
+            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=0 ";
+
+            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=1 ";
+
+            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.year_level + "' "
+                    + " and group_id=2 ";
+        } else {
+            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=0 ";
+
+            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=1 ";
+
+            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+                    + " and department_id='" + enroll.department_id + "' "
+                    + " and level_id='" + enroll.level_id + "' "
+                    + " and course_id='" + enroll.course_id + "' "
+                    + " and period like '" + enroll.period + "' "
+                    + " and group_id=2 ";
+        }
+        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
 
         List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
         List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
