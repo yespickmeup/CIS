@@ -1259,12 +1259,23 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         pm.setText("" + payment_mode);
 
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=0 ";
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
+
+            where = where + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=0 ";
+        } else {
+            where = where + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=0 ";
+        }
+
         List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
 
         if (!datas.isEmpty()) {
@@ -1312,12 +1323,22 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
 
         //Search Miscellaneous
         String where2 = " where id<>0 ";
-        where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=1 ";
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
+
+            where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=1 ";
+        } else {
+            where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=1 ";
+        }
 
         List<Academic_year_fees.to_academic_year_fees> datas2 = Miscellaneous_fees.ret_data2(where2);
         double amount = 0;
@@ -1328,12 +1349,21 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
 
         //Ret Other Fees
         String where3 = " where id<>0 ";
-        where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=2 ";
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
+            where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=2 ";
+        } else {
+            where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=2 ";
+        }
 
         List<Academic_year_fees.to_academic_year_fees> datas3 = Miscellaneous_fees.ret_data3(where3);
         double amount3 = 0;
@@ -1753,7 +1783,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
                 } else {
                     mode.setPaid(0);
                 }
-               
+
             }
         }
         tbl_mode_of_payments_M.fireTableDataChanged();

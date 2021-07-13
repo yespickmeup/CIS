@@ -262,7 +262,7 @@ public class Miscellaneous_fees {
                         + ",lab_unit_amount"
                         + " from academic_year_fees"
                         + " " + where + " and fee_id='" + id + "' ";
-
+//                System.out.println(s2);
                 Statement stmt2 = conn.createStatement();
                 ResultSet rs2 = stmt2.executeQuery(s2);
                 if (rs2.next()) {

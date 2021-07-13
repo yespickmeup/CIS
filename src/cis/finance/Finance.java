@@ -584,6 +584,7 @@ public class Finance {
                     String date = sf + " " + "00" + ":00:01";
                     d = DateType.datetime.parse(date);
                 } catch (ParseException ex) {
+
                     d = new Date();
                 }
 
@@ -602,8 +603,8 @@ public class Finance {
                     + " join enrollment_assessments ea "
                     + " on eap.enrollment_assessment_id = ea.id "
                     + " where ea.student_id='" + student.id + "' "
-                    + " order by eap.created_at desc ";
-
+                    + " order by eap.created_at asc ";
+//            System.out.println(s0);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
 
@@ -627,9 +628,10 @@ public class Finance {
                 } catch (ParseException ex) {
                     d = new Date();
                 }
+//                System.out.println("id: " + id + " = " + amount_paid);
                 credit = amount_paid;
                 balance -= credit;
-
+//                System.out.println(balance);
                 Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount_paid, d, mode, year_level, term, academic_year, debit, credit, balance);
                 datas.add(to);
             }
@@ -659,9 +661,9 @@ public class Finance {
                 int trans_type = rs2.getInt(2);
                 double amount_paid = rs2.getDouble(3);
                 String created_at = rs2.getString(4);
-                year_level2 = rs2.getString(5);
-                term2 = rs2.getString(6);
-                academic_year2=rs2.getString(7);
+                year_level2 = rs2.getString(6);
+                term2 = rs2.getString(7);
+                academic_year2 = rs2.getString(5);
                 Date d = new Date();
 
                 try {
@@ -669,25 +671,28 @@ public class Finance {
                 } catch (ParseException ex) {
                     d = new Date();
                 }
-                credit = amount_paid;
-                balance -= credit;
+//                credit = amount_paid;
 
                 if (trans_type == 1) {
-                    debit2=amount_paid;
-                  Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, mode2, year_level2,term2, academic_year2, debit2, credit2, balance);
-                datas.add(to);
+                    credit2=0;
+                    debit2 = amount_paid;
+                    balance += debit2;
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, "Add Subject", year_level2, term2, academic_year2, debit2, credit2, balance);
+                    datas.add(to);
                 }
                 if (trans_type == 2) {
-                    credit2=amount_paid;
-                   Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, mode2, year_level2,term2, academic_year2, debit2, credit2, balance);
-                datas.add(to);
+                    debit2=0;
+                    credit2 = amount_paid;
+                    balance -= credit2;
+                    Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, "Drop Subject", year_level2, term2, academic_year2, debit2, credit2, balance);
+                    datas.add(to);
                 }
 
             }
 
             Collections.sort(datas, new Comparator<Finance.transactions>() {
                          public int compare(Finance.transactions o1, Finance.transactions o2) {
-                             return o2.getCreated().compareTo(o1.getCreated());
+                             return o1.getCreated().compareTo(o2.getCreated());
                          }
                      });
             return datas;

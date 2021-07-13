@@ -829,7 +829,8 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 //        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_password", "synapse246");
+//        System.setProperty("pool_host", "10.0.0.251");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
         acad_years2 = Academic_years.ret_data(" order by id asc ");
@@ -1436,12 +1437,23 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
 
         //ret tuition amount
         String where = " where id<>0 ";
-        where = where + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=0 ";
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
+
+            where = where + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=0 ";
+        } else {
+            where = where + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=0 ";
+        }
+
         List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
         double tuition_amount = 0;
         double lec_amount_per_unit = 0;
@@ -1547,23 +1559,55 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
         List<Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
 
         String where2 = " where id<>0 ";
-        where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=1 ";
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
 
+            where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=1 ";
+        } else {
+            where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=1 ";
+        }
+
+        System.out.println("where2: " + where2);
         String where3 = " where id<>0 ";
-        where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
-                + " and department_id='" + to.department_id + "' "
-                + " and level_id='" + to.level_id + "' "
-                + " and course_id='" + to.course_id + "' "
-                + " and period like '" + to.year_level + "' "
-                + " and group_id=2 ";
-
+        if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
+            where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.year_level + "' "
+                    + " and group_id=2 ";
+        } else {
+            where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
+                    + " and department_id='" + to.department_id + "' "
+                    + " and level_id='" + to.level_id + "' "
+                    + " and course_id='" + to.course_id + "' "
+                    + " and period like '" + to.period + "' "
+                    + " and group_id=2 ";
+        }
+//       
+//        System.out.println("Misc....");
+//        System.out.println(where2);
         List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+//        for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
+//            System.out.println("" + fee.fee + " = " + fee.amount);
+//        }
+//        System.out.println("other fees....");
+//        System.out.println(where3);
         List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+//        for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
+//            System.out.println("" + fee.fee + " = " + fee.amount);
+//        }
+//        System.out.println("misc_fees: "+misc_fees.size());
+//         System.out.println("other_fees: "+other_fees.size());
 //        System.out.println(where3);
         List<Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
         for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {

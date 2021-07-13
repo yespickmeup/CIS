@@ -274,6 +274,11 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel88 = new javax.swing.JLabel();
         tf_field140 = new Field.Input();
         jTabbedPane5 = new javax.swing.JTabbedPane();
+        jPanel30 = new javax.swing.JPanel();
+        jPanel27 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbl_transactions = new javax.swing.JTable();
+        jButton9 = new Button.Info();
         jPanel29 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -283,11 +288,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new Button.Success();
         jButton8 = new Button.Info();
-        jPanel30 = new javax.swing.JPanel();
-        jPanel27 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tbl_transactions = new javax.swing.JTable();
-        jButton9 = new Button.Info();
         jPanel31 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -757,6 +757,79 @@ public class Dlg_finance extends javax.swing.JDialog {
         jTabbedPane5.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jPanel30.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        tbl_transactions.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbl_transactions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_transactionsMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tbl_transactions);
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton9.setText("Print Preview");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane5.addTab("Ledger", jPanel30);
+
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
@@ -874,79 +947,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         );
 
         jTabbedPane5.addTab("Fees", jPanel29);
-
-        jPanel30.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        tbl_transactions.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tbl_transactions.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_transactionsMouseClicked(evt);
-            }
-        });
-        jScrollPane7.setViewportView(tbl_transactions);
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton9.setText("Print Preview");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel30Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jButton9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane5.addTab("Ledger", jPanel30);
 
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2932,7 +2932,8 @@ public class Dlg_finance extends javax.swing.JDialog {
         init_key();
 
 //        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_password", "synapse246");
+//        System.setProperty("pool_host", "10.0.0.251");
 
         deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -4076,8 +4077,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         String where3 = " where id<>0 ";
         String where2 = " where id<>0 ";
         if (enroll.academic_year_id == 1 && !enroll.period.equalsIgnoreCase("Summer Class") || enroll.academic_year_id == 9 && !enroll.period.equalsIgnoreCase("Summer Class")) {
-            
-            
+
             where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
                     + " and department_id='" + enroll.department_id + "' "
                     + " and level_id='" + enroll.level_id + "' "
@@ -5155,24 +5155,26 @@ public class Dlg_finance extends javax.swing.JDialog {
                 String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
                 String date = DateType.slash.format(new Date());
                 String contact_no = System.getProperty("contact_no", "(035) 225 4831");
-                String printed_by = "Administrator";
-                String student_no = "00000001";
-                String student_name = "Ronald Pascua";
+                String printed_by = MyUser.getUser_screen_name();
+                String student_no = tf_field12.getText();
+                String student_name = tf_field9.getText() + " " + tf_field10.getText() + " " + tf_field11.getText();
                 List<Srpt_student_ledger.field> fields = new ArrayList();
-                for (int i = 0; i < 10; i++) {
-                    int id = 0;
-                    String mode = "First Payment";
-                    String term = "First Semester";
-                    String year_level = "First Year";
-                    String academic_year = "2020-2021";
-                    String date2 = "09/11/2020";
-                    String debit = "" + (100 * i);
-                    String credit = "" + (150 * i);
+                List<Finance.transactions> transactions = tbl_transactions_ALM;
+                for (Finance.transactions to : transactions) {
+                    int id = to.id;
+                    String mode = to.mode;
+                    String term = to.term;
+                    String year_level = to.year_level;
+                    String academic_year = to.academic_year;
+                    String date2 = to.date;
+                    String debit = FitIn.fmt_wc_0(to.debit);
+                    String credit = FitIn.fmt_wc_0(to.credit);
                     String interest = "";
-                    double balance = FitIn.toDouble(debit) - FitIn.toDouble(credit);
+                    double balance = to.balance;
                     Srpt_student_ledger.field f = new Srpt_student_ledger.field(id, mode, year_level, term, academic_year, date, debit, credit, interest, balance);
                     fields.add(f);
                 }
+
                 String jrxml = "rpt_student_ledger.jrxml";
 
                 Srpt_student_ledger rpt = new Srpt_student_ledger(business_name, address, contact_no, date, student_no, student_name);
