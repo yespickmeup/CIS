@@ -37,8 +37,9 @@ public class Settings {
         public final String cloud_user;
         public final String cloud_password;
         public final String cloud_db;
+        public final int strict_enrollment;
 
-        public to_settings(int id, String company_name, String company_address, String company_operated_by, String company_slogan, String company_contact_no, String company_fax_no, String company_email_address, String cloud_host, String cloud_port, String cloud_user, String cloud_password, String cloud_db) {
+        public to_settings(int id, String company_name, String company_address, String company_operated_by, String company_slogan, String company_contact_no, String company_fax_no, String company_email_address, String cloud_host, String cloud_port, String cloud_user, String cloud_password, String cloud_db,int strict_enrollment) {
             this.id = id;
             this.company_name = company_name;
             this.company_address = company_address;
@@ -52,6 +53,7 @@ public class Settings {
             this.cloud_user = cloud_user;
             this.cloud_password = cloud_password;
             this.cloud_db = cloud_db;
+            this.strict_enrollment=strict_enrollment;
         }
     }
 
@@ -71,6 +73,7 @@ public class Settings {
                     + ",cloud_user"
                     + ",cloud_password"
                     + ",cloud_db"
+                    + ",strict_enrollment"
                     + ")values("
                     + ":company_name"
                     + ",:company_address"
@@ -84,6 +87,7 @@ public class Settings {
                     + ",:cloud_user"
                     + ",:cloud_password"
                     + ",:cloud_db"
+                    + ",:strict_enrollment"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -99,6 +103,7 @@ public class Settings {
                     .setString("cloud_user", to_settings.cloud_user)
                     .setString("cloud_password", to_settings.cloud_password)
                     .setString("cloud_db", to_settings.cloud_db)
+                    .setNumber("strict_enrollment",to_settings.strict_enrollment)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -127,6 +132,7 @@ public class Settings {
                     + ",cloud_user= :cloud_user "
                     + ",cloud_password= :cloud_password "
                     + ",cloud_db= :cloud_db "
+                    + ",strict_enrollment= :strict_enrollment"
                     + " where id='" + to_settings.id + "' "
                     + " ";
 
@@ -143,6 +149,7 @@ public class Settings {
                     .setString("cloud_user", to_settings.cloud_user)
                     .setString("cloud_password", to_settings.cloud_password)
                     .setString("cloud_db", to_settings.cloud_db)
+                    .setNumber("strict_enrollment",to_settings.strict_enrollment)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -191,6 +198,7 @@ public class Settings {
                     + ",cloud_user"
                     + ",cloud_password"
                     + ",cloud_db"
+                    + ",strict_enrollment"
                     + " from settings"
                     + " " + where;
 
@@ -210,8 +218,8 @@ public class Settings {
                 String cloud_user = rs.getString(11);
                 String cloud_password = rs.getString(12);
                 String cloud_db = rs.getString(13);
-
-                to_settings to = new to_settings(id, company_name, company_address, company_operated_by, company_slogan, company_contact_no, company_fax_no, company_email_address, cloud_host, cloud_port, cloud_user, cloud_password, cloud_db);
+                int strict_enrollment=rs.getInt(14);
+                to_settings to = new to_settings(id, company_name, company_address, company_operated_by, company_slogan, company_contact_no, company_fax_no, company_email_address, cloud_host, cloud_port, cloud_user, cloud_password, cloud_db,strict_enrollment);
                 datas.add(to);
             }
             return datas;

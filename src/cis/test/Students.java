@@ -5,31 +5,22 @@
  */
 package cis.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author User
  */
-public class FullName {
-
-    public static class count {
-
-        int id;
-
-        public count() {
-        }
-
-        public count(int id) {
-            this.id = id;
-        }
-
-    }
+public class Students {
 
     public static void main(String[] args) {
-        List<count> count=new ArrayList();
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "synapse246");
+        System.setProperty("pool_host", "10.0.0.251");
+       
         
     }
-
+    private void getStudents(){
+       
+    }
 }

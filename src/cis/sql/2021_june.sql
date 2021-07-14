@@ -102,3 +102,26 @@ update students set date_of_birth='2000-01-01',date_of_communion='2000-01-01',da
 
 update enrollment_assessments ea set ea.student_id=(select s.id from students s where s.student_no=ea.student_no limit 1) where ea.student_id=0;
 
+
+alter table settings add strict_enrollment int default 0;
+
+alter table enrollments add als_name varchar(255);
+alter table enrollments add als_region varchar(255);
+alter table enrollments add als_year varchar(255);
+alter table enrollments add als_awards varchar(255);
+alter table enrollments add high_school_strand varchar(255);
+alter table enrollments add high_school_track varchar(255);
+
+
+alter table students add als_name varchar(255);
+alter table students add als_region varchar(255);
+alter table students add als_year varchar(255);
+alter table students add als_awards varchar(255);
+alter table students add high_school_strand varchar(255);
+alter table students add high_school_track varchar(255);
+
+
+
+
+
+

@@ -1632,7 +1632,7 @@
                               <Component id="jButton6" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               <Component id="jButton7" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="313" max="32767" attributes="0"/>
+                          <EmptySpace pref="317" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -1839,7 +1839,7 @@
                               <Font name="Tahoma" size="14" style="2"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="Strand :   "/>
+                            <Property name="text" type="java.lang.String" value="Track :   "/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1881,8 +1881,8 @@
                               <Component id="tf_field109" alignment="0" max="32767" attributes="0"/>
                               <Component id="tf_field21" alignment="0" max="32767" attributes="0"/>
                               <Component id="tf_field106" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tf_field140" alignment="1" max="32767" attributes="0"/>
                               <Component id="tf_field142" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tf_field141" alignment="1" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1897,7 +1897,7 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field20" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="tf_field140" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="tf_field141" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field142" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -1981,7 +1981,7 @@
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tf_field140">
+                        <Component class="javax.swing.JTextField" name="tf_field142">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="14" style="0"/>
@@ -1992,13 +1992,16 @@
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tf_field142">
+                        <Component class="javax.swing.JTextField" name="tf_field141">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="14" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field141MouseClicked"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
@@ -2034,6 +2037,7 @@
                                   <Component id="tf_field107" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field23" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="jLabel85" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field145" min="-2" pref="25" max="-2" attributes="0"/>
@@ -2296,7 +2300,7 @@
                               <Font name="Tahoma" size="14" style="2"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="Track  :  "/>
+                            <Property name="text" type="java.lang.String" value="Strand :  "/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -2333,8 +2337,8 @@
                               <Component id="tf_field114" alignment="1" max="32767" attributes="0"/>
                               <Component id="tf_field115" alignment="1" max="32767" attributes="0"/>
                               <Component id="tf_field116" alignment="1" max="32767" attributes="0"/>
-                              <Component id="tf_field141" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tf_field144" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tf_field144" alignment="1" max="32767" attributes="0"/>
+                              <Component id="tf_field140" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -2349,10 +2353,9 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field114" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="tf_field141" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="tf_field140" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field144" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field115" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="tf_field116" min="-2" pref="25" max="-2" attributes="0"/>
@@ -2433,7 +2436,7 @@
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tf_field141">
+                        <Component class="javax.swing.JTextField" name="tf_field144">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="14" style="0"/>
@@ -2444,13 +2447,16 @@
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tf_field144">
+                        <Component class="javax.swing.JTextField" name="tf_field140">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="14" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field140MouseClicked"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
                           </AuxValues>
@@ -2841,13 +2847,8 @@
                                       <Component id="jPanel27" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jPanel28" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jPanel29" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jPanel28" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel29" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

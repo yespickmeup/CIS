@@ -42,7 +42,7 @@ public class MyMain {
             Properties prop = new Properties();
             String conf = "my_config_cis.conf";
             String userHome = System.getProperty("user.home");
-            System.out.println(conf);
+//            System.out.println(conf);
             File file = new File(userHome + "/" + conf);
             if (file.exists()) {
                 InputStream is = new FileInputStream(file);
@@ -84,7 +84,7 @@ public class MyMain {
             System.setProperty("contact_number", setting.company_contact_no);
             System.setProperty("fax_number", setting.company_fax_no);
             System.setProperty("email_address", setting.company_email_address);
-
+            System.setProperty("strict_enrollment",""+setting.strict_enrollment);
             System.setProperty("license_code", prop.getProperty("license_code", ""));
             System.setProperty("version", prop.getProperty("version", ""));
 

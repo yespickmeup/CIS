@@ -134,8 +134,16 @@ public class Students {
         public final String date_enrolled;
         public final double balance;
         public final double prepaid;
+        public final String fb_account;
+        public final String blood_type;
+        public final String als_name;
+        public final String als_region;
+        public final String als_year;
+        public final String als_awards;
+        public final String high_school_strand;
+        public final String high_school_track;
 
-        public to_students(int id, int is_transferee, int academic_year_id, String academic_year, String student_no, String last_name, String first_name, String middle_name, String nick_name, String current_address, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int is_indigenous, String indigenous_name, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String grade_school_awards, String high_school_name, String high_school_region, String high_school_school_year, String high_school_awards, String college_school_name, String college_school_region, String college_school_school_year, String college_awards, String junior_high_name, String junior_high_region, String junior_high_year, String junior_high_awards, String tesda_name, String tesda_region, String tesda_year, String tesda_awards, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int course_id, String course_code, String course_description, String date_enrolled, double balance, double prepaid) {
+        public to_students(int id, int is_transferee, int academic_year_id, String academic_year, String student_no, String last_name, String first_name, String middle_name, String nick_name, String current_address, String permanent_address, String email_address, String postal_code, String tel_no, String mobile_no, String date_of_birth, String place_of_birth, int age, int gender, String citizenship, String religion, String civil_status, String spouse_name, String date_of_communion, String date_of_confirmation, int is_right_handed, int is_indigenous, String indigenous_name, int level_id, String level, int college_id, String college, int department_id, String department, String year_level, String year_level_status, String preferred_course1, String preferred_course2, String preferred_course3, String father_name, String father_citizenship, String father_home_address, String father_email_address, String father_mobile_no, String father_occupation, String father_employer, String father_business_address, String father_business_tel_no, String father_educational_attainment, String father_last_school_attended, String mother_name, String mother_citizenship, String mother_home_address, String mother_email_address, String mother_mobile_no, String mother_occupation, String mother_employer, String mother_business_address, String mother_business_tel_no, String mother_educational_attainment, String mother_last_school_attended, String guardian_name, String guardian_mailing_address, String guardian_telephone_no, String grade_school_name, String grade_school_region, String grade_school_school_year, String grade_school_awards, String high_school_name, String high_school_region, String high_school_school_year, String high_school_awards, String college_school_name, String college_school_region, String college_school_school_year, String college_awards, String junior_high_name, String junior_high_region, String junior_high_year, String junior_high_awards, String tesda_name, String tesda_region, String tesda_year, String tesda_awards, String sibling1, String sibling2, String sibling3, String sibling4, String sibling5, String sibling6, String sibling7, String sibling8, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int course_id, String course_code, String course_description, String date_enrolled, double balance, double prepaid, String fb_account, String blood_type, String als_name, String als_region, String als_year, String als_awards, String high_school_strand, String high_school_track) {
             this.id = id;
             this.is_transferee = is_transferee;
             this.academic_year_id = academic_year_id;
@@ -240,7 +248,51 @@ public class Students {
             this.date_enrolled = date_enrolled;
             this.balance = balance;
             this.prepaid = prepaid;
+            this.fb_account = fb_account;
+            this.blood_type = blood_type;
+            this.als_name = als_name;
+            this.als_region = als_region;
+            this.als_year = als_year;
+            this.als_awards = als_awards;
+            this.high_school_strand = high_school_strand;
+            this.high_school_track = high_school_track;
         }
+    }
+
+    public static void main2(String[] args) {
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_host", "10.0.0.251");
+        List<Students.to_students> datas = Students.ret_data("order by id asc ");
+        int last_count = 1778;
+        List<String> deleted = new ArrayList();
+        for (int i = 0; i < last_count + 1; i++) {
+            int exists = 0;
+            for (Students.to_students student : datas) {
+
+                if (student.id == i) {
+                    exists = 1;
+
+                    break;
+                }
+
+            }
+            if (exists == 0) {
+                deleted.add("" + i);
+            }
+        }
+
+        System.out.println("Nos. deleted:" + deleted.size());
+        StringBuilder csvBuilder = new StringBuilder();
+        for (String s : deleted) {
+            csvBuilder.append(s);
+            csvBuilder.append(",");
+//            System.out.println("Deleted: " + s);
+        }
+
+        String csv = csvBuilder.toString();
+        System.out.println(csv);
+
     }
 
     public static void add_data_enroll2(to_students to_students, Enrollments.to_enrollments enroll) {
@@ -412,6 +464,14 @@ public class Students {
                     + ",date_enrolled"
                     + ",balance"
                     + ",prepaid"
+                    + ",fb_account"
+                    + ",blood_type"
+                    + ",als_name"
+                    + ",als_region"
+                    + ",als_year"
+                    + ",als_awards"
+                    + ",high_school_strand"
+                    + ",high_school_track"
                     + ")values("
                     + ":is_transferee"
                     + ",:academic_year_id"
@@ -516,6 +576,14 @@ public class Students {
                     + ",:date_enrolled"
                     + ",:balance"
                     + ",:prepaid"
+                    + ",:fb_account"
+                    + ",:blood_type"
+                    + ",:als_name"
+                    + ",:als_region"
+                    + ",:als_year"
+                    + ",:als_awards"
+                    + ",:high_school_strand"
+                    + ",:high_school_track"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -622,6 +690,12 @@ public class Students {
                     .setString("date_enrolled", to_students.date_enrolled)
                     .setNumber("balance", to_students.balance)
                     .setNumber("prepaid", to_students.prepaid)
+                    .setString("als_name", to_students.als_name)
+                    .setString("als_region", to_students.als_region)
+                    .setString("als_year", to_students.als_year)
+                    .setString("als_awards", to_students.als_awards)
+                    .setString("high_school_strand", to_students.high_school_strand)
+                    .setString("high_school_track", to_students.high_school_track)
                     .ok();
 
             stmt3.addBatch(s0);
@@ -675,8 +749,8 @@ public class Students {
             if (rs13.next()) {
                 other_fees_discount = rs13.getDouble(1);
             }
-            
-             String s14 = "select "
+
+            String s14 = "select "
                     + " other_fees_discount"
                     + " from  enrollment_assessments "
                     + " where student_id='" + student_id + "' ";
@@ -687,9 +761,8 @@ public class Students {
             if (rs14.next()) {
                 paid = rs14.getDouble(1);
             }
-            
 
-            double new_balance = balance + (other_fees_discount-paid);
+            double new_balance = balance + (other_fees_discount - paid);
 
             String s15 = "update students set "
                     + " balance= :balance "
@@ -829,6 +902,14 @@ public class Students {
                     + ",date_enrolled"
                     + ",balance"
                     + ",prepaid"
+                    + ",fb_account"
+                    + ",blood_type"
+                    + ",als_name"
+                    + ",als_region"
+                    + ",als_year"
+                    + ",als_awards"
+                    + ",high_school_strand"
+                    + ",high_school_track"
                     + ")values("
                     + ":is_transferee"
                     + ",:academic_year_id"
@@ -933,6 +1014,14 @@ public class Students {
                     + ",:date_enrolled"
                     + ",:balance"
                     + ",:prepaid"
+                    + ",:fb_account"
+                    + ",:blood_type"
+                    + ",:als_name"
+                    + ",:als_region"
+                    + ",:als_year"
+                    + ",:als_awards"
+                    + ",:high_school_strand"
+                    + ",:high_school_track"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -1039,6 +1128,14 @@ public class Students {
                     .setString("date_enrolled", to_students.date_enrolled)
                     .setNumber("balance", to_students.balance)
                     .setNumber("prepaid", to_students.prepaid)
+                    .setString("fb_account", to_students.fb_account)
+                    .setString("blood_type", to_students.blood_type)
+                    .setString("als_name", to_students.als_name)
+                    .setString("als_region", to_students.als_region)
+                    .setString("als_year", to_students.als_year)
+                    .setString("als_awards", to_students.als_awards)
+                    .setString("high_school_strand", to_students.high_school_strand)
+                    .setString("high_school_track", to_students.high_school_track)
                     .ok();
             stmt3.addBatch(s0);
             int student_id = 0;
@@ -1168,6 +1265,14 @@ public class Students {
                     + ",date_enrolled"
                     + ",balance"
                     + ",prepaid"
+                    + ",fb_account"
+                    + ",blood_type"
+                    + ",als_name"
+                    + ",als_region"
+                    + ",als_year"
+                    + ",als_awards"
+                    + ",high_school_strand"
+                    + ",high_school_track"
                     + ")values("
                     + ":is_transferee"
                     + ",:academic_year_id"
@@ -1272,6 +1377,14 @@ public class Students {
                     + ",:date_enrolled"
                     + ",:balance"
                     + ",:prepaid"
+                    + ",:fb_account"
+                    + ",:blood_type"
+                    + ",:als_name"
+                    + ",:als_region"
+                    + ",:als_year"
+                    + ",:als_awards"
+                    + ",:high_school_strand"
+                    + ",:high_school_track"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -1378,6 +1491,14 @@ public class Students {
                     .setString("date_enrolled", to_students.date_enrolled)
                     .setNumber("balance", to_students.balance)
                     .setNumber("prepaid", to_students.prepaid)
+                    .setString("fb_account", to_students.fb_account)
+                    .setString("blood_type", to_students.blood_type)
+                    .setString("als_name", to_students.als_name)
+                    .setString("als_region", to_students.als_region)
+                    .setString("als_year", to_students.als_year)
+                    .setString("als_awards", to_students.als_awards)
+                    .setString("high_school_strand", to_students.high_school_strand)
+                    .setString("high_school_track", to_students.high_school_track)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -1495,6 +1616,14 @@ public class Students {
                     + ",course_code= :course_code "
                     + ",course_description= :course_description "
                     + ",date_enrolled= :date_enrolled "
+                    + ",fb_account= :fb_account "
+                    + ",blood_type= :blood_type "
+                    + ",als_name= :als_name "
+                    + ",als_region= :als_region "
+                    + ",als_year= :als_year "
+                    + ",als_awards= :als_awards "
+                    + ",high_school_strand= :high_school_strand "
+                    + ",high_school_track= :high_school_track "
                     + " where id='" + to_students.id + "' "
                     + " ";
 
@@ -1600,6 +1729,14 @@ public class Students {
                     .setString("course_code", to_students.course_code)
                     .setString("course_description", to_students.course_description)
                     .setString("date_enrolled", to_students.date_enrolled)
+                    .setString("fb_account", to_students.fb_account)
+                    .setString("blood_type", to_students.blood_type)
+                    .setString("als_name", to_students.als_name)
+                    .setString("als_region", to_students.als_region)
+                    .setString("als_year", to_students.als_year)
+                    .setString("als_awards", to_students.als_awards)
+                    .setString("high_school_strand", to_students.high_school_strand)
+                    .setString("high_school_track", to_students.high_school_track)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -1712,6 +1849,14 @@ public class Students {
                     + ",course_id= :course_id "
                     + ",course_code= :course_code "
                     + ",course_description= :course_description "
+                    + ",fb_account= :fb_account "
+                    + ",blood_type= :blood_type "
+                    + ",als_name= :als_name "
+                    + ",als_region= :als_region "
+                    + ",als_year= :als_year "
+                    + ",als_awards= :als_awards "
+                    + ",high_school_strand= :high_school_strand "
+                    + ",high_school_track= :high_school_track "
                     + " where id='" + to_students.id + "' "
                     + " ";
 
@@ -1812,6 +1957,14 @@ public class Students {
                     .setNumber("course_id", to_students.course_id)
                     .setString("course_code", to_students.course_code)
                     .setString("course_description", to_students.course_description)
+                    .setString("fb_account", to_students.fb_account)
+                    .setString("blood_type", to_students.blood_type)
+                    .setString("als_name", to_students.als_name)
+                    .setString("als_region", to_students.als_region)
+                    .setString("als_year", to_students.als_year)
+                    .setString("als_awards", to_students.als_awards)
+                    .setString("high_school_strand", to_students.high_school_strand)
+                    .setString("high_school_track", to_students.high_school_track)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -1951,6 +2104,14 @@ public class Students {
                     + ",date_enrolled"
                     + ",balance"
                     + ",prepaid"
+                    + ",fb_account"
+                    + ",blood_type"
+                    + ",als_name"
+                    + ",als_region"
+                    + ",als_year"
+                    + ",als_awards"
+                    + ",high_school_strand"
+                    + ",high_school_track"
                     + " from students"
                     + " " + where;
 
@@ -2061,7 +2222,15 @@ public class Students {
                 String date_enrolled = rs.getString(102);
                 double balance = rs.getDouble(103);
                 double prepaid = rs.getDouble(104);
-                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid);
+                String fb_account = rs.getString(105);
+                String blood_type = rs.getString(106);
+                String als_name = rs.getString(107);
+                String als_region = rs.getString(108);
+                String als_year = rs.getString(109);
+                String als_awards = rs.getString(110);
+                String high_school_strand = rs.getString(111);
+                String high_school_track = rs.getString(112);
+                to_students to = new to_students(id, is_transferee, academic_year_id, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid, fb_account, blood_type, als_name, als_region, als_year, als_awards, high_school_strand, high_school_track);
                 datas.add(to);
             }
             return datas;

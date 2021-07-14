@@ -475,6 +475,9 @@ public class Dlg_students_master_list extends javax.swing.JDialog {
             }
         ));
         tbl_students.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_studentsMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_studentsMousePressed(evt);
             }
@@ -607,6 +610,10 @@ public class Dlg_students_master_list extends javax.swing.JDialog {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         delete_student();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void tbl_studentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_studentsMouseClicked
+        edit_student();
+    }//GEN-LAST:event_tbl_studentsMouseClicked
 
     /**
      * @param args the command line arguments
