@@ -8,6 +8,7 @@ package cis.academic;
 import cis.academic.Academic_year_period_schedules.to_academic_year_period_schedules;
 import cis.academic.Academic_years.to_academic_years;
 import cis.departments.Departments;
+import cis.enrollments.Enrollment_offered_subjects;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -570,8 +571,8 @@ public class Dlg_academic_years extends javax.swing.JDialog {
     private void myInit() {
 
         init_key();
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 
         init_tbl_academic_years(tbl_academic_years);
         ret_years();
@@ -1339,7 +1340,14 @@ public class Dlg_academic_years extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_academic_year_period_schedule_status.OutputData data) {
                     closeDialog.ok();
-                    Academic_year_period_schedules.update_status(to.id, data.status);
+                    String where = " where eos.id<>0 ";
+                    where = where + " and eos.department_id='" + to.department_id + "' ";
+                    where = where + " and eos.academic_year_id='" + to.academic_year_id + "' ";
+                    where = where + " and eos.term like '" + to.period + "' ";
+                    where = where + " and status<> 2";
+                    List<Enrollment_offered_subjects.to_enrollment_offered_subjects> subjects = Enrollment_offered_subjects.ret_data2(where);
+
+                    Academic_year_period_schedules.update_status(to.id, data.status, subjects);
                     Alert.set(2, "");
                     ret_aps();
                 }

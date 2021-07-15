@@ -120,7 +120,21 @@ alter table students add als_awards varchar(255);
 alter table students add high_school_strand varchar(255);
 alter table students add high_school_track varchar(255);
 
-
+drop table if exists user_departments;
+create table user_departments(
+id int auto_increment primary key
+,user_id int
+,user_screen_name varchar(255)
+,department varchar(255)
+,department_id int
+,college varchar(255)
+,college_id varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by int
+,updated_by int
+,status int
+);
 
 
 

@@ -17,6 +17,7 @@ import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
 import cis.users.MyUser;
+import cis.users.User_departments;
 import cis.users.Users;
 import cis.utils.Alert;
 import cis.utils.Combo;
@@ -433,8 +434,8 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
         jCheckBox10.setFocusable(false);
 
         jCheckBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox11.setSelected(true);
         jCheckBox11.setText("All");
+        jCheckBox11.setEnabled(false);
         jCheckBox11.setFocusable(false);
         jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1641,7 +1642,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "synapse246");
 //        System.setProperty("pool_host", "10.0.0.251");
-        
+
         init_key();
         acad_years = Academic_years.ret_data(" where status=1");
         acad_years2 = Academic_years.ret_data(" order by id asc ");
@@ -1663,6 +1664,15 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
             }
         }
         deps = Departments.ret_data(" order by department_name  asc ");
+        departments = User_departments.ret_data(" where user_id='" + MyUser.getUser_id() + "' order by college asc");
+        
+        if (departments.isEmpty()) {
+            jCheckBox11.setEnabled(true);
+            jCheckBox11.setSelected(true);
+        } else {
+            jCheckBox11.setEnabled(false);
+            jCheckBox11.setSelected(false);
+        }
         if (!deps.isEmpty()) {
             Departments.to_departments to = (Departments.to_departments) deps.get(0);
             Field.Combo dep = (Field.Combo) tf_field14;
@@ -1678,6 +1688,27 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
                 co1.setText("" + c.college_name);
                 co1.setId("" + c.id);
+
+                if (!departments.isEmpty()) {
+                    int exists = 0;
+                    for (User_departments.to_user_departments dep3 : departments) {
+                        if (dep3.college_id.equalsIgnoreCase("" + c.id)) {
+                            exists = 1;
+                            break;
+                        }
+                    }
+                    if (exists == 1) {
+                        co1.setText("" + c.college_name);
+                        co1.setId("" + c.id);
+
+                    } else {
+                        co1.setText("");
+                        co1.setId("");
+                    }
+                } else {
+                    co1.setText("" + c.college_name);
+                    co1.setId("" + c.id);
+                }
             } else {
                 co1.setText("");
                 co1.setId("");
@@ -1692,6 +1723,7 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
     List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
+    List<User_departments.to_user_departments> departments = new ArrayList();
 
     public void do_pass() {
         int user_id = FitIn.toInt(MyUser.getUser_id());
@@ -2861,8 +2893,28 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
                 Field.Combo co1 = (Field.Combo) tf_field15;
                 if (!colleges2.isEmpty()) {
                     Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
+
+                    if (!departments.isEmpty()) {
+                        int exists = 0;
+                        for (User_departments.to_user_departments dep : departments) {
+                            if (dep.college_id.equalsIgnoreCase("" + c.id)) {
+                                exists = 1;
+                                break;
+                            }
+                        }
+                        if (exists == 1) {
+                            co1.setText("" + c.college_name);
+                            co1.setId("" + c.id);
+
+                        } else {
+                            co1.setText("");
+                            co1.setId("");
+                        }
+                    } else {
+                        co1.setText("" + c.college_name);
+                        co1.setId("" + c.id);
+                    }
+
                 } else {
                     co1.setText("");
                     co1.setId("");
@@ -2891,10 +2943,30 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
             @Override
             public void ok(TableRenderer.OutputData data) {
                 Colleges.to_colleges to = colleges2.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field15;
-                co.setText("" + to.college_name);
-                co.setId("" + to.id);
-                ret_enrollments();
+
+                if (!departments.isEmpty()) {
+                    int exists = 0;
+                    for (User_departments.to_user_departments dep : departments) {
+                        if (dep.college_id.equalsIgnoreCase("" + to.id)) {
+                            exists = 1;
+                            break;
+                        }
+                    }
+                    if (exists == 1) {
+                        Field.Combo co = (Field.Combo) tf_field15;
+                        co.setText("" + to.college_name);
+                        co.setId("" + to.id);
+                        ret_enrollments();
+                    } else {
+                        Alert.set(0, "Privilege not added!");
+                    }
+                } else {
+                    Field.Combo co = (Field.Combo) tf_field15;
+                    co.setText("" + to.college_name);
+                    co.setId("" + to.id);
+                    ret_enrollments();
+                }
+
             }
 
         });

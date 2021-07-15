@@ -11,6 +11,7 @@ import cis.courses.Courses;
 import cis.departments.Departments;
 import cis.departments.Dlg_departments;
 import cis.users.MyUser;
+import cis.users.User_departments;
 import cis.users.User_previleges;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -629,8 +630,8 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         jLabel12.setText("Level/College:");
 
         jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setSelected(true);
         jCheckBox7.setText("All");
+        jCheckBox7.setEnabled(false);
         jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox7ActionPerformed(evt);
@@ -964,7 +965,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field7MouseClicked
 
     private void tf_field7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field7ActionPerformed
-       ret_offerings();
+        ret_offerings();
     }//GEN-LAST:event_tf_field7ActionPerformed
 
     /**
@@ -1028,6 +1029,16 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
 
         acad_years = Academic_years.ret_data(" order by id asc ");
         deps = Departments.ret_data(" order by department_name  asc ");
+        departments = User_departments.ret_data(" where user_id='" + MyUser.getUser_id() + "' order by college asc");
+
+        if (departments.isEmpty()) {
+            jCheckBox7.setEnabled(true);
+            jCheckBox7.setSelected(true);
+        } else {
+            jCheckBox7.setEnabled(false);
+            jCheckBox7.setSelected(false);
+        }
+
         if (!deps.isEmpty()) {
             Departments.to_departments dep = (Departments.to_departments) deps.get(0);
             Field.Combo co = (Field.Combo) tf_field3;
@@ -1043,11 +1054,31 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             Field.Combo co12 = (Field.Combo) tf_field6;
             if (!colleges2.isEmpty()) {
                 Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                co1.setText("" + c.college_name);
-                co1.setId("" + c.id);
 
                 co12.setText("" + c.college_name);
                 co12.setId("" + c.id);
+
+                if (!departments.isEmpty()) {
+                    int exists = 0;
+                    for (User_departments.to_user_departments dep2 : departments) {
+                        if (dep2.college_id.equalsIgnoreCase("" + c.id)) {
+                            exists = 1;
+                            break;
+                        }
+                    }
+                    if (exists == 1) {
+                        co12.setText("" + c.college_name);
+                        co12.setId("" + c.id);
+
+                    } else {
+                        co12.setText("");
+                        co12.setId("");
+                    }
+                } else {
+                    co12.setText("" + c.college_name);
+                    co12.setId("" + c.id);
+                }
+
             } else {
 
                 co1.setText("");
@@ -1099,6 +1130,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
     // </editor-fold>
 
     List<Academic_years.to_academic_years> acad_years = new ArrayList();
+    List<User_departments.to_user_departments> departments = new ArrayList();
 
     private void init_groups() {
         Object[][] obj = new Object[acad_years.size()][3];
@@ -1140,7 +1172,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         tbl_courses.setModel(tbl_courses_M);
         tbl_courses.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_courses.setRowHeight(25);
-        int[] tbl_widths_courses = {70, 100, 50, 100, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_courses = {110, 100, 50, 100, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -1400,9 +1432,30 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
             public void ok(TableRenderer.OutputData data) {
                 Colleges.to_colleges to = colleges2.get(data.selected_row);
                 Field.Combo co = (Field.Combo) tf_field6;
-                co.setText("" + to.college_name);
-                co.setId("" + to.id);
-                ret_offerings();
+              
+                if (!departments.isEmpty()) {
+                    int exists = 0;
+                    for (User_departments.to_user_departments dep : departments) {
+                        if (dep.college_id.equalsIgnoreCase("" + to.id)) {
+                            exists = 1;
+                            break;
+                        }
+                    }
+                    if (exists == 1) {
+
+                        co.setText("" + to.college_name);
+                        co.setId("" + to.id);
+                        ret_offerings();
+                    } else {
+                        Alert.set(0, "Privilege not added!");
+                    }
+                } else {
+
+                    co.setText("" + to.college_name);
+                    co.setId("" + to.id);
+                    ret_offerings();
+                }
+
             }
 
         });
@@ -1507,7 +1560,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         tbl_offerings.setModel(tbl_offerings_M);
         tbl_offerings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_offerings.setRowHeight(25);
-        int[] tbl_widths_courses = {70, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
+        int[] tbl_widths_courses = {110, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -1638,6 +1691,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
                 where = where + " and department_id='" + dep.getId() + "' ";
                 if (!jCheckBox7.isSelected()) {
                     where = where + " and college_id='" + col.getId() + "' ";
+
                 }
             }
             where = where + " and course_code like '%" + tf_field7.getText() + "%' ";
@@ -1929,7 +1983,7 @@ public class Dlg_academic_offerings extends javax.swing.JDialog {
         tbl_offerings.setModel(tbl_offerings_for_approval_M);
         tbl_offerings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_offerings.setRowHeight(25);
-        int[] tbl_widths_courses = {90, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
+        int[] tbl_widths_courses = {110, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
             if (i == 1) {
                 continue;

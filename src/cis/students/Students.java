@@ -690,6 +690,8 @@ public class Students {
                     .setString("date_enrolled", to_students.date_enrolled)
                     .setNumber("balance", to_students.balance)
                     .setNumber("prepaid", to_students.prepaid)
+                    .setString("fb_account", to_students.fb_account)
+                    .setString("blood_type", to_students.blood_type)
                     .setString("als_name", to_students.als_name)
                     .setString("als_region", to_students.als_region)
                     .setString("als_year", to_students.als_year)

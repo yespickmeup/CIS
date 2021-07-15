@@ -2553,7 +2553,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field21ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-       init_academic_years( tf_field14);
+        init_academic_years(tf_field14);
     }//GEN-LAST:event_tf_field14MouseClicked
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
@@ -2637,7 +2637,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox25ActionPerformed
 
     private void tf_field25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field25MouseClicked
-        init_academic_years();
+//        init_academic_years();
+        init_academic_years(tf_field25);
     }//GEN-LAST:event_tf_field25MouseClicked
 
     private void tf_field25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field25ActionPerformed
@@ -3894,7 +3895,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         String search = tf_field18.getText();
         Field.Combo sy = (Field.Combo) tf_field25;
         Field.Combo period = (Field.Combo) tf_field26;
-
+        
         if (!jCheckBox13.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field15;
             Field.Combo gr = (Field.Combo) tf_field17;
@@ -3935,6 +3936,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
 //        System.out.println(where);
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);
+       
         loadData_enrollment_offered_subjects(datas);
         jLabel8.setText("" + datas.size());
     }

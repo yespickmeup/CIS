@@ -1380,8 +1380,8 @@ public class Dlg_users extends javax.swing.JDialog {
 //        System.setProperty("pool_host", "localhost");
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-//        MyUser.setUser_id("2");
 
+//        MyUser.setUser_id("2");
         tf_search.grabFocus();
         jPanel7.setVisible(false);
         init_key();
@@ -1521,7 +1521,7 @@ public class Dlg_users extends javax.swing.JDialog {
         tbl_users.setModel(tbl_users_M);
         tbl_users.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_users.setRowHeight(25);
-        int[] tbl_widths_users = {100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_users = {100, 100, 100, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_users.length; i < n; i++) {
             if (i == 0 || i == 1) {
                 continue;
@@ -1538,6 +1538,7 @@ public class Dlg_users extends javax.swing.JDialog {
                 setFont(new java.awt.Font("Arial", 0, 11));
         tbl_users.setRowHeight(25);
         tbl_users.setFont(new java.awt.Font("Arial", 0, 12));
+        tbl_users.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
     }
 
     private void loadData_users(List<to_users> acc) {
@@ -1548,7 +1549,7 @@ public class Dlg_users extends javax.swing.JDialog {
     public static class TblusersModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Screen Name", "User Name", "Status", "password", "LEVEL", "date_added", "ACTIVE", "t_sales", "t_receipts", "t_stock_transfer", "m_items", "m_category", "m_users", "m_uom", "m_suppliers", "r_sales", "r_cash_count", "r_receipts", "r_stock_transferred", "r_stock_take"
+            "Screen Name", "User Name", "Status", "", "LEVEL", "date_added", "ACTIVE", "t_sales", "t_receipts", "t_stock_transfer", "m_items", "m_category", "m_users", "m_uom", "m_suppliers", "r_sales", "r_cash_count", "r_receipts", "r_stock_transferred", "r_stock_take"
         };
 
         public TblusersModel(ListModel listmodel) {
@@ -1584,7 +1585,7 @@ public class Dlg_users extends javax.swing.JDialog {
                         return "  Active";
                     }
                 case 3:
-                    return tt.password;
+                    return "/cis/icons/cog.png";
                 case 4:
                     return "";
 
@@ -1679,22 +1680,41 @@ public class Dlg_users extends javax.swing.JDialog {
         if (row < 0) {
             return;
         }
+        int col = tbl_users.getSelectedColumn();
         to_users to = (to_users) tbl_users_ALM.get(tbl_users.
                 convertRowIndexToModel(row));
-        tf_screen_name.setText(to.user_screen_name);
-        tf_user_name.setText(to.user_name);
-        String pass = DeEncrypter.decrypt(to.password);
-        tf_password.setText(pass);
+        if (col == 3) {
+            Window p = (Window) this;
+            Dlg_user_department nd = Dlg_user_department.create(p, true);
+            nd.setTitle("");
+            nd.do_pass(to);
+            nd.setCallback(new Dlg_user_department.Callback() {
 
-        if (to.status == 0) {
-            cb_active.setSelected(false);
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_user_department.OutputData data) {
+                    closeDialog.ok();
+
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
         } else {
-            cb_active.setSelected(true);
+
+            tf_screen_name.setText(to.user_screen_name);
+            tf_user_name.setText(to.user_name);
+            String pass = DeEncrypter.decrypt(to.password);
+            tf_password.setText(pass);
+
+            if (to.status == 0) {
+                cb_active.setSelected(false);
+            } else {
+                cb_active.setSelected(true);
+            }
+
+            ret_user_privileges();
         }
 
-        ret_user_privileges();
 //        tbl_user_default_previlege_others_ALM.clear();
-
     }
 
     private void edit_users() {
@@ -2839,18 +2859,18 @@ public class Dlg_users extends javax.swing.JDialog {
             }
 
         }
-        if(col==7){
-            if(to.name.equalsIgnoreCase("Subject Overload Override")){
+        if (col == 7) {
+            if (to.name.equalsIgnoreCase("Subject Overload Override")) {
                 Window p = (Window) this;
                 Dlg_subject_load_overried nd = Dlg_subject_load_overried.create(p, true);
                 nd.setTitle("");
 //                nd.do_pass(services);
                 nd.setCallback(new Dlg_subject_load_overried.Callback() {
-                    
+
                     @Override
                     public void ok(CloseDialog closeDialog, Dlg_subject_load_overried.OutputData data) {
                         closeDialog.ok();
-                        
+
                     }
                 });
                 nd.setLocationRelativeTo(this);
@@ -2859,4 +2879,21 @@ public class Dlg_users extends javax.swing.JDialog {
         }
     }
 //</editor-fold> 
+
+    private void user_department() {
+        Window p = (Window) this;
+        Dlg_user_department nd = Dlg_user_department.create(p, true);
+        nd.setTitle("");
+//        nd.do_pass(services);
+        nd.setCallback(new Dlg_user_department.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_user_department.OutputData data) {
+                closeDialog.ok();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
 }

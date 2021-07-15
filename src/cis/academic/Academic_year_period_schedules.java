@@ -5,6 +5,7 @@
  */
 package cis.academic;
 
+import cis.enrollments.Enrollment_offered_subjects;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -229,7 +230,7 @@ public class Academic_year_period_schedules {
         }
     }
 
-     public static void update_add_drop(int id, String from, String to) {
+    public static void update_add_drop(int id, String from, String to) {
         try {
             Connection conn = MyConnection.connect();
             String s0 = "update academic_year_period_schedules set "
@@ -252,10 +253,11 @@ public class Academic_year_period_schedules {
             MyConnection.close();
         }
     }
-     
-    public static void update_status(int id, int status) {
+
+    public static void update_status(int id, int status, List<Enrollment_offered_subjects.to_enrollment_offered_subjects> subjects) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
             String s0 = "update academic_year_period_schedules set "
                     + " status= :status "
                     + " where id='" + id + "' "
@@ -265,8 +267,55 @@ public class Academic_year_period_schedules {
                     .setNumber("status", status)
                     .ok();
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            if (status == 2) {
+                for (Enrollment_offered_subjects.to_enrollment_offered_subjects to : subjects) {
+                    String s6 = "update enrollment_offered_subjects set "
+                            + " status= :status "
+                            + " where id='" + to.id + "' "
+                            + " ";
+
+                    s6 = SqlStringUtil.parse(s6)
+                            .setNumber("status", status)
+                            .ok();
+                    stmt.addBatch(s6);
+
+                    String s2 = "update enrollment_offered_subject_sections set "
+                            + " status= :status "
+                            + " where enrollment_offered_subject_id='" + to.id + "' "
+                            + " ";
+
+                    s2 = SqlStringUtil.parse(s2)
+                            .setNumber("status", status)
+                            .ok();
+                    stmt.addBatch(s2);
+
+                    String s3 = "update enrollment_offered_subject_section_instructors set "
+                            + " status= :status "
+                            + " where enrollment_offered_subject_id='" + to.id + "' "
+                            + " ";
+
+                    s3 = SqlStringUtil.parse(s3)
+                            .setNumber("status", status)
+                            .ok();
+                    stmt.addBatch(s3);
+
+                    String s4 = "update enrollment_offered_subject_section_room_schedules set "
+                            + " status= :status "
+                            + " where enrollment_offered_subject_id='" + to.id + "' "
+                            + " ";
+
+                    s4 = SqlStringUtil.parse(s4)
+                            .setNumber("status", status)
+                            .ok();
+                    stmt.addBatch(s4);
+                }
+            }
+
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Academic_year_period_schedules.class, "Successfully Updated");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -343,8 +392,8 @@ public class Academic_year_period_schedules {
                 String add_drop_starts = rs.getString(18);
                 String add_drop_ends = rs.getString(19);
                 to_academic_year_period_schedules to = new to_academic_year_period_schedules(id, academic_year_period_id, academic_year_id, department_id, department, years, period, date_from, date_to, created_at, updated_at, created_by,
-                         updated_by, status, is_uploaded, enrollment_starts,
-                         enrollment_ends, add_drop_starts, add_drop_ends);
+                                                                                             updated_by, status, is_uploaded, enrollment_starts,
+                                                                                             enrollment_ends, add_drop_starts, add_drop_ends);
                 datas.add(to);
             }
             return datas;
