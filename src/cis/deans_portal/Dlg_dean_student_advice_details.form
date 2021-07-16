@@ -1953,6 +1953,7 @@
                                       <Component id="tf_field140" min="-2" pref="25" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="tf_field145" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="tf_field115" min="-2" pref="25" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="tf_field116" min="-2" pref="25" max="-2" attributes="0"/>
@@ -5229,37 +5230,35 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel89" min="-2" pref="44" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="jLabel81" max="32767" attributes="0"/>
-                                                          <Component id="jLabel82" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jCheckBox13" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jCheckBox14" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="tf_field133" min="-2" pref="171" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                                              <Component id="jLabel95" max="32767" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jCheckBox15" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                              <Component id="jCheckBox16" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                              <Component id="jCheckBox17" min="-2" pref="93" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Component id="tf_field134" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jButton7" min="-2" pref="78" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLabel81" max="32767" attributes="0"/>
+                                                      <Component id="jLabel82" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jScrollPane5" min="-2" pref="692" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jCheckBox13" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jCheckBox14" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="tf_field133" min="-2" pref="171" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                                          <Component id="jLabel95" max="32767" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="jCheckBox15" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="jCheckBox16" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="jCheckBox17" min="-2" pref="93" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="tf_field134" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jButton7" min="-2" pref="78" max="-2" attributes="0"/>
                                               </Group>
+                                              <Component id="jScrollPane5" alignment="1" min="-2" pref="692" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>

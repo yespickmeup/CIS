@@ -80,12 +80,13 @@ public class Srpt_class_list {
         String email_address;
         int esls_id;
         double final_grade;
+        double retake;
         String grade_remarks;
         String fb_name;
         public field() {
         }
 
-        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address, int esls_id, double final_grade, String grade_remarks,String fb_name) {
+        public field(int section_id, String subject_code, String description, double lec_units, double lab_units, int max_students, String faculty_id, String faculty_name, String section, String room, String day, String time, String student_no, String student_name, String course, String year_level, String contact_no, String email_address, int esls_id, double final_grade,double retake, String grade_remarks,String fb_name) {
             this.section_id = section_id;
             this.subject_code = subject_code;
             this.description = description;
@@ -106,10 +107,20 @@ public class Srpt_class_list {
             this.email_address = email_address;
             this.esls_id = esls_id;
             this.final_grade = final_grade;
+            this.retake=retake;
             this.grade_remarks = grade_remarks;
             this.fb_name=fb_name;
         }
 
+        public double getRetake() {
+            return retake;
+        }
+
+        public void setRetake(double retake) {
+            this.retake = retake;
+        }
+
+        
         
         public String getFb_name() {
             return fb_name;
@@ -327,7 +338,8 @@ public class Srpt_class_list {
             double final_grade = 0;
             String grade_remarks = "";
             String fb_name="";
-            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address, esls_id, final_grade, grade_remarks,fb_name);
+            double retake=0;
+            Srpt_class_list.field f = new field(section_id, subject_code, description, lec_units, lab_units, max_students, faculty_id, faculty_name, section, room1, day, time, student_no, student_name, course, year_level1, contact_no1, email_address, esls_id, final_grade,retake, grade_remarks,fb_name);
             fields.add(f);
         }
         String jrxml = "rpt_class_list.jrxml";
@@ -511,6 +523,7 @@ public class Srpt_class_list {
                         + ",year_level"
                         + ",final_grade"
                         + ",ifnull(final_grade_remarks,'')"
+                        + ",retake"
                         + " from enrollment_student_loaded_subjects"
                         + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
 //                System.out.println("section.id: "+section.id);
@@ -530,6 +543,7 @@ public class Srpt_class_list {
                     String year_level2 = rs2.getString(11);
                     double final_grade = rs2.getDouble(12);
                     String grade_remarks = rs2.getString(13);
+                    double retake=rs2.getDouble(14);
                     int section_id = section.id;
 
                     double lec_units = section.lecture_units;
@@ -562,7 +576,7 @@ public class Srpt_class_list {
                     }
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks,fb_name);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade,retake, grade_remarks,fb_name);
 
                     datas.add(f);
 
@@ -729,6 +743,7 @@ public class Srpt_class_list {
                         + ",year_level"
                         + ",final_grade"
                         + ",ifnull(final_grade_remarks,'')"
+                        + ",retake"
                         + " from enrollment_student_loaded_subjects"
                         + " where enrollment_offered_subject_section_id ='" + section.id + "' and status=1 order by lname asc ";
 //                System.out.println("section.id: "+section.id);
@@ -748,6 +763,7 @@ public class Srpt_class_list {
                     String year_level2 = rs2.getString(11);
                     double final_grade = rs2.getDouble(12);
                     String grade_remarks = rs2.getString(13);
+                    double retake=rs2.getDouble(14);
                     int section_id = section.id;
 
                     double lec_units = section.lecture_units;
@@ -780,7 +796,7 @@ public class Srpt_class_list {
                     }
                     Srpt_class_list.field f = new Srpt_class_list.field(section_id, section.subject_code, section.description, lec_units,
                                                                         lab_units, max_students, my_faculty_id, my_faculty_name,
-                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade, grade_remarks,fb_name);
+                                                                        section.section, my_room, my_day, my_time, student_no, student_name, course, year_level1, contact_no1, email_address, id2, final_grade,retake, grade_remarks,fb_name);
 
                   
                     if (course_id1 == 0) {

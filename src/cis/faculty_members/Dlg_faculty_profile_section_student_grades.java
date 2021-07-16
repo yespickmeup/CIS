@@ -7,6 +7,7 @@ package cis.faculty_members;
 
 import cis.enrollments.Enrollment_student_loaded_subject_grades;
 import cis.reports.Srpt_class_list;
+import cis.students.Students;
 import cis.utils.Dlg_confirm_action;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -379,10 +380,15 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         });
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel33.setText("Fifth:");
+        jLabel33.setText("Retake:");
 
         tf_field25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tf_field25.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tf_field25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field25ActionPerformed(evt);
+            }
+        });
         tf_field25.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tf_field25KeyReleased(evt);
@@ -639,6 +645,10 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         save();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void tf_field25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -693,11 +703,29 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         tf_field18.setText(to.getCourse());
         tf_field19.setText(to.getYear_level());
         tf_field20.setText(to.getContact_no());
+        List<Students.to_students> students = Students.ret_data(" where student_no='" + to.getStudent_no() + "' ");
+        if (!students.isEmpty()) {
+            Students.to_students student = students.get(0);
+            String department = student.department;
+            if (department.equalsIgnoreCase("TERTIARY DEPARTMENT") || department.equalsIgnoreCase("SENIOR HIGH SCHOOL")) {
+                jLabel29.setText("Prelim");
+                jLabel30.setText("Midterm");
+                jLabel31.setText("Prelim");
+                jLabel32.setText("Final");
+            }
+            if (department.equalsIgnoreCase("BASIC EDUCATION")) {
+                jLabel29.setText("1st Quarter");
+                jLabel30.setText("2nd Quarter");
+                jLabel31.setText("3rd Quarter");
+                jLabel32.setText("4th Quarter");
+            }
+        }
 
         String where = " where enrollment_student_loaded_subject_id='" + to.getEsls_id() + "' order by id desc limit 1";
         List<Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades> datas = Enrollment_student_loaded_subject_grades.ret_data(where);
         if (!datas.isEmpty()) {
             Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades to1 = (Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades) datas.get(0);
+
             tf_field21.setText(FitIn.fmt_woc_0(to1.first));
             tf_field22.setText(FitIn.fmt_woc_0(to1.second));
             tf_field23.setText(FitIn.fmt_woc_0(to1.third));
@@ -776,10 +804,10 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         if (fourth > 1) {
             div++;
         }
-        if (fifth > 1) {
-            div++;
-        }
-        double grade = (first + second + third + fourth + fifth) / div;
+//        if (fifth > 1) {
+//            div++;
+//        }
+        double grade = (first + second + third + fourth) / div;
 //        System.out.println("grade: " + grade);
         tf_field26.setText(FitIn.fmt_woc_0(grade));
         if (grade > 0 && grade < 75) {
@@ -832,10 +860,8 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         if (fourth > 1) {
             div++;
         }
-        if (fifth > 1) {
-            div++;
-        }
-        double final_grade = (first + second + third + fourth + fifth) / div;
+
+        double final_grade = (first + second + third + fourth) / div;
         String remarks = "In Progress";
         if (jCheckBox1.isSelected()) {
             remarks = "Passed";

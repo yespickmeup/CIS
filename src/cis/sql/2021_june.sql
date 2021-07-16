@@ -137,5 +137,5 @@ id int auto_increment primary key
 );
 
 
-
+alter table enrollment_student_loaded_subjects add retake double;
 

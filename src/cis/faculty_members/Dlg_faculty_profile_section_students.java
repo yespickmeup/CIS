@@ -286,7 +286,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -464,7 +464,6 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
 
     private void myInit() {
 
-        
         init_key();
 
         init_tbl_miscellaneous_fees(jTable1);
@@ -521,7 +520,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
         tbl_miscellaneous_fees.setModel(tbl_miscellaneous_fees_M);
         tbl_miscellaneous_fees.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_miscellaneous_fees.setRowHeight(25);
-        int[] tbl_widths_miscellaneous_fees = {80, 100, 90, 90, 90, 120, 70, 70, 30};
+        int[] tbl_widths_miscellaneous_fees = {80, 100, 90, 90, 90, 120, 60, 60, 60, 30};
         for (int i = 0, n = tbl_widths_miscellaneous_fees.length; i < n; i++) {
             if (i == 1) {
                 continue;
@@ -535,7 +534,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
         tbl_miscellaneous_fees.setRowHeight(25);
         tbl_miscellaneous_fees.setFont(new java.awt.Font("Arial", 0, 12));
 
-        tbl_miscellaneous_fees.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
+        tbl_miscellaneous_fees.getColumnModel().getColumn(9).setCellRenderer(new ImageRenderer());
 
     }
 
@@ -547,7 +546,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
     public static class Tblmiscellaneous_feesModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Student No", "Name", "Course", "Year Level", "Contact No", "Email Address", "Grade", "Status", ""
+            "Student No", "Name", "Course", "Year Level", "Contact No", "Email Address", "Grade", "Retake", "Status", ""
         };
 
         public Tblmiscellaneous_feesModel(ListModel listmodel) {
@@ -589,6 +588,9 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
                 case 6:
                     return " " + FitIn.fmt_woc_0(tt.getFinal_grade());
                 case 7:
+                    return " " + tt.getRetake();
+
+                case 8:
                     return " " + tt.getGrade_remarks();
                 default:
                     return "/cis/icons/cog.png";
@@ -602,7 +604,7 @@ public class Dlg_faculty_profile_section_students extends javax.swing.JDialog {
             return;
         }
         int col = jTable1.getSelectedColumn();
-        if (col == 8) {
+        if (col == 9) {
             Srpt_class_list.field to = (Srpt_class_list.field) tbl_miscellaneous_fees_ALM.get(row);
             Window p = (Window) this;
             Dlg_faculty_profile_section_student_grades nd = Dlg_faculty_profile_section_student_grades.create(p, true);

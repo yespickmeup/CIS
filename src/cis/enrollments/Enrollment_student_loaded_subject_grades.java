@@ -66,6 +66,7 @@ public class Enrollment_student_loaded_subject_grades {
                     + ",final_grade_remarks= :final_grade_remarks "
                     + ",final_grade_created_at= :final_grade_created_at "
                     + ",final_grade_created_by= :final_grade_created_by "
+                    + ",retake= :retake "
                     + " where id='" + to_enrollment_student_loaded_subject_grades.enrollment_student_loaded_subject_id + "' "
                     + " ";
 
@@ -74,6 +75,7 @@ public class Enrollment_student_loaded_subject_grades {
                     .setString("final_grade_remarks", to_enrollment_student_loaded_subject_grades.remarks)
                     .setString("final_grade_created_at", to_enrollment_student_loaded_subject_grades.created_at)
                     .setString("final_grade_created_by", to_enrollment_student_loaded_subject_grades.created_by)
+                    .setNumber("retake", to_enrollment_student_loaded_subject_grades.fifth)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement("");

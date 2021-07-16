@@ -79,7 +79,8 @@ public class Enrollment_student_loaded_subjects {
         public final String final_grade_created_at;
         public final String final_grade_created_by;
         public final int is_payed;
-        public to_enrollment_student_loaded_subjects(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname, int enrollment_offered_subject_section_id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, int lecture_units, int lab_units, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int is_added, double final_grade, String final_grade_remarks, String final_grade_created_at, String final_grade_created_by,int is_payed) {
+        public final double retake;
+        public to_enrollment_student_loaded_subjects(int id, int enrollment_id, String enrollment_no, int student_id, String student_no, String fname, String mi, String lname, int enrollment_offered_subject_section_id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, int lecture_units, int lab_units, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int is_added, double final_grade, String final_grade_remarks, String final_grade_created_at, String final_grade_created_by,int is_payed,double retake) {
             this.id = id;
             this.enrollment_id = enrollment_id;
             this.enrollment_no = enrollment_no;
@@ -132,6 +133,7 @@ public class Enrollment_student_loaded_subjects {
             this.final_grade_created_at = final_grade_created_at;
             this.final_grade_created_by = final_grade_created_by;
             this.is_payed=is_payed;
+            this.retake=retake;
         }
     }
 
@@ -680,6 +682,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",final_grade_created_at"
                     + ",final_grade_created_by"
                     + ",is_payed"
+                    + ",retake"
                     + " from enrollment_student_loaded_subjects"
                     + " " + where;
 
@@ -738,7 +741,8 @@ public class Enrollment_student_loaded_subjects {
                 String final_grade_created_at = rs.getString(50);
                 String final_grade_created_by = rs.getString(51);
                 int is_payed=rs.getInt(52);
-                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed);
+                double retake=rs.getDouble(53);
+                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed,retake);
                 datas.add(to);
             }
             return datas;
@@ -807,6 +811,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",final_grade_created_at"
                     + ",final_grade_created_by"
                     + ",is_payed"
+                    + ",retake"
                     + " from enrollment_student_loaded_subjects"
                     + " " + where;
 
@@ -867,7 +872,8 @@ public class Enrollment_student_loaded_subjects {
                 String final_grade_created_at = rs.getString(50);
                 String final_grade_created_by = rs.getString(51);
                 int is_payed=rs.getInt(52);
-                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed);
+                double retake=rs.getDouble(53);
+                to_enrollment_student_loaded_subjects to = new to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed,retake);
                 datas.add(to);
             }
             return datas;
