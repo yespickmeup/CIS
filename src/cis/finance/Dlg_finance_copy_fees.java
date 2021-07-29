@@ -225,6 +225,8 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         jLabel29 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         tf_field22 = new Field.Combo();
+        jLabel52 = new javax.swing.JLabel();
+        tf_year_level = new Field.Combo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -364,6 +366,22 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
             }
         });
 
+        jLabel52.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel52.setText("Year Level:");
+
+        tf_year_level.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tf_year_level.setFocusable(false);
+        tf_year_level.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_year_levelMouseClicked(evt);
+            }
+        });
+        tf_year_level.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_year_levelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -390,7 +408,11 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field22, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)))
+                        .addComponent(tf_field22, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_year_level)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -415,7 +437,11 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_year_level, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -448,7 +474,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,7 +494,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 641, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -532,6 +558,14 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         init_colleges3();
     }//GEN-LAST:event_tf_field22ActionPerformed
 
+    private void tf_year_levelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_year_levelMouseClicked
+        init_years_levels();
+    }//GEN-LAST:event_tf_year_levelMouseClicked
+
+    private void tf_year_levelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_year_levelActionPerformed
+        init_years_levels();
+    }//GEN-LAST:event_tf_year_levelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -546,6 +580,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -556,6 +591,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field20;
     private javax.swing.JTextField tf_field22;
     private javax.swing.JTextField tf_period;
+    private javax.swing.JTextField tf_year_level;
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
@@ -599,10 +635,11 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
     String o_level_id;
     String o_course;
     String o_course_id;
+    String o_year_level;
 
     int is_other_fees = 0;
 
-    public void do_pass(String academic_year, String academic_year_id, String period, String period_id, String department, String department_id, String level, String level_id, String course, String course_id, int is_other_fe) {
+    public void do_pass(String academic_year, String academic_year_id, String period, String period_id, String department, String department_id, String level, String level_id, String course, String course_id, int is_other_fe, String year_level) {
         Field.Combo acad2 = (Field.Combo) tf_field14;
         Field.Combo per = (Field.Combo) tf_period;
         Field.Combo dep = (Field.Combo) tf_field15;
@@ -635,6 +672,10 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         o_course_id = course_id;
 
         is_other_fees = is_other_fe;
+
+        tf_year_level.setText(year_level);
+        o_year_level = year_level;
+
         ret_data();
 
     }
@@ -741,6 +782,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                     co1.setId("");
                 }
 
+                tf_year_level.setText("");
             }
         });
     }
@@ -909,6 +951,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo year = (Field.Combo) tf_field16;
         Field.Combo per = (Field.Combo) tf_period;
+        Field.Combo year_level = (Field.Combo) tf_year_level;
 
         String where = " where id<>0 ";
         int group_id = 1;
@@ -922,6 +965,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                     + " and level_id='" + lev.getId() + "' "
                     + " and course_id='" + year.getId() + "' "
                     + " and period like 'First Year' "
+                    + " and year_level like '" + year_level.getText() + "' "
                     + " and group_id='" + group_id + "' ";
         } else {
             where = where + " and academic_year_id='" + acad2.getId() + "' "
@@ -929,6 +973,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                     + " and level_id='" + lev.getId() + "' "
                     + " and course_id='" + year.getId() + "' "
                     + " and period like '" + per.getText() + "' "
+                    + " and year_level like '" + year_level.getText() + "' "
                     + " and group_id='" + group_id + "' ";
         }
 
@@ -955,6 +1000,7 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
         Field.Combo dep = (Field.Combo) tf_field15;
         Field.Combo lev = (Field.Combo) tf_field22;
         Field.Combo cour = (Field.Combo) tf_field16;
+        Field.Combo year_level = (Field.Combo) tf_year_level;
 
         if (acad2.getText().equalsIgnoreCase(o_academic_year)
                 && acad2.getId().equalsIgnoreCase(o_academic_year_id)
@@ -964,7 +1010,8 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
                 && lev.getText().equalsIgnoreCase(o_level)
                 && lev.getId().equalsIgnoreCase(o_level_id)
                 && cour.getText().equalsIgnoreCase(o_course)
-                && cour.getId().equalsIgnoreCase(o_course_id)) {
+                && cour.getId().equalsIgnoreCase(o_course_id)
+                && year_level.getText().equalsIgnoreCase(o_year_level)) {
             Alert.set(0, "Cannot copy original record");
             return;
         }
@@ -995,4 +1042,46 @@ public class Dlg_finance_copy_fees extends javax.swing.JDialog {
             callback.ok(new CloseDialog(this), new OutputData(datas));
         }
     }
+
+    private void init_years_levels() {
+        Field.Combo dep = (Field.Combo) tf_field15;
+
+        List<String> year_level = new ArrayList();
+
+        if (dep.getText().equalsIgnoreCase("BASIC EDUCATION")) {
+            year_level.add("");
+        } else {
+            year_level.add("");
+            year_level.add("First Year");
+            year_level.add("Second Year");
+            year_level.add("Third Year");
+            year_level.add("Fourth Year");
+            year_level.add("Fifth Year");
+        }
+
+        Object[][] obj = new Object[year_level.size()][1];
+        int i = 0;
+        for (String to : year_level) {
+            obj[i][0] = " " + to;
+
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_year_level.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_year_level, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                String to = year_level.get(data.selected_row);
+                tf_year_level.setText("" + to);
+
+                ret_data();
+
+            }
+        });
+    }
+
 }

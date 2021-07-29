@@ -23,6 +23,7 @@ import cis.registrar.Dlg_registrar_student_transfer_section;
 import cis.reports.Dlg_class_list;
 import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_faculty_subject_loads;
+import cis.reports.Dlg_grade_sheet;
 import cis.reports.Dlg_list_of_students;
 import cis.reports.Dlg_subject_offerings;
 import cis.reports.Dlg_teachers_load;
@@ -817,7 +818,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     r_transacript_of_records();
                 }
                 if (data.stmt.equals("Teachers Load")) {
-                   r_teachers_load();
+                    r_teachers_load();
+                }
+
+                if (data.stmt.equals("Grade Sheet")) {
+                    r_grade_sheet();
                 }
                 //</editor-fold>
             }
@@ -1007,6 +1012,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Dlg_teachers_load dtc = new Dlg_teachers_load();
 //        dtc.do_pass();
         MyFrame.set(dtc.getSurface(), jPanel1, "Teachers Load");
+    }
+
+    private void r_grade_sheet() {
+
+        Dlg_grade_sheet dtc = new Dlg_grade_sheet();
+//        dtc.do_pass();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Grade Sheet");
     }
 
     private void run_script() {

@@ -726,7 +726,6 @@ public class Dlg_faculty_profile extends javax.swing.JDialog {
             for (Academic_years.to_academic_years to1 : acad_years) {
                 acad = to1;
                 Field.Combo year3 = (Field.Combo) tf_field19;
-
                 year3.setText(to1.years);
                 year3.setId("" + to1.id);
             }

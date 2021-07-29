@@ -62,7 +62,7 @@ import synsoftech.fields.Field;
  *
  * @author User
  */
-public class Dlg_class_list extends javax.swing.JDialog {
+public class Dlg_grade_sheet extends javax.swing.JDialog {
 
     /**
      * Creates new form Dlg_enrollment_assessments
@@ -88,33 +88,33 @@ public class Dlg_class_list extends javax.swing.JDialog {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_class_list(java.awt.Frame parent, boolean modal) {
+    private Dlg_grade_sheet(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_class_list(java.awt.Dialog parent, boolean modal) {
+    private Dlg_grade_sheet(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_class_list() {
+    public Dlg_grade_sheet() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_class_list myRef;
+    private Dlg_grade_sheet myRef;
 
-    private void setThisRef(Dlg_class_list myRef) {
+    private void setThisRef(Dlg_grade_sheet myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_class_list> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_grade_sheet> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -122,7 +122,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_class_list create(java.awt.Window parent, boolean modal) {
+    public static Dlg_grade_sheet create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -132,14 +132,14 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_class_list create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_grade_sheet create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_class_list dialog = dialogContainer.get(parent);
+            Dlg_grade_sheet dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_class_list((java.awt.Frame) parent, false);
+                dialog = new Dlg_grade_sheet((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -153,10 +153,10 @@ public class Dlg_class_list extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_class_list dialog = dialogContainer.get(parent);
+            Dlg_grade_sheet dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_class_list((java.awt.Dialog) parent, false);
+                dialog = new Dlg_grade_sheet((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -183,7 +183,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_class_list dialog = Dlg_class_list.create(new javax.swing.JFrame(), true);
+        Dlg_grade_sheet dialog = Dlg_grade_sheet.create(new javax.swing.JFrame(), true);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().
                 getWidth());
@@ -256,7 +256,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jCheckBox15 = new javax.swing.JCheckBox();
         jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -455,16 +454,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox17.setSelected(true);
-        jCheckBox17.setText("Include Facebook Name");
-        jCheckBox17.setFocusable(false);
-        jCheckBox17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox17ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -512,10 +501,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                         .addGap(1, 1, 1)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(tf_field18)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jCheckBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tf_field18))))
                 .addGap(0, 0, 0))
         );
         jPanel6Layout.setVerticalGroup(
@@ -547,9 +533,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox15)))
                     .addComponent(tf_field18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addComponent(jCheckBox17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -579,7 +563,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 2295, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 2310, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -587,7 +571,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Class List", jPanel2);
+        jTabbedPane1.addTab("Grade Sheet", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -760,10 +744,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox16ActionPerformed
 
-    private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox17ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -776,7 +756,6 @@ public class Dlg_class_list extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox12;
     private javax.swing.JCheckBox jCheckBox15;
     private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -808,8 +787,8 @@ public class Dlg_class_list extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 //        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "synapse246");
-//        System.setProperty("pool_host", "10.0.0.251");
+//        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_host", "localhost");
 
         acad_years = Academic_years.ret_data(" where status=1 limit 1");
         acad_years2 = Academic_years.ret_data(" order by id asc");
@@ -1384,12 +1363,23 @@ public class Dlg_class_list extends javax.swing.JDialog {
                     Field.Combo course = (Field.Combo) tf_field16;
                     course_id = FitIn.toInt(course.getId());
                 }
-                List<Srpt_class_list.field> fields = Srpt_class_list.ret_data2(selected, college_id, year_level, course_id);
-                String jrxml = "rpt_class_list.jrxml";
-                if (jCheckBox17.isSelected()) {
-                    jrxml = "rpt_class_list_landscape.jrxml";
+                List<Srpt_grade_sheet.field> fields = Srpt_grade_sheet.ret_data2(selected, college_id, year_level, course_id);
+                String jrxml = "rpt_grade_sheet.jrxml";
+                String first = "1st Quarter";
+                String second = "2nd Quarter";
+                String third = "3rd Quarter";
+                String fourth = "4th Quarter";
+                String fifth = "Retake";
+                String department1 = tf_field14.getText();
+                if (department1.equalsIgnoreCase("TERTIARY DEPARTMENT") || department1.equalsIgnoreCase("SENIOR HIGH SCHOOL")) {
+                    first = "Prelim";
+                    second = "Midterm";
+                    third = "Prefinal";
+                    fourth = "Final";
+                    fifth = "Retake";
                 }
-                Srpt_class_list rpt = new Srpt_class_list(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room);
+                Srpt_grade_sheet rpt = new Srpt_grade_sheet(business_name, address, contact_no, date, printed_by, school_year, semester, department, college, year_level, room, first, second, third, fourth, fifth);
+
                 rpt.fields.addAll(fields);
                 report_class_list(rpt, jrxml);
                 jProgressBar1.setString("Finished...");
@@ -1401,7 +1391,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
 
     }
 
-    private void report_class_list(final Srpt_class_list to, String jrxml_name) {
+    private void report_class_list(final Srpt_grade_sheet to, String jrxml_name) {
         jPanel5.removeAll();
         jPanel5.setLayout(new BorderLayout());
         try {
@@ -1418,7 +1408,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
         }
     }
 
-    public static JRViewer get_viewer_class_list(Srpt_class_list to, String rpt_name) {
+    public static JRViewer get_viewer_class_list(Srpt_grade_sheet to, String rpt_name) {
         try {
             return JasperUtil.getJasperViewer(
                     compileJasper(rpt_name),
@@ -1433,7 +1423,7 @@ public class Dlg_class_list extends javax.swing.JDialog {
     public static JasperReport compileJasper(String rpt_name) {
         try {
             String jrxml = rpt_name;
-            InputStream is = Srpt_class_list.class.
+            InputStream is = Srpt_grade_sheet.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;
@@ -1666,5 +1656,4 @@ public class Dlg_class_list extends javax.swing.JDialog {
             }
         });
     }
-
 }

@@ -644,6 +644,7 @@ public class Finance {
                     + ",ea.academic_year"
                     + ",(select e.year_level from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
                     + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
+                    + ",ea.discount_amount"
                     + " from enrollment_sls_payments ea "
                     + " where ea.student_id='" + student.id + "' ";
 
@@ -664,6 +665,7 @@ public class Finance {
                 year_level2 = rs2.getString(6);
                 term2 = rs2.getString(7);
                 academic_year2 = rs2.getString(5);
+                double discount_amount = rs2.getDouble(8);
                 Date d = new Date();
 
                 try {
@@ -672,16 +674,17 @@ public class Finance {
                     d = new Date();
                 }
 //                credit = amount_paid;
-
+                amount_paid = amount_paid - discount_amount;
+//                System.out.println("amount_paid: " + amount_paid);
                 if (trans_type == 1) {
-                    credit2=0;
+                    credit2 = 0;
                     debit2 = amount_paid;
                     balance += debit2;
                     Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, "Add Subject", year_level2, term2, academic_year2, debit2, credit2, balance);
                     datas.add(to);
                 }
                 if (trans_type == 2) {
-                    debit2=0;
+                    debit2 = 0;
                     credit2 = amount_paid;
                     balance -= credit2;
                     Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, "Drop Subject", year_level2, term2, academic_year2, debit2, credit2, balance);

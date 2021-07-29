@@ -418,7 +418,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         jCheckBox5.setBackground(new java.awt.Color(204, 204, 255));
         buttonGroup1.add(jCheckBox5);
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox5.setText("No Attendance");
+        jCheckBox5.setText("No Grade");
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel34.setText("Status:");
@@ -426,7 +426,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         jCheckBox6.setBackground(new java.awt.Color(0, 153, 153));
         buttonGroup1.add(jCheckBox6);
         jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox6.setText("Unauthorized Withdrawal");
+        jCheckBox6.setText("Withdraw");
 
         jCheckBox7.setBackground(new java.awt.Color(153, 153, 255));
         buttonGroup1.add(jCheckBox7);
@@ -487,9 +487,9 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCheckBox8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -503,7 +503,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBox5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jCheckBox6)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,6 +695,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
 
     private void myInit() {
         init_key();
+        jCheckBox7.setVisible(false);
     }
 
     public void do_pass(Srpt_class_list.field to) {
@@ -708,6 +709,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
             Students.to_students student = students.get(0);
             String department = student.department;
             if (department.equalsIgnoreCase("TERTIARY DEPARTMENT") || department.equalsIgnoreCase("SENIOR HIGH SCHOOL")) {
+              
                 jLabel29.setText("Prelim");
                 jLabel30.setText("Midterm");
                 jLabel31.setText("Prelim");
@@ -744,7 +746,7 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
                 jCheckBox4.setSelected(true);
             } else if (to1.remarks.equalsIgnoreCase("No Credit")) {
                 jCheckBox7.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("No Attendance")) {
+            } else if (to1.remarks.equalsIgnoreCase("No Grade")) {
                 jCheckBox7.setSelected(true);
             } else if (to1.remarks.equalsIgnoreCase("In Progress")) {
                 jCheckBox8.setSelected(true);
@@ -878,11 +880,12 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
         if (jCheckBox7.isSelected()) {
             remarks = "No Credit";
         }
+        
         if (jCheckBox5.isSelected()) {
-            remarks = "No Attendance";
+            remarks = "No Grade";
         }
         if (jCheckBox6.isSelected()) {
-            remarks = "Unauthorized Withdrawal";
+            remarks = "Withdraw";
         }
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(first, second, third, fourth, fifth, final_grade, remarks));

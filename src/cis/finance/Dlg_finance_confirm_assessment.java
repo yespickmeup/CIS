@@ -1314,7 +1314,9 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
             double total_lec_amount = FitIn.toDouble(tf_field19.getText()) * no_of_units_lec;
             double total_lab_amount = FitIn.toDouble(tf_field22.getText()) * no_of_units_lab;
             double amount = total_lec_amount + total_lab_amount;
-
+            
+//            System.out.println("total_lec_amount: "+total_lec_amount);
+//            System.out.println("total_lab_amount: "+total_lab_amount);
             tf_tuition_fee.setText(FitIn.fmt_wc_0(amount));
         } else {
             double amount = FitIn.toDouble(tf_fixed_amount.getText());

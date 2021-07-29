@@ -2981,6 +2981,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
+
         init_key();
         jPanel5.setVisible(false);
         tf_field3.setVisible(false);
@@ -3402,7 +3403,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 
     private void add_all_offering() {
-        if (tf_field26.getText().isEmpty()) {
+        Field.Combo dep = (Field.Combo) tf_field2;
+        if (!dep.getText().equalsIgnoreCase("Basic Education") && tf_field26.getText().isEmpty()) {
             Alert.set(0, "Please select period");
             return;
         }
@@ -3528,10 +3530,12 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
 
     private void select_offering_subject() {
-        if (tf_field26.getText().isEmpty()) {
+        Field.Combo dep = (Field.Combo) tf_field2;
+        if (!dep.getText().equalsIgnoreCase("Basic Education") && tf_field26.getText().isEmpty()) {
             Alert.set(0, "Please select period");
             return;
         }
+
         int row = tbl_academic_offering_subjects.getSelectedRow();
         if (row < 0) {
             return;
@@ -3895,7 +3899,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         String search = tf_field18.getText();
         Field.Combo sy = (Field.Combo) tf_field25;
         Field.Combo period = (Field.Combo) tf_field26;
-        
+
         if (!jCheckBox13.isSelected()) {
             Field.Combo dep = (Field.Combo) tf_field15;
             Field.Combo gr = (Field.Combo) tf_field17;
@@ -3936,7 +3940,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         }
 //        System.out.println(where);
         List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);
-       
+
         loadData_enrollment_offered_subjects(datas);
         jLabel8.setText("" + datas.size());
     }
@@ -5195,8 +5199,8 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                         String final_grade_created_at = DateType.now();
                         String final_grade_created_by = "";
                         int is_payed = 0;
-                        double retake=0;
-                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed,retake);
+                        double retake = 0;
+                        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
                         Enrollment_student_loaded_subjects.add_data(load);
 
                         ret_enrolled_subjects();

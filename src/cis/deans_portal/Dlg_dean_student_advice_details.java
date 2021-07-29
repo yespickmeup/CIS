@@ -5912,8 +5912,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     String final_grade_created_at = DateType.now();
                     String final_grade_created_by = "";
                     int is_payed = 0;
-                    double retake=0;
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed,retake);
+                    double retake = 0;
+                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
                     Enrollment_student_loaded_subjects.add_data(load);
                     Alert.set(1, "");
                     ret_loaded_subjects();
@@ -6068,7 +6068,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 String final_grade_remarks = "";
                 String final_grade_created_at = DateType.now();
                 String final_grade_created_by = "";
-                double retake=0;
+                double retake = 0;
                 try {
                     id = sec.id;
                     enrollment_offered_subject_section_id = sec.id;
@@ -6085,7 +6085,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 }
                 int is_payed = 0;
                 if (!day.isEmpty() && sec != null) {
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed,retake);
+                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
                     loads.add(load);
                 } else {
                     not_loaded.add(to);
@@ -6443,6 +6443,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     + " and level_id='" + enroll.level_id + "' "
                     + " and course_id='" + enroll.course_id + "' "
                     + " and period like '" + enroll.period + "' "
+                    + " and year_level like '" + enroll.year_level + "' "
                     + " and group_id=0 ";
 
             where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
@@ -6450,6 +6451,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     + " and level_id='" + enroll.level_id + "' "
                     + " and course_id='" + enroll.course_id + "' "
                     + " and period like '" + enroll.period + "' "
+                    + " and year_level like '" + enroll.year_level + "' "
                     + " and group_id=1 ";
 
             where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
@@ -6457,6 +6459,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     + " and level_id='" + enroll.level_id + "' "
                     + " and course_id='" + enroll.course_id + "' "
                     + " and period like '" + enroll.period + "' "
+                    + " and year_level like '" + enroll.year_level + "' "
                     + " and group_id=2 ";
         }
         List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
@@ -7436,7 +7439,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                                 String status = "";
                                 for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
                                     if (to.subject_id == subject.subject_id) {
-                                        final_grade = "" + subject.final_grade;
+                                        final_grade = "" + FitIn.fmt_woc_0(subject.final_grade);
+                                        re_exam = FitIn.fmt_woc_0(subject.retake);
 //                                        System.out.println(subject.subject_code + " : " + "final_grade: " + final_grade);
                                         if (FitIn.toDouble(final_grade) == 0) {
                                             final_grade = "";

@@ -1451,6 +1451,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                     + " and level_id='" + to.level_id + "' "
                     + " and course_id='" + to.course_id + "' "
                     + " and period like '" + to.period + "' "
+                    + " and year_level like '" + to.year_level + "' "
                     + " and group_id=0 ";
         }
 
@@ -1576,7 +1577,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
                     + " and group_id=1 ";
         }
 
-        System.out.println("where2: " + where2);
+//        System.out.println("where2: " + where2);
         String where3 = " where id<>0 ";
         if (to.academic_year_id == 1 && !to.period.equalsIgnoreCase("Summer Class") || to.academic_year_id == 9 && !to.period.equalsIgnoreCase("Summer Class")) {
             where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "

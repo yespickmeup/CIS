@@ -1979,6 +1979,23 @@ public class Students {
         }
     }
 
+    public static void update_balance(to_students to_students, double balance) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update students  set balance='" + balance + "' "
+                    + " where id='" + to_students.id + "' "
+                    + " ";
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Students.class, "Successfully updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
     public static void delete_data(to_students to_students) {
         try {
             Connection conn = MyConnection.connect();
