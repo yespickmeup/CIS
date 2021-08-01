@@ -5,6 +5,7 @@
  */
 package cis.finance;
 
+import cis.enrollments.Enrollments;
 import cis.finance.Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes;
 import cis.students.Students;
 import cis.users.MyUser;
@@ -1041,6 +1042,75 @@ public class Enrollment_assessments {
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
+            Lg.s(Enrollment_assessments.class, "Successfully Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static void delete_assessment(Enrollments.to_enrollments enroll, double total) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+            String s0 = "delete from enrollment_assessments  "
+                    + " where enrollment_id='" + enroll.id + "' "
+                    + " ";
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            stmt.addBatch(s0);
+
+            String s1 = "delete from enrollment_assessment_payments  "
+                    + " where enrollment_id='" + enroll.id + "' "
+                    + " ";
+
+            stmt.addBatch(s1);
+
+            String s2 = "delete from enrollment_assessment_payment_modes  "
+                    + " where enrollment_id='" + enroll.id + "' "
+                    + " ";
+
+            stmt.addBatch(s2);
+
+            String s3 = "update enrollment_student_loaded_subjects set status=0  "
+                    + " where enrollment_id='" + enroll.id + "' and status<2 "
+                    + " ";
+
+            stmt.addBatch(s3);
+
+            String s4 = "update enrollments set assessed_by_id=NULL,assessed_by=NULL,assessed_date=NULL  "
+                    + " where id='" + enroll.id + "' "
+                    + " ";
+
+            stmt.addBatch(s4);
+
+            String s10 = "select "
+                    + "id"
+                    + ",balance"
+                    + ",prepaid"
+                    + " from students"
+                    + " where id='" + enroll.student_id + "' ";
+            Statement stmt10 = conn.createStatement();
+            ResultSet rs10 = stmt10.executeQuery(s10);
+            double balance = 0;
+            if (rs10.next()) {
+                balance = rs10.getDouble(2);
+            }
+            double new_balance = balance - total;
+
+            String s11 = "update students set "
+                    + " balance= :balance "
+                    + " where id='" + enroll.student_id + "' "
+                    + " ";
+
+            s11 = SqlStringUtil.parse(s11)
+                    .setNumber("balance", new_balance)
+                    .ok();
+            stmt.addBatch(s11);
+
+            stmt.executeBatch();
+            conn.commit();
             Lg.s(Enrollment_assessments.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);

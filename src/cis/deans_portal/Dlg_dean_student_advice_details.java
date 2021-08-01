@@ -6557,7 +6557,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                     time = time.replaceAll("FM", "MF");
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
-                    tution_fee += amount;
+//                    tution_fee += amount;
                     String section = sub.section;
                     String group = "Dropped Subjects";
                     cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);

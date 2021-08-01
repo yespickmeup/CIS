@@ -139,6 +139,7 @@ public class Students_curriculum {
                     + " from academic_offering_subjects"
                     + " where academic_year_id like '" + academic_year_id + "' and course_id like '" + course_id + "' ";
 
+            
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(s0);
             while (rs.next()) {
@@ -159,6 +160,7 @@ public class Students_curriculum {
                 String year_level = rs.getString(15);
                 int subject_id = rs.getInt(16);
                 String subject_code = rs.getString(17);
+//                System.out.println("subject_id: "+subject_id+ " subject_code= "+subject_code);
                 String description = rs.getString(18);
                 double units = rs.getDouble(19);
                 double lecture_units = rs.getDouble(20);

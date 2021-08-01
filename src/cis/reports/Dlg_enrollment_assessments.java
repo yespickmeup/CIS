@@ -1496,7 +1496,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
             time = time.replaceAll("FM", "MF");
             String instructor = sub.faculty_name;
             double amount = lec_amount2 + lab_amount2;
-            tution_fee += amount;
+//            tution_fee += amount;
             String section = sub.section;
             String group = "Added Subjects";
             Srpt_enrollment_assessment.field_add_subjects f = new Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);

@@ -19,7 +19,9 @@ import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
 import cis.students.Students;
 import cis.students.Students_curriculum;
+import cis.users.Dlg_authenticate;
 import cis.users.MyUser;
+import cis.users.User_previleges;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
@@ -354,6 +356,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
+        jButton12 = new Button.Warning();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -1655,6 +1658,13 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         jTabbedPane3.addTab("Print Preview", jPanel17);
 
+        jButton12.setText("Delete Assessment");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -1665,19 +1675,22 @@ public class Dlg_finance extends javax.swing.JDialog {
                     .addComponent(jTabbedPane3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addComponent(jTabbedPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2782,6 +2795,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         init_years_levels();
     }//GEN-LAST:event_tf_year_levelActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        delete_assessment();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2793,6 +2810,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
@@ -2970,7 +2988,6 @@ public class Dlg_finance extends javax.swing.JDialog {
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
-
         deps = Departments.ret_data(" order by department_name  asc ");
 
         acad_years = Academic_years.ret_data(" where status=1 ");
@@ -4299,7 +4316,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
 //                    amount = amount * -1;
-                    tution_fee += amount;
+//                    tution_fee += amount;
                     String section = sub.section;
                     String group = "Dropped Subjects";
                     cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
@@ -4326,7 +4343,7 @@ public class Dlg_finance extends javax.swing.JDialog {
                     time = time.replaceAll("FM", "MF");
                     String instructor = sub.faculty_name;
                     double amount = lec_amount2 + lab_amount2;
-
+//                    System.out.println("Amount: "+amount);
                     tution_fee += amount;
                     cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
                     fields.add(f);
@@ -4619,7 +4636,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     private void ret_added_subjects(Enrollments.to_enrollments to) {
         Field.Input st = (Field.Input) tf_field8;
 
-        String where = " where enrollment_id = '" + to.id + "' and status=0 order by description asc ";
+        String where = " where enrollment_id = '" + to.id + "' and status<2 order by description asc ";
+        System.out.println(where);
         List<Students_curriculum.curriculum> subjects = Students_curriculum.ret_added_subjects(where);
         loadData_added_subjects(subjects);
         jLabel3.setText("" + subjects.size());
@@ -5597,6 +5615,44 @@ public class Dlg_finance extends javax.swing.JDialog {
 
             }
         });
+    }
+
+    private void delete_assessment() {
+
+        double amount = 0;
+        double paid = 0;
+        List<Enrollment_assessments.to_enrollment_assessments> eas = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+        for (Enrollment_assessments.to_enrollment_assessments to : eas) {
+            amount += to.other_fees_discount;
+        }
+        List<Enrollment_assessment_payments.to_enrollment_assessment_payments> payments = Enrollment_assessment_payments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+        for (Enrollment_assessment_payments.to_enrollment_assessment_payments to : payments) {
+            paid += to.amount_paid;
+        }
+        double total = amount - paid;
+        Window p = (Window) this;
+        Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+        nd.setTitle("");
+        nd.do_pass();
+        nd.setCallback(new Dlg_authenticate.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+                closeDialog.ok();
+                String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Assessment - (Delete)" + "' limit 1";
+
+                List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
+                if (privileges.isEmpty()) {
+                    Alert.set(0, "Privilege not added!");
+                    return;
+                }
+                Enrollment_assessments.delete_assessment(enroll, total);
+                Alert.set(3, "");
+                set_assessment2();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 
 }

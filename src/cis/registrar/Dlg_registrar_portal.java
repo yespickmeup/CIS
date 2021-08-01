@@ -5138,7 +5138,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
-                    nd.do_pass(aos, aos.academic_year_id, enroll);
+                    nd.do_pass(aos, acad.id, enroll);
                 }
                 final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
                 nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {

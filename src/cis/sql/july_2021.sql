@@ -27,6 +27,26 @@ ea.student_id=(select e.student_id from enrollments e where ea.enrollment_id=e.i
 where ea.student_id=976;
 
 
+
+--------------------------------------------------------------------
+
 alter table academic_year_fees add year_level varchar(255) default '';
 alter table academic_year_other_fees add year_level varchar(255) default '';
+
+
+drop table if exists enrollment_offered_subject_section_blocks;
+create table enrollment_offered_subject_section_blocks(
+id int auto_increment primary key
+,eoss_id int 
+,course_id int
+,course_code varchar(255)
+,created_at datetime
+,updated_at datetime
+,created_by int
+,updated_by int
+,status int
+);
+
+
+insert into user_default_privileges(account,privilege)values('Maintenance','Assessment');
 

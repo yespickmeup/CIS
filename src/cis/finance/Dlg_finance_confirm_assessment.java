@@ -11,10 +11,12 @@ import cis.credit_cards.Credit_cards;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
 import cis.utils.DateType;
+import cis.utils.Dlg_confirm_action;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -23,7 +25,6 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
@@ -1300,7 +1301,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         // Search Tuition Details
         double no_of_units_lec = 0;
         double no_of_units_lab = 0;
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' ");
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + to.id + "' and status<2 ");
         for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
             no_of_units_lec += (subject.lecture_units);
             no_of_units_lab += (subject.lab_units);
@@ -1314,7 +1315,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
             double total_lec_amount = FitIn.toDouble(tf_field19.getText()) * no_of_units_lec;
             double total_lab_amount = FitIn.toDouble(tf_field22.getText()) * no_of_units_lab;
             double amount = total_lec_amount + total_lab_amount;
-            
+
 //            System.out.println("total_lec_amount: "+total_lec_amount);
 //            System.out.println("total_lab_amount: "+total_lab_amount);
             tf_tuition_fee.setText(FitIn.fmt_wc_0(amount));
@@ -1654,6 +1655,35 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
             payments.add(payment);
         }
 
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+        nd.do_pass();
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                closeDialog.ok();
+                ok2(datas,
+                    tuition_amount,
+                    no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, payments, pay1);
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+
+    }
+
+    private void ok2(List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> datas, double tuition_amount, int no_of_units,
+            double amount_per_unit,
+            double tuition_discount,
+            double miscellaneous_amount,
+            double other_fees_amount,
+            double miscellaneous_discount,
+            double other_fees_discount,
+            List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments,
+            Enrollment_assessment_payments.to_enrollment_assessment_payments pay1
+    ) {
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData(datas, tuition_amount, no_of_units, amount_per_unit, tuition_discount, miscellaneous_amount, miscellaneous_discount, other_fees_amount, other_fees_discount, payments, pay1));
         }

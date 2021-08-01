@@ -558,7 +558,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
         tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_enrollment_offered_subject_sections.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 60, 30, 30, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_enrollment_offered_subject_sections = {90, 50, 130, 220, 0, 120, 60, 30, 30, 30, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
             if (i == 5) {
                 continue;
@@ -578,6 +578,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
 
         tbl_enrollment_offered_subject_sections.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
         tbl_enrollment_offered_subject_sections.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
+        tbl_enrollment_offered_subject_sections.getColumnModel().getColumn(9).setCellRenderer(new ImageRenderer());
     }
 
     public static class Html extends DefaultTableCellRenderer {
@@ -604,7 +605,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
     public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Section", "Max", "Room", "Day", "Time", "Instructor", "Status", "", "", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+            "Section", "Max", "Room", "Day", "Time", "Instructor", "Status", "", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
         };
 
         public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
@@ -665,11 +666,11 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                         return " Dropped";
                     }
                 case 7:
-                    return "/cis/icons/cog.png";
+                    return "/cis/icons/sections (2).png";
                 case 8:
-                    return "/cis/icons/remove11.png";
+                    return "/cis/icons/cog.png";
                 case 9:
-                    return tt.created_at;
+                    return "/cis/icons/remove11.png";
                 case 10:
                     return tt.updated_at;
                 case 11:
@@ -816,7 +817,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
         }
         Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
         int col = tbl_enrollment_offered_subject_sections.getSelectedColumn();
-        if (col == 7) {
+        if (col == 8) {
             if (to.day.isEmpty() || to.room.isEmpty() || to.faculty_name.isEmpty()) {
                 Alert.set(0, "Room/Faculty assignment not yet set");
                 return;
@@ -841,7 +842,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
-        if (col == 8) {
+        if (col == 9) {
             Window p = (Window) this;
             Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
             nd.setTitle("");
@@ -869,7 +870,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
                 @Override
                 public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_edit_max_students.OutputData data) {
                     closeDialog.ok();
-                    Enrollment_offered_subject_sections.update_max_student(to.id, data.max_students,data.lec_units,data.lab_units);
+                    Enrollment_offered_subject_sections.update_max_student(to.id, data.max_students, data.lec_units, data.lab_units);
                     Alert.set(2, "");
                     ret_eos();
                 }
@@ -877,7 +878,7 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         }
-        System.out.println("col: "+col);
+//        System.out.println("col: " + col);
         if (col == 0) {
             Window p = (Window) this;
             Dlg_registrar_offer_subject_status_edit_section_name nd = Dlg_registrar_offer_subject_status_edit_section_name.create(p, true);
@@ -895,6 +896,9 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             });
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
+        }
+        if (col == 7) {
+
         }
     }
 }
