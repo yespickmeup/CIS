@@ -44,7 +44,7 @@ id int auto_increment primary key
 ,updated_at datetime
 ,created_by int
 ,updated_by int
-,status int
+,status int 
 );
 
 
