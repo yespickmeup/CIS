@@ -734,7 +734,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         jLabel68.setText("Name of the Community:");
 
         tf_field136.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field136.setText("A+");
         tf_field136.setFocusable(false);
         tf_field136.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4396,6 +4395,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     int is_d = 0;
 
     public void do_pass(Enrollments.to_enrollments student, int is_dean) {
+//        System.out.println("enroll: "+enroll.student_no);
         enroll = student;
         is_d = is_dean;
 
@@ -5206,7 +5206,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
                 if (!periods.isEmpty()) {
                     Academic_year_period_schedules.to_academic_year_period_schedules per = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
                     period = per.period;
-                    tf_period.setText(period);
+//                    tf_period.setText(period);
                 }
 
                 if (enroll.course_id != FitIn.toInt(cou.getId())) {
@@ -5284,7 +5284,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         String period = "";
         if (!acad.isEmpty()) {
             Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
-            tf_lastname.setText("" + ayp.period);
+//            tf_period.setText("" + ayp.period);
+//            System.out.println("ayp.period: "+ayp.period);
             period = ayp.period;
         }
 
@@ -6327,6 +6328,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
             where = where + " and status=1 order by description asc ";
         }
 
+        System.out.println(where);
         List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(where);
 
         loadData_enrollment_student_loaded_subjects(datas);
@@ -7056,7 +7058,8 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //        System.out.println("student.id: " + student.id);
 //        System.out.println("student.student_no: " + student.student_no);
         if (student.id == 0 || student.student_no == null) {
-            if (student.student_no == null) {
+
+            if (student.student_no == null || student.student_no.isEmpty()) {
                 en_no = Students.add_data_enroll(student, enroll);
 //                String where = "  where student_no='" + student.student_no + "' order id desc limit 1 ";
 //                List<Students.to_students> list = Students.ret_data(where);
@@ -7186,6 +7189,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private void init_blood_type() {
 
         List<String> blood_types = new ArrayList();
+        blood_types.add("");
         blood_types.add("A+");
         blood_types.add("O+");
         blood_types.add("B+");

@@ -727,7 +727,7 @@ public class Dlg_registrar_approve_enrollment extends javax.swing.JDialog {
         int conflicts = 0;
         for (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to : new_data) {
             String[] cap = to.created_by.split(" of ");
-            System.out.println("to.created_b: " + to.created_by);
+//            System.out.println("to.created_b: " + to.created_by);
             int min = FitIn.toInt(cap[0]);
             int max = FitIn.toInt(cap[1]);
             if (min == max || min > max) {

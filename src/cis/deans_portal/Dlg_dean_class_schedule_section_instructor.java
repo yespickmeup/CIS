@@ -9,11 +9,13 @@ import cis.academic.Dlg_academic_offerings;
 import cis.enrollments.Enrollment_offered_subject_section_instructors;
 import cis.enrollments.Enrollment_offered_subject_section_instructors.to_enrollment_offered_subject_section_instructors;
 import cis.enrollments.Enrollment_offered_subject_sections;
+import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.faculty_members.Faculty_members;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -30,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
@@ -399,6 +402,11 @@ public class Dlg_dean_class_schedule_section_instructor extends javax.swing.JDia
 
             }
         ));
+        tbl_enrollment_offered_subject_section_instructors.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_enrollment_offered_subject_section_instructorsMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_enrollment_offered_subject_section_instructors);
 
         jLabel1.setText("No. of rows:");
@@ -781,6 +789,10 @@ public class Dlg_dean_class_schedule_section_instructor extends javax.swing.JDia
         ret_schedules();
     }//GEN-LAST:event_jCheckBox14ActionPerformed
 
+    private void tbl_enrollment_offered_subject_section_instructorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_section_instructorsMouseClicked
+        select_schedule();
+    }//GEN-LAST:event_tbl_enrollment_offered_subject_section_instructorsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1124,6 +1136,7 @@ public class Dlg_dean_class_schedule_section_instructor extends javax.swing.JDia
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
                 Enrollment_offered_subject_section_instructors.add_data(ins);
+                Enrollment_student_loaded_subjects.update_instructor(enroll.id, FitIn.toInt(faculty_id), faculty_name);
                 Alert.set(1, day);
                 ret_schedules();
             }
@@ -1137,5 +1150,34 @@ public class Dlg_dean_class_schedule_section_instructor extends javax.swing.JDia
         if (callback != null) {
             callback.ok(new CloseDialog(this), new OutputData());
         }
+    }
+
+    private void select_schedule() {
+        int row = tbl_enrollment_offered_subject_section_instructors.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        int col = tbl_enrollment_offered_subject_section_instructors.getSelectedColumn();
+        if (col == 4) {
+            to_enrollment_offered_subject_section_instructors to = (to_enrollment_offered_subject_section_instructors) tbl_enrollment_offered_subject_section_instructors_ALM.get(row);
+            Window p = (Window) this;
+            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+            nd.setTitle("");
+            nd.do_pass();
+            nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+                    closeDialog.ok();
+                    Enrollment_offered_subject_section_instructors.delete_data(to);
+                    Enrollment_student_loaded_subjects.update_instructor2(enroll.id, FitIn.toInt(to.faculty_id), to.faculty_name);
+                    Alert.set(2, "");
+                    ret_schedules();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+        }
+
     }
 }

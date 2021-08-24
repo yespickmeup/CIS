@@ -5,6 +5,7 @@
  */
 package cis.enrollments;
 
+import cis.utils.DateType;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -102,6 +103,7 @@ public class Enrollment_offered_subject_section_room_schedules {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt3 = conn.prepareStatement("");
             for (String day : days) {
                 String s0 = "insert into enrollment_offered_subject_section_room_schedules("
                         + "enrollment_offered_subject_section_id"
@@ -212,6 +214,56 @@ public class Enrollment_offered_subject_section_room_schedules {
             }
 
             stmt.executeBatch();
+
+            String s2 = "select "
+                    + " room "
+                    + ", day"
+                    + ",concat(start_time,'/',closing_time) as time"
+                    + " from enrollment_offered_subject_section_room_schedules"
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_section_room_schedules.enrollment_offered_subject_section_id + "'  "; //group by room_id
+
+            Statement stmt2 = conn.createStatement();
+            ResultSet rs2 = stmt2.executeQuery(s2);
+
+            String day1 = "";
+            int i = 0;
+            String day = "";
+            List<String> lday = new ArrayList();
+            while (rs2.next()) {
+
+                String day2 = rs2.getString(2);
+                String s = rs2.getString(3);
+                String[] ss = s.split("/");
+                String otime = ss[0];
+                String ctime = ss[1];
+                otime = DateType.convert_datetime_to_hour_minute(otime);
+                ctime = DateType.convert_datetime_to_hour_minute(ctime);
+                s = otime + "-" + ctime;
+                day2 = day2 + ": " + s;
+
+                if (i == 0) {
+                    day = "&nbsp;&nbsp;" + day2;
+                } else {
+                    day = day + "<br>" + "&nbsp;&nbsp;" + day2;
+                }
+                i++;
+            }
+
+            String s4 = "update enrollment_student_loaded_subjects set "
+                    + " room= :room "
+                    + ",day= :day "
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_section_room_schedules.enrollment_offered_subject_section_id + "' "
+                    + " ";
+
+            s4 = SqlStringUtil.parse(s4)
+                    .setString("room", to_enrollment_offered_subject_section_room_schedules.room)
+                    .setString("day", day)
+                    .ok();
+
+            stmt3.addBatch(s4);
+
+            stmt3.executeBatch();
+
             conn.commit();
             Lg.s(Enrollment_offered_subject_section_room_schedules.class, "Successfully Added");
         } catch (SQLException e) {
@@ -310,12 +362,67 @@ public class Enrollment_offered_subject_section_room_schedules {
     public static void delete_data(to_enrollment_offered_subject_section_room_schedules to_enrollment_offered_subject_section_room_schedules) {
         try {
             Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt3 = conn.prepareStatement("");
             String s0 = "delete from enrollment_offered_subject_section_room_schedules  "
                     + " where id='" + to_enrollment_offered_subject_section_room_schedules.id + "' "
                     + " ";
 
-            PreparedStatement stmt = conn.prepareStatement(s0);
-            stmt.execute();
+            stmt.addBatch(s0);
+            stmt.executeBatch();
+
+            String s2 = "select "
+                    + " room "
+                    + ", day"
+                    + ",concat(start_time,'/',closing_time) as time"
+                    + " from enrollment_offered_subject_section_room_schedules"
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_section_room_schedules.enrollment_offered_subject_section_id + "'  "; //group by room_id
+
+            Statement stmt2 = conn.createStatement();
+            ResultSet rs2 = stmt2.executeQuery(s2);
+
+            String day1 = "";
+            int i = 0;
+            String day = "";
+            List<String> lday = new ArrayList();
+            while (rs2.next()) {
+
+                String day2 = rs2.getString(2);
+                String s = rs2.getString(3);
+                String[] ss = s.split("/");
+                String otime = ss[0];
+                String ctime = ss[1];
+                otime = DateType.convert_datetime_to_hour_minute(otime);
+                ctime = DateType.convert_datetime_to_hour_minute(ctime);
+                s = otime + "-" + ctime;
+                day2 = day2 + ": " + s;
+
+                if (i == 0) {
+                    day = "&nbsp;&nbsp;" + day2;
+                } else {
+                    day = day + "<br>" + "&nbsp;&nbsp;" + day2;
+                }
+                i++;
+            }
+
+            String s4 = "update enrollment_student_loaded_subjects set "
+                    + " room= :room "
+                    + ",day= :day "
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_section_room_schedules.enrollment_offered_subject_section_id + "' "
+                    + " ";
+
+            s4 = SqlStringUtil.parse(s4)
+                    .setString("room", to_enrollment_offered_subject_section_room_schedules.room)
+                    .setString("day", day)
+                    .ok();
+
+            stmt3.addBatch(s4);
+
+            stmt3.executeBatch();
+
+            conn.commit();
             Lg.s(Enrollment_offered_subject_section_room_schedules.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);

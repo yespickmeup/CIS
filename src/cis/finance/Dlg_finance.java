@@ -4635,7 +4635,7 @@ public class Dlg_finance extends javax.swing.JDialog {
 
     private void ret_added_subjects(Enrollments.to_enrollments to) {
         Field.Input st = (Field.Input) tf_field8;
-
+        
         String where = " where enrollment_id = '" + to.id + "' and status<2 order by description asc ";
         System.out.println(where);
         List<Students_curriculum.curriculum> subjects = Students_curriculum.ret_added_subjects(where);

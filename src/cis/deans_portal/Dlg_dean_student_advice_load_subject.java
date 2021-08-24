@@ -24,16 +24,22 @@ import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -44,6 +50,7 @@ import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
+import synsoftech.panels.Loading;
 
 /**
  *
@@ -547,7 +554,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }//GEN-LAST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        ret_eos();
+        search();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void tbl_enrollment_offered_subject_sectionsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_sectionsKeyPressed
@@ -610,11 +617,16 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tf_field3.setText("" + to.lecture_units);
         tf_field4.setText("" + to.lab_units);
         jTextArea2.setText(to.prerequisite_subject_ids);
-        ret_eos();
-        
-        String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
-        
-        loaded = Enrollment_student_loaded_subjects.ret_data(where);
+//        ret_eos();
+        search();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
+                loaded = Enrollment_student_loaded_subjects.ret_data(where);
+            }
+        });
 
     }
 
@@ -777,11 +789,15 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
     }
 
+    private void search() {
+        Loader_upload_main loader = new Loader_upload_main(this);
+        loader.execute();
+    }
+
     private void ret_eos() {
         String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
-//        System.out.println("where: "+where);
         List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
-        
+
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
         if (datas.size() > 0) {
@@ -790,6 +806,60 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 //</editor-fold> 
 
+    //<editor-fold defaultstate="collapsed" desc=" Loader Post And Finalize ">
+    public class Loader_upload_main extends SwingWorker {
+
+        private Loading dialog;
+
+        public Loader_upload_main(JDialog dlg) {
+
+            dialog = new Loading();
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            int xSize = ((int) tk.getScreenSize().
+                    getWidth());
+            int ySize = ((int) tk.getScreenSize().
+                    getHeight());
+            dialog.setSize(xSize, ySize);
+            dialog.setPreferredSize(new Dimension(xSize, ySize));
+            dialog.setAlwaysOnTop(true);
+            addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if ("state".equals(evt.getPropertyName())) {
+                        if (getState() == SwingWorker.StateValue.STARTED) {
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (getState() == SwingWorker.StateValue.STARTED) {
+                                        dialog.setVisible(true);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+            ret_eos();
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            dialog.dispose();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                }
+            });
+        }
+    }
+
+    //</editor-fold>
+    
     private void ok() {
         int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
         if (row < 0) {
@@ -811,7 +881,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 return;
             }
         }
-        
+
         boolean exist = false;
         for (to_enrollment_student_loaded_subjects to2 : loaded) {
             if (to2.subject_id == to.subject_id) {
@@ -826,7 +896,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         }
 
         boolean check = check_if_exists();
-       
+
         if (check) {
             Alert.set(0, "Day/Time not available!");
             return;
@@ -867,8 +937,8 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 nd.setLocationRelativeTo(this);
                 nd.setVisible(true);
             }
-        }else{
-             ok2(to);
+        } else {
+            ok2(to);
         }
 
     }

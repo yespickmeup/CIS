@@ -4630,6 +4630,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field24.getText() + "%' ";
         where = where + " order by last_name asc ";
 
+//        System.out.println(where);
         List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
         loadData_enrollments(enrollments);
         jLabel35.setText("" + enrollments.size());
@@ -4661,6 +4662,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             nd.setLocationRelativeTo(this);
             nd.setVisible(true);
         } else {
+//            System.out.println("enroll1: "+enroll1.id);
             Window p = (Window) this;
             Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
             nd.setTitle("");
@@ -5077,7 +5079,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         Field.Input stud = (Field.Input) tf_field8;
         Field.Input co = (Field.Input) tf_field131;
 
-        List<Students_curriculum.curriculum> datas = Students_curriculum.ret_data(acad_year_id, FitIn.toInt(co.getId()), FitIn.toInt(stud.getId()));
+        List<Students_curriculum.curriculum> datas = Students_curriculum.ret_data(acad.id, FitIn.toInt(co.getId()), FitIn.toInt(stud.getId()));
         enrolled_subjects = datas;
         loadData_enrollment_student_loaded_subjects(datas);
         filter_enrolled_subjects();

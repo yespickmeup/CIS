@@ -474,12 +474,12 @@ public class Enrollment_offered_subject_sections {
             stmt.addBatch(s0);
 
             String s3 = "delete from enrollment_offered_subject_section_instructors  "
-                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subject_sections.enrollment_offered_subject_id + "' "
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_sections.id + "' "
                     + " ";
             stmt.addBatch(s3);
 
             String s4 = "delete from enrollment_offered_subject_section_room_schedules  "
-                    + " where enrollment_offered_subject_id='" + to_enrollment_offered_subject_sections.enrollment_offered_subject_id + "' "
+                    + " where enrollment_offered_subject_section_id='" + to_enrollment_offered_subject_sections.id + "' "
                     + " ";
             stmt.addBatch(s4);
 

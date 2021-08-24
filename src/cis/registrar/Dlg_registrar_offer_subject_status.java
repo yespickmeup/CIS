@@ -8,6 +8,7 @@ package cis.registrar;
 import cis.academic.Dlg_academic_offerings;
 import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subjects;
+import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -843,6 +844,12 @@ public class Dlg_registrar_offer_subject_status extends javax.swing.JDialog {
             nd.setVisible(true);
         }
         if (col == 9) {
+//            
+            List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> students = Enrollment_student_loaded_subjects.ret_data(" where enrollment_offered_subject_section_id='" + to.id + "' ");
+            if (students.size() > 0) {
+                Alert.set(0, "Cannot delete section " + students.size() + " student/s already enrolled!");
+                return;
+            }
             Window p = (Window) this;
             Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
             nd.setTitle("");

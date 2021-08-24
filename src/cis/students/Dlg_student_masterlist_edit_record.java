@@ -634,7 +634,6 @@ public class Dlg_student_masterlist_edit_record extends javax.swing.JDialog {
         jLabel83.setText("Blood Type:");
 
         tf_field135.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tf_field135.setText("A+");
         tf_field135.setFocusable(false);
         tf_field135.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3486,10 +3485,10 @@ public class Dlg_student_masterlist_edit_record extends javax.swing.JDialog {
         tf_field144.setText(student.als_awards);
         tf_field140.setText(student.high_school_strand);
         tf_field141.setText(student.high_school_track);
-        
+
         tf_field134.setText(student.fb_account);
         tf_field135.setText(student.blood_type);
-        
+
         String[] fathers = student.father_name.split("%");
 
         try {
@@ -4399,6 +4398,7 @@ public class Dlg_student_masterlist_edit_record extends javax.swing.JDialog {
     private void init_blood_type() {
 
         List<String> blood_types = new ArrayList();
+        blood_types.add("");
         blood_types.add("A+");
         blood_types.add("O+");
         blood_types.add("B+");
