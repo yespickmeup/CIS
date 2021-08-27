@@ -4198,6 +4198,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
 
         List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+//        System.out.println("enrollment_id='" + enroll.id);
         List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
         List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
         List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");

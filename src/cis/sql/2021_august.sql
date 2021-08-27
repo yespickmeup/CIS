@@ -39,3 +39,14 @@ ALTER TABLE  students ADD UNIQUE (student_no);
 
 
 select * from enrollment_offered_subject_section_room_schedules where enrollment_offered_subject_id=593; 
+
+
+update enrollments set student_no='20200408',student_id=410 where id=2714;
+update enrollments set student_id=2714 where student_no like '20210000';
+
+update  enrollment_student_loaded_subjects set student_id='2714',student_no='20210000',fname='JOEY',lname='SALASALAN',mi='BERNAYHA' where enrollment_id='4948' and student_id='2713';
+
+update  enrollment_student_loaded_subjects set enrollment_id='4263',enrollment_no='00004196', student_id='2713',student_no='20211127',fname='MICAH REY',lname='FELICITAS',mi='BALBUENA' where id='39651' ;
+update  enrollment_student_loaded_subjects set enrollment_id='4263',enrollment_no='00004196', student_id='2713',student_no='20211127',fname='MICAH REY',lname='FELICITAS',mi='BALBUENA' where id='39652' ;
+
+
