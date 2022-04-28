@@ -200,6 +200,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -310,6 +311,21 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
             }
         });
 
+        jLabel19.setBackground(new java.awt.Color(234, 234, 234));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis/icons2/expenses.png"))); // NOI18N
+        jLabel19.setToolTipText("Disbursement Categories");
+        jLabel19.setOpaque(true);
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel19MouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -328,7 +344,9 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -342,7 +360,8 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -413,6 +432,14 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         label("Transfer Section", jLabel12);
     }//GEN-LAST:event_jLabel12MouseEntered
 
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        ok("Disbursements", jLabel19);
+    }//GEN-LAST:event_jLabel19MouseClicked
+
+    private void jLabel19MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseEntered
+        label("Disbursements", jLabel19);
+    }//GEN-LAST:event_jLabel19MouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -421,6 +448,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -438,7 +466,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
     }
 
     private void hover() {
-        JLabel[] lbl = {jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12};
+        JLabel[] lbl = {jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel19};
         for (final JLabel l : lbl) {
             l.addMouseListener(new MouseAdapter() {
                 @Override
@@ -460,7 +488,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
     }
 
     private void hide2() {
-        JLabel[] lbl = {jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12};
+        JLabel[] lbl = {jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel19};
         for (JLabel l : lbl) {
             l.setEnabled(false);
         }
@@ -508,7 +536,10 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
                 jLabel12.setEnabled(true);
                 jLabel12.setBackground(new java.awt.Color(96, 188, 219));
             }
-
+            if (to.privilege.equalsIgnoreCase("Disbursements - (View)")) {
+                jLabel19.setEnabled(true);
+                jLabel19.setBackground(new java.awt.Color(96, 188, 219));
+            }
         }
     }
 

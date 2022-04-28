@@ -13,6 +13,8 @@ import cis.colleges.Dlg_colleges;
 import cis.courses.Dlg_courses;
 import cis.deans_portal.Dlg_deans_portal;
 import cis.departments.Dlg_departments;
+import cis.disbursements.Dlg_disbursement_categories;
+import cis.disbursements.Dlg_disbursements;
 import cis.faculty_members.Dlg_faculty_members;
 import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
@@ -21,6 +23,7 @@ import cis.finance.Dlg_finance;
 import cis.finance.Dlg_students_balance_adjustments;
 import cis.registrar.Dlg_registrar_student_transfer_section;
 import cis.reports.Dlg_class_list;
+import cis.reports.Dlg_collections;
 import cis.reports.Dlg_enrollment_assessments;
 import cis.reports.Dlg_faculty_subject_loads;
 import cis.reports.Dlg_grade_sheet;
@@ -753,6 +756,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Transfer Section")) {
                     t_transfer_section();
                 }
+                if (data.stmt.equals("Disbursements")) {
+                    t_disbursements();
+                }
+
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
                 if (data.stmt.equals("Academic Years")) {
@@ -793,6 +800,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     m_balance_adjustment();
                 }
 
+                if (data.stmt.equals("Disbursement Categories")) {
+                    m_disbursement_categories();
+                }
+
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" Reports ">
                 if (data.stmt.equals("Student Reports")) {
@@ -823,6 +834,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
 
                 if (data.stmt.equals("Grade Sheet")) {
                     r_grade_sheet();
+                }
+
+                if (data.stmt.equals("Collections Report")) {
+                    r_collections_report();
                 }
                 //</editor-fold>
             }
@@ -899,6 +914,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         MyFrame.set(dtc.getSurface(), jPanel1, "Transfer Section");
     }
 
+    private void t_disbursements() {
+        Dlg_disbursements dtc = new Dlg_disbursements();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Disbursements");
+    }
+
     private void m_academic_years() {
         Dlg_academic_years dtc = new Dlg_academic_years();
         MyFrame.set2(dtc.getSurface(), jPanel1, "Academic Years", dtc.getWidth(), dtc.getHeight());
@@ -957,6 +977,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private void m_balance_adjustment() {
         Dlg_students_balance_adjustments dtc = new Dlg_students_balance_adjustments();
         MyFrame.set(dtc.getSurface(), jPanel1, "Balance Adjustment");
+    }
+
+    private void m_disbursement_categories() {
+        Dlg_disbursement_categories dtc = new Dlg_disbursement_categories();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Disbursement Categories");
     }
 
     private void r_student_report() {
@@ -1019,6 +1044,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Dlg_grade_sheet dtc = new Dlg_grade_sheet();
 //        dtc.do_pass();
         MyFrame.set(dtc.getSurface(), jPanel1, "Grade Sheet");
+    }
+
+    private void r_collections_report() {
+
+        Dlg_collections dtc = new Dlg_collections();
+//        dtc.do_pass();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Collections Report");
     }
 
     private void run_script() {

@@ -44,15 +44,15 @@ public class S1_user_previleges {
     public static void add_user_previleges(to_user_previleges to_user_previleges) {
         try {
             Connection conn = MyConnection.connect();
-            String s0 = "insert into user_previleges("
+            String s0 = "insert into user_privileges("
                     + "account"
-                    + ",previledge"
+                    + ",privilege"
                     + ",status"
                     + ",user_id"
                     + ",user_name"
                     + ")values("
                     + ":account"
-                    + ",:previledge"
+                    + ",:privilege"
                     + ",:status"
                     + ",:user_id"
                     + ",:user_name"
@@ -60,7 +60,7 @@ public class S1_user_previleges {
 
             s0 = SqlStringUtil.parse(s0)
                     .setString("account", to_user_previleges.account)
-                    .setString("previledge", to_user_previleges.previledge)
+                    .setString("privilege", to_user_previleges.previledge)
                     .setNumber("status", to_user_previleges.status)
                     .setString("user_id", to_user_previleges.user_id)
                     .setString("user_name", to_user_previleges.user_name)
@@ -80,15 +80,15 @@ public class S1_user_previleges {
         try {
             Connection conn = MyConnection.connect();
             for (to_user_previleges to_user_previleges : to_user_previleges1) {
-                String s0 = "insert into user_previleges("
+                String s0 = "insert into user_privileges("
                         + "account"
-                        + ",previledge"
+                        + ",privilege"
                         + ",status"
                         + ",user_id"
                         + ",user_name"
                         + ")values("
                         + ":account"
-                        + ",:previledge"
+                        + ",:privilege"
                         + ",:status"
                         + ",:user_id"
                         + ",:user_name"
@@ -96,7 +96,7 @@ public class S1_user_previleges {
 
                 s0 = SqlStringUtil.parse(s0)
                         .setString("account", to_user_previleges.account)
-                        .setString("previledge", to_user_previleges.previledge)
+                        .setString("privilege", to_user_previleges.previledge)
                         .setNumber("status", to_user_previleges.status)
                         .setString("user_id", to_user_previleges.user_id)
                         .setString("user_name", to_user_previleges.user_name)
@@ -153,9 +153,9 @@ public class S1_user_previleges {
     public static void edit_user_previleges(to_user_previleges to_user_previleges) {
         try {
             Connection conn = MyConnection.connect();
-            String s0 = "update user_previleges set "
+            String s0 = "update user_privileges set "
                     + "account= :account"
-                    + ",previledge= :previledge"
+                    + ",privilege= :privilege"
                     + ",status= :status"
                     + ",user_id= :user_id"
                     + ",user_name= :user_name"
@@ -165,7 +165,7 @@ public class S1_user_previleges {
 
             s0 = SqlStringUtil.parse(s0)
                     .setString("account", to_user_previleges.account)
-                    .setString("previledge", to_user_previleges.previledge)
+                    .setString("privilege", to_user_previleges.previledge)
                     .setNumber("status", to_user_previleges.status)
                     .setString("user_id", to_user_previleges.user_id)
                     .setString("user_name", to_user_previleges.user_name)
@@ -196,6 +196,7 @@ public class S1_user_previleges {
             MyConnection.close();
         }
     }
+
     public static void delete_user_previleges_where(String where) {
         try {
             Connection conn = MyConnection.connect();
@@ -236,11 +237,11 @@ public class S1_user_previleges {
             String s0 = "select "
                     + "id"
                     + ",account"
-                    + ",previledge"
-                    + ",status"
+                    + ",privilege"
+                    + ",id"
                     + ",user_id"
-                    + ",user_name"
-                    + " from user_previleges  "
+                    + ",user_id"
+                    + " from user_privileges  "
                     + " " + where;
 
             Statement stmt = conn.createStatement();
@@ -249,7 +250,7 @@ public class S1_user_previleges {
                 int id = rs.getInt(1);
                 String account = rs.getString(2);
                 String previledge = rs.getString(3);
-                int status = rs.getInt(4);
+                int status = rs.getInt(1);
                 String user_id = rs.getString(5);
                 String user_name = rs.getString(6);
                 to_user_previleges to = new to_user_previleges(id, account, previledge, status, user_id, user_name);

@@ -405,7 +405,7 @@ public class Srpt_enrollment_summary {
 
                         String year_level = rs2.getString(9);
                         int is_transferee = rs2.getInt(10);
-                        if (year_level.equalsIgnoreCase("First Year")) {
+                        if (year_level.equalsIgnoreCase("First Year") || year_level.equalsIgnoreCase("1ST YEAR")) {
                             if (gender == 0) {
                                 first_female++;
                             } else {
@@ -418,8 +418,7 @@ public class Srpt_enrollment_summary {
                             } else {
                                 continuing_1st++;
                             }
-                        }
-                        if (year_level.equalsIgnoreCase("Second Year")) {
+                        }else if (year_level.equalsIgnoreCase("Second Year") || year_level.equalsIgnoreCase("2nd Year") || year_level.equalsIgnoreCase("SecondYear")) {
                             if (gender == 0) {
                                 second_female++;
                             } else {
@@ -432,8 +431,7 @@ public class Srpt_enrollment_summary {
                             } else {
                                 continuing_2nd++;
                             }
-                        }
-                        if (year_level.equalsIgnoreCase("Third Year")) {
+                        }else if (year_level.equalsIgnoreCase("Third Year")|| year_level.equalsIgnoreCase("3rd Year") || year_level.equalsIgnoreCase("THIRDYEAR")) {
                             if (gender == 0) {
                                 third_female++;
                             } else {
@@ -446,9 +444,7 @@ public class Srpt_enrollment_summary {
                             } else {
                                 continuing_3rd++;
                             }
-                        }
-
-                        if (year_level.equalsIgnoreCase("Fourth Year")) {
+                        } else if (year_level.equalsIgnoreCase("Fourth Year")|| year_level.equalsIgnoreCase("4th YEAR") || year_level.equalsIgnoreCase("FOURTHYEAR")) {
                             if (gender == 0) {
                                 fourth_female++;
                             } else {
@@ -461,8 +457,7 @@ public class Srpt_enrollment_summary {
                             } else {
                                 continuing_4th++;
                             }
-                        }
-                        if (year_level.equalsIgnoreCase("Fifth Year")) {
+                        }else  if (year_level.equalsIgnoreCase("Fifth Year") || year_level.equalsIgnoreCase("5th YEAR")|| year_level.equalsIgnoreCase("FIFTHYEAR")) {
                             if (gender == 0) {
                                 fifth_female++;
                             } else {
@@ -476,6 +471,8 @@ public class Srpt_enrollment_summary {
                             } else {
                                 continuing_5th++;
                             }
+                        }else{
+                            System.out.println("year_level: "+year_level);
                         }
                     }
 

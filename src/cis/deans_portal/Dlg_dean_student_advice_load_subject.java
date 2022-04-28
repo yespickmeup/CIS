@@ -897,10 +897,10 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
         boolean check = check_if_exists();
 
-        if (check) {
-            Alert.set(0, "Day/Time not available!");
-            return;
-        }
+//        if (check) {
+//            Alert.set(0, "Day/Time not available!");
+//            return;
+//        }
 
         int count = Enrollments.ret_subject_load_count(enroll.id);
         List<School_settings.to_school_settings> settings = School_settings.ret_data(" where name like 'Subject Loading overload' ");

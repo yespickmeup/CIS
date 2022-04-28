@@ -25,7 +25,7 @@ public class Users {
     public static class to_users {
 
         public final int id;
-        public final String user_screen_name;
+        public  String user_screen_name;
         public final String user_name;
         public final String password;
         public final String date_added;
@@ -47,6 +47,15 @@ public class Users {
             this.status = status;
             this.faculty_id = faculty_id;
         }
+
+        public String getUser_screen_name() {
+            return user_screen_name;
+        }
+
+        public void setUser_screen_name(String user_screen_name) {
+            this.user_screen_name = user_screen_name;
+        }
+        
     }
 
     public static void add_data(to_users to_users) {
