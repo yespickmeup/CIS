@@ -122,3 +122,12 @@ insert into user_default_privileges(account,privilege)values('Transactions','Dis
 insert into user_default_privileges(account,privilege)values('Maintenance','Disbursement Categories');
 
 insert into user_default_privileges(account,privilege)values('Reports','Collections Report');
+
+
+alter table enrollment_assessment_payments add collection_id int;
+alter table enrollment_assessment_payments add collection_no varchar(255);
+alter table enrollment_assessment_payments add collection_sales_no varchar(255);
+
+alter table enrollment_sls_payments add collection_id int;
+alter table enrollment_sls_payments add collection_no varchar(255);
+alter table enrollment_sls_payments add collection_sales_no varchar(255);

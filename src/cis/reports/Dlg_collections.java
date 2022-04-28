@@ -8,6 +8,7 @@ package cis.reports;
 import cis.academic.Academic_offerings;
 import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
+import cis.cash_drawer.CashDrawer;
 import cis.cash_drawer.S1_cash_drawer;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
@@ -21,6 +22,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -41,6 +43,7 @@ import net.sf.jasperreports.swing.JRViewer;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 /**
  *
@@ -324,6 +327,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         jLabel23.setText("Department:");
 
         jCheckBox10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox10.setSelected(true);
         jCheckBox10.setText("All");
         jCheckBox10.setFocusable(false);
         jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +393,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         jLabel26.setText("Period:");
 
         jCheckBox21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox21.setSelected(true);
         jCheckBox21.setText("All");
         jCheckBox21.setFocusable(false);
         jCheckBox21.addActionListener(new java.awt.event.ActionListener() {
@@ -511,9 +516,7 @@ public class Dlg_collections extends javax.swing.JDialog {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(51, 51, 51))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)))
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tf_field14)
                                     .addComponent(tf_field15))
@@ -657,7 +660,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 626, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Ledger", jPanel3);
@@ -832,8 +835,8 @@ public class Dlg_collections extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
 
         setAcad();
@@ -1223,8 +1226,10 @@ public class Dlg_collections extends javax.swing.JDialog {
                 String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
                 String contact_no = System.getProperty("contact_no", "(035) 225 4831");
                 String school_year = tf_field13.getText();
-                String semester = tf_field17.getText();
-
+                String semester = "All";
+                if (!jCheckBox21.isSelected()) {
+                    semester = tf_field17.getText();
+                }
                 String department = "All";
                 if (!jCheckBox10.isSelected()) {
                     department = tf_field14.getText();
@@ -1241,11 +1246,50 @@ public class Dlg_collections extends javax.swing.JDialog {
                 if (!jCheckBox1.isSelected()) {
                     user = tf_cashier.getText();
                 }
-                String date = "";
+                String date = "All";
                 if (!jCheckBox4.isSelected()) {
-                    date = DateType.slash.format(jDateChooser1.getDate()) + " - " + DateType.slash.format(jDateChooser2.getDate());;
+                    date = DateType.slash.format(jDateChooser1.getDate()) + " - " + DateType.slash.format(jDateChooser2.getDate());
                 }
                 String printed_by = MyUser.getUser_screen_name().toUpperCase();
+
+                String user_id = MyUser.getUser_id();
+                String where = " where id<>0 ";
+                String where2 = " where id<>0 ";
+
+                if (!jCheckBox1.isSelected()) {
+                    where = where + " and created_by = '" + user_id + "' ";
+                    where2 = where2 + " and user_id = '" + user_id + "' ";
+                }
+
+                if (!jCheckBox5.isSelected() && !tf_cashier5.getText().isEmpty()) {
+                    try {
+                        String[] dates = tf_cashier5.getText().split("- ");
+//                            System.out.println("dates[0]: " + dates[0]);
+//                            System.out.println("dates[1]: " + dates[1]);
+                        Date d1 = DateType.slash_w_time.parse(dates[0]);
+                        Date d2 = DateType.slash_w_time.parse(dates[1]);
+
+//                            date_from_sales = DateType.datetime.format(d1.getDate());
+                        String date_from_sales = DateType.convert_slash_datetime_sf2(dates[0]);
+                        String date_to_sales = DateType.convert_slash_datetime_sf2(dates[1]);
+
+                        where = where + " and created_at between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        where2 = where2 + " and time_in between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        date = tf_cashier5.getText();
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Dlg_collections.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (!jCheckBox4.isSelected() && jCheckBox5.isSelected()) {
+                    String date_from = DateType.sf.format(jDateChooser1.getDate());
+                    String date_to = DateType.sf.format(jDateChooser2.getDate());
+
+                    where = where + " and created_at between '" + date_from + "' and '" + date_to + "'";
+                    where2 = where2 + " and time_in between '" + date_from + "' and '" + date_to + "'";
+                }
+
+                List<Srpt_collections.field> datas = Srpt_collections.ret_data(where);
+
                 double cashin_beg = 0;
                 double cash_sales = 0;
                 double receipts_total = 0;
@@ -1259,6 +1303,18 @@ public class Dlg_collections extends javax.swing.JDialog {
                 double gc_amount = 0;
                 double online_amount = 0;
 
+                for (Srpt_collections.field to : datas) {
+                    cash_sales += to.cash;
+                    check_amount += to.cash;
+                    credit_card_amount += to.credit_amount;
+                    gc_amount += to.gc_amount;
+                    online_amount += to.online_amount;
+                    receipts_total += to.amount_paid;
+                    receipts_sale_discount += to.discount_amount;
+                    receipt_net_total += to.net_total;
+                }
+
+                List<CashDrawer.to_cash_drawer> drawer = CashDrawer.ret_where(where2);
                 double bills_thousand = 0;
                 double bills_five_hundred = 0;
                 double bills_two_hundred = 0;
@@ -1288,11 +1344,56 @@ public class Dlg_collections extends javax.swing.JDialog {
                 double cc_total = 0;
                 double cc_last_remittance = 0;
                 double cc_cashin_end = 0;
+
+                for (CashDrawer.to_cash_drawer dr : drawer) {
+                    count_bills_thousand += dr.thousand;
+                    count_bills_five_hundred += dr.five_hundred;
+                    count_bills_two_hundred += dr.two_hundred;
+                    count_bills_one_hundred += dr.one_hundred;
+                    count_bills_fifty += dr.fifty;
+                    count_bills_twenty += dr.twenty;
+                    count_coins_ten += dr.ten;
+                    count_coins_five += dr.five;
+                    count_coins_one += dr.one;
+                    count_coins_point_fifty += dr.point_five;
+                    count_coins_point_twenty_five += dr.point_two_five;
+                    count_coins_point_ten += dr.point_ten;
+                    count_coins_point_zero_five += dr.point_zero_five;
+
+                }
+
+                bills_thousand = 1000 * count_bills_thousand;
+                bills_five_hundred = 500 * count_bills_five_hundred;
+                bills_two_hundred = 200 * count_bills_two_hundred;
+                bills_one_hundred = 100 * count_bills_one_hundred;
+                bills_fifty = 50 * count_bills_fifty;
+                bills_twenty = 20 * count_bills_twenty;
+                coins_ten = 10 * count_coins_ten;
+                coins_five = 5 * count_coins_five;
+                coins_one = 1 * count_coins_one;
+                coins_point_fifty = .5 * count_coins_point_fifty;
+                coins_point_twenty_five = .25 * count_coins_point_twenty_five;
+                coins_point_ten = .10 * count_coins_point_ten;
+                coins_point_zero_five = .05 * count_coins_point_zero_five;
+
+                double ccs = bills_thousand + bills_five_hundred + bills_two_hundred + bills_one_hundred + bills_fifty
+                        + bills_twenty + coins_ten + coins_five + coins_one + coins_point_fifty + coins_point_twenty_five
+                        + coins_point_ten + coins_point_zero_five;
+
+                cc_total = ccs;
+                String status = "[Equal]";
+                double status_amount = cc_total - receipt_net_total;
+                if (status_amount < 0) {
+                    status = "[Short]";
+                }
+                if (status_amount > 0) {
+                    status = "[Over]";
+                }
+
                 double disbursement = 0;
                 List<Srpt_collections.field> fields = new ArrayList();
-                String status = "";
-                double status_amount = 0;
-                String course = "";
+
+                String course = "All";
                 String jrxml = "rpt_collections.jrxml";
                 Srpt_collections rpt = new Srpt_collections(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by, cashin_beg, cash_sales, receipts_total, receipts_line_discount, receipts_sale_discount, receipts_sub_total, receipt_net_total, check_amount, credit_card_amount, gc_amount, online_amount, bills_thousand, bills_five_hundred, bills_two_hundred, bills_one_hundred, bills_fifty, bills_twenty, coins_ten, coins_five, coins_one, coins_point_fifty, coins_point_twenty_five, coins_point_ten, coins_point_zero_five, count_bills_thousand, count_bills_five_hundred, count_bills_two_hundred, count_bills_one_hundred, count_bills_fifty, count_bills_twenty, count_coins_ten, count_coins_five, count_coins_one, count_coins_point_fifty, count_coins_point_twenty_five, count_coins_point_ten, count_coins_point_zero_five, cc_total, cc_last_remittance, cc_cashin_end, disbursement, status, status_amount, course);
                 rpt.fields.addAll(fields);
