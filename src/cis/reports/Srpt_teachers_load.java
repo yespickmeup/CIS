@@ -702,7 +702,7 @@ public class Srpt_teachers_load {
                         int status = rs.getInt(41);
                         int is_uploaded = rs.getInt(42);
 
-                        to_enrollment_offered_subject_sections section1 = new to_enrollment_offered_subject_sections(id2, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, "" + my_faculty_id, my_faculty_name, section, room_id, room, schedule, day3, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                        to_enrollment_offered_subject_sections section1 = new to_enrollment_offered_subject_sections(id2, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, "" + my_faculty_id, my_faculty_name, section, room_id, room, schedule, day3, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false,false);
                         //check time
                         String s3 = "select "
                                 + " room "

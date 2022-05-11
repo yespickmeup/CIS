@@ -131,3 +131,83 @@ alter table enrollment_assessment_payments add collection_sales_no varchar(255);
 alter table enrollment_sls_payments add collection_id int;
 alter table enrollment_sls_payments add collection_no varchar(255);
 alter table enrollment_sls_payments add collection_sales_no varchar(255);
+
+alter table student_balance_adjustment_payments add collection_id int;
+alter table student_balance_adjustment_payments add collection_no varchar(255);
+alter table student_balance_adjustment_payments add collection_sales_no varchar(255);
+
+
+drop table if exists collections;
+create table collections(
+id int auto_increment 
+,collection_no varchar(255)
+,or_no varchar(255)
+,payment_type varchar(255)
+,amount_paid double
+,cash double
+,discount_name varchar(255)
+,discount_rate double
+,discount_amount double
+,discount_customer_name varchar(255)
+,discount_customer_id varchar(255)
+,check_amount double
+,check_bank varchar(255)
+,check_no varchar(255)
+,check_holder varchar(255)
+,check_date date
+,credit_card_type varchar(255)
+,credit_card_rate double
+,credit_card_amount double
+,credit_card_no varchar(255)
+,gift_certificate_from varchar(255)
+,gift_certificate_description varchar(255)
+,gift_certificate_no varchar(255)
+,gift_certificate_amount double
+,online_bank varchar(255)
+,online_reference_no varchar(255)
+,online_amount double
+,online_holder varchar(255)
+,online_date date
+,created_at datetime
+,updated_at datetime
+,created_by varchar(255)
+,updated_by varchar(255)
+,status int
+,is_uploaded int
+,ref_id int
+,primary key(id,collection_no)
+);
+
+
+
+insert into user_default_privileges(account,privilege)values('Transactions','Finance Encoding');
+
+
+alter table student_balance_adjustments add particular_id int;
+alter table student_balance_adjustments add particular varchar(255);
+alter table student_balance_adjustments add is_payable int;
+alter table student_balance_adjustments add is_add int;
+
+alter table student_balance_adjustment_payments add particular_id int;
+alter table student_balance_adjustment_payments add particular varchar(255);
+
+
+drop table if exists account_particulars;
+create table account_particulars(
+id int auto_increment primary key
+,particular varchar(255)
+,particular_type int
+,account_type_id int
+,account_type varchar(255)
+,created_by varchar(255)
+,updated_by varchar(255)
+,created_at datetime
+,updated_at datetime
+,status int
+);
+
+
+
+
+
+

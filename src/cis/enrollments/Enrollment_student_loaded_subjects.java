@@ -688,6 +688,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",lname"
                     + ",enrollment_offered_subject_section_id"
                     + ",enrollment_offered_subject_id"
+                    
                     + ",academic_offering_subject_id"
                     + ",academic_offering_id"
                     + ",academic_year_id"
@@ -698,6 +699,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",college"
                     + ",department_id"
                     + ",department"
+                    
                     + ",course_id"
                     + ",course_code"
                     + ",course_description"
@@ -708,6 +710,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",description"
                     + ",lecture_units"
                     + ",lab_units"
+                    
                     + ",faculty_id"
                     + ",faculty_name"
                     + ",section"
@@ -718,6 +721,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",time"
                     + ",start_time"
                     + ",closing_time"
+                    
                     + ",created_at"
                     + ",updated_at"
                     + ",created_by"
@@ -728,6 +732,7 @@ public class Enrollment_student_loaded_subjects {
                     + ",final_grade"
                     + ",final_grade_remarks"
                     + ",final_grade_created_at"
+                    
                     + ",final_grade_created_by"
                     + ",is_payed"
                     + ",retake"

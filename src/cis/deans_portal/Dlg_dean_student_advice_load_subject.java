@@ -607,9 +607,25 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     List<to_enrollment_student_loaded_subjects> loaded = new ArrayList();
     Enrollments.to_enrollments enroll = null;
 
-    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll1) {
+    static boolean is_autoload = false;
+
+    public boolean isIs_autoload() {
+        return is_autoload;
+    }
+
+    public void setIs_autoload(boolean is_autoload) {
+        Dlg_dean_student_advice_load_subject.is_autoload = is_autoload;
+    }
+
+    public static boolean getIs_autoload() {
+        return is_autoload;
+    }
+
+    public void do_pass(Academic_offering_subjects.to_academic_offering_subjects to, int academic_year_id1, Enrollments.to_enrollments enroll1, boolean load) {
         enroll = enroll1;
 //        System.out.println("enroll1: " + enroll1.id);
+        is_autoload = load;
+        setIs_autoload(load);
         academic_year_id = academic_year_id1;
         aos = to;
         tf_field2.setText(to.subject_code);
@@ -618,11 +634,11 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
         tf_field4.setText("" + to.lab_units);
         jTextArea2.setText(to.prerequisite_subject_ids);
 //        ret_eos();
-        search();
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                search();
                 String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
                 loaded = Enrollment_student_loaded_subjects.ret_data(where);
             }
@@ -752,13 +768,24 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 case 5:
                     return " " + tt.faculty_name;
                 case 6:
-                    return " " + tt.created_by;
+
+                    if (!getIs_autoload() && !tt.is_loaded) {
+                        return "    Search";
+                    } else {
+                        return " " + tt.created_by;
+                    }
+
                 case 7:
-                    return " " + tt.updated_by;
+                    if (!getIs_autoload() && !tt.is_loaded) {
+                        return "    Search";
+                    } else {
+                        return " " + tt.updated_by;
+                    }
+
                 case 8:
                     if (tt.status == 0) {
                         return " Posted";
-                    } else if (tt.status == 1) {
+                    } else if (tt.status == 1 && tt.is_loaded) {
                         String[] cap = tt.created_by.split(" of ");
                         int min = FitIn.toInt(cap[0]);
                         int max = FitIn.toInt(cap[1]);
@@ -796,7 +823,13 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 
     private void ret_eos() {
         String where = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + aos.subject_id + "' and status <2 order by section asc ";
-        List<to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
+
+        List<to_enrollment_offered_subject_sections> datas = new ArrayList();
+        if (is_autoload) {
+            datas = Enrollment_offered_subject_sections.ret_data2(where);
+        } else {
+            datas = Enrollment_offered_subject_sections.ret_data4(where);
+        }
 
         loadData_enrollment_offered_subject_sections(datas);
         jLabel2.setText("" + datas.size());
@@ -859,13 +892,16 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
     }
 
     //</editor-fold>
-    
     private void ok() {
         int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
         if (row < 0) {
             return;
         }
         to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+        if (!to.is_loaded) {
+            Alert.set(0, "Please search student count!");
+            return;
+        }
         double total_units = to.lab_units + to.lecture_units;
         if (to.status == 0) {
             Alert.set(0, "Subject not yet open!");
@@ -901,7 +937,6 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 //            Alert.set(0, "Day/Time not available!");
 //            return;
 //        }
-
         int count = Enrollments.ret_subject_load_count(enroll.id);
         List<School_settings.to_school_settings> settings = School_settings.ret_data(" where name like 'Subject Loading overload' ");
         double maxx = 0;
@@ -983,22 +1018,38 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
             return;
         }
         to_enrollment_offered_subject_sections to = (to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+
         int col = tbl_enrollment_offered_subject_sections.getSelectedColumn();
         if (col == 6 || col == 7) {
-            Window p = (Window) this;
-            Dlg_dean_student_advice_load_subject_students nd = Dlg_dean_student_advice_load_subject_students.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(to);
-            nd.setCallback(new Dlg_dean_student_advice_load_subject_students.Callback() {
+            if (to.is_loaded) {
+                Window p = (Window) this;
+                Dlg_dean_student_advice_load_subject_students nd = Dlg_dean_student_advice_load_subject_students.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(to);
+                nd.setCallback(new Dlg_dean_student_advice_load_subject_students.Callback() {
 
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject_students.OutputData data) {
-                    closeDialog.ok();
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject_students.OutputData data) {
+                        closeDialog.ok();
 
+                    }
+                });
+                nd.setLocationRelativeTo(this);
+                nd.setVisible(true);
+            } else {
+//                System.out.println("searching...");
+                List<String> datas = Enrollment_offered_subject_sections.getStudentCount(to.id, to.max_students);
+                if (!datas.isEmpty()) {
+//                    System.out.println("datas.get(0): " + datas.get(0));
+                    to.setCreated_by(datas.get(0));
+                    to.setUpdated_by(datas.get(1));
+                    to.setIs_loaded(true);
+                    tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 6);
+                    tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 7);
                 }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
+
+            }
+
         }
     }
 

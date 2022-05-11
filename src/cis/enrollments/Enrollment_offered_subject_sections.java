@@ -64,11 +64,37 @@ public class Enrollment_offered_subject_sections {
         public final String closing_time;
         public final String created_at;
         public final String updated_at;
-        public final String created_by;
-        public final String updated_by;
+        public String created_by;
+        public String updated_by;
         public final int status;
         public final int is_uploaded;
         public boolean selected;
+        public boolean is_loaded;
+
+        public String getCreated_by() {
+            return created_by;
+        }
+
+        public void setCreated_by(String created_by) {
+            this.created_by = created_by;
+        }
+
+        public String getUpdated_by() {
+            return updated_by;
+        }
+
+        public void setUpdated_by(String updated_by) {
+            this.updated_by = updated_by;
+        }
+
+        
+        public boolean isIs_loaded() {
+            return is_loaded;
+        }
+
+        public void setIs_loaded(boolean is_loaded) {
+            this.is_loaded = is_loaded;
+        }
 
         public String getYear_level() {
             return year_level;
@@ -86,7 +112,7 @@ public class Enrollment_offered_subject_sections {
             this.selected = selected;
         }
 
-        public to_enrollment_offered_subject_sections(int id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, boolean selected) {
+        public to_enrollment_offered_subject_sections(int id, int enrollment_offered_subject_id, int academic_offering_subject_id, int academic_offering_id, int academic_year_id, String academic_year, int level_id, String level, int college_id, String college, int department_id, String department, int course_id, String course_code, String course_description, String term, String year_level, int subject_id, String subject_code, String description, double units, double lecture_units, double lab_units, double amount, int is_lab, int max_students, String faculty_id, String faculty_name, String section, int room_id, String room, String schedule, String day, String time, String start_time, String closing_time, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, boolean selected, boolean is_loaded) {
             this.id = id;
             this.enrollment_offered_subject_id = enrollment_offered_subject_id;
             this.academic_offering_subject_id = academic_offering_subject_id;
@@ -130,6 +156,7 @@ public class Enrollment_offered_subject_sections {
             this.status = status;
             this.is_uploaded = is_uploaded;
             this.selected = selected;
+            this.is_loaded = is_loaded;
         }
     }
 
@@ -590,7 +617,7 @@ public class Enrollment_offered_subject_sections {
                 int status = rs.getInt(41);
                 int is_uploaded = rs.getInt(42);
 
-                to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, false);
                 datas.add(to);
             }
             return datas;
@@ -715,7 +742,7 @@ public class Enrollment_offered_subject_sections {
                         college_id = rs2.getInt(2);
                         college = rs2.getString(3);
                         if (college_id == college_id1) {
-                            to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                            to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, false);
                             datas.add(to);
 //                             System.out.println("college: "+college);
                         } else {
@@ -725,7 +752,7 @@ public class Enrollment_offered_subject_sections {
                         System.out.println("count: " + count);
                     }
                 } else {
-                    to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                    to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, false);
                     datas.add(to);
                 }
 
@@ -913,9 +940,49 @@ public class Enrollment_offered_subject_sections {
                     updated_by = "" + count;
                 }
 
-                to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, true);
                 datas.add(to);
             }
+            return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static List<String> getStudentCount(int enrollment_offered_subject_section_id, int max_students) {
+
+        List<String> datas = new ArrayList();
+        try {
+            Connection conn = MyConnection.connect();
+            String s4 = "select "
+                    + "count(id)"
+                    + " from enrollment_student_loaded_subjects"
+                    + " where enrollment_offered_subject_section_id='" + enrollment_offered_subject_section_id + "' and status=1 ";
+
+            Statement stmt4 = conn.createStatement();
+            ResultSet rs4 = stmt4.executeQuery(s4);
+            String created_by = "0 of " + max_students;
+            if (rs4.next()) {
+                int count = rs4.getInt(1);
+                created_by = "" + count + " of " + max_students;
+            }
+
+            String s5 = "select "
+                    + "count(id)"
+                    + " from enrollment_student_loaded_subjects"
+                    + " where enrollment_offered_subject_section_id='" + enrollment_offered_subject_section_id + "' and status=0 ";
+//                System.out.println(s5);
+            Statement stmt5 = conn.createStatement();
+            ResultSet rs5 = stmt5.executeQuery(s5);
+            String updated_by = "";
+            if (rs5.next()) {
+                int count = rs5.getInt(1);
+                updated_by = "" + count;
+            }
+            datas.add(created_by);
+            datas.add(updated_by);
             return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -1100,11 +1167,197 @@ public class Enrollment_offered_subject_sections {
                         updated_by = "" + count;
                     }
 
-                    to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false);
+                    to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, false);
                     datas.add(to);
                 }
             }
 
+            return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static List<to_enrollment_offered_subject_sections> ret_data4(String where) {
+        List<to_enrollment_offered_subject_sections> datas = new ArrayList();
+
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "select "
+                    + "id"
+                    + ",enrollment_offered_subject_id"
+                    + ",academic_offering_subject_id"
+                    + ",academic_offering_id"
+                    + ",academic_year_id"
+                    + ",academic_year"
+                    + ",level_id"
+                    + ",level"
+                    + ",college_id"
+                    + ",college"
+                    + ",department_id"
+                    + ",department"
+                    + ",course_id"
+                    + ",course_code"
+                    + ",course_description"
+                    + ",term"
+                    + ",year_level"
+                    + ",subject_id"
+                    + ",subject_code"
+                    + ",description"
+                    + ",units"
+                    + ",lecture_units"
+                    + ",lab_units"
+                    + ",amount"
+                    + ",is_lab"
+                    + ",max_students"
+                    + ",faculty_id"
+                    + ",faculty_name"
+                    + ",section"
+                    + ",room_id"
+                    + ",room"
+                    + ",schedule"
+                    + ",day"
+                    + ",time"
+                    + ",start_time"
+                    + ",closing_time"
+                    + ",created_at"
+                    + ",updated_at"
+                    + ",created_by"
+                    + ",updated_by"
+                    + ",status"
+                    + ",is_uploaded"
+                    + " from enrollment_offered_subject_sections"
+                    + " " + where;
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(s0);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int enrollment_offered_subject_id = rs.getInt(2);
+                int academic_offering_subject_id = rs.getInt(3);
+                int academic_offering_id = rs.getInt(4);
+                int academic_year_id = rs.getInt(5);
+                String academic_year = rs.getString(6);
+                int level_id = rs.getInt(7);
+                String level = rs.getString(8);
+                int college_id = rs.getInt(9);
+                String college = rs.getString(10);
+                int department_id = rs.getInt(11);
+                String department = rs.getString(12);
+                int course_id = rs.getInt(13);
+                String course_code = rs.getString(14);
+                String course_description = rs.getString(15);
+                String term = rs.getString(16);
+                String year_level = rs.getString(17);
+                int subject_id = rs.getInt(18);
+                String subject_code = rs.getString(19);
+                String description = rs.getString(20);
+                double units = rs.getDouble(21);
+                double lecture_units = rs.getDouble(22);
+                double lab_units = rs.getDouble(23);
+                double amount = rs.getDouble(24);
+                int is_lab = rs.getInt(25);
+                int max_students = rs.getInt(26);
+                String faculty_id = rs.getString(27);
+                String faculty_name = rs.getString(28);
+                String section = rs.getString(29);
+                int room_id = rs.getInt(30);
+                String room = rs.getString(31);
+                String schedule = rs.getString(32);
+                String day = rs.getString(33);
+                String time = rs.getString(34);
+                String start_time = rs.getString(35);
+                String closing_time = rs.getString(36);
+                String created_at = rs.getString(37);
+                String updated_at = rs.getString(38);
+                String created_by = rs.getString(39);
+                String updated_by = rs.getString(40);
+                int status = rs.getInt(41);
+                int is_uploaded = rs.getInt(42);
+
+                String s2 = "select "
+                        + " room "
+                        + ", day"
+                        + ",concat(start_time,'/',closing_time) as time"
+                        + " from enrollment_offered_subject_section_room_schedules"
+                        + " where enrollment_offered_subject_section_id='" + id + "'  "; //group by room_id
+
+                Statement stmt2 = conn.createStatement();
+                ResultSet rs2 = stmt2.executeQuery(s2);
+
+                String day1 = "";
+                int i = 0;
+                List<String> lroom = new ArrayList();
+                List<String> lday = new ArrayList();
+                while (rs2.next()) {
+                    lroom.add(rs2.getString(1));
+                    String day2 = rs2.getString(2);
+                    String s = rs2.getString(3);
+                    String[] ss = s.split("/");
+                    String otime = ss[0];
+                    String ctime = ss[1];
+                    otime = DateType.convert_datetime_to_hour_minute(otime);
+                    ctime = DateType.convert_datetime_to_hour_minute(ctime);
+                    s = otime + "-" + ctime;
+                    day2 = day2 + ": " + s;
+
+                    if (i == 0) {
+                        day = "&nbsp;&nbsp;" + day2;
+                    } else {
+                        day = day + "<br>" + "&nbsp;&nbsp;" + day2;
+                    }
+                    i++;
+                }
+
+                room = ReGroup.similar(lroom);
+
+                // search instuctor
+                String s3 = "select "
+                        + " faculty_name "
+                        + ",faculty_id"
+                        + " from enrollment_offered_subject_section_instructors"
+                        + " where enrollment_offered_subject_section_id='" + id + "'  "; //group by room_id
+
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(s3);
+
+                while (rs3.next()) {
+
+                    faculty_name = rs3.getString(1);
+                    faculty_id = rs3.getString(2);
+                }
+
+//                String s4 = "select "
+//                        + "count(id)"
+//                        + " from enrollment_student_loaded_subjects"
+//                        + " where enrollment_offered_subject_section_id='" + id + "' and status=1 ";
+//
+//                Statement stmt4 = conn.createStatement();
+//                ResultSet rs4 = stmt4.executeQuery(s4);
+                created_by = "0 of " + max_students;
+//                if (rs4.next()) {
+//                    int count = rs4.getInt(1);
+//                    created_by = "" + count + " of " + max_students;
+//                }
+
+//                String s5 = "select "
+//                        + "count(id)"
+//                        + " from enrollment_student_loaded_subjects"
+//                        + " where enrollment_offered_subject_section_id='" + id + "' and status=0 ";
+////                System.out.println(s5);
+//                Statement stmt5 = conn.createStatement();
+//                ResultSet rs5 = stmt5.executeQuery(s5);
+                updated_by = "";
+//                if (rs5.next()) {
+//                    int count = rs5.getInt(1);
+//                    updated_by = "" + count;
+//                }
+
+                to_enrollment_offered_subject_sections to = new to_enrollment_offered_subject_sections(id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, units, lecture_units, lab_units, amount, is_lab, max_students, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, false, false);
+                datas.add(to);
+            }
             return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);

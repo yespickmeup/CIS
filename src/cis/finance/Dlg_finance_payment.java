@@ -6,6 +6,7 @@
 package cis.finance;
 
 import cis.banks.Banks;
+import cis.collections.Collections;
 import cis.credit_cards.Credit_cards;
 import cis.students.Students;
 import cis.users.MyUser;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -243,6 +245,19 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        tf_ap_cash6 = new Field.Input();
+        jLabel22 = new javax.swing.JLabel();
+        tf_check_bank1 = new Field.Search();
+        jLabel24 = new javax.swing.JLabel();
+        tf_ap_check_holder1 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        tf_ap_check_no1 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jLabel85 = new javax.swing.JLabel();
+        tf_field22 = new Field.Input();
         jButton4 = new Button.Default();
         jButton3 = new Button.Success();
 
@@ -316,7 +331,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                     .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field137, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -391,7 +406,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_field21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cash", jPanel5);
@@ -645,10 +660,146 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Check", jPanel7);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel49.setText("Amount:");
+
+        tf_ap_cash6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_ap_cash6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_ap_cash6ActionPerformed(evt);
+            }
+        });
+        tf_ap_cash6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_ap_cash6KeyReleased(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel22.setText("Bank:");
+
+        tf_check_bank1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_check_bank1.setFocusable(false);
+        tf_check_bank1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_check_bank1MouseClicked(evt);
+            }
+        });
+        tf_check_bank1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_check_bank1ActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel24.setText("Holder:");
+
+        tf_ap_check_holder1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel26.setText("Number:");
+
+        tf_ap_check_no1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_ap_check_no1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_ap_check_no1ActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel27.setText("Date:");
+
+        jDateChooser5.setDate(new Date());
+        jDateChooser5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(tf_ap_cash6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_check_bank1)
+                            .addComponent(tf_ap_check_no1)
+                            .addComponent(tf_ap_check_holder1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser5, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_ap_cash6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_check_bank1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_ap_check_holder1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_ap_check_no1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Online", jPanel2);
+
+        jLabel85.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel85.setText("Or No.:");
+
+        tf_field22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_field22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tf_field22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field22MouseClicked(evt);
+            }
+        });
+        tf_field22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field22ActionPerformed(evt);
+            }
+        });
+        tf_field22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_field22KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -658,10 +809,14 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_field20, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_field20, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                            .addComponent(tf_field22))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -671,6 +826,10 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tf_field20)
                     .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -714,12 +873,12 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(17, Short.MAX_VALUE))
+                        .addGap(26, 26, 26))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(13, 13, 13))))
@@ -792,11 +951,11 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_ap_cash5KeyReleased
 
     private void tf_check_bankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_check_bankMouseClicked
-        init_banks();
+        init_banks(tf_check_bank);
     }//GEN-LAST:event_tf_check_bankMouseClicked
 
     private void tf_check_bankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_check_bankActionPerformed
-        init_banks();
+        init_banks(tf_check_bank);
     }//GEN-LAST:event_tf_check_bankActionPerformed
 
     private void tf_ap_check_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_check_noActionPerformed
@@ -811,6 +970,38 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         confirm();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void tf_field22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field22MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field22MouseClicked
+
+    private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field22ActionPerformed
+
+    private void tf_field22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field22KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_field22KeyReleased
+
+    private void tf_ap_cash6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_cash6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ap_cash6ActionPerformed
+
+    private void tf_ap_cash6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ap_cash6KeyReleased
+        count_tender();
+    }//GEN-LAST:event_tf_ap_cash6KeyReleased
+
+    private void tf_check_bank1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_check_bank1MouseClicked
+        init_banks(tf_check_bank1);
+    }//GEN-LAST:event_tf_check_bank1MouseClicked
+
+    private void tf_check_bank1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_check_bank1ActionPerformed
+        init_banks(tf_check_bank1);
+    }//GEN-LAST:event_tf_check_bank1ActionPerformed
+
+    private void tf_ap_check_no1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_check_no1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ap_check_no1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -819,12 +1010,17 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private com.toedter.calendar.JDateChooser jDateChooser4;
+    private com.toedter.calendar.JDateChooser jDateChooser5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -834,10 +1030,13 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -848,15 +1047,20 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     private javax.swing.JTextField lbl_credit_card_rate;
     private javax.swing.JTable tbl_mode_of_payments;
     private javax.swing.JTextField tf_ap_cash5;
+    private javax.swing.JTextField tf_ap_cash6;
     private javax.swing.JTextField tf_ap_cash7;
     private javax.swing.JTextField tf_ap_check_holder;
+    private javax.swing.JTextField tf_ap_check_holder1;
     private javax.swing.JTextField tf_ap_check_no;
+    private javax.swing.JTextField tf_ap_check_no1;
     private javax.swing.JTextField tf_check_bank;
+    private javax.swing.JTextField tf_check_bank1;
     private javax.swing.JTextField tf_credit_card_amount;
     private javax.swing.JTextField tf_credit_card_type;
     private javax.swing.JTextField tf_field137;
     private javax.swing.JTextField tf_field20;
     private javax.swing.JTextField tf_field21;
+    private javax.swing.JTextField tf_field22;
     private javax.swing.JTextField tf_prepaid_customer_id3;
     private javax.swing.JTextField tf_prepaid_customer_id4;
     private javax.swing.JTextField tf_prepaid_customer_id5;
@@ -869,9 +1073,11 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }
 
     Students.to_students pay_stud = null;
+    boolean has_or = false;
 
-    public void do_pass(List<Finance.fees> fees, Students.to_students stud) {
+    public void do_pass(List<Finance.fees> fees, Students.to_students stud, boolean _has_or) {
         pay_stud = stud;
+        has_or = _has_or;
         loadData_mode_of_payments(fees);
         jLabel2.setText("" + fees.size());
         double amount = 0;
@@ -884,6 +1090,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
 
     public void do_pass2F(List<Finance.fees> fees, Students.to_students stud) {
         is_adjustment = 1;
+        has_or = true;
         pay_stud = stud;
         loadData_mode_of_payments(fees);
         jLabel2.setText("" + fees.size());
@@ -946,7 +1153,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         });
     }
 
-    private void init_banks() {
+    private void init_banks(JTextField tf) {
 
         String where = "  order by bank asc";
         List<Banks.to_banks> bank_list = Banks.ret_data(where);
@@ -968,7 +1175,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
             @Override
             public void ok(TableRenderer.OutputData data) {
                 Banks.to_banks to = bank_list.get(data.selected_row);
-                tf_check_bank.setText(to.bank);
+                tf.setText(to.bank);
 
             }
         });
@@ -978,9 +1185,10 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         double cash = FitIn.toDouble(tf_field21.getText());
         double check = FitIn.toDouble(tf_ap_cash5.getText());
         double credit_card = FitIn.toDouble(tf_ap_cash7.getText());
+        double online = FitIn.toDouble(tf_ap_cash6.getText());
 
         double tendered = FitIn.toDouble(tf_field137.getText());
-        double total_tendered = cash + check + credit_card;
+        double total_tendered = cash + check + credit_card + online;
 
         tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
 
@@ -995,10 +1203,10 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
 
         double remaining = tendered - total_tendered;
 
-        double total_for_cash = check + credit_card;
-        double total_for_check = cash + credit_card;
-
-        double total_for_credit_card = cash + check;
+        double total_for_cash = check + credit_card + online;
+        double total_for_check = cash + credit_card + online;
+        double total_for_credit_card = cash + check + online;
+        double total_for_online = cash + check + credit_card;
 
         if (remaining < 0 && tf_field21.hasFocus()) {
             remaining = (tendered - total_for_cash);
@@ -1014,7 +1222,12 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
             tf_ap_cash7.setText(FitIn.fmt_wc_0(remaining));
         }
 
-        total_tendered = cash + check + credit_card;
+        if (remaining < 0 && tf_ap_cash6.hasFocus()) {
+            remaining = (tendered - total_for_online);
+            tf_ap_cash6.setText(FitIn.fmt_wc_0(remaining));
+        }
+
+        total_tendered = cash + check + credit_card + online;
         tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
         if (total_tendered > tendered) {
             tf_field20.setText(FitIn.fmt_wc_0(tendered));
@@ -1157,7 +1370,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
             public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
                 closeDialog.ok();
                 if (is_adjustment == 1) {
-                    
+                    pay_adjustment();
                 } else {
                     pay();
                 }
@@ -1165,6 +1378,82 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         });
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
+    }
+
+    private void pay_adjustment() {
+        int id = 0;
+        int sba_id = 0;
+        double adjustment_amount = 0;
+        List<Finance.fees> fees = tbl_mode_of_payments_ALM;
+        if (!fees.isEmpty()) {
+            Finance.fees to = (Finance.fees) fees.get(0);
+            sba_id = to.id;
+            adjustment_amount = to.amount;
+        }
+        int student_id = pay_stud.id;
+        String student_no = pay_stud.student_no;
+        String fname = pay_stud.first_name;
+        String mi = pay_stud.middle_name;
+        String lname = pay_stud.last_name;
+
+        double paid = FitIn.toDouble(tf_field20.getText());
+        String remarks = "";
+        int status = 0;
+        String created_at = DateType.now();
+        String updated_at = DateType.now();
+        int created_by = FitIn.toInt(MyUser.getUser_id());
+        int updated_by = FitIn.toInt(MyUser.getUser_id());
+
+        List<Student_balance_adjustments.to_student_balance_adjustments> sba = Student_balance_adjustments.ret_data(" where id = '" + sba_id + "' ");
+
+        int particular_id = 0;
+        String particular = "";
+        if (!sba.isEmpty()) {
+            Student_balance_adjustments.to_student_balance_adjustments sb = (Student_balance_adjustments.to_student_balance_adjustments) sba.get(0);
+            particular_id = sb.particular_id;
+            particular = sb.particular;
+        }
+
+        // Collection
+        String collection_no = "";
+        String or_no = tf_field22.getText();
+        String payment_type = particular;
+        double amount_paid = FitIn.toDouble(tf_field20.getText());
+        double cash = FitIn.toDouble(tf_field21.getText());
+        String discount_name = "";
+        double discount_rate = 0;
+        double discount_amount = 0;
+        String discount_customer_name = "";
+        String discount_customer_id = "";
+        double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
+        String check_bank = tf_check_bank.getText();
+        String check_no = tf_ap_check_no.getText();
+        String check_holder = tf_ap_check_holder.getText();
+        String check_date = DateType.sf.format(jDateChooser4.getDate());
+        String credit_card_type = tf_credit_card_type.getText();
+        double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+        double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+        String credit_card_no = tf_prepaid_customer_id3.getText();
+        String gift_certificate_from = "";
+        String gift_certificate_description = "";
+        String gift_certificate_no = "";
+        double gift_certificate_amount = 0;
+        String online_bank = tf_check_bank1.getText();
+        String online_reference_no = tf_ap_check_no1.getText();
+        double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
+        String online_holder = tf_ap_check_holder1.getText();
+        String online_date = DateType.sf.format(jDateChooser5.getDate());
+        int is_uploaded = 0;
+        int ref_id = 0;
+        Collections.to_collections collection = new Collections.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_at, updated_at, status, is_uploaded, ref_id);
+
+        int collection_id = 0;
+        String collection_sales_no = "";
+
+        Student_balance_adjustment_payments.to_student_balance_adjustment_payments payment = new Student_balance_adjustment_payments.to_student_balance_adjustment_payments(id, sba_id, student_id, student_no, fname, mi, lname, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by, particular_id, particular, collection_id, collection_no, collection_sales_no);
+        String or = Student_balance_adjustments.add_payment(payment, pay_stud, has_or, collection);
+        Alert.set(1, "");
+        ok();
     }
 
     private void pay() {
@@ -1228,9 +1517,12 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         String updated_by = MyUser.getUser_id();
         int status = 0;
         int is_uploaded = 0;
+        int collection_id = 0;
+        String collection_no = "";
+        String collection_sales_no = tf_field22.getText();
 
-        Enrollment_assessment_payments.to_enrollment_assessment_payments eap = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded);
-        List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments = new ArrayList();
+        Enrollment_assessment_payments.to_enrollment_assessment_payments eap = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, collection_id, collection_no, collection_sales_no);
+//        List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments = new ArrayList();
         List<Finance.fees> list = tbl_mode_of_payments_ALM;
         List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> eapd = new ArrayList();
         for (Finance.fees fee : list) {
@@ -1247,7 +1539,13 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
                 eapd.add(details);
             }
         }
-        Enrollment_assessments.add_data3(eap, eapd, pay_stud);
+
+        String or_no = tf_field22.getText();
+        String payment_type = "Tuition";
+        int ref_id = 0;
+        Collections.to_collections to_collections = new Collections.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_at, updated_at, status, is_uploaded, ref_id);
+
+        String or = Enrollment_assessments.add_data3(eap, eapd, pay_stud, has_or, to_collections);
         Alert.set(1, "");
         ok();
     }

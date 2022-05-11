@@ -5,12 +5,11 @@
  */
 package cis.cash_drawer;
 
-import cis.cash_drawer.CashDrawer;
-import cis.cash_drawer.S1_cash_drawer;
+import cis.disbursements.Dlg_disbursements;
+import cis.reports.Dlg_collections;
 //import POS.disbursements.Dlg_disbursements;
 //import POS.touchscreen_reports.Dlg_report_sales_summary;
 import cis.users.MyUser;
-import cis.users.S1_user_previleges;
 import cis.users.User_previlege_others;
 import cis.utils.Alert;
 import cis.utils.DateType;
@@ -32,7 +31,6 @@ import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
-import synsoftech.util.Center;
 
 /**
  *
@@ -1715,17 +1713,17 @@ public class Dlg_logout_cashin extends javax.swing.JDialog {
         jPanel20.setLayout(new BorderLayout());
 
         Window p = (Window) this;
-//        Dlg_disbursements nd = Dlg_disbursements.create(p, true);
-//        jPanel20.add(nd.getSurface());
+        Dlg_disbursements nd = Dlg_disbursements.create(p, true);
+        jPanel20.add(nd.getSurface());
     }
 
     private void pnl_sales_summary() {
         jPanel26.setLayout(new BorderLayout());
 
         Window p = (Window) this;
-//        Dlg_report_sales_summary nd = Dlg_report_sales_summary.create(p, true);
-//        nd.do_pass();
-//        jPanel26.add(nd.getSurface());
+        Dlg_collections nd = Dlg_collections.create(p, true);
+        nd.do_pass();
+        jPanel26.add(nd.getSurface());
     }
 
     private void pnl_remittances() {

@@ -5,6 +5,7 @@
  */
 package cis.finance;
 
+import cis.collections.Collections;
 import cis.enrollments.Enrollments;
 import cis.finance.Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes;
 import cis.students.Students;
@@ -699,10 +700,136 @@ public class Enrollment_assessments {
         }
     }
 
-    public static void add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments, Students.to_students student) {
+    public static String add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments, Students.to_students student, boolean has_or, Collections.to_collections to_collections) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
+
+            //Add Collection Details
+            String collection_or_no = "";
+            int collection_id = 0;
+            if (has_or) {
+                collection_or_no = Collections.increment_id();
+                String s0 = "insert into collections("
+                        + "collection_no"
+                        + ",or_no"
+                        + ",payment_type"
+                        + ",amount_paid"
+                        + ",cash"
+                        + ",discount_name"
+                        + ",discount_rate"
+                        + ",discount_amount"
+                        + ",discount_customer_name"
+                        + ",discount_customer_id"
+                        + ",check_amount"
+                        + ",check_bank"
+                        + ",check_no"
+                        + ",check_holder"
+                        + ",check_date"
+                        + ",credit_card_type"
+                        + ",credit_card_rate"
+                        + ",credit_card_amount"
+                        + ",credit_card_no"
+                        + ",gift_certificate_from"
+                        + ",gift_certificate_description"
+                        + ",gift_certificate_no"
+                        + ",gift_certificate_amount"
+                        + ",online_bank"
+                        + ",online_reference_no"
+                        + ",online_amount"
+                        + ",online_holder"
+                        + ",online_date"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":collection_no"
+                        + ",:or_no"
+                        + ",:payment_type"
+                        + ",:amount_paid"
+                        + ",:cash"
+                        + ",:discount_name"
+                        + ",:discount_rate"
+                        + ",:discount_amount"
+                        + ",:discount_customer_name"
+                        + ",:discount_customer_id"
+                        + ",:check_amount"
+                        + ",:check_bank"
+                        + ",:check_no"
+                        + ",:check_holder"
+                        + ",:check_date"
+                        + ",:credit_card_type"
+                        + ",:credit_card_rate"
+                        + ",:credit_card_amount"
+                        + ",:credit_card_no"
+                        + ",:gift_certificate_from"
+                        + ",:gift_certificate_description"
+                        + ",:gift_certificate_no"
+                        + ",:gift_certificate_amount"
+                        + ",:online_bank"
+                        + ",:online_reference_no"
+                        + ",:online_amount"
+                        + ",:online_holder"
+                        + ",:online_date"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("collection_no", collection_or_no)
+                        .setString("or_no", to_collections.or_no)
+                        .setString("payment_type", to_collections.payment_type)
+                        .setNumber("amount_paid", to_collections.amount_paid)
+                        .setNumber("cash", to_collections.cash)
+                        .setString("discount_name", to_collections.discount_name)
+                        .setNumber("discount_rate", to_collections.discount_rate)
+                        .setNumber("discount_amount", to_collections.discount_amount)
+                        .setString("discount_customer_name", to_collections.discount_customer_name)
+                        .setString("discount_customer_id", to_collections.discount_customer_id)
+                        .setNumber("check_amount", to_collections.check_amount)
+                        .setString("check_bank", to_collections.check_bank)
+                        .setString("check_no", to_collections.check_no)
+                        .setString("check_holder", to_collections.check_holder)
+                        .setString("check_date", to_collections.check_date)
+                        .setString("credit_card_type", to_collections.credit_card_type)
+                        .setNumber("credit_card_rate", to_collections.credit_card_rate)
+                        .setNumber("credit_card_amount", to_collections.credit_card_amount)
+                        .setString("credit_card_no", to_collections.credit_card_no)
+                        .setString("gift_certificate_from", to_collections.gift_certificate_from)
+                        .setString("gift_certificate_description", to_collections.gift_certificate_description)
+                        .setString("gift_certificate_no", to_collections.gift_certificate_no)
+                        .setNumber("gift_certificate_amount", to_collections.gift_certificate_amount)
+                        .setString("online_bank", to_collections.online_bank)
+                        .setString("online_reference_no", to_collections.online_reference_no)
+                        .setNumber("online_amount", to_collections.online_amount)
+                        .setString("online_holder", to_collections.online_holder)
+                        .setString("online_date", to_collections.online_date)
+                        .setString("created_at", to_collections.created_at)
+                        .setString("updated_at", to_collections.updated_at)
+                        .setString("created_by", to_collections.created_by)
+                        .setString("updated_by", to_collections.updated_by)
+                        .setNumber("status", to_collections.status)
+                        .setNumber("is_uploaded", to_collections.is_uploaded)
+                        .ok();
+
+                PreparedStatement stmt5 = conn.prepareStatement("", Statement.RETURN_GENERATED_KEYS);
+                stmt5.addBatch(s0);
+                stmt5.executeBatch();
+
+                ResultSet rs = stmt5.getGeneratedKeys();
+                if (rs.next()) {
+                    int last_inserted_id = rs.getInt(1);
+                    collection_id = last_inserted_id;
+                }
+
+            }
 
             String s5 = "insert into enrollment_assessment_payments("
                     + "enrollment_assessment_id"
@@ -742,6 +869,9 @@ public class Enrollment_assessments {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",collection_id"
+                    + ",collection_no"
+                    + ",collection_sales_no"
                     + ")values("
                     + ":enrollment_assessment_id"
                     + ",:enrollment_id"
@@ -780,6 +910,9 @@ public class Enrollment_assessments {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:collection_id"
+                    + ",:collection_no"
+                    + ",:collection_sales_no"
                     + ")";
 
             s5 = SqlStringUtil.parse(s5)
@@ -820,6 +953,9 @@ public class Enrollment_assessments {
                     .setString("updated_by", to_enrollment_assessment_payments.updated_by)
                     .setNumber("status", to_enrollment_assessment_payments.status)
                     .setNumber("is_uploaded", to_enrollment_assessment_payments.is_uploaded)
+                    .setNumber("collection_id", collection_id)
+                    .setString("collection_no", collection_or_no)
+                    .setString("collection_sales_no", to_enrollment_assessment_payments.collection_sales_no)
                     .ok();
 
             PreparedStatement stmt5 = conn.prepareStatement("");
@@ -928,10 +1064,21 @@ public class Enrollment_assessments {
                     .ok();
             stmt4.addBatch(s11);
 
+            String s12 = "update collections set "
+                    + " ref_id= :ref_id "
+                    + " where id='" + collection_id + "' "
+                    + " ";
+
+            s12 = SqlStringUtil.parse(s12)
+                    .setNumber("ref_id", id3)
+                    .ok();
+            stmt4.addBatch(s12);
+
             stmt4.executeBatch();
             conn.commit();
 
             Lg.s(Enrollment_assessments.class, "Successfully Added");
+            return collection_or_no;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

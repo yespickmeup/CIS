@@ -1635,8 +1635,10 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
         String updated_by = "";
         int status = 0;
         int is_uploaded = 0;
-
-        Enrollment_assessment_payments.to_enrollment_assessment_payments pay1 = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id1, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, check_date, online_date, check_date, online_date, 0, 0);
+        int collection_id = 0;
+        String collection_no = "";
+        String collection_sales_no = "";
+        Enrollment_assessment_payments.to_enrollment_assessment_payments pay1 = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id1, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, check_date, online_date, check_date, online_date, 0, 0,collection_id,collection_no,collection_sales_no);
 
         List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments = new ArrayList();
         List< Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> modes = tbl_mode_of_payments_ALM;

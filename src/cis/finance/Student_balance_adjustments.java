@@ -5,6 +5,8 @@
  */
 package cis.finance;
 
+import cis.collections.Collections;
+import cis.students.Students;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,8 +52,12 @@ public class Student_balance_adjustments {
         public final int created_by;
         public final String updated_at;
         public final int updated_by;
+        public final int particular_id;
+        public final String particular;
+        public final int is_payable;
+        public final int is_add;
 
-        public to_student_balance_adjustments(int id, int student_id, String student_no, String fname, String mi, String lname, int is_transferee, String academic_year, int academic_year_id, int course_id, String course_code, String course_description, String year_level, String term, int department_id, String department, int college_id, String college, double adjustment_amount, double paid, String remarks, int status, String created_at, int created_by, String updated_at, int updated_by) {
+        public to_student_balance_adjustments(int id, int student_id, String student_no, String fname, String mi, String lname, int is_transferee, String academic_year, int academic_year_id, int course_id, String course_code, String course_description, String year_level, String term, int department_id, String department, int college_id, String college, double adjustment_amount, double paid, String remarks, int status, String created_at, int created_by, String updated_at, int updated_by, int particular_id, String particular, int is_payable, int is_add) {
             this.id = id;
             this.student_id = student_id;
             this.student_no = student_no;
@@ -78,6 +84,10 @@ public class Student_balance_adjustments {
             this.created_by = created_by;
             this.updated_at = updated_at;
             this.updated_by = updated_by;
+            this.particular_id = particular_id;
+            this.particular = particular;
+            this.is_payable = is_payable;
+            this.is_add = is_add;
         }
     }
 
@@ -111,6 +121,10 @@ public class Student_balance_adjustments {
                     + ",created_by"
                     + ",updated_at"
                     + ",updated_by"
+                    + ",particular_id"
+                    + ",particular"
+                    + ",is_payable"
+                    + ",is_add"
                     + ")values("
                     + ":student_id"
                     + ",:student_no"
@@ -137,6 +151,10 @@ public class Student_balance_adjustments {
                     + ",:created_by"
                     + ",:updated_at"
                     + ",:updated_by"
+                    + ",:particular_id"
+                    + ",:particular"
+                    + ",:is_payable"
+                    + ",:is_add"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -165,6 +183,10 @@ public class Student_balance_adjustments {
                     .setNumber("created_by", to_student_balance_adjustments.created_by)
                     .setString("updated_at", to_student_balance_adjustments.updated_at)
                     .setNumber("updated_by", to_student_balance_adjustments.updated_by)
+                    .setNumber("particular_id", to_student_balance_adjustments.particular_id)
+                    .setString("particular", to_student_balance_adjustments.particular)
+                    .setNumber("is_payable", to_student_balance_adjustments.is_payable)
+                    .setNumber("is_add", to_student_balance_adjustments.is_add)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement("");
@@ -184,6 +206,9 @@ public class Student_balance_adjustments {
                 balance = rs10.getDouble(2);
             }
             double new_balance = balance + to_student_balance_adjustments.adjustment_amount;
+            if (to_student_balance_adjustments.is_add == 0 && to_student_balance_adjustments.is_payable == 0) {
+                new_balance = balance - to_student_balance_adjustments.adjustment_amount;
+            }
             String s11 = " update students set balance='" + new_balance + "' where id='" + to_student_balance_adjustments.student_id + "' ";
             stmt.addBatch(s11);
             // end student exe
@@ -227,6 +252,10 @@ public class Student_balance_adjustments {
                     + ",created_by= :created_by "
                     + ",updated_at= :updated_at "
                     + ",updated_by= :updated_by "
+                    + ",particular_id= :particular_id "
+                    + ",particular= :particular "
+                    + ",is_payable= :is_payable "
+                    + ",is_add= :is_add"
                     + " where id='" + to_student_balance_adjustments.id + "' "
                     + " ";
 
@@ -256,6 +285,10 @@ public class Student_balance_adjustments {
                     .setNumber("created_by", to_student_balance_adjustments.created_by)
                     .setString("updated_at", to_student_balance_adjustments.updated_at)
                     .setNumber("updated_by", to_student_balance_adjustments.updated_by)
+                    .setNumber("particular_id", to_student_balance_adjustments.particular_id)
+                    .setString("particular", to_student_balance_adjustments.particular)
+                    .setNumber("is_payable", to_student_balance_adjustments.is_payable)
+                    .setNumber("is_add", to_student_balance_adjustments.is_add)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement("");
@@ -320,6 +353,10 @@ public class Student_balance_adjustments {
                     + ",created_by"
                     + ",updated_at"
                     + ",updated_by"
+                    + ",particular_id"
+                    + ",particular"
+                    + ",is_payable"
+                    + ",is_add"
                     + " from student_balance_adjustments"
                     + " " + where;
 
@@ -352,11 +389,296 @@ public class Student_balance_adjustments {
                 int created_by = rs.getInt(24);
                 String updated_at = rs.getString(25);
                 int updated_by = rs.getInt(26);
-
-                to_student_balance_adjustments to = new to_student_balance_adjustments(id, student_id, student_no, fname, mi, lname, is_transferee, academic_year, academic_year_id, course_id, course_code, course_description, year_level, term, department_id, department, college_id, college, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by);
+                int particular_id = rs.getInt(27);
+                String particular = rs.getString(28);
+                int is_payable = rs.getInt(29);
+                int is_add = rs.getInt(30);
+                to_student_balance_adjustments to = new to_student_balance_adjustments(id, student_id, student_no, fname, mi, lname, is_transferee, academic_year, academic_year_id, course_id, course_code, course_description, year_level, term, department_id, department, college_id, college, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by, particular_id, particular, is_payable, is_add);
                 datas.add(to);
             }
             return datas;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
+    public static String add_payment(Student_balance_adjustment_payments.to_student_balance_adjustment_payments to_student_balance_adjustment_payments, Students.to_students student, boolean has_or, Collections.to_collections to_collections) {
+        try {
+            Connection conn = MyConnection.connect();
+            conn.setAutoCommit(false);
+
+            //Add Collection Details
+            String collection_or_no = "";
+            int collection_id = 0;
+            if (has_or) {
+                collection_or_no = Collections.increment_id();
+                String s0 = "insert into collections("
+                        + "collection_no"
+                        + ",or_no"
+                        + ",payment_type"
+                        + ",amount_paid"
+                        + ",cash"
+                        + ",discount_name"
+                        + ",discount_rate"
+                        + ",discount_amount"
+                        + ",discount_customer_name"
+                        + ",discount_customer_id"
+                        + ",check_amount"
+                        + ",check_bank"
+                        + ",check_no"
+                        + ",check_holder"
+                        + ",check_date"
+                        + ",credit_card_type"
+                        + ",credit_card_rate"
+                        + ",credit_card_amount"
+                        + ",credit_card_no"
+                        + ",gift_certificate_from"
+                        + ",gift_certificate_description"
+                        + ",gift_certificate_no"
+                        + ",gift_certificate_amount"
+                        + ",online_bank"
+                        + ",online_reference_no"
+                        + ",online_amount"
+                        + ",online_holder"
+                        + ",online_date"
+                        + ",created_at"
+                        + ",updated_at"
+                        + ",created_by"
+                        + ",updated_by"
+                        + ",status"
+                        + ",is_uploaded"
+                        + ")values("
+                        + ":collection_no"
+                        + ",:or_no"
+                        + ",:payment_type"
+                        + ",:amount_paid"
+                        + ",:cash"
+                        + ",:discount_name"
+                        + ",:discount_rate"
+                        + ",:discount_amount"
+                        + ",:discount_customer_name"
+                        + ",:discount_customer_id"
+                        + ",:check_amount"
+                        + ",:check_bank"
+                        + ",:check_no"
+                        + ",:check_holder"
+                        + ",:check_date"
+                        + ",:credit_card_type"
+                        + ",:credit_card_rate"
+                        + ",:credit_card_amount"
+                        + ",:credit_card_no"
+                        + ",:gift_certificate_from"
+                        + ",:gift_certificate_description"
+                        + ",:gift_certificate_no"
+                        + ",:gift_certificate_amount"
+                        + ",:online_bank"
+                        + ",:online_reference_no"
+                        + ",:online_amount"
+                        + ",:online_holder"
+                        + ",:online_date"
+                        + ",:created_at"
+                        + ",:updated_at"
+                        + ",:created_by"
+                        + ",:updated_by"
+                        + ",:status"
+                        + ",:is_uploaded"
+                        + ")";
+
+                s0 = SqlStringUtil.parse(s0)
+                        .setString("collection_no", collection_or_no)
+                        .setString("or_no", to_collections.or_no)
+                        .setString("payment_type", to_collections.payment_type)
+                        .setNumber("amount_paid", to_collections.amount_paid)
+                        .setNumber("cash", to_collections.cash)
+                        .setString("discount_name", to_collections.discount_name)
+                        .setNumber("discount_rate", to_collections.discount_rate)
+                        .setNumber("discount_amount", to_collections.discount_amount)
+                        .setString("discount_customer_name", to_collections.discount_customer_name)
+                        .setString("discount_customer_id", to_collections.discount_customer_id)
+                        .setNumber("check_amount", to_collections.check_amount)
+                        .setString("check_bank", to_collections.check_bank)
+                        .setString("check_no", to_collections.check_no)
+                        .setString("check_holder", to_collections.check_holder)
+                        .setString("check_date", to_collections.check_date)
+                        .setString("credit_card_type", to_collections.credit_card_type)
+                        .setNumber("credit_card_rate", to_collections.credit_card_rate)
+                        .setNumber("credit_card_amount", to_collections.credit_card_amount)
+                        .setString("credit_card_no", to_collections.credit_card_no)
+                        .setString("gift_certificate_from", to_collections.gift_certificate_from)
+                        .setString("gift_certificate_description", to_collections.gift_certificate_description)
+                        .setString("gift_certificate_no", to_collections.gift_certificate_no)
+                        .setNumber("gift_certificate_amount", to_collections.gift_certificate_amount)
+                        .setString("online_bank", to_collections.online_bank)
+                        .setString("online_reference_no", to_collections.online_reference_no)
+                        .setNumber("online_amount", to_collections.online_amount)
+                        .setString("online_holder", to_collections.online_holder)
+                        .setString("online_date", to_collections.online_date)
+                        .setString("created_at", to_collections.created_at)
+                        .setString("updated_at", to_collections.updated_at)
+                        .setString("created_by", to_collections.created_by)
+                        .setString("updated_by", to_collections.updated_by)
+                        .setNumber("status", to_collections.status)
+                        .setNumber("is_uploaded", to_collections.is_uploaded)
+                        .ok();
+
+                PreparedStatement stmt5 = conn.prepareStatement("", Statement.RETURN_GENERATED_KEYS);
+                stmt5.addBatch(s0);
+                stmt5.executeBatch();
+
+                ResultSet rs = stmt5.getGeneratedKeys();
+                if (rs.next()) {
+                    int last_inserted_id = rs.getInt(1);
+                    collection_id = last_inserted_id;
+                }
+
+            }
+
+            String s5 = "insert into student_balance_adjustment_payments("
+                    + "sba_id"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",fname"
+                    + ",mi"
+                    + ",lname"
+                    + ",adjustment_amount"
+                    + ",paid"
+                    + ",remarks"
+                    + ",status"
+                    + ",created_at"
+                    + ",created_by"
+                    + ",updated_at"
+                    + ",updated_by"
+                    + ",particular_id"
+                    + ",particular"
+                    + ",collection_id"
+                    + ",collection_no"
+                    + ",collection_sales_no"
+                    + ")values("
+                    + ":sba_id"
+                    + ",:student_id"
+                    + ",:student_no"
+                    + ",:fname"
+                    + ",:mi"
+                    + ",:lname"
+                    + ",:adjustment_amount"
+                    + ",:paid"
+                    + ",:remarks"
+                    + ",:status"
+                    + ",:created_at"
+                    + ",:created_by"
+                    + ",:updated_at"
+                    + ",:updated_by"
+                    + ",:particular_id"
+                    + ",:particular"
+                    + ",:collection_id"
+                    + ",:collection_no"
+                    + ",:collection_sales_no"
+                    + ")";
+
+            s5 = SqlStringUtil.parse(s5)
+                    .setNumber("sba_id", to_student_balance_adjustment_payments.sba_id)
+                    .setNumber("student_id", to_student_balance_adjustment_payments.student_id)
+                    .setString("student_no", to_student_balance_adjustment_payments.student_no)
+                    .setString("fname", to_student_balance_adjustment_payments.fname)
+                    .setString("mi", to_student_balance_adjustment_payments.mi)
+                    .setString("lname", to_student_balance_adjustment_payments.lname)
+                    .setNumber("adjustment_amount", to_student_balance_adjustment_payments.adjustment_amount)
+                    .setNumber("paid", to_student_balance_adjustment_payments.paid)
+                    .setString("remarks", to_student_balance_adjustment_payments.remarks)
+                    .setNumber("status", to_student_balance_adjustment_payments.status)
+                    .setString("created_at", to_student_balance_adjustment_payments.created_at)
+                    .setNumber("created_by", to_student_balance_adjustment_payments.created_by)
+                    .setString("updated_at", to_student_balance_adjustment_payments.updated_at)
+                    .setNumber("updated_by", to_student_balance_adjustment_payments.updated_by)
+                    .setNumber("particular_id", to_student_balance_adjustment_payments.particular_id)
+                    .setString("particular", to_student_balance_adjustment_payments.particular)
+                    .setNumber("collection_id", collection_id)
+                    .setString("collection_no", collection_or_no)
+                    .setString("collection_sales_no", to_student_balance_adjustment_payments.collection_sales_no)
+                    .ok();
+
+            PreparedStatement stmt5 = conn.prepareStatement("");
+            stmt5.addBatch(s5);
+            stmt5.executeBatch();
+
+            //search payment id
+            String s6 = "select "
+                    + " id"
+                    + " from student_balance_adjustment_payments "
+                    + " order by id desc limit 1";
+
+            Statement stmt6 = conn.createStatement();
+            ResultSet rs6 = stmt6.executeQuery(s6);
+            int eap_id = 0;
+            if (rs6.next()) {
+                eap_id = rs6.getInt(1);
+            }
+
+            //Search Payment
+            String s12 = "select "
+                    + " paid"
+                    + " from student_balance_adjustments"
+                    + " where id='" + to_student_balance_adjustment_payments.sba_id + "' ";
+            Statement stmt12 = conn.createStatement();
+            ResultSet rs12 = stmt12.executeQuery(s12);
+            double paid = 0;
+            if (rs12.next()) {
+                paid = rs12.getDouble(1);
+            }
+            double new_paid = paid + to_student_balance_adjustment_payments.paid;
+            String s13 = "update student_balance_adjustments set "
+                    + " paid= :new_paid "
+                    + " where id='" + to_student_balance_adjustment_payments.sba_id + "' "
+                    + " ";
+
+            s13 = SqlStringUtil.parse(s13)
+                    .setNumber("new_paid", new_paid)
+                    .ok();
+            stmt5.addBatch(s13);
+
+            //Search Student
+            String s10 = "select "
+                    + "id"
+                    + ",balance"
+                    + ",prepaid"
+                    + " from students"
+                    + " where id='" + student.id + "' ";
+            Statement stmt10 = conn.createStatement();
+            ResultSet rs10 = stmt10.executeQuery(s10);
+            double balance = 0;
+            if (rs10.next()) {
+                balance = rs10.getDouble(2);
+            }
+            double new_balance = balance - to_student_balance_adjustment_payments.paid;
+//            System.out.println("balance: " + balance + " - " + to_enrollment_assessment_payments.amount_paid);
+            String s11 = "update students set "
+                    + " balance= :balance "
+                    + " where id='" + student.id + "' "
+                    + " ";
+
+            s11 = SqlStringUtil.parse(s11)
+                    .setNumber("balance", new_balance)
+                    .ok();
+            stmt5.addBatch(s11);
+
+            String s14 = "update collections set "
+                    + " ref_id= :ref_id "
+                    + " where id='" + collection_id + "' "
+                    + " ";
+
+            s14 = SqlStringUtil.parse(s14)
+                    .setNumber("ref_id", eap_id)
+                    .ok();
+            stmt5.addBatch(s14);
+
+            stmt5.executeBatch();
+            conn.commit();
+
+            Lg.s(Enrollment_assessments.class, "Successfully Added");
+
+            return collection_or_no;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

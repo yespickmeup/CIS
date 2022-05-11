@@ -6,20 +6,25 @@
 package cis.finance;
 
 import cis.academic.Academic_years;
+import cis.account_types.Account_particulars;
+import cis.account_types.Dlg_account_particulars;
 import cis.finance.Student_balance_adjustments.to_student_balance_adjustments;
 import cis.students.Students;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -204,6 +209,11 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new Button.Success();
         jButton3 = new Button.Default();
+        jLabel76 = new javax.swing.JLabel();
+        tf_field127 = new Field.Combo();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_student_balance_adjustments = new javax.swing.JTable();
@@ -269,47 +279,100 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
             }
         });
 
+        jLabel76.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel76.setText("Particular:");
+
+        tf_field127.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tf_field127.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_field127MouseClicked(evt);
+            }
+        });
+        tf_field127.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_field127ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox1.setSelected(true);
+        jCheckBox1.setText("Is Payable?");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("+");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox2.setSelected(true);
+        jCheckBox2.setText("Add");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tf_field126))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
+                            .addComponent(jCheckBox2)
+                            .addGap(18, 18, 18)
+                            .addComponent(jCheckBox1))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_field127)
+                            .addGap(1, 1, 1)
+                            .addComponent(jButton1))))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(151, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tf_field126, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_field127, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
-        jTabbedPane1.addTab("Adjustment", jPanel2);
+        jTabbedPane1.addTab("Payable", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -345,7 +408,7 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,15 +422,16 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(7, 7, 7)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
 
@@ -504,13 +568,36 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_field130ActionPerformed
 
+    private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
+        init_particulars();
+    }//GEN-LAST:event_tf_field127MouseClicked
+
+    private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
+        init_particulars();
+    }//GEN-LAST:event_tf_field127ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        add_particulars();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            jCheckBox2.setVisible(false);
+        } else {
+            jCheckBox2.setVisible(true);
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -520,6 +607,7 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -531,6 +619,7 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable tbl_student_balance_adjustments;
     private javax.swing.JTextField tf_field126;
+    private javax.swing.JTextField tf_field127;
     private javax.swing.JTextField tf_field130;
     private javax.swing.JTextField tf_field5;
     private javax.swing.JTextField tf_field6;
@@ -545,6 +634,8 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
             academic_year_id1 = acad.id;
             academic_year1 = acad.years;
         }
+        jCheckBox2.setVisible(false);
+        ret_particulars();
     }
 
     int academic_year_id1 = 0;
@@ -564,7 +655,7 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Key">
     private void disposed() {
         ok();
-       
+
     }
 
     private void init_key() {
@@ -573,10 +664,16 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
 
                           @Override
                           public void actionPerformed(ActionEvent e) {
-//                btn_0.doClick();
-                              disposed();
+                              ok1();
+
                           }
                       });
+    }
+
+    private void ok1() {
+        if (callback != null) {
+            callback.ok(new CloseDialog(this), new OutputData());
+        }
     }
     // </editor-fold>
 
@@ -590,9 +687,9 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         tbl_student_balance_adjustments.setModel(tbl_student_balance_adjustments_M);
         tbl_student_balance_adjustments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tbl_student_balance_adjustments.setRowHeight(25);
-        int[] tbl_widths_student_balance_adjustments = {100, 120, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] tbl_widths_student_balance_adjustments = {100, 120, 120, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0, n = tbl_widths_student_balance_adjustments.length; i < n; i++) {
-            if (i == 0) {
+            if (i == 1) {
                 continue;
             }
             TableWidthUtilities.setColumnWidth(tbl_student_balance_adjustments, i, tbl_widths_student_balance_adjustments[i]);
@@ -603,9 +700,9 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         tbl_student_balance_adjustments.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
         tbl_student_balance_adjustments.setRowHeight(25);
         tbl_student_balance_adjustments.setFont(new java.awt.Font("Arial", 0, 12));
-        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 2);
-        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 3);
-        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 4);
+        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 5);
+        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 6);
+        TableWidthUtilities.setColumnRightRenderer(tbl_student_balance_adjustments, 7);
     }
 
     public static void loadData_student_balance_adjustments(List<to_student_balance_adjustments> acc) {
@@ -616,7 +713,7 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
     public static class Tblstudent_balance_adjustmentsModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Date", "Remarks", "Amount", "Paid", "Balance", "lname", "is_transferee", "academic_year", "academic_year_id", "course_id", "course_code", "course_description", "year_level", "term", "department_id", "department", "college_id", "college", "adjustment_amount", "paid", "remarks", "status", "created_at", "created_by", "updated_at", "updated_by"
+            "Date", "Particular", "Remarks", "Payable", "Type", "Amount", "Paid", "Balance", "academic_year_id", "course_id", "course_code", "course_description", "year_level", "term", "department_id", "department", "college_id", "college", "adjustment_amount", "paid", "remarks", "status", "created_at", "created_by", "updated_at", "updated_by"
         };
 
         public Tblstudent_balance_adjustmentsModel(ListModel listmodel) {
@@ -646,19 +743,42 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
                 case 0:
                     return " " + DateType.convert_slash_datetime(tt.created_at);
                 case 1:
-                    return " " + tt.remarks;
+                    return " " + tt.particular;
                 case 2:
-                    return " " + FitIn.fmt_wc_0(tt.adjustment_amount) + " ";
+                    return " " + tt.remarks;
                 case 3:
-                    return " " + FitIn.fmt_wc_0(tt.paid) + " ";
+                    if (tt.is_payable == 1) {
+                        return " Yes";
+                    } else {
+                        return " No";
+                    }
                 case 4:
-                    return " " + FitIn.fmt_wc_0(tt.adjustment_amount - tt.paid) + " ";
+                    if (tt.is_add == 1) {
+                        if (tt.is_payable == 1) {
+                            return " ";
+                        } else {
+                            return " Add";
+                        }
+
+                    } else {
+                        return " Deduct";
+                    }
                 case 5:
-                    return tt.lname;
+                    if (tt.is_payable == 0 && tt.is_add == 0) {
+                        return " -" + FitIn.fmt_wc_0(tt.adjustment_amount) + " ";
+                    } else {
+                        return " " + FitIn.fmt_wc_0(tt.adjustment_amount) + " ";
+                    }
+
                 case 6:
-                    return tt.is_transferee;
+                    return " " + FitIn.fmt_wc_0(tt.paid) + " ";
                 case 7:
-                    return tt.academic_year;
+                    if (tt.is_payable == 0 && tt.is_add == 0) {
+                        return " -" + FitIn.fmt_wc_0(tt.adjustment_amount) + " ";
+                    } else {
+                        return " " + FitIn.fmt_wc_0(tt.adjustment_amount - tt.paid) + " ";
+                    }
+
                 case 8:
                     return tt.academic_year_id;
                 case 9:
@@ -707,7 +827,12 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
         jLabel2.setText("" + datas.size());
         double balance = 0;
         for (Student_balance_adjustments.to_student_balance_adjustments ad : datas) {
-            balance += (ad.adjustment_amount - ad.paid);
+            if (ad.is_payable == 0 && ad.is_add == 0) {
+                balance -= (ad.adjustment_amount - ad.paid);
+            } else {
+                balance += (ad.adjustment_amount - ad.paid);
+            }
+
         }
         jLabel4.setText("" + FitIn.fmt_wc_0(balance));
     }
@@ -753,7 +878,19 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
                 int created_by = FitIn.toInt(MyUser.getUser_id());
                 String updated_at = DateType.now();
                 int updated_by = FitIn.toInt(MyUser.getUser_id());
-                Student_balance_adjustments.to_student_balance_adjustments to = new to_student_balance_adjustments(id, student_id, student_no, fname, mi, lname, is_transferee, academic_year, academic_year_id, course_id, course_code, course_description, year_level, term, department_id, department, college_id, college, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by);
+
+                Field.Combo tf = (Field.Combo) tf_field127;
+                int particular_id = FitIn.toInt(tf.getId());
+                String particular = tf.getText();
+                int is_payable = 1;
+                if (!jCheckBox1.isSelected()) {
+                    is_payable = 0;
+                }
+                int is_add = 1;
+                if (!jCheckBox2.isSelected()) {
+                    is_add = 0;
+                }
+                Student_balance_adjustments.to_student_balance_adjustments to = new to_student_balance_adjustments(id, student_id, student_no, fname, mi, lname, is_transferee, academic_year, academic_year_id, course_id, course_code, course_description, year_level, term, department_id, department, college_id, college, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by, particular_id, particular, is_payable, is_add);
                 Student_balance_adjustments.add_data(to);
                 Alert.set(1, "");
                 jTabbedPane1.setSelectedIndex(1);
@@ -772,4 +909,58 @@ public class Dlg_student_balance_adjustment_add extends javax.swing.JDialog {
             callback.ok(new CloseDialog(this), new OutputData());
         }
     }
+
+    private void ret_particulars() {
+        String where = " order by particular asc ";
+        particulars = Account_particulars.ret_data(where);
+        if (!particulars.isEmpty()) {
+            Account_particulars.to_account_particulars to = (Account_particulars.to_account_particulars) particulars.get(0);
+            Field.Combo tf = (Field.Combo) tf_field127;
+            tf.setId("" + to.id);
+            tf.setText(to.particular);
+
+        }
+    }
+    List<Account_particulars.to_account_particulars> particulars = new ArrayList();
+
+    private void init_particulars() {
+        Object[][] obj = new Object[particulars.size()][1];
+        int i = 0;
+        for (Account_particulars.to_account_particulars to : particulars) {
+            obj[i][0] = " " + to.particular;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {tf_field127.getWidth()};
+        int width = 0;
+        String[] col_names = {""};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_field127, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                Account_particulars.to_account_particulars to = particulars.get(data.selected_row);
+                tf_field127.setText("" + to.particular);
+
+            }
+        });
+    }
+
+    private void add_particulars() {
+        Window p = (Window) this;
+        Dlg_account_particulars nd = Dlg_account_particulars.create(p, true);
+        nd.setTitle("");
+        nd.do_pass();
+        nd.setCallback(new Dlg_account_particulars.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_account_particulars.OutputData data) {
+                closeDialog.ok();
+                ret_particulars();
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
+
 }

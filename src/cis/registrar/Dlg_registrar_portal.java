@@ -15,7 +15,6 @@ import cis.courses.Courses;
 import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.deans_portal.Dlg_dean_student_advice_load_subject;
 import cis.departments.Departments;
-import cis.enrollments.Dlg_student_enrollment;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects;
@@ -33,7 +32,6 @@ import cis.utils.DateType;
 import cis.utils.DateUtils1;
 import cis.utils.Dlg_confirm_action;
 import cis.utils.Dlg_confirm_action3;
-import cis.utils.Dlg_confirm_action4;
 import cis.utils.Dlg_confirm_delete;
 import cis.utils.Dlg_confirm_delete2;
 import cis.utils.TableRenderer;
@@ -50,13 +48,11 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import static java.lang.ProcessBuilder.Redirect.to;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -335,6 +331,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         tbl_enrollment_student_loaded_subjects = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jCheckBox33 = new javax.swing.JCheckBox();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_added_subjects = new javax.swing.JTable();
@@ -1145,7 +1142,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jXCollapsiblePane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -1278,6 +1275,14 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
         jLabel3.setText("0");
 
+        jCheckBox33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox33.setText("Autoload Subject Details");
+        jCheckBox33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox33ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1285,19 +1290,23 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox33, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(jCheckBox33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -2802,6 +2811,10 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         select_documents();
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+    private void jCheckBox33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox33ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2840,6 +2853,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBox30;
     private javax.swing.JCheckBox jCheckBox31;
     private javax.swing.JCheckBox jCheckBox32;
+    private javax.swing.JCheckBox jCheckBox33;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
@@ -5137,10 +5151,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
                 Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
                 nd.setTitle("");
                 Academic_offering_subjects.to_academic_offering_subjects aos = null;
-
+                boolean is_autoload = false;
+                if(jCheckBox33.isSelected()){
+                    is_autoload=true;
+                }
                 if (!aoss.isEmpty()) {
                     aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
-                    nd.do_pass(aos, acad.id, enroll);
+                    nd.do_pass(aos, acad.id, enroll,is_autoload);
                 }
                 final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
                 nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {

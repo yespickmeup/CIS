@@ -20,6 +20,7 @@ import cis.registrar.Dlg_registrar_portal;
 import cis.enrollments.Dlg_student_enrollment;
 import cis.faculty_members.Dlg_faculty_profile;
 import cis.finance.Dlg_finance;
+import cis.finance.Dlg_finance_payment_encoding;
 import cis.finance.Dlg_students_balance_adjustments;
 import cis.registrar.Dlg_registrar_student_transfer_section;
 import cis.reports.Dlg_class_list;
@@ -759,6 +760,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Disbursements")) {
                     t_disbursements();
                 }
+                if (data.stmt.equals("Finance Encoding")) {
+                    t_finance_encoding();
+                }
 
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
@@ -917,6 +921,11 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     private void t_disbursements() {
         Dlg_disbursements dtc = new Dlg_disbursements();
         MyFrame.set(dtc.getSurface(), jPanel1, "Disbursements");
+    }
+
+    private void t_finance_encoding() {
+        Dlg_finance_payment_encoding dtc = new Dlg_finance_payment_encoding();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Finance Encoding");
     }
 
     private void m_academic_years() {

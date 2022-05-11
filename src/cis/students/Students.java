@@ -2260,4 +2260,26 @@ public class Students {
         }
     }
 
+    public static void update_student_balance(to_students to_students, double new_balance) {
+        try {
+            Connection conn = MyConnection.connect();
+            String s0 = "update students set "
+                    + " balance= :balance "
+                    + " where id='" + to_students.id + "' "
+                    + " ";
+
+            s0 = SqlStringUtil.parse(s0)
+                    .setNumber("balance", new_balance)
+                    .ok();
+
+            PreparedStatement stmt = conn.prepareStatement(s0);
+            stmt.execute();
+            Lg.s(Students.class, "Successfully Updated");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            MyConnection.close();
+        }
+    }
+
 }

@@ -62,8 +62,11 @@ public class Enrollment_assessment_payments {
         public final String updated_by;
         public final int status;
         public final int is_uploaded;
+        public final int collection_id;
+        public final String collection_no;
+        public final String collection_sales_no;
 
-        public to_enrollment_assessment_payments(int id, int enrollment_assessment_id, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, String check_bank, String check_no, double check_amount, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String credit_card_holder, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded) {
+        public to_enrollment_assessment_payments(int id, int enrollment_assessment_id, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, String check_bank, String check_no, double check_amount, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String credit_card_holder, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int collection_id, String collection_no, String collection_sales_no) {
             this.id = id;
             this.enrollment_assessment_id = enrollment_assessment_id;
             this.enrollment_id = enrollment_id;
@@ -102,6 +105,9 @@ public class Enrollment_assessment_payments {
             this.updated_by = updated_by;
             this.status = status;
             this.is_uploaded = is_uploaded;
+            this.collection_id = collection_id;
+            this.collection_no = collection_no;
+            this.collection_sales_no = collection_sales_no;
         }
     }
 
@@ -146,6 +152,9 @@ public class Enrollment_assessment_payments {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",collection_id"
+                    + ",collection_no"
+                    + ",collection_sales_no"
                     + ")values("
                     + ":enrollment_assessment_id"
                     + ",:enrollment_id"
@@ -184,6 +193,9 @@ public class Enrollment_assessment_payments {
                     + ",:updated_by"
                     + ",:status"
                     + ",:is_uploaded"
+                    + ",:collection_id"
+                    + ",:collection_no"
+                    + ",:collection_sales_no"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -224,6 +236,9 @@ public class Enrollment_assessment_payments {
                     .setString("updated_by", to_enrollment_assessment_payments.updated_by)
                     .setNumber("status", to_enrollment_assessment_payments.status)
                     .setNumber("is_uploaded", to_enrollment_assessment_payments.is_uploaded)
+                    .setNumber("collection_id", to_enrollment_assessment_payments.collection_id)
+                    .setString("collection_no", to_enrollment_assessment_payments.collection_no)
+                    .setString("collection_sales_no", to_enrollment_assessment_payments.collection_sales_no)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -277,6 +292,9 @@ public class Enrollment_assessment_payments {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
+                    + ",collection_id= :collection_id "
+                    + ",collection_no= :collection_no "
+                    + ",collection_sales_no= :collection_sales_no "
                     + " where id='" + to_enrollment_assessment_payments.id + "' "
                     + " ";
 
@@ -318,6 +336,9 @@ public class Enrollment_assessment_payments {
                     .setString("updated_by", to_enrollment_assessment_payments.updated_by)
                     .setNumber("status", to_enrollment_assessment_payments.status)
                     .setNumber("is_uploaded", to_enrollment_assessment_payments.is_uploaded)
+                    .setNumber("collection_id", to_enrollment_assessment_payments.collection_id)
+                    .setString("collection_no", to_enrollment_assessment_payments.collection_no)
+                    .setString("collection_sales_no", to_enrollment_assessment_payments.collection_sales_no)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -391,6 +412,9 @@ public class Enrollment_assessment_payments {
                     + ",updated_by"
                     + ",status"
                     + ",is_uploaded"
+                    + ",collection_id"
+                    + ",collection_no"
+                    + ",collection_sales_no"
                     + " from enrollment_assessment_payments"
                     + " " + where;
 
@@ -435,8 +459,11 @@ public class Enrollment_assessment_payments {
                 String updated_by = rs.getString(36);
                 int status = rs.getInt(37);
                 int is_uploaded = rs.getInt(38);
+                int collection_id = rs.getInt(39);
+                String collection_no = rs.getString(40);
+                String collection_sales_no = rs.getString(41);
 
-                to_enrollment_assessment_payments to = new to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+                to_enrollment_assessment_payments to = new to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, collection_id, collection_no, collection_sales_no);
                 datas.add(to);
             }
             return datas;
