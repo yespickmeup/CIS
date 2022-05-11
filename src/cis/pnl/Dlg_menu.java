@@ -5,12 +5,22 @@
  */
 package cis.pnl;
 
+import cis.cash_drawer.CashDrawer;
+import cis.cash_drawer.Dlg_logout_cashin;
+import cis.cash_drawer.S1_cash_drawer;
+import cis.users.MyUser;
+import cis.users.S1_user_previleges;
+import cis.utils.Alert;
+import cis.utils.DateType;
+import cis.utils.Dlg_confirm_action;
 import java.awt.Point;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
@@ -365,7 +375,7 @@ public class Dlg_menu extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        ok1("logout");
+        logout2();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -399,7 +409,7 @@ public class Dlg_menu extends javax.swing.JDialog {
             l.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                                       l.setBackground(new java.awt.Color(16, 88, 197));
+                    l.setBackground(new java.awt.Color(16, 88, 197));
                     l.setForeground(new java.awt.Color(255, 255, 255));
                 }
 
@@ -433,12 +443,12 @@ public class Dlg_menu extends javax.swing.JDialog {
         KeyMapping.mapKeyWIFW(getSurface(),
                               KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 
@@ -510,6 +520,101 @@ public class Dlg_menu extends javax.swing.JDialog {
     }
 
     private void ok1(String stmt) {
+
+        if (callback != null) {
+            callback.ok1(new CloseDialog(this), new OutputData(stmt));
+        }
+    }
+
+    private void logout2() {
+
+        String where = " where user_id='" + MyUser.getUser_id() + "' and privilege like '%" + "Accounting (View)" + "%' "
+                + " or user_id='" + MyUser.getUser_id() + "' and privilege  like '%" + "Accounting - (Add)" + "%'"
+                + " order by privilege asc";
+        String where2 = " where user_id='" + MyUser.getUser_id() + "' order by id desc limit 1 ";
+
+        List<S1_cash_drawer.to_cash_drawer> drawers = S1_cash_drawer.ret_where(where2);
+        if (drawers.isEmpty()) {
+            Window p = (Window) this;
+            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            nd.setTitle("");
+            nd.setCallback(new Dlg_confirm_action.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                    System.exit(1);
+                }
+            });
+            Center.setCenter(nd);
+            nd.setVisible(true);
+        } else {
+            final S1_cash_drawer.to_cash_drawer drawer = drawers.get(0);
+            List<S1_user_previleges.to_user_previleges> datas = S1_user_previleges.ret_data(where);
+            if (!datas.isEmpty()) {
+                Window p = (Window) this;
+                Dlg_logout_cashin nd = Dlg_logout_cashin.create(p, true);
+                nd.setTitle("");
+                nd.do_pass(drawer);
+                nd.setCallback(new Dlg_logout_cashin.Callback() {
+                    @Override
+                    public void ok(CloseDialog closeDialog, Dlg_logout_cashin.OutputData data) {
+                        closeDialog.ok();
+
+                        double cashin = data.cashin;
+                        double thousand = data.thousand;
+                        double five_hundred = data.five_hundred;
+                        double two_hundred = data.two_hundred;
+                        double one_hundred = data.one_hundred;
+                        double fifty = data.fifty;
+                        double twenty = data.twenty;
+                        double ten = data.ten;
+                        double five = data.five;
+                        double one = data.one;
+                        double point_fifty = data.point_fifty;
+                        double point_twenty_five = data.point_twenty_five;
+                        double point_ten = data.point_ten;
+                        double point_five = data.point_five;
+                        int id = data.cashdrawer_id;
+                        String session_no = drawer.session_no;
+
+                        String user_name = drawer.user_name;
+                        String screen_name = drawer.user_screen_name;
+                        String time_in = drawer.time_in;
+                        String time_out = DateType.now();
+                        double amount = data.cashin;
+                        double cash_out = 0;
+                        double coins = 0;
+                        double expenses = 0;
+                        double point_two_five = point_twenty_five;
+                        double point_zero_five = point_five;
+
+                        String branch = drawer.branch;
+                        String branch_id = drawer.branch_id;
+                        String location = drawer.location;
+                        String location_id = drawer.location_id;
+                        String user_id = drawer.user_id;
+                        String user_screen_name = drawer.user_screen_name;
+                        int lock_session = 0;
+                        CashDrawer.to_cash_drawer to = new CashDrawer.to_cash_drawer(id, session_no, user_name, screen_name, time_in,
+                                                                                     time_out, amount, cash_out, thousand, five_hundred, two_hundred, fifty, twenty, coins,
+                                                                                     one_hundred, expenses, ten, five, one, point_fifty, point_twenty_five, point_ten, point_zero_five, branch, branch_id, location, location_id, user_id, user_screen_name, lock_session);
+
+                        String date = DateType.sf.format(new Date());
+                        CashDrawer.update_data(to, "" + id);
+                        Alert.set(2, "");
+                        ok3("Logout");
+                    }
+                });
+                Center.setCenter(nd);
+                nd.setVisible(true);
+            } else {
+                ok3("");
+            }
+
+        }
+
+    }
+
+    private void ok3(String stmt) {
 
         if (callback != null) {
             callback.ok1(new CloseDialog(this), new OutputData(stmt));

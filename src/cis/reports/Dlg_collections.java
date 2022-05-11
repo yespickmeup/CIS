@@ -10,8 +10,11 @@ import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
 import cis.cash_drawer.CashDrawer;
 import cis.cash_drawer.S1_cash_drawer;
+import cis.collections.Collection;
+import cis.collections.Collection.to_collections;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
+import cis.disbursements.S1_disbursements;
 import cis.users.MyUser;
 import cis.users.User_previleges;
 import cis.users.Users;
@@ -513,10 +516,9 @@ public class Dlg_collections extends javax.swing.JDialog {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51))
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(51, 51, 51)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tf_field14)
                                     .addComponent(tf_field15))
@@ -648,7 +650,7 @@ public class Dlg_collections extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Collections", jPanel2);
+        jTabbedPane1.addTab("Collections Summary", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -835,8 +837,8 @@ public class Dlg_collections extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+        System.setProperty("pool_db", "db_cis_cosca");
+        System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
 
         setAcad();
@@ -1254,11 +1256,13 @@ public class Dlg_collections extends javax.swing.JDialog {
 
                 String user_id = MyUser.getUser_id();
                 String where = " where id<>0 ";
-                String where2 = " where id<>0 ";
 
+                String where2 = " where id<>0 ";
+                String where3 = " where id<>0 ";
                 if (!jCheckBox1.isSelected()) {
                     where = where + " and created_by = '" + user_id + "' ";
                     where2 = where2 + " and user_id = '" + user_id + "' ";
+                    where3 = where3 + " and user_id = '" + user_id + "' ";
                 }
 
                 if (!jCheckBox5.isSelected() && !tf_cashier5.getText().isEmpty()) {
@@ -1275,6 +1279,7 @@ public class Dlg_collections extends javax.swing.JDialog {
 
                         where = where + " and created_at between '" + date_from_sales + "' and '" + date_to_sales + "'";
                         where2 = where2 + " and time_in between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        where3 = where3 + " and date_added between '" + date_from_sales + "' and '" + date_to_sales + "'";
                         date = tf_cashier5.getText();
                     } catch (ParseException ex) {
                         Logger.getLogger(Dlg_collections.class.getName()).log(Level.SEVERE, null, ex);
@@ -1284,11 +1289,13 @@ public class Dlg_collections extends javax.swing.JDialog {
                     String date_from = DateType.sf.format(jDateChooser1.getDate());
                     String date_to = DateType.sf.format(jDateChooser2.getDate());
 
-                    where = where + " and created_at between '" + date_from + "' and '" + date_to + "'";
-                    where2 = where2 + " and time_in between '" + date_from + "' and '" + date_to + "'";
+                    where = where + " and Date(created_at) between '" + date_from + "' and '" + date_to + "'";
+                    where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
+                    where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
                 }
 
-                List<Srpt_collections.field> datas = Srpt_collections.ret_data(where);
+                List<Collection.to_collections> datas = Collection.ret_data(where);
+                List<S1_disbursements.to_disbursements> disbursements = S1_disbursements.ret_data(where3);
 
                 double cashin_beg = 0;
                 double cash_sales = 0;
@@ -1303,18 +1310,74 @@ public class Dlg_collections extends javax.swing.JDialog {
                 double gc_amount = 0;
                 double online_amount = 0;
 
-                for (Srpt_collections.field to : datas) {
+                double sf_cash = 0;
+                double sf_cebuana = 0;
+                double sf_palawan = 0;
+                double sf_ml = 0;
+                double sf_gcash = 0;
+                double sf_check = 0;
+                double sf_credit_card = 0;
+
+                double canteen_cash = 0;
+                double canteen_cebuana = 0;
+                double canteen_palawan = 0;
+                double canteen_ml = 0;
+                double canteen_gcash = 0;
+                double canteen_check = 0;
+                double canteen_credit_card = 0;
+
+                double books_cash = 0;
+                double books_cebuana = 0;
+                double books_palawan = 0;
+                double books_ml = 0;
+                double books_gcash = 0;
+                double books_check = 0;
+                double books_credit_card = 0;
+
+                double oi_cash = 0;
+                double oi_cebuana = 0;
+                double oi_palawan = 0;
+                double oi_ml = 0;
+                double oi_gcash = 0;
+                double oi_check = 0;
+                double oi_credit_card = 0;
+
+                for (Collection.to_collections to : datas) {
                     cash_sales += to.cash;
-                    check_amount += to.cash;
-                    credit_card_amount += to.credit_amount;
-                    gc_amount += to.gc_amount;
+                    check_amount += to.check_amount;
+                    credit_card_amount += to.credit_card_amount;
+                    gc_amount += to.gift_certificate_amount;
                     online_amount += to.online_amount;
                     receipts_total += to.amount_paid;
                     receipts_sale_discount += to.discount_amount;
-                    receipt_net_total += to.net_total;
+
+                    sf_cash += to.cash;
+                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                        sf_gcash += to.online_amount;
+                    }
+                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                        sf_cebuana += to.online_amount;
+                    }
+                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                        sf_palawan += to.online_amount;
+                    }
+                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                        sf_ml += to.online_amount;
+                    }
                 }
 
+                double cebuana_total = sf_cebuana;
+                double palawan_total = sf_palawan;
+                double ml_total = sf_ml;
+                double gcash_total = sf_gcash;
+                double check_total = check_amount;
+                double credit_card_total = 0;
+                double disbursement = 0;
+                for (S1_disbursements.to_disbursements dis : disbursements) {
+                    disbursement += dis.amount;
+                }
                 List<CashDrawer.to_cash_drawer> drawer = CashDrawer.ret_where(where2);
+                System.out.println(where2);
                 double bills_thousand = 0;
                 double bills_five_hundred = 0;
                 double bills_two_hundred = 0;
@@ -1346,6 +1409,7 @@ public class Dlg_collections extends javax.swing.JDialog {
                 double cc_cashin_end = 0;
 
                 for (CashDrawer.to_cash_drawer dr : drawer) {
+                    cashin_beg += dr.amount;
                     count_bills_thousand += dr.thousand;
                     count_bills_five_hundred += dr.five_hundred;
                     count_bills_two_hundred += dr.two_hundred;
@@ -1361,6 +1425,8 @@ public class Dlg_collections extends javax.swing.JDialog {
                     count_coins_point_zero_five += dr.point_zero_five;
 
                 }
+
+                receipt_net_total = cash_sales - disbursement;
 
                 bills_thousand = 1000 * count_bills_thousand;
                 bills_five_hundred = 500 * count_bills_five_hundred;
@@ -1390,12 +1456,13 @@ public class Dlg_collections extends javax.swing.JDialog {
                     status = "[Over]";
                 }
 
-                double disbursement = 0;
                 List<Srpt_collections.field> fields = new ArrayList();
 
                 String course = "All";
                 String jrxml = "rpt_collections.jrxml";
-                Srpt_collections rpt = new Srpt_collections(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by, cashin_beg, cash_sales, receipts_total, receipts_line_discount, receipts_sale_discount, receipts_sub_total, receipt_net_total, check_amount, credit_card_amount, gc_amount, online_amount, bills_thousand, bills_five_hundred, bills_two_hundred, bills_one_hundred, bills_fifty, bills_twenty, coins_ten, coins_five, coins_one, coins_point_fifty, coins_point_twenty_five, coins_point_ten, coins_point_zero_five, count_bills_thousand, count_bills_five_hundred, count_bills_two_hundred, count_bills_one_hundred, count_bills_fifty, count_bills_twenty, count_coins_ten, count_coins_five, count_coins_one, count_coins_point_fifty, count_coins_point_twenty_five, count_coins_point_ten, count_coins_point_zero_five, cc_total, cc_last_remittance, cc_cashin_end, disbursement, status, status_amount, course);
+
+                Srpt_collections rpt = new Srpt_collections(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by, cashin_beg, cash_sales, receipts_total, receipts_line_discount, receipts_sale_discount, receipts_sub_total, receipt_net_total, check_amount, credit_card_amount, gc_amount, online_amount, bills_thousand, bills_five_hundred, bills_two_hundred, bills_one_hundred, bills_fifty, bills_twenty, coins_ten, coins_five, coins_one, coins_point_fifty, coins_point_twenty_five, coins_point_ten, coins_point_zero_five, count_bills_thousand, count_bills_five_hundred, count_bills_two_hundred, count_bills_one_hundred, count_bills_fifty, count_bills_twenty, count_coins_ten, count_coins_five, count_coins_one, count_coins_point_fifty, count_coins_point_twenty_five, count_coins_point_ten, count_coins_point_zero_five, cc_total, cc_last_remittance, cc_cashin_end, disbursement, fields, status, status_amount, course, sf_cash, sf_cebuana, sf_palawan, sf_ml, sf_gcash, sf_check, sf_credit_card, canteen_cash, canteen_cebuana, canteen_palawan, canteen_ml, canteen_gcash, canteen_check, canteen_credit_card, books_cash, books_cebuana, books_palawan, books_ml, books_gcash, books_check, books_credit_card, oi_cash, oi_cebuana, oi_palawan, oi_ml, oi_gcash, oi_check, oi_credit_card, cebuana_total, palawan_total, ml_total, gcash_total, check_total, credit_card_total);
+
                 rpt.fields.addAll(fields);
                 report_class_list(rpt, jrxml);
                 jProgressBar1.setString("Finished...");

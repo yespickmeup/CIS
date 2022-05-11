@@ -21,7 +21,7 @@ import mijzcx.synapse.desk.utils.SqlStringUtil;
  *
  * @author USER
  */
-public class Collections {
+public class Collection {
 
     public static class to_collections {
 
@@ -61,8 +61,17 @@ public class Collections {
         public final int status;
         public final int is_uploaded;
         public final int ref_id;
+        public final String school_year;
+        public final String period;
+        public final String year_level;
+        public final String department_id;
+        public final String department;
+        public final String college_id;
+        public final String college;
+        public final String course_id;
+        public final String course;
 
-        public to_collections(int id, String collection_no, String or_no, String payment_type, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, double check_amount, String check_bank, String check_no, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int ref_id) {
+        public to_collections(int id, String collection_no, String or_no, String payment_type, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, double check_amount, String check_bank, String check_no, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int ref_id, String school_year, String period, String year_level, String department_id, String department, String college_id, String college, String course_id, String course) {
             this.id = id;
             this.collection_no = collection_no;
             this.or_no = or_no;
@@ -99,6 +108,15 @@ public class Collections {
             this.status = status;
             this.is_uploaded = is_uploaded;
             this.ref_id = ref_id;
+            this.school_year = school_year;
+            this.period = period;
+            this.year_level = year_level;
+            this.department_id = department_id;
+            this.department = department;
+            this.college_id = college_id;
+            this.college = college;
+            this.course_id = course_id;
+            this.course = course;
         }
     }
 
@@ -141,6 +159,15 @@ public class Collections {
                     + ",status"
                     + ",is_uploaded"
                     + ",ref_id"
+                    + ",school_year"
+                    + ",period"
+                    + ",year_level"
+                    + ",department_id"
+                    + ",department"
+                    + ",college_id"
+                    + ",college"
+                    + ",course_id"
+                    + ",course"
                     + ")values("
                     + ":collection_no"
                     + ",:or_no"
@@ -177,6 +204,15 @@ public class Collections {
                     + ",:status"
                     + ",:is_uploaded"
                     + ",:ref_id"
+                    + ",:school_year"
+                    + ",:period"
+                    + ",:year_level"
+                    + ",:department_id"
+                    + ",:department"
+                    + ",:college_id"
+                    + ",:college"
+                    + ",:course_id"
+                    + ",:course"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -215,11 +251,20 @@ public class Collections {
                     .setNumber("status", to_collections.status)
                     .setNumber("is_uploaded", to_collections.is_uploaded)
                     .setNumber("ref_id", to_collections.ref_id)
+                    .setString("school_year", to_collections.school_year)
+                    .setString("period", to_collections.period)
+                    .setString("year_level", to_collections.year_level)
+                    .setString("department_id", to_collections.department_id)
+                    .setString("department", to_collections.department)
+                    .setString("college_id", to_collections.college_id)
+                    .setString("college", to_collections.college)
+                    .setString("course_id", to_collections.course_id)
+                    .setString("course", to_collections.course)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
-            Lg.s(Collections.class, "Successfully Added");
+            Lg.s(Collection.class, "Successfully Added");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -265,7 +310,16 @@ public class Collections {
                     + ",updated_by= :updated_by "
                     + ",status= :status "
                     + ",is_uploaded= :is_uploaded "
-                    + ",ref_id= :ref_id"
+                    + ",ref_id= :ref_id "
+                    + ",school_year= :school_year "
+                    + ",period= :period "
+                    + ",year_level= :year_level "
+                    + ",department_id= :department_id "
+                    + ",department= :department "
+                    + ",college_id= :college_id "
+                    + ",college= :college "
+                    + ",course_id= :course_id "
+                    + ",course= :course "
                     + " where id='" + to_collections.id + "' "
                     + " ";
 
@@ -305,11 +359,20 @@ public class Collections {
                     .setNumber("status", to_collections.status)
                     .setNumber("is_uploaded", to_collections.is_uploaded)
                     .setNumber("ref_id", to_collections.ref_id)
+                    .setString("school_year", to_collections.school_year)
+                    .setString("period", to_collections.period)
+                    .setString("year_level", to_collections.year_level)
+                    .setString("department_id", to_collections.department_id)
+                    .setString("department", to_collections.department)
+                    .setString("college_id", to_collections.college_id)
+                    .setString("college", to_collections.college)
+                    .setString("course_id", to_collections.course_id)
+                    .setString("course", to_collections.course)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
-            Lg.s(Collections.class, "Successfully Updated");
+            Lg.s(Collection.class, "Successfully Updated");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -326,7 +389,7 @@ public class Collections {
 
             PreparedStatement stmt = conn.prepareStatement(s0);
             stmt.execute();
-            Lg.s(Collections.class, "Successfully Deleted");
+            Lg.s(Collection.class, "Successfully Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -376,6 +439,15 @@ public class Collections {
                     + ",status"
                     + ",is_uploaded"
                     + ",ref_id"
+                    + ",school_year"
+                    + ",period"
+                    + ",year_level"
+                    + ",department_id"
+                    + ",department"
+                    + ",college_id"
+                    + ",college"
+                    + ",course_id"
+                    + ",course"
                     + " from collections"
                     + " " + where;
 
@@ -418,7 +490,17 @@ public class Collections {
                 int status = rs.getInt(34);
                 int is_uploaded = rs.getInt(35);
                 int ref_id = rs.getInt(36);
-                to_collections to = new to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded,ref_id);
+                String school_year = rs.getString(37);
+                String period = rs.getString(38);
+                String year_level = rs.getString(39);
+                String department_id = rs.getString(40);
+                String department = rs.getString(41);
+                String college_id = rs.getString(42);
+                String college = rs.getString(43);
+                String course_id = rs.getString(44);
+                String course = rs.getString(45);
+
+                to_collections to = new to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course);
                 datas.add(to);
             }
             return datas;

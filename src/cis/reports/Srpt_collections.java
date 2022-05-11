@@ -89,7 +89,46 @@ public class Srpt_collections {
     public final double status_amount;
     public final String course;
 
-    public Srpt_collections(String business_name, String address, String contact_no, String school_year, String semester, String department, String college, String year_level, String user, String date, String printed_by, double cashin_beg, double cash_sales, double receipts_total, double receipts_line_discount, double receipts_sale_discount, double receipts_sub_total, double receipt_net_total, double check_amount, double credit_card_amount, double gc_amount, double online_amount, double bills_thousand, double bills_five_hundred, double bills_two_hundred, double bills_one_hundred, double bills_fifty, double bills_twenty, double coins_ten, double coins_five, double coins_one, double coins_point_fifty, double coins_point_twenty_five, double coins_point_ten, double coins_point_zero_five, double count_bills_thousand, double count_bills_five_hundred, double count_bills_two_hundred, double count_bills_one_hundred, double count_bills_fifty, double count_bills_twenty, double count_coins_ten, double count_coins_five, double count_coins_one, double count_coins_point_fifty, double count_coins_point_twenty_five, double count_coins_point_ten, double count_coins_point_zero_five, double cc_total, double cc_last_remittance, double cc_cashin_end, double disbursement, String status, double status_amount, String course) {
+    public final double sf_cash;
+    public final double sf_cebuana;
+    public final double sf_palawan;
+    public final double sf_ml;
+    public final double sf_gcash;
+    public final double sf_check;
+    public final double sf_credit_card;
+
+    public final double canteen_cash;
+    public final double canteen_cebuana;
+    public final double canteen_palawan;
+    public final double canteen_ml;
+    public final double canteen_gcash;
+    public final double canteen_check;
+    public final double canteen_credit_card;
+
+    public final double books_cash;
+    public final double books_cebuana;
+    public final double books_palawan;
+    public final double books_ml;
+    public final double books_gcash;
+    public final double books_check;
+    public final double books_credit_card;
+
+    public final double oi_cash;
+    public final double oi_cebuana;
+    public final double oi_palawan;
+    public final double oi_ml;
+    public final double oi_gcash;
+    public final double oi_check;
+    public final double oi_credit_card;
+
+    public final double cebuana_total;
+    public final double palawan_total;
+    public final double ml_total;
+    public final double gcash_total;
+    public final double check_total;
+    public final double credit_card_total;
+
+    public Srpt_collections(String business_name, String address, String contact_no, String school_year, String semester, String department, String college, String year_level, String user, String date, String printed_by, double cashin_beg, double cash_sales, double receipts_total, double receipts_line_discount, double receipts_sale_discount, double receipts_sub_total, double receipt_net_total, double check_amount, double credit_card_amount, double gc_amount, double online_amount, double bills_thousand, double bills_five_hundred, double bills_two_hundred, double bills_one_hundred, double bills_fifty, double bills_twenty, double coins_ten, double coins_five, double coins_one, double coins_point_fifty, double coins_point_twenty_five, double coins_point_ten, double coins_point_zero_five, double count_bills_thousand, double count_bills_five_hundred, double count_bills_two_hundred, double count_bills_one_hundred, double count_bills_fifty, double count_bills_twenty, double count_coins_ten, double count_coins_five, double count_coins_one, double count_coins_point_fifty, double count_coins_point_twenty_five, double count_coins_point_ten, double count_coins_point_zero_five, double cc_total, double cc_last_remittance, double cc_cashin_end, double disbursement, List<field> fields, String status, double status_amount, String course, double sf_cash, double sf_cebuana, double sf_palawan, double sf_ml, double sf_gcash, double sf_check, double sf_credit_card, double canteen_cash, double canteen_cebuana, double canteen_palawan, double canteen_ml, double canteen_gcash, double canteen_check, double canteen_credit_card, double books_cash, double books_cebuana, double books_palawan, double books_ml, double books_gcash, double books_check, double books_credit_card, double oi_cash, double oi_cebuana, double oi_palawan, double oi_ml, double oi_gcash, double oi_check, double oi_credit_card, double cebuana_total, double palawan_total, double ml_total, double gcash_total, double check_total, double credit_card_total) {
         this.business_name = business_name;
         this.address = address;
         this.contact_no = contact_no;
@@ -142,10 +181,44 @@ public class Srpt_collections {
         this.cc_last_remittance = cc_last_remittance;
         this.cc_cashin_end = cc_cashin_end;
         this.disbursement = disbursement;
-        this.fields = new ArrayList();
+        this.fields = fields;
         this.status = status;
         this.status_amount = status_amount;
         this.course = course;
+        this.sf_cash = sf_cash;
+        this.sf_cebuana = sf_cebuana;
+        this.sf_palawan = sf_palawan;
+        this.sf_ml = sf_ml;
+        this.sf_gcash = sf_gcash;
+        this.sf_check = sf_check;
+        this.sf_credit_card = sf_credit_card;
+        this.canteen_cash = canteen_cash;
+        this.canteen_cebuana = canteen_cebuana;
+        this.canteen_palawan = canteen_palawan;
+        this.canteen_ml = canteen_ml;
+        this.canteen_gcash = canteen_gcash;
+        this.canteen_check = canteen_check;
+        this.canteen_credit_card = canteen_credit_card;
+        this.books_cash = books_cash;
+        this.books_cebuana = books_cebuana;
+        this.books_palawan = books_palawan;
+        this.books_ml = books_ml;
+        this.books_gcash = books_gcash;
+        this.books_check = books_check;
+        this.books_credit_card = books_credit_card;
+        this.oi_cash = oi_cash;
+        this.oi_cebuana = oi_cebuana;
+        this.oi_palawan = oi_palawan;
+        this.oi_ml = oi_ml;
+        this.oi_gcash = oi_gcash;
+        this.oi_check = oi_check;
+        this.oi_credit_card = oi_credit_card;
+        this.cebuana_total = cebuana_total;
+        this.palawan_total = palawan_total;
+        this.ml_total = ml_total;
+        this.gcash_total = gcash_total;
+        this.check_total = check_total;
+        this.credit_card_total = credit_card_total;
     }
 
     public static class field {
@@ -338,13 +411,54 @@ public class Srpt_collections {
         double cc_last_remittance = 0;
         double cc_cashin_end = 0;
         double disbursement = 0;
+
+        double sf_cash = 0;
+        double sf_cebuana = 0;
+        double sf_palawan = 0;
+        double sf_ml = 0;
+        double sf_gcash = 0;
+        double sf_check = 0;
+        double sf_credit_card = 0;
+
+        double canteen_cash = 0;
+        double canteen_cebuana = 0;
+        double canteen_palawan = 0;
+        double canteen_ml = 0;
+        double canteen_gcash = 0;
+        double canteen_check = 0;
+        double canteen_credit_card = 0;
+
+        double books_cash = 0;
+        double books_cebuana = 0;
+        double books_palawan = 0;
+        double books_ml = 0;
+        double books_gcash = 0;
+        double books_check = 0;
+        double books_credit_card = 0;
+
+        double oi_cash = 0;
+        double oi_cebuana = 0;
+        double oi_palawan = 0;
+        double oi_ml = 0;
+        double oi_gcash = 0;
+        double oi_check = 0;
+        double oi_credit_card = 0;
+
+        double cebuana_total = 0;
+        double palawan_total = 0;
+        double ml_total = 0;
+        double gcash_total = 0;
+        double check_total = 0;
+        double credit_card_total = 0;
+
         List<field> fields = new ArrayList();
         String status = "";
         double status_amount = 0;
         String course = "";
         String jrxml = "rpt_collections.jrxml";
 
-        Srpt_collections rpt = new Srpt_collections(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by, cashin_beg, cash_sales, receipts_total, receipts_line_discount, receipts_sale_discount, receipts_sub_total, receipt_net_total, check_amount, credit_card_amount, gc_amount, online_amount, bills_thousand, bills_five_hundred, bills_two_hundred, bills_one_hundred, bills_fifty, bills_twenty, coins_ten, coins_five, coins_one, coins_point_fifty, coins_point_twenty_five, coins_point_ten, coins_point_zero_five, count_bills_thousand, count_bills_five_hundred, count_bills_two_hundred, count_bills_one_hundred, count_bills_fifty, count_bills_twenty, count_coins_ten, count_coins_five, count_coins_one, count_coins_point_fifty, count_coins_point_twenty_five, count_coins_point_ten, count_coins_point_zero_five, cc_total, cc_last_remittance, cc_cashin_end, disbursement, status, status_amount, course);
+        Srpt_collections rpt = new Srpt_collections(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by, cashin_beg, cash_sales, receipts_total, receipts_line_discount, receipts_sale_discount, receipts_sub_total, receipt_net_total, check_amount, credit_card_amount, gc_amount, online_amount, bills_thousand, bills_five_hundred, bills_two_hundred, bills_one_hundred, bills_fifty, bills_twenty, coins_ten, coins_five, coins_one, coins_point_fifty, coins_point_twenty_five, coins_point_ten, coins_point_zero_five, count_bills_thousand, count_bills_five_hundred, count_bills_two_hundred, count_bills_one_hundred, count_bills_fifty, count_bills_twenty, count_coins_ten, count_coins_five, count_coins_one, count_coins_point_fifty, count_coins_point_twenty_five, count_coins_point_ten, count_coins_point_zero_five, cc_total, cc_last_remittance, cc_cashin_end, disbursement, fields, status, status_amount, course, sf_cash, sf_cebuana, sf_palawan, sf_ml, sf_gcash, sf_check, sf_credit_card, canteen_cash, canteen_cebuana, canteen_palawan, canteen_ml, canteen_gcash, canteen_check, canteen_credit_card, books_cash, books_cebuana, books_palawan, books_ml, books_gcash, books_check, books_credit_card, oi_cash, oi_cebuana, oi_palawan, oi_ml, oi_gcash, oi_check, oi_credit_card, cebuana_total, palawan_total, ml_total, gcash_total, check_total, credit_card_total);
+
         rpt.fields.addAll(fields);
         JRViewer viewer = get_viewer(rpt, jrxml);
         JFrame f = Application.launchMainFrame3(viewer, "Sample", true);
@@ -588,7 +702,7 @@ public class Srpt_collections {
                 double net_total = amount_paid - discount_amount;
                 field f = new field(id, transaction_no, or_no, or_date, amount_paid, cash, discount_amount, check_amount, credit_amount, gc_amount, online_amount, net_total);
                 datas.add(f);
-               
+
             }
 
             return datas;
@@ -598,4 +712,6 @@ public class Srpt_collections {
             MyConnection.close();
         }
     }
+    
+    
 }

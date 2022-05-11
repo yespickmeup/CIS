@@ -5,7 +5,7 @@
  */
 package cis.finance;
 
-import cis.collections.Collections;
+import cis.collections.Collection;
 import cis.enrollments.Enrollments;
 import cis.finance.Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes;
 import cis.students.Students;
@@ -700,7 +700,7 @@ public class Enrollment_assessments {
         }
     }
 
-    public static String add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments, Students.to_students student, boolean has_or, Collections.to_collections to_collections) {
+    public static String add_data3(Enrollment_assessment_payments.to_enrollment_assessment_payments to_enrollment_assessment_payments, List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments, Students.to_students student, boolean has_or, Collection.to_collections to_collections) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -709,7 +709,7 @@ public class Enrollment_assessments {
             String collection_or_no = "";
             int collection_id = 0;
             if (has_or) {
-                collection_or_no = Collections.increment_id();
+                collection_or_no = Collection.increment_id();
                 String s0 = "insert into collections("
                         + "collection_no"
                         + ",or_no"
@@ -745,6 +745,15 @@ public class Enrollment_assessments {
                         + ",updated_by"
                         + ",status"
                         + ",is_uploaded"
+                        + ",school_year"
+                        + ",period"
+                        + ",year_level"
+                        + ",department_id"
+                        + ",department"
+                        + ",college_id"
+                        + ",college"
+                        + ",course_id"
+                        + ",course"
                         + ")values("
                         + ":collection_no"
                         + ",:or_no"
@@ -780,6 +789,15 @@ public class Enrollment_assessments {
                         + ",:updated_by"
                         + ",:status"
                         + ",:is_uploaded"
+                        + ",:school_year"
+                        + ",:period"
+                        + ",:year_level"
+                        + ",:department_id"
+                        + ",:department"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:course_id"
+                        + ",:course"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -817,6 +835,15 @@ public class Enrollment_assessments {
                         .setString("updated_by", to_collections.updated_by)
                         .setNumber("status", to_collections.status)
                         .setNumber("is_uploaded", to_collections.is_uploaded)
+                        .setString("school_year", to_collections.school_year)
+                        .setString("period", to_collections.period)
+                        .setString("year_level", to_collections.year_level)
+                        .setString("department_id", to_collections.department_id)
+                        .setString("department", to_collections.department)
+                        .setString("college_id", to_collections.college_id)
+                        .setString("college", to_collections.college)
+                        .setString("course_id", to_collections.course_id)
+                        .setString("course", to_collections.course)
                         .ok();
 
                 PreparedStatement stmt5 = conn.prepareStatement("", Statement.RETURN_GENERATED_KEYS);

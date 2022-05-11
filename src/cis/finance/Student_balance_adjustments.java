@@ -5,7 +5,7 @@
  */
 package cis.finance;
 
-import cis.collections.Collections;
+import cis.collections.Collection;
 import cis.students.Students;
 import cis.utils.MyConnection;
 import java.sql.Connection;
@@ -404,7 +404,7 @@ public class Student_balance_adjustments {
         }
     }
 
-    public static String add_payment(Student_balance_adjustment_payments.to_student_balance_adjustment_payments to_student_balance_adjustment_payments, Students.to_students student, boolean has_or, Collections.to_collections to_collections) {
+    public static String add_payment(Student_balance_adjustment_payments.to_student_balance_adjustment_payments to_student_balance_adjustment_payments, Students.to_students student, boolean has_or, Collection.to_collections to_collections) {
         try {
             Connection conn = MyConnection.connect();
             conn.setAutoCommit(false);
@@ -413,7 +413,7 @@ public class Student_balance_adjustments {
             String collection_or_no = "";
             int collection_id = 0;
             if (has_or) {
-                collection_or_no = Collections.increment_id();
+                collection_or_no = Collection.increment_id();
                 String s0 = "insert into collections("
                         + "collection_no"
                         + ",or_no"
@@ -449,6 +449,15 @@ public class Student_balance_adjustments {
                         + ",updated_by"
                         + ",status"
                         + ",is_uploaded"
+                        + ",school_year"
+                        + ",period"
+                        + ",year_level"
+                        + ",department_id"
+                        + ",department"
+                        + ",college_id"
+                        + ",college"
+                        + ",course_id"
+                        + ",course"
                         + ")values("
                         + ":collection_no"
                         + ",:or_no"
@@ -484,6 +493,15 @@ public class Student_balance_adjustments {
                         + ",:updated_by"
                         + ",:status"
                         + ",:is_uploaded"
+                        + ",:school_year"
+                        + ",:period"
+                        + ",:year_level"
+                        + ",:department_id"
+                        + ",:department"
+                        + ",:college_id"
+                        + ",:college"
+                        + ",:course_id"
+                        + ",:course"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -521,6 +539,15 @@ public class Student_balance_adjustments {
                         .setString("updated_by", to_collections.updated_by)
                         .setNumber("status", to_collections.status)
                         .setNumber("is_uploaded", to_collections.is_uploaded)
+                        .setString("school_year", to_collections.school_year)
+                        .setString("period", to_collections.period)
+                        .setString("year_level", to_collections.year_level)
+                        .setString("department_id", to_collections.department_id)
+                        .setString("department", to_collections.department)
+                        .setString("college_id", to_collections.college_id)
+                        .setString("college", to_collections.college)
+                        .setString("course_id", to_collections.course_id)
+                        .setString("course", to_collections.course)
                         .ok();
 
                 PreparedStatement stmt5 = conn.prepareStatement("", Statement.RETURN_GENERATED_KEYS);

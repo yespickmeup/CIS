@@ -175,6 +175,15 @@ id int auto_increment
 ,status int
 ,is_uploaded int
 ,ref_id int
+,school_year varchar(255)
+,period varchar(255)
+,year_level varchar(255)
+,department_id varchar(255)
+,department varchar(255)
+,college_id varchar(255)
+,college varchar(255)
+,course_id varchar(255)
+,course varchar(255)
 ,primary key(id,collection_no)
 );
 
@@ -208,6 +217,12 @@ id int auto_increment primary key
 
 
 
+insert into banks(bank) values
+('Cebuana')
+,('Palawan')
+,('MLhuillier')
+,('GCash')
+;
 
 
 
