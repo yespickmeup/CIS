@@ -458,6 +458,9 @@ public class Student_balance_adjustments {
                         + ",college"
                         + ",course_id"
                         + ",course"
+                        + ",student_id"
+                        + ",student_no"
+                        + ",student_name"
                         + ")values("
                         + ":collection_no"
                         + ",:or_no"
@@ -502,6 +505,9 @@ public class Student_balance_adjustments {
                         + ",:college"
                         + ",:course_id"
                         + ",:course"
+                        + ",:student_id"
+                        + ",:student_no"
+                        + ",:student_name"
                         + ")";
 
                 s0 = SqlStringUtil.parse(s0)
@@ -548,6 +554,9 @@ public class Student_balance_adjustments {
                         .setString("college", to_collections.college)
                         .setString("course_id", to_collections.course_id)
                         .setString("course", to_collections.course)
+                        .setString("student_id", to_collections.student_id)
+                        .setString("student_no", to_collections.student_no)
+                        .setString("student_name", to_collections.student_name)
                         .ok();
 
                 PreparedStatement stmt5 = conn.prepareStatement("", Statement.RETURN_GENERATED_KEYS);

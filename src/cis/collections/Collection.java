@@ -70,8 +70,11 @@ public class Collection {
         public final String college;
         public final String course_id;
         public final String course;
+        public final String student_id;
+        public final String student_no;
+        public final String student_name;
 
-        public to_collections(int id, String collection_no, String or_no, String payment_type, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, double check_amount, String check_bank, String check_no, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int ref_id, String school_year, String period, String year_level, String department_id, String department, String college_id, String college, String course_id, String course) {
+        public to_collections(int id, String collection_no, String or_no, String payment_type, double amount_paid, double cash, String discount_name, double discount_rate, double discount_amount, String discount_customer_name, String discount_customer_id, double check_amount, String check_bank, String check_no, String check_holder, String check_date, String credit_card_type, double credit_card_rate, double credit_card_amount, String credit_card_no, String gift_certificate_from, String gift_certificate_description, String gift_certificate_no, double gift_certificate_amount, String online_bank, String online_reference_no, double online_amount, String online_holder, String online_date, String created_at, String updated_at, String created_by, String updated_by, int status, int is_uploaded, int ref_id, String school_year, String period, String year_level, String department_id, String department, String college_id, String college, String course_id, String course, String student_id, String student_no, String student_name) {
             this.id = id;
             this.collection_no = collection_no;
             this.or_no = or_no;
@@ -117,6 +120,9 @@ public class Collection {
             this.college = college;
             this.course_id = course_id;
             this.course = course;
+            this.student_id = student_id;
+            this.student_no = student_no;
+            this.student_name = student_name;
         }
     }
 
@@ -168,6 +174,9 @@ public class Collection {
                     + ",college"
                     + ",course_id"
                     + ",course"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",student_name"
                     + ")values("
                     + ":collection_no"
                     + ",:or_no"
@@ -213,6 +222,9 @@ public class Collection {
                     + ",:college"
                     + ",:course_id"
                     + ",:course"
+                    + ",:student_id"
+                    + ",:student_no"
+                    + ",:student_name"
                     + ")";
 
             s0 = SqlStringUtil.parse(s0)
@@ -260,6 +272,9 @@ public class Collection {
                     .setString("college", to_collections.college)
                     .setString("course_id", to_collections.course_id)
                     .setString("course", to_collections.course)
+                    .setString("student_id", to_collections.student_id)
+                    .setString("student_no", to_collections.student_no)
+                    .setString("student_name", to_collections.student_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -320,6 +335,9 @@ public class Collection {
                     + ",college= :college "
                     + ",course_id= :course_id "
                     + ",course= :course "
+                    + ",student_id= :student_id "
+                    + ",student_no= :student_no "
+                    + ",student_name= :student_name "
                     + " where id='" + to_collections.id + "' "
                     + " ";
 
@@ -368,6 +386,9 @@ public class Collection {
                     .setString("college", to_collections.college)
                     .setString("course_id", to_collections.course_id)
                     .setString("course", to_collections.course)
+                    .setString("student_id", to_collections.student_id)
+                    .setString("student_no", to_collections.student_no)
+                    .setString("student_name", to_collections.student_name)
                     .ok();
 
             PreparedStatement stmt = conn.prepareStatement(s0);
@@ -448,6 +469,9 @@ public class Collection {
                     + ",college"
                     + ",course_id"
                     + ",course"
+                    + ",student_id"
+                    + ",student_no"
+                    + ",student_name"
                     + " from collections"
                     + " " + where;
 
@@ -499,8 +523,11 @@ public class Collection {
                 String college = rs.getString(43);
                 String course_id = rs.getString(44);
                 String course = rs.getString(45);
+                String student_id = rs.getString(46);
+                String student_no = rs.getString(47);
+                String student_name = rs.getString(48);
 
-                to_collections to = new to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course);
+                to_collections to = new to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, student_id, student_no, student_name);
                 datas.add(to);
             }
             return datas;

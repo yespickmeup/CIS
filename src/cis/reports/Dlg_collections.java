@@ -214,6 +214,9 @@ public class Dlg_collections extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -246,8 +249,6 @@ public class Dlg_collections extends javax.swing.JDialog {
         jLabel25 = new javax.swing.JLabel();
         jCheckBox12 = new javax.swing.JCheckBox();
         tf_field16 = new Field.Combo();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -257,6 +258,62 @@ public class Dlg_collections extends javax.swing.JDialog {
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Print Preview"));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1019, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Collections Summary", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Print Preview"));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1019, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Collection Summary", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Filter")));
@@ -621,67 +678,25 @@ public class Dlg_collections extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Print Preview"));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 373, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Collections Summary", jPanel2);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1013, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Ledger", jPanel3);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1)
-                .addGap(30, 30, 30))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -699,7 +714,7 @@ public class Dlg_collections extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        generate_report();
+        generate();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tf_cashierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_cashierMouseClicked
@@ -822,6 +837,7 @@ public class Dlg_collections extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField tf_cashier;
@@ -1216,7 +1232,16 @@ public class Dlg_collections extends javax.swing.JDialog {
         });
     }
 
-    private void generate_report() {
+    private void generate() {
+        int selected = jTabbedPane1.getSelectedIndex();
+        if (selected == 0) {
+            generate_report1();
+        } else {
+            generate_report2();
+        }
+    }
+
+    private void generate_report1() {
 
         jProgressBar1.setString("Loading...Please wait...");
         jProgressBar1.setIndeterminate(true);
@@ -1474,6 +1499,101 @@ public class Dlg_collections extends javax.swing.JDialog {
 
     }
 
+    private void generate_report2() {
+
+        jProgressBar1.setString("Loading...Please wait...");
+        jProgressBar1.setIndeterminate(true);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+                String school_year = tf_field13.getText();
+                String semester = "All";
+                if (!jCheckBox21.isSelected()) {
+                    semester = tf_field17.getText();
+                }
+                String department = "All";
+                if (!jCheckBox10.isSelected()) {
+                    department = tf_field14.getText();
+                }
+                String college = "All";
+                if (!jCheckBox11.isSelected()) {
+                    college = tf_field15.getText();
+                }
+                String year_level = "All";
+                if (!jCheckBox15.isSelected()) {
+                    year_level = tf_field18.getText();
+                }
+                String user = "All";
+                if (!jCheckBox1.isSelected()) {
+                    user = tf_cashier.getText();
+                }
+                String date = "All";
+                if (!jCheckBox4.isSelected()) {
+                    date = DateType.slash.format(jDateChooser1.getDate()) + " - " + DateType.slash.format(jDateChooser2.getDate());
+                }
+                String printed_by = MyUser.getUser_screen_name().toUpperCase();
+
+                String user_id = MyUser.getUser_id();
+                String where = " where id<>0 ";
+
+                String where2 = " where id<>0 ";
+                String where3 = " where id<>0 ";
+                if (!jCheckBox1.isSelected()) {
+                    where = where + " and created_by = '" + user_id + "' ";
+                    where2 = where2 + " and user_id = '" + user_id + "' ";
+                    where3 = where3 + " and user_id = '" + user_id + "' ";
+                }
+
+                if (!jCheckBox5.isSelected() && !tf_cashier5.getText().isEmpty()) {
+                    try {
+                        String[] dates = tf_cashier5.getText().split("- ");
+//                            System.out.println("dates[0]: " + dates[0]);
+//                            System.out.println("dates[1]: " + dates[1]);
+                        Date d1 = DateType.slash_w_time.parse(dates[0]);
+                        Date d2 = DateType.slash_w_time.parse(dates[1]);
+
+//                            date_from_sales = DateType.datetime.format(d1.getDate());
+                        String date_from_sales = DateType.convert_slash_datetime_sf2(dates[0]);
+                        String date_to_sales = DateType.convert_slash_datetime_sf2(dates[1]);
+
+                        where = where + " and created_at between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        where2 = where2 + " and time_in between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        where3 = where3 + " and date_added between '" + date_from_sales + "' and '" + date_to_sales + "'";
+                        date = tf_cashier5.getText();
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Dlg_collections.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (!jCheckBox4.isSelected() && jCheckBox5.isSelected()) {
+                    String date_from = DateType.sf.format(jDateChooser1.getDate());
+                    String date_to = DateType.sf.format(jDateChooser2.getDate());
+
+                    where = where + " and Date(created_at) between '" + date_from + "' and '" + date_to + "'";
+                    where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
+                    where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
+                }
+
+                String jrxml = "rpt_collection_report.jrxml";
+
+                List<Srpt_collection_report.field> datas = Srpt_collection_report.ret_data(where);
+
+                Srpt_collection_report rpt = new Srpt_collection_report(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by);
+                rpt.fields.addAll(datas);
+                
+                report_collection(rpt, jrxml);
+                jProgressBar1.setString("Finished...");
+                jProgressBar1.setIndeterminate(false);
+
+            }
+        });
+        t.start();
+
+    }
+
     private void report_class_list(final Srpt_collections to, String jrxml_name) {
         jPanel5.removeAll();
         jPanel5.setLayout(new BorderLayout());
@@ -1507,6 +1627,47 @@ public class Dlg_collections extends javax.swing.JDialog {
         try {
             String jrxml = rpt_name;
             InputStream is = Srpt_collections.class.
+                    getResourceAsStream(jrxml);
+            JasperReport jasper = JasperCompileManager.compileReport(is);
+            return jasper;
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void report_collection(final Srpt_collection_report to, String jrxml_name) {
+        jPanel6.removeAll();
+        jPanel6.setLayout(new BorderLayout());
+        try {
+            JRViewer viewer = get_viewer_collections_report(to, jrxml_name);
+            JPanel pnl = new JPanel();
+            pnl.add(viewer);
+            pnl.setVisible(true);
+            pnl.setVisible(true);
+            jPanel6.add(viewer);
+
+            jPanel6.updateUI();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JRViewer get_viewer_collections_report(Srpt_collection_report to, String rpt_name) {
+        try {
+            return JasperUtil.getJasperViewer(
+                    compileJasper2(rpt_name),
+                    JasperUtil.setParameter(to),
+                    JasperUtil.makeDatasource(to.fields));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public static JasperReport compileJasper2(String rpt_name) {
+        try {
+            String jrxml = rpt_name;
+            InputStream is = Srpt_collection_report.class.
                     getResourceAsStream(jrxml);
             JasperReport jasper = JasperCompileManager.compileReport(is);
             return jasper;

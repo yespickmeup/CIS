@@ -184,6 +184,9 @@ id int auto_increment
 ,college varchar(255)
 ,course_id varchar(255)
 ,course varchar(255)
+,student_id varchar(255)
+,student_no varchar(255)
+,student_name varchar(255)
 ,primary key(id,collection_no)
 );
 
