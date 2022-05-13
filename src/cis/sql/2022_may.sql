@@ -229,3 +229,20 @@ insert into banks(bank) values
 
 
 
+drop table if exists other_payments;
+create table other_payments(
+id int auto_increment primary key
+,reference_no varchar(255)
+,customer_id varchar(255)
+,customer_name varchar(255)
+,amount double
+,particular_id int
+,particular varchar(255)
+,created_by varchar(255)
+,updated_by varchar(255)
+,created_at datetime
+,updated_at datetime
+,status int
+,collection_id int
+,collection_no varchar(255)
+);

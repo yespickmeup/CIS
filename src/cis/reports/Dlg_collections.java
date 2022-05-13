@@ -15,6 +15,7 @@ import cis.collections.Collection.to_collections;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
 import cis.disbursements.S1_disbursements;
+import cis.other_payments.Other_payments;
 import cis.users.MyUser;
 import cis.users.User_previleges;
 import cis.users.Users;
@@ -853,8 +854,8 @@ public class Dlg_collections extends javax.swing.JDialog {
     private void myInit() {
         init_key();
 
-        System.setProperty("pool_db", "db_cis_cosca");
-        System.setProperty("pool_password", "password");
+//        System.setProperty("pool_db", "db_cis_cosca");
+//        System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
 
         setAcad();
@@ -1320,6 +1321,7 @@ public class Dlg_collections extends javax.swing.JDialog {
                 }
 
                 List<Collection.to_collections> datas = Collection.ret_data(where);
+                List<Other_payments.to_other_payments> others = Other_payments.ret_data(where);
                 List<S1_disbursements.to_disbursements> disbursements = S1_disbursements.ret_data(where3);
 
                 double cashin_beg = 0;
@@ -1368,7 +1370,7 @@ public class Dlg_collections extends javax.swing.JDialog {
                 double oi_credit_card = 0;
 
                 for (Collection.to_collections to : datas) {
-                    cash_sales += to.cash;
+
                     check_amount += to.check_amount;
                     credit_card_amount += to.credit_card_amount;
                     gc_amount += to.gift_certificate_amount;
@@ -1377,20 +1379,66 @@ public class Dlg_collections extends javax.swing.JDialog {
                     receipts_sale_discount += to.discount_amount;
 
                     sf_cash += to.cash;
-                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
-                        sf_gcash += to.online_amount;
-                    }
-                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
-                        sf_cebuana += to.online_amount;
-                    }
-                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
-                        sf_palawan += to.online_amount;
-                    }
-                    if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
-                        sf_ml += to.online_amount;
+                    if (to.payment_type.equalsIgnoreCase("Tuition")) {
+                        sf_cash += to.cash;
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                            sf_gcash += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                            sf_cebuana += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                            sf_palawan += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                            sf_ml += to.online_amount;
+                        }
+                    } else if (to.payment_type.equalsIgnoreCase("Canteen")) {
+                        canteen_cash += to.cash;
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                            canteen_gcash += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                            canteen_cebuana += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                            canteen_palawan += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                            canteen_ml += to.online_amount;
+                        }
+                    } else if (to.payment_type.equalsIgnoreCase("Books")) {
+                        books_cash += to.cash;
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                            books_gcash += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                            books_cebuana += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                            books_palawan += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                            books_ml += to.online_amount;
+                        }
+                    } else {
+                        oi_cash += to.cash;
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                            oi_gcash += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                            oi_cebuana += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                            oi_palawan += to.online_amount;
+                        }
+                        if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                            oi_ml += to.online_amount;
+                        }
                     }
                 }
 
+                cash_sales = sf_cash + canteen_cash + books_cash + oi_cash;
                 double cebuana_total = sf_cebuana;
                 double palawan_total = sf_palawan;
                 double ml_total = sf_ml;
@@ -1583,7 +1631,7 @@ public class Dlg_collections extends javax.swing.JDialog {
 
                 Srpt_collection_report rpt = new Srpt_collection_report(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by);
                 rpt.fields.addAll(datas);
-                
+
                 report_collection(rpt, jrxml);
                 jProgressBar1.setString("Finished...");
                 jProgressBar1.setIndeterminate(false);
