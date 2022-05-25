@@ -246,3 +246,26 @@ id int auto_increment primary key
 ,collection_id int
 ,collection_no varchar(255)
 );
+
+
+-- May 25, 2022
+
+drop table if exists downpayments;
+create table downpayments(
+id int auto_increment primary key
+,enrollment_id int
+,enrollment_no varchar(255)
+,academic_year_id int
+,academic_year varchar(255)
+,student_id varchar(255)
+,student_no varchar(255)
+,student_name varchar(255)
+,amount double
+,created_by varchar(255)
+,updated_by varchar(255)
+,created_at datetime
+,updated_at datetime
+,status int
+,collection_id int
+,collection_no varchar(255)
+);

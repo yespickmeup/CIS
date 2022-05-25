@@ -11,6 +11,8 @@ import cis.banks.Banks;
 import cis.banks.Dlg_banks;
 import cis.collections.Collection;
 import cis.credit_cards.Credit_cards;
+import cis.downpayments.Downpayments;
+import cis.enrollments.Enrollments;
 import cis.other_payments.Other_payments;
 import cis.students.Students;
 import cis.users.MyUser;
@@ -57,160 +59,160 @@ import synsoftech.panels.Loading;
  */
 public class Dlg_finance_payment extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_finance_payment
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_finance_payment
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
-    }
+  }
 
-    public static interface Callback {
+  public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
 
-    public static class InputData {
-    }
+  public static class InputData {
+  }
 
-    public static class OutputData {
-    }
+  public static class OutputData {
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_finance_payment(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_finance_payment(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_finance_payment(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_finance_payment() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_finance_payment myRef;
+
+  private void setThisRef(Dlg_finance_payment myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_finance_payment> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_finance_payment create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_finance_payment(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_finance_payment() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_finance_payment myRef;
+  public static Dlg_finance_payment create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_finance_payment myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_finance_payment> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_finance_payment dialog = dialogContainer.get(parent);
 
-    public static Dlg_finance_payment create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
-
-    }
-
-    public static Dlg_finance_payment create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
-
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_finance_payment dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_finance_payment((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_finance_payment dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_finance_payment((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
-
-    }
-    //</editor-fold>    
-
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
-
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Dlg_finance_payment dialog = Dlg_finance_payment.create(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
+      if (dialog == null) {
+        dialog = new Dlg_finance_payment((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_finance_payment dialog = dialogContainer.get(parent);
+
+      if (dialog == null) {
+        dialog = new Dlg_finance_payment((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
+
     }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+    return null;
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  }
+  //</editor-fold>    
+
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_finance_payment dialog = Dlg_finance_payment.create(new javax.swing.JFrame(), true);
+    dialog.setVisible(true);
+
+  }
+  //</editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
+    }
+
+  }
+
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
+
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -1028,31 +1030,31 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_total_amountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_total_amountMouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_total_amountMouseClicked
 
     private void tf_total_amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_total_amountActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_total_amountActionPerformed
 
     private void tf_field20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field20MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field20MouseClicked
 
     private void tf_field20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field20ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field20ActionPerformed
 
     private void tf_field21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field21MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field21MouseClicked
 
     private void tf_field21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field21ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field21ActionPerformed
 
     private void tf_field21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field21KeyReleased
-        count_tender();
+      count_tender();
     }//GEN-LAST:event_tf_field21KeyReleased
 
     private void tf_ap_cash7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_cash7ActionPerformed
@@ -1060,31 +1062,31 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_ap_cash7ActionPerformed
 
     private void tf_ap_cash7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ap_cash7KeyReleased
-        count_tender();
+      count_tender();
     }//GEN-LAST:event_tf_ap_cash7KeyReleased
 
     private void tf_credit_card_typeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_credit_card_typeMouseClicked
-        init_credit_cards();
+      init_credit_cards();
     }//GEN-LAST:event_tf_credit_card_typeMouseClicked
 
     private void tf_credit_card_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_credit_card_typeActionPerformed
-        init_credit_cards();
+      init_credit_cards();
     }//GEN-LAST:event_tf_credit_card_typeActionPerformed
 
     private void tf_ap_cash5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_cash5ActionPerformed
-        //        count_tender();
+      //        count_tender();
     }//GEN-LAST:event_tf_ap_cash5ActionPerformed
 
     private void tf_ap_cash5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ap_cash5KeyReleased
-        count_tender();
+      count_tender();
     }//GEN-LAST:event_tf_ap_cash5KeyReleased
 
     private void tf_check_bankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_check_bankMouseClicked
-        init_banks(tf_check_bank);
+      init_banks(tf_check_bank);
     }//GEN-LAST:event_tf_check_bankMouseClicked
 
     private void tf_check_bankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_check_bankActionPerformed
-        init_banks(tf_check_bank);
+      init_banks(tf_check_bank);
     }//GEN-LAST:event_tf_check_bankActionPerformed
 
     private void tf_ap_check_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_check_noActionPerformed
@@ -1092,89 +1094,89 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_ap_check_noActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        disposed();
+      disposed();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        confirm();
+      confirm();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tf_field22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field22MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field22MouseClicked
 
     private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field22ActionPerformed
 
     private void tf_field22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field22KeyReleased
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field22KeyReleased
 
     private void tf_ap_cash6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_cash6ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_ap_cash6ActionPerformed
 
     private void tf_ap_cash6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_ap_cash6KeyReleased
-        count_tender();
+      count_tender();
     }//GEN-LAST:event_tf_ap_cash6KeyReleased
 
     private void tf_online_bankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_online_bankMouseClicked
-        init_banks(tf_online_bank);
+      init_banks(tf_online_bank);
     }//GEN-LAST:event_tf_online_bankMouseClicked
 
     private void tf_online_bankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_online_bankActionPerformed
-        init_banks(tf_online_bank);
+      init_banks(tf_online_bank);
     }//GEN-LAST:event_tf_online_bankActionPerformed
 
     private void tf_ap_check_no1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ap_check_no1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_ap_check_no1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        banks();
+      banks();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tf_customer_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_customer_nameMouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_customer_nameMouseClicked
 
     private void tf_customer_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_customer_nameActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_customer_nameActionPerformed
 
     private void tf_customer_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_customer_nameKeyReleased
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_customer_nameKeyReleased
 
     private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
-        init_particulars();
+      init_particulars();
     }//GEN-LAST:event_tf_field127MouseClicked
 
     private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
-        init_particulars();
+      init_particulars();
     }//GEN-LAST:event_tf_field127ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        add_particulars();
+      add_particulars();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tf_field23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field23MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field23MouseClicked
 
     private void tf_field23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field23ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field23ActionPerformed
 
     private void tf_field23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field23KeyReleased
-        double amount = FitIn.toDouble(tf_field23.getText());
-        tf_total_amount.setText(FitIn.fmt_wc_0(amount));
+      double amount = FitIn.toDouble(tf_field23.getText());
+      tf_total_amount.setText(FitIn.fmt_wc_0(amount));
     }//GEN-LAST:event_tf_field23KeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1244,935 +1246,1089 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     private javax.swing.JTextField tf_total_amount;
     // End of variables declaration//GEN-END:variables
 
-    private void myInit() {
-        init_key();
-        init_tbl_mode_of_payments(tbl_mode_of_payments);
-        tf_field21.grabFocus();
-        hide_other_payments(false);
-        jPanel3.setMinimumSize(new Dimension(450, 500));
-        jPanel4.setMinimumSize(new Dimension(404, 437));
-        ret_particulars();
+  private void myInit() {
+    init_key();
+    init_tbl_mode_of_payments(tbl_mode_of_payments);
+    tf_field21.grabFocus();
+    hide_other_payments(false);
+    jPanel3.setMinimumSize(new Dimension(450, 500));
+    jPanel4.setMinimumSize(new Dimension(404, 437));
+    ret_particulars();
+  }
+
+  private void hide_other_payments(boolean stmt) {
+    jLabel86.setVisible(stmt);
+    tf_customer_name.setVisible(stmt);
+    jLabel76.setVisible(stmt);
+    tf_field127.setVisible(stmt);
+    jButton2.setVisible(stmt);
+    jLabel43.setVisible(stmt);
+    tf_field23.setVisible(stmt);
+
+    jLabel83.setVisible(!stmt);
+    tf_total_amount.setVisible(!stmt);
+
+    jScrollPane1.setVisible(!stmt);
+    jLabel1.setVisible(!stmt);
+    jLabel2.setVisible(!stmt);
+
+  }
+  Students.to_students pay_stud = null;
+  Enrollments.to_enrollments enroll = null;
+  boolean has_or = false;
+  boolean is_other_payment = false;
+  boolean is_downpayment = false;
+
+  public void do_pass_other_payment() {
+    hide_other_payments(true);
+    tf_customer_name.grabFocus();
+    is_other_payment = true;
+  }
+
+  public void do_pass(List<Finance.fees> fees, Students.to_students stud, boolean _has_or) {
+    is_other_payment = false;
+    pay_stud = stud;
+    has_or = _has_or;
+    loadData_mode_of_payments(fees);
+    jLabel2.setText("" + fees.size());
+    double amount = 0;
+    for (Finance.fees fee : fees) {
+      amount += fee.balance;
     }
+    tf_total_amount.setText(FitIn.fmt_wc_0(amount));
+  }
+  int is_adjustment = 0;
 
-    private void hide_other_payments(boolean stmt) {
-        jLabel86.setVisible(stmt);
-        tf_customer_name.setVisible(stmt);
-        jLabel76.setVisible(stmt);
-        tf_field127.setVisible(stmt);
-        jButton2.setVisible(stmt);
-        jLabel43.setVisible(stmt);
-        tf_field23.setVisible(stmt);
-
-        jLabel83.setVisible(!stmt);
-        tf_total_amount.setVisible(!stmt);
-
-        jScrollPane1.setVisible(!stmt);
-        jLabel1.setVisible(!stmt);
-        jLabel2.setVisible(!stmt);
-
+  public void do_pass2F(List<Finance.fees> fees, Students.to_students stud) {
+    is_other_payment = false;
+    is_adjustment = 1;
+    has_or = true;
+    pay_stud = stud;
+    loadData_mode_of_payments(fees);
+    jLabel2.setText("" + fees.size());
+    double amount = 0;
+    for (Finance.fees fee : fees) {
+      amount += fee.balance;
     }
-    Students.to_students pay_stud = null;
-    boolean has_or = false;
-    boolean is_other_payment = false;
+    tf_total_amount.setText(FitIn.fmt_wc_0(amount));
+  }
 
-    public void do_pass_other_payment() {
-        hide_other_payments(true);
-        tf_customer_name.grabFocus();
-        is_other_payment = true;
-    }
+  public void do_pass_downpayment(Students.to_students stud, Enrollments.to_enrollments to) {
+    is_downpayment = true;
+    has_or = true;
+    pay_stud = stud;
+    enroll = to;
+    hide_other_payments(true);
+    jLabel86.setVisible(false);
+    tf_customer_name.setVisible(false);
 
-    public void do_pass(List<Finance.fees> fees, Students.to_students stud, boolean _has_or) {
-        is_other_payment=false;
-        pay_stud = stud;
-        has_or = _has_or;
-        loadData_mode_of_payments(fees);
-        jLabel2.setText("" + fees.size());
-        double amount = 0;
-        for (Finance.fees fee : fees) {
-            amount += fee.balance;
-        }
-        tf_total_amount.setText(FitIn.fmt_wc_0(amount));
-    }
-    int is_adjustment = 0;
+    jLabel76.setVisible(false);
+    tf_field127.setVisible(false);
+    jButton2.setVisible(false);
+    tf_field23.grabFocus();
+  }
 
-    public void do_pass2F(List<Finance.fees> fees, Students.to_students stud) {
-        is_other_payment=false;
-        is_adjustment = 1;
-        has_or = true;
-        pay_stud = stud;
-        loadData_mode_of_payments(fees);
-        jLabel2.setText("" + fees.size());
-        double amount = 0;
-        for (Finance.fees fee : fees) {
-            amount += fee.balance;
-        }
-        tf_total_amount.setText(FitIn.fmt_wc_0(amount));
-    }
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
 
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
 
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
-
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
+                      disposed();
+                    }
+                  });
+  }
+  // </editor-fold>
+
+  private void init_credit_cards() {
+    String search = tf_credit_card_type.getText();
+
+    String where = "  order by card asc";
+    List<Credit_cards.to_credit_cards> credit_card_list = Credit_cards.ret_data(where);
+    Object[][] obj = new Object[credit_card_list.size()][2];
+    int i = 0;
+    for (Credit_cards.to_credit_cards to : credit_card_list) {
+      obj[i][0] = " " + to.card;
+      obj[i][1] = " " + FitIn.fmt_wc_0(to.amount);
+      i++;
     }
-    // </editor-fold>
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_credit_card_type.getWidth() - 50, 50};
+    int width = 0;
+    String[] col_names = {"", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_credit_card_type, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Credit_cards.to_credit_cards to = credit_card_list.get(data.selected_row);
+        lbl_credit_card_rate.setText(FitIn.fmt_wc_0(to.amount));
+        tf_credit_card_type.setText(to.card);
+        double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+        double rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+        rate = rate / 100;
+        rate = rate * credit_card_amount;
+        rate = credit_card_amount + rate;
+        tf_credit_card_amount.setText(FitIn.fmt_wc_0(rate));
+      }
+    });
+  }
 
-    private void init_credit_cards() {
-        String search = tf_credit_card_type.getText();
+  private void init_banks(JTextField tf) {
 
-        String where = "  order by card asc";
-        List<Credit_cards.to_credit_cards> credit_card_list = Credit_cards.ret_data(where);
-        Object[][] obj = new Object[credit_card_list.size()][2];
-        int i = 0;
-        for (Credit_cards.to_credit_cards to : credit_card_list) {
-            obj[i][0] = " " + to.card;
-            obj[i][1] = " " + FitIn.fmt_wc_0(to.amount);
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_credit_card_type.getWidth() - 50, 50};
-        int width = 0;
-        String[] col_names = {"", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_credit_card_type, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Credit_cards.to_credit_cards to = credit_card_list.get(data.selected_row);
-                lbl_credit_card_rate.setText(FitIn.fmt_wc_0(to.amount));
-                tf_credit_card_type.setText(to.card);
-                double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
-                double rate = FitIn.toDouble(lbl_credit_card_rate.getText());
-                rate = rate / 100;
-                rate = rate * credit_card_amount;
-                rate = credit_card_amount + rate;
-                tf_credit_card_amount.setText(FitIn.fmt_wc_0(rate));
-            }
-        });
+    String where = "  order by bank asc";
+    List<Banks.to_banks> bank_list = Banks.ret_data(where);
+    Object[][] obj = new Object[bank_list.size()][1];
+    int i = 0;
+    for (Banks.to_banks to : bank_list) {
+
+      obj[i][0] = " " + to.bank;
+      i++;
     }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf.getWidth()};
+    int width = 0;
+    String[] col_names = {"", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.
+            setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Banks.to_banks to = bank_list.get(data.selected_row);
+        tf.setText(to.bank);
 
-    private void init_banks(JTextField tf) {
+      }
+    });
+  }
 
-        String where = "  order by bank asc";
-        List<Banks.to_banks> bank_list = Banks.ret_data(where);
-        Object[][] obj = new Object[bank_list.size()][1];
-        int i = 0;
-        for (Banks.to_banks to : bank_list) {
+  private void count_tender() {
+    double cash = FitIn.toDouble(tf_field21.getText());
+    double check = FitIn.toDouble(tf_ap_cash5.getText());
+    double credit_card = FitIn.toDouble(tf_ap_cash7.getText());
+    double online = FitIn.toDouble(tf_ap_cash6.getText());
 
-            obj[i][0] = " " + to.bank;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf.getWidth()};
-        int width = 0;
-        String[] col_names = {"", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.
-                setPopup(tf, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Banks.to_banks to = bank_list.get(data.selected_row);
-                tf.setText(to.bank);
+    double tendered = FitIn.toDouble(tf_total_amount.getText());
+    double total_tendered = cash + check + credit_card + online;
 
-            }
-        });
-    }
+    tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
 
-    private void count_tender() {
-        double cash = FitIn.toDouble(tf_field21.getText());
-        double check = FitIn.toDouble(tf_ap_cash5.getText());
-        double credit_card = FitIn.toDouble(tf_ap_cash7.getText());
-        double online = FitIn.toDouble(tf_ap_cash6.getText());
-
-        double tendered = FitIn.toDouble(tf_total_amount.getText());
-        double total_tendered = cash + check + credit_card + online;
-
-        tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
-
-        if (tf_ap_cash7.hasFocus()) {
-            double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
-            double rate = FitIn.toDouble(lbl_credit_card_rate.getText());
-            rate = rate / 100;
-            rate = rate * credit_card_amount;
-            rate = credit_card_amount + rate;
-            tf_credit_card_amount.setText(FitIn.fmt_wc_0(rate));
-        }
-
-        double remaining = tendered - total_tendered;
-
-        double total_for_cash = check + credit_card + online;
-        double total_for_check = cash + credit_card + online;
-        double total_for_credit_card = cash + check + online;
-        double total_for_online = cash + check + credit_card;
-
-        if (remaining < 0 && tf_field21.hasFocus()) {
-            remaining = (tendered - total_for_cash);
-            tf_field21.setText(FitIn.fmt_wc_0(remaining));
-        }
-        if (remaining < 0 && tf_ap_cash5.hasFocus()) {
-            remaining = (tendered - total_for_check);
-            tf_ap_cash5.setText(FitIn.fmt_wc_0(remaining));
-        }
-
-        if (remaining < 0 && tf_ap_cash7.hasFocus()) {
-            remaining = (tendered - total_for_credit_card);
-            tf_ap_cash7.setText(FitIn.fmt_wc_0(remaining));
-        }
-
-        if (remaining < 0 && tf_ap_cash6.hasFocus()) {
-            remaining = (tendered - total_for_online);
-            tf_ap_cash6.setText(FitIn.fmt_wc_0(remaining));
-        }
-
-        total_tendered = cash + check + credit_card + online;
-        tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
-        if (total_tendered > tendered) {
-            tf_field20.setText(FitIn.fmt_wc_0(tendered));
-        }
-        set_paid();
+    if (tf_ap_cash7.hasFocus()) {
+      double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+      double rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+      rate = rate / 100;
+      rate = rate * credit_card_amount;
+      rate = credit_card_amount + rate;
+      tf_credit_card_amount.setText(FitIn.fmt_wc_0(rate));
     }
 
-    //<editor-fold defaultstate="collapsed" desc=" mode_of_payments "> 
-    public static ArrayListModel tbl_mode_of_payments_ALM;
-    public static Tblmode_of_paymentsModel tbl_mode_of_payments_M;
+    double remaining = tendered - total_tendered;
 
-    public static void init_tbl_mode_of_payments(JTable tbl_mode_of_payments) {
-        tbl_mode_of_payments_ALM = new ArrayListModel();
-        tbl_mode_of_payments_M = new Tblmode_of_paymentsModel(tbl_mode_of_payments_ALM);
-        tbl_mode_of_payments.setModel(tbl_mode_of_payments_M);
-        tbl_mode_of_payments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_mode_of_payments.setRowHeight(25);
-        int[] tbl_widths_mode_of_payments = {100, 0, 70, 70, 70, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_mode_of_payments.length; i < n; i++) {
-            if (i == 0) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_mode_of_payments, i, tbl_widths_mode_of_payments[i]);
-        }
-        Dimension d = tbl_mode_of_payments.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_mode_of_payments.getTableHeader().setPreferredSize(d);
-        tbl_mode_of_payments.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_mode_of_payments.setRowHeight(35);
-        tbl_mode_of_payments.setFont(new java.awt.Font("Arial", 0, 12));
-        TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 2);
-        TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 3);
-        TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 4);
-        tbl_mode_of_payments.getColumnModel().getColumn(0).setCellRenderer(new Html());
+    double total_for_cash = check + credit_card + online;
+    double total_for_check = cash + credit_card + online;
+    double total_for_credit_card = cash + check + online;
+    double total_for_online = cash + check + credit_card;
+
+    if (remaining < 0 && tf_field21.hasFocus()) {
+      remaining = (tendered - total_for_cash);
+      tf_field21.setText(FitIn.fmt_wc_0(remaining));
+    }
+    if (remaining < 0 && tf_ap_cash5.hasFocus()) {
+      remaining = (tendered - total_for_check);
+      tf_ap_cash5.setText(FitIn.fmt_wc_0(remaining));
     }
 
-    static class Html extends DefaultTableCellRenderer {
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
-            JLabel lbl = new JLabel();
-            lbl.setText(value.toString());
-            lbl.setOpaque(true);
-            lbl.setBackground(Color.white);
-            if (selected) {
-                lbl.setBackground(new java.awt.Color(4, 176, 217));
-                lbl.setForeground(new java.awt.Color(0, 0, 0));
-            }
-            return lbl;
-        }
+    if (remaining < 0 && tf_ap_cash7.hasFocus()) {
+      remaining = (tendered - total_for_credit_card);
+      tf_ap_cash7.setText(FitIn.fmt_wc_0(remaining));
     }
 
-    public static void loadData_mode_of_payments(List<Finance.fees> acc) {
-        tbl_mode_of_payments_ALM.clear();
-        tbl_mode_of_payments_ALM.addAll(acc);
+    if (remaining < 0 && tf_ap_cash6.hasFocus()) {
+      remaining = (tendered - total_for_online);
+      tf_ap_cash6.setText(FitIn.fmt_wc_0(remaining));
     }
 
-    public static class Tblmode_of_paymentsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Mode", "Date", "Amount", "Paid", "Balance", "created_by", "updated_by", "status", "is_uploaded"
-        };
-
-        public Tblmode_of_paymentsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            Finance.fees tt = (Finance.fees) getRow(row);
-            switch (col) {
-                case 0:
-                    return tt.title;
-                case 1:
-                    return " " + tt.deadline;
-                case 2:
-                    return " " + FitIn.fmt_wc_0(tt.amount) + " ";
-                case 3:
-                    return " " + FitIn.fmt_wc_0(tt.paid + tt.new_payment) + " ";
-                case 4:
-                    return " " + FitIn.fmt_wc_0(tt.amount - (tt.paid + tt.new_payment)) + " ";
-                case 5:
-                    return "";
-                case 6:
-                    return "";
-                case 7:
-                    return "";
-                default:
-                    return "";
-            }
-        }
+    total_tendered = cash + check + credit_card + online;
+    tf_field20.setText(FitIn.fmt_wc_0(total_tendered));
+    if (total_tendered > tendered) {
+      tf_field20.setText(FitIn.fmt_wc_0(tendered));
     }
+    set_paid();
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" mode_of_payments "> 
+  public static ArrayListModel tbl_mode_of_payments_ALM;
+  public static Tblmode_of_paymentsModel tbl_mode_of_payments_M;
+
+  public static void init_tbl_mode_of_payments(JTable tbl_mode_of_payments) {
+    tbl_mode_of_payments_ALM = new ArrayListModel();
+    tbl_mode_of_payments_M = new Tblmode_of_paymentsModel(tbl_mode_of_payments_ALM);
+    tbl_mode_of_payments.setModel(tbl_mode_of_payments_M);
+    tbl_mode_of_payments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_mode_of_payments.setRowHeight(25);
+    int[] tbl_widths_mode_of_payments = {100, 0, 70, 70, 70, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_mode_of_payments.length; i < n; i++) {
+      if (i == 0) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_mode_of_payments, i, tbl_widths_mode_of_payments[i]);
+    }
+    Dimension d = tbl_mode_of_payments.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_mode_of_payments.getTableHeader().setPreferredSize(d);
+    tbl_mode_of_payments.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_mode_of_payments.setRowHeight(35);
+    tbl_mode_of_payments.setFont(new java.awt.Font("Arial", 0, 12));
+    TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 2);
+    TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 3);
+    TableWidthUtilities.setColumnRightRenderer(tbl_mode_of_payments, 4);
+    tbl_mode_of_payments.getColumnModel().getColumn(0).setCellRenderer(new Html());
+  }
+
+  static class Html extends DefaultTableCellRenderer {
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+      JLabel lbl = new JLabel();
+      lbl.setText(value.toString());
+      lbl.setOpaque(true);
+      lbl.setBackground(Color.white);
+      if (selected) {
+        lbl.setBackground(new java.awt.Color(4, 176, 217));
+        lbl.setForeground(new java.awt.Color(0, 0, 0));
+      }
+      return lbl;
+    }
+  }
+
+  public static void loadData_mode_of_payments(List<Finance.fees> acc) {
+    tbl_mode_of_payments_ALM.clear();
+    tbl_mode_of_payments_ALM.addAll(acc);
+  }
+
+  public static class Tblmode_of_paymentsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Mode", "Date", "Amount", "Paid", "Balance", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public Tblmode_of_paymentsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      Finance.fees tt = (Finance.fees) getRow(row);
+      switch (col) {
+        case 0:
+          return tt.title;
+        case 1:
+          return " " + tt.deadline;
+        case 2:
+          return " " + FitIn.fmt_wc_0(tt.amount) + " ";
+        case 3:
+          return " " + FitIn.fmt_wc_0(tt.paid + tt.new_payment) + " ";
+        case 4:
+          return " " + FitIn.fmt_wc_0(tt.amount - (tt.paid + tt.new_payment)) + " ";
+        case 5:
+          return "";
+        case 6:
+          return "";
+        case 7:
+          return "";
+        default:
+          return "";
+      }
+    }
+  }
 //</editor-fold> 
 
-    private void set_paid() {
-        double tendered = FitIn.toDouble(tf_field20.getText());
-        double total = tendered;
-        List<Finance.fees> modes = tbl_mode_of_payments_ALM;
-        for (Finance.fees mode : modes) {
-            double amount = (mode.amount - mode.paid);
-            double prev_total = total;
-            total = total - amount;
-            if (total >= 0) {
-                mode.setNew_payment(amount);
-            } else {
-                if (prev_total >= 0) {
-                    mode.setNew_payment(prev_total);
-                } else {
-                    mode.setNew_payment(0);
-                }
-            }
+  private void set_paid() {
+    double tendered = FitIn.toDouble(tf_field20.getText());
+    double total = tendered;
+    List<Finance.fees> modes = tbl_mode_of_payments_ALM;
+    for (Finance.fees mode : modes) {
+      double amount = (mode.amount - mode.paid);
+      double prev_total = total;
+      total = total - amount;
+      if (total >= 0) {
+        mode.setNew_payment(amount);
+      } else {
+        if (prev_total >= 0) {
+          mode.setNew_payment(prev_total);
+        } else {
+          mode.setNew_payment(0);
         }
-        tbl_mode_of_payments_M.fireTableDataChanged();
+      }
+    }
+    tbl_mode_of_payments_M.fireTableDataChanged();
+  }
+
+  private void confirm() {
+
+    if (is_other_payment || is_downpayment) {
+      double amount = FitIn.toDouble(tf_total_amount.getText());
+      if (amount <= 0) {
+        Alert.set(0, "Enter Amount");
+        return;
+      }
+      double tendered = FitIn.toDouble(tf_field20.getText());
+      if (amount != tendered) {
+        Alert.set(0, "No enough ampunt entered");
+        return;
+      }
     }
 
-    private void confirm() {
-
-        if (is_other_payment) {
-            double amount = FitIn.toDouble(tf_total_amount.getText());
-            if (amount <= 0) {
-                Alert.set(0, "Enter Amount");
-                return;
-            }
-            double tendered = FitIn.toDouble(tf_field20.getText());
-            if (amount != tendered) {
-                Alert.set(0, "No enough ampunt entered");
-                return;
-            }
-        }
-
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
 //        nd.do_pass(services);
-        nd.setCallback(new Dlg_confirm_action.Callback() {
+    nd.setCallback(new Dlg_confirm_action.Callback() {
 
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-                if (is_other_payment == true) {
-                    pay3();
-                } else {
-                    if (is_adjustment == 1) {
-                        pay1();
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+        if (is_downpayment) {
+          pay4();
+        } else {
+          if (is_other_payment == true) {
+            pay3();
+          } else {
+            if (is_adjustment == 1) {
+              pay1();
 
-                    } else {
-                        pay2();
-                    }
-                }
-
+            } else {
+              pay2();
             }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private void pay1() {
-        Loader1 loader = new Loader1(this);
-        loader.execute();
-    }
-
-    private void pay2() {
-        Loader2 loader = new Loader2(this);
-        loader.execute();
-    }
-
-    private void pay3() {
-        Loader3 loader = new Loader3(this);
-        loader.execute();
-    }
-
-    private void pay_other_payment() {
-        int id = 0;
-        String reference_no = tf_field22.getText();
-        Field.Input tf = (Field.Input) tf_customer_name;
-        String customer_id = tf.getId();
-        String customer_name = tf.getText();
-        double amount = FitIn.toDouble(tf_field23.getText());
-        Field.Combo tf2 = (Field.Combo) tf_field127;
-        int particular_id = FitIn.toInt(tf2.getId());
-        String particular = tf2.getText();
-        String created_at = DateType.now();
-        String updated_at = DateType.now();
-        int created_by = FitIn.toInt(MyUser.getUser_id());
-        int updated_by = FitIn.toInt(MyUser.getUser_id());
-        int status = 0;
-        int collection_id = 0;
-        String collection_no = "";
-        Other_payments.to_other_payments payment = new Other_payments.to_other_payments(id, reference_no, customer_id, customer_name, amount, particular_id, particular, created_at, updated_at, created_at, updated_at, status, collection_id, collection_no);
-
-        String or_no = tf_field22.getText();
-        String payment_type = particular;
-        double amount_paid = FitIn.toDouble(tf_field20.getText());
-        double cash = FitIn.toDouble(tf_field21.getText());
-        String discount_name = "";
-        double discount_rate = 0;
-        double discount_amount = 0;
-        String discount_customer_name = "";
-        String discount_customer_id = "";
-        double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
-        String check_bank = tf_check_bank.getText();
-        String check_no = tf_ap_check_no.getText();
-        String check_holder = tf_ap_check_holder.getText();
-        String check_date = DateType.sf.format(jDateChooser4.getDate());
-        String credit_card_type = tf_credit_card_type.getText();
-        double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
-        double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
-        String credit_card_no = tf_prepaid_customer_id3.getText();
-        String gift_certificate_from = "";
-        String gift_certificate_description = "";
-        String gift_certificate_no = "";
-        double gift_certificate_amount = 0;
-        String online_bank = tf_online_bank.getText();
-        String online_reference_no = tf_ap_check_no1.getText();
-        double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
-        String online_holder = tf_ap_check_holder1.getText();
-        String online_date = DateType.sf.format(jDateChooser5.getDate());
-        int is_uploaded = 0;
-        int ref_id = 0;
-
-        String school_year = "2021 - 2022";
-        String period = "First Semester";
-        String year_level = "";
-        String department_id = "";
-        String department = "";
-        String college_id = "";
-        String college = "";
-        String course_id = "";
-        String course = "";
-
-        Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_at, updated_at, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, customer_id, customer_id, customer_name);
-
-        String or = Other_payments.pay(payment, to_collections);
-        c_transaction_no = or;
-        c_gross_amount = amount_paid;
-        c_cash = cash;
-        c_credit_card = credit_card_amount;
-        c_gc = gift_certificate_amount;
-        c_check = check_amount;
-        c_online = online_amount;
-        Alert.set(1, "Payment Successful!");
-    }
-
-    private void pay_adjustment() {
-        int id = 0;
-        int sba_id = 0;
-        double adjustment_amount = 0;
-        List<Finance.fees> fees = tbl_mode_of_payments_ALM;
-        if (!fees.isEmpty()) {
-            Finance.fees to = (Finance.fees) fees.get(0);
-            sba_id = to.id;
-            adjustment_amount = to.amount;
-        }
-        int student_id = pay_stud.id;
-        String student_no = pay_stud.student_no;
-        String fname = pay_stud.first_name;
-        String mi = pay_stud.middle_name;
-        String lname = pay_stud.last_name;
-
-        double paid = FitIn.toDouble(tf_field20.getText());
-        String remarks = "";
-        int status = 0;
-        String created_at = DateType.now();
-        String updated_at = DateType.now();
-        int created_by = FitIn.toInt(MyUser.getUser_id());
-        int updated_by = FitIn.toInt(MyUser.getUser_id());
-
-        List<Student_balance_adjustments.to_student_balance_adjustments> sba = Student_balance_adjustments.ret_data(" where id = '" + sba_id + "' ");
-
-        int particular_id = 0;
-        String particular = "";
-        if (!sba.isEmpty()) {
-            Student_balance_adjustments.to_student_balance_adjustments sb = (Student_balance_adjustments.to_student_balance_adjustments) sba.get(0);
-            particular_id = sb.particular_id;
-            particular = sb.particular;
+          }
         }
 
-        // Collection
-        String collection_no = "";
-        String or_no = tf_field22.getText();
-        String payment_type = particular;
-        double amount_paid = FitIn.toDouble(tf_field20.getText());
-        double cash = FitIn.toDouble(tf_field21.getText());
-        String discount_name = "";
-        double discount_rate = 0;
-        double discount_amount = 0;
-        String discount_customer_name = "";
-        String discount_customer_id = "";
-        double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
-        String check_bank = tf_check_bank.getText();
-        String check_no = tf_ap_check_no.getText();
-        String check_holder = tf_ap_check_holder.getText();
-        String check_date = DateType.sf.format(jDateChooser4.getDate());
-        String credit_card_type = tf_credit_card_type.getText();
-        double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
-        double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
-        String credit_card_no = tf_prepaid_customer_id3.getText();
-        String gift_certificate_from = "";
-        String gift_certificate_description = "";
-        String gift_certificate_no = "";
-        double gift_certificate_amount = 0;
-        String online_bank = tf_online_bank.getText();
-        String online_reference_no = tf_ap_check_no1.getText();
-        double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
-        String online_holder = tf_ap_check_holder1.getText();
-        String online_date = DateType.sf.format(jDateChooser5.getDate());
-        int is_uploaded = 0;
-        int ref_id = 0;
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
 
-        String school_year = "2021 - 2022";
-        String period = "First Semester";
-        String year_level = pay_stud.year_level;
-        String department_id = "" + pay_stud.department_id;
-        String department = pay_stud.department;
-        String college_id = "" + pay_stud.college_id;
-        String college = pay_stud.college;
-        String course_id = "" + pay_stud.course_id;
-        String course = pay_stud.course_code;
+  private void pay1() {
+    Loader1 loader = new Loader1(this);
+    loader.execute();
+  }
 
-        String student_name = pay_stud.first_name + " " + pay_stud.middle_name + " " + pay_stud.last_name;
-        Collection.to_collections collection = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_at, updated_at, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, "" + student_id, student_no, student_name);
+  private void pay2() {
+    Loader2 loader = new Loader2(this);
+    loader.execute();
+  }
 
-        int collection_id = 0;
-        String collection_sales_no = "";
+  private void pay3() {
+    Loader3 loader = new Loader3(this);
+    loader.execute();
+  }
 
-        Student_balance_adjustment_payments.to_student_balance_adjustment_payments payment = new Student_balance_adjustment_payments.to_student_balance_adjustment_payments(id, sba_id, student_id, student_no, fname, mi, lname, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by, particular_id, particular, collection_id, collection_no, collection_sales_no);
-        String or = Student_balance_adjustments.add_payment(payment, pay_stud, has_or, collection);
-        c_transaction_no = or;
-        c_gross_amount = amount_paid;
-        c_cash = cash;
-        c_credit_card = credit_card_amount;
-        c_gc = gift_certificate_amount;
-        c_check = check_amount;
-        c_online = online_amount;
-        Alert.set(1, "Payment Successful!");
+  private void pay4() {
+    Loader4 loader = new Loader4(this);
+    loader.execute();
+  }
 
+  private void pay_other_payment() {
+    int id = 0;
+    String reference_no = tf_field22.getText();
+    Field.Input tf = (Field.Input) tf_customer_name;
+    String customer_id = tf.getId();
+    String customer_name = tf.getText();
+    double amount = FitIn.toDouble(tf_field23.getText());
+    Field.Combo tf2 = (Field.Combo) tf_field127;
+    int particular_id = FitIn.toInt(tf2.getId());
+    String particular = tf2.getText();
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    int created_by = FitIn.toInt(MyUser.getUser_id());
+    int updated_by = FitIn.toInt(MyUser.getUser_id());
+    int status = 0;
+    int collection_id = 0;
+    String collection_no = "";
+    Other_payments.to_other_payments payment = new Other_payments.to_other_payments(id, reference_no, customer_id, customer_name, amount, particular_id, particular, created_at, updated_at, created_at, updated_at, status, collection_id, collection_no);
+
+    String or_no = tf_field22.getText();
+    String payment_type = particular;
+    double amount_paid = FitIn.toDouble(tf_field20.getText());
+    double cash = FitIn.toDouble(tf_field21.getText());
+    String discount_name = "";
+    double discount_rate = 0;
+    double discount_amount = 0;
+    String discount_customer_name = "";
+    String discount_customer_id = "";
+    double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
+    String check_bank = tf_check_bank.getText();
+    String check_no = tf_ap_check_no.getText();
+    String check_holder = tf_ap_check_holder.getText();
+    String check_date = DateType.sf.format(jDateChooser4.getDate());
+    String credit_card_type = tf_credit_card_type.getText();
+    double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+    double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+    String credit_card_no = tf_prepaid_customer_id3.getText();
+    String gift_certificate_from = "";
+    String gift_certificate_description = "";
+    String gift_certificate_no = "";
+    double gift_certificate_amount = 0;
+    String online_bank = tf_online_bank.getText();
+    String online_reference_no = tf_ap_check_no1.getText();
+    double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
+    String online_holder = tf_ap_check_holder1.getText();
+    String online_date = DateType.sf.format(jDateChooser5.getDate());
+    int is_uploaded = 0;
+    int ref_id = 0;
+
+    String school_year = "2021 - 2022";
+    String period = "First Semester";
+    String year_level = "";
+    String department_id = "";
+    String department = "";
+    String college_id = "";
+    String college = "";
+    String course_id = "";
+    String course = "";
+
+    Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, "" + created_by, "" + updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, customer_id, customer_id, customer_name);
+
+    String or = Other_payments.pay(payment, to_collections);
+    c_transaction_no = or;
+    c_gross_amount = amount_paid;
+    c_cash = cash;
+    c_credit_card = credit_card_amount;
+    c_gc = gift_certificate_amount;
+    c_check = check_amount;
+    c_online = online_amount;
+    Alert.set(1, "Payment Successful!");
+  }
+
+  private void pay_downpayment() {
+
+    int id = 0;
+    double amount = FitIn.toDouble(tf_total_amount.getText());
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    int created_by = FitIn.toInt(MyUser.getUser_id());
+    int updated_by = FitIn.toInt(MyUser.getUser_id());
+    int status = 0;
+    int collection_id = 0;
+    String collection_no = "";
+
+    int enrollment_id = enroll.id;
+    String enrollment_no = enroll.enrollment_no;
+    int academic_year_id = enroll.academic_year_id;
+    String academic_year = enroll.academic_year;
+    String student_id = "" + pay_stud.id;
+    String student_no = pay_stud.student_no;
+    String student_name = pay_stud.first_name + " " + pay_stud.middle_name + " " + pay_stud.last_name;
+    System.out.println("Downpayment! " + pay_stud.first_name);
+    Downpayments.to_downpayments downpayment = new Downpayments.to_downpayments(id, enrollment_id, enrollment_no, academic_year_id, academic_year, student_id, student_no, student_name, amount, "" + created_by, "" + updated_by, created_at, updated_at, status, collection_id, collection_no);
+
+    String or_no = tf_field22.getText();
+    String payment_type = "Downpayment";
+    double amount_paid = FitIn.toDouble(tf_field20.getText());
+    double cash = FitIn.toDouble(tf_field21.getText());
+    String discount_name = "";
+    double discount_rate = 0;
+    double discount_amount = 0;
+    String discount_customer_name = "";
+    String discount_customer_id = "";
+    double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
+    String check_bank = tf_check_bank.getText();
+    String check_no = tf_ap_check_no.getText();
+    String check_holder = tf_ap_check_holder.getText();
+    String check_date = DateType.sf.format(jDateChooser4.getDate());
+    String credit_card_type = tf_credit_card_type.getText();
+    double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+    double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+    String credit_card_no = tf_prepaid_customer_id3.getText();
+    String gift_certificate_from = "";
+    String gift_certificate_description = "";
+    String gift_certificate_no = "";
+    double gift_certificate_amount = 0;
+    String online_bank = tf_online_bank.getText();
+    String online_reference_no = tf_ap_check_no1.getText();
+    double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
+    String online_holder = tf_ap_check_holder1.getText();
+    String online_date = DateType.sf.format(jDateChooser5.getDate());
+    int is_uploaded = 0;
+    int ref_id = 0;
+
+    String school_year = enroll.academic_year;
+    String period = enroll.period;
+    String year_level = enroll.year_level;
+    String department_id = "" + pay_stud.department_id;
+    String department = pay_stud.department;
+    String college_id = "" + pay_stud.college_id;
+    String college = "" + pay_stud.college;
+    String course_id = "" + pay_stud.course_id;
+    String course = "" + pay_stud.course_code;
+
+    Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, "" + created_by, "" + updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, student_id, student_no, student_name);
+    String or = Downpayments.pay(downpayment, to_collections);
+
+    c_transaction_no = or;
+    c_gross_amount = amount_paid;
+    c_cash = cash;
+    c_credit_card = credit_card_amount;
+    c_gc = gift_certificate_amount;
+    c_check = check_amount;
+    c_online = online_amount;
+    Alert.set(1, "Payment Successful!");
+  }
+
+  private void pay_adjustment() {
+    int id = 0;
+    int sba_id = 0;
+    double adjustment_amount = 0;
+    List<Finance.fees> fees = tbl_mode_of_payments_ALM;
+    if (!fees.isEmpty()) {
+      Finance.fees to = (Finance.fees) fees.get(0);
+      sba_id = to.id;
+      adjustment_amount = to.amount;
+    }
+    int student_id = pay_stud.id;
+    String student_no = pay_stud.student_no;
+    String fname = pay_stud.first_name;
+    String mi = pay_stud.middle_name;
+    String lname = pay_stud.last_name;
+
+    double paid = FitIn.toDouble(tf_field20.getText());
+    String remarks = "";
+    int status = 0;
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    int created_by = FitIn.toInt(MyUser.getUser_id());
+    int updated_by = FitIn.toInt(MyUser.getUser_id());
+
+    List<Student_balance_adjustments.to_student_balance_adjustments> sba = Student_balance_adjustments.ret_data(" where id = '" + sba_id + "' ");
+
+    int particular_id = 0;
+    String particular = "";
+    if (!sba.isEmpty()) {
+      Student_balance_adjustments.to_student_balance_adjustments sb = (Student_balance_adjustments.to_student_balance_adjustments) sba.get(0);
+      particular_id = sb.particular_id;
+      particular = sb.particular;
     }
 
-    private void pay() {
-        List<Finance.fees> modes = tbl_mode_of_payments_ALM;
-        int id = 0;
-        int ea_id = 0;
-        int ea_enrollment_id = 0;
-        String ea_enrollment_no = "";
-        int ea_academic_year_id = 0;
-        String ea_academic_year = "";
-        int student_id = 0;
-        if (!modes.isEmpty()) {
-            Finance.fees fee = modes.get(0);
-            String where = " where id='" + fee.id + "' ";
-            List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(where);
-            if (!eapm.isEmpty()) {
-                Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes eap = (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes) eapm.get(0);
-                ea_id = eap.enrollment_assessment_id;
-                ea_enrollment_id = eap.enrollment_id;
-                ea_enrollment_no = eap.enrollment_no;
-                ea_academic_year_id = eap.academic_year_id;
-                ea_academic_year = eap.academic_year;
-            }
-        }
+    // Collection
+    String collection_no = "";
+    String or_no = tf_field22.getText();
+    String payment_type = particular;
+    double amount_paid = FitIn.toDouble(tf_field20.getText());
+    double cash = FitIn.toDouble(tf_field21.getText());
+    String discount_name = "";
+    double discount_rate = 0;
+    double discount_amount = 0;
+    String discount_customer_name = "";
+    String discount_customer_id = "";
+    double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
+    String check_bank = tf_check_bank.getText();
+    String check_no = tf_ap_check_no.getText();
+    String check_holder = tf_ap_check_holder.getText();
+    String check_date = DateType.sf.format(jDateChooser4.getDate());
+    String credit_card_type = tf_credit_card_type.getText();
+    double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+    double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+    String credit_card_no = tf_prepaid_customer_id3.getText();
+    String gift_certificate_from = "";
+    String gift_certificate_description = "";
+    String gift_certificate_no = "";
+    double gift_certificate_amount = 0;
+    String online_bank = tf_online_bank.getText();
+    String online_reference_no = tf_ap_check_no1.getText();
+    double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
+    String online_holder = tf_ap_check_holder1.getText();
+    String online_date = DateType.sf.format(jDateChooser5.getDate());
+    int is_uploaded = 0;
+    int ref_id = 0;
 
-        int enrollment_assessment_id = ea_id;
-        int enrollment_id = ea_enrollment_id;
-        String enrollment_no = ea_enrollment_no;
-        int academic_year_id = ea_academic_year_id;
-        String academic_year = ea_academic_year;
+    String school_year = "2021 - 2022";
+    String period = "First Semester";
+    String year_level = pay_stud.year_level;
+    String department_id = "" + pay_stud.department_id;
+    String department = pay_stud.department;
+    String college_id = "" + pay_stud.college_id;
+    String college = pay_stud.college;
+    String course_id = "" + pay_stud.course_id;
+    String course = pay_stud.course_code;
 
-        double amount_paid = FitIn.toDouble(tf_field20.getText());
-        double cash = FitIn.toDouble(tf_field21.getText());
-        String discount_name = "";
-        double discount_rate = 0;
-        double discount_amount = 0;
-        String discount_customer_name = "";
-        String discount_customer_id = "";
-        String check_bank = tf_check_bank.getText();
-        String check_no = tf_ap_check_no.getText();
-        double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
-        String check_holder = tf_ap_check_holder.getText();
-        String check_date = DateType.sf.format(jDateChooser4.getDate());
-        String credit_card_type = tf_credit_card_type.getText();
-        double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
-        double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
-        String credit_card_no = tf_prepaid_customer_id3.getText();
-        String credit_card_holder = tf_prepaid_customer_id4.getText();
-        String gift_certificate_from = "";
-        String gift_certificate_description = "";
-        String gift_certificate_no = "";
-        double gift_certificate_amount = 0;
-        String online_bank = tf_online_bank.getText();
-        String online_reference_no = tf_ap_check_no1.getText();
-        double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
-        String online_holder = tf_ap_check_holder1.getText();
-        String online_date = DateType.sf.format(jDateChooser5.getDate());
-        String created_at = DateType.now();
-        String updated_at = DateType.now();
-        String created_by = MyUser.getUser_id();
-        String updated_by = MyUser.getUser_id();
-        int status = 0;
-        int is_uploaded = 0;
-        int collection_id = 0;
-        String collection_no = "";
-        String collection_sales_no = tf_field22.getText();
+    String student_name = pay_stud.first_name + " " + pay_stud.middle_name + " " + pay_stud.last_name;
+    Collection.to_collections collection = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, "" + created_by, "" + updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, "" + student_id, student_no, student_name);
 
-        Enrollment_assessment_payments.to_enrollment_assessment_payments eap = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, collection_id, collection_no, collection_sales_no);
+    int collection_id = 0;
+    String collection_sales_no = "";
+
+    Student_balance_adjustment_payments.to_student_balance_adjustment_payments payment = new Student_balance_adjustment_payments.to_student_balance_adjustment_payments(id, sba_id, student_id, student_no, fname, mi, lname, adjustment_amount, paid, remarks, status, created_at, created_by, updated_at, updated_by, particular_id, particular, collection_id, collection_no, collection_sales_no);
+    String or = Student_balance_adjustments.add_payment(payment, pay_stud, has_or, collection);
+    c_transaction_no = or;
+    c_gross_amount = amount_paid;
+    c_cash = cash;
+    c_credit_card = credit_card_amount;
+    c_gc = gift_certificate_amount;
+    c_check = check_amount;
+    c_online = online_amount;
+    Alert.set(1, "Payment Successful!");
+
+  }
+
+  private void pay() {
+    List<Finance.fees> modes = tbl_mode_of_payments_ALM;
+    int id = 0;
+    int ea_id = 0;
+    int ea_enrollment_id = 0;
+    String ea_enrollment_no = "";
+    int ea_academic_year_id = 0;
+    String ea_academic_year = "";
+    int student_id = 0;
+    if (!modes.isEmpty()) {
+      Finance.fees fee = modes.get(0);
+      String where = " where id='" + fee.id + "' ";
+      List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(where);
+      if (!eapm.isEmpty()) {
+        Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes eap = (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes) eapm.get(0);
+        ea_id = eap.enrollment_assessment_id;
+        ea_enrollment_id = eap.enrollment_id;
+        ea_enrollment_no = eap.enrollment_no;
+        ea_academic_year_id = eap.academic_year_id;
+        ea_academic_year = eap.academic_year;
+      }
+    }
+
+    int enrollment_assessment_id = ea_id;
+    int enrollment_id = ea_enrollment_id;
+    String enrollment_no = ea_enrollment_no;
+    int academic_year_id = ea_academic_year_id;
+    String academic_year = ea_academic_year;
+
+    double amount_paid = FitIn.toDouble(tf_field20.getText());
+    double cash = FitIn.toDouble(tf_field21.getText());
+    String discount_name = "";
+    double discount_rate = 0;
+    double discount_amount = 0;
+    String discount_customer_name = "";
+    String discount_customer_id = "";
+    String check_bank = tf_check_bank.getText();
+    String check_no = tf_ap_check_no.getText();
+    double check_amount = FitIn.toDouble(tf_ap_cash5.getText());
+    String check_holder = tf_ap_check_holder.getText();
+    String check_date = DateType.sf.format(jDateChooser4.getDate());
+    String credit_card_type = tf_credit_card_type.getText();
+    double credit_card_rate = FitIn.toDouble(lbl_credit_card_rate.getText());
+    double credit_card_amount = FitIn.toDouble(tf_ap_cash7.getText());
+    String credit_card_no = tf_prepaid_customer_id3.getText();
+    String credit_card_holder = tf_prepaid_customer_id4.getText();
+    String gift_certificate_from = "";
+    String gift_certificate_description = "";
+    String gift_certificate_no = "";
+    double gift_certificate_amount = 0;
+    String online_bank = tf_online_bank.getText();
+    String online_reference_no = tf_ap_check_no1.getText();
+    double online_amount = FitIn.toDouble(tf_ap_cash6.getText());
+    String online_holder = tf_ap_check_holder1.getText();
+    String online_date = DateType.sf.format(jDateChooser5.getDate());
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    String created_by = MyUser.getUser_id();
+    String updated_by = MyUser.getUser_id();
+    int status = 0;
+    int is_uploaded = 0;
+    int collection_id = 0;
+    String collection_no = "";
+    String collection_sales_no = tf_field22.getText();
+
+    Enrollment_assessment_payments.to_enrollment_assessment_payments eap = new Enrollment_assessment_payments.to_enrollment_assessment_payments(id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_bank, check_no, check_amount, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, credit_card_holder, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, collection_id, collection_no, collection_sales_no);
 //        List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> payments = new ArrayList();
-        List<Finance.fees> list = tbl_mode_of_payments_ALM;
-        List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> eapd = new ArrayList();
-        for (Finance.fees fee : list) {
-            if (fee.trans_type == 1) {
-                int id1 = 0;
-                int enrollment_assessment_payment_id = 0;
-                String mode = fee.mode;
-                int mode_order = 100;
-                String to_pay = DateType.convert_dash_date5(fee.date);
-                double amount = fee.amount - fee.paid;
-                double discount = 0;
-                double paid = fee.new_payment;
-                Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
-                eapd.add(details);
-            }
-        }
-
-        String or_no = tf_field22.getText();
-        String payment_type = "Tuition";
-        int ref_id = 0;
-
-        String school_year = "2021 - 2022";
-        String period = "First Semester";
-        String year_level = pay_stud.year_level;
-        String department_id = "" + pay_stud.department_id;
-        String department = pay_stud.department;
-        String college_id = "" + pay_stud.college_id;
-        String college = pay_stud.college;
-        String course_id = "" + pay_stud.course_id;
-        String course = pay_stud.course_code;
-        String student_name = pay_stud.first_name + " " + pay_stud.middle_name + " " + pay_stud.last_name;
-        Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, "" + pay_stud.id, pay_stud.student_no, student_name);
-
-        String or = Enrollment_assessments.add_data3(eap, eapd, pay_stud, has_or, to_collections);
-        c_transaction_no = or;
-        c_gross_amount = amount_paid;
-        c_cash = cash;
-        c_credit_card = credit_card_amount;
-        c_gc = gift_certificate_amount;
-        c_check = check_amount;
-        c_online = online_amount;
-        Alert.set(1, "");
-
+    List<Finance.fees> list = tbl_mode_of_payments_ALM;
+    List<Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details> eapd = new ArrayList();
+    for (Finance.fees fee : list) {
+      if (fee.trans_type == 1) {
+        int id1 = 0;
+        int enrollment_assessment_payment_id = 0;
+        String mode = fee.mode;
+        int mode_order = 100;
+        String to_pay = DateType.convert_dash_date5(fee.date);
+        double amount = fee.amount - fee.paid;
+        double discount = 0;
+        double paid = fee.new_payment;
+        Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details details = new Enrollment_assessment_payment_details.to_enrollment_assessment_payment_details(id, enrollment_assessment_payment_id, enrollment_assessment_id, enrollment_id, enrollment_no, academic_year_id, academic_year, mode, mode_order, to_pay, amount, discount, paid, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+        eapd.add(details);
+      }
     }
 
-    public class Loader1 extends SwingWorker {
+    String or_no = tf_field22.getText();
+    String payment_type = "Tuition";
+    int ref_id = 0;
 
-        private Loading dialog;
+    String school_year = "2021 - 2022";
+    String period = "First Semester";
+    String year_level = pay_stud.year_level;
+    String department_id = "" + pay_stud.department_id;
+    String department = pay_stud.department;
+    String college_id = "" + pay_stud.college_id;
+    String college = pay_stud.college;
+    String course_id = "" + pay_stud.course_id;
+    String course = pay_stud.course_code;
+    String student_name = pay_stud.first_name + " " + pay_stud.middle_name + " " + pay_stud.last_name;
+    Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, created_by, updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, "" + pay_stud.id, pay_stud.student_no, student_name);
 
-        public Loader1(JDialog dlg) {
+    String or = Enrollment_assessments.add_data3(eap, eapd, pay_stud, has_or, to_collections);
+    c_transaction_no = or;
+    c_gross_amount = amount_paid;
+    c_cash = cash;
+    c_credit_card = credit_card_amount;
+    c_gc = gift_certificate_amount;
+    c_check = check_amount;
+    c_online = online_amount;
+    Alert.set(1, "");
 
-            dialog = new Loading();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            int xSize = ((int) tk.getScreenSize().
-                    getWidth());
-            int ySize = ((int) tk.getScreenSize().
-                    getHeight());
-            dialog.setSize(xSize, ySize);
-            dialog.setPreferredSize(new Dimension(xSize, ySize));
-            dialog.setAlwaysOnTop(true);
-            addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("state".equals(evt.getPropertyName())) {
-                        if (getState() == SwingWorker.StateValue.STARTED) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (getState() == SwingWorker.StateValue.STARTED) {
-                                        dialog.setVisible(true);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-        }
+  }
 
+  public class Loader1 extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader1(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
         @Override
-        protected Object doInBackground() throws Exception {
-            pay_adjustment();
-            return null;
-        }
-
-        @Override
-        protected void done() {
-            dialog.dispose();
-            SwingUtilities.invokeLater(new Runnable() {
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    set_change();
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
                 }
-            });
+              });
+            }
+          }
         }
-
+      });
     }
 
-    public class Loader2 extends SwingWorker {
-
-        private Loading dialog;
-
-        public Loader2(JDialog dlg) {
-
-            dialog = new Loading();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            int xSize = ((int) tk.getScreenSize().
-                    getWidth());
-            int ySize = ((int) tk.getScreenSize().
-                    getHeight());
-            dialog.setSize(xSize, ySize);
-            dialog.setPreferredSize(new Dimension(xSize, ySize));
-            dialog.setAlwaysOnTop(true);
-            addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("state".equals(evt.getPropertyName())) {
-                        if (getState() == SwingWorker.StateValue.STARTED) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (getState() == SwingWorker.StateValue.STARTED) {
-                                        dialog.setVisible(true);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-        }
-
-        @Override
-        protected Object doInBackground() throws Exception {
-            pay();
-            return null;
-        }
-
-        @Override
-        protected void done() {
-            dialog.dispose();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    set_change();
-                }
-            });
-        }
-
+    @Override
+    protected Object doInBackground() throws Exception {
+      pay_adjustment();
+      return null;
     }
 
-    public class Loader3 extends SwingWorker {
-
-        private Loading dialog;
-
-        public Loader3(JDialog dlg) {
-
-            dialog = new Loading();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            int xSize = ((int) tk.getScreenSize().
-                    getWidth());
-            int ySize = ((int) tk.getScreenSize().
-                    getHeight());
-            dialog.setSize(xSize, ySize);
-            dialog.setPreferredSize(new Dimension(xSize, ySize));
-            dialog.setAlwaysOnTop(true);
-            addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("state".equals(evt.getPropertyName())) {
-                        if (getState() == SwingWorker.StateValue.STARTED) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (getState() == SwingWorker.StateValue.STARTED) {
-                                        dialog.setVisible(true);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-        }
-
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
         @Override
-        protected Object doInBackground() throws Exception {
-            pay_other_payment();
-            return null;
+        public void run() {
+          set_change();
         }
+      });
+    }
 
+  }
+
+  public class Loader2 extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader2(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
         @Override
-        protected void done() {
-            dialog.dispose();
-            SwingUtilities.invokeLater(new Runnable() {
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    set_change();
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
                 }
-            });
-        }
-
-    }
-
-    String c_transaction_no = "";
-    double c_gross_amount = 0;
-    double c_cash = 0;
-    double c_credit_card = 0;
-    double c_gc = 0;
-    double c_check = 0;
-    double c_online = 0;
-
-    private void set_change() {
-
-        List<Finance.fees> acc = tbl_mode_of_payments_ALM;
-
-        Window p = (Window) Dlg_finance_payment.this;
-        Dlg_touchscreen_change nd = Dlg_touchscreen_change.create(p, true);
-        nd.setTitle("");
-
-        nd.do_pass(acc, c_transaction_no, c_gross_amount, c_cash, c_credit_card, c_gc, c_check, c_online);
-        nd.setCallback(new Dlg_touchscreen_change.Callback() {
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_touchscreen_change.OutputData data) {
-                closeDialog.ok();
-
-                System.out.println("Transaction Settled");
-                System.out.println("Clearing Fields.......");
-
-                c_transaction_no = "";
-                c_gross_amount = 0;
-                c_cash = 0;
-                c_credit_card = 0;
-                c_gc = 0;
-                c_check = 0;
-                c_online = 0;
-                ok1();
+              });
             }
-        });
-        nd.setLocationRelativeTo(null);
-        nd.setVisible(true);
-    }
-
-    private void ok1() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
+          }
         }
+      });
     }
 
-    private void banks() {
-        Window p = (Window) this;
-        Dlg_banks nd = Dlg_banks.create(p, true);
-        nd.setTitle("");
-        nd.do_pass();
-        nd.setCallback(new Dlg_banks.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_banks.OutputData data) {
-                closeDialog.ok();
-
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
+    @Override
+    protected Object doInBackground() throws Exception {
+      pay();
+      return null;
     }
 
-    private void add_particulars() {
-        Window p = (Window) this;
-        Dlg_account_particulars nd = Dlg_account_particulars.create(p, true);
-        nd.setTitle("");
-        nd.do_pass();
-        nd.setCallback(new Dlg_account_particulars.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_account_particulars.OutputData data) {
-                closeDialog.ok();
-                ret_particulars();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-    List<Account_particulars.to_account_particulars> particulars = new ArrayList();
-
-    private void init_particulars() {
-        Object[][] obj = new Object[particulars.size()][1];
-        int i = 0;
-        for (Account_particulars.to_account_particulars to : particulars) {
-            obj[i][0] = " " + to.particular;
-            i++;
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          set_change();
         }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field127.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field127, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Account_particulars.to_account_particulars to = particulars.get(data.selected_row);
-                tf_field127.setText("" + to.particular);
+      });
+    }
 
+  }
+
+  public class Loader3 extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader3(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
+                }
+              });
             }
-        });
-    }
-
-    private void ret_particulars() {
-        String where = " order by particular asc ";
-        particulars = Account_particulars.ret_data(where);
-        if (!particulars.isEmpty()) {
-            Account_particulars.to_account_particulars to = (Account_particulars.to_account_particulars) particulars.get(0);
-            Field.Combo tf = (Field.Combo) tf_field127;
-            tf.setId("" + to.id);
-            tf.setText(to.particular);
-
+          }
         }
+      });
     }
+
+    @Override
+    protected Object doInBackground() throws Exception {
+      pay_other_payment();
+      return null;
+    }
+
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          set_change();
+        }
+      });
+    }
+
+  }
+
+  public class Loader4 extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader4(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
+                }
+              });
+            }
+          }
+        }
+      });
+    }
+
+    @Override
+    protected Object doInBackground() throws Exception {
+      pay_downpayment();
+      return null;
+    }
+
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          set_change();
+        }
+      });
+    }
+
+  }
+
+  String c_transaction_no = "";
+  double c_gross_amount = 0;
+  double c_cash = 0;
+  double c_credit_card = 0;
+  double c_gc = 0;
+  double c_check = 0;
+  double c_online = 0;
+
+  private void set_change() {
+
+    List<Finance.fees> acc = tbl_mode_of_payments_ALM;
+
+    Window p = (Window) Dlg_finance_payment.this;
+    Dlg_touchscreen_change nd = Dlg_touchscreen_change.create(p, true);
+    nd.setTitle("");
+
+    nd.do_pass(acc, c_transaction_no, c_gross_amount, c_cash, c_credit_card, c_gc, c_check, c_online);
+    nd.setCallback(new Dlg_touchscreen_change.Callback() {
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_touchscreen_change.OutputData data) {
+        closeDialog.ok();
+
+        System.out.println("Transaction Settled");
+        System.out.println("Clearing Fields.......");
+
+        c_transaction_no = "";
+        c_gross_amount = 0;
+        c_cash = 0;
+        c_credit_card = 0;
+        c_gc = 0;
+        c_check = 0;
+        c_online = 0;
+        ok1();
+      }
+    });
+    nd.setLocationRelativeTo(null);
+    nd.setVisible(true);
+  }
+
+  private void ok1() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
+    }
+  }
+
+  private void banks() {
+    Window p = (Window) this;
+    Dlg_banks nd = Dlg_banks.create(p, true);
+    nd.setTitle("");
+    nd.do_pass();
+    nd.setCallback(new Dlg_banks.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_banks.OutputData data) {
+        closeDialog.ok();
+
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void add_particulars() {
+    Window p = (Window) this;
+    Dlg_account_particulars nd = Dlg_account_particulars.create(p, true);
+    nd.setTitle("");
+    nd.do_pass();
+    nd.setCallback(new Dlg_account_particulars.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_account_particulars.OutputData data) {
+        closeDialog.ok();
+        ret_particulars();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+  List<Account_particulars.to_account_particulars> particulars = new ArrayList();
+
+  private void init_particulars() {
+    Object[][] obj = new Object[particulars.size()][1];
+    int i = 0;
+    for (Account_particulars.to_account_particulars to : particulars) {
+      obj[i][0] = " " + to.particular;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field127.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field127, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Account_particulars.to_account_particulars to = particulars.get(data.selected_row);
+        tf_field127.setText("" + to.particular);
+
+      }
+    });
+  }
+
+  private void ret_particulars() {
+    String where = " order by particular asc ";
+    particulars = Account_particulars.ret_data(where);
+    if (!particulars.isEmpty()) {
+      Account_particulars.to_account_particulars to = (Account_particulars.to_account_particulars) particulars.get(0);
+      Field.Combo tf = (Field.Combo) tf_field127;
+      tf.setId("" + to.id);
+      tf.setText(to.particular);
+
+    }
+  }
 }

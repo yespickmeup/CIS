@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cis.other_payments;
+package cis.downpayments;
 
 import cis.collections.Collection;
+import cis.other_payments.Other_payments;
 import cis.utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,17 +22,19 @@ import mijzcx.synapse.desk.utils.SqlStringUtil;
  *
  * @author USER
  */
-public class Other_payments {
+public class Downpayments {
 
-  public static class to_other_payments {
+  public static class to_downpayments {
 
     public final int id;
-    public final String reference_no;
-    public final String customer_id;
-    public final String customer_name;
+    public final int enrollment_id;
+    public final String enrollment_no;
+    public final int academic_year_id;
+    public final String academic_year;
+    public final String student_id;
+    public final String student_no;
+    public final String student_name;
     public final double amount;
-    public final int particular_id;
-    public final String particular;
     public final String created_by;
     public final String updated_by;
     public final String created_at;
@@ -40,14 +43,16 @@ public class Other_payments {
     public final int collection_id;
     public final String collection_no;
 
-    public to_other_payments(int id, String reference_no, String customer_id, String customer_name, double amount, int particular_id, String particular, String created_by, String updated_by, String created_at, String updated_at, int status, int collection_id, String collection_no) {
+    public to_downpayments(int id, int enrollment_id, String enrollment_no, int academic_year_id, String academic_year, String student_id, String student_no, String student_name, double amount, String created_by, String updated_by, String created_at, String updated_at, int status, int collection_id, String collection_no) {
       this.id = id;
-      this.reference_no = reference_no;
-      this.customer_id = customer_id;
-      this.customer_name = customer_name;
+      this.enrollment_id = enrollment_id;
+      this.enrollment_no = enrollment_no;
+      this.academic_year_id = academic_year_id;
+      this.academic_year = academic_year;
+      this.student_id = student_id;
+      this.student_no = student_no;
+      this.student_name = student_name;
       this.amount = amount;
-      this.particular_id = particular_id;
-      this.particular = particular;
       this.created_by = created_by;
       this.updated_by = updated_by;
       this.created_at = created_at;
@@ -58,16 +63,18 @@ public class Other_payments {
     }
   }
 
-  public static void add_data(to_other_payments to_other_payments) {
+  public static void add_data(to_downpayments to_downpayments) {
     try {
       Connection conn = MyConnection.connect();
-      String s0 = "insert into other_payments("
-              + "reference_no"
-              + ",customer_id"
-              + ",customer_name"
+      String s0 = "insert into downpayments("
+              + "enrollment_id"
+              + ",enrollment_no"
+              + ",academic_year_id"
+              + ",academic_year"
+              + ",student_id"
+              + ",student_no"
+              + ",student_name"
               + ",amount"
-              + ",particular_id"
-              + ",particular"
               + ",created_by"
               + ",updated_by"
               + ",created_at"
@@ -76,12 +83,14 @@ public class Other_payments {
               + ",collection_id"
               + ",collection_no"
               + ")values("
-              + ":reference_no"
-              + ",:customer_id"
-              + ",:customer_name"
+              + ":enrollment_id"
+              + ",:enrollment_no"
+              + ",:academic_year_id"
+              + ",:academic_year"
+              + ",:student_id"
+              + ",:student_no"
+              + ",:student_name"
               + ",:amount"
-              + ",:particular_id"
-              + ",:particular"
               + ",:created_by"
               + ",:updated_by"
               + ",:created_at"
@@ -92,24 +101,26 @@ public class Other_payments {
               + ")";
 
       s0 = SqlStringUtil.parse(s0)
-              .setString("reference_no", to_other_payments.reference_no)
-              .setString("customer_id", to_other_payments.customer_id)
-              .setString("customer_name", to_other_payments.customer_name)
-              .setNumber("amount", to_other_payments.amount)
-              .setNumber("particular_id", to_other_payments.particular_id)
-              .setString("particular", to_other_payments.particular)
-              .setString("created_by", to_other_payments.created_by)
-              .setString("updated_by", to_other_payments.updated_by)
-              .setString("created_at", to_other_payments.created_at)
-              .setString("updated_at", to_other_payments.updated_at)
-              .setNumber("status", to_other_payments.status)
-              .setNumber("collection_id", to_other_payments.collection_id)
-              .setString("collection_no", to_other_payments.collection_no)
+              .setNumber("enrollment_id", to_downpayments.enrollment_id)
+              .setString("enrollment_no", to_downpayments.enrollment_no)
+              .setNumber("academic_year_id", to_downpayments.academic_year_id)
+              .setString("academic_year", to_downpayments.academic_year)
+              .setString("student_id", to_downpayments.student_id)
+              .setString("student_no", to_downpayments.student_no)
+              .setString("student_name", to_downpayments.student_name)
+              .setNumber("amount", to_downpayments.amount)
+              .setString("created_by", to_downpayments.created_by)
+              .setString("updated_by", to_downpayments.updated_by)
+              .setString("created_at", to_downpayments.created_at)
+              .setString("updated_at", to_downpayments.updated_at)
+              .setNumber("status", to_downpayments.status)
+              .setNumber("collection_id", to_downpayments.collection_id)
+              .setString("collection_no", to_downpayments.collection_no)
               .ok();
 
       PreparedStatement stmt = conn.prepareStatement(s0);
       stmt.execute();
-      Lg.s(Other_payments.class, "Successfully Added");
+      Lg.s(Downpayments.class, "Successfully Added");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     } finally {
@@ -117,7 +128,75 @@ public class Other_payments {
     }
   }
 
-  public static String pay(to_other_payments to_other_payments, Collection.to_collections to_collections) {
+  public static void update_data(to_downpayments to_downpayments) {
+    try {
+      Connection conn = MyConnection.connect();
+      String s0 = "update downpayments set "
+              + "enrollment_id= :enrollment_id "
+              + ",enrollment_no= :enrollment_no "
+              + ",academic_year_id= :academic_year_id "
+              + ",academic_year= :academic_year "
+              + ",student_id= :student_id "
+              + ",student_no= :student_no "
+              + ",student_name= :student_name "
+              + ",amount= :amount "
+              + ",created_by= :created_by "
+              + ",updated_by= :updated_by "
+              + ",created_at= :created_at "
+              + ",updated_at= :updated_at "
+              + ",status= :status "
+              + ",collection_id= :collection_id "
+              + ",collection_no= :collection_no "
+              + " where id='" + to_downpayments.id + "' "
+              + " ";
+
+      s0 = SqlStringUtil.parse(s0)
+              .setNumber("enrollment_id", to_downpayments.enrollment_id)
+              .setString("enrollment_no", to_downpayments.enrollment_no)
+              .setNumber("academic_year_id", to_downpayments.academic_year_id)
+              .setString("academic_year", to_downpayments.academic_year)
+              .setString("student_id", to_downpayments.student_id)
+              .setString("student_no", to_downpayments.student_no)
+              .setString("student_name", to_downpayments.student_name)
+              .setNumber("amount", to_downpayments.amount)
+              .setString("created_by", to_downpayments.created_by)
+              .setString("updated_by", to_downpayments.updated_by)
+              .setString("created_at", to_downpayments.created_at)
+              .setString("updated_at", to_downpayments.updated_at)
+              .setNumber("status", to_downpayments.status)
+              .setNumber("collection_id", to_downpayments.collection_id)
+              .setString("collection_no", to_downpayments.collection_no)
+              .ok();
+
+      PreparedStatement stmt = conn.prepareStatement(s0);
+      stmt.execute();
+      Lg.s(Downpayments.class, "Successfully Updated");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      MyConnection.close();
+    }
+  }
+
+  public static void delete_data(to_downpayments to_downpayments) {
+    try {
+      Connection conn = MyConnection.connect();
+      String s0 = "delete from downpayments  "
+              + " where id='" + to_downpayments.id + "' "
+              + " ";
+
+      PreparedStatement stmt = conn.prepareStatement(s0);
+      stmt.execute();
+      Lg.s(Downpayments.class, "Successfully Deleted");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      MyConnection.close();
+    }
+  }
+
+  public static String pay(to_downpayments to_downpayments, Collection.to_collections to_collections) {
+
     try {
       Connection conn = MyConnection.connect();
       conn.setAutoCommit(false);
@@ -225,9 +304,9 @@ public class Other_payments {
 
       s2 = SqlStringUtil.parse(s2)
               .setString("collection_no", collection_or_no)
-              .setString("or_no", to_other_payments.reference_no)
-              .setString("payment_type", to_other_payments.particular)
-              .setNumber("amount_paid", to_other_payments.amount)
+              .setString("or_no", to_collections.or_no)
+              .setString("payment_type", to_collections.payment_type)
+              .setNumber("amount_paid", to_downpayments.amount)
               .setNumber("cash", to_collections.cash)
               .setString("discount_name", to_collections.discount_name)
               .setNumber("discount_rate", to_collections.discount_rate)
@@ -282,13 +361,15 @@ public class Other_payments {
         collection_id = last_inserted_id;
       }
 
-      String s0 = "insert into other_payments("
-              + "reference_no"
-              + ",customer_id"
-              + ",customer_name"
+      String s0 = "insert into downpayments("
+              + "enrollment_id"
+              + ",enrollment_no"
+              + ",academic_year_id"
+              + ",academic_year"
+              + ",student_id"
+              + ",student_no"
+              + ",student_name"
               + ",amount"
-              + ",particular_id"
-              + ",particular"
               + ",created_by"
               + ",updated_by"
               + ",created_at"
@@ -297,12 +378,14 @@ public class Other_payments {
               + ",collection_id"
               + ",collection_no"
               + ")values("
-              + ":reference_no"
-              + ",:customer_id"
-              + ",:customer_name"
+              + ":enrollment_id"
+              + ",:enrollment_no"
+              + ",:academic_year_id"
+              + ",:academic_year"
+              + ",:student_id"
+              + ",:student_no"
+              + ",:student_name"
               + ",:amount"
-              + ",:particular_id"
-              + ",:particular"
               + ",:created_by"
               + ",:updated_by"
               + ",:created_at"
@@ -313,17 +396,19 @@ public class Other_payments {
               + ")";
 
       s0 = SqlStringUtil.parse(s0)
-              .setString("reference_no", to_other_payments.reference_no)
-              .setString("customer_id", to_other_payments.customer_id)
-              .setString("customer_name", to_other_payments.customer_name)
-              .setNumber("amount", to_other_payments.amount)
-              .setNumber("particular_id", to_other_payments.particular_id)
-              .setString("particular", to_other_payments.particular)
-              .setString("created_by", to_other_payments.created_by)
-              .setString("updated_by", to_other_payments.updated_by)
-              .setString("created_at", to_other_payments.created_at)
-              .setString("updated_at", to_other_payments.updated_at)
-              .setNumber("status", to_other_payments.status)
+              .setNumber("enrollment_id", to_downpayments.enrollment_id)
+              .setString("enrollment_no", to_downpayments.enrollment_no)
+              .setNumber("academic_year_id", to_downpayments.academic_year_id)
+              .setString("academic_year", to_downpayments.academic_year)
+              .setString("student_id", to_downpayments.student_id)
+              .setString("student_no", to_downpayments.student_no)
+              .setString("student_name", to_downpayments.student_name)
+              .setNumber("amount", to_downpayments.amount)
+              .setString("created_by", to_downpayments.created_by)
+              .setString("updated_by", to_downpayments.updated_by)
+              .setString("created_at", to_downpayments.created_at)
+              .setString("updated_at", to_downpayments.updated_at)
+              .setNumber("status", to_downpayments.status)
               .setNumber("collection_id", collection_id)
               .setString("collection_no", collection_or_no)
               .ok();
@@ -332,20 +417,20 @@ public class Other_payments {
       stmt2.addBatch(s0);
       stmt2.executeBatch();
 
-      int other_payment_id = 0;
+      int downpayment_id = 0;
       ResultSet rs2 = stmt2.getGeneratedKeys();
       if (rs2.next()) {
         int last_inserted_id = rs2.getInt(1);
-        other_payment_id = last_inserted_id;
+        downpayment_id = last_inserted_id;
       }
-
-      String s3 = " update collections set ref_id='" + other_payment_id + "' where id='" + collection_id + "'";
+      
+      String s3 = " update collections set ref_id='" + downpayment_id + "' where id='" + collection_id + "'";
       PreparedStatement stmt3 = conn.prepareStatement("");
       stmt3.addBatch(s3);
       stmt3.executeBatch();
 
       conn.commit();
-      Lg.s(Other_payments.class, "Successfully Added");
+      Lg.s(Downpayments.class, "Successfully Added");
 
       return collection_or_no;
     } catch (SQLException e) {
@@ -355,82 +440,21 @@ public class Other_payments {
     }
   }
 
-  public static void update_data(to_other_payments to_other_payments) {
-    try {
-      Connection conn = MyConnection.connect();
-      String s0 = "update other_payments set "
-              + "reference_no= :reference_no "
-              + ",customer_id= :customer_id "
-              + ",customer_name= :customer_name "
-              + ",amount= :amount "
-              + ",particular_id= :particular_id "
-              + ",particular= :particular "
-              + ",created_by= :created_by "
-              + ",updated_by= :updated_by "
-              + ",created_at= :created_at "
-              + ",updated_at= :updated_at "
-              + ",status= :status "
-              + ",collection_id= :collection_id "
-              + ",collection_no= :collection_no "
-              + " where id='" + to_other_payments.id + "' "
-              + " ";
-
-      s0 = SqlStringUtil.parse(s0)
-              .setString("reference_no", to_other_payments.reference_no)
-              .setString("customer_id", to_other_payments.customer_id)
-              .setString("customer_name", to_other_payments.customer_name)
-              .setNumber("amount", to_other_payments.amount)
-              .setNumber("particular_id", to_other_payments.particular_id)
-              .setString("particular", to_other_payments.particular)
-              .setString("created_by", to_other_payments.created_by)
-              .setString("updated_by", to_other_payments.updated_by)
-              .setString("created_at", to_other_payments.created_at)
-              .setString("updated_at", to_other_payments.updated_at)
-              .setNumber("status", to_other_payments.status)
-              .setNumber("collection_id", to_other_payments.collection_id)
-              .setString("collection_no", to_other_payments.collection_no)
-              .ok();
-
-      PreparedStatement stmt = conn.prepareStatement(s0);
-      stmt.execute();
-      Lg.s(Other_payments.class, "Successfully Updated");
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    } finally {
-      MyConnection.close();
-    }
-  }
-
-  public static void delete_data(to_other_payments to_other_payments) {
-    try {
-      Connection conn = MyConnection.connect();
-      String s0 = "delete from other_payments  "
-              + " where id='" + to_other_payments.id + "' "
-              + " ";
-
-      PreparedStatement stmt = conn.prepareStatement(s0);
-      stmt.execute();
-      Lg.s(Other_payments.class, "Successfully Deleted");
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    } finally {
-      MyConnection.close();
-    }
-  }
-
-  public static List<to_other_payments> ret_data(String where) {
-    List<to_other_payments> datas = new ArrayList();
+  public static List<to_downpayments> ret_data(String where) {
+    List<to_downpayments> datas = new ArrayList();
 
     try {
       Connection conn = MyConnection.connect();
       String s0 = "select "
               + "id"
-              + ",reference_no"
-              + ",customer_id"
-              + ",customer_name"
+              + ",enrollment_id"
+              + ",enrollment_no"
+              + ",academic_year_id"
+              + ",academic_year"
+              + ",student_id"
+              + ",student_no"
+              + ",student_name"
               + ",amount"
-              + ",particular_id"
-              + ",particular"
               + ",created_by"
               + ",updated_by"
               + ",created_at"
@@ -438,28 +462,30 @@ public class Other_payments {
               + ",status"
               + ",collection_id"
               + ",collection_no"
-              + " from other_payments"
+              + " from downpayments"
               + " " + where;
 
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
       while (rs.next()) {
         int id = rs.getInt(1);
-        String reference_no = rs.getString(2);
-        String customer_id = rs.getString(3);
-        String customer_name = rs.getString(4);
-        double amount = rs.getDouble(5);
-        int particular_id = rs.getInt(6);
-        String particular = rs.getString(7);
-        String created_by = rs.getString(8);
-        String updated_by = rs.getString(9);
-        String created_at = rs.getString(10);
-        String updated_at = rs.getString(11);
-        int status = rs.getInt(12);
-        int collection_id = rs.getInt(13);
-        String collection_no = rs.getString(14);
+        int enrollment_id = rs.getInt(2);
+        String enrollment_no = rs.getString(3);
+        int academic_year_id = rs.getInt(4);
+        String academic_year = rs.getString(5);
+        String student_id = rs.getString(6);
+        String student_no = rs.getString(7);
+        String student_name = rs.getString(8);
+        double amount = rs.getDouble(9);
+        String created_by = rs.getString(10);
+        String updated_by = rs.getString(11);
+        String created_at = rs.getString(12);
+        String updated_at = rs.getString(13);
+        int status = rs.getInt(14);
+        int collection_id = rs.getInt(15);
+        String collection_no = rs.getString(16);
 
-        to_other_payments to = new to_other_payments(id, reference_no, customer_id, customer_name, amount, particular_id, particular, created_by, updated_by, created_at, updated_at, status, collection_id, collection_no);
+        to_downpayments to = new to_downpayments(id, enrollment_id, enrollment_no, academic_year_id, academic_year, student_id, student_no, student_name, amount, created_by, updated_by, created_at, updated_at, status, collection_id, collection_no);
         datas.add(to);
       }
       return datas;

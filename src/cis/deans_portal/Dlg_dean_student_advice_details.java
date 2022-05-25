@@ -106,166 +106,166 @@ import synsoftech.util.ImageRenderer;
  */
 public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_student_enrollment
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_student_enrollment
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
-    }
+  }
 
-    public static interface Callback {
+  public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
 
-    public static class InputData {
-    }
+  public static class InputData {
+  }
 
-    public static class OutputData {
-    }
+  public static class OutputData {
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_dean_student_advice_details(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_dean_student_advice_details(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_dean_student_advice_details(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_dean_student_advice_details() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_dean_student_advice_details myRef;
+
+  private void setThisRef(Dlg_dean_student_advice_details myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_dean_student_advice_details> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_dean_student_advice_details create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_dean_student_advice_details(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_dean_student_advice_details() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_dean_student_advice_details myRef;
+  public static Dlg_dean_student_advice_details create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_dean_student_advice_details myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_dean_student_advice_details> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_dean_student_advice_details dialog = dialogContainer.get(parent);
 
-    public static Dlg_dean_student_advice_details create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
+      if (dialog == null) {
+        dialog = new Dlg_dean_student_advice_details((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public static Dlg_dean_student_advice_details create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_dean_student_advice_details dialog = dialogContainer.get(parent);
 
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_dean_student_advice_details dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_dean_student_advice_details((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_dean_student_advice_details dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_dean_student_advice_details((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
+      if (dialog == null) {
+        dialog = new Dlg_dean_student_advice_details((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
-    //</editor-fold>    
 
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
+    return null;
 
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+  }
+  //</editor-fold>    
 
-        Dlg_dean_student_advice_details dialog = Dlg_dean_student_advice_details.create(new javax.swing.JFrame(), true);
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_dean_student_advice_details dialog = Dlg_dean_student_advice_details.create(new javax.swing.JFrame(), true);
 //        Toolkit tk = Toolkit.getDefaultToolkit();
 //        int xSize = ((int) tk.getScreenSize().
 //                getWidth());
 //        int ySize = ((int) tk.getScreenSize().
 //                getHeight());
 //        dialog.setSize(xSize, ySize);
-        dialog.setVisible(true);
+    dialog.setVisible(true);
 
-    }
-    //</editor-fold>
+  }
+  //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
-
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
-    }
+  }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -3730,63 +3730,63 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void tf_field23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field23ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field23ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+      jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tf_field89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field89ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field89ActionPerformed
 
     private void tf_field121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field121ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field121ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        save_application();
+      save_application();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
+      jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tf_field125MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field125MouseClicked
-        //        init_departments();
+      //        init_departments();
     }//GEN-LAST:event_tf_field125MouseClicked
 
     private void tf_field125ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field125ActionPerformed
-        //        init_departments();
+      //        init_departments();
     }//GEN-LAST:event_tf_field125ActionPerformed
 
     private void tf_field126MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field126MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field126MouseClicked
 
     private void tf_field126ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field126ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field126ActionPerformed
 
     private void tf_field127MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field127MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field127MouseClicked
 
     private void tf_field127ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field127ActionPerformed
-        init_courses();
+      init_courses();
     }//GEN-LAST:event_tf_field127ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        save_year_course();
+      save_year_course();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tf_field128MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field128MouseClicked
-        init_years();
+      init_years();
     }//GEN-LAST:event_tf_field128MouseClicked
 
     private void tf_field128ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field128ActionPerformed
@@ -3794,27 +3794,27 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_field128ActionPerformed
 
     private void tf_course_codeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_course_codeMouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_course_codeMouseClicked
 
     private void tf_course_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_course_codeActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_course_codeActionPerformed
 
     private void tf_field132MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field132MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field132MouseClicked
 
     private void tf_field132ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field132ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field132ActionPerformed
 
     private void tbl_enrollment_department_requirementsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_department_requirementsMouseClicked
-        select_enrollment_requirement();
+      select_enrollment_requirement();
     }//GEN-LAST:event_tbl_enrollment_department_requirementsMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        set_report();
+      set_report();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tf_course_outlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_course_outlineMouseClicked
@@ -3826,206 +3826,206 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     }//GEN-LAST:event_tf_course_outlineActionPerformed
 
     private void tf_field3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field3MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field3MouseClicked
 
     private void tf_field3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field3ActionPerformed
 
     private void tf_field4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field4MouseClicked
-        init_years2(tf_field4);
+      init_years2(tf_field4);
     }//GEN-LAST:event_tf_field4MouseClicked
 
     private void tf_field4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field4ActionPerformed
-        init_years2(tf_field4);
+      init_years2(tf_field4);
     }//GEN-LAST:event_tf_field4ActionPerformed
 
     private void tf_field129MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field129MouseClicked
-        init_period();
+      init_period();
     }//GEN-LAST:event_tf_field129MouseClicked
 
     private void tf_field129ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field129ActionPerformed
-        init_period();
+      init_period();
     }//GEN-LAST:event_tf_field129ActionPerformed
 
     private void tf_field133MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field133MouseClicked
-        init_years3(tf_field133);
+      init_years3(tf_field133);
     }//GEN-LAST:event_tf_field133MouseClicked
 
     private void tf_field133ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field133ActionPerformed
-        init_years3(tf_field133);
+      init_years3(tf_field133);
     }//GEN-LAST:event_tf_field133ActionPerformed
 
     private void tf_field134MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field134MouseClicked
-        init_period2();
+      init_period2();
     }//GEN-LAST:event_tf_field134MouseClicked
 
     private void tf_field134ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field134ActionPerformed
-        init_period2();
+      init_period2();
     }//GEN-LAST:event_tf_field134ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ret_offered_subjects();
+      ret_offered_subjects();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        ret_offered_subjects();
+      ret_offered_subjects();
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
-        ret_offered_subjects();
+      ret_offered_subjects();
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
     private void tbl_academic_offering_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_academic_offering_subjectsMouseClicked
-        select_aos();
+      select_aos();
     }//GEN-LAST:event_tbl_academic_offering_subjectsMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        ret_loaded_subjects();
+      ret_loaded_subjects();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        add_all_load();
+      add_all_load();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
-        ret_loaded_subjects();
+      ret_loaded_subjects();
     }//GEN-LAST:event_jCheckBox13ActionPerformed
 
     private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
-        ret_loaded_subjects();
+      ret_loaded_subjects();
     }//GEN-LAST:event_jCheckBox14ActionPerformed
 
     private void tbl_enrollment_student_loaded_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_student_loaded_subjectsMouseClicked
-        select_loaded_subjects();
+      select_loaded_subjects();
     }//GEN-LAST:event_tbl_enrollment_student_loaded_subjectsMouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        if (jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
-            finish_advising();
-        } else {
-            confirm_enroll();
-        }
+      if (jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+        finish_advising();
+      } else {
+        confirm_enroll();
+      }
 
 //      
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        print_assessment();
+      print_assessment();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        confirm_enroll();
+      confirm_enroll();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
+      jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        jTabbedPane1.setSelectedIndex(0);
+      jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        check_status();
+      check_status();
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        check_status();
+      check_status();
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        check_status();
+      check_status();
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        check_status();
+      check_status();
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        check_indigenous();
+      check_indigenous();
     }//GEN-LAST:event_jCheckBox11ActionPerformed
 
     private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
-        check_indigenous();
+      check_indigenous();
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
     private void tf_periodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_periodMouseClicked
-        init_periods();
+      init_periods();
     }//GEN-LAST:event_tf_periodMouseClicked
 
     private void tf_periodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_periodActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_periodActionPerformed
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
-        select_tab();
+      select_tab();
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void tf_field135MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field135MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field135MouseClicked
 
     private void tf_field135ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field135ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field135ActionPerformed
 
     private void tf_field136MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field136MouseClicked
-        init_blood_type();
+      init_blood_type();
     }//GEN-LAST:event_tf_field136MouseClicked
 
     private void tf_field136ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field136ActionPerformed
-        init_blood_type();
+      init_blood_type();
     }//GEN-LAST:event_tf_field136ActionPerformed
 
     private void tf_field137ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field137ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field137ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        set_report_syllabus();
+      set_report_syllabus();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void tf_field48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field48ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field48ActionPerformed
 
     private void jCheckBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox15ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox15ActionPerformed
 
     private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox16ActionPerformed
 
     private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox17ActionPerformed
 
     private void tf_field22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field22ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field22ActionPerformed
 
     private void tf_field141MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field141MouseClicked
-        init_tracks();
+      init_tracks();
     }//GEN-LAST:event_tf_field141MouseClicked
 
     private void tf_field140MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field140MouseClicked
-        init_strands();
+      init_strands();
     }//GEN-LAST:event_tf_field140MouseClicked
 
     private void tf_field141ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field141ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field141ActionPerformed
 
     private void jCheckBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox18ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox18ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -4373,1771 +4373,1779 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     private javax.swing.JTextField tf_period;
     // End of variables declaration//GEN-END:variables
     private void myInit() {
-        init_key();
+    init_key();
 
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-        List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
-        if (!acad_years.isEmpty()) {
-            Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
+    List<Academic_years.to_academic_years> acad_years = Academic_years.ret_data(" where status=1 ");
+    if (!acad_years.isEmpty()) {
+      Academic_years.to_academic_years to = (Academic_years.to_academic_years) acad_years.get(0);
 //            Field.Input year = (Field.Input) tf_field2;
 //            year.setText(to.years);
 //            year.setId("" + to.id);
-            academic_year_id = to.id;
+      academic_year_id = to.id;
+    }
+    init_tbl_enrollment_department_requirements(tbl_enrollment_department_requirements);
+    init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
+    init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
+
+    Field.Input father_fname = (Field.Input) tf_field31;
+    Field.Input father_mname = (Field.Input) tf_field130;
+    Field.Input father_lname = (Field.Input) tf_field131;
+
+    Field.Input mother_fname = (Field.Input) tf_field32;
+    Field.Input mother_mname = (Field.Input) tf_field138;
+    Field.Input mother_lname = (Field.Input) tf_field139;
+    father_fname.setPrompt("First Name");
+    father_mname.setPrompt("Middle Name");
+    father_lname.setPrompt("Last Name");
+    mother_fname.setPrompt("First Name");
+    mother_mname.setPrompt("Middle Name");
+    mother_lname.setPrompt("Last Name");
+
+    jButton11.setVisible(false);
+  }
+
+  Enrollments.to_enrollments enroll = null;
+  int academic_offering_id = 0;
+  int academic_year_id = 0;
+  int is_d = 0;
+
+  public void do_pass(Enrollments.to_enrollments student, int is_dean) {
+//        System.out.println("enroll: "+enroll.student_no);
+    enroll = student;
+    is_d = is_dean;
+
+    if (is_dean == 0) {
+
+      jButton9.setText("APPROVE ENROLLMENT APPLICATION");
+
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          set_assessment2();
         }
-        init_tbl_enrollment_department_requirements(tbl_enrollment_department_requirements);
-        init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
-        init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-
-        Field.Input father_fname = (Field.Input) tf_field31;
-        Field.Input father_mname = (Field.Input) tf_field130;
-        Field.Input father_lname = (Field.Input) tf_field131;
-
-        Field.Input mother_fname = (Field.Input) tf_field32;
-        Field.Input mother_mname = (Field.Input) tf_field138;
-        Field.Input mother_lname = (Field.Input) tf_field139;
-        father_fname.setPrompt("First Name");
-        father_mname.setPrompt("Middle Name");
-        father_lname.setPrompt("Last Name");
-        mother_fname.setPrompt("First Name");
-        mother_mname.setPrompt("Middle Name");
-        mother_lname.setPrompt("Last Name");
-
-        jButton11.setVisible(false);
+      });
+      jTabbedPane2.setSelectedIndex(2);
+    } else {
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          set_assessment3();
+        }
+      });
+      jButton9.setText("FINISH ADVISING");
     }
 
-    Enrollments.to_enrollments enroll = null;
-    int academic_offering_id = 0;
-    int academic_year_id = 0;
-    int is_d = 0;
+    if (enroll.advised_date != null && is_dean == 1) {
+      jButton9.setEnabled(false);
+    }
+    if (enroll.advised_date != null && enroll.assessed_date == null) {
+      jButton9.setEnabled(false);
+    }
+    if (enroll.date_enrolled != null) {
+      jButton9.setEnabled(false);
+    }
+    Field.Input aca = (Field.Input) tf_field135;
+    aca.setId("" + enroll.academic_year_id);
+    aca.setText(enroll.academic_year);
 
-    public void do_pass(Enrollments.to_enrollments student, int is_dean) {
-//        System.out.println("enroll: "+enroll.student_no);
-        enroll = student;
-        is_d = is_dean;
+    set_loading_years(enroll.department_id, enroll.course_id);
+    list_year2.clear();
+    list_period.clear();
+    list_year.clear();
+    tf_field5.setText(student.first_name);
+    tf_field6.setText(student.middle_name);
 
-        if (is_dean == 0) {
+    tf_lastname.setText(student.last_name);
+    tf_field8.setText(student.nick_name);
 
-            jButton9.setText("APPROVE ENROLLMENT APPLICATION");
+    tf_field104.setText(student.current_address);
+    tf_field9.setText(student.permanent_address);
+    tf_field10.setText(student.postal_code);
+    tf_field11.setText(student.email_address);
+    tf_field12.setText(student.tel_no);
+    tf_field13.setText(student.mobile_no);
 
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    set_assessment2();
-                }
-            });
-            jTabbedPane2.setSelectedIndex(2);
-        } else {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    set_assessment3();
-                }
-            });
-            jButton9.setText("FINISH ADVISING");
-        }
+    try {
+      Date d = DateType.sf.parse(student.date_of_birth);
+      jDateChooser1.setDate(d);
+    } catch (ParseException ex) {
+      Logger.getLogger(Dlg_dean_student_advice_details.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    tf_field15.setText("" + student.age);
+    if (student.gender == 1) {
+      jCheckBox1.setSelected(true);
+    } else {
+      jCheckBox2.setSelected(true);
+    }
 
-        if (enroll.advised_date != null && is_dean == 1) {
-            jButton9.setEnabled(false);
-        }
-        if (enroll.advised_date != null && enroll.assessed_date == null) {
-            jButton9.setEnabled(false);
-        }
-        if (enroll.date_enrolled != null) {
-            jButton9.setEnabled(false);
-        }
-        Field.Input aca = (Field.Input) tf_field135;
-        aca.setId("" + enroll.academic_year_id);
-        aca.setText(enroll.academic_year);
+    tf_field14.setText(student.place_of_birth);
+    tf_field16.setText(student.citizenship);
+    tf_field17.setText(student.religion);
 
-        set_loading_years(enroll.department_id, enroll.course_id);
-        list_year2.clear();
-        list_period.clear();
-        list_year.clear();
-        tf_field5.setText(student.first_name);
-        tf_field6.setText(student.middle_name);
+    if (student.civil_status.equals("1")) {
+      jCheckBox3.setSelected(true);
+    } else if (student.civil_status.equals("2")) {
+      jCheckBox4.setSelected(true);
+    } else if (student.civil_status.equals("3")) {
+      jCheckBox5.setSelected(true);
+    } else {
+      jCheckBox6.setSelected(true);
+    }
 
-        tf_lastname.setText(student.last_name);
-        tf_field8.setText(student.nick_name);
+    try {
+      if (student.date_of_communion != null) {
+        Date d1 = DateType.sf.parse(student.date_of_communion);
+        jDateChooser2.setDate(d1);
+      }
+      if (student.date_of_confirmation != null) {
+        Date d2 = DateType.sf.parse(student.date_of_confirmation);
+        jDateChooser3.setDate(d2);
+      }
 
-        tf_field104.setText(student.current_address);
-        tf_field9.setText(student.permanent_address);
-        tf_field10.setText(student.postal_code);
-        tf_field11.setText(student.email_address);
-        tf_field12.setText(student.tel_no);
-        tf_field13.setText(student.mobile_no);
+    } catch (ParseException ex) {
 
-        try {
-            Date d = DateType.sf.parse(student.date_of_birth);
-            jDateChooser1.setDate(d);
-        } catch (ParseException ex) {
-            Logger.getLogger(Dlg_dean_student_advice_details.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tf_field15.setText("" + student.age);
-        if (student.gender == 1) {
-            jCheckBox1.setSelected(true);
-        } else {
-            jCheckBox2.setSelected(true);
-        }
+    }
+    tf_field18.setText(student.spouse_name);
+    tf_field105.setText(student.indigenous_name);
+    if (student.is_right_handed == 1) {
+      jCheckBox10.setSelected(true);
+    } else {
+      jCheckBox9.setSelected(true);
+    }
 
-        tf_field14.setText(student.place_of_birth);
-        tf_field16.setText(student.citizenship);
-        tf_field17.setText(student.religion);
+    tf_field19.setText(student.grade_school_name);
+    tf_field22.setText(student.grade_school_region);
+    tf_field25.setText(student.grade_school_school_year);
+    tf_field112.setText(student.grade_school_awards);
 
-        if (student.civil_status.equals("1")) {
-            jCheckBox3.setSelected(true);
-        } else if (student.civil_status.equals("2")) {
-            jCheckBox4.setSelected(true);
-        } else if (student.civil_status.equals("3")) {
-            jCheckBox5.setSelected(true);
-        } else {
-            jCheckBox6.setSelected(true);
-        }
+    tf_field106.setText(student.junior_high_name);
+    tf_field107.setText(student.junior_high_region);
+    tf_field108.setText(student.junior_high_year);
+    tf_field113.setText(student.junior_high_awards);
 
-        try {
-            if (student.date_of_communion != null) {
-                Date d1 = DateType.sf.parse(student.date_of_communion);
-                jDateChooser2.setDate(d1);
+    tf_field20.setText(student.high_school_name);
+    tf_field23.setText(student.high_school_region);
+    tf_field26.setText(student.high_school_school_year);
+    tf_field114.setText(student.high_school_awards);
+
+    tf_field21.setText(student.college_school_name);
+    tf_field24.setText(student.college_school_region);
+    tf_field27.setText(student.college_school_school_year);
+    tf_field116.setText(student.college_awards);
+
+    tf_field109.setText(student.tesda_name);
+    tf_field110.setText(student.tesda_region);
+    tf_field111.setText(student.tesda_year);
+    tf_field115.setText(student.tesda_awards);
+
+    tf_field28.setText(student.preferred_course1);
+    tf_field29.setText(student.preferred_course2);
+    tf_field30.setText(student.preferred_course3);
+
+    tf_field142.setText(student.als_name);
+    tf_field143.setText(student.als_region);
+    tf_field144.setText(student.als_year);
+    tf_field145.setText(student.als_awards);
+    tf_field140.setText(student.high_school_strand);
+    tf_field141.setText(student.high_school_track);
+
+    String[] fathers = student.father_name.split("%");
+
+    try {
+      tf_field31.setText(fathers[0]);
+      tf_field130.setText(fathers[1]);
+      tf_field131.setText(fathers[2]);
+    } catch (Exception e) {
+      tf_field31.setText(student.father_name.replaceAll("%", ""));
+    }
+
+    tf_field33.setText(student.father_citizenship);
+    tf_field35.setText(student.father_home_address);
+    tf_field36.setText(student.father_email_address);
+    tf_field42.setText(student.father_mobile_no);
+    tf_field40.setText(student.father_occupation);
+    tf_field43.setText(student.father_employer);
+    tf_field44.setText(student.father_business_address);
+    tf_field51.setText(student.father_business_tel_no);
+    tf_field47.setText(student.father_educational_attainment);
+    tf_field48.setText(student.father_last_school_attended);
+
+    String[] mothers = student.mother_name.split("%");
+    try {
+      tf_field32.setText(mothers[0]);
+      tf_field138.setText(mothers[1]);
+      tf_field139.setText(mothers[2]);
+    } catch (Exception e) {
+      tf_field32.setText(student.mother_name.replaceAll("%", ""));
+    }
+
+    tf_field34.setText(student.mother_citizenship);
+    tf_field37.setText(student.mother_home_address);
+    tf_field38.setText(student.mother_email_address);
+    tf_field39.setText(student.mother_mobile_no);
+    tf_field41.setText(student.mother_occupation);
+    tf_field45.setText(student.mother_employer);
+    tf_field46.setText(student.mother_business_address);
+    tf_field52.setText(student.mother_business_tel_no);
+    tf_field49.setText(student.mother_educational_attainment);
+    tf_field50.setText(student.mother_last_school_attended);
+
+    tf_field101.setText(student.guardian_name);
+    tf_field102.setText(student.guardian_mailing_address);
+    tf_field103.setText(student.guardian_telephone_no);
+
+    String[] siblings1 = student.sibling1.split("%");
+    String[] siblings2 = student.sibling2.split("%");
+    String[] siblings3 = student.sibling3.split("%");
+    String[] siblings4 = student.sibling4.split("%");
+    String[] siblings5 = student.sibling5.split("%");
+    String[] siblings6 = student.sibling6.split("%");
+    String[] siblings7 = student.sibling7.split("%");
+    String[] siblings8 = student.sibling8.split("%");
+
+    try {
+      tf_field53.setText(siblings1[0]);
+      tf_field54.setText(siblings1[1]);
+      tf_field55.setText(siblings1[2]);
+      tf_field56.setText(siblings1[3]);
+      tf_field57.setText(siblings1[4]);
+      tf_field58.setText(siblings1[5]);
+      tf_field117.setText(siblings1[6]);
+
+      tf_field59.setText(siblings2[0]);
+      tf_field60.setText(siblings2[1]);
+      tf_field61.setText(siblings2[2]);
+      tf_field62.setText(siblings2[3]);
+      tf_field63.setText(siblings2[4]);
+      tf_field64.setText(siblings2[5]);
+      tf_field118.setText(siblings2[6]);
+
+      tf_field65.setText(siblings3[0]);
+      tf_field66.setText(siblings3[1]);
+      tf_field67.setText(siblings3[2]);
+      tf_field68.setText(siblings3[3]);
+      tf_field69.setText(siblings3[4]);
+      tf_field70.setText(siblings3[5]);
+      tf_field119.setText(siblings3[6]);
+
+      tf_field71.setText(siblings4[0]);
+      tf_field72.setText(siblings4[1]);
+      tf_field73.setText(siblings4[2]);
+      tf_field74.setText(siblings4[3]);
+      tf_field75.setText(siblings4[4]);
+      tf_field76.setText(siblings4[5]);
+      tf_field120.setText(siblings4[6]);
+
+      tf_field83.setText(siblings5[0]);
+      tf_field85.setText(siblings5[1]);
+      tf_field86.setText(siblings5[2]);
+      tf_field87.setText(siblings5[3]);
+      tf_field88.setText(siblings5[4]);
+      tf_field89.setText(siblings5[5]);
+      tf_field121.setText(siblings5[6]);
+
+      tf_field90.setText(siblings6[0]);
+      tf_field91.setText(siblings6[1]);
+      tf_field92.setText(siblings6[2]);
+      tf_field93.setText(siblings6[3]);
+      tf_field94.setText(siblings6[4]);
+      tf_field95.setText(siblings6[5]);
+      tf_field122.setText(siblings6[6]);
+
+      tf_field77.setText(siblings7[0]);
+      tf_field78.setText(siblings7[1]);
+      tf_field79.setText(siblings7[2]);
+      tf_field80.setText(siblings7[3]);
+      tf_field81.setText(siblings7[4]);
+      tf_field82.setText(siblings7[5]);
+      tf_field123.setText(siblings7[6]);
+
+      tf_field84.setText(siblings8[0]);
+      tf_field96.setText(siblings8[1]);
+      tf_field97.setText(siblings8[2]);
+      tf_field98.setText(siblings8[3]);
+      tf_field99.setText(siblings8[4]);
+      tf_field100.setText(siblings8[5]);
+      tf_field124.setText(siblings8[6]);
+    } catch (Exception e) {
+    }
+
+    Field.Input cou = (Field.Input) tf_course_code;
+    Field.Input dep = (Field.Input) tf_field125;
+    Field.Input lev = (Field.Input) tf_field126;
+
+    cou.setId("" + enroll.course_id);
+    cou.setText(enroll.course_code);
+    tf_course_outline.setText(enroll.course_code);
+    tf_course_description.setText(enroll.course_description);
+
+    dep.setId("" + enroll.department_id);
+    dep.setText(enroll.department);
+
+    lev.setId("" + enroll.level_id);
+    lev.setText(enroll.level);
+
+    if (enroll.department_id != 0) {
+      ret_enrollment_requirements();
+      tf_field128.setText(enroll.year_level);
+    } else {
+      tf_field128.setText("First Year");
+    }
+    tf_period.setText(enroll.period);
+
+    tf_field137.setText(enroll.fb_account);
+    tf_field136.setText(enroll.blood_type);
+
+    ret_periods();
+    if (enroll.course_id != 0) {
+
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          Field.Input cou2 = (Field.Input) tf_course_outline;
+          cou.setId("" + enroll.course_id);
+          cou.setText(enroll.course_code);
+          jTextArea1.setText(enroll.course_description);
+          String where = " where course_id='" + enroll.course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ";
+          List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(where);
+
+          if (!courses.isEmpty()) {
+            Academic_offerings.to_academic_offerings course = (Academic_offerings.to_academic_offerings) courses.get(0);
+            academic_offering_id = course.id;
+            tf_field132.setText("" + course.no_of_years);
+
+            String where2 = " where academic_year_id='" + course.academic_year_id + "' and department_id='" + course.department_id + "' ";
+            List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
+            String period = "";
+            if (!acad.isEmpty()) {
+              Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
+
+              period = ayp.period;
             }
-            if (student.date_of_confirmation != null) {
-                Date d2 = DateType.sf.parse(student.date_of_confirmation);
-                jDateChooser3.setDate(d2);
+
+            String[] semester = {"First Semester", "Second Semester", "Summer Class"};
+            String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
+            String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
+
+            for (int i = 0; i < course.no_of_years; i++) {
+              list_year2.add(years[i]);
             }
 
-        } catch (ParseException ex) {
+            if (!list_year2.isEmpty()) {
+              tf_field4.setText("" + list_year2.get(0));
+            }
 
+            if (period.equalsIgnoreCase("Semester")) {
+              for (int i = 0; i < semester.length; i++) {
+                list_period.add(semester[i]);
+              }
+            }
+            if (period.equalsIgnoreCase("Trimester")) {
+              for (int i = 0; i < trimester.length; i++) {
+                list_period.add(trimester[i]);
+              }
+            }
+            if (!list_period.isEmpty()) {
+              tf_field129.setText("" + list_period.get(0));
+              period_term = "" + list_period.get(0);
+            }
+
+          }
         }
-        tf_field18.setText(student.spouse_name);
-        tf_field105.setText(student.indigenous_name);
-        if (student.is_right_handed == 1) {
-            jCheckBox10.setSelected(true);
-        } else {
-            jCheckBox9.setSelected(true);
-        }
+      });
 
-        tf_field19.setText(student.grade_school_name);
-        tf_field22.setText(student.grade_school_region);
-        tf_field25.setText(student.grade_school_school_year);
-        tf_field112.setText(student.grade_school_awards);
+    }
 
-        tf_field106.setText(student.junior_high_name);
-        tf_field107.setText(student.junior_high_region);
-        tf_field108.setText(student.junior_high_year);
-        tf_field113.setText(student.junior_high_awards);
+    jDateChooser1.addPropertyChangeListener(new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+        int year = FitIn.toInt(DateType.y.format(jDateChooser1.getDate()));
+        int month = FitIn.toInt(DateType.m1.format(jDateChooser1.getDate()));
+        int day = FitIn.toInt(DateType.d.format(jDateChooser1.getDate()));
+        int age = DateType.calculateAge(year, month, day);
+        tf_field15.setText("" + age);
+      }
+    });
+    ret_loaded_subjects();
 
-        tf_field20.setText(student.high_school_name);
-        tf_field23.setText(student.high_school_region);
-        tf_field26.setText(student.high_school_school_year);
-        tf_field114.setText(student.high_school_awards);
+    String image_server = System.getProperty("image_server", "");
+    init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
 
-        tf_field21.setText(student.college_school_name);
-        tf_field24.setText(student.college_school_region);
-        tf_field27.setText(student.college_school_school_year);
-        tf_field116.setText(student.college_awards);
+  }
 
-        tf_field109.setText(student.tesda_name);
-        tf_field110.setText(student.tesda_region);
-        tf_field111.setText(student.tesda_year);
-        tf_field115.setText(student.tesda_awards);
+  String period_term = "First Semester";
 
-        tf_field28.setText(student.preferred_course1);
-        tf_field29.setText(student.preferred_course2);
-        tf_field30.setText(student.preferred_course3);
+  private void check_status() {
+    if (jCheckBox4.isSelected()) {
+      tf_field18.setEnabled(true);
+    } else {
+      tf_field18.setEnabled(false);
+      tf_field18.setText("");
+    }
+  }
 
-        tf_field142.setText(student.als_name);
-        tf_field143.setText(student.als_region);
-        tf_field144.setText(student.als_year);
-        tf_field145.setText(student.als_awards);
-        tf_field140.setText(student.high_school_strand);
-        tf_field141.setText(student.high_school_track);
+  private void check_indigenous() {
+    if (jCheckBox11.isSelected()) {
+      tf_field105.setEnabled(true);
+    } else {
+      tf_field105.setEnabled(false);
+      tf_field105.setText("");
+    }
+  }
 
-        String[] fathers = student.father_name.split("%");
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
 
-        try {
-            tf_field31.setText(fathers[0]);
-            tf_field130.setText(fathers[1]);
-            tf_field131.setText(fathers[2]);
-        } catch (Exception e) {
-            tf_field31.setText(student.father_name.replaceAll("%", ""));
-        }
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
 
-        tf_field33.setText(student.father_citizenship);
-        tf_field35.setText(student.father_home_address);
-        tf_field36.setText(student.father_email_address);
-        tf_field42.setText(student.father_mobile_no);
-        tf_field40.setText(student.father_occupation);
-        tf_field43.setText(student.father_employer);
-        tf_field44.setText(student.father_business_address);
-        tf_field51.setText(student.father_business_tel_no);
-        tf_field47.setText(student.father_educational_attainment);
-        tf_field48.setText(student.father_last_school_attended);
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+//                btn_0.doClick();
+                      ok1();
+                    }
+                  });
+  }
 
-        String[] mothers = student.mother_name.split("%");
-        try {
-            tf_field32.setText(mothers[0]);
-            tf_field138.setText(mothers[1]);
-            tf_field139.setText(mothers[2]);
-        } catch (Exception e) {
-            tf_field32.setText(student.mother_name.replaceAll("%", ""));
-        }
+  private void ok() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
+    }
+  }
+  // </editor-fold>
+  List<String> list_year2 = new ArrayList();
+  List<String> list_period = new ArrayList();
+  List<String> list_year = new ArrayList();
 
-        tf_field34.setText(student.mother_citizenship);
-        tf_field37.setText(student.mother_home_address);
-        tf_field38.setText(student.mother_email_address);
-        tf_field39.setText(student.mother_mobile_no);
-        tf_field41.setText(student.mother_occupation);
-        tf_field45.setText(student.mother_employer);
-        tf_field46.setText(student.mother_business_address);
-        tf_field52.setText(student.mother_business_tel_no);
-        tf_field49.setText(student.mother_educational_attainment);
-        tf_field50.setText(student.mother_last_school_attended);
+  private void init_years() {
+    Object[][] obj = new Object[list_year2.size()][1];
+    int i = 0;
+    for (String to : list_year2) {
+      obj[i][0] = " " + to;
 
-        tf_field101.setText(student.guardian_name);
-        tf_field102.setText(student.guardian_mailing_address);
-        tf_field103.setText(student.guardian_telephone_no);
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field128.getWidth()};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field128, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = list_year.get(data.selected_row);
+        tf_field128.setText("" + to);
 
-        String[] siblings1 = student.sibling1.split("%");
-        String[] siblings2 = student.sibling2.split("%");
-        String[] siblings3 = student.sibling3.split("%");
-        String[] siblings4 = student.sibling4.split("%");
-        String[] siblings5 = student.sibling5.split("%");
-        String[] siblings6 = student.sibling6.split("%");
-        String[] siblings7 = student.sibling7.split("%");
-        String[] siblings8 = student.sibling8.split("%");
+      }
+    });
+  }
 
-        try {
-            tf_field53.setText(siblings1[0]);
-            tf_field54.setText(siblings1[1]);
-            tf_field55.setText(siblings1[2]);
-            tf_field56.setText(siblings1[3]);
-            tf_field57.setText(siblings1[4]);
-            tf_field58.setText(siblings1[5]);
-            tf_field117.setText(siblings1[6]);
+  private void init_years2(JTextField tf) {
+    Object[][] obj = new Object[list_year2.size()][1];
+    int i = 0;
+    for (String to : list_year2) {
+      obj[i][0] = " " + to;
 
-            tf_field59.setText(siblings2[0]);
-            tf_field60.setText(siblings2[1]);
-            tf_field61.setText(siblings2[2]);
-            tf_field62.setText(siblings2[3]);
-            tf_field63.setText(siblings2[4]);
-            tf_field64.setText(siblings2[5]);
-            tf_field118.setText(siblings2[6]);
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf.getWidth()};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = list_year2.get(data.selected_row);
+        tf.setText("" + to);
+        ret_offered_subjects();
+      }
+    });
+  }
 
-            tf_field65.setText(siblings3[0]);
-            tf_field66.setText(siblings3[1]);
-            tf_field67.setText(siblings3[2]);
-            tf_field68.setText(siblings3[3]);
-            tf_field69.setText(siblings3[4]);
-            tf_field70.setText(siblings3[5]);
-            tf_field119.setText(siblings3[6]);
+  private void init_years3(JTextField tf) {
+    Object[][] obj = new Object[list_year2.size()][1];
+    int i = 0;
+    for (String to : list_year2) {
+      obj[i][0] = " " + to;
 
-            tf_field71.setText(siblings4[0]);
-            tf_field72.setText(siblings4[1]);
-            tf_field73.setText(siblings4[2]);
-            tf_field74.setText(siblings4[3]);
-            tf_field75.setText(siblings4[4]);
-            tf_field76.setText(siblings4[5]);
-            tf_field120.setText(siblings4[6]);
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf.getWidth()};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = list_year2.get(data.selected_row);
+        tf.setText("" + to);
+        ret_loaded_subjects();
+      }
+    });
+  }
 
-            tf_field83.setText(siblings5[0]);
-            tf_field85.setText(siblings5[1]);
-            tf_field86.setText(siblings5[2]);
-            tf_field87.setText(siblings5[3]);
-            tf_field88.setText(siblings5[4]);
-            tf_field89.setText(siblings5[5]);
-            tf_field121.setText(siblings5[6]);
+  private void init_period() {
+    Object[][] obj = new Object[list_period.size()][1];
+    int i = 0;
+    for (String to : list_period) {
+      obj[i][0] = " " + to;
 
-            tf_field90.setText(siblings6[0]);
-            tf_field91.setText(siblings6[1]);
-            tf_field92.setText(siblings6[2]);
-            tf_field93.setText(siblings6[3]);
-            tf_field94.setText(siblings6[4]);
-            tf_field95.setText(siblings6[5]);
-            tf_field122.setText(siblings6[6]);
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field129.getWidth()};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field129, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = list_period.get(data.selected_row);
+        tf_field129.setText("" + to);
+        ret_offered_subjects();
+      }
+    });
+  }
 
-            tf_field77.setText(siblings7[0]);
-            tf_field78.setText(siblings7[1]);
-            tf_field79.setText(siblings7[2]);
-            tf_field80.setText(siblings7[3]);
-            tf_field81.setText(siblings7[4]);
-            tf_field82.setText(siblings7[5]);
-            tf_field123.setText(siblings7[6]);
+  private void init_period2() {
+    Object[][] obj = new Object[list_period.size()][1];
+    int i = 0;
+    for (String to : list_period) {
+      obj[i][0] = " " + to;
 
-            tf_field84.setText(siblings8[0]);
-            tf_field96.setText(siblings8[1]);
-            tf_field97.setText(siblings8[2]);
-            tf_field98.setText(siblings8[3]);
-            tf_field99.setText(siblings8[4]);
-            tf_field100.setText(siblings8[5]);
-            tf_field124.setText(siblings8[6]);
-        } catch (Exception e) {
-        }
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field134.getWidth()};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field134, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = list_period.get(data.selected_row);
+        tf_field134.setText("" + to);
+        ret_loaded_subjects();
+      }
+    });
+  }
+
+  private void save_application() {
+
+    if (tf_field5.getText().isEmpty()) {
+      tf_field5.grabFocus();
+      Alert.set(0, "Input First name");
+      return;
+    }
+    if (tf_lastname.getText().isEmpty()) {
+      tf_lastname.grabFocus();
+      Alert.set(0, "Input Last name");
+      return;
+    }
+    int age2 = FitIn.toInt(tf_field15.getText());
+    if (age2 <= 3) {
+      Alert.set(0, "Input Birthdate");
+      return;
+    }
+
+    int id = enroll.id;
+    String enrollment_no = enroll.enrollment_no;
+    int is_transferee = enroll.is_transferee;
+
+    int academic_year_id1 = enroll.academic_year_id;
+    String academic_year = enroll.academic_year;
+    int curriculum_id = enroll.curriculum_id;
+    int course_id = 0;
+    String course_code = "";
+    String course_description = "";
+    String term = "";
+    String encoded_by_id = MyUser.getUser_id();
+    String encoded_by = MyUser.getUser_screen_name();
+    String encoded_date = DateType.now();
+    String assessed_by_id = "";
+    String assessed_by = "";
+    String assessed_date = null;
+    String advised_by_id = "";
+    String advised_by = "";
+    String advised_date = null;
+    String approved_by_id = "";
+    String approved_by = "";
+    String approved_date = null;
+    String student_no = null;
+    String last_name = tf_lastname.getText();
+    String first_name = tf_field5.getText();
+    String middle_name = tf_field6.getText();
+    String nick_name = tf_field8.getText();
+    String current_address = tf_field104.getText();
+    String permanent_address = tf_field9.getText();
+    String email_address = tf_field11.getText();
+    String postal_code = tf_field10.getText();
+    String tel_no = tf_field12.getText();
+    String mobile_no = tf_field13.getText();
+    String date_of_birth = DateType.sf.format(jDateChooser1.getDate());
+    String place_of_birth = tf_field14.getText();
+    int age = FitIn.toInt(tf_field15.getText());
+    int gender = 0;
+    if (jCheckBox1.isSelected()) {
+      gender = 1;
+    }
+    String citizenship = tf_field16.getText();
+    String religion = tf_field17.getText();
+    String civil_status = "1";
+    if (jCheckBox4.isSelected()) {
+      civil_status = "2";
+    }
+    if (jCheckBox5.isSelected()) {
+      civil_status = "3";
+    }
+    if (jCheckBox6.isSelected()) {
+      civil_status = "4";
+    }
+    String spouse_name = tf_field18.getText();
+    String date_of_communion = null;
+    String date_of_confirmation = null;
+    try {
+      date_of_communion = DateType.sf.format(jDateChooser2.getDate());
+      date_of_confirmation = DateType.sf.format(jDateChooser3.getDate());
+    } catch (Exception e) {
+    }
+    int is_right_hande = 0;
+    if (jCheckBox10.isSelected()) {
+      is_right_hande = 1;
+    }
+
+    int is_indigenous = 0;
+    if (jCheckBox11.isSelected()) {
+      is_indigenous = 1;
+    }
+    String indigenous_name = tf_field105.getText();
+
+    int level_id = 0;
+    String level = null;
+    int college_id = 0;
+    String college = null;
+    int department_id = 0;
+    String department = null;
+    String year_level = null;
+    String year_level_status = null;
+
+    String preferred_course1 = tf_field28.getText();
+    String preferred_course2 = tf_field29.getText();
+    String preferred_course3 = tf_field30.getText();
+
+    String father_name = concat_s(tf_field31, tf_field130, tf_field131);
+
+    String father_citizenship = tf_field33.getText();
+    String father_home_address = tf_field35.getText();
+    String father_email_address = tf_field36.getText();
+    String father_mobile_no = tf_field42.getText();
+    String father_occupation = tf_field40.getText();
+    String father_employer = tf_field43.getText();
+    String father_business_address = tf_field44.getText();
+    String father_business_tel_no = tf_field51.getText();
+    String father_educational_attainment = tf_field47.getText();
+    String father_last_school_attended = tf_field48.getText();
+
+    String mother_name = concat_s(tf_field32, tf_field138, tf_field139);
+    String mother_citizenship = tf_field34.getText();
+    String mother_home_address = tf_field37.getText();
+    String mother_email_address = tf_field38.getText();
+    String mother_mobile_no = tf_field39.getText();
+    String mother_occupation = tf_field41.getText();
+    String mother_employer = tf_field45.getText();
+    String mother_business_address = tf_field46.getText();
+    String mother_business_tel_no = tf_field52.getText();
+    String mother_educational_attainment = tf_field49.getText();
+    String mother_last_school_attended = tf_field50.getText();
+
+    String guardian_name = tf_field101.getText();
+    String guardian_mailing_address = tf_field102.getText();
+    String guardian_telephone_no = tf_field103.getText();
+
+    String grade_school_name = tf_field19.getText();
+    String grade_school_region = tf_field22.getText();
+    String grade_school_school_year = tf_field25.getText();
+    String grade_school_awards = tf_field112.getText();
+
+    String high_school_name = tf_field20.getText();
+    String high_school_region = tf_field23.getText();
+    String high_school_school_year = tf_field26.getText();
+    String high_school_awards = tf_field114.getText();
+
+    String college_school_name = tf_field21.getText();
+    String college_school_region = tf_field24.getText();
+    String college_school_school_year = tf_field27.getText();
+    String college_awards = tf_field116.getText();
+
+    String junior_high_name = tf_field106.getText();
+    String junior_high_region = tf_field107.getText();
+    String junior_high_year = tf_field108.getText();
+    String junior_high_awards = tf_field113.getText();
+
+    String tesda_name = tf_field109.getText();
+    String tesda_region = tf_field110.getText();
+    String tesda_year = tf_field111.getText();
+    String tesda_awards = tf_field115.getText();
+
+    String sibling1 = concat_s(tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field117);
+    String sibling2 = concat_s(tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64, tf_field118);
+    String sibling3 = concat_s(tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field119);
+    String sibling4 = concat_s(tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76, tf_field120);
+    String sibling5 = concat_s(tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field121);
+    String sibling6 = concat_s(tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95, tf_field122);
+    String sibling7 = concat_s(tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field122);
+    String sibling8 = concat_s(tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100, tf_field124);
+
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    String created_by = MyUser.getUser_id();
+    String updated_by = MyUser.getUser_id();
+    int status = 0;
+    int is_uploaded = 0;
+    String date_enrolled = "";
+    int student_id = 0;
+    String period = "";
+    String fb_account = tf_field137.getText();
+    String blood_type = tf_field136.getText();
+
+    String als_name = tf_field142.getText();
+    String als_region = tf_field143.getText();
+    String als_year = tf_field144.getText();
+    String als_awards = tf_field145.getText();
+    String high_school_strand = tf_field140.getText();
+    String high_school_track = tf_field141.getText();
+    Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id1, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period, fb_account, blood_type, als_name, als_region, als_year, als_awards, high_school_strand, high_school_track);
+
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
+//        nd.do_pass(services);
+    nd.setCallback(new Dlg_confirm_action.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+
+        Enrollments.update_data(enroll2);
+        Alert.set(2, "");
+
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3, JTextField tf4, JTextField tf5, JTextField tf6, JTextField tf7) {
+    String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText() + "%" + tf4.getText() + "%" + tf5.getText() + "%" + tf6.getText() + "%" + tf7.getText();
+    return ret;
+  }
+
+  private void clear_fields() {
+    JTextField[] tfs = {tf_lastname, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
+      tf_field16, tf_field17, tf_field18, tf_field28, tf_field29, tf_field30, tf_field31, tf_field33, tf_field35, tf_field36, tf_field42, tf_field40, tf_field43,
+      tf_field44, tf_field51, tf_field47, tf_field48, tf_field32, tf_field34, tf_field37, tf_field38, tf_field39, tf_field41, tf_field45, tf_field46, tf_field52,
+      tf_field49, tf_field50, tf_field101, tf_field102, tf_field103, tf_field19, tf_field22, tf_field25, tf_field20, tf_field23, tf_field26, tf_field21, tf_field24, tf_field27,
+      tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64,
+      tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76,
+      tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95,
+      tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100
+
+    };
+
+    for (JTextField tf : tfs) {
+      tf.setText("");
+    }
+    tf_field5.grabFocus();
+  }
+
+  private void init_courses() {
+    String where = " where course_code like '%" + tf_field127.getText() + "%' and academic_year_id='" + enroll.academic_year_id + "' and status=1 "
+            + " or course_description like '%" + tf_field127.getText() + "%' and academic_year_id='" + enroll.academic_year_id + "'  and status=1 "
+            + " order by course_description asc ";
+    List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
+    Object[][] obj = new Object[offer.size()][3];
+    int i = 0;
+    for (Academic_offerings.to_academic_offerings to : offer) {
+      obj[i][0] = " " + to.course_code;
+      obj[i][1] = " " + to.course_description;
+      obj[i][2] = " " + to.no_of_years;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {100, tf_field127.getWidth() - 150, 50};
+    int width = 0;
+    String[] col_names = {"", "", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup2(tf_field127, obj, labels, tbl_widths_customers, col_names, tf_field127.getWidth() + 200);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
 
         Field.Input cou = (Field.Input) tf_course_code;
         Field.Input dep = (Field.Input) tf_field125;
         Field.Input lev = (Field.Input) tf_field126;
 
-        cou.setId("" + enroll.course_id);
-        cou.setText(enroll.course_code);
-        tf_course_outline.setText(enroll.course_code);
-        tf_course_description.setText(enroll.course_description);
+        cou.setText(off.course_code);
+        cou.setId("" + off.course_id);
+        tf_field132.setText("" + off.no_of_years);
+        tf_course_description.setText(off.course_description);
 
-        dep.setId("" + enroll.department_id);
-        dep.setText(enroll.department);
+        dep.setId("" + off.department_id);
+        dep.setText(off.department_name);
 
-        lev.setId("" + enroll.level_id);
-        lev.setText(enroll.level);
+        lev.setId("" + off.college_id);
+        lev.setText(off.college);
 
-        if (enroll.department_id != 0) {
-            ret_enrollment_requirements();
-            tf_field128.setText(enroll.year_level);
+        Field.Input aca = (Field.Input) tf_field135;
+        aca.setId("" + off.academic_year_id);
+        aca.setText(off.academic_year);
+
+        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
+        for (int i = 0; i < off.no_of_years; i++) {
+          list_year.add(years[i]);
+        }
+        String period = "First Semester";
+        String where = " where academic_year_id='" + academic_year_id + "' and department_id ='" + dep.getId() + "' and status=1 ";
+        List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(where);
+        if (!periods.isEmpty()) {
+          Academic_year_period_schedules.to_academic_year_period_schedules per = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
+          period = per.period;
+//                    tf_period.setText(period);
+        }
+
+        if (enroll.course_id != FitIn.toInt(cou.getId())) {
+          jButton5.setText("Save and Shift course");
         } else {
-            tf_field128.setText("First Year");
+          jButton5.setText("Save");
         }
-        tf_period.setText(enroll.period);
+      }
+    });
+  }
 
-        tf_field137.setText(enroll.fb_account);
-        tf_field136.setText(enroll.blood_type);
+  private void save_year_course() {
 
-        ret_periods();
-        if (enroll.course_id != 0) {
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
+//        nd.do_pass(services);
+    nd.setCallback(new Dlg_confirm_action.Callback() {
 
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Field.Input cou2 = (Field.Input) tf_course_outline;
-                    cou.setId("" + enroll.course_id);
-                    cou.setText(enroll.course_code);
-                    jTextArea1.setText(enroll.course_description);
-                    String where = " where course_id='" + enroll.course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ";
-                    List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(where);
-
-                    if (!courses.isEmpty()) {
-                        Academic_offerings.to_academic_offerings course = (Academic_offerings.to_academic_offerings) courses.get(0);
-                        academic_offering_id = course.id;
-                        tf_field132.setText("" + course.no_of_years);
-
-                        String where2 = " where academic_year_id='" + course.academic_year_id + "' and department_id='" + course.department_id + "' ";
-                        List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
-                        String period = "";
-                        if (!acad.isEmpty()) {
-                            Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
-
-                            period = ayp.period;
-                        }
-
-                        String[] semester = {"First Semester", "Second Semester", "Summer Class"};
-                        String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
-                        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
-
-                        for (int i = 0; i < course.no_of_years; i++) {
-                            list_year2.add(years[i]);
-                        }
-
-                        if (!list_year2.isEmpty()) {
-                            tf_field4.setText("" + list_year2.get(0));
-                        }
-
-                        if (period.equalsIgnoreCase("Semester")) {
-                            for (int i = 0; i < semester.length; i++) {
-                                list_period.add(semester[i]);
-                            }
-                        }
-                        if (period.equalsIgnoreCase("Trimester")) {
-                            for (int i = 0; i < trimester.length; i++) {
-                                list_period.add(trimester[i]);
-                            }
-                        }
-                        if (!list_period.isEmpty()) {
-                            tf_field129.setText("" + list_period.get(0));
-                            period_term = "" + list_period.get(0);
-                        }
-
-                    }
-                }
-            });
-
-        }
-
-        jDateChooser1.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                int year = FitIn.toInt(DateType.y.format(jDateChooser1.getDate()));
-                int month = FitIn.toInt(DateType.m1.format(jDateChooser1.getDate()));
-                int day = FitIn.toInt(DateType.d.format(jDateChooser1.getDate()));
-                int age = DateType.calculateAge(year, month, day);
-                tf_field15.setText("" + age);
-            }
-        });
-        ret_loaded_subjects();
-
-        String image_server = System.getProperty("image_server", "");
-        init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-
-    }
-
-    String period_term = "First Semester";
-
-    private void check_status() {
-        if (jCheckBox4.isSelected()) {
-            tf_field18.setEnabled(true);
-        } else {
-            tf_field18.setEnabled(false);
-            tf_field18.setText("");
-        }
-    }
-
-    private void check_indigenous() {
-        if (jCheckBox11.isSelected()) {
-            tf_field105.setEnabled(true);
-        } else {
-            tf_field105.setEnabled(false);
-            tf_field105.setText("");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
-
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
-
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
-//                btn_0.doClick();
-                              ok1();
-                          }
-                      });
-    }
-
-    private void ok() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
-    }
-    // </editor-fold>
-    List<String> list_year2 = new ArrayList();
-    List<String> list_period = new ArrayList();
-    List<String> list_year = new ArrayList();
-
-    private void init_years() {
-        Object[][] obj = new Object[list_year2.size()][1];
-        int i = 0;
-        for (String to : list_year2) {
-            obj[i][0] = " " + to;
-
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field128.getWidth()};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field128, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = list_year.get(data.selected_row);
-                tf_field128.setText("" + to);
-
-            }
-        });
-    }
-
-    private void init_years2(JTextField tf) {
-        Object[][] obj = new Object[list_year2.size()][1];
-        int i = 0;
-        for (String to : list_year2) {
-            obj[i][0] = " " + to;
-
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf.getWidth()};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = list_year2.get(data.selected_row);
-                tf.setText("" + to);
-                ret_offered_subjects();
-            }
-        });
-    }
-
-    private void init_years3(JTextField tf) {
-        Object[][] obj = new Object[list_year2.size()][1];
-        int i = 0;
-        for (String to : list_year2) {
-            obj[i][0] = " " + to;
-
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf.getWidth()};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = list_year2.get(data.selected_row);
-                tf.setText("" + to);
-                ret_loaded_subjects();
-            }
-        });
-    }
-
-    private void init_period() {
-        Object[][] obj = new Object[list_period.size()][1];
-        int i = 0;
-        for (String to : list_period) {
-            obj[i][0] = " " + to;
-
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field129.getWidth()};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field129, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = list_period.get(data.selected_row);
-                tf_field129.setText("" + to);
-                ret_offered_subjects();
-            }
-        });
-    }
-
-    private void init_period2() {
-        Object[][] obj = new Object[list_period.size()][1];
-        int i = 0;
-        for (String to : list_period) {
-            obj[i][0] = " " + to;
-
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field134.getWidth()};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field134, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = list_period.get(data.selected_row);
-                tf_field134.setText("" + to);
-                ret_loaded_subjects();
-            }
-        });
-    }
-
-    private void save_application() {
-
-        if (tf_field5.getText().isEmpty()) {
-            tf_field5.grabFocus();
-            Alert.set(0, "Input First name");
-            return;
-        }
-        if (tf_lastname.getText().isEmpty()) {
-            tf_lastname.grabFocus();
-            Alert.set(0, "Input Last name");
-            return;
-        }
-        int age2 = FitIn.toInt(tf_field15.getText());
-        if (age2 <= 3) {
-            Alert.set(0, "Input Birthdate");
-            return;
-        }
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+        Field.Input cou = (Field.Input) tf_course_code;
+        Field.Input dep = (Field.Input) tf_field125;
+        Field.Input lev = (Field.Input) tf_field126;
 
         int id = enroll.id;
+        int course_id = FitIn.toInt(cou.getId());
+        String course_code = cou.getText();
+        String course_description = tf_course_description.getText();
+        int level_id = FitIn.toInt(lev.getId());
+        String level = lev.getText();
+        int college_id = FitIn.toInt(lev.getId());
+        String college = lev.getText();
+        int department_id = FitIn.toInt(dep.getId());
+        String department = dep.getText();
+        String year_level = tf_field128.getText();
+        String term = tf_field132.getText();
+        String period = tf_period.getText();
+
+        Field.Input aca = (Field.Input) tf_field135;
+        int aca_id = FitIn.toInt(aca.getId());
+        String aca_year = aca.getText();
+        if (jButton5.getText().equalsIgnoreCase("Save")) {
+          Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period, aca_id, aca_year);
+        } else {
+          Enrollments.update_shift_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period, aca_id, aca_year, enroll.student_id);
+        }
+        Alert.set(2, "");
+
+        tf_course_outline.setText(course_code);
+        jTextArea1.setText(course_description);
+//                tf_field3.setText(tf_field132.getText());
+
+        ret_enrollment_requirements();
+        set_loading_years(department_id, course_id);
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void set_loading_years(int department_id, int course_id) {
+
+    String where = " where course_id='" + course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ";
+    List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(where);
+    if (!courses.isEmpty()) {
+      Academic_offerings.to_academic_offerings course = (Academic_offerings.to_academic_offerings) courses.get(0);
+      academic_offering_id = course.id;
+    }
+
+    int no_of_years = FitIn.toInt(tf_field132.getText());
+    String where2 = " where academic_year_id='" + enroll.academic_year_id + "' and department_id='" + department_id + "' ";
+    List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
+    String period = "";
+    if (!acad.isEmpty()) {
+      Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
+//            tf_period.setText("" + ayp.period);
+//            System.out.println("ayp.period: "+ayp.period);
+      period = ayp.period;
+    }
+
+    String[] semester = {"First Semester", "Second Semester", "Summer Class"};
+    String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
+    String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
+
+    for (int i = 0; i < no_of_years; i++) {
+      list_year2.add(years[i]);
+    }
+
+    if (!list_year2.isEmpty()) {
+      tf_field4.setText("" + list_year2.get(0));
+    }
+//        System.out.println("list_year2: " + list_year2.size());
+    if (period.equalsIgnoreCase("Semester")) {
+      for (int i = 0; i < semester.length; i++) {
+        list_period.add(semester[i]);
+      }
+    }
+    if (period.equalsIgnoreCase("Trimester")) {
+      for (int i = 0; i < trimester.length; i++) {
+        list_period.add(trimester[i]);
+      }
+    }
+    if (!list_period.isEmpty()) {
+      tf_field129.setText("" + list_period.get(0));
+    }
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" enrollment_department_requirements "> 
+  public static ArrayListModel tbl_enrollment_department_requirements_ALM;
+  public static Tblenrollment_department_requirementsModel tbl_enrollment_department_requirements_M;
+
+  public static void init_tbl_enrollment_department_requirements(JTable tbl_enrollment_department_requirements) {
+    tbl_enrollment_department_requirements_ALM = new ArrayListModel();
+    tbl_enrollment_department_requirements_M = new Tblenrollment_department_requirementsModel(tbl_enrollment_department_requirements_ALM);
+    tbl_enrollment_department_requirements.setModel(tbl_enrollment_department_requirements_M);
+    tbl_enrollment_department_requirements.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_enrollment_department_requirements.setRowHeight(25);
+    int[] tbl_widths_enrollment_department_requirements = {100, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_enrollment_department_requirements.length; i < n; i++) {
+      if (i == 0) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_enrollment_department_requirements, i, tbl_widths_enrollment_department_requirements[i]);
+    }
+    Dimension d = tbl_enrollment_department_requirements.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_enrollment_department_requirements.getTableHeader().setPreferredSize(d);
+    tbl_enrollment_department_requirements.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_department_requirements.setRowHeight(25);
+    tbl_enrollment_department_requirements.setFont(new java.awt.Font("Arial", 0, 12));
+  }
+
+  public static void loadData_enrollment_department_requirements(List<to_enrollment_department_requirements> acc) {
+    tbl_enrollment_department_requirements_ALM.clear();
+    tbl_enrollment_department_requirements_ALM.addAll(acc);
+  }
+
+  public static class Tblenrollment_department_requirementsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Requirement", "", "enrollment_no", "academic_year_id", "academic_year", "department_id", "department", "requirements", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public Tblenrollment_department_requirementsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      to_enrollment_department_requirements tt = (to_enrollment_department_requirements) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.requirements;
+        case 1:
+          return tt.selected;
+        case 2:
+          return tt.enrollment_no;
+        case 3:
+          return tt.academic_year_id;
+        case 4:
+          return tt.academic_year;
+        case 5:
+          return tt.department_id;
+        case 6:
+          return tt.department;
+        case 7:
+          return tt.requirements;
+        case 8:
+          return tt.created_at;
+        case 9:
+          return tt.updated_at;
+        case 10:
+          return tt.created_by;
+        case 11:
+          return tt.updated_by;
+        case 12:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
+    }
+  }
+
+  private void ret_enrollment_requirements() {
+    Field.Input dep = (Field.Input) tf_field125;
+    int department_id = FitIn.toInt(dep.getId());
+    int enrollment_id = enroll.id;
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        List<to_enrollment_department_requirements> datas = Enrollment_department_requirements.ret_data_selected(department_id, enrollment_id);
+        loadData_enrollment_department_requirements(datas);
+        jLabel3.setText("" + datas.size());
+      }
+    });
+
+  }
+
+  private void select_enrollment_requirement() {
+    int row = tbl_enrollment_department_requirements.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+
+    to_enrollment_department_requirements to = (to_enrollment_department_requirements) tbl_enrollment_department_requirements_ALM.get(row);
+    int col = tbl_enrollment_department_requirements.getSelectedColumn();
+    if (col == 1) {
+      System.out.println("to: " + to.id);
+      if (to.id == 0) {
+        Field.Input cou = (Field.Input) tf_course_code;
+        Field.Input dep = (Field.Input) tf_field125;
+        Field.Input lev = (Field.Input) tf_field126;
+
+        int id = 0;
+        int enrollment_id = enroll.id;
         String enrollment_no = enroll.enrollment_no;
-        int is_transferee = enroll.is_transferee;
-
-        int academic_year_id1 = enroll.academic_year_id;
+        int academic_year_id = enroll.academic_year_id;
         String academic_year = enroll.academic_year;
-        int curriculum_id = enroll.curriculum_id;
-        int course_id = 0;
-        String course_code = "";
-        String course_description = "";
-        String term = "";
-        String encoded_by_id = MyUser.getUser_id();
-        String encoded_by = MyUser.getUser_screen_name();
-        String encoded_date = DateType.now();
-        String assessed_by_id = "";
-        String assessed_by = "";
-        String assessed_date = null;
-        String advised_by_id = "";
-        String advised_by = "";
-        String advised_date = null;
-        String approved_by_id = "";
-        String approved_by = "";
-        String approved_date = null;
-        String student_no = null;
-        String last_name = tf_lastname.getText();
-        String first_name = tf_field5.getText();
-        String middle_name = tf_field6.getText();
-        String nick_name = tf_field8.getText();
-        String current_address = tf_field104.getText();
-        String permanent_address = tf_field9.getText();
-        String email_address = tf_field11.getText();
-        String postal_code = tf_field10.getText();
-        String tel_no = tf_field12.getText();
-        String mobile_no = tf_field13.getText();
-        String date_of_birth = DateType.sf.format(jDateChooser1.getDate());
-        String place_of_birth = tf_field14.getText();
-        int age = FitIn.toInt(tf_field15.getText());
-        int gender = 0;
-        if (jCheckBox1.isSelected()) {
-            gender = 1;
+        int department_id = FitIn.toInt(dep.getId());
+        String department = dep.getText();
+        int department_requirement_id = to.is_uploaded;
+        String requirements = to.requirements;
+        String created_at = DateType.now();
+        String updated_at = DateType.now();
+        String created_by = MyUser.getUser_id();
+        String updated_by = MyUser.getUser_id();
+        int status = 1;
+        int is_uploaded = 0;
+        boolean selected = false;
+
+        Window p = (Window) this;
+        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+        nd.setTitle("");
+
+        nd.setCallback(new Dlg_confirm_action.Callback() {
+
+          @Override
+          public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+            closeDialog.ok();
+            to_enrollment_department_requirements to2 = new to_enrollment_department_requirements(id, enrollment_id, enrollment_no, academic_year_id, academic_year, department_id, department, department_requirement_id, requirements, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
+            Enrollment_department_requirements.add_data(to2);
+            Alert.set(1, "");
+            ret_enrollment_requirements();
+          }
+        });
+        nd.setLocationRelativeTo(jScrollPane1);
+        nd.setVisible(true);
+
+      } else {
+
+        Window p = (Window) this;
+        Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+        nd.setTitle("");
+//                nd.do_pass(services);
+        nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+          @Override
+          public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+            closeDialog.ok();
+            Enrollment_department_requirements.delete_data(to);
+            Alert.set(3, "");
+            ret_enrollment_requirements();
+          }
+        });
+        nd.setLocationRelativeTo(jScrollPane1);
+        nd.setVisible(true);
+
+      }
+    }
+
+  }
+//</editor-fold> 
+
+  //<editor-fold defaultstate="collapsed" desc=" list of programs ">
+  private void set_report() {
+
+    jProgressBar1.setString("Loading...Please wait...");
+    jProgressBar1.setIndeterminate(true);
+    Thread t = new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+
+        String course = "Bachelor of Science Major in Philosophy";
+
+        String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
+        String school_year = enroll.academic_year;
+        String date_printed = DateType.month_date.format(new Date());
+        String printed_by = MyUser.getUser_screen_name();
+        Field.Input cou = (Field.Input) tf_course_code;
+
+        String where = " where academic_offering_id='" + cou.getId() + "' ";
+        List<Srpt_academic_offering_subjects.field> fields = Srpt_academic_offering_subjects.ret_data_with_prerequisites(where);
+        String jrxml = "rpt_academic_offering_subjects.jrxml";
+        Srpt_academic_offering_subjects rpt = new Srpt_academic_offering_subjects(school_name, school_year, date_printed, printed_by, course);
+        rpt.fields.addAll(fields);
+
+        report_subjects(rpt, jrxml);
+        jTabbedPane1.setSelectedIndex(1);
+        jProgressBar1.setString("Finished...");
+        jProgressBar1.setIndeterminate(false);
+      }
+    });
+    t.start();
+
+  }
+
+  private void report_subjects(final Srpt_academic_offering_subjects to, String jrxml_name) {
+    jPanel27.removeAll();
+    jPanel27.setLayout(new BorderLayout());
+    try {
+      JRViewer viewer = get_viewer_subjects(to, jrxml_name);
+      JPanel pnl = new JPanel();
+      pnl.add(viewer);
+      pnl.setVisible(true);
+      pnl.setVisible(true);
+      jPanel27.add(viewer);
+      jPanel27.updateUI();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static JRViewer get_viewer_subjects(Srpt_academic_offering_subjects to, String rpt_name) {
+    try {
+      return JasperUtil.getJasperViewer(
+              compileJasper(rpt_name),
+              JasperUtil.setParameter(to),
+              JasperUtil.makeDatasource(to.fields));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    } finally {
+    }
+  }
+
+  public static JasperReport compileJasper(String rpt_name) {
+    try {
+      String jrxml = rpt_name;
+      InputStream is = Srpt_academic_offering_subjects.class.
+              getResourceAsStream(jrxml);
+      JasperReport jasper = JasperCompileManager.compileReport(is);
+      return jasper;
+    } catch (JRException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" academic_offering_subjects "> 
+  public static ArrayListModel tbl_academic_offering_subjects_ALM;
+  public static Tblacademic_offering_subjectsModel tbl_academic_offering_subjects_M;
+
+  private void init_tbl_academic_offering_subjects(JTable tbl_academic_offering_subjects) {
+    tbl_academic_offering_subjects_ALM = new ArrayListModel();
+    tbl_academic_offering_subjects_M = new Tblacademic_offering_subjectsModel(tbl_academic_offering_subjects_ALM);
+    tbl_academic_offering_subjects.setModel(tbl_academic_offering_subjects_M);
+    tbl_academic_offering_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_academic_offering_subjects.setRowHeight(25);
+    int[] tbl_widths_academic_offering_subjects = {100, 100, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_academic_offering_subjects.length; i < n; i++) {
+      if (i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_academic_offering_subjects, i, tbl_widths_academic_offering_subjects[i]);
+    }
+    Dimension d = tbl_academic_offering_subjects.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_academic_offering_subjects.getTableHeader().setPreferredSize(d);
+    tbl_academic_offering_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_academic_offering_subjects.setRowHeight(25);
+    tbl_academic_offering_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_academic_offering_subjects.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
+
+    TableColumn tc = tbl_academic_offering_subjects.getColumnModel().getColumn(5);
+    tc.setCellEditor(tbl_academic_offering_subjects.getDefaultEditor(Boolean.class));
+    tc.setCellRenderer(tbl_academic_offering_subjects.getDefaultRenderer(Boolean.class));
+    tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+  }
+
+  class MyItemListener implements ItemListener {
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+      Object source = e.getSource();
+      if (source instanceof AbstractButton == false) {
+        return;
+      }
+      boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+      for (int x = 0, y = tbl_academic_offering_subjects.getRowCount(); x < y; x++) {
+        tbl_academic_offering_subjects.setValueAt(checked, x, 0);
+
+      }
+    }
+  }
+
+  class CheckBoxHeader extends JCheckBox
+          implements TableCellRenderer, MouseListener {
+
+    protected CheckBoxHeader rendererComponent;
+    protected int column;
+    protected boolean mousePressed = false;
+
+    public CheckBoxHeader(ItemListener itemListener) {
+      rendererComponent = this;
+      rendererComponent.addItemListener(itemListener);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(
+            JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+      if (table != null) {
+        JTableHeader header = table.getTableHeader();
+        if (header != null) {
+          rendererComponent.setForeground(header.getForeground());
+          rendererComponent.setBackground(new java.awt.Color(204, 204, 204));
+          rendererComponent.setHorizontalAlignment(Align.CENTER);
+          rendererComponent.setOpaque(true);
+          header.addMouseListener(rendererComponent);
         }
-        String citizenship = tf_field16.getText();
-        String religion = tf_field17.getText();
-        String civil_status = "1";
-        if (jCheckBox4.isSelected()) {
-            civil_status = "2";
+      }
+      setColumn(column);
+      rendererComponent.setText("");
+      setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+      return rendererComponent;
+    }
+
+    protected void setColumn(int column) {
+      this.column = column;
+    }
+
+    public int getColumn() {
+      return column;
+    }
+
+    protected void handleClickEvent(MouseEvent e) {
+      if (mousePressed) {
+        mousePressed = false;
+        JTableHeader header = (JTableHeader) (e.getSource());
+        JTable tableView = header.getTable();
+        TableColumnModel columnModel = tableView.getColumnModel();
+        int viewColumn = columnModel.getColumnIndexAtX(e.getX());
+        int column1 = tableView.convertColumnIndexToModel(viewColumn);
+        if (viewColumn == this.column && e.getClickCount() == 1 && column1 != -1) {
+          doClick();
         }
-        if (jCheckBox5.isSelected()) {
-            civil_status = "3";
+      }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+      handleClickEvent(e);
+      ((JTableHeader) e.getSource()).repaint();
+      List<to_academic_offering_subjects> datas = tbl_academic_offering_subjects_ALM;
+      boolean selected = false;
+      if (this.isSelected()) {
+        selected = true;
+      }
+      for (to_academic_offering_subjects to : datas) {
+        to.setSelected(selected);
+      }
+      e.consume();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+      mousePressed = true;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+  }
+
+  public static void loadData_academic_offering_subjects(List<to_academic_offering_subjects> acc) {
+    tbl_academic_offering_subjects_ALM.clear();
+    tbl_academic_offering_subjects_ALM.addAll(acc);
+  }
+
+  public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Subject Code", "Description", "Lec", "Lab", "", "", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "faculty_id", "faculty_name", "room", "schedule", "room_id"
+    };
+
+    public Tblacademic_offering_subjectsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 5) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      to_academic_offering_subjects tt = (to_academic_offering_subjects) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.subject_code;
+        case 1:
+          return " " + tt.description;
+        case 2:
+          return " " + tt.lecture_units;
+        case 3:
+          return " " + tt.lab_units;
+        case 4:
+          return "/cis/icons2/plus.png";
+        case 5:
+          return tt.selected;
+        case 6:
+          return tt.college_id;
+        case 7:
+          return tt.college;
+        case 8:
+          return tt.department_id;
+        case 9:
+          return tt.department;
+        case 10:
+          return tt.course_id;
+        case 11:
+          return tt.course_code;
+        case 12:
+          return tt.course_description;
+        case 13:
+          return tt.term;
+        case 14:
+          return tt.year_level;
+        case 15:
+          return tt.subject_id;
+        case 16:
+          return tt.subject_code;
+        case 17:
+          return tt.description;
+        case 18:
+          return tt.units;
+        case 19:
+          return tt.lecture_units;
+        case 20:
+          return tt.lab_units;
+        case 21:
+          return tt.amount;
+        case 22:
+          return tt.is_lab;
+        case 23:
+          return tt.max_students;
+        case 24:
+          return tt.prerequisite_subject_ids;
+        case 25:
+          return tt.subject_group;
+        case 26:
+          return tt.subject_group_id;
+        case 27:
+          return tt.created_at;
+        case 28:
+          return tt.updated_at;
+        case 29:
+          return tt.created_by;
+        case 30:
+          return tt.updated_by;
+        case 31:
+          return tt.status;
+        case 32:
+          return tt.is_uploaded;
+        case 33:
+          return tt.faculty_id;
+        case 34:
+          return tt.faculty_name;
+        case 35:
+          return tt.room;
+        case 36:
+          return tt.schedule;
+        default:
+          return tt.room_id;
+      }
+    }
+  }
+
+  private void ret_offered_subjects() {
+    String where = " where id<>0 ";
+    if (!jCheckBox7.isSelected()) {
+      where = where + " and year_level like '" + tf_field4.getText() + "' ";
+    }
+    if (!jCheckBox8.isSelected()) {
+      where = where + " and term like '" + tf_field129.getText() + "' ";
+    }
+
+    where = where + " and academic_offering_id='" + academic_offering_id + "' order by subject_code,description asc  ";
+
+    List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
+    loadData_academic_offering_subjects(subjects);
+    jLabel5.setText("" + subjects.size());
+  }
+
+  private void check_subject_load_count() {
+
+  }
+
+  private void select_aos() {
+    if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+      Alert.set(0, "Cannot proceed, application already approved!");
+      return;
+    }
+    if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+      Alert.set(0, "Cannot proceed, advising already finished!");
+      return;
+    }
+    if (enroll.is_uploaded == 0) {
+      Alert.set(0, "Cannot proceed, downpayment required!");
+      return;
+    }
+    int row = tbl_academic_offering_subjects.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    to_academic_offering_subjects to = (to_academic_offering_subjects) tbl_academic_offering_subjects_ALM.get(row);
+
+    int col = tbl_academic_offering_subjects.getSelectedColumn();
+    boolean is_autoload = false;
+    if (jCheckBox18.isSelected()) {
+      is_autoload = true;
+    }
+    if (col == 4) {
+      Window p = (Window) this;
+      Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(to, academic_year_id, enroll, is_autoload);
+      nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
+          closeDialog.ok();
+          int id = 0;
+          int enrollment_id = enroll.id;
+          String enrollment_no = enroll.enrollment_no;
+          int student_id = enroll.student_id;
+          String student_no = enroll.student_no;
+          String fname = enroll.first_name;
+          String mi = enroll.middle_name;
+          String lname = enroll.last_name;
+          int enrollment_offered_subject_section_id = data.to.id;
+          int enrollment_offered_subject_id = data.to.enrollment_offered_subject_id;
+          int academic_offering_subject_id = to.id;
+          int academic_offering_id = to.academic_offering_id;
+          int academic_year_id = to.academic_year_id;
+          String academic_year = to.academic_year;
+          int level_id = to.level_id;
+          String level = to.level;
+          int college_id = to.college_id;
+          String college = to.college;
+          int department_id = to.department_id;
+          String department = to.department;
+          int course_id = to.course_id;
+          String course_code = to.course_code;
+          String course_description = to.course_description;
+          String term = to.term;
+          String year_level = to.year_level;
+          int subject_id = to.subject_id;
+          String subject_code = to.subject_code;
+          String description = to.description;
+          int lecture_units = FitIn.toInt("" + to.lecture_units);
+          int lab_units = FitIn.toInt("" + to.lab_units);
+          String faculty_id = data.to.faculty_id;
+          String faculty_name = data.to.faculty_name;
+          String section = data.to.section;
+          int room_id = data.to.room_id;
+          String room = data.to.room;
+          String schedule = data.to.schedule;
+          String day = data.to.day;
+          String time = data.to.time;
+          String start_time = null;
+          String closing_time = null;
+          String created_at = DateType.now();
+          String updated_at = DateType.now();
+          String created_by = MyUser.getUser_id();
+          String updated_by = MyUser.getUser_id();
+          int status = 0;
+          int is_uploaded = 0;
+          double final_grade = 0;
+          String final_grade_remarks = "";
+          String final_grade_created_at = DateType.now();
+          String final_grade_created_by = "";
+          int is_payed = 0;
+          double retake = 0;
+          Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
+          Enrollment_student_loaded_subjects.add_data(load);
+          Alert.set(1, "");
+          ret_loaded_subjects();
         }
-        if (jCheckBox6.isSelected()) {
-            civil_status = "4";
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+    if (col == 5) {
+      if (to.selected) {
+        to.setSelected(false);
+      } else {
+        to.setSelected(true);
+      }
+      tbl_academic_offering_subjects_M.fireTableDataChanged();
+    }
+
+  }
+
+  private void add_all_load() {
+    if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
+      Alert.set(0, "Cannot proceed, application already approved!");
+      return;
+    }
+    if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
+      Alert.set(0, "Cannot proceed, advising already finished!");
+      return;
+    }
+    if (enroll.is_uploaded == 0) {
+      Alert.set(0, "Cannot proceed, downpayment required!");
+      return;
+    }
+    List<to_academic_offering_subjects> subjects = tbl_academic_offering_subjects_ALM;
+    List<to_academic_offering_subjects> subjects_selected = new ArrayList();
+
+    for (to_academic_offering_subjects to : subjects) {
+      if (to.selected) {
+        subjects_selected.add(to);
+      }
+    }
+    if (subjects_selected.isEmpty()) {
+      Alert.set(0, "No subjects selected!");
+      return;
+    }
+
+    String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
+    List<to_academic_offering_subjects> to_add = new ArrayList();
+    List<to_academic_offering_subjects> to_add2 = new ArrayList();
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loaded = Enrollment_student_loaded_subjects.ret_data(where);
+    for (to_academic_offering_subjects to : subjects_selected) {
+      int exist = 0;
+      for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load : loaded) {
+        if (to.subject_id == load.subject_id && load.status < 2) {
+          exist = 1;
+          break;
         }
-        String spouse_name = tf_field18.getText();
-        String date_of_communion = null;
-        String date_of_confirmation = null;
-        try {
-            date_of_communion = DateType.sf.format(jDateChooser2.getDate());
-            date_of_confirmation = DateType.sf.format(jDateChooser3.getDate());
-        } catch (Exception e) {
-        }
-        int is_right_hande = 0;
-        if (jCheckBox10.isSelected()) {
-            is_right_hande = 1;
+      }
+      if (exist == 0) {
+        if (to.status == 1) {
+          to_add.add(to);
         }
 
-        int is_indigenous = 0;
-        if (jCheckBox11.isSelected()) {
-            is_indigenous = 1;
+      }
+    }
+
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads = new ArrayList();
+    List<to_academic_offering_subjects> not_loaded = new ArrayList();
+    for (to_academic_offering_subjects to : to_add) {
+//            String where3 = " where academic_offering_subject_id='" + to.id + "' order by section asc ";
+      String where3 = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + to.subject_id + "' and status<2 order by section asc ";
+
+      List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where3);
+//            System.out.println("datas: " + datas.size());
+
+      if (datas.size() > 0) {
+        Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec = null;
+        for (int i = 0; i < datas.size(); i++) {
+          Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec2 = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) datas.get(i);
+//                    System.out.println("sec2.created_by: "+sec2.created_by);
+          String[] cap = sec2.created_by.split(" of ");
+          int min = FitIn.toInt(cap[0]);
+          int max = FitIn.toInt(cap[1]);
+
+          if (min < max) {
+
+            String[] days3 = sec2.day.split("<br>");
+            boolean available = true;
+            for (int ii = 0; ii < days3.length; ii++) {
+              String d = days3[ii];
+              d = d.replaceAll("&nbsp;&nbsp;", "");
+              String[] dd = d.split(": ");
+              String day1 = dd[0];
+
+              List<String> schedules = new ArrayList();
+              for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to2 : loaded) {
+                schedules.add(to2.day);
+              }
+              available = DayCheck.compare_schedule(d, schedules);
+            }
+            if (!available) {
+              sec = sec2;
+              break;
+            }
+
+          }
         }
-        String indigenous_name = tf_field105.getText();
 
-        int level_id = 0;
-        String level = null;
-        int college_id = 0;
-        String college = null;
-        int department_id = 0;
-        String department = null;
-        String year_level = null;
-        String year_level_status = null;
+        int id = 0;
 
-        String preferred_course1 = tf_field28.getText();
-        String preferred_course2 = tf_field29.getText();
-        String preferred_course3 = tf_field30.getText();
-
-        String father_name = concat_s(tf_field31, tf_field130, tf_field131);
-
-        String father_citizenship = tf_field33.getText();
-        String father_home_address = tf_field35.getText();
-        String father_email_address = tf_field36.getText();
-        String father_mobile_no = tf_field42.getText();
-        String father_occupation = tf_field40.getText();
-        String father_employer = tf_field43.getText();
-        String father_business_address = tf_field44.getText();
-        String father_business_tel_no = tf_field51.getText();
-        String father_educational_attainment = tf_field47.getText();
-        String father_last_school_attended = tf_field48.getText();
-
-        String mother_name = concat_s(tf_field32, tf_field138, tf_field139);
-        String mother_citizenship = tf_field34.getText();
-        String mother_home_address = tf_field37.getText();
-        String mother_email_address = tf_field38.getText();
-        String mother_mobile_no = tf_field39.getText();
-        String mother_occupation = tf_field41.getText();
-        String mother_employer = tf_field45.getText();
-        String mother_business_address = tf_field46.getText();
-        String mother_business_tel_no = tf_field52.getText();
-        String mother_educational_attainment = tf_field49.getText();
-        String mother_last_school_attended = tf_field50.getText();
-
-        String guardian_name = tf_field101.getText();
-        String guardian_mailing_address = tf_field102.getText();
-        String guardian_telephone_no = tf_field103.getText();
-
-        String grade_school_name = tf_field19.getText();
-        String grade_school_region = tf_field22.getText();
-        String grade_school_school_year = tf_field25.getText();
-        String grade_school_awards = tf_field112.getText();
-
-        String high_school_name = tf_field20.getText();
-        String high_school_region = tf_field23.getText();
-        String high_school_school_year = tf_field26.getText();
-        String high_school_awards = tf_field114.getText();
-
-        String college_school_name = tf_field21.getText();
-        String college_school_region = tf_field24.getText();
-        String college_school_school_year = tf_field27.getText();
-        String college_awards = tf_field116.getText();
-
-        String junior_high_name = tf_field106.getText();
-        String junior_high_region = tf_field107.getText();
-        String junior_high_year = tf_field108.getText();
-        String junior_high_awards = tf_field113.getText();
-
-        String tesda_name = tf_field109.getText();
-        String tesda_region = tf_field110.getText();
-        String tesda_year = tf_field111.getText();
-        String tesda_awards = tf_field115.getText();
-
-        String sibling1 = concat_s(tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field117);
-        String sibling2 = concat_s(tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64, tf_field118);
-        String sibling3 = concat_s(tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field119);
-        String sibling4 = concat_s(tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76, tf_field120);
-        String sibling5 = concat_s(tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field121);
-        String sibling6 = concat_s(tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95, tf_field122);
-        String sibling7 = concat_s(tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field122);
-        String sibling8 = concat_s(tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100, tf_field124);
-
+        int enrollment_id = enroll.id;
+        String enrollment_no = enroll.enrollment_no;
+        int student_id = enroll.student_id;
+        String student_no = enroll.student_no;
+        String fname = enroll.first_name;
+        String mi = enroll.middle_name;
+        String lname = enroll.last_name;
+        int enrollment_offered_subject_section_id = 0;
+        int enrollment_offered_subject_id = 0;
+        int academic_offering_subject_id = to.id;
+        int academic_offering_id1 = to.academic_offering_id;
+        int academic_year_id1 = to.academic_year_id;
+        String academic_year = to.academic_year;
+        int level_id = to.level_id;
+        String level = to.level;
+        int college_id = to.college_id;
+        String college = to.college;
+        int department_id = to.department_id;
+        String department = to.department;
+        int course_id = to.course_id;
+        String course_code = to.course_code;
+        String course_description = to.course_description;
+        String term = to.term;
+        String year_level = to.year_level;
+        int subject_id = to.subject_id;
+        String subject_code = to.subject_code;
+        String description = to.description;
+        int lecture_units = FitIn.toInt("" + to.lecture_units);
+        int lab_units = FitIn.toInt("" + to.lab_units);
+        String faculty_id = "";
+        String faculty_name = "";
+        String section = "";
+        int room_id = 0;
+        String room = "";
+        String schedule = "";
+        String day = "";
+        String time = "";
+        String start_time = null;
+        String closing_time = null;
         String created_at = DateType.now();
         String updated_at = DateType.now();
         String created_by = MyUser.getUser_id();
         String updated_by = MyUser.getUser_id();
         int status = 0;
         int is_uploaded = 0;
-        String date_enrolled = "";
-        int student_id = 0;
-        String period = "";
-        String fb_account = tf_field137.getText();
-        String blood_type = tf_field136.getText();
-
-        String als_name = tf_field142.getText();
-        String als_region = tf_field143.getText();
-        String als_year = tf_field144.getText();
-        String als_awards = tf_field145.getText();
-        String high_school_strand = tf_field140.getText();
-        String high_school_track = tf_field141.getText();
-        Enrollments.to_enrollments enroll2 = new Enrollments.to_enrollments(id, enrollment_no, is_transferee, academic_year_id1, academic_year, curriculum_id, course_id, course_code, course_description, term, encoded_by_id, encoded_by, encoded_date, assessed_by_id, assessed_by, assessed_date, advised_by_id, advised_by, advised_date, approved_by_id, approved_by, approved_date, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_hande, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, date_enrolled, student_id, false, period, fb_account, blood_type, als_name, als_region, als_year, als_awards, high_school_strand, high_school_track);
-
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
-//        nd.do_pass(services);
-        nd.setCallback(new Dlg_confirm_action.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-
-                Enrollments.update_data(enroll2);
-                Alert.set(2, "");
-
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3, JTextField tf4, JTextField tf5, JTextField tf6, JTextField tf7) {
-        String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText() + "%" + tf4.getText() + "%" + tf5.getText() + "%" + tf6.getText() + "%" + tf7.getText();
-        return ret;
-    }
-
-    private void clear_fields() {
-        JTextField[] tfs = {tf_lastname, tf_field5, tf_field6, tf_field8, tf_field9, tf_field11, tf_field10, tf_field12, tf_field13, tf_field14, tf_field15,
-            tf_field16, tf_field17, tf_field18, tf_field28, tf_field29, tf_field30, tf_field31, tf_field33, tf_field35, tf_field36, tf_field42, tf_field40, tf_field43,
-            tf_field44, tf_field51, tf_field47, tf_field48, tf_field32, tf_field34, tf_field37, tf_field38, tf_field39, tf_field41, tf_field45, tf_field46, tf_field52,
-            tf_field49, tf_field50, tf_field101, tf_field102, tf_field103, tf_field19, tf_field22, tf_field25, tf_field20, tf_field23, tf_field26, tf_field21, tf_field24, tf_field27,
-            tf_field53, tf_field54, tf_field55, tf_field56, tf_field57, tf_field58, tf_field59, tf_field60, tf_field61, tf_field62, tf_field63, tf_field64,
-            tf_field65, tf_field66, tf_field67, tf_field68, tf_field69, tf_field70, tf_field71, tf_field72, tf_field73, tf_field74, tf_field75, tf_field76,
-            tf_field83, tf_field85, tf_field86, tf_field87, tf_field88, tf_field89, tf_field90, tf_field91, tf_field92, tf_field93, tf_field94, tf_field95,
-            tf_field77, tf_field78, tf_field79, tf_field80, tf_field81, tf_field82, tf_field84, tf_field96, tf_field97, tf_field98, tf_field99, tf_field100
-
-        };
-
-        for (JTextField tf : tfs) {
-            tf.setText("");
-        }
-        tf_field5.grabFocus();
-    }
-
-    private void init_courses() {
-        String where = " where course_code like '%" + tf_field127.getText() + "%' and academic_year_id='" + enroll.academic_year_id + "' and status=1 "
-                + " or course_description like '%" + tf_field127.getText() + "%' and academic_year_id='" + enroll.academic_year_id + "'  and status=1 "
-                + " order by course_description asc ";
-        List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
-        Object[][] obj = new Object[offer.size()][3];
-        int i = 0;
-        for (Academic_offerings.to_academic_offerings to : offer) {
-            obj[i][0] = " " + to.course_code;
-            obj[i][1] = " " + to.course_description;
-            obj[i][2] = " " + to.no_of_years;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {100, tf_field127.getWidth() - 150, 50};
-        int width = 0;
-        String[] col_names = {"", "", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup2(tf_field127, obj, labels, tbl_widths_customers, col_names, tf_field127.getWidth() + 200);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
-
-                Field.Input cou = (Field.Input) tf_course_code;
-                Field.Input dep = (Field.Input) tf_field125;
-                Field.Input lev = (Field.Input) tf_field126;
-
-                cou.setText(off.course_code);
-                cou.setId("" + off.course_id);
-                tf_field132.setText("" + off.no_of_years);
-                tf_course_description.setText(off.course_description);
-
-                dep.setId("" + off.department_id);
-                dep.setText(off.department_name);
-
-                lev.setId("" + off.college_id);
-                lev.setText(off.college);
-
-                Field.Input aca = (Field.Input) tf_field135;
-                aca.setId("" + off.academic_year_id);
-                aca.setText(off.academic_year);
-
-                String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
-                for (int i = 0; i < off.no_of_years; i++) {
-                    list_year.add(years[i]);
-                }
-                String period = "First Semester";
-                String where = " where academic_year_id='" + academic_year_id + "' and department_id ='" + dep.getId() + "' and status=1 ";
-                List<Academic_year_period_schedules.to_academic_year_period_schedules> periods = Academic_year_period_schedules.ret_data(where);
-                if (!periods.isEmpty()) {
-                    Academic_year_period_schedules.to_academic_year_period_schedules per = (Academic_year_period_schedules.to_academic_year_period_schedules) periods.get(0);
-                    period = per.period;
-//                    tf_period.setText(period);
-                }
-
-                if (enroll.course_id != FitIn.toInt(cou.getId())) {
-                    jButton5.setText("Save and Shift course");
-                } else {
-                    jButton5.setText("Save");
-                }
-            }
-        });
-    }
-
-    private void save_year_course() {
-
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
-//        nd.do_pass(services);
-        nd.setCallback(new Dlg_confirm_action.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-                Field.Input cou = (Field.Input) tf_course_code;
-                Field.Input dep = (Field.Input) tf_field125;
-                Field.Input lev = (Field.Input) tf_field126;
-
-                int id = enroll.id;
-                int course_id = FitIn.toInt(cou.getId());
-                String course_code = cou.getText();
-                String course_description = tf_course_description.getText();
-                int level_id = FitIn.toInt(lev.getId());
-                String level = lev.getText();
-                int college_id = FitIn.toInt(lev.getId());
-                String college = lev.getText();
-                int department_id = FitIn.toInt(dep.getId());
-                String department = dep.getText();
-                String year_level = tf_field128.getText();
-                String term = tf_field132.getText();
-                String period = tf_period.getText();
-
-                Field.Input aca = (Field.Input) tf_field135;
-                int aca_id = FitIn.toInt(aca.getId());
-                String aca_year = aca.getText();
-                if (jButton5.getText().equalsIgnoreCase("Save")) {
-                    Enrollments.update_enroll_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period, aca_id, aca_year);
-                } else {
-                    Enrollments.update_shift_course(id, course_id, course_code, course_description, level_id, level, college_id, college, department_id, department, year_level, term, period, aca_id, aca_year, enroll.student_id);
-                }
-                Alert.set(2, "");
-
-                tf_course_outline.setText(course_code);
-                jTextArea1.setText(course_description);
-//                tf_field3.setText(tf_field132.getText());
-
-                ret_enrollment_requirements();
-                set_loading_years(department_id, course_id);
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private void set_loading_years(int department_id, int course_id) {
-
-        String where = " where course_id='" + course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ";
-        List<Academic_offerings.to_academic_offerings> courses = Academic_offerings.ret_data(where);
-        if (!courses.isEmpty()) {
-            Academic_offerings.to_academic_offerings course = (Academic_offerings.to_academic_offerings) courses.get(0);
-            academic_offering_id = course.id;
-        }
-
-        int no_of_years = FitIn.toInt(tf_field132.getText());
-        String where2 = " where academic_year_id='" + enroll.academic_year_id + "' and department_id='" + department_id + "' ";
-        List<Academic_year_periods.to_academic_year_periods> acad = Academic_year_periods.ret_data(where2);
-        String period = "";
-        if (!acad.isEmpty()) {
-            Academic_year_periods.to_academic_year_periods ayp = (Academic_year_periods.to_academic_year_periods) acad.get(0);
-//            tf_period.setText("" + ayp.period);
-//            System.out.println("ayp.period: "+ayp.period);
-            period = ayp.period;
-        }
-
-        String[] semester = {"First Semester", "Second Semester", "Summer Class"};
-        String[] trimester = {"First Trimester", "Second Trimester", "Summer Class"};
-        String[] years = {"First Year", "Second Year", "Third Year", "Fourth Year", "Fifth Year"};
-
-        for (int i = 0; i < no_of_years; i++) {
-            list_year2.add(years[i]);
-        }
-
-        if (!list_year2.isEmpty()) {
-            tf_field4.setText("" + list_year2.get(0));
-        }
-//        System.out.println("list_year2: " + list_year2.size());
-        if (period.equalsIgnoreCase("Semester")) {
-            for (int i = 0; i < semester.length; i++) {
-                list_period.add(semester[i]);
-            }
-        }
-        if (period.equalsIgnoreCase("Trimester")) {
-            for (int i = 0; i < trimester.length; i++) {
-                list_period.add(trimester[i]);
-            }
-        }
-        if (!list_period.isEmpty()) {
-            tf_field129.setText("" + list_period.get(0));
-        }
-    }
-
-    //<editor-fold defaultstate="collapsed" desc=" enrollment_department_requirements "> 
-    public static ArrayListModel tbl_enrollment_department_requirements_ALM;
-    public static Tblenrollment_department_requirementsModel tbl_enrollment_department_requirements_M;
-
-    public static void init_tbl_enrollment_department_requirements(JTable tbl_enrollment_department_requirements) {
-        tbl_enrollment_department_requirements_ALM = new ArrayListModel();
-        tbl_enrollment_department_requirements_M = new Tblenrollment_department_requirementsModel(tbl_enrollment_department_requirements_ALM);
-        tbl_enrollment_department_requirements.setModel(tbl_enrollment_department_requirements_M);
-        tbl_enrollment_department_requirements.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_enrollment_department_requirements.setRowHeight(25);
-        int[] tbl_widths_enrollment_department_requirements = {100, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_enrollment_department_requirements.length; i < n; i++) {
-            if (i == 0) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_enrollment_department_requirements, i, tbl_widths_enrollment_department_requirements[i]);
-        }
-        Dimension d = tbl_enrollment_department_requirements.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_enrollment_department_requirements.getTableHeader().setPreferredSize(d);
-        tbl_enrollment_department_requirements.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_department_requirements.setRowHeight(25);
-        tbl_enrollment_department_requirements.setFont(new java.awt.Font("Arial", 0, 12));
-    }
-
-    public static void loadData_enrollment_department_requirements(List<to_enrollment_department_requirements> acc) {
-        tbl_enrollment_department_requirements_ALM.clear();
-        tbl_enrollment_department_requirements_ALM.addAll(acc);
-    }
-
-    public static class Tblenrollment_department_requirementsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Requirement", "", "enrollment_no", "academic_year_id", "academic_year", "department_id", "department", "requirements", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
-        };
-
-        public Tblenrollment_department_requirementsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            to_enrollment_department_requirements tt = (to_enrollment_department_requirements) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.requirements;
-                case 1:
-                    return tt.selected;
-                case 2:
-                    return tt.enrollment_no;
-                case 3:
-                    return tt.academic_year_id;
-                case 4:
-                    return tt.academic_year;
-                case 5:
-                    return tt.department_id;
-                case 6:
-                    return tt.department;
-                case 7:
-                    return tt.requirements;
-                case 8:
-                    return tt.created_at;
-                case 9:
-                    return tt.updated_at;
-                case 10:
-                    return tt.created_by;
-                case 11:
-                    return tt.updated_by;
-                case 12:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
-            }
-        }
-    }
-
-    private void ret_enrollment_requirements() {
-        Field.Input dep = (Field.Input) tf_field125;
-        int department_id = FitIn.toInt(dep.getId());
-        int enrollment_id = enroll.id;
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                List<to_enrollment_department_requirements> datas = Enrollment_department_requirements.ret_data_selected(department_id, enrollment_id);
-                loadData_enrollment_department_requirements(datas);
-                jLabel3.setText("" + datas.size());
-            }
-        });
-
-    }
-
-    private void select_enrollment_requirement() {
-        int row = tbl_enrollment_department_requirements.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-
-        to_enrollment_department_requirements to = (to_enrollment_department_requirements) tbl_enrollment_department_requirements_ALM.get(row);
-        int col = tbl_enrollment_department_requirements.getSelectedColumn();
-        if (col == 1) {
-            System.out.println("to: " + to.id);
-            if (to.id == 0) {
-                Field.Input cou = (Field.Input) tf_course_code;
-                Field.Input dep = (Field.Input) tf_field125;
-                Field.Input lev = (Field.Input) tf_field126;
-
-                int id = 0;
-                int enrollment_id = enroll.id;
-                String enrollment_no = enroll.enrollment_no;
-                int academic_year_id = enroll.academic_year_id;
-                String academic_year = enroll.academic_year;
-                int department_id = FitIn.toInt(dep.getId());
-                String department = dep.getText();
-                int department_requirement_id = to.is_uploaded;
-                String requirements = to.requirements;
-                String created_at = DateType.now();
-                String updated_at = DateType.now();
-                String created_by = MyUser.getUser_id();
-                String updated_by = MyUser.getUser_id();
-                int status = 1;
-                int is_uploaded = 0;
-                boolean selected = false;
-
-                Window p = (Window) this;
-                Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-                nd.setTitle("");
-
-                nd.setCallback(new Dlg_confirm_action.Callback() {
-
-                    @Override
-                    public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                        closeDialog.ok();
-                        to_enrollment_department_requirements to2 = new to_enrollment_department_requirements(id, enrollment_id, enrollment_no, academic_year_id, academic_year, department_id, department, department_requirement_id, requirements, created_at, updated_at, created_by, updated_by, status, is_uploaded, selected);
-                        Enrollment_department_requirements.add_data(to2);
-                        Alert.set(1, "");
-                        ret_enrollment_requirements();
-                    }
-                });
-                nd.setLocationRelativeTo(jScrollPane1);
-                nd.setVisible(true);
-
-            } else {
-
-                Window p = (Window) this;
-                Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
-                nd.setTitle("");
-//                nd.do_pass(services);
-                nd.setCallback(new Dlg_confirm_delete.Callback() {
-
-                    @Override
-                    public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
-                        closeDialog.ok();
-                        Enrollment_department_requirements.delete_data(to);
-                        Alert.set(3, "");
-                        ret_enrollment_requirements();
-                    }
-                });
-                nd.setLocationRelativeTo(jScrollPane1);
-                nd.setVisible(true);
-
-            }
-        }
-
-    }
-//</editor-fold> 
-
-    //<editor-fold defaultstate="collapsed" desc=" list of programs ">
-    private void set_report() {
-
-        jProgressBar1.setString("Loading...Please wait...");
-        jProgressBar1.setIndeterminate(true);
-        Thread t = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-
-                String course = "Bachelor of Science Major in Philosophy";
-
-                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
-                String school_year = enroll.academic_year;
-                String date_printed = DateType.month_date.format(new Date());
-                String printed_by = MyUser.getUser_screen_name();
-                Field.Input cou = (Field.Input) tf_course_code;
-
-                String where = " where academic_offering_id='" + cou.getId() + "' ";
-                List<Srpt_academic_offering_subjects.field> fields = Srpt_academic_offering_subjects.ret_data_with_prerequisites(where);
-                String jrxml = "rpt_academic_offering_subjects.jrxml";
-                Srpt_academic_offering_subjects rpt = new Srpt_academic_offering_subjects(school_name, school_year, date_printed, printed_by, course);
-                rpt.fields.addAll(fields);
-
-                report_subjects(rpt, jrxml);
-                jTabbedPane1.setSelectedIndex(1);
-                jProgressBar1.setString("Finished...");
-                jProgressBar1.setIndeterminate(false);
-            }
-        });
-        t.start();
-
-    }
-
-    private void report_subjects(final Srpt_academic_offering_subjects to, String jrxml_name) {
-        jPanel27.removeAll();
-        jPanel27.setLayout(new BorderLayout());
+        double final_grade = 0;
+        String final_grade_remarks = "";
+        String final_grade_created_at = DateType.now();
+        String final_grade_created_by = "";
+        double retake = 0;
         try {
-            JRViewer viewer = get_viewer_subjects(to, jrxml_name);
-            JPanel pnl = new JPanel();
-            pnl.add(viewer);
-            pnl.setVisible(true);
-            pnl.setVisible(true);
-            jPanel27.add(viewer);
-            jPanel27.updateUI();
+          id = sec.id;
+          enrollment_offered_subject_section_id = sec.id;
+          enrollment_offered_subject_id = sec.enrollment_offered_subject_id;
+          faculty_id = sec.faculty_id;
+          faculty_name = sec.faculty_name;
+          section = sec.section;
+          room_id = sec.room_id;
+          room = sec.room;
+          schedule = sec.schedule;
+          day = sec.day;
+          time = sec.time;
         } catch (Exception e) {
-            throw new RuntimeException(e);
         }
-    }
-
-    public static JRViewer get_viewer_subjects(Srpt_academic_offering_subjects to, String rpt_name) {
-        try {
-            return JasperUtil.getJasperViewer(
-                    compileJasper(rpt_name),
-                    JasperUtil.setParameter(to),
-                    JasperUtil.makeDatasource(to.fields));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-        }
-    }
-
-    public static JasperReport compileJasper(String rpt_name) {
-        try {
-            String jrxml = rpt_name;
-            InputStream is = Srpt_academic_offering_subjects.class.
-                    getResourceAsStream(jrxml);
-            JasperReport jasper = JasperCompileManager.compileReport(is);
-            return jasper;
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //<editor-fold defaultstate="collapsed" desc=" academic_offering_subjects "> 
-    public static ArrayListModel tbl_academic_offering_subjects_ALM;
-    public static Tblacademic_offering_subjectsModel tbl_academic_offering_subjects_M;
-
-    private void init_tbl_academic_offering_subjects(JTable tbl_academic_offering_subjects) {
-        tbl_academic_offering_subjects_ALM = new ArrayListModel();
-        tbl_academic_offering_subjects_M = new Tblacademic_offering_subjectsModel(tbl_academic_offering_subjects_ALM);
-        tbl_academic_offering_subjects.setModel(tbl_academic_offering_subjects_M);
-        tbl_academic_offering_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_academic_offering_subjects.setRowHeight(25);
-        int[] tbl_widths_academic_offering_subjects = {100, 100, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_academic_offering_subjects.length; i < n; i++) {
-            if (i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_academic_offering_subjects, i, tbl_widths_academic_offering_subjects[i]);
-        }
-        Dimension d = tbl_academic_offering_subjects.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_academic_offering_subjects.getTableHeader().setPreferredSize(d);
-        tbl_academic_offering_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_academic_offering_subjects.setRowHeight(25);
-        tbl_academic_offering_subjects.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_academic_offering_subjects.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
-
-        TableColumn tc = tbl_academic_offering_subjects.getColumnModel().getColumn(5);
-        tc.setCellEditor(tbl_academic_offering_subjects.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tbl_academic_offering_subjects.getDefaultRenderer(Boolean.class));
-        tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-    }
-
-    class MyItemListener implements ItemListener {
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            Object source = e.getSource();
-            if (source instanceof AbstractButton == false) {
-                return;
-            }
-            boolean checked = e.getStateChange() == ItemEvent.SELECTED;
-            for (int x = 0, y = tbl_academic_offering_subjects.getRowCount(); x < y; x++) {
-                tbl_academic_offering_subjects.setValueAt(checked, x, 0);
-
-            }
-        }
-    }
-
-    class CheckBoxHeader extends JCheckBox
-            implements TableCellRenderer, MouseListener {
-
-        protected CheckBoxHeader rendererComponent;
-        protected int column;
-        protected boolean mousePressed = false;
-
-        public CheckBoxHeader(ItemListener itemListener) {
-            rendererComponent = this;
-            rendererComponent.addItemListener(itemListener);
+        int is_payed = 0;
+        if (!day.isEmpty() && sec != null) {
+          Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
+          loads.add(load);
+        } else {
+          not_loaded.add(to);
         }
 
-        @Override
-        public Component getTableCellRendererComponent(
-                JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            if (table != null) {
-                JTableHeader header = table.getTableHeader();
-                if (header != null) {
-                    rendererComponent.setForeground(header.getForeground());
-                    rendererComponent.setBackground(new java.awt.Color(204, 204, 204));
-                    rendererComponent.setHorizontalAlignment(Align.CENTER);
-                    rendererComponent.setOpaque(true);
-                    header.addMouseListener(rendererComponent);
-                }
-            }
-            setColumn(column);
-            rendererComponent.setText("");
-            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-            return rendererComponent;
-        }
-
-        protected void setColumn(int column) {
-            this.column = column;
-        }
-
-        public int getColumn() {
-            return column;
-        }
-
-        protected void handleClickEvent(MouseEvent e) {
-            if (mousePressed) {
-                mousePressed = false;
-                JTableHeader header = (JTableHeader) (e.getSource());
-                JTable tableView = header.getTable();
-                TableColumnModel columnModel = tableView.getColumnModel();
-                int viewColumn = columnModel.getColumnIndexAtX(e.getX());
-                int column1 = tableView.convertColumnIndexToModel(viewColumn);
-                if (viewColumn == this.column && e.getClickCount() == 1 && column1 != -1) {
-                    doClick();
-                }
-            }
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            handleClickEvent(e);
-            ((JTableHeader) e.getSource()).repaint();
-            List<to_academic_offering_subjects> datas = tbl_academic_offering_subjects_ALM;
-            boolean selected = false;
-            if (this.isSelected()) {
-                selected = true;
-            }
-            for (to_academic_offering_subjects to : datas) {
-                to.setSelected(selected);
-            }
-            e.consume();
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            mousePressed = true;
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-    }
-
-    public static void loadData_academic_offering_subjects(List<to_academic_offering_subjects> acc) {
-        tbl_academic_offering_subjects_ALM.clear();
-        tbl_academic_offering_subjects_ALM.addAll(acc);
-    }
-
-    public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Subject Code", "Description", "Lec", "Lab", "", "", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "faculty_id", "faculty_name", "room", "schedule", "room_id"
-        };
-
-        public Tblacademic_offering_subjectsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 5) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            to_academic_offering_subjects tt = (to_academic_offering_subjects) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.subject_code;
-                case 1:
-                    return " " + tt.description;
-                case 2:
-                    return " " + tt.lecture_units;
-                case 3:
-                    return " " + tt.lab_units;
-                case 4:
-                    return "/cis/icons2/plus.png";
-                case 5:
-                    return tt.selected;
-                case 6:
-                    return tt.college_id;
-                case 7:
-                    return tt.college;
-                case 8:
-                    return tt.department_id;
-                case 9:
-                    return tt.department;
-                case 10:
-                    return tt.course_id;
-                case 11:
-                    return tt.course_code;
-                case 12:
-                    return tt.course_description;
-                case 13:
-                    return tt.term;
-                case 14:
-                    return tt.year_level;
-                case 15:
-                    return tt.subject_id;
-                case 16:
-                    return tt.subject_code;
-                case 17:
-                    return tt.description;
-                case 18:
-                    return tt.units;
-                case 19:
-                    return tt.lecture_units;
-                case 20:
-                    return tt.lab_units;
-                case 21:
-                    return tt.amount;
-                case 22:
-                    return tt.is_lab;
-                case 23:
-                    return tt.max_students;
-                case 24:
-                    return tt.prerequisite_subject_ids;
-                case 25:
-                    return tt.subject_group;
-                case 26:
-                    return tt.subject_group_id;
-                case 27:
-                    return tt.created_at;
-                case 28:
-                    return tt.updated_at;
-                case 29:
-                    return tt.created_by;
-                case 30:
-                    return tt.updated_by;
-                case 31:
-                    return tt.status;
-                case 32:
-                    return tt.is_uploaded;
-                case 33:
-                    return tt.faculty_id;
-                case 34:
-                    return tt.faculty_name;
-                case 35:
-                    return tt.room;
-                case 36:
-                    return tt.schedule;
-                default:
-                    return tt.room_id;
-            }
-        }
-    }
-
-    private void ret_offered_subjects() {
-        String where = " where id<>0 ";
-        if (!jCheckBox7.isSelected()) {
-            where = where + " and year_level like '" + tf_field4.getText() + "' ";
-        }
-        if (!jCheckBox8.isSelected()) {
-            where = where + " and term like '" + tf_field129.getText() + "' ";
-        }
-
-        where = where + " and academic_offering_id='" + academic_offering_id + "' order by subject_code,description asc  ";
-
-        List<to_academic_offering_subjects> subjects = Academic_offering_subjects.ret_data(where);
-        loadData_academic_offering_subjects(subjects);
-        jLabel5.setText("" + subjects.size());
-    }
-
-    private void check_subject_load_count() {
+      } else {
+        not_loaded.add(to);
+      }
 
     }
+    Window p = (Window) this;
+    Dlg_dean_student_advice_loaded_subjects nd = Dlg_dean_student_advice_loaded_subjects.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(loads, not_loaded, enroll);
+    nd.setCallback(new Dlg_dean_student_advice_loaded_subjects.Callback() {
 
-    private void select_aos() {
-        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
-            Alert.set(0, "Cannot proceed, application already approved!");
-            return;
-        }
-        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
-            Alert.set(0, "Cannot proceed, advising already finished!");
-            return;
-        }
-        int row = tbl_academic_offering_subjects.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        to_academic_offering_subjects to = (to_academic_offering_subjects) tbl_academic_offering_subjects_ALM.get(row);
-
-        int col = tbl_academic_offering_subjects.getSelectedColumn();
-        boolean is_autoload = false;
-        if(jCheckBox18.isSelected()){
-            is_autoload=true;
-        }
-        if (col == 4) {
-            Window p = (Window) this;
-            Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(to, academic_year_id, enroll,is_autoload);
-            nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
-                    closeDialog.ok();
-                    int id = 0;
-                    int enrollment_id = enroll.id;
-                    String enrollment_no = enroll.enrollment_no;
-                    int student_id = enroll.student_id;
-                    String student_no = enroll.student_no;
-                    String fname = enroll.first_name;
-                    String mi = enroll.middle_name;
-                    String lname = enroll.last_name;
-                    int enrollment_offered_subject_section_id = data.to.id;
-                    int enrollment_offered_subject_id = data.to.enrollment_offered_subject_id;
-                    int academic_offering_subject_id = to.id;
-                    int academic_offering_id = to.academic_offering_id;
-                    int academic_year_id = to.academic_year_id;
-                    String academic_year = to.academic_year;
-                    int level_id = to.level_id;
-                    String level = to.level;
-                    int college_id = to.college_id;
-                    String college = to.college;
-                    int department_id = to.department_id;
-                    String department = to.department;
-                    int course_id = to.course_id;
-                    String course_code = to.course_code;
-                    String course_description = to.course_description;
-                    String term = to.term;
-                    String year_level = to.year_level;
-                    int subject_id = to.subject_id;
-                    String subject_code = to.subject_code;
-                    String description = to.description;
-                    int lecture_units = FitIn.toInt("" + to.lecture_units);
-                    int lab_units = FitIn.toInt("" + to.lab_units);
-                    String faculty_id = data.to.faculty_id;
-                    String faculty_name = data.to.faculty_name;
-                    String section = data.to.section;
-                    int room_id = data.to.room_id;
-                    String room = data.to.room;
-                    String schedule = data.to.schedule;
-                    String day = data.to.day;
-                    String time = data.to.time;
-                    String start_time = null;
-                    String closing_time = null;
-                    String created_at = DateType.now();
-                    String updated_at = DateType.now();
-                    String created_by = MyUser.getUser_id();
-                    String updated_by = MyUser.getUser_id();
-                    int status = 0;
-                    int is_uploaded = 0;
-                    double final_grade = 0;
-                    String final_grade_remarks = "";
-                    String final_grade_created_at = DateType.now();
-                    String final_grade_created_by = "";
-                    int is_payed = 0;
-                    double retake = 0;
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
-                    Enrollment_student_loaded_subjects.add_data(load);
-                    Alert.set(1, "");
-                    ret_loaded_subjects();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
-        if (col == 5) {
-            if (to.selected) {
-                to.setSelected(false);
-            } else {
-                to.setSelected(true);
-            }
-            tbl_academic_offering_subjects_M.fireTableDataChanged();
-        }
-
-    }
-
-    private void add_all_load() {
-        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("Approve Enrollment Application")) {
-            Alert.set(0, "Cannot proceed, application already approved!");
-            return;
-        }
-        if (!jButton9.isEnabled() && jButton9.getText().equalsIgnoreCase("FINISH ADVISING")) {
-            Alert.set(0, "Cannot proceed, advising already finished!");
-            return;
-        }
-        List<to_academic_offering_subjects> subjects = tbl_academic_offering_subjects_ALM;
-        List<to_academic_offering_subjects> subjects_selected = new ArrayList();
-
-        for (to_academic_offering_subjects to : subjects) {
-            if (to.selected) {
-                subjects_selected.add(to);
-            }
-        }
-        if (subjects_selected.isEmpty()) {
-            Alert.set(0, "No subjects selected!");
-            return;
-        }
-
-        String where = " where enrollment_id='" + enroll.id + "' and status<2 ";
-        List<to_academic_offering_subjects> to_add = new ArrayList();
-        List<to_academic_offering_subjects> to_add2 = new ArrayList();
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loaded = Enrollment_student_loaded_subjects.ret_data(where);
-        for (to_academic_offering_subjects to : subjects_selected) {
-            int exist = 0;
-            for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load : loaded) {
-                if (to.subject_id == load.subject_id && load.status < 2) {
-                    exist = 1;
-                    break;
-                }
-            }
-            if (exist == 0) {
-                if (to.status == 1) {
-                    to_add.add(to);
-                }
-
-            }
-        }
-
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> loads = new ArrayList();
-        List<to_academic_offering_subjects> not_loaded = new ArrayList();
-        for (to_academic_offering_subjects to : to_add) {
-//            String where3 = " where academic_offering_subject_id='" + to.id + "' order by section asc ";
-            String where3 = " where academic_year_id='" + academic_year_id + "' and subject_id ='" + to.subject_id + "' and status<2 order by section asc ";
-
-            List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where3);
-//            System.out.println("datas: " + datas.size());
-
-            if (datas.size() > 0) {
-                Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec = null;
-                for (int i = 0; i < datas.size(); i++) {
-                    Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec2 = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) datas.get(i);
-//                    System.out.println("sec2.created_by: "+sec2.created_by);
-                    String[] cap = sec2.created_by.split(" of ");
-                    int min = FitIn.toInt(cap[0]);
-                    int max = FitIn.toInt(cap[1]);
-
-                    if (min < max) {
-
-                        String[] days3 = sec2.day.split("<br>");
-                        boolean available = true;
-                        for (int ii = 0; ii < days3.length; ii++) {
-                            String d = days3[ii];
-                            d = d.replaceAll("&nbsp;&nbsp;", "");
-                            String[] dd = d.split(": ");
-                            String day1 = dd[0];
-
-                            List<String> schedules = new ArrayList();
-                            for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to2 : loaded) {
-                                schedules.add(to2.day);
-                            }
-                            available = DayCheck.compare_schedule(d, schedules);
-                        }
-                        if (!available) {
-                            sec = sec2;
-                            break;
-                        }
-
-                    }
-                }
-
-                int id = 0;
-
-                int enrollment_id = enroll.id;
-                String enrollment_no = enroll.enrollment_no;
-                int student_id = enroll.student_id;
-                String student_no = enroll.student_no;
-                String fname = enroll.first_name;
-                String mi = enroll.middle_name;
-                String lname = enroll.last_name;
-                int enrollment_offered_subject_section_id = 0;
-                int enrollment_offered_subject_id = 0;
-                int academic_offering_subject_id = to.id;
-                int academic_offering_id1 = to.academic_offering_id;
-                int academic_year_id1 = to.academic_year_id;
-                String academic_year = to.academic_year;
-                int level_id = to.level_id;
-                String level = to.level;
-                int college_id = to.college_id;
-                String college = to.college;
-                int department_id = to.department_id;
-                String department = to.department;
-                int course_id = to.course_id;
-                String course_code = to.course_code;
-                String course_description = to.course_description;
-                String term = to.term;
-                String year_level = to.year_level;
-                int subject_id = to.subject_id;
-                String subject_code = to.subject_code;
-                String description = to.description;
-                int lecture_units = FitIn.toInt("" + to.lecture_units);
-                int lab_units = FitIn.toInt("" + to.lab_units);
-                String faculty_id = "";
-                String faculty_name = "";
-                String section = "";
-                int room_id = 0;
-                String room = "";
-                String schedule = "";
-                String day = "";
-                String time = "";
-                String start_time = null;
-                String closing_time = null;
-                String created_at = DateType.now();
-                String updated_at = DateType.now();
-                String created_by = MyUser.getUser_id();
-                String updated_by = MyUser.getUser_id();
-                int status = 0;
-                int is_uploaded = 0;
-                double final_grade = 0;
-                String final_grade_remarks = "";
-                String final_grade_created_at = DateType.now();
-                String final_grade_created_by = "";
-                double retake = 0;
-                try {
-                    id = sec.id;
-                    enrollment_offered_subject_section_id = sec.id;
-                    enrollment_offered_subject_id = sec.enrollment_offered_subject_id;
-                    faculty_id = sec.faculty_id;
-                    faculty_name = sec.faculty_name;
-                    section = sec.section;
-                    room_id = sec.room_id;
-                    room = sec.room;
-                    schedule = sec.schedule;
-                    day = sec.day;
-                    time = sec.time;
-                } catch (Exception e) {
-                }
-                int is_payed = 0;
-                if (!day.isEmpty() && sec != null) {
-                    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id1, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 0, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
-                    loads.add(load);
-                } else {
-                    not_loaded.add(to);
-                }
-
-            } else {
-                not_loaded.add(to);
-            }
-
-        }
-        Window p = (Window) this;
-        Dlg_dean_student_advice_loaded_subjects nd = Dlg_dean_student_advice_loaded_subjects.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(loads, not_loaded, enroll);
-        nd.setCallback(new Dlg_dean_student_advice_loaded_subjects.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_loaded_subjects.OutputData data) {
-                closeDialog.ok();
-                Enrollment_student_loaded_subjects.add_data_all(data.selected, enroll.id, enroll.enrollment_no, enroll.student_id, enroll.student_no, enroll.first_name, enroll.middle_name, enroll.last_name);
-                Alert.set(1, "");
-                ret_loaded_subjects();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_loaded_subjects.OutputData data) {
+        closeDialog.ok();
+        Enrollment_student_loaded_subjects.add_data_all(data.selected, enroll.id, enroll.enrollment_no, enroll.student_id, enroll.student_no, enroll.first_name, enroll.middle_name, enroll.last_name);
+        Alert.set(1, "");
+        ret_loaded_subjects();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
 //        Window p = (Window) this;
 //        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
 //        nd.setTitle("");
@@ -6155,933 +6163,941 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //        nd.setLocationRelativeTo(this);
 //        nd.setVisible(true);
 
-    }
+  }
 //</editor-fold> 
-    //<editor-fold defaultstate="collapsed" desc=" enrollment_student_loaded_subjects "> 
-    public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
-    public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
+  //<editor-fold defaultstate="collapsed" desc=" enrollment_student_loaded_subjects "> 
+  public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
+  public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
 
-    public void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
-        tbl_enrollment_student_loaded_subjects_ALM = new ArrayListModel();
-        tbl_enrollment_student_loaded_subjects_M = new Tblenrollment_student_loaded_subjectsModel(tbl_enrollment_student_loaded_subjects_ALM);
-        tbl_enrollment_student_loaded_subjects.setModel(tbl_enrollment_student_loaded_subjects_M);
-        tbl_enrollment_student_loaded_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_enrollment_student_loaded_subjects.setRowHeight(25);
-        int rem = 40;
-        try {
-            if (enroll.advised_date != null && is_d == 1) {
-                rem = 0;
-            }
-        } catch (Exception e) {
-            rem = 40;
-        }
-
-        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 40, 60, 60, 70, 40, rem, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
-            if (i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_enrollment_student_loaded_subjects, i, tbl_widths_enrollment_student_loaded_subjects[i]);
-        }
-        Dimension d = tbl_enrollment_student_loaded_subjects.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_enrollment_student_loaded_subjects.getTableHeader().setPreferredSize(d);
-        tbl_enrollment_student_loaded_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_student_loaded_subjects.setRowHeight(25);
-        tbl_enrollment_student_loaded_subjects.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
-        tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
-
+  public void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
+    tbl_enrollment_student_loaded_subjects_ALM = new ArrayListModel();
+    tbl_enrollment_student_loaded_subjects_M = new Tblenrollment_student_loaded_subjectsModel(tbl_enrollment_student_loaded_subjects_ALM);
+    tbl_enrollment_student_loaded_subjects.setModel(tbl_enrollment_student_loaded_subjects_M);
+    tbl_enrollment_student_loaded_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_enrollment_student_loaded_subjects.setRowHeight(25);
+    int rem = 40;
+    try {
+      if (enroll.advised_date != null && is_d == 1) {
+        rem = 0;
+      }
+    } catch (Exception e) {
+      rem = 40;
     }
 
-    public static void loadData_enrollment_student_loaded_subjects(List<to_enrollment_student_loaded_subjects> acc) {
-        tbl_enrollment_student_loaded_subjects_ALM.clear();
-        tbl_enrollment_student_loaded_subjects_ALM.addAll(acc);
+    int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 40, 40, 60, 60, 70, 40, rem, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
+      if (i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_enrollment_student_loaded_subjects, i, tbl_widths_enrollment_student_loaded_subjects[i]);
+    }
+    Dimension d = tbl_enrollment_student_loaded_subjects.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_enrollment_student_loaded_subjects.getTableHeader().setPreferredSize(d);
+    tbl_enrollment_student_loaded_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_student_loaded_subjects.setRowHeight(25);
+    tbl_enrollment_student_loaded_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
+    tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+
+  }
+
+  public static void loadData_enrollment_student_loaded_subjects(List<to_enrollment_student_loaded_subjects> acc) {
+    tbl_enrollment_student_loaded_subjects_ALM.clear();
+    tbl_enrollment_student_loaded_subjects_ALM.addAll(acc);
+  }
+
+  public static class Tblenrollment_student_loaded_subjectsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Subject Code", "Description", "Lec", "Lab", "Section", "Room", "Day", "Stat", "", "academic_offering_id", "academic_year_id", "academic_year", "level_id", "level", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "faculty_id", "faculty_name", "section", "room_id", "room", "schedule", "day", "time", "start_time", "closing_time", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public Tblenrollment_student_loaded_subjectsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
     }
 
-    public static class Tblenrollment_student_loaded_subjectsModel extends AbstractTableAdapter {
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
 
-        public static String[] COLUMNS = {
-            "Subject Code", "Description", "Lec", "Lab", "Section", "Room", "Day", "Stat", "", "academic_offering_id", "academic_year_id", "academic_year", "level_id", "level", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "faculty_id", "faculty_name", "section", "room_id", "room", "schedule", "day", "time", "start_time", "closing_time", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
-        };
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
 
-        public Tblenrollment_student_loaded_subjectsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
+    @Override
+    public Object getValueAt(int row, int col) {
+      to_enrollment_student_loaded_subjects tt = (to_enrollment_student_loaded_subjects) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.subject_code;
+        case 1:
+          return " " + tt.description;
+        case 2:
+          return " " + tt.lecture_units;
+        case 3:
+          return " " + tt.lab_units;
+        case 4:
+          return " " + tt.section;
+        case 5:
+          return " " + tt.room;
+        case 6:
+          return " " + tt.day;
+        case 7:
+          if (tt.status == 1) {
+            return "/cis/icons/check-mark.png";
+          } else if (tt.status == 0) {
+            return "/cis/icons/check-mark (2).png";
+          } else {
+            return "/cis/icons/check-mark (4).png";
+          }
+
+        case 8:
+          return "/cis/icons/remove11.png";
+        case 9:
+          return tt.academic_offering_id;
+        case 10:
+          return tt.academic_year_id;
+        case 11:
+          return tt.academic_year;
+        case 12:
+          return tt.level_id;
+        case 13:
+          return tt.level;
+        case 14:
+          return tt.college_id;
+        case 15:
+          return tt.college;
+        case 16:
+          return tt.department_id;
+        case 17:
+          return tt.department;
+        case 18:
+          return tt.course_id;
+        case 19:
+          return tt.course_code;
+        case 20:
+          return tt.course_description;
+        case 21:
+          return tt.term;
+        case 22:
+          return tt.year_level;
+        case 23:
+          return tt.subject_id;
+        case 24:
+          return tt.subject_code;
+        case 25:
+          return tt.description;
+        case 26:
+          return tt.faculty_id;
+        case 27:
+          return tt.faculty_name;
+        case 28:
+          return tt.section;
+        case 29:
+          return tt.room_id;
+        case 30:
+          return tt.room;
+        case 31:
+          return tt.schedule;
+        case 32:
+          return tt.day;
+        case 33:
+          return tt.time;
+        case 34:
+          return tt.start_time;
+        case 35:
+          return tt.closing_time;
+        case 36:
+          return tt.created_at;
+        case 37:
+          return tt.updated_at;
+        case 38:
+          return tt.created_by;
+        case 39:
+          return tt.updated_by;
+        case 40:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
+    }
+  }
+
+  private void ret_loaded_subjects() {
+    String where = " where id<>0 ";
+    Field.Combo year = (Field.Combo) tf_field133;
+    Field.Combo period = (Field.Combo) tf_field134;
+
+    if (enroll.student_id != 0) {
+      where = where + " and student_id='" + enroll.student_id + "' ";
+    } else {
+      where = where + " and enrollment_no='" + enroll.enrollment_no + "' ";
+    }
+    if (!jCheckBox13.isSelected()) {
+      where = where + " and year_level like '" + year.getText() + "' ";
+    }
+    if (!jCheckBox14.isSelected()) {
+      where = where + " and term like '" + period.getText() + "' ";
+    }
+
+    if (jCheckBox15.isSelected()) {
+      where = where + " and status<2 order by description asc ";
+    } else if (jCheckBox16.isSelected()) {
+      where = where + " and status=0 order by description asc ";
+    } else {
+      where = where + " and status=1 order by description asc ";
+    }
+
+    System.out.println(where);
+    List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(where);
+
+    loadData_enrollment_student_loaded_subjects(datas);
+    double total_units = 0;
+    for (to_enrollment_student_loaded_subjects to : datas) {
+      total_units += (to.lab_units + to.lecture_units);
+    }
+    jLabel89.setText("" + total_units);
+    jLabel7.setText("" + datas.size());
+  }
+
+  private void select_loaded_subjects() {
+    int row = tbl_enrollment_student_loaded_subjects.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
+    if (col == 8) {
+      to_enrollment_student_loaded_subjects to = (to_enrollment_student_loaded_subjects) tbl_enrollment_student_loaded_subjects_ALM.get(row);
+      Window p = (Window) this;
+      Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+      nd.setTitle("");
+//        nd.do_pass(services);
+      nd.setCallback(new Dlg_confirm_delete.Callback() {
 
         @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
+        public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+          closeDialog.ok();
+          Enrollment_student_loaded_subjects.delete_data(to);
+          Alert.set(3, "");
+          ret_loaded_subjects();
         }
+      });
+      nd.setLocationRelativeTo(jScrollPane5);
+      nd.setVisible(true);
+    }
+
+  }
+
+  private void finish_advising() {
+
+    if (enroll.is_uploaded == 0) {
+      Alert.set(0, "Cannot proceed, downpayment required!");
+      return;
+    }
+    if (jButton9.getText().equalsIgnoreCase("Approve Advising")) {
+      Window p = (Window) this;
+      Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+      nd.setTitle("");
+//        nd.do_pass(services);
+      nd.setCallback(new Dlg_confirm_action.Callback() {
 
         @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
+        public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+          closeDialog.ok();
+          Enrollments.approve_advising(enroll, period_term);
+          Alert.set(2, "");
+          ok2();
         }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    } else {
+      Window p = (Window) this;
+      Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+      nd.setTitle("");
+//        nd.do_pass(services);
+      nd.setCallback(new Dlg_confirm_action.Callback() {
 
         @Override
-        public Object getValueAt(int row, int col) {
-            to_enrollment_student_loaded_subjects tt = (to_enrollment_student_loaded_subjects) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.subject_code;
-                case 1:
-                    return " " + tt.description;
-                case 2:
-                    return " " + tt.lecture_units;
-                case 3:
-                    return " " + tt.lab_units;
-                case 4:
-                    return " " + tt.section;
-                case 5:
-                    return " " + tt.room;
-                case 6:
-                    return " " + tt.day;
-                case 7:
-                    if (tt.status == 1) {
-                        return "/cis/icons/check-mark.png";
-                    } else if (tt.status == 0) {
-                        return "/cis/icons/check-mark (2).png";
-                    } else {
-                        return "/cis/icons/check-mark (4).png";
-                    }
-
-                case 8:
-                    return "/cis/icons/remove11.png";
-                case 9:
-                    return tt.academic_offering_id;
-                case 10:
-                    return tt.academic_year_id;
-                case 11:
-                    return tt.academic_year;
-                case 12:
-                    return tt.level_id;
-                case 13:
-                    return tt.level;
-                case 14:
-                    return tt.college_id;
-                case 15:
-                    return tt.college;
-                case 16:
-                    return tt.department_id;
-                case 17:
-                    return tt.department;
-                case 18:
-                    return tt.course_id;
-                case 19:
-                    return tt.course_code;
-                case 20:
-                    return tt.course_description;
-                case 21:
-                    return tt.term;
-                case 22:
-                    return tt.year_level;
-                case 23:
-                    return tt.subject_id;
-                case 24:
-                    return tt.subject_code;
-                case 25:
-                    return tt.description;
-                case 26:
-                    return tt.faculty_id;
-                case 27:
-                    return tt.faculty_name;
-                case 28:
-                    return tt.section;
-                case 29:
-                    return tt.room_id;
-                case 30:
-                    return tt.room;
-                case 31:
-                    return tt.schedule;
-                case 32:
-                    return tt.day;
-                case 33:
-                    return tt.time;
-                case 34:
-                    return tt.start_time;
-                case 35:
-                    return tt.closing_time;
-                case 36:
-                    return tt.created_at;
-                case 37:
-                    return tt.updated_at;
-                case 38:
-                    return tt.created_by;
-                case 39:
-                    return tt.updated_by;
-                case 40:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
-            }
+        public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+          closeDialog.ok();
+          Enrollments.finish_advising(enroll);
+          Alert.set(2, "");
+          ok2();
         }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
     }
 
-    private void ret_loaded_subjects() {
-        String where = " where id<>0 ";
-        Field.Combo year = (Field.Combo) tf_field133;
-        Field.Combo period = (Field.Combo) tf_field134;
+  }
 
-        if (enroll.student_id != 0) {
-            where = where + " and student_id='" + enroll.student_id + "' ";
-        } else {
-            where = where + " and enrollment_no='" + enroll.enrollment_no + "' ";
-        }
-        if (!jCheckBox13.isSelected()) {
-            where = where + " and year_level like '" + year.getText() + "' ";
-        }
-        if (!jCheckBox14.isSelected()) {
-            where = where + " and term like '" + period.getText() + "' ";
-        }
-
-        if (jCheckBox15.isSelected()) {
-            where = where + " and status<2 order by description asc ";
-        } else if (jCheckBox16.isSelected()) {
-            where = where + " and status=0 order by description asc ";
-        } else {
-            where = where + " and status=1 order by description asc ";
-        }
-
-        System.out.println(where);
-        List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(where);
-
-        loadData_enrollment_student_loaded_subjects(datas);
-        double total_units = 0;
-        for (to_enrollment_student_loaded_subjects to : datas) {
-            total_units += (to.lab_units + to.lecture_units);
-        }
-        jLabel89.setText("" + total_units);
-        jLabel7.setText("" + datas.size());
+  private void ok2() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
     }
-
-    private void select_loaded_subjects() {
-        int row = tbl_enrollment_student_loaded_subjects.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
-        if (col == 8) {
-            to_enrollment_student_loaded_subjects to = (to_enrollment_student_loaded_subjects) tbl_enrollment_student_loaded_subjects_ALM.get(row);
-            Window p = (Window) this;
-            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
-            nd.setTitle("");
-//        nd.do_pass(services);
-            nd.setCallback(new Dlg_confirm_delete.Callback() {
-
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
-                    closeDialog.ok();
-                    Enrollment_student_loaded_subjects.delete_data(to);
-                    Alert.set(3, "");
-                    ret_loaded_subjects();
-                }
-            });
-            nd.setLocationRelativeTo(jScrollPane5);
-            nd.setVisible(true);
-        }
-
-    }
-
-    private void finish_advising() {
-
-        if (jButton9.getText().equalsIgnoreCase("Approve Advising")) {
-            Window p = (Window) this;
-            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-            nd.setTitle("");
-//        nd.do_pass(services);
-            nd.setCallback(new Dlg_confirm_action.Callback() {
-
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                    closeDialog.ok();
-                    Enrollments.approve_advising(enroll, period_term);
-                    Alert.set(2, "");
-                    ok2();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        } else {
-            Window p = (Window) this;
-            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-            nd.setTitle("");
-//        nd.do_pass(services);
-            nd.setCallback(new Dlg_confirm_action.Callback() {
-
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                    closeDialog.ok();
-                    Enrollments.finish_advising(enroll);
-                    Alert.set(2, "");
-                    ok2();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
-
-    }
-
-    private void ok2() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
-    }
+  }
 //</editor-fold> 
 
-    //<editor-fold defaultstate="collapsed" desc=" list of programs ">
-    private void set_assessment2() {
+  //<editor-fold defaultstate="collapsed" desc=" list of programs ">
+  private void set_assessment2() {
 
-        String where = " where id<>0 ";
-        String where3 = " where id<>0 ";
-        String where2 = " where id<>0 ";
-        if (enroll.academic_year_id == 1 && !enroll.period.equalsIgnoreCase("Summer Class") || enroll.academic_year_id == 9 && !enroll.period.equalsIgnoreCase("Summer Class")) {
+    String where = " where id<>0 ";
+    String where3 = " where id<>0 ";
+    String where2 = " where id<>0 ";
+    if (enroll.academic_year_id == 1 && !enroll.period.equalsIgnoreCase("Summer Class") || enroll.academic_year_id == 9 && !enroll.period.equalsIgnoreCase("Summer Class")) {
 
-            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.year_level + "' "
-                    + " and group_id=0 ";
+      where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.year_level + "' "
+              + " and group_id=0 ";
 
-            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.year_level + "' "
-                    + " and group_id=1 ";
+      where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.year_level + "' "
+              + " and group_id=1 ";
 
-            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.year_level + "' "
-                    + " and group_id=2 ";
-        } else {
-            where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.period + "' "
-                    + " and year_level like '" + enroll.year_level + "' "
-                    + " and group_id=0 ";
+      where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.year_level + "' "
+              + " and group_id=2 ";
+    } else {
+      where = where + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.period + "' "
+              + " and year_level like '" + enroll.year_level + "' "
+              + " and group_id=0 ";
 
-            where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.period + "' "
-                    + " and year_level like '" + enroll.year_level + "' "
-                    + " and group_id=1 ";
+      where2 = where2 + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.period + "' "
+              + " and year_level like '" + enroll.year_level + "' "
+              + " and group_id=1 ";
 
-            where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
-                    + " and department_id='" + enroll.department_id + "' "
-                    + " and level_id='" + enroll.level_id + "' "
-                    + " and course_id='" + enroll.course_id + "' "
-                    + " and period like '" + enroll.period + "' "
-                    + " and year_level like '" + enroll.year_level + "' "
-                    + " and group_id=2 ";
-        }
-        List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
+      where3 = where3 + " and academic_year_id='" + enroll.academic_year_id + "' "
+              + " and department_id='" + enroll.department_id + "' "
+              + " and level_id='" + enroll.level_id + "' "
+              + " and course_id='" + enroll.course_id + "' "
+              + " and period like '" + enroll.period + "' "
+              + " and year_level like '" + enroll.year_level + "' "
+              + " and group_id=2 ";
+    }
+    List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
 
-        List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
-        List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
-        List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
-        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
-        List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+    List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
+    List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> added_subjects = new ArrayList();//Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2 and is_added=1  ");
+    List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
+    List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+    List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
 
-        jProgressBar2.setString("Loading...Please wait...");
-        jProgressBar2.setIndeterminate(true);
-        Thread t = new Thread(new Runnable() {
+    jProgressBar2.setString("Loading...Please wait...");
+    jProgressBar2.setIndeterminate(true);
+    Thread t = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
+      @Override
+      public void run() {
 //                System.out.println(" enroll.id : "+ enroll.id );
 
-                if (assessments.isEmpty()) {
-                    jProgressBar2.setString("Finished...");
-                    jProgressBar2.setIndeterminate(false);
+        if (assessments.isEmpty()) {
+          jProgressBar2.setString("Finished...");
+          jProgressBar2.setIndeterminate(false);
 
-                    jPanel35.removeAll();
-                    jPanel35.setLayout(new BorderLayout());
-                    jPanel35.setMinimumSize(new Dimension(626, 0));
-                    jPanel35.setMaximumSize(new Dimension(626, 0));
-                    jPanel35.setPreferredSize(new Dimension(626, 0));
-                    jPanel35.updateUI();
-                    return;
-                }
+          jPanel35.removeAll();
+          jPanel35.setLayout(new BorderLayout());
+          jPanel35.setMinimumSize(new Dimension(626, 0));
+          jPanel35.setMaximumSize(new Dimension(626, 0));
+          jPanel35.setPreferredSize(new Dimension(626, 0));
+          jPanel35.updateUI();
+          return;
+        }
 
-                Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+        Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
 
-                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
-                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
-                String date = synsoftech.util.DateType.slash.format(new Date());
-                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+        String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+        String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+        String date = synsoftech.util.DateType.slash.format(new Date());
+        String contact_no = System.getProperty("contact_no", "(035) 225 4831");
 
-                String home = System.getProperty("user.home");
-                String SUBREPORT_DIR = home + "\\cis\\";
+        String home = System.getProperty("user.home");
+        String SUBREPORT_DIR = home + "\\cis\\";
 
-                String printed_by = MyUser.getUser_screen_name();
-                String school_year = enroll.academic_year;
-                String semester = enroll.period;
-                String student_no = enroll.student_no;
-                String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
-                String student_course = enroll.course_code + " - " + enroll.course_description;
-                String student_year_level = enroll.year_level;
+        String printed_by = MyUser.getUser_screen_name();
+        String school_year = enroll.academic_year;
+        String semester = enroll.period;
+        String student_no = enroll.student_no;
+        String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+        String student_course = enroll.course_code + " - " + enroll.course_description;
+        String student_year_level = enroll.year_level;
 
-                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
-                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
-                double no_of_units_lab = 0;
-                List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
+        double no_of_units_lab = 0;
+        List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
 
-                //ret tuition amount
-                double tuition_amount = 0;
-                double lec_amount_per_unit = 0;
-                double lab_amount_per_unit = 0;
-                double total_assessment = 0;
-                double tution_fee = 0;
-                double misc_fee = 0;
-                double other_fee = 0;
-                double downpayment = 0;
-                double payable = 0;
+        //ret tuition amount
+        double tuition_amount = 0;
+        double lec_amount_per_unit = 0;
+        double lab_amount_per_unit = 0;
+        double total_assessment = 0;
+        double tution_fee = 0;
+        double misc_fee = 0;
+        double other_fee = 0;
+        double downpayment = 0;
+        double payable = 0;
 
-                if (!datas.isEmpty()) {
-                    Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
-                    if (ayf.is_per_unit == 0) {
-                        tuition_amount = ayf.amount;
-                        tution_fee = tuition_amount;
-                    } else {
-                        lec_amount_per_unit = ayf.per_unit;
-                        lab_amount_per_unit = ayf.lab_unit_amount;
-                    }
-                }
+        if (!datas.isEmpty()) {
+          Academic_year_fees.to_academic_year_fees ayf = (Academic_year_fees.to_academic_year_fees) datas.get(0);
+          if (ayf.is_per_unit == 0) {
+            tuition_amount = ayf.amount;
+            tution_fee = tuition_amount;
+          } else {
+            lec_amount_per_unit = ayf.per_unit;
+            lab_amount_per_unit = ayf.lab_unit_amount;
+          }
+        }
 
-                //added subjects
-                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : added_subjects) {
-                    String subject_code = sub.subject_code;
-                    String description = sub.description;
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    double lec_amount = lec_units * lec_amount_per_unit;
-                    double lec_amount2 = lec_amount;
-                    lec_amount = lec_amount_per_unit;
-                    double lab_amount = lab_units * lab_amount_per_unit;
-                    double lab_amount2 = lab_amount;
-                    lab_amount = lab_amount_per_unit;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    String time = DateType.daytime(sub.day);
-                    time = time.replaceAll("WFM", "MWF");
-                    time = time.replaceAll("FM", "MF");
-                    String instructor = sub.faculty_name;
-                    double amount = lec_amount2 + lab_amount2;
+        //added subjects
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : added_subjects) {
+          String subject_code = sub.subject_code;
+          String description = sub.description;
+          double lec_units = sub.lecture_units;
+          double lab_units = sub.lab_units;
+          double lec_amount = lec_units * lec_amount_per_unit;
+          double lec_amount2 = lec_amount;
+          lec_amount = lec_amount_per_unit;
+          double lab_amount = lab_units * lab_amount_per_unit;
+          double lab_amount2 = lab_amount;
+          lab_amount = lab_amount_per_unit;
+          String room = sub.room;
+          String day = DateType.mwf(sub.day);
+          String time = DateType.daytime(sub.day);
+          time = time.replaceAll("WFM", "MWF");
+          time = time.replaceAll("FM", "MF");
+          String instructor = sub.faculty_name;
+          double amount = lec_amount2 + lab_amount2;
 //                    tution_fee += amount;
-                    String section = sub.section;
-                    String group = "Dropped Subjects";
-                    cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+          String section = sub.section;
+          String group = "Dropped Subjects";
+          cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
 
-                    rpt_added_subjects.add(f);
-                }
+          rpt_added_subjects.add(f);
+        }
 
-                //Dropped subjects
-                for (Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests sub : dropped_subjects) {
-                    String subject_code = sub.subject_code;
-                    String description = sub.description;
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    double lec_amount = lec_units * lec_amount_per_unit;
-                    double lec_amount2 = lec_amount;
-                    lec_amount = lec_amount_per_unit;
-                    double lab_amount = lab_units * lab_amount_per_unit;
-                    double lab_amount2 = lab_amount;
-                    lab_amount = lab_amount_per_unit;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    String time = DateType.daytime(sub.day);
-                    time = time.replaceAll("WFM", "MWF");
-                    time = time.replaceAll("FM", "MF");
-                    String instructor = sub.faculty_name;
-                    double amount = lec_amount2 + lab_amount2;
+        //Dropped subjects
+        for (Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests sub : dropped_subjects) {
+          String subject_code = sub.subject_code;
+          String description = sub.description;
+          double lec_units = sub.lecture_units;
+          double lab_units = sub.lab_units;
+          double lec_amount = lec_units * lec_amount_per_unit;
+          double lec_amount2 = lec_amount;
+          lec_amount = lec_amount_per_unit;
+          double lab_amount = lab_units * lab_amount_per_unit;
+          double lab_amount2 = lab_amount;
+          lab_amount = lab_amount_per_unit;
+          String room = sub.room;
+          String day = DateType.mwf(sub.day);
+          String time = DateType.daytime(sub.day);
+          time = time.replaceAll("WFM", "MWF");
+          time = time.replaceAll("FM", "MF");
+          String instructor = sub.faculty_name;
+          double amount = lec_amount2 + lab_amount2;
 //                    amount = amount * -1;
 //                    tution_fee += amount;
-                    String section = sub.section;
-                    String group = "Dropped Subjects";
-                    cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
+          String section = sub.section;
+          String group = "Dropped Subjects";
+          cis.reports.Srpt_enrollment_assessment.field_add_subjects f = new cis.reports.Srpt_enrollment_assessment.field_add_subjects(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, section, group);
 
-                    rpt_dropped_subjects.add(f);
-                }
-                rpt_added_subjects.addAll(rpt_dropped_subjects);
-                //Main Subjects
-                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
-                    String subject_code = sub.subject_code;
-                    String description = sub.description;
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    double lec_amount = lec_units * lec_amount_per_unit;
-                    double lec_amount2 = lec_amount;
-                    lec_amount = lec_amount_per_unit;
-                    double lab_amount = lab_units * lab_amount_per_unit;
-                    double lab_amount2 = lab_amount;
-                    lab_amount = lab_amount_per_unit;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    String time = DateType.daytime(sub.day);
-                    time = time.replaceAll("WFM", "MWF");
-                    time = time.replaceAll("FM", "MF");
-                    String instructor = sub.faculty_name;
-                    double amount = lec_amount2 + lab_amount2;
-                    tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
-                    fields.add(f);
-                }
+          rpt_dropped_subjects.add(f);
+        }
+        rpt_added_subjects.addAll(rpt_dropped_subjects);
+        //Main Subjects
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+          String subject_code = sub.subject_code;
+          String description = sub.description;
+          double lec_units = sub.lecture_units;
+          double lab_units = sub.lab_units;
+          double lec_amount = lec_units * lec_amount_per_unit;
+          double lec_amount2 = lec_amount;
+          lec_amount = lec_amount_per_unit;
+          double lab_amount = lab_units * lab_amount_per_unit;
+          double lab_amount2 = lab_amount;
+          lab_amount = lab_amount_per_unit;
+          String room = sub.room;
+          String day = DateType.mwf(sub.day);
+          String time = DateType.daytime(sub.day);
+          time = time.replaceAll("WFM", "MWF");
+          time = time.replaceAll("FM", "MF");
+          String instructor = sub.faculty_name;
+          double amount = lec_amount2 + lab_amount2;
+          tution_fee += amount;
+          cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
+          fields.add(f);
+        }
 
-                List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
 
 //        System.out.println(where3);
-                List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
-                for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
-                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
-                    misc.add(f);
-                    misc_fee += fee.amount;
-                }
+        List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+        for (Academic_year_fees.to_academic_year_fees fee : misc_fees) {
+          cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+          misc.add(f);
+          misc_fee += fee.amount;
+        }
 
-                for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
-                    cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
-                    rpt_fees.add(f);
-                    other_fee += fee.amount;
-                }
+        for (Academic_year_fees.to_academic_year_fees fee : other_fees) {
+          cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
+          rpt_fees.add(f);
+          other_fee += fee.amount;
+        }
 
-                List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 
-                int payment_count = 3;
-                double tuition_fee = tution_fee;
+        int payment_count = 3;
+        double tuition_fee = tution_fee;
 
-                total_assessment = tution_fee + other_fee + misc_fee;
-                payable = total_assessment - downpayment;
-                double sub_total = total_assessment;
-                for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
-                    double balance = ea.amount - ea.paid;
-                    downpayment += ea.paid;
-                    cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
-                    rpt_summary.add(f2);
-                }
+        total_assessment = tution_fee + other_fee + misc_fee;
+        payable = total_assessment - downpayment;
+        double sub_total = total_assessment;
+        for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
+          double balance = ea.amount - ea.paid;
+          downpayment += ea.paid;
+          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
+          rpt_summary.add(f2);
+        }
 
-                String jrxml = "rpt_enrollment_assessment.jrxml";
-                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
-                rpt.fields.addAll(fields);
-                report_assessment(rpt, jrxml);
-                InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
-                try {
-                    JasperReport jasperReport = JasperCompileManager.compileReport(is);
-                    jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
-                                                               setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
-
-                } catch (JRException ex) {
-                    Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                jProgressBar2.setString("Finished...");
-                jProgressBar2.setIndeterminate(false);
-            }
-        });
-        t.start();
-    }
-
-    private void set_assessment3() {
-
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
-
-        jProgressBar2.setString("Loading...Please wait...");
-        jProgressBar2.setIndeterminate(true);
-        Thread t = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-
-                String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
-                String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
-                String date = synsoftech.util.DateType.slash.format(new Date());
-                String contact_no = System.getProperty("contact_no", "(035) 225 4831");
-
-                String home = System.getProperty("user.home");
-                String SUBREPORT_DIR = home + "\\cis\\";
-
-                String printed_by = MyUser.getUser_screen_name();
-                String school_year = enroll.academic_year;
-                String semester = enroll.period;
-                String student_no = enroll.student_no;
-                String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
-                String student_course = enroll.course_code + " - " + enroll.course_description;
-                String student_year_level = enroll.year_level;
-
-                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
-                List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
-                double no_of_units_lab = 0;
-                List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
-
-                //ret tuition amount
-                double tuition_amount = 0;
-                double lec_amount_per_unit = 0;
-                double lab_amount_per_unit = 0;
-                double total_assessment = 0;
-                double tution_fee = 0;
-                double misc_fee = 0;
-                double other_fee = 0;
-                double downpayment = 0;
-                double payable = 0;
-
-                //Main Subjects
-                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
-                    String subject_code = sub.subject_code;
-                    String description = sub.description;
-                    double lec_units = sub.lecture_units;
-                    double lab_units = sub.lab_units;
-                    double lec_amount = lec_units * lec_amount_per_unit;
-                    double lec_amount2 = lec_amount;
-                    lec_amount = lec_amount_per_unit;
-                    double lab_amount = lab_units * lab_amount_per_unit;
-                    double lab_amount2 = lab_amount;
-                    lab_amount = lab_amount_per_unit;
-                    String room = sub.room;
-                    String day = DateType.mwf(sub.day);
-                    String time = DateType.daytime(sub.day);
-                    time = time.replaceAll("WFM", "MWF");
-                    time = time.replaceAll("FM", "MF");
-                    String instructor = sub.faculty_name;
-                    double amount = lec_amount2 + lab_amount2;
-                    tution_fee += amount;
-                    cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
-                    fields.add(f);
-                }
-
-                List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
-                List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
-                List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
-
-                String jrxml = "rpt_subject_load.jrxml";
-
-                cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, 0, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
-                rpt.fields.addAll(fields);
-                report_assessment(rpt, jrxml);
-                InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
-                try {
-                    JasperReport jasperReport = JasperCompileManager.compileReport(is);
-                    jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
-                                                               setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
-
-                } catch (JRException ex) {
-                    Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                jProgressBar2.setString("Finished...");
-                jProgressBar2.setIndeterminate(false);
-            }
-        });
-        t.start();
-    }
-
-    private void set_assessment() {
-
-    }
-
-    private void report_assessment(final cis.reports.Srpt_enrollment_assessment to, String jrxml_name) {
-        jPanel35.removeAll();
-        jPanel35.setLayout(new BorderLayout());
+        String jrxml = "rpt_enrollment_assessment.jrxml";
+        cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, tuition_fee, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
+        rpt.fields.addAll(fields);
+        report_assessment(rpt, jrxml);
+        InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
         try {
-            JRViewer viewer = get_viewer_assessment(to, jrxml_name);
-            JPanel pnl = new JPanel();
-            pnl.add(viewer);
-            pnl.setVisible(true);
-            pnl.setVisible(true);
-            jPanel35.add(viewer);
-            jPanel35.setMinimumSize(new Dimension(626, 0));
-            jPanel35.setMaximumSize(new Dimension(626, 0));
-            jPanel35.setPreferredSize(new Dimension(626, 0));
-            jPanel35.updateUI();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+          JasperReport jasperReport = JasperCompileManager.compileReport(is);
+          jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
+                                                     setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
 
-    public static JRViewer get_viewer_assessment(cis.reports.Srpt_enrollment_assessment to, String rpt_name) {
+        } catch (JRException ex) {
+          Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        jProgressBar2.setString("Finished...");
+        jProgressBar2.setIndeterminate(false);
+      }
+    });
+    t.start();
+  }
+
+  private void set_assessment3() {
+
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
+
+    jProgressBar2.setString("Loading...Please wait...");
+    jProgressBar2.setIndeterminate(true);
+    Thread t = new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+
+        String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+        String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
+        String date = synsoftech.util.DateType.slash.format(new Date());
+        String contact_no = System.getProperty("contact_no", "(035) 225 4831");
+
+        String home = System.getProperty("user.home");
+        String SUBREPORT_DIR = home + "\\cis\\";
+
+        String printed_by = MyUser.getUser_screen_name();
+        String school_year = enroll.academic_year;
+        String semester = enroll.period;
+        String student_no = enroll.student_no;
+        String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
+        String student_course = enroll.course_code + " - " + enroll.course_description;
+        String student_year_level = enroll.year_level;
+
+        List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
+        double no_of_units_lab = 0;
+        List<cis.reports.Srpt_enrollment_assessment.field> fields = new ArrayList();
+
+        //ret tuition amount
+        double tuition_amount = 0;
+        double lec_amount_per_unit = 0;
+        double lab_amount_per_unit = 0;
+        double total_assessment = 0;
+        double tution_fee = 0;
+        double misc_fee = 0;
+        double other_fee = 0;
+        double downpayment = 0;
+        double payable = 0;
+
+        //Main Subjects
+        for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub : subjects) {
+          String subject_code = sub.subject_code;
+          String description = sub.description;
+          double lec_units = sub.lecture_units;
+          double lab_units = sub.lab_units;
+          double lec_amount = lec_units * lec_amount_per_unit;
+          double lec_amount2 = lec_amount;
+          lec_amount = lec_amount_per_unit;
+          double lab_amount = lab_units * lab_amount_per_unit;
+          double lab_amount2 = lab_amount;
+          lab_amount = lab_amount_per_unit;
+          String room = sub.room;
+          String day = DateType.mwf(sub.day);
+          String time = DateType.daytime(sub.day);
+          time = time.replaceAll("WFM", "MWF");
+          time = time.replaceAll("FM", "MF");
+          String instructor = sub.faculty_name;
+          double amount = lec_amount2 + lab_amount2;
+          tution_fee += amount;
+          cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
+          fields.add(f);
+        }
+
+        List<cis.reports.Srpt_enrollment_assessment.field_misc> misc = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_misc> rpt_fees = new ArrayList();
+        List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
+
+        String jrxml = "rpt_subject_load.jrxml";
+
+        cis.reports.Srpt_enrollment_assessment rpt = new cis.reports.Srpt_enrollment_assessment(business_name, address, contact_no, date, printed_by, school_year, semester, student_no, student_name, student_course, student_year_level, SUBREPORT_DIR, misc, rpt_fees, total_assessment, downpayment, payable, rpt_summary, 0, misc_fee, rpt_added_subjects, rpt_dropped_subjects);
+        rpt.fields.addAll(fields);
+        report_assessment(rpt, jrxml);
+        InputStream is = cis.reports.Srpt_enrollment_assessment.class.getResourceAsStream(jrxml);
         try {
-            return JasperUtil.getJasperViewer(
-                    compileJasper2(rpt_name),
-                    JasperUtil.setParameter(to),
-                    JasperUtil.makeDatasource(to.fields));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-        }
-    }
+          JasperReport jasperReport = JasperCompileManager.compileReport(is);
+          jasperPrint = JasperFillManager.fillReport(jasperReport, JasperUtil.
+                                                     setParameter(rpt), JasperUtil.makeDatasource(rpt.fields));
 
-    public static JasperReport compileJasper2(String rpt_name) {
-        try {
-            String jrxml = rpt_name;
-            InputStream is = cis.reports.Srpt_enrollment_assessment.class.
-                    getResourceAsStream(jrxml);
-            JasperReport jasper = JasperCompileManager.compileReport(is);
-            return jasper;
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    JasperPrint jasperPrint = null;
-
-    private void print_assessment() {
-        try {
-            if (jasperPrint != null) {
-                JasperPrintManager.printReport(jasperPrint, false);
-            }
-
-        } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, "Failed To Print, Please Check the Printer");
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void enroll_student() {
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
-        nd.do_pass();
-        nd.setCallback(new Dlg_confirm_action.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-                proceed_to_enrollment_2();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private void proceed_to_enrollment_2() {
-        Loader loader = new Loader(this);
-        loader.execute();
-    }
-
-    public class Loader extends SwingWorker {
-
-        private Loading dialog;
-
-        public Loader(JDialog dlg) {
-
-            dialog = new Loading();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            int xSize = ((int) tk.getScreenSize().
-                    getWidth());
-            int ySize = ((int) tk.getScreenSize().
-                    getHeight());
-            dialog.setSize(xSize, ySize);
-            dialog.setPreferredSize(new Dimension(xSize, ySize));
-            dialog.setAlwaysOnTop(true);
-            addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("state".equals(evt.getPropertyName())) {
-                        if (getState() == SwingWorker.StateValue.STARTED) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (getState() == SwingWorker.StateValue.STARTED) {
-                                        dialog.setVisible(true);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                }
-            });
+        } catch (JRException ex) {
+          Logger.getLogger(Dlg_finance.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        jProgressBar2.setString("Finished...");
+        jProgressBar2.setIndeterminate(false);
+      }
+    });
+    t.start();
+  }
+
+  private void set_assessment() {
+
+  }
+
+  private void report_assessment(final cis.reports.Srpt_enrollment_assessment to, String jrxml_name) {
+    jPanel35.removeAll();
+    jPanel35.setLayout(new BorderLayout());
+    try {
+      JRViewer viewer = get_viewer_assessment(to, jrxml_name);
+      JPanel pnl = new JPanel();
+      pnl.add(viewer);
+      pnl.setVisible(true);
+      pnl.setVisible(true);
+      jPanel35.add(viewer);
+      jPanel35.setMinimumSize(new Dimension(626, 0));
+      jPanel35.setMaximumSize(new Dimension(626, 0));
+      jPanel35.setPreferredSize(new Dimension(626, 0));
+      jPanel35.updateUI();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static JRViewer get_viewer_assessment(cis.reports.Srpt_enrollment_assessment to, String rpt_name) {
+    try {
+      return JasperUtil.getJasperViewer(
+              compileJasper2(rpt_name),
+              JasperUtil.setParameter(to),
+              JasperUtil.makeDatasource(to.fields));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    } finally {
+    }
+  }
+
+  public static JasperReport compileJasper2(String rpt_name) {
+    try {
+      String jrxml = rpt_name;
+      InputStream is = cis.reports.Srpt_enrollment_assessment.class.
+              getResourceAsStream(jrxml);
+      JasperReport jasper = JasperCompileManager.compileReport(is);
+      return jasper;
+    } catch (JRException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  JasperPrint jasperPrint = null;
+
+  private void print_assessment() {
+    try {
+      if (jasperPrint != null) {
+        JasperPrintManager.printReport(jasperPrint, false);
+      }
+
+    } catch (JRException e) {
+      JOptionPane.showMessageDialog(null, "Failed To Print, Please Check the Printer");
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void enroll_student() {
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
+    nd.do_pass();
+    nd.setCallback(new Dlg_confirm_action.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+        proceed_to_enrollment_2();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void proceed_to_enrollment_2() {
+    Loader loader = new Loader(this);
+    loader.execute();
+  }
+
+  public class Loader extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
         @Override
-        protected Object doInBackground() throws Exception {
-            enroll();
-            return null;
-        }
-
-        @Override
-        protected void done() {
-            dialog.dispose();
-            SwingUtilities.invokeLater(new Runnable() {
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    enrolled();
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
                 }
-            });
-        }
-
-    }
-
-    String stud_no = null;
-
-    private void enrolled() {
-
-    }
-
-    private void confirm_enroll() { //   
-
-        List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(" where enrollment_id='" + enroll.id + "' and status=0  order by subject_code,description asc ");
-
-        Window p = (Window) this;
-        Dlg_registrar_approve_enrollment nd = Dlg_registrar_approve_enrollment.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(datas, enroll);
-        nd.setCallback(new Dlg_registrar_approve_enrollment.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_registrar_approve_enrollment.OutputData data) {
-                closeDialog.ok();
-                enroll();
+              });
             }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-
+          }
+        }
+      });
     }
 
-    private void enroll() {
+    @Override
+    protected Object doInBackground() throws Exception {
+      enroll();
+      return null;
+    }
 
-        int id = enroll.student_id;
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          enrolled();
+        }
+      });
+    }
+
+  }
+
+  String stud_no = null;
+
+  private void enrolled() {
+
+  }
+
+  private void confirm_enroll() { //   
+
+    if (enroll.is_uploaded == 0) {
+      Alert.set(0, "Cannot proceed, downpayment required!");
+      return;
+    }
+    List<to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data2(" where enrollment_id='" + enroll.id + "' and status=0  order by subject_code,description asc ");
+
+    Window p = (Window) this;
+    Dlg_registrar_approve_enrollment nd = Dlg_registrar_approve_enrollment.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(datas, enroll);
+    nd.setCallback(new Dlg_registrar_approve_enrollment.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_registrar_approve_enrollment.OutputData data) {
+        closeDialog.ok();
+        enroll();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+
+  }
+
+  private void enroll() {
+
+    int id = enroll.student_id;
 //        System.out.println("Student Id: "+id);
 
-        int is_transferee = enroll.is_transferee;
-        int academic_year_id2 = enroll.academic_year_id;
-        String academic_year = enroll.academic_year;
-        String student_no = enroll.student_no;
-        String last_name = enroll.last_name;
-        String first_name = enroll.first_name;
-        String middle_name = enroll.middle_name;
-        String nick_name = enroll.nick_name;
-        String current_address = enroll.current_address;
-        String permanent_address = enroll.permanent_address;
-        String email_address = enroll.email_address;
-        String postal_code = enroll.postal_code;
-        String tel_no = enroll.tel_no;
-        String mobile_no = enroll.mobile_no;
-        String date_of_birth = enroll.date_of_birth;
-        String place_of_birth = enroll.place_of_birth;
-        int age = enroll.age;
-        int gender = enroll.gender;
-        String citizenship = enroll.citizenship;
-        String religion = enroll.religion;
-        String civil_status = enroll.civil_status;
-        String spouse_name = enroll.spouse_name;
-        String date_of_communion = enroll.date_of_communion;
-        String date_of_confirmation = enroll.date_of_confirmation;
-        int is_right_handed = enroll.is_right_handed;
-        int is_indigenous = enroll.is_indigenous;
-        String indigenous_name = enroll.indigenous_name;
-        int level_id = enroll.level_id;
-        String level = enroll.level;
-        int college_id = enroll.college_id;
-        String college = enroll.college;
-        int department_id = enroll.department_id;
-        String department = enroll.department;
-        String year_level = enroll.year_level;
-        String year_level_status = enroll.year_level_status;
-        String preferred_course1 = enroll.preferred_course1;
-        String preferred_course2 = enroll.preferred_course2;
-        String preferred_course3 = enroll.preferred_course3;
-        String father_name = enroll.father_name;
-        String father_citizenship = enroll.father_citizenship;
-        String father_home_address = enroll.father_home_address;
-        String father_email_address = enroll.father_email_address;
-        String father_mobile_no = enroll.father_mobile_no;
-        String father_occupation = enroll.father_occupation;
-        String father_employer = enroll.father_employer;
-        String father_business_address = enroll.father_business_address;
-        String father_business_tel_no = enroll.father_business_tel_no;
-        String father_educational_attainment = enroll.father_educational_attainment;
-        String father_last_school_attended = enroll.father_last_school_attended;
-        String mother_name = enroll.mother_name;
-        String mother_citizenship = enroll.mother_citizenship;
-        String mother_home_address = enroll.mother_home_address;
-        String mother_email_address = enroll.mother_email_address;
-        String mother_mobile_no = enroll.mother_mobile_no;
-        String mother_occupation = enroll.mother_occupation;
-        String mother_employer = enroll.mother_employer;
-        String mother_business_address = enroll.mother_business_address;
-        String mother_business_tel_no = enroll.mother_business_tel_no;
-        String mother_educational_attainment = enroll.mother_educational_attainment;
-        String mother_last_school_attended = enroll.mother_last_school_attended;
-        String guardian_name = enroll.guardian_name;
-        String guardian_mailing_address = enroll.guardian_mailing_address;
-        String guardian_telephone_no = enroll.guardian_telephone_no;
-        String grade_school_name = enroll.grade_school_name;
-        String grade_school_region = enroll.grade_school_region;
-        String grade_school_school_year = enroll.grade_school_school_year;
-        String grade_school_awards = enroll.grade_school_awards;
-        String high_school_name = enroll.high_school_name;
-        String high_school_region = enroll.high_school_region;
-        String high_school_school_year = enroll.high_school_school_year;
-        String high_school_awards = enroll.high_school_awards;
-        String college_school_name = enroll.college_school_name;
-        String college_school_region = enroll.college_school_region;
-        String college_school_school_year = enroll.college_school_school_year;
-        String college_awards = enroll.college_awards;
-        String junior_high_name = enroll.junior_high_name;
-        String junior_high_region = enroll.junior_high_region;
-        String junior_high_year = enroll.junior_high_year;
-        String junior_high_awards = enroll.junior_high_awards;
-        String tesda_name = enroll.tesda_name;
-        String tesda_region = enroll.tesda_region;
-        String tesda_year = enroll.tesda_year;
-        String tesda_awards = enroll.tesda_awards;
-        String sibling1 = enroll.sibling1;
-        String sibling2 = enroll.sibling2;
-        String sibling3 = enroll.sibling3;
-        String sibling4 = enroll.sibling4;
-        String sibling5 = enroll.sibling5;
-        String sibling6 = enroll.sibling6;
-        String sibling7 = enroll.sibling7;
-        String sibling8 = enroll.sibling8;
-        String created_at = DateType.now();
-        String updated_at = DateType.now();
-        String created_by = MyUser.getUser_id();
-        String updated_by = MyUser.getUser_id();
-        int status = 0;
-        int is_uploaded = 0;
-        int course_id = enroll.course_id;
-        String course_code = enroll.course_code;
-        String course_description = enroll.course_description;
-        String date_enrolled = DateType.sf.format(new Date());
-        double balance = 0;
-        double prepaid = 0;
-        String fb_account = enroll.fb_account;
-        String blood_type = enroll.blood_type;
-        String als_name = enroll.als_name;
-        String als_region = enroll.als_region;
-        String als_year = enroll.als_year;
-        String als_awards = enroll.als_awards;
-        String high_school_strand = enroll.high_school_strand;
-        String high_school_track = enroll.high_school_track;
-        List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
+    int is_transferee = enroll.is_transferee;
+    int academic_year_id2 = enroll.academic_year_id;
+    String academic_year = enroll.academic_year;
+    String student_no = enroll.student_no;
+    String last_name = enroll.last_name;
+    String first_name = enroll.first_name;
+    String middle_name = enroll.middle_name;
+    String nick_name = enroll.nick_name;
+    String current_address = enroll.current_address;
+    String permanent_address = enroll.permanent_address;
+    String email_address = enroll.email_address;
+    String postal_code = enroll.postal_code;
+    String tel_no = enroll.tel_no;
+    String mobile_no = enroll.mobile_no;
+    String date_of_birth = enroll.date_of_birth;
+    String place_of_birth = enroll.place_of_birth;
+    int age = enroll.age;
+    int gender = enroll.gender;
+    String citizenship = enroll.citizenship;
+    String religion = enroll.religion;
+    String civil_status = enroll.civil_status;
+    String spouse_name = enroll.spouse_name;
+    String date_of_communion = enroll.date_of_communion;
+    String date_of_confirmation = enroll.date_of_confirmation;
+    int is_right_handed = enroll.is_right_handed;
+    int is_indigenous = enroll.is_indigenous;
+    String indigenous_name = enroll.indigenous_name;
+    int level_id = enroll.level_id;
+    String level = enroll.level;
+    int college_id = enroll.college_id;
+    String college = enroll.college;
+    int department_id = enroll.department_id;
+    String department = enroll.department;
+    String year_level = enroll.year_level;
+    String year_level_status = enroll.year_level_status;
+    String preferred_course1 = enroll.preferred_course1;
+    String preferred_course2 = enroll.preferred_course2;
+    String preferred_course3 = enroll.preferred_course3;
+    String father_name = enroll.father_name;
+    String father_citizenship = enroll.father_citizenship;
+    String father_home_address = enroll.father_home_address;
+    String father_email_address = enroll.father_email_address;
+    String father_mobile_no = enroll.father_mobile_no;
+    String father_occupation = enroll.father_occupation;
+    String father_employer = enroll.father_employer;
+    String father_business_address = enroll.father_business_address;
+    String father_business_tel_no = enroll.father_business_tel_no;
+    String father_educational_attainment = enroll.father_educational_attainment;
+    String father_last_school_attended = enroll.father_last_school_attended;
+    String mother_name = enroll.mother_name;
+    String mother_citizenship = enroll.mother_citizenship;
+    String mother_home_address = enroll.mother_home_address;
+    String mother_email_address = enroll.mother_email_address;
+    String mother_mobile_no = enroll.mother_mobile_no;
+    String mother_occupation = enroll.mother_occupation;
+    String mother_employer = enroll.mother_employer;
+    String mother_business_address = enroll.mother_business_address;
+    String mother_business_tel_no = enroll.mother_business_tel_no;
+    String mother_educational_attainment = enroll.mother_educational_attainment;
+    String mother_last_school_attended = enroll.mother_last_school_attended;
+    String guardian_name = enroll.guardian_name;
+    String guardian_mailing_address = enroll.guardian_mailing_address;
+    String guardian_telephone_no = enroll.guardian_telephone_no;
+    String grade_school_name = enroll.grade_school_name;
+    String grade_school_region = enroll.grade_school_region;
+    String grade_school_school_year = enroll.grade_school_school_year;
+    String grade_school_awards = enroll.grade_school_awards;
+    String high_school_name = enroll.high_school_name;
+    String high_school_region = enroll.high_school_region;
+    String high_school_school_year = enroll.high_school_school_year;
+    String high_school_awards = enroll.high_school_awards;
+    String college_school_name = enroll.college_school_name;
+    String college_school_region = enroll.college_school_region;
+    String college_school_school_year = enroll.college_school_school_year;
+    String college_awards = enroll.college_awards;
+    String junior_high_name = enroll.junior_high_name;
+    String junior_high_region = enroll.junior_high_region;
+    String junior_high_year = enroll.junior_high_year;
+    String junior_high_awards = enroll.junior_high_awards;
+    String tesda_name = enroll.tesda_name;
+    String tesda_region = enroll.tesda_region;
+    String tesda_year = enroll.tesda_year;
+    String tesda_awards = enroll.tesda_awards;
+    String sibling1 = enroll.sibling1;
+    String sibling2 = enroll.sibling2;
+    String sibling3 = enroll.sibling3;
+    String sibling4 = enroll.sibling4;
+    String sibling5 = enroll.sibling5;
+    String sibling6 = enroll.sibling6;
+    String sibling7 = enroll.sibling7;
+    String sibling8 = enroll.sibling8;
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    String created_by = MyUser.getUser_id();
+    String updated_by = MyUser.getUser_id();
+    int status = 0;
+    int is_uploaded = 0;
+    int course_id = enroll.course_id;
+    String course_code = enroll.course_code;
+    String course_description = enroll.course_description;
+    String date_enrolled = DateType.sf.format(new Date());
+    double balance = 0;
+    double prepaid = 0;
+    String fb_account = enroll.fb_account;
+    String blood_type = enroll.blood_type;
+    String als_name = enroll.als_name;
+    String als_region = enroll.als_region;
+    String als_year = enroll.als_year;
+    String als_awards = enroll.als_awards;
+    String high_school_strand = enroll.high_school_strand;
+    String high_school_track = enroll.high_school_track;
+    List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
 
-        for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
-            balance += ea.amount - ea.paid;
-        }
+    for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
+      balance += ea.amount - ea.paid;
+    }
 
-        Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid, fb_account, blood_type, als_name, als_region, als_year, als_awards, high_school_strand, high_school_track);
-        String en_no = student.student_no;
+    Students.to_students student = new Students.to_students(id, is_transferee, academic_year_id2, academic_year, student_no, last_name, first_name, middle_name, nick_name, current_address, permanent_address, email_address, postal_code, tel_no, mobile_no, date_of_birth, place_of_birth, age, gender, citizenship, religion, civil_status, spouse_name, date_of_communion, date_of_confirmation, is_right_handed, is_indigenous, indigenous_name, level_id, level, college_id, college, department_id, department, year_level, year_level_status, preferred_course1, preferred_course2, preferred_course3, father_name, father_citizenship, father_home_address, father_email_address, father_mobile_no, father_occupation, father_employer, father_business_address, father_business_tel_no, father_educational_attainment, father_last_school_attended, mother_name, mother_citizenship, mother_home_address, mother_email_address, mother_mobile_no, mother_occupation, mother_employer, mother_business_address, mother_business_tel_no, mother_educational_attainment, mother_last_school_attended, guardian_name, guardian_mailing_address, guardian_telephone_no, grade_school_name, grade_school_region, grade_school_school_year, grade_school_awards, high_school_name, high_school_region, high_school_school_year, high_school_awards, college_school_name, college_school_region, college_school_school_year, college_awards, junior_high_name, junior_high_region, junior_high_year, junior_high_awards, tesda_name, tesda_region, tesda_year, tesda_awards, sibling1, sibling2, sibling3, sibling4, sibling5, sibling6, sibling7, sibling8, created_at, updated_at, created_by, updated_by, status, is_uploaded, course_id, course_code, course_description, date_enrolled, balance, prepaid, fb_account, blood_type, als_name, als_region, als_year, als_awards, high_school_strand, high_school_track);
+    String en_no = student.student_no;
 //        System.out.println("student.id: " + student.id);
 //        System.out.println("student.student_no: " + student.student_no);
-        if (student.id == 0 || student.student_no == null) {
+    if (student.id == 0 || student.student_no == null) {
 
-            if (student.student_no == null || student.student_no.isEmpty()) {
-                en_no = Students.add_data_enroll(student, enroll);
+      if (student.student_no == null || student.student_no.isEmpty()) {
+        en_no = Students.add_data_enroll(student, enroll);
 //                String where = "  where student_no='" + student.student_no + "' order id desc limit 1 ";
 //                List<Students.to_students> list = Students.ret_data(where);
 //                System.out.println("list: " + list.size());
@@ -7089,30 +7105,30 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //                } else {
 //                    Students.add_data_enroll2(student, enroll);
 //                }
-            }
+      }
 
-        } else {
-            Students.add_data_enroll2(student, enroll);
-        }
+    } else {
+      Students.add_data_enroll2(student, enroll);
+    }
+    jButton11.setEnabled(false);
+    try {
+      send_image_to_server(enroll.enrollment_no, en_no);
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+
+    Window p = (Window) this;
+    Dlg_student_enrollment_approved nd = Dlg_student_enrollment_approved.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(enroll, en_no);
+    nd.setCallback(new Dlg_student_enrollment_approved.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_student_enrollment_approved.OutputData data) {
+        closeDialog.ok();
+        ok2();
         jButton11.setEnabled(false);
-        try {
-            send_image_to_server(enroll.enrollment_no, en_no);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-        Window p = (Window) this;
-        Dlg_student_enrollment_approved nd = Dlg_student_enrollment_approved.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(enroll, en_no);
-        nd.setCallback(new Dlg_student_enrollment_approved.Callback() {
-
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_student_enrollment_approved.OutputData data) {
-                closeDialog.ok();
-                ok2();
-                jButton11.setEnabled(false);
-                jButton9.setEnabled(false);
+        jButton9.setEnabled(false);
 //                SwingUtilities.invokeLater(new Runnable() {
 //                    @Override
 //                    public void run() {
@@ -7120,433 +7136,433 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
 //                    }
 //                });
 
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
 
-    private void send_image_to_server(String enrollment_no, String student_no) throws IOException {
+  private void send_image_to_server(String enrollment_no, String student_no) throws IOException {
 
-        FileInputStream inputStream = null;
-        String image_server = System.getProperty("image_server", "");
-        System.out.println("image_server: " + image_server);
-        if (!image_server.isEmpty()) {
-            File sourceFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");
-            File destinationFile = new File("\\\\" + image_server + "\\cis\\cis_images\\students\\" + student_no + ".jpg");
-            inputStream = new FileInputStream(sourceFile);
-            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-            FileChannel inChannel = inputStream.getChannel();
-            FileChannel outChannel = outputStream.getChannel();
-            try {
-                inChannel.transferTo(0, inChannel.size(), outChannel);
-            } finally {
+    FileInputStream inputStream = null;
+    String image_server = System.getProperty("image_server", "");
+    System.out.println("image_server: " + image_server);
+    if (!image_server.isEmpty()) {
+      File sourceFile = new File("\\\\" + image_server + "\\cis\\cis_images\\enrollment\\" + enrollment_no + ".jpg");
+      File destinationFile = new File("\\\\" + image_server + "\\cis\\cis_images\\students\\" + student_no + ".jpg");
+      inputStream = new FileInputStream(sourceFile);
+      FileOutputStream outputStream = new FileOutputStream(destinationFile);
+      FileChannel inChannel = inputStream.getChannel();
+      FileChannel outChannel = outputStream.getChannel();
+      try {
+        inChannel.transferTo(0, inChannel.size(), outChannel);
+      } finally {
 
-                inChannel.close();
-                outChannel.close();
-                inputStream.close();
-                outputStream.close();
+        inChannel.close();
+        outChannel.close();
+        inputStream.close();
+        outputStream.close();
 
-                if (sourceFile.delete()) {
-                    System.out.println("Local image deleted");
-                } else {
-                    System.out.println("Failed to delete local image");
-                }
-            }
-        }
-    }
-
-    private void select_tab() {
-        int tab = jTabbedPane2.getSelectedIndex();
-        if (tab == 2) {
-            tf_field4.setText(tf_field128.getText());
-            ret_offered_subjects();
-        }
-    }
-
-    private void ok1() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
-    }
-    List<String> periods = new ArrayList();
-
-    private void ret_periods() {
-
-        String where = " where academic_year_id = '" + academic_year_id + "' and department_id='" + enroll.department_id + "' ";
-        List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
-        if (!periods1.isEmpty()) {
-            Academic_year_periods.to_academic_year_periods acad1 = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
-            String per = acad1.period;
-            periods = Combo.periods(per);
+        if (sourceFile.delete()) {
+          System.out.println("Local image deleted");
         } else {
-
+          System.out.println("Failed to delete local image");
         }
+      }
     }
+  }
 
-    private void init_periods() {
-        Object[][] obj = new Object[periods.size()][1];
-        int i = 0;
-        for (String to : periods) {
-            obj[i][0] = " " + to;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_period.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_period, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = periods.get(data.selected_row);
-                tf_period.setText("" + to);
+  private void select_tab() {
+    int tab = jTabbedPane2.getSelectedIndex();
+    if (tab == 2) {
+      tf_field4.setText(tf_field128.getText());
+      ret_offered_subjects();
+    }
+  }
+
+  private void ok1() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
+    }
+  }
+  List<String> periods = new ArrayList();
+
+  private void ret_periods() {
+
+    String where = " where academic_year_id = '" + academic_year_id + "' and department_id='" + enroll.department_id + "' ";
+    List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
+    if (!periods1.isEmpty()) {
+      Academic_year_periods.to_academic_year_periods acad1 = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+      String per = acad1.period;
+      periods = Combo.periods(per);
+    } else {
+
+    }
+  }
+
+  private void init_periods() {
+    Object[][] obj = new Object[periods.size()][1];
+    int i = 0;
+    for (String to : periods) {
+      obj[i][0] = " " + to;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_period.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_period, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = periods.get(data.selected_row);
+        tf_period.setText("" + to);
 //                ret_enrollments();
-            }
-        });
+      }
+    });
+  }
+
+  private void init_blood_type() {
+
+    List<String> blood_types = new ArrayList();
+    blood_types.add("");
+    blood_types.add("A+");
+    blood_types.add("O+");
+    blood_types.add("B+");
+    blood_types.add("AB+");
+    blood_types.add("A-");
+    blood_types.add("O-");
+    blood_types.add("B-");
+    blood_types.add("AB-");
+
+    Object[][] obj = new Object[blood_types.size()][1];
+    int i = 0;
+    for (String to : blood_types) {
+      obj[i][0] = " " + to;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field136.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field136, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = blood_types.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field136;
+        co.setText("" + to);
+
+      }
+
+    });
+  }
+
+  private void init_tracks() {
+
+    List<String> tracks = new ArrayList();
+    tracks.add("Academic");
+    tracks.add("Technical-Vocational-Livelihood");
+    tracks.add("Sports and Arts");
+
+    Object[][] obj = new Object[tracks.size()][1];
+    int i = 0;
+    for (String to : tracks) {
+      obj[i][0] = " " + to;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field141.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field141, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = tracks.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field141;
+        co.setText("" + to);
+
+      }
+
+    });
+  }
+
+  private void init_strands() {
+
+    List<String> tracks = new ArrayList();
+    tracks.add("GAS ( General Academic Strand)");
+    tracks.add("Science, Technology, Engineering, and Mathematics (STEM) ");
+    tracks.add("Accountancy, Business, and Management (ABM)");
+    tracks.add("Humanities and Social Sciences (HUMSS)");
+
+    tracks.add("Agri-Fishery Arts");
+    tracks.add("Home Economics");
+    tracks.add("ICT (Information and Communications Technology");
+    tracks.add("Industrial Arts ");
+
+    Object[][] obj = new Object[tracks.size()][1];
+    int i = 0;
+    for (String to : tracks) {
+      obj[i][0] = " " + to;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field140.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field140, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = tracks.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field140;
+        co.setText("" + to);
+
+      }
+
+    });
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" Course Syllabus ">
+  private void set_report_syllabus() {
+
+    if (tf_course_outline.getText().isEmpty()) {
+      Alert.set(0, "Please select a course!");
+      return;
     }
 
-    private void init_blood_type() {
-
-        List<String> blood_types = new ArrayList();
-        blood_types.add("");
-        blood_types.add("A+");
-        blood_types.add("O+");
-        blood_types.add("B+");
-        blood_types.add("AB+");
-        blood_types.add("A-");
-        blood_types.add("O-");
-        blood_types.add("B-");
-        blood_types.add("AB-");
-
-        Object[][] obj = new Object[blood_types.size()][1];
-        int i = 0;
-        for (String to : blood_types) {
-            obj[i][0] = " " + to;
-            i++;
+    jProgressBar3.setString("Loading...Please wait...");
+    jProgressBar3.setIndeterminate(true);
+    Thread t = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        Students.to_students student = null;
+        if (enroll.date_enrolled != null) {
+          List<Students.to_students> students = Students.ret_data(" where id='" + enroll.student_id + "' ");
+          if (!students.isEmpty()) {
+            student = students.get(0);
+          }
         }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field136.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field136, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = blood_types.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field136;
-                co.setText("" + to);
+        String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
+        String school_address = System.getProperty("address", "Bishop Epifanio B. Surban Street, Dumaguete City, Negros Oriental");
 
-            }
+        String lname = "";
+        String fname = "";
+        String mname = "";
+        String sname = "";
+        String address = "";
+        String bday = "";
+        String school_last_attended = "";
+        String school_last_attended_date = "";
+        try {
 
-        });
-    }
-
-    private void init_tracks() {
-
-        List<String> tracks = new ArrayList();
-        tracks.add("Academic");
-        tracks.add("Technical-Vocational-Livelihood");
-        tracks.add("Sports and Arts");
-
-        Object[][] obj = new Object[tracks.size()][1];
-        int i = 0;
-        for (String to : tracks) {
-            obj[i][0] = " " + to;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field141.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field141, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = tracks.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field141;
-                co.setText("" + to);
-
-            }
-
-        });
-    }
-
-    private void init_strands() {
-
-        List<String> tracks = new ArrayList();
-        tracks.add("GAS ( General Academic Strand)");
-        tracks.add("Science, Technology, Engineering, and Mathematics (STEM) ");
-        tracks.add("Accountancy, Business, and Management (ABM)");
-        tracks.add("Humanities and Social Sciences (HUMSS)");
-
-        tracks.add("Agri-Fishery Arts");
-        tracks.add("Home Economics");
-        tracks.add("ICT (Information and Communications Technology");
-        tracks.add("Industrial Arts ");
-
-        Object[][] obj = new Object[tracks.size()][1];
-        int i = 0;
-        for (String to : tracks) {
-            obj[i][0] = " " + to;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field140.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field140, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = tracks.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field140;
-                co.setText("" + to);
-
-            }
-
-        });
-    }
-
-    //<editor-fold defaultstate="collapsed" desc=" Course Syllabus ">
-    private void set_report_syllabus() {
-
-        if (tf_course_outline.getText().isEmpty()) {
-            Alert.set(0, "Please select a course!");
-            return;
+          if (enroll.date_enrolled == null) {
+            school_last_attended_date = DateType.convert_slash_datetime2(enroll.high_school_school_year);
+          } else {
+            school_last_attended_date = DateType.convert_slash_datetime2(student.high_school_school_year);
+          }
+        } catch (Exception e) {
+          school_last_attended_date = "";
         }
 
-        jProgressBar3.setString("Loading...Please wait...");
-        jProgressBar3.setIndeterminate(true);
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Students.to_students student = null;
-                if (enroll.date_enrolled != null) {
-                    List<Students.to_students> students = Students.ret_data(" where id='" + enroll.student_id + "' ");
-                    if (!students.isEmpty()) {
-                        student = students.get(0);
-                    }
-                }
-                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
-                String school_address = System.getProperty("address", "Bishop Epifanio B. Surban Street, Dumaguete City, Negros Oriental");
+        String entrance_credential = "Form 137-A";
+        String date_of_admission = "";
+        try {
 
-                String lname = "";
-                String fname = "";
-                String mname = "";
-                String sname = "";
-                String address = "";
-                String bday = "";
-                String school_last_attended = "";
-                String school_last_attended_date = "";
-                try {
+          if (enroll.date_enrolled == null) {
+            date_of_admission = DateType.convert_slash_datetime2(enroll.date_enrolled);
+          } else {
+            date_of_admission = DateType.convert_slash_datetime2(student.date_enrolled);
+          }
+        } catch (Exception e) {
+          date_of_admission = "";
+        }
+        String elementary_school = "";
+        String elementary_school_date = "";
+        try {
 
-                    if (enroll.date_enrolled == null) {
-                        school_last_attended_date = DateType.convert_slash_datetime2(enroll.high_school_school_year);
-                    } else {
-                        school_last_attended_date = DateType.convert_slash_datetime2(student.high_school_school_year);
-                    }
-                } catch (Exception e) {
-                    school_last_attended_date = "";
-                }
+          if (enroll.date_enrolled == null) {
+            elementary_school_date = DateType.convert_slash_datetime2(enroll.grade_school_school_year);
 
-                String entrance_credential = "Form 137-A";
-                String date_of_admission = "";
-                try {
+          } else {
+            elementary_school_date = DateType.convert_slash_datetime2(student.grade_school_school_year);
 
-                    if (enroll.date_enrolled == null) {
-                        date_of_admission = DateType.convert_slash_datetime2(enroll.date_enrolled);
-                    } else {
-                        date_of_admission = DateType.convert_slash_datetime2(student.date_enrolled);
-                    }
-                } catch (Exception e) {
-                    date_of_admission = "";
-                }
-                String elementary_school = "";
-                String elementary_school_date = "";
-                try {
+          }
+        } catch (Exception e) {
+          elementary_school_date = "";
+        }
+        String high_school = "";
+        String high_school_date = school_last_attended_date;
 
-                    if (enroll.date_enrolled == null) {
-                        elementary_school_date = DateType.convert_slash_datetime2(enroll.grade_school_school_year);
+        String course_code = "";
+        String course = "";
+        int student_id = 0;
+        if (enroll.date_enrolled == null) {
+          student_id = enroll.student_id;
+          lname = enroll.last_name;
+          fname = enroll.first_name;
+          mname = enroll.middle_name;
+          address = enroll.permanent_address;
+          bday = DateType.convert_slash_datetime2(enroll.date_of_birth);
+          school_last_attended = enroll.high_school_name;
+          elementary_school = enroll.grade_school_name;
+          high_school = enroll.high_school_name;
+          course_code = enroll.course_code;
+          course = course_code + " - " + enroll.course_description;
+        } else {
+          student_id = student.id;
+          lname = student.last_name;
+          fname = student.first_name;
+          mname = student.middle_name;
+          address = student.permanent_address;
+          bday = DateType.convert_slash_datetime2(student.date_of_birth);
+          school_last_attended = student.high_school_name;
+          elementary_school = student.grade_school_name;
+          high_school = student.high_school_name;
+          course_code = student.course_code;
+          course = course_code + " - " + student.course_description;
+        }
+        String prepared_by = "";
+        String verified_by = "";
+        String registrar = "";
 
-                    } else {
-                        elementary_school_date = DateType.convert_slash_datetime2(student.grade_school_school_year);
+        List<Srpt_course_syllabus.field> fields = new ArrayList();
 
-                    }
-                } catch (Exception e) {
-                    elementary_school_date = "";
-                }
-                String high_school = "";
-                String high_school_date = school_last_attended_date;
+        String[] years = {"First Year", "Second year", "Third Year", "Fourth Year", "Fifth Year"};
+        String[] period = {"First Semester", "Second Semester", "Summer Class"};
 
-                String course_code = "";
-                String course = "";
-                int student_id = 0;
-                if (enroll.date_enrolled == null) {
-                    student_id = enroll.student_id;
-                    lname = enroll.last_name;
-                    fname = enroll.first_name;
-                    mname = enroll.middle_name;
-                    address = enroll.permanent_address;
-                    bday = DateType.convert_slash_datetime2(enroll.date_of_birth);
-                    school_last_attended = enroll.high_school_name;
-                    elementary_school = enroll.grade_school_name;
-                    high_school = enroll.high_school_name;
-                    course_code = enroll.course_code;
-                    course = course_code + " - " + enroll.course_description;
-                } else {
-                    student_id = student.id;
-                    lname = student.last_name;
-                    fname = student.first_name;
-                    mname = student.middle_name;
-                    address = student.permanent_address;
-                    bday = DateType.convert_slash_datetime2(student.date_of_birth);
-                    school_last_attended = student.high_school_name;
-                    elementary_school = student.grade_school_name;
-                    high_school = student.high_school_name;
-                    course_code = student.course_code;
-                    course = course_code + " - " + student.course_description;
-                }
-                String prepared_by = "";
-                String verified_by = "";
-                String registrar = "";
+        int ii = 0;
 
-                List<Srpt_course_syllabus.field> fields = new ArrayList();
+        Academic_offerings.to_academic_offerings ao = null;
+        List<Academic_offerings.to_academic_offerings> aos = new ArrayList();
+        if (enroll.date_enrolled == null) {
+          aos = Academic_offerings.ret_data(" where course_id='" + enroll.course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ");
 
-                String[] years = {"First Year", "Second year", "Third Year", "Fourth Year", "Fifth Year"};
-                String[] period = {"First Semester", "Second Semester", "Summer Class"};
+        } else {
+          aos = Academic_offerings.ret_data(" where course_id='" + student.course_id + "' and academic_year_id='" + student.academic_year_id + "' ");
 
-                int ii = 0;
+        }
 
-                Academic_offerings.to_academic_offerings ao = null;
-                List<Academic_offerings.to_academic_offerings> aos = new ArrayList();
-                if (enroll.date_enrolled == null) {
-                    aos = Academic_offerings.ret_data(" where course_id='" + enroll.course_id + "' and academic_year_id='" + enroll.academic_year_id + "' ");
+        if (!aos.isEmpty()) {
+          ao = aos.get(0);
+        }
+        if (ao == null) {
+          Alert.set(0, "Academic offering record not found!");
+          return;
+        }
 
-                } else {
-                    aos = Academic_offerings.ret_data(" where course_id='" + student.course_id + "' and academic_year_id='" + student.academic_year_id + "' ");
+        String academic_offering_id = "" + ao.id;
 
-                }
+        String where = " where academic_offering_id='" + academic_offering_id + "' ";
 
-                if (!aos.isEmpty()) {
-                    ao = aos.get(0);
-                }
-                if (ao == null) {
-                    Alert.set(0, "Academic offering record not found!");
-                    return;
-                }
+        List<Academic_offering_subjects.to_academic_offering_subjects> datas = Academic_offering_subjects.ret_data(where);
+        String where2 = " where student_id='" + student_id + "' and course_id='" + enroll.course_id + "' and status=1 ";
 
-                String academic_offering_id = "" + ao.id;
+        if (enroll.date_enrolled != null) {
+          where2 = " where student_id='" + student_id + "' and course_id='" + student.course_id + "' and status=1 ";
 
-                String where = " where academic_offering_id='" + academic_offering_id + "' ";
+        }
 
-                List<Academic_offering_subjects.to_academic_offering_subjects> datas = Academic_offering_subjects.ret_data(where);
-                String where2 = " where student_id='" + student_id + "' and course_id='" + enroll.course_id + "' and status=1 ";
-
-                if (enroll.date_enrolled != null) {
-                    where2 = " where student_id='" + student_id + "' and course_id='" + student.course_id + "' and status=1 ";
-
-                }
-
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(where2);
-                for (int i = 0; i < years.length; i++) {
-                    for (int iii = 0; iii < period.length; iii++) {
-                        for (Academic_offering_subjects.to_academic_offering_subjects to : datas) {
-                            if (to.year_level.equalsIgnoreCase(years[i]) && to.term.equalsIgnoreCase(period[iii])) {
-                                String subject_code = to.subject_code;
-                                String description = to.description;
-                                String final_grade = "";
-                                String re_exam = "";
-                                double units = to.lab_units + to.lecture_units;
-                                int order = i;
-                                String year_level = years[i];
-                                String semester = period[iii];
-                                String status = "";
-                                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
-                                    if (to.subject_id == subject.subject_id) {
-                                        final_grade = "" + FitIn.fmt_woc_0(subject.final_grade);
-                                        re_exam = FitIn.fmt_woc_0(subject.retake);
+        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(where2);
+        for (int i = 0; i < years.length; i++) {
+          for (int iii = 0; iii < period.length; iii++) {
+            for (Academic_offering_subjects.to_academic_offering_subjects to : datas) {
+              if (to.year_level.equalsIgnoreCase(years[i]) && to.term.equalsIgnoreCase(period[iii])) {
+                String subject_code = to.subject_code;
+                String description = to.description;
+                String final_grade = "";
+                String re_exam = "";
+                double units = to.lab_units + to.lecture_units;
+                int order = i;
+                String year_level = years[i];
+                String semester = period[iii];
+                String status = "";
+                for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
+                  if (to.subject_id == subject.subject_id) {
+                    final_grade = "" + FitIn.fmt_woc_0(subject.final_grade);
+                    re_exam = FitIn.fmt_woc_0(subject.retake);
 //                                        System.out.println(subject.subject_code + " : " + "final_grade: " + final_grade);
-                                        if (FitIn.toDouble(final_grade) == 0) {
-                                            final_grade = "";
-                                        }
-                                        if (subject.final_grade_created_at != null && subject.status == 1) {
-                                            status = subject.final_grade_remarks;
-                                        } else if (subject.final_grade_created_at == null && subject.status == 1) {
-                                            status = "Ongoing";
-                                        }
-                                        break;
-                                    }
-                                }
-                                Srpt_course_syllabus.field f = new Srpt_course_syllabus.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
-                                fields.add(f);
-                            }
-                        }
+                    if (FitIn.toDouble(final_grade) == 0) {
+                      final_grade = "";
                     }
+                    if (subject.final_grade_created_at != null && subject.status == 1) {
+                      status = subject.final_grade_remarks;
+                    } else if (subject.final_grade_created_at == null && subject.status == 1) {
+                      status = "Ongoing";
+                    }
+                    break;
+                  }
                 }
-
-                String jrxml = "rpt_course_syllabus.jrxml";
-
-                Srpt_course_syllabus rpt = new Srpt_course_syllabus(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar);
-                rpt.fields.addAll(fields);
-                report_transcript(rpt, jrxml);
-                jProgressBar3.setString("Finished...");
-                jProgressBar3.setIndeterminate(false);
+                Srpt_course_syllabus.field f = new Srpt_course_syllabus.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
+                fields.add(f);
+              }
             }
+          }
         }
-        );
-        t.start();
-    }
 
-    private void report_transcript(final Srpt_course_syllabus to, String jrxml_name) {
-        jPanel39.removeAll();
-        jPanel39.setLayout(new BorderLayout());
-        try {
-            JRViewer viewer = get_viewer_transcript(to, jrxml_name);
-            JPanel pnl = new JPanel();
-            pnl.add(viewer);
-            pnl.setVisible(true);
-            pnl.setVisible(true);
-            jPanel39.add(viewer);
+        String jrxml = "rpt_course_syllabus.jrxml";
 
-            jPanel39.updateUI();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Srpt_course_syllabus rpt = new Srpt_course_syllabus(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar);
+        rpt.fields.addAll(fields);
+        report_transcript(rpt, jrxml);
+        jProgressBar3.setString("Finished...");
+        jProgressBar3.setIndeterminate(false);
+      }
     }
+    );
+    t.start();
+  }
 
-    public static JRViewer get_viewer_transcript(Srpt_course_syllabus to, String rpt_name) {
-        try {
-            return JasperUtil.getJasperViewer(
-                    compileJasper_transcript(rpt_name),
-                    JasperUtil.setParameter(to),
-                    JasperUtil.makeDatasource(to.fields));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-        }
-    }
+  private void report_transcript(final Srpt_course_syllabus to, String jrxml_name) {
+    jPanel39.removeAll();
+    jPanel39.setLayout(new BorderLayout());
+    try {
+      JRViewer viewer = get_viewer_transcript(to, jrxml_name);
+      JPanel pnl = new JPanel();
+      pnl.add(viewer);
+      pnl.setVisible(true);
+      pnl.setVisible(true);
+      jPanel39.add(viewer);
 
-    public static JasperReport compileJasper_transcript(String rpt_name) {
-        try {
-            String jrxml = rpt_name;
-            InputStream is = Srpt_course_syllabus.class.
-                    getResourceAsStream(jrxml);
-            JasperReport jasper = JasperCompileManager.compileReport(is);
-            return jasper;
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        }
+      jPanel39.updateUI();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
-    //</editor-fold>
+  }
 
-    private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3) {
-        String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText();
-        return ret;
+  public static JRViewer get_viewer_transcript(Srpt_course_syllabus to, String rpt_name) {
+    try {
+      return JasperUtil.getJasperViewer(
+              compileJasper_transcript(rpt_name),
+              JasperUtil.setParameter(to),
+              JasperUtil.makeDatasource(to.fields));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    } finally {
     }
+  }
+
+  public static JasperReport compileJasper_transcript(String rpt_name) {
+    try {
+      String jrxml = rpt_name;
+      InputStream is = Srpt_course_syllabus.class.
+              getResourceAsStream(jrxml);
+      JasperReport jasper = JasperCompileManager.compileReport(is);
+      return jasper;
+    } catch (JRException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  //</editor-fold>
+
+  private String concat_s(JTextField tf1, JTextField tf2, JTextField tf3) {
+    String ret = tf1.getText() + "%" + tf2.getText() + "%" + tf3.getText();
+    return ret;
+  }
 
 }

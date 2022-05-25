@@ -68,166 +68,166 @@ import synsoftech.util.ImageRenderer;
  */
 public class Dlg_deans_portal extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_deans_portal
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_deans_portal
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
-    }
+  }
 
-    public static interface Callback {
+  public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
 
-    public static class InputData {
-    }
+  public static class InputData {
+  }
 
-    public static class OutputData {
-    }
+  public static class OutputData {
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_deans_portal(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_deans_portal(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_deans_portal(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_deans_portal() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_deans_portal myRef;
+
+  private void setThisRef(Dlg_deans_portal myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_deans_portal> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_deans_portal create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_deans_portal(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_deans_portal() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_deans_portal myRef;
+  public static Dlg_deans_portal create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_deans_portal myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_deans_portal> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_deans_portal dialog = dialogContainer.get(parent);
 
-    public static Dlg_deans_portal create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
-
-    }
-
-    public static Dlg_deans_portal create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
-
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_deans_portal dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_deans_portal((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_deans_portal dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_deans_portal((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
-
-    }
-    //</editor-fold>    
-
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
-
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Dlg_deans_portal dialog = Dlg_deans_portal.create(new javax.swing.JFrame(), true);
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xSize = ((int) tk.getScreenSize().
-                getWidth());
-        int ySize = ((int) tk.getScreenSize().
-                getHeight());
-        dialog.setSize(xSize, ySize);
-        dialog.setVisible(true);
-
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
+      if (dialog == null) {
+        dialog = new Dlg_deans_portal((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_deans_portal dialog = dialogContainer.get(parent);
+
+      if (dialog == null) {
+        dialog = new Dlg_deans_portal((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
+
     }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+    return null;
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  }
+  //</editor-fold>    
+
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_deans_portal dialog = Dlg_deans_portal.create(new javax.swing.JFrame(), true);
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    int xSize = ((int) tk.getScreenSize().
+            getWidth());
+    int ySize = ((int) tk.getScreenSize().
+            getHeight());
+    dialog.setSize(xSize, ySize);
+    dialog.setVisible(true);
+
+  }
+  //</editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
+    }
+
+  }
+
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
+
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -1343,183 +1343,183 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_field3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field3MouseClicked
-        init_academic_years(tf_field3);
+      init_academic_years(tf_field3);
     }//GEN-LAST:event_tf_field3MouseClicked
 
     private void tf_field3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field3ActionPerformed
-        init_academic_years(tf_field3);
+      init_academic_years(tf_field3);
     }//GEN-LAST:event_tf_field3ActionPerformed
 
     private void tf_field7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field7MouseClicked
-        init_colleges3();
+      init_colleges3();
     }//GEN-LAST:event_tf_field7MouseClicked
 
     private void tf_field7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field7ActionPerformed
-        init_colleges3();
+      init_colleges3();
     }//GEN-LAST:event_tf_field7ActionPerformed
 
     private void tf_field8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field8MouseClicked
-        init_departments3();
+      init_departments3();
     }//GEN-LAST:event_tf_field8MouseClicked
 
     private void tf_field8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field8ActionPerformed
-        init_departments3();
+      init_departments3();
     }//GEN-LAST:event_tf_field8ActionPerformed
 
     private void tf_field9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field9MouseClicked
-        init_programs();
+      init_programs();
     }//GEN-LAST:event_tf_field9MouseClicked
 
     private void tf_field9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field9ActionPerformed
-        init_programs();
+      init_programs();
     }//GEN-LAST:event_tf_field9ActionPerformed
 
     private void tbl_academic_offering_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_academic_offering_subjectsMouseClicked
-        select_subject();
+      select_subject();
     }//GEN-LAST:event_tbl_academic_offering_subjectsMouseClicked
 
     private void tf_field13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field13MouseClicked
-        init_academic_years(tf_field13);
+      init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13MouseClicked
 
     private void tf_field13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field13ActionPerformed
-        init_academic_years(tf_field13);
+      init_academic_years(tf_field13);
     }//GEN-LAST:event_tf_field13ActionPerformed
 
     private void tf_field14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field14MouseClicked
-        init_departments();
+      init_departments();
     }//GEN-LAST:event_tf_field14MouseClicked
 
     private void tf_field14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field14ActionPerformed
-        init_departments();
+      init_departments();
     }//GEN-LAST:event_tf_field14ActionPerformed
 
     private void tf_field15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field15MouseClicked
-        init_colleges();
+      init_colleges();
     }//GEN-LAST:event_tf_field15MouseClicked
 
     private void tf_field15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field15ActionPerformed
-        init_colleges();
+      init_colleges();
     }//GEN-LAST:event_tf_field15ActionPerformed
 
     private void tf_field16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field16MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field16MouseClicked
 
     private void tf_field16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field16ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_tf_field16ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void tbl_enrollmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollmentsMouseClicked
-        select_enrollment();
+      select_enrollment();
     }//GEN-LAST:event_tbl_enrollmentsMouseClicked
 
     private void tf_field17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field17MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field17MouseClicked
 
     private void tf_field17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field17ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_tf_field17ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void tbl_offeringsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_offeringsMouseClicked
-        select_offering();
+      select_offering();
     }//GEN-LAST:event_tbl_offeringsMouseClicked
 
     private void tf_field2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field2ActionPerformed
-        //        init_groups();
+      //        init_groups();
     }//GEN-LAST:event_tf_field2ActionPerformed
 
     private void tf_field2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field2MouseClicked
-        //        init_groups();
+      //        init_groups();
     }//GEN-LAST:event_tf_field2MouseClicked
 
     private void tf_field5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field5ActionPerformed
-        init_departments2();
+      init_departments2();
     }//GEN-LAST:event_tf_field5ActionPerformed
 
     private void tf_field5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field5MouseClicked
-        init_departments2();
+      init_departments2();
     }//GEN-LAST:event_tf_field5MouseClicked
 
     private void tf_field6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field6ActionPerformed
-        init_colleges2();
+      init_colleges2();
     }//GEN-LAST:event_tf_field6ActionPerformed
 
     private void tf_field6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field6MouseClicked
-        init_colleges2();
+      init_colleges2();
     }//GEN-LAST:event_tf_field6MouseClicked
 
     private void tf_field18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field18MouseClicked
-        init_year_levels();
+      init_year_levels();
     }//GEN-LAST:event_tf_field18MouseClicked
 
     private void tf_field18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field18ActionPerformed
-        init_year_levels();
+      init_year_levels();
     }//GEN-LAST:event_tf_field18ActionPerformed
 
     private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
-        init_periods();
+      init_periods();
     }//GEN-LAST:event_tf_field19MouseClicked
 
     private void tf_field19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field19ActionPerformed
-        init_periods();
+      init_periods();
     }//GEN-LAST:event_tf_field19ActionPerformed
 
     private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jCheckBox19ActionPerformed
 
     private void tf_field20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field20MouseClicked
-        init_courses();
+      init_courses();
     }//GEN-LAST:event_tf_field20MouseClicked
 
     private void tf_field20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field20ActionPerformed
-        init_courses();
+      init_courses();
     }//GEN-LAST:event_tf_field20ActionPerformed
 
     private void jCheckBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox18ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jCheckBox18ActionPerformed
 
     private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jCheckBox17ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        ret_enrollments();
+      ret_enrollments();
     }//GEN-LAST:event_jCheckBox11ActionPerformed
 
     private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox12ActionPerformed
 
     private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox14ActionPerformed
 
     private void jCheckBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox15ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox15ActionPerformed
 
     private void tf_field21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field21MouseClicked
-        init_periods2();
+      init_periods2();
     }//GEN-LAST:event_tf_field21MouseClicked
 
     private void tf_field21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field21ActionPerformed
-        init_periods2();
+      init_periods2();
     }//GEN-LAST:event_tf_field21ActionPerformed
 
     private void jCheckBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox20ActionPerformed
@@ -1527,24 +1527,24 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBox20ActionPerformed
 
     private void jCheckBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox21ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox21ActionPerformed
 
     private void jCheckBox22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox22ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox22ActionPerformed
 
     private void jCheckBox23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox23ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox23ActionPerformed
 
     private void jCheckBox24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox24ActionPerformed
-        ret_subjects();
+      ret_subjects();
     }//GEN-LAST:event_jCheckBox24ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1638,493 +1638,493 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
     private javax.swing.JTextField tf_field9;
     // End of variables declaration//GEN-END:variables
 
-    private void myInit() {
+  private void myInit() {
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
 
-        init_key();
-        acad_years = Academic_years.ret_data(" where status=1");
-        acad_years2 = Academic_years.ret_data(" order by id asc ");
-        year_levels = Combo.year_levels();
-        if (!acad_years.isEmpty()) {
-            for (Academic_years.to_academic_years to1 : acad_years) {
-                if (to1.status == 1) {
-                    Field.Combo year = (Field.Combo) tf_field2;
-                    Field.Combo year2 = (Field.Combo) tf_field3;
-                    Field.Combo year3 = (Field.Combo) tf_field13;
-                    year.setText(to1.years);
-                    year.setId("" + to1.id);
-                    year2.setText(to1.years);
-                    year2.setId("" + to1.id);
-                    year3.setText(to1.years);
-                    year3.setId("" + to1.id);
-                    break;
-                }
-            }
+    init_key();
+    acad_years = Academic_years.ret_data(" where status=1");
+    acad_years2 = Academic_years.ret_data(" order by id asc ");
+    year_levels = Combo.year_levels();
+    if (!acad_years.isEmpty()) {
+      for (Academic_years.to_academic_years to1 : acad_years) {
+        if (to1.status == 1) {
+          Field.Combo year = (Field.Combo) tf_field2;
+          Field.Combo year2 = (Field.Combo) tf_field3;
+          Field.Combo year3 = (Field.Combo) tf_field13;
+          year.setText(to1.years);
+          year.setId("" + to1.id);
+          year2.setText(to1.years);
+          year2.setId("" + to1.id);
+          year3.setText(to1.years);
+          year3.setId("" + to1.id);
+          break;
         }
-        deps = Departments.ret_data(" order by department_name  asc ");
-        departments = User_departments.ret_data(" where user_id='" + MyUser.getUser_id() + "' order by college asc");
-        
-        if (departments.isEmpty()) {
-            jCheckBox11.setEnabled(true);
-            jCheckBox11.setSelected(true);
+      }
+    }
+    deps = Departments.ret_data(" order by department_name  asc ");
+    departments = User_departments.ret_data(" where user_id='" + MyUser.getUser_id() + "' order by college asc");
+
+    if (departments.isEmpty()) {
+      jCheckBox11.setEnabled(true);
+      jCheckBox11.setSelected(true);
+    } else {
+      jCheckBox11.setEnabled(false);
+      jCheckBox11.setSelected(false);
+    }
+    if (!deps.isEmpty()) {
+      Departments.to_departments to = (Departments.to_departments) deps.get(0);
+      Field.Combo dep = (Field.Combo) tf_field14;
+      Field.Combo dep2 = (Field.Combo) tf_field8;
+      dep.setId("" + to.id);
+      dep.setText("" + to.department_name);
+      dep2.setId("" + to.id);
+      dep2.setText("" + to.department_name);
+
+      colleges2 = Colleges.ret_data(" where department_id='" + dep.getId() + "' ");
+      Field.Combo co1 = (Field.Combo) tf_field15;
+      if (!colleges2.isEmpty()) {
+        Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+        co1.setText("" + c.college_name);
+        co1.setId("" + c.id);
+
+        if (!departments.isEmpty()) {
+          int exists = 0;
+          for (User_departments.to_user_departments dep3 : departments) {
+            if (dep3.college_id.equalsIgnoreCase("" + c.id)) {
+              exists = 1;
+              break;
+            }
+          }
+          if (exists == 1) {
+            co1.setText("" + c.college_name);
+            co1.setId("" + c.id);
+
+          } else {
+            co1.setText("");
+            co1.setId("");
+          }
         } else {
-            jCheckBox11.setEnabled(false);
-            jCheckBox11.setSelected(false);
+          co1.setText("" + c.college_name);
+          co1.setId("" + c.id);
         }
-        if (!deps.isEmpty()) {
-            Departments.to_departments to = (Departments.to_departments) deps.get(0);
-            Field.Combo dep = (Field.Combo) tf_field14;
-            Field.Combo dep2 = (Field.Combo) tf_field8;
-            dep.setId("" + to.id);
-            dep.setText("" + to.department_name);
-            dep2.setId("" + to.id);
-            dep2.setText("" + to.department_name);
-
-            colleges2 = Colleges.ret_data(" where department_id='" + dep.getId() + "' ");
-            Field.Combo co1 = (Field.Combo) tf_field15;
-            if (!colleges2.isEmpty()) {
-                Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                co1.setText("" + c.college_name);
-                co1.setId("" + c.id);
-
-                if (!departments.isEmpty()) {
-                    int exists = 0;
-                    for (User_departments.to_user_departments dep3 : departments) {
-                        if (dep3.college_id.equalsIgnoreCase("" + c.id)) {
-                            exists = 1;
-                            break;
-                        }
-                    }
-                    if (exists == 1) {
-                        co1.setText("" + c.college_name);
-                        co1.setId("" + c.id);
-
-                    } else {
-                        co1.setText("");
-                        co1.setId("");
-                    }
-                } else {
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
-                }
-            } else {
-                co1.setText("");
-                co1.setId("");
-            }
-            ret_periods();
-            ret_periods2();
-        }
-        init_tbl_offerings(tbl_offerings);
-        init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
-        init_tbl_enrollments(tbl_enrollments);
+      } else {
+        co1.setText("");
+        co1.setId("");
+      }
+      ret_periods();
+      ret_periods2();
     }
+    init_tbl_offerings(tbl_offerings);
+    init_tbl_academic_offering_subjects(tbl_academic_offering_subjects);
+    init_tbl_enrollments(tbl_enrollments);
+  }
 
-    List<Academic_years.to_academic_years> acad_years = new ArrayList();
-    List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
-    List<User_departments.to_user_departments> departments = new ArrayList();
+  List<Academic_years.to_academic_years> acad_years = new ArrayList();
+  List<Academic_years.to_academic_years> acad_years2 = new ArrayList();
+  List<User_departments.to_user_departments> departments = new ArrayList();
 
-    public void do_pass() {
-        int user_id = FitIn.toInt(MyUser.getUser_id());
-        List<Users.to_users> users = Users.ret_data(" where id='" + user_id + "' limit 1");
-        if (!users.isEmpty()) {
-            Users.to_users user = (Users.to_users) users.get(0);
-            List<Colleges.to_colleges> colleges = Colleges.ret_data(" where college_admin_id='" + user.faculty_id + "' limit 1");
-            if (!colleges.isEmpty()) {
+  public void do_pass() {
+    int user_id = FitIn.toInt(MyUser.getUser_id());
+    List<Users.to_users> users = Users.ret_data(" where id='" + user_id + "' limit 1");
+    if (!users.isEmpty()) {
+      Users.to_users user = (Users.to_users) users.get(0);
+      List<Colleges.to_colleges> colleges = Colleges.ret_data(" where college_admin_id='" + user.faculty_id + "' limit 1");
+      if (!colleges.isEmpty()) {
 
-                Colleges.to_colleges college = (Colleges.to_colleges) colleges.get(0);
-                Field.Combo co = (Field.Combo) tf_field14;
-                Field.Combo co2 = (Field.Combo) tf_field15;
-                co.setText("" + college.department_name);
-                co.setId("" + college.department_id);
+        Colleges.to_colleges college = (Colleges.to_colleges) colleges.get(0);
+        Field.Combo co = (Field.Combo) tf_field14;
+        Field.Combo co2 = (Field.Combo) tf_field15;
+        co.setText("" + college.department_name);
+        co.setId("" + college.department_id);
 
-                co2.setText("" + college.college_name);
-                co2.setId("" + college.id);
+        co2.setText("" + college.college_name);
+        co2.setId("" + college.id);
 
-            }
-        } else {
+      }
+    } else {
 
-        }
     }
+  }
 
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
 
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
-    }
-    // </editor-fold>
-
-    List<Departments.to_departments> deps = new ArrayList();
-
-    private void init_departments2() {
-        Object[][] obj = new Object[deps.size()][1];
-        int i = 0;
-        for (Departments.to_departments to : deps) {
-            obj[i][0] = " " + to.department_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field5.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field5, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Departments.to_departments to = deps.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field5;
-                co.setText("" + to.department_name);
-                co.setId("" + to.id);
-                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
-                Field.Combo co1 = (Field.Combo) tf_field6;
-                if (!colleges2.isEmpty()) {
-                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
-                } else {
-                    co1.setText("");
-                    co1.setId("");
-                }
-
-            }
-        });
-    }
-
-    private void init_departments3() {
-        Object[][] obj = new Object[deps.size()][1];
-        int i = 0;
-        for (Departments.to_departments to : deps) {
-            obj[i][0] = " " + to.department_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field8.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field8, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Departments.to_departments to = deps.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field8;
-                co.setText("" + to.department_name);
-                co.setId("" + to.id);
-                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
-                Field.Combo co1 = (Field.Combo) tf_field7;
-                if (!colleges2.isEmpty()) {
-                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-                    co1.setText("" + c.college_name);
-                    co1.setId("" + c.id);
-                } else {
-                    co1.setText("");
-                    co1.setId("");
-                }
-                ret_periods2();
-                set_period2();
-                ret_subjects();
-
-            }
-        });
-    }
-
-    List<Colleges.to_colleges> colleges2 = new ArrayList();
-
-    private void init_colleges2() {
-
-        Object[][] obj = new Object[colleges2.size()][1];
-        int i = 0;
-        for (Colleges.to_colleges to : colleges2) {
-            obj[i][0] = " " + to.college_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field6.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field6, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Colleges.to_colleges to = colleges2.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field6;
-                co.setText("" + to.college_name);
-                co.setId("" + to.id);
-
-                ret_offerings();
-            }
-
-        });
-    }
-
-    private void init_colleges3() {
-
-        Object[][] obj = new Object[colleges2.size()][1];
-        int i = 0;
-        for (Colleges.to_colleges to : colleges2) {
-            obj[i][0] = " " + to.college_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field7.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field7, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Colleges.to_colleges to = colleges2.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field7;
-                co.setText("" + to.college_name);
-                co.setId("" + to.id);
-                ret_subjects();
-            }
-
-        });
-    }
-
-    private void init_programs() {
-
-        Field.Combo year = (Field.Combo) tf_field3;
-        Field.Combo dep = (Field.Combo) tf_field8;
-        Field.Combo col = (Field.Combo) tf_field7;
-
-        String where = " where academic_year_id='" + year.getId() + "' and department_id='" + dep.getId() + "'  and college_id='" + col.getId() + "'  order by course_description asc ";
-
-        List<Academic_offerings.to_academic_offerings> offerings = Academic_offerings.ret_data(where);
-
-        Object[][] obj = new Object[offerings.size()][2];
-        int i = 0;
-        for (Academic_offerings.to_academic_offerings to : offerings) {
-            obj[i][0] = " " + to.course_code;
-            obj[i][1] = " " + to.course_description;
-            i++;
-        }
-
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {100, tf_field9.getWidth() - 100};
-        int width = 0;
-        String[] col_names = {"", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field9, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_offerings.to_academic_offerings to = offerings.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field9;
-                co.setText("" + to.course_description);
-                co.setId("" + to.id);
-
-                ret_subjects();
-            }
-
-        });
-    }
-
-    //<editor-fold defaultstate="collapsed" desc=" offerings "> 
-    public static ArrayListModel tbl_offerings_ALM;
-    public static TblofferingsModel tbl_offerings_M;
-
-    public static void init_tbl_offerings(JTable tbl_offerings) {
-        tbl_offerings_ALM = new ArrayListModel();
-        tbl_offerings_M = new TblofferingsModel(tbl_offerings_ALM);
-        tbl_offerings.setModel(tbl_offerings_M);
-        tbl_offerings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_offerings.setRowHeight(25);
-        int[] tbl_widths_courses = {70, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
-            if (i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_offerings, i, tbl_widths_courses[i]);
-        }
-        Dimension d = tbl_offerings.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_offerings.setRowHeight(25);
-        tbl_offerings.getTableHeader().setPreferredSize(d);
-        tbl_offerings.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-
-        tbl_offerings.setFont(new java.awt.Font("Arial", 0, 12));
-
-        TableColumnModel tcm = tbl_offerings.getColumnModel();
-        TableColumn tm = tcm.getColumn(1);
-        tm.setCellRenderer(new Html2());
-
-    }
-
-    public static void loadData_offerings(List<Academic_offerings.to_academic_offerings> acc) {
-        tbl_offerings_ALM.clear();
-        tbl_offerings_ALM.addAll(acc);
-    }
-
-    public static class Html2 extends DefaultTableCellRenderer {
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
-            JLabel lbl = new JLabel();
-            lbl.setText(value.toString());
-            lbl.setOpaque(true);
-            lbl.setBackground(Color.white);
-            if (selected) {
-
-                lbl.setBackground(new java.awt.Color(0, 120, 215));
-                lbl.setForeground(new java.awt.Color(255, 255, 255));
-            }
-            return lbl;
-        }
-    }
-
-    public static class TblofferingsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Code", "Description", "Years", "Studies", "Status", "", "", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
-        };
-
-        public TblofferingsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 6) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            Academic_offerings.to_academic_offerings tt = (Academic_offerings.to_academic_offerings) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.course_code;
-                case 1:
-                    String des = tt.course_description;
-                    int syl = tt.course_description.length();
-                    if (syl > 50) {
-                        des = des.substring(0, 49) + "...";
+                      disposed();
                     }
-                    String html = "<html><body>"
-                            + "&nbsp <font size=\"4\" > " + des + "</font><br>"
-                            //                            + "&nbsp  " + tt.department_name + " - " + tt.college + "&emsp;" + "<br>"
-                            + "</body>"
-                            + "</html>";
-                    return html;
+                  });
+  }
+  // </editor-fold>
 
-                case 2:
-                    return " " + tt.no_of_years;
-                case 3:
-                    return " " + tt.studies;
-                case 4:
-                    if (tt.status == 0) {
-                        return " Inactive";
-                    } else {
-                        return " Active";
-                    }
-                case 5:
-                    return " Delete";
-                case 6:
-                    return tt.selected;
-                case 7:
-                    return " View";
-                case 8:
-                    return " Delete";
-                case 9:
-                    return tt.updated_at;
-                case 10:
-                    return tt.created_by;
-                case 11:
-                    return tt.updated_by;
-                case 12:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
-            }
+  List<Departments.to_departments> deps = new ArrayList();
+
+  private void init_departments2() {
+    Object[][] obj = new Object[deps.size()][1];
+    int i = 0;
+    for (Departments.to_departments to : deps) {
+      obj[i][0] = " " + to.department_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field5.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field5, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Departments.to_departments to = deps.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field5;
+        co.setText("" + to.department_name);
+        co.setId("" + to.id);
+        colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+        Field.Combo co1 = (Field.Combo) tf_field6;
+        if (!colleges2.isEmpty()) {
+          Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+          co1.setText("" + c.college_name);
+          co1.setId("" + c.id);
+        } else {
+          co1.setText("");
+          co1.setId("");
         }
+
+      }
+    });
+  }
+
+  private void init_departments3() {
+    Object[][] obj = new Object[deps.size()][1];
+    int i = 0;
+    for (Departments.to_departments to : deps) {
+      obj[i][0] = " " + to.department_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field8.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field8, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Departments.to_departments to = deps.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field8;
+        co.setText("" + to.department_name);
+        co.setId("" + to.id);
+        colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+        Field.Combo co1 = (Field.Combo) tf_field7;
+        if (!colleges2.isEmpty()) {
+          Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+          co1.setText("" + c.college_name);
+          co1.setId("" + c.id);
+        } else {
+          co1.setText("");
+          co1.setId("");
+        }
+        ret_periods2();
+        set_period2();
+        ret_subjects();
+
+      }
+    });
+  }
+
+  List<Colleges.to_colleges> colleges2 = new ArrayList();
+
+  private void init_colleges2() {
+
+    Object[][] obj = new Object[colleges2.size()][1];
+    int i = 0;
+    for (Colleges.to_colleges to : colleges2) {
+      obj[i][0] = " " + to.college_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field6.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field6, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Colleges.to_colleges to = colleges2.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field6;
+        co.setText("" + to.college_name);
+        co.setId("" + to.id);
+
+        ret_offerings();
+      }
+
+    });
+  }
+
+  private void init_colleges3() {
+
+    Object[][] obj = new Object[colleges2.size()][1];
+    int i = 0;
+    for (Colleges.to_colleges to : colleges2) {
+      obj[i][0] = " " + to.college_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field7.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field7, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Colleges.to_colleges to = colleges2.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field7;
+        co.setText("" + to.college_name);
+        co.setId("" + to.id);
+        ret_subjects();
+      }
+
+    });
+  }
+
+  private void init_programs() {
+
+    Field.Combo year = (Field.Combo) tf_field3;
+    Field.Combo dep = (Field.Combo) tf_field8;
+    Field.Combo col = (Field.Combo) tf_field7;
+
+    String where = " where academic_year_id='" + year.getId() + "' and department_id='" + dep.getId() + "'  and college_id='" + col.getId() + "'  order by course_description asc ";
+
+    List<Academic_offerings.to_academic_offerings> offerings = Academic_offerings.ret_data(where);
+
+    Object[][] obj = new Object[offerings.size()][2];
+    int i = 0;
+    for (Academic_offerings.to_academic_offerings to : offerings) {
+      obj[i][0] = " " + to.course_code;
+      obj[i][1] = " " + to.course_description;
+      i++;
     }
 
-    private void ret_offerings() {
-        Field.Combo tf = (Field.Combo) tf_field2;
-        String where = " where academic_year_id='" + tf.getId() + "' ";
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {100, tf_field9.getWidth() - 100};
+    int width = 0;
+    String[] col_names = {"", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field9, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_offerings.to_academic_offerings to = offerings.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field9;
+        co.setText("" + to.course_description);
+        co.setId("" + to.id);
 
-        List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
-        loadData_offerings(datas);
-        jLabel4.setText("" + datas.size());
+        ret_subjects();
+      }
 
-        set_report();
+    });
+  }
 
+  //<editor-fold defaultstate="collapsed" desc=" offerings "> 
+  public static ArrayListModel tbl_offerings_ALM;
+  public static TblofferingsModel tbl_offerings_M;
+
+  public static void init_tbl_offerings(JTable tbl_offerings) {
+    tbl_offerings_ALM = new ArrayListModel();
+    tbl_offerings_M = new TblofferingsModel(tbl_offerings_ALM);
+    tbl_offerings.setModel(tbl_offerings_M);
+    tbl_offerings.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_offerings.setRowHeight(25);
+    int[] tbl_widths_courses = {70, 100, 50, 100, 0, 0, 0, 40, 50, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_courses.length; i < n; i++) {
+      if (i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_offerings, i, tbl_widths_courses[i]);
+    }
+    Dimension d = tbl_offerings.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_offerings.setRowHeight(25);
+    tbl_offerings.getTableHeader().setPreferredSize(d);
+    tbl_offerings.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+
+    tbl_offerings.setFont(new java.awt.Font("Arial", 0, 12));
+
+    TableColumnModel tcm = tbl_offerings.getColumnModel();
+    TableColumn tm = tcm.getColumn(1);
+    tm.setCellRenderer(new Html2());
+
+  }
+
+  public static void loadData_offerings(List<Academic_offerings.to_academic_offerings> acc) {
+    tbl_offerings_ALM.clear();
+    tbl_offerings_ALM.addAll(acc);
+  }
+
+  public static class Html2 extends DefaultTableCellRenderer {
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+      JLabel lbl = new JLabel();
+      lbl.setText(value.toString());
+      lbl.setOpaque(true);
+      lbl.setBackground(Color.white);
+      if (selected) {
+
+        lbl.setBackground(new java.awt.Color(0, 120, 215));
+        lbl.setForeground(new java.awt.Color(255, 255, 255));
+      }
+      return lbl;
+    }
+  }
+
+  public static class TblofferingsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Code", "Description", "Years", "Studies", "Status", "", "", "", "", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public TblofferingsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
     }
 
-    private void select_offering() {
-        int row = tbl_offerings.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_offerings.getSelectedColumn();
-        Academic_offerings.to_academic_offerings to = (Academic_offerings.to_academic_offerings) tbl_offerings_ALM.get(row);
-        if (col == 7) {
-            Window p = (Window) this;
-            Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(to);
-            nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
-                    closeDialog.ok();
-
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
     }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 6) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      Academic_offerings.to_academic_offerings tt = (Academic_offerings.to_academic_offerings) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.course_code;
+        case 1:
+          String des = tt.course_description;
+          int syl = tt.course_description.length();
+          if (syl > 50) {
+            des = des.substring(0, 49) + "...";
+          }
+          String html = "<html><body>"
+                  + "&nbsp <font size=\"4\" > " + des + "</font><br>"
+                  //                            + "&nbsp  " + tt.department_name + " - " + tt.college + "&emsp;" + "<br>"
+                  + "</body>"
+                  + "</html>";
+          return html;
+
+        case 2:
+          return " " + tt.no_of_years;
+        case 3:
+          return " " + tt.studies;
+        case 4:
+          if (tt.status == 0) {
+            return " Inactive";
+          } else {
+            return " Active";
+          }
+        case 5:
+          return " Delete";
+        case 6:
+          return tt.selected;
+        case 7:
+          return " View";
+        case 8:
+          return " Delete";
+        case 9:
+          return tt.updated_at;
+        case 10:
+          return tt.created_by;
+        case 11:
+          return tt.updated_by;
+        case 12:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
+    }
+  }
+
+  private void ret_offerings() {
+    Field.Combo tf = (Field.Combo) tf_field2;
+    String where = " where academic_year_id='" + tf.getId() + "' ";
+
+    List<Academic_offerings.to_academic_offerings> datas = Academic_offerings.ret_data(where);
+    loadData_offerings(datas);
+    jLabel4.setText("" + datas.size());
+
+    set_report();
+
+  }
+
+  private void select_offering() {
+    int row = tbl_offerings.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    int col = tbl_offerings.getSelectedColumn();
+    Academic_offerings.to_academic_offerings to = (Academic_offerings.to_academic_offerings) tbl_offerings_ALM.get(row);
+    if (col == 7) {
+      Window p = (Window) this;
+      Dlg_academic_offering_subjects nd = Dlg_academic_offering_subjects.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(to);
+      nd.setCallback(new Dlg_academic_offering_subjects.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_academic_offering_subjects.OutputData data) {
+          closeDialog.ok();
+
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+  }
 
 //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc=" list of programs ">
-    private void set_report() {
+  //<editor-fold defaultstate="collapsed" desc=" list of programs ">
+  private void set_report() {
 
-        jProgressBar1.setString("Loading...Please wait...");
-        jProgressBar1.setIndeterminate(true);
-        Thread t = new Thread(new Runnable() {
+    jProgressBar1.setString("Loading...Please wait...");
+    jProgressBar1.setIndeterminate(true);
+    Thread t = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
+      @Override
+      public void run() {
 
-                Field.Combo sy = (Field.Combo) tf_field2;
-                Field.Combo dep = (Field.Combo) tf_field5;
-                Field.Combo co = (Field.Combo) tf_field6;
+        Field.Combo sy = (Field.Combo) tf_field2;
+        Field.Combo dep = (Field.Combo) tf_field5;
+        Field.Combo co = (Field.Combo) tf_field6;
 
-                String department = "All";
-                String college = "All";
-                String where = " where id<>0 ";
-                where = where + " and academic_year_id='" + sy.getId() + "' ";
-                where = where + " and department_id='" + dep.getId() + "' ";
-                where = where + " and college_id='" + co.getId() + "' ";
-                department = dep.getText();
-                college = co.getText();
+        String department = "All";
+        String college = "All";
+        String where = " where id<>0 ";
+        where = where + " and academic_year_id='" + sy.getId() + "' ";
+        where = where + " and department_id='" + dep.getId() + "' ";
+        where = where + " and college_id='" + co.getId() + "' ";
+        department = dep.getText();
+        college = co.getText();
 //                if (!jCheckBox6.isSelected()) {
 //                   
 //                 
@@ -2134,1060 +2134,1066 @@ public class Dlg_deans_portal extends javax.swing.JDialog {
 //                    }
 //                }
 
-                String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
-                String school_year = sy.getText();
-                String date_printed = DateType.month_date.format(new Date());
-                String printed_by = MyUser.getUser_screen_name();
+        String school_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria");
+        String school_year = sy.getText();
+        String date_printed = DateType.month_date.format(new Date());
+        String printed_by = MyUser.getUser_screen_name();
 
-                List<Srpt_list_of_programs.field> fields = Srpt_list_of_programs.ret_data(where);
-                String jrxml = "rpt_list_of_programs.jrxml";
+        List<Srpt_list_of_programs.field> fields = Srpt_list_of_programs.ret_data(where);
+        String jrxml = "rpt_list_of_programs.jrxml";
 
-                Srpt_list_of_programs rpt = new Srpt_list_of_programs(school_name, school_year, date_printed, printed_by, department, college);
-                rpt.fields.addAll(fields);
+        Srpt_list_of_programs rpt = new Srpt_list_of_programs(school_name, school_year, date_printed, printed_by, department, college);
+        rpt.fields.addAll(fields);
 
-                report_programs(rpt, jrxml);
+        report_programs(rpt, jrxml);
 //                jTabbedPane3.setSelectedIndex(1);
-                jProgressBar1.setString("Finished...");
-                jProgressBar1.setIndeterminate(false);
-            }
-        });
-        t.start();
+        jProgressBar1.setString("Finished...");
+        jProgressBar1.setIndeterminate(false);
+      }
+    });
+    t.start();
 
+  }
+
+  private void report_programs(final Srpt_list_of_programs to, String jrxml_name) {
+    jPanel8.removeAll();
+    jPanel8.setLayout(new BorderLayout());
+    try {
+      JRViewer viewer = get_viewer_programs(to, jrxml_name);
+      JPanel pnl = new JPanel();
+      pnl.add(viewer);
+      pnl.setVisible(true);
+      pnl.setVisible(true);
+      jPanel8.add(viewer);
+      jPanel8.updateUI();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static JRViewer get_viewer_programs(Srpt_list_of_programs to, String rpt_name) {
+    try {
+      return JasperUtil.getJasperViewer(
+              compileJasper(rpt_name),
+              JasperUtil.setParameter(to),
+              JasperUtil.makeDatasource(to.fields));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    } finally {
+    }
+  }
+
+  public static JasperReport compileJasper(String rpt_name) {
+    try {
+      String jrxml = rpt_name;
+      InputStream is = Srpt_list_of_programs.class.
+              getResourceAsStream(jrxml);
+      JasperReport jasper = JasperCompileManager.compileReport(is);
+      return jasper;
+    } catch (JRException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  //</editor-fold>
+  //<editor-fold defaultstate="collapsed" desc=" academic_offering_subjects "> 
+  public static ArrayListModel tbl_academic_offering_subjects_ALM;
+  public static Tblacademic_offering_subjectsModel tbl_academic_offering_subjects_M;
+
+  public static void init_tbl_academic_offering_subjects(JTable tbl_academic_offering_subjects) {
+    tbl_academic_offering_subjects_ALM = new ArrayListModel();
+    tbl_academic_offering_subjects_M = new Tblacademic_offering_subjectsModel(tbl_academic_offering_subjects_ALM);
+    tbl_academic_offering_subjects.setModel(tbl_academic_offering_subjects_M);
+    tbl_academic_offering_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_academic_offering_subjects.setRowHeight(25);
+    int[] tbl_widths_academic_offering_subjects = {70, 100, 40, 40, 80, 160, 100, 140, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_academic_offering_subjects.length; i < n; i++) {
+      if (i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_academic_offering_subjects, i, tbl_widths_academic_offering_subjects[i]);
+    }
+    Dimension d = tbl_academic_offering_subjects.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_academic_offering_subjects.getTableHeader().setPreferredSize(d);
+    tbl_academic_offering_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_academic_offering_subjects.setRowHeight(25);
+    tbl_academic_offering_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+  }
+
+  public static void loadData_academic_offering_subjects(List<Enrollment_offered_subjects.to_enrollment_offered_subjects> acc) {
+    tbl_academic_offering_subjects_ALM.clear();
+    tbl_academic_offering_subjects_ALM.addAll(acc);
+  }
+
+  public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Code", "Description", "Lec", "Lab", "Section", "Instructor", "Room", "Time", "Status", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "faculty_id", "faculty_name", "room", "schedule", "room_id"
+    };
+
+    public Tblacademic_offering_subjectsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
     }
 
-    private void report_programs(final Srpt_list_of_programs to, String jrxml_name) {
-        jPanel8.removeAll();
-        jPanel8.setLayout(new BorderLayout());
-        try {
-            JRViewer viewer = get_viewer_programs(to, jrxml_name);
-            JPanel pnl = new JPanel();
-            pnl.add(viewer);
-            pnl.setVisible(true);
-            pnl.setVisible(true);
-            jPanel8.add(viewer);
-            jPanel8.updateUI();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
     }
 
-    public static JRViewer get_viewer_programs(Srpt_list_of_programs to, String rpt_name) {
-        try {
-            return JasperUtil.getJasperViewer(
-                    compileJasper(rpt_name),
-                    JasperUtil.setParameter(to),
-                    JasperUtil.makeDatasource(to.fields));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-        }
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
     }
 
-    public static JasperReport compileJasper(String rpt_name) {
-        try {
-            String jrxml = rpt_name;
-            InputStream is = Srpt_list_of_programs.class.
-                    getResourceAsStream(jrxml);
-            JasperReport jasper = JasperCompileManager.compileReport(is);
-            return jasper;
-        } catch (JRException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public Object getValueAt(int row, int col) {
+      Enrollment_offered_subjects.to_enrollment_offered_subjects tt = (Enrollment_offered_subjects.to_enrollment_offered_subjects) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.subject_code;
+        case 1:
+          return " " + tt.description;
+        case 2:
+          return " " + FitIn.fmt_woc(tt.lecture_units);
+        case 3:
+          return " " + FitIn.fmt_woc(tt.lab_units);
+        case 4:
+          return " " + tt.prerequisite_subject_ids;
+        case 5:
+          return " " + tt.faculty_name;
+        case 6:
+          return " " + tt.room;
+        case 7:
+          return " " + tt.schedule;
+        case 8:
+          if (tt.status == 0) {
+            return " Posted";
+          } else if (tt.status == 1) {
+            return " Open";
+          } else if (tt.status == 2) {
+            return " Closed";
+          } else {
+            return " Dropped";
+          }
+
+        case 9:
+          return tt.department;
+        case 10:
+          return tt.course_id;
+        case 11:
+          return tt.course_code;
+        case 12:
+          return tt.course_description;
+        case 13:
+          return tt.term;
+        case 14:
+          return tt.year_level;
+        case 15:
+          return tt.subject_id;
+        case 16:
+          return tt.subject_code;
+        case 17:
+          return tt.description;
+        case 18:
+          return tt.units;
+        case 19:
+          return tt.lecture_units;
+        case 20:
+          return tt.lab_units;
+        case 21:
+          return tt.amount;
+        case 22:
+          return tt.is_lab;
+        case 23:
+          return tt.max_students;
+        case 24:
+          return tt.prerequisite_subject_ids;
+        case 25:
+          return tt.subject_group;
+        case 26:
+          return tt.subject_group_id;
+        case 27:
+          return tt.created_at;
+        case 28:
+          return tt.updated_at;
+        case 29:
+          return tt.created_by;
+        case 30:
+          return tt.updated_by;
+        case 31:
+          return tt.status;
+        case 32:
+          return tt.is_uploaded;
+        case 33:
+          return tt.faculty_id;
+        case 34:
+          return tt.faculty_name;
+        case 35:
+          return tt.room;
+        case 36:
+          return tt.schedule;
+        default:
+          return tt.room_id;
+      }
     }
+  }
 
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc=" academic_offering_subjects "> 
-    public static ArrayListModel tbl_academic_offering_subjects_ALM;
-    public static Tblacademic_offering_subjectsModel tbl_academic_offering_subjects_M;
+  private void ret_subjects() {
 
-    public static void init_tbl_academic_offering_subjects(JTable tbl_academic_offering_subjects) {
-        tbl_academic_offering_subjects_ALM = new ArrayListModel();
-        tbl_academic_offering_subjects_M = new Tblacademic_offering_subjectsModel(tbl_academic_offering_subjects_ALM);
-        tbl_academic_offering_subjects.setModel(tbl_academic_offering_subjects_M);
-        tbl_academic_offering_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_academic_offering_subjects.setRowHeight(25);
-        int[] tbl_widths_academic_offering_subjects = {70, 100, 40, 40, 80, 160, 100, 140, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_academic_offering_subjects.length; i < n; i++) {
-            if (i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_academic_offering_subjects, i, tbl_widths_academic_offering_subjects[i]);
-        }
-        Dimension d = tbl_academic_offering_subjects.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_academic_offering_subjects.getTableHeader().setPreferredSize(d);
-        tbl_academic_offering_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_academic_offering_subjects.setRowHeight(25);
-        tbl_academic_offering_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+    Field.Combo year = (Field.Combo) tf_field3;
+    Field.Combo dep = (Field.Combo) tf_field8;
+    Field.Combo col = (Field.Combo) tf_field7;
+    Field.Combo cou = (Field.Combo) tf_field9;
+    Field.Combo ac = (Field.Combo) tf_field3;
+    String where = " where eos.id<>0 and academic_year_id='" + ac.getId() + "' ";
+    String term = tf_field21.getText();
+    int status = -1;
+    if (jCheckBox22.isSelected()) {
+      status = 1;
+    } else if (jCheckBox23.isSelected()) {
+      status = 2;
+    } else if (jCheckBox24.isSelected()) {
+      status = 0;
     }
+    if (!jCheckBox12.isSelected()) {
 
-    public static void loadData_academic_offering_subjects(List<Enrollment_offered_subjects.to_enrollment_offered_subjects> acc) {
-        tbl_academic_offering_subjects_ALM.clear();
-        tbl_academic_offering_subjects_ALM.addAll(acc);
-    }
+      if (!jCheckBox20.isSelected()) {
 
-    public static class Tblacademic_offering_subjectsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Code", "Description", "Lec", "Lab", "Section", "Instructor", "Room", "Time", "Status", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "units", "lecture_units", "lab_units", "amount", "is_lab", "max_students", "prerequisite_subject_ids", "subject_group", "subject_group_id", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "faculty_id", "faculty_name", "room", "schedule", "room_id"
-        };
-
-        public Tblacademic_offering_subjectsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
+        if (status != -1) {
+          where = where + " and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.description like '%" + tf_field17.getText() + "%' "
+                  + " and term like '" + term + "' "
+                  + " and status='" + status + "' "
+                  + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
+                  + " and term like '" + term + "' "
+                  + " and status='" + status + "' ";
+        } else {
+          where = where + " and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.description like '%" + tf_field17.getText() + "%' "
+                  + " and term like '" + term + "' "
+                  + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
+                  + " and term like '" + term + "' ";
         }
+      } else {
 
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            Enrollment_offered_subjects.to_enrollment_offered_subjects tt = (Enrollment_offered_subjects.to_enrollment_offered_subjects) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.subject_code;
-                case 1:
-                    return " " + tt.description;
-                case 2:
-                    return " " + FitIn.fmt_woc(tt.lecture_units);
-                case 3:
-                    return " " + FitIn.fmt_woc(tt.lab_units);
-                case 4:
-                    return " " + tt.prerequisite_subject_ids;
-                case 5:
-                    return " " + tt.faculty_name;
-                case 6:
-                    return " " + tt.room;
-                case 7:
-                    return " " + tt.schedule;
-                case 8:
-                    if (tt.status == 0) {
-                        return " Posted";
-                    } else if (tt.status == 1) {
-                        return " Open";
-                    } else if (tt.status == 2) {
-                        return " Closed";
-                    } else {
-                        return " Dropped";
-                    }
-
-                case 9:
-                    return tt.department;
-                case 10:
-                    return tt.course_id;
-                case 11:
-                    return tt.course_code;
-                case 12:
-                    return tt.course_description;
-                case 13:
-                    return tt.term;
-                case 14:
-                    return tt.year_level;
-                case 15:
-                    return tt.subject_id;
-                case 16:
-                    return tt.subject_code;
-                case 17:
-                    return tt.description;
-                case 18:
-                    return tt.units;
-                case 19:
-                    return tt.lecture_units;
-                case 20:
-                    return tt.lab_units;
-                case 21:
-                    return tt.amount;
-                case 22:
-                    return tt.is_lab;
-                case 23:
-                    return tt.max_students;
-                case 24:
-                    return tt.prerequisite_subject_ids;
-                case 25:
-                    return tt.subject_group;
-                case 26:
-                    return tt.subject_group_id;
-                case 27:
-                    return tt.created_at;
-                case 28:
-                    return tt.updated_at;
-                case 29:
-                    return tt.created_by;
-                case 30:
-                    return tt.updated_by;
-                case 31:
-                    return tt.status;
-                case 32:
-                    return tt.is_uploaded;
-                case 33:
-                    return tt.faculty_id;
-                case 34:
-                    return tt.faculty_name;
-                case 35:
-                    return tt.room;
-                case 36:
-                    return tt.schedule;
-                default:
-                    return tt.room_id;
-            }
-        }
-    }
-
-    private void ret_subjects() {
-
-        Field.Combo year = (Field.Combo) tf_field3;
-        Field.Combo dep = (Field.Combo) tf_field8;
-        Field.Combo col = (Field.Combo) tf_field7;
-        Field.Combo cou = (Field.Combo) tf_field9;
-        Field.Combo ac = (Field.Combo) tf_field3;
-        String where = " where eos.id<>0 and academic_year_id='" + ac.getId() + "' ";
-        String term = tf_field21.getText();
-        int status = -1;
-        if (jCheckBox22.isSelected()) {
-            status = 1;
-        } else if (jCheckBox23.isSelected()) {
-            status = 2;
-        } else if (jCheckBox24.isSelected()) {
-            status = 0;
-        }
-        if (!jCheckBox12.isSelected()) {
-
-            if (!jCheckBox20.isSelected()) {
-
-                if (status != -1) {
-                    where = where + " and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.description like '%" + tf_field17.getText() + "%' "
-                            + " and term like '" + term + "' "
-                            + " and status='" + status + "' "
-                            + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
-                            + " and term like '" + term + "' "
-                            + " and status='" + status + "' ";
-                } else {
-                    where = where + " and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.description like '%" + tf_field17.getText() + "%' "
-                            + " and term like '" + term + "' "
-                            + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
-                            + " and term like '" + term + "' ";
-                }
-            } else {
-
-                if (status != -1) {
-                    where = where + " and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.description like '%" + tf_field17.getText() + "%' "
-                            + " and status='" + status + "'"
-                            + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
-                            + " and status='" + status + "'";
-
-                } else {
-                    where = where + " and eos.department_id='" + dep.getId() + "' "
-                            + " and eos.description like '%" + tf_field17.getText() + "%' "
-                            + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' and eos.subject_code like '%" + tf_field17.getText() + "%' ";
-
-                }
-            }
+        if (status != -1) {
+          where = where + " and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.description like '%" + tf_field17.getText() + "%' "
+                  + " and status='" + status + "'"
+                  + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
+                  + " and status='" + status + "'";
 
         } else {
+          where = where + " and eos.department_id='" + dep.getId() + "' "
+                  + " and eos.description like '%" + tf_field17.getText() + "%' "
+                  + " or eos.id<>0 and academic_year_id='" + ac.getId() + "' and eos.department_id='" + dep.getId() + "' and eos.subject_code like '%" + tf_field17.getText() + "%' ";
 
-            if (!jCheckBox20.isSelected()) {
-                where = where + " and eos.description like '%" + tf_field17.getText() + "%' "
-                        + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
-                        + " and term like '" + term + "' ";
-            } else {
-                where = where + " and eos.description like '%" + tf_field17.getText() + "%' "
-                        + " and eos.subject_code like '%" + tf_field17.getText() + "%' ";
-            }
         }
+      }
 
-        where = where + " order by eos.description asc ";
+    } else {
+
+      if (!jCheckBox20.isSelected()) {
+        where = where + " and eos.description like '%" + tf_field17.getText() + "%' "
+                + " and eos.subject_code like '%" + tf_field17.getText() + "%' "
+                + " and term like '" + term + "' ";
+      } else {
+        where = where + " and eos.description like '%" + tf_field17.getText() + "%' "
+                + " and eos.subject_code like '%" + tf_field17.getText() + "%' ";
+      }
+    }
+
+    where = where + " order by eos.description asc ";
 //        System.out.println("where+ " + where);
-        List<Enrollment_offered_subjects.to_enrollment_offered_subjects> subjects = Enrollment_offered_subjects.ret_data2(where);
-        loadData_academic_offering_subjects(subjects);
-        jLabel7.setText("" + subjects.size());
+    List<Enrollment_offered_subjects.to_enrollment_offered_subjects> subjects = Enrollment_offered_subjects.ret_data2(where);
+    loadData_academic_offering_subjects(subjects);
+    jLabel7.setText("" + subjects.size());
 
-    }
+  }
 //</editor-fold> 
 
-    private void select_subject() {
-        int row = tbl_academic_offering_subjects.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_academic_offering_subjects.getSelectedColumn();
-        Enrollment_offered_subjects.to_enrollment_offered_subjects to = (Enrollment_offered_subjects.to_enrollment_offered_subjects) tbl_academic_offering_subjects_ALM.get(row);
-        Window p = (Window) this;
-        Dlg_dean_class_schedule_section nd = Dlg_dean_class_schedule_section.create(p, true);
-        nd.setTitle("");
-        nd.do_pass(to);
-        nd.setCallback(new Dlg_dean_class_schedule_section.Callback() {
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_dean_class_schedule_section.OutputData data) {
-                closeDialog.ok();
-                ret_subjects();
-            }
+  private void select_subject() {
+    int row = tbl_academic_offering_subjects.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    int col = tbl_academic_offering_subjects.getSelectedColumn();
+    Enrollment_offered_subjects.to_enrollment_offered_subjects to = (Enrollment_offered_subjects.to_enrollment_offered_subjects) tbl_academic_offering_subjects_ALM.get(row);
+    Window p = (Window) this;
+    Dlg_dean_class_schedule_section nd = Dlg_dean_class_schedule_section.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(to);
+    nd.setCallback(new Dlg_dean_class_schedule_section.Callback() {
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_dean_class_schedule_section.OutputData data) {
+        closeDialog.ok();
+        ret_subjects();
+      }
 
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" enrollments "> 
+  public static ArrayListModel tbl_enrollments_ALM;
+  public static TblenrollmentsModel tbl_enrollments_M;
+
+  public static void init_tbl_enrollments(JTable tbl_enrollments) {
+    tbl_enrollments_ALM = new ArrayListModel();
+    tbl_enrollments_M = new TblenrollmentsModel(tbl_enrollments_ALM);
+    tbl_enrollments.setModel(tbl_enrollments_M);
+    tbl_enrollments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_enrollments.setRowHeight(25);
+    int[] tbl_widths_enrollments = {100, 100, 60, 120, 140, 80, 60, 60, 0, 70, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_enrollments.length; i < n; i++) {
+      if (i == 1 || i == 3) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_enrollments, i, tbl_widths_enrollments[i]);
+    }
+    Dimension d = tbl_enrollments.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_enrollments.getTableHeader().setPreferredSize(d);
+    tbl_enrollments.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollments.setRowHeight(25);
+    tbl_enrollments.setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollments.getColumnModel().getColumn(6).setCellRenderer(new ImageRenderer());
+    tbl_enrollments.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+    tbl_enrollments.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
+    tbl_enrollments.getColumnModel().getColumn(9).setCellRenderer(new ImageRenderer());
+    tbl_enrollments.getColumnModel().getColumn(10).setCellRenderer(new ImageRenderer());
+  }
+
+  public static void loadData_enrollments(List<to_enrollments> acc) {
+    tbl_enrollments_ALM.clear();
+    tbl_enrollments_ALM.addAll(acc);
+  }
+
+  public static class TblenrollmentsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Enrollment No", "Name", "Gender", "Course", "Date Added", "Birthdate", "Downpayment", "Dean", "Approved", "Finance", "Registrar", "", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public TblenrollmentsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
     }
 
-    //<editor-fold defaultstate="collapsed" desc=" enrollments "> 
-    public static ArrayListModel tbl_enrollments_ALM;
-    public static TblenrollmentsModel tbl_enrollments_M;
-
-    public static void init_tbl_enrollments(JTable tbl_enrollments) {
-        tbl_enrollments_ALM = new ArrayListModel();
-        tbl_enrollments_M = new TblenrollmentsModel(tbl_enrollments_ALM);
-        tbl_enrollments.setModel(tbl_enrollments_M);
-        tbl_enrollments.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_enrollments.setRowHeight(25);
-        int[] tbl_widths_enrollments = {100, 100, 60, 120, 140, 80, 60, 0, 70, 70, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_enrollments.length; i < n; i++) {
-            if (i == 1 || i == 3) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_enrollments, i, tbl_widths_enrollments[i]);
-        }
-        Dimension d = tbl_enrollments.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_enrollments.getTableHeader().setPreferredSize(d);
-        tbl_enrollments.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollments.setRowHeight(25);
-        tbl_enrollments.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollments.getColumnModel().getColumn(6).setCellRenderer(new ImageRenderer());
-        tbl_enrollments.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
-        tbl_enrollments.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
-        tbl_enrollments.getColumnModel().getColumn(9).setCellRenderer(new ImageRenderer());
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
     }
 
-    public static void loadData_enrollments(List<to_enrollments> acc) {
-        tbl_enrollments_ALM.clear();
-        tbl_enrollments_ALM.addAll(acc);
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
     }
 
-    public static class TblenrollmentsModel extends AbstractTableAdapter {
+    @Override
+    public Object getValueAt(int row, int col) {
+      to_enrollments tt = (to_enrollments) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.enrollment_no;
+        case 1:
+          return " " + tt.last_name + ", " + tt.first_name + " " + tt.middle_name;
+        case 2:
+          if (tt.gender == 0) {
+            return " Female";
+          } else {
+            return " Male";
+          }
+        case 3:
+          String college = tt.college;
+          String course = tt.course_description;
+          if (college == null) {
+            college = "";
+          }
+          if (course == null) {
+            course = "";
+          }
+          if (college.isEmpty() && course.isEmpty()) {
+            return " ";
+          } else {
+            return " " + course + " - " + college;
+          }
+        case 4:
+          return " " + DateType.convert_slash_datetime3(tt.created_at);
+        case 5:
+          return " " + DateType.convert_slash_datetime2(tt.date_of_birth);
 
-        public static String[] COLUMNS = {
-            "Enrollment No", "Name", "Gender", "Course", "Date Added", "Birthdate", "Dean", "Approved", "Finance", "Registrar", "", "encoded_by", "encoded_date", "assessed_by_id", "assessed_by", "assessed_date", "advised_by_id", "advised_by", "advised_date", "approved_by_id", "approved_by", "approved_date", "student_no", "last_name", "first_name", "middle_name", "nick_name", "current_address", "permanent_address", "email_address", "postal_code", "tel_no", "mobile_no", "date_of_birth", "place_of_birth", "age", "gender", "citizenship", "religion", "civil_status", "spouse_name", "date_of_communion", "date_of_confirmation", "is_right_handed", "is_indigenous", "indigenous_name", "level_id", "level", "college_id", "college", "department_id", "department", "year_level", "year_level_status", "preferred_course1", "preferred_course2", "preferred_course3", "father_name", "father_citizenship", "father_home_address", "father_email_address", "father_mobile_no", "father_occupation", "father_employer", "father_business_address", "father_business_tel_no", "father_educational_attainment", "father_last_school_attended", "mother_name", "mother_citizenship", "mother_home_address", "mother_email_address", "mother_mobile_no", "mother_occupation", "mother_employer", "mother_business_address", "mother_business_tel_no", "mother_educational_attainment", "mother_last_school_attended", "guardian_name", "guardian_mailing_address", "guardian_telephone_no", "grade_school_name", "grade_school_region", "grade_school_school_year", "grade_school_awards", "high_school_name", "high_school_region", "high_school_school_year", "high_school_awards", "college_school_name", "college_school_region", "college_school_school_year", "college_awards", "junior_high_name", "junior_high_region", "junior_high_year", "junior_high_awards", "tesda_name", "tesda_region", "tesda_year", "tesda_awards", "sibling1", "sibling2", "sibling3", "sibling4", "sibling5", "sibling6", "sibling7", "sibling8", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
-        };
+        case 6:
+          if (tt.is_uploaded == 0) {
+            return "/cis/icons2/quit.png";
 
-        public TblenrollmentsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
+          } else {
+            return "/cis/icons2/correct (1).png";
+          }
+        case 7:
+          if (tt.advised_date == null) {
+            return "/cis/icons2/quit.png";
 
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            to_enrollments tt = (to_enrollments) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.enrollment_no;
-                case 1:
-                    return " " + tt.last_name + ", " + tt.first_name + " " + tt.middle_name;
-                case 2:
-                    if (tt.gender == 0) {
-                        return " Female";
-                    } else {
-                        return " Male";
-                    }
-                case 3:
-                    String college = tt.college;
-                    String course = tt.course_description;
-                    if (college == null) {
-                        college = "";
-                    }
-                    if (course == null) {
-                        course = "";
-                    }
-                    if (college.isEmpty() && course.isEmpty()) {
-                        return " ";
-                    } else {
-                        return " " + course + " - " + college;
-                    }
-                case 4:
-                    return " " + DateType.convert_slash_datetime3(tt.created_at);
-                case 5:
-                    return " " + DateType.convert_slash_datetime2(tt.date_of_birth);
-
-                case 6:
-                    if (tt.advised_date == null) {
-                        return "/cis/icons2/quit.png";
-
-                    } else {
-                        return "/cis/icons2/correct (1).png";
-                    }
-                case 7:
-                    if (tt.approved_date == null) {
-                        return "/cis/icons2/quit.png";
-                    } else {
-                        return "/cis/icons2/correct (1).png";
-                    }
-                case 8:
-                    if (tt.assessed_date == null) {
-                        return "/cis/icons2/quit.png";
-                    } else {
-                        return "/cis/icons2/correct (1).png";
-                    }
-                case 9:
-                    if (tt.date_enrolled == null) {
-                        return "/cis/icons2/quit.png";
-                    } else {
-                        return "/cis/icons2/tick (2).png";
-                    }
-                case 10:
-                    return " Delete";
-                case 11:
-                    return tt.encoded_by;
-                case 12:
-                    return tt.encoded_date;
-                case 13:
-                    return tt.assessed_by_id;
-                case 14:
-                    return tt.assessed_by;
-                case 15:
-                    return tt.assessed_date;
-                case 16:
-                    return tt.advised_by_id;
-                case 17:
-                    return tt.advised_by;
-                case 18:
-                    return tt.advised_date;
-                case 19:
-                    return tt.approved_by_id;
-                case 20:
-                    return tt.approved_by;
-                case 21:
-                    return tt.approved_date;
-                case 22:
-                    return tt.student_no;
-                case 23:
-                    return tt.last_name;
-                case 24:
-                    return tt.first_name;
-                case 25:
-                    return tt.middle_name;
-                case 26:
-                    return tt.nick_name;
-                case 27:
-                    return tt.current_address;
-                case 28:
-                    return tt.permanent_address;
-                case 29:
-                    return tt.email_address;
-                case 30:
-                    return tt.postal_code;
-                case 31:
-                    return tt.tel_no;
-                case 32:
-                    return tt.mobile_no;
-                case 33:
-                    return tt.date_of_birth;
-                case 34:
-                    return tt.place_of_birth;
-                case 35:
-                    return tt.age;
-                case 36:
-                    return tt.gender;
-                case 37:
-                    return tt.citizenship;
-                case 38:
-                    return tt.religion;
-                case 39:
-                    return tt.civil_status;
-                case 40:
-                    return tt.spouse_name;
-                case 41:
-                    return tt.date_of_communion;
-                case 42:
-                    return tt.date_of_confirmation;
-                case 43:
-                    return tt.is_right_handed;
-                case 44:
-                    return tt.is_indigenous;
-                case 45:
-                    return tt.indigenous_name;
-                case 46:
-                    return tt.level_id;
-                case 47:
-                    return tt.level;
-                case 48:
-                    return tt.college_id;
-                case 49:
-                    return tt.college;
-                case 50:
-                    return tt.department_id;
-                case 51:
-                    return tt.department;
-                case 52:
-                    return tt.year_level;
-                case 53:
-                    return tt.year_level_status;
-                case 54:
-                    return tt.preferred_course1;
-                case 55:
-                    return tt.preferred_course2;
-                case 56:
-                    return tt.preferred_course3;
-                case 57:
-                    return tt.father_name;
-                case 58:
-                    return tt.father_citizenship;
-                case 59:
-                    return tt.father_home_address;
-                case 60:
-                    return tt.father_email_address;
-                case 61:
-                    return tt.father_mobile_no;
-                case 62:
-                    return tt.father_occupation;
-                case 63:
-                    return tt.father_employer;
-                case 64:
-                    return tt.father_business_address;
-                case 65:
-                    return tt.father_business_tel_no;
-                case 66:
-                    return tt.father_educational_attainment;
-                case 67:
-                    return tt.father_last_school_attended;
-                case 68:
-                    return tt.mother_name;
-                case 69:
-                    return tt.mother_citizenship;
-                case 70:
-                    return tt.mother_home_address;
-                case 71:
-                    return tt.mother_email_address;
-                case 72:
-                    return tt.mother_mobile_no;
-                case 73:
-                    return tt.mother_occupation;
-                case 74:
-                    return tt.mother_employer;
-                case 75:
-                    return tt.mother_business_address;
-                case 76:
-                    return tt.mother_business_tel_no;
-                case 77:
-                    return tt.mother_educational_attainment;
-                case 78:
-                    return tt.mother_last_school_attended;
-                case 79:
-                    return tt.guardian_name;
-                case 80:
-                    return tt.guardian_mailing_address;
-                case 81:
-                    return tt.guardian_telephone_no;
-                case 82:
-                    return tt.grade_school_name;
-                case 83:
-                    return tt.grade_school_region;
-                case 84:
-                    return tt.grade_school_school_year;
-                case 85:
-                    return tt.grade_school_awards;
-                case 86:
-                    return tt.high_school_name;
-                case 87:
-                    return tt.high_school_region;
-                case 88:
-                    return tt.high_school_school_year;
-                case 89:
-                    return tt.high_school_awards;
-                case 90:
-                    return tt.college_school_name;
-                case 91:
-                    return tt.college_school_region;
-                case 92:
-                    return tt.college_school_school_year;
-                case 93:
-                    return tt.college_awards;
-                case 94:
-                    return tt.junior_high_name;
-                case 95:
-                    return tt.junior_high_region;
-                case 96:
-                    return tt.junior_high_year;
-                case 97:
-                    return tt.junior_high_awards;
-                case 98:
-                    return tt.tesda_name;
-                case 99:
-                    return tt.tesda_region;
-                case 100:
-                    return tt.tesda_year;
-                case 101:
-                    return tt.tesda_awards;
-                case 102:
-                    return tt.sibling1;
-                case 103:
-                    return tt.sibling2;
-                case 104:
-                    return tt.sibling3;
-                case 105:
-                    return tt.sibling4;
-                case 106:
-                    return tt.sibling5;
-                case 107:
-                    return tt.sibling6;
-                case 108:
-                    return tt.sibling7;
-                case 109:
-                    return tt.sibling8;
-                case 110:
-                    return tt.created_at;
-                case 111:
-                    return tt.updated_at;
-                case 112:
-                    return tt.created_by;
-                case 113:
-                    return tt.updated_by;
-                case 114:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
-            }
-        }
+          } else {
+            return "/cis/icons2/correct (1).png";
+          }
+        case 8:
+          if (tt.approved_date == null) {
+            return "/cis/icons2/quit.png";
+          } else {
+            return "/cis/icons2/correct (1).png";
+          }
+        case 9:
+          if (tt.assessed_date == null) {
+            return "/cis/icons2/quit.png";
+          } else {
+            return "/cis/icons2/correct (1).png";
+          }
+        case 10:
+          if (tt.date_enrolled == null) {
+            return "/cis/icons2/quit.png";
+          } else {
+            return "/cis/icons2/tick (2).png";
+          }
+        case 11:
+          return " Delete";
+        case 12:
+          return tt.encoded_date;
+        case 13:
+          return tt.assessed_by_id;
+        case 14:
+          return tt.assessed_by;
+        case 15:
+          return tt.assessed_date;
+        case 16:
+          return tt.advised_by_id;
+        case 17:
+          return tt.advised_by;
+        case 18:
+          return tt.advised_date;
+        case 19:
+          return tt.approved_by_id;
+        case 20:
+          return tt.approved_by;
+        case 21:
+          return tt.approved_date;
+        case 22:
+          return tt.student_no;
+        case 23:
+          return tt.last_name;
+        case 24:
+          return tt.first_name;
+        case 25:
+          return tt.middle_name;
+        case 26:
+          return tt.nick_name;
+        case 27:
+          return tt.current_address;
+        case 28:
+          return tt.permanent_address;
+        case 29:
+          return tt.email_address;
+        case 30:
+          return tt.postal_code;
+        case 31:
+          return tt.tel_no;
+        case 32:
+          return tt.mobile_no;
+        case 33:
+          return tt.date_of_birth;
+        case 34:
+          return tt.place_of_birth;
+        case 35:
+          return tt.age;
+        case 36:
+          return tt.gender;
+        case 37:
+          return tt.citizenship;
+        case 38:
+          return tt.religion;
+        case 39:
+          return tt.civil_status;
+        case 40:
+          return tt.spouse_name;
+        case 41:
+          return tt.date_of_communion;
+        case 42:
+          return tt.date_of_confirmation;
+        case 43:
+          return tt.is_right_handed;
+        case 44:
+          return tt.is_indigenous;
+        case 45:
+          return tt.indigenous_name;
+        case 46:
+          return tt.level_id;
+        case 47:
+          return tt.level;
+        case 48:
+          return tt.college_id;
+        case 49:
+          return tt.college;
+        case 50:
+          return tt.department_id;
+        case 51:
+          return tt.department;
+        case 52:
+          return tt.year_level;
+        case 53:
+          return tt.year_level_status;
+        case 54:
+          return tt.preferred_course1;
+        case 55:
+          return tt.preferred_course2;
+        case 56:
+          return tt.preferred_course3;
+        case 57:
+          return tt.father_name;
+        case 58:
+          return tt.father_citizenship;
+        case 59:
+          return tt.father_home_address;
+        case 60:
+          return tt.father_email_address;
+        case 61:
+          return tt.father_mobile_no;
+        case 62:
+          return tt.father_occupation;
+        case 63:
+          return tt.father_employer;
+        case 64:
+          return tt.father_business_address;
+        case 65:
+          return tt.father_business_tel_no;
+        case 66:
+          return tt.father_educational_attainment;
+        case 67:
+          return tt.father_last_school_attended;
+        case 68:
+          return tt.mother_name;
+        case 69:
+          return tt.mother_citizenship;
+        case 70:
+          return tt.mother_home_address;
+        case 71:
+          return tt.mother_email_address;
+        case 72:
+          return tt.mother_mobile_no;
+        case 73:
+          return tt.mother_occupation;
+        case 74:
+          return tt.mother_employer;
+        case 75:
+          return tt.mother_business_address;
+        case 76:
+          return tt.mother_business_tel_no;
+        case 77:
+          return tt.mother_educational_attainment;
+        case 78:
+          return tt.mother_last_school_attended;
+        case 79:
+          return tt.guardian_name;
+        case 80:
+          return tt.guardian_mailing_address;
+        case 81:
+          return tt.guardian_telephone_no;
+        case 82:
+          return tt.grade_school_name;
+        case 83:
+          return tt.grade_school_region;
+        case 84:
+          return tt.grade_school_school_year;
+        case 85:
+          return tt.grade_school_awards;
+        case 86:
+          return tt.high_school_name;
+        case 87:
+          return tt.high_school_region;
+        case 88:
+          return tt.high_school_school_year;
+        case 89:
+          return tt.high_school_awards;
+        case 90:
+          return tt.college_school_name;
+        case 91:
+          return tt.college_school_region;
+        case 92:
+          return tt.college_school_school_year;
+        case 93:
+          return tt.college_awards;
+        case 94:
+          return tt.junior_high_name;
+        case 95:
+          return tt.junior_high_region;
+        case 96:
+          return tt.junior_high_year;
+        case 97:
+          return tt.junior_high_awards;
+        case 98:
+          return tt.tesda_name;
+        case 99:
+          return tt.tesda_region;
+        case 100:
+          return tt.tesda_year;
+        case 101:
+          return tt.tesda_awards;
+        case 102:
+          return tt.sibling1;
+        case 103:
+          return tt.sibling2;
+        case 104:
+          return tt.sibling3;
+        case 105:
+          return tt.sibling4;
+        case 106:
+          return tt.sibling5;
+        case 107:
+          return tt.sibling6;
+        case 108:
+          return tt.sibling7;
+        case 109:
+          return tt.sibling8;
+        case 110:
+          return tt.created_at;
+        case 111:
+          return tt.updated_at;
+        case 112:
+          return tt.created_by;
+        case 113:
+          return tt.updated_by;
+        case 114:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
     }
+  }
 //</editor-fold> 
 
-    private void ret_enrollments() {
-        Field.Combo year = (Field.Combo) tf_field13;
-        String where = " where id<>0 and academic_year_id='" + year.getId() + "' ";
-        if (!jCheckBox10.isSelected()) {
-            Field.Combo dep = (Field.Combo) tf_field14;
-            where = where + " and department_id = '" + dep.getId() + "' ";
-        }
-        if (!jCheckBox11.isSelected()) {
-            Field.Combo col = (Field.Combo) tf_field15;
-            where = where + " and college_id = '" + col.getId() + "' ";
-        }
-
-        if (!jCheckBox19.isSelected()) {
-            Field.Combo course = (Field.Combo) tf_field20;
-            where = where + " and course_id = '" + course.getId() + "' ";
-        }
-        if (!jCheckBox17.isSelected()) {
-            Field.Combo year_level = (Field.Combo) tf_field18;
-            where = where + " and year_level like '" + year_level.getText() + "' ";
-        }
-        if (!jCheckBox18.isSelected()) {
-            Field.Combo period = (Field.Combo) tf_field19;
-            where = where + " and period like '" + period.getText() + "' ";
-        }
-        if (jCheckBox7.isSelected()) {
-            where = where + " and is_transferee =1 ";
-        } else if (jCheckBox8.isSelected()) {
-            where = where + " and is_transferee =0 ";
-        } else if (jCheckBox13.isSelected()) {
-            where = where + " and is_transferee =2 ";
-        }
-        where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field16.getText() + "%' ";
-        where = where + " order by last_name asc ";
-
-        List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data(where);
-        loadData_enrollments(enrollments);
-        jLabel28.setText("" + enrollments.size());
+  private void ret_enrollments() {
+    Field.Combo year = (Field.Combo) tf_field13;
+    String where = " where id<>0 and academic_year_id='" + year.getId() + "' ";
+    if (!jCheckBox10.isSelected()) {
+      Field.Combo dep = (Field.Combo) tf_field14;
+      where = where + " and department_id = '" + dep.getId() + "' ";
+    }
+    if (!jCheckBox11.isSelected()) {
+      Field.Combo col = (Field.Combo) tf_field15;
+      where = where + " and college_id = '" + col.getId() + "' ";
     }
 
-    private void select_enrollment() {
-        int row = tbl_enrollments.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_enrollments.getSelectedColumn();
-        Enrollments.to_enrollments enroll = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
+    if (!jCheckBox19.isSelected()) {
+      Field.Combo course = (Field.Combo) tf_field20;
+      where = where + " and course_id = '" + course.getId() + "' ";
+    }
+    if (!jCheckBox17.isSelected()) {
+      Field.Combo year_level = (Field.Combo) tf_field18;
+      where = where + " and year_level like '" + year_level.getText() + "' ";
+    }
+    if (!jCheckBox18.isSelected()) {
+      Field.Combo period = (Field.Combo) tf_field19;
+      where = where + " and period like '" + period.getText() + "' ";
+    }
+    if (jCheckBox7.isSelected()) {
+      where = where + " and is_transferee =1 ";
+    } else if (jCheckBox8.isSelected()) {
+      where = where + " and is_transferee =0 ";
+    } else if (jCheckBox13.isSelected()) {
+      where = where + " and is_transferee =2 ";
+    }
+    where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field16.getText() + "%' ";
+    where = where + " order by last_name asc ";
 
-        if (col == 6) {
+    List<Enrollments.to_enrollments> enrollments = Enrollments.ret_data2(where);
+    loadData_enrollments(enrollments);
+    jLabel28.setText("" + enrollments.size());
+  }
 
-            Window p = (Window) this;
-            Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(enroll, 1);
-            nd.setCallback(new Dlg_dean_student_advice_details.Callback() {
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_details.OutputData data) {
-                    closeDialog.ok();
-                    ret_enrollments();
-                }
-            });
-            nd.setLocationRelativeTo(null);
-            nd.setVisible(true);
+  private void select_enrollment() {
+    int row = tbl_enrollments.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    int col = tbl_enrollments.getSelectedColumn();
+    Enrollments.to_enrollments enroll = (Enrollments.to_enrollments) tbl_enrollments_ALM.get(row);
+
+    if (col == 7) {
+
+      Window p = (Window) this;
+      Dlg_dean_student_advice_details nd = Dlg_dean_student_advice_details.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(enroll, 1);
+      nd.setCallback(new Dlg_dean_student_advice_details.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_details.OutputData data) {
+          closeDialog.ok();
+          ret_enrollments();
         }
-        if (col == 10) {
-            if (enroll.advised_date != null) {
-                Alert.set(0, "Cannot delete record!");
-                return;
+      });
+      nd.setLocationRelativeTo(null);
+      nd.setVisible(true);
+    }
+    if (col == 11) {
+      if (enroll.advised_date != null) {
+        Alert.set(0, "Cannot delete record!");
+        return;
+      }
+      Window p = (Window) this;
+      Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+      nd.setTitle("");
+      nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+          closeDialog.ok();
+          Enrollments.delete_data(enroll);
+          Alert.set(3, "");
+          ret_enrollments();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+
+  }
+
+  //Advising 
+  private void init_departments() {
+    Object[][] obj = new Object[deps.size()][1];
+    int i = 0;
+    for (Departments.to_departments to : deps) {
+      obj[i][0] = " " + to.department_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field14.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field14, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Departments.to_departments to = deps.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_field14;
+        co.setText("" + to.department_name);
+        co.setId("" + to.id);
+
+        colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
+        Field.Combo co1 = (Field.Combo) tf_field15;
+        if (!colleges2.isEmpty()) {
+          Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
+
+          if (!departments.isEmpty()) {
+            int exists = 0;
+            for (User_departments.to_user_departments dep : departments) {
+              if (dep.college_id.equalsIgnoreCase("" + c.id)) {
+                exists = 1;
+                break;
+              }
             }
-            Window p = (Window) this;
-            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
-            nd.setTitle("");
-            nd.setCallback(new Dlg_confirm_delete.Callback() {
+            if (exists == 1) {
+              co1.setText("" + c.college_name);
+              co1.setId("" + c.id);
 
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
-                    closeDialog.ok();
-                    Enrollments.delete_data(enroll);
-                    Alert.set(3, "");
-                    ret_enrollments();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        }
-
-    }
-
-    //Advising 
-    private void init_departments() {
-        Object[][] obj = new Object[deps.size()][1];
-        int i = 0;
-        for (Departments.to_departments to : deps) {
-            obj[i][0] = " " + to.department_name;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field14.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field14, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Departments.to_departments to = deps.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf_field14;
-                co.setText("" + to.department_name);
-                co.setId("" + to.id);
-
-                colleges2 = Colleges.ret_data(" where department_id='" + co.getId() + "' ");
-                Field.Combo co1 = (Field.Combo) tf_field15;
-                if (!colleges2.isEmpty()) {
-                    Colleges.to_colleges c = (Colleges.to_colleges) colleges2.get(0);
-
-                    if (!departments.isEmpty()) {
-                        int exists = 0;
-                        for (User_departments.to_user_departments dep : departments) {
-                            if (dep.college_id.equalsIgnoreCase("" + c.id)) {
-                                exists = 1;
-                                break;
-                            }
-                        }
-                        if (exists == 1) {
-                            co1.setText("" + c.college_name);
-                            co1.setId("" + c.id);
-
-                        } else {
-                            co1.setText("");
-                            co1.setId("");
-                        }
-                    } else {
-                        co1.setText("" + c.college_name);
-                        co1.setId("" + c.id);
-                    }
-
-                } else {
-                    co1.setText("");
-                    co1.setId("");
-                }
-                ret_periods();
-                set_period();
+            } else {
+              co1.setText("");
+              co1.setId("");
             }
-        });
-    }
+          } else {
+            co1.setText("" + c.college_name);
+            co1.setId("" + c.id);
+          }
 
-    private void init_colleges() {
-
-        Object[][] obj = new Object[colleges2.size()][1];
-        int i = 0;
-        for (Colleges.to_colleges to : colleges2) {
-            obj[i][0] = " " + to.college_name;
-            i++;
+        } else {
+          co1.setText("");
+          co1.setId("");
         }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field15.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field15, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Colleges.to_colleges to = colleges2.get(data.selected_row);
+        ret_periods();
+        set_period();
+      }
+    });
+  }
 
-                if (!departments.isEmpty()) {
-                    int exists = 0;
-                    for (User_departments.to_user_departments dep : departments) {
-                        if (dep.college_id.equalsIgnoreCase("" + to.id)) {
-                            exists = 1;
-                            break;
-                        }
-                    }
-                    if (exists == 1) {
-                        Field.Combo co = (Field.Combo) tf_field15;
-                        co.setText("" + to.college_name);
-                        co.setId("" + to.id);
-                        ret_enrollments();
-                    } else {
-                        Alert.set(0, "Privilege not added!");
-                    }
-                } else {
-                    Field.Combo co = (Field.Combo) tf_field15;
-                    co.setText("" + to.college_name);
-                    co.setId("" + to.id);
-                    ret_enrollments();
-                }
+  private void init_colleges() {
 
+    Object[][] obj = new Object[colleges2.size()][1];
+    int i = 0;
+    for (Colleges.to_colleges to : colleges2) {
+      obj[i][0] = " " + to.college_name;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field15.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field15, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Colleges.to_colleges to = colleges2.get(data.selected_row);
+
+        if (!departments.isEmpty()) {
+          int exists = 0;
+          for (User_departments.to_user_departments dep : departments) {
+            if (dep.college_id.equalsIgnoreCase("" + to.id)) {
+              exists = 1;
+              break;
             }
-
-        });
-    }
-
-    private void init_courses() {
-        Field.Combo year3 = (Field.Combo) tf_field13;
-        String where = " where id<>0 ";
-
-        Field.Combo dep = (Field.Combo) tf_field14;
-        Field.Combo col = (Field.Combo) tf_field15;
-
-        where = where + " and department_id = '" + dep.getId() + "' ";
-        where = where + " and college_id = '" + col.getId() + "' ";
-
-        where = where + " and course_code like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
-                + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "' and course_description like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
-                + " order by course_description asc ";
-        List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
-        Object[][] obj = new Object[offer.size()][2];
-        int i = 0;
-        for (Academic_offerings.to_academic_offerings to : offer) {
-            obj[i][0] = " " + to.course_code;
-            obj[i][1] = " " + to.course_description;
-            i++;
+          }
+          if (exists == 1) {
+            Field.Combo co = (Field.Combo) tf_field15;
+            co.setText("" + to.college_name);
+            co.setId("" + to.id);
+            ret_enrollments();
+          } else {
+            Alert.set(0, "Privilege not added!");
+          }
+        } else {
+          Field.Combo co = (Field.Combo) tf_field15;
+          co.setText("" + to.college_name);
+          co.setId("" + to.id);
+          ret_enrollments();
         }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {80, tf_field20.getWidth() - 80};
-        int width = 0;
-        String[] col_names = {"", ""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup2(tf_field20, obj, labels, tbl_widths_customers, col_names, tf_field20.getWidth());
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
+
+      }
+
+    });
+  }
+
+  private void init_courses() {
+    Field.Combo year3 = (Field.Combo) tf_field13;
+    String where = " where id<>0 ";
+
+    Field.Combo dep = (Field.Combo) tf_field14;
+    Field.Combo col = (Field.Combo) tf_field15;
+
+    where = where + " and department_id = '" + dep.getId() + "' ";
+    where = where + " and college_id = '" + col.getId() + "' ";
+
+    where = where + " and course_code like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "' and status=1 "
+            + " or department_id = '" + dep.getId() + "' and college_id = '" + col.getId() + "' and course_description like '%" + tf_field20.getText() + "%' and academic_year_id='" + year3.getId() + "'  and status=1 "
+            + " order by course_description asc ";
+    List<Academic_offerings.to_academic_offerings> offer = Academic_offerings.ret_data(where);
+    Object[][] obj = new Object[offer.size()][2];
+    int i = 0;
+    for (Academic_offerings.to_academic_offerings to : offer) {
+      obj[i][0] = " " + to.course_code;
+      obj[i][1] = " " + to.course_description;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {80, tf_field20.getWidth() - 80};
+    int width = 0;
+    String[] col_names = {"", ""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup2(tf_field20, obj, labels, tbl_widths_customers, col_names, tf_field20.getWidth());
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_offerings.to_academic_offerings off = offer.get(data.selected_row);
 //                no_of_years = off.no_of_years;
 //                set_periods();
-                Field.Combo cou = (Field.Combo) tf_field20;
-                cou.setText(off.course_code + " - " + off.course_description);
-                cou.setId("" + off.course_id);
+        Field.Combo cou = (Field.Combo) tf_field20;
+        cou.setText(off.course_code + " - " + off.course_description);
+        cou.setId("" + off.course_id);
 //                ret_data();
-                ret_enrollments();
-            }
-        });
+        ret_enrollments();
+      }
+    });
+  }
+
+  List<String> year_levels = new ArrayList();
+
+  private void init_year_levels() {
+    Object[][] obj = new Object[year_levels.size()][1];
+    int i = 0;
+    for (String to : year_levels) {
+      obj[i][0] = " " + to;
+      i++;
     }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field18.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field18, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = year_levels.get(data.selected_row);
+        tf_field18.setText("" + to);
+        ret_enrollments();
+      }
+    });
+  }
 
-    List<String> year_levels = new ArrayList();
+  List<String> periods = new ArrayList();
+  List<String> periods2 = new ArrayList();
 
-    private void init_year_levels() {
-        Object[][] obj = new Object[year_levels.size()][1];
-        int i = 0;
-        for (String to : year_levels) {
-            obj[i][0] = " " + to;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field18.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field18, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                String to = year_levels.get(data.selected_row);
-                tf_field18.setText("" + to);
-                ret_enrollments();
-            }
-        });
-    }
-
-    List<String> periods = new ArrayList();
-    List<String> periods2 = new ArrayList();
-
-    private void ret_periods() {
-        Field.Combo year = (Field.Combo) tf_field13;
-        Field.Combo dep = (Field.Combo) tf_field14;
-        String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
-        List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
-        if (!periods1.isEmpty()) {
-            Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
-            String per = acad.period;
-            periods = Combo.periods(per);
+  private void ret_periods() {
+    Field.Combo year = (Field.Combo) tf_field13;
+    Field.Combo dep = (Field.Combo) tf_field14;
+    String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
+    List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
+    if (!periods1.isEmpty()) {
+      Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+      String per = acad.period;
+      periods = Combo.periods(per);
 //            System.out.println("" + periods.size());
-        }
     }
+  }
 
-    private void ret_periods2() {
-        Field.Combo year = (Field.Combo) tf_field13;
-        Field.Combo dep = (Field.Combo) tf_field8;
-        String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
-        List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
-        if (!periods1.isEmpty()) {
-            Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
-            String per = acad.period;
-            periods2 = Combo.periods(per);
+  private void ret_periods2() {
+    Field.Combo year = (Field.Combo) tf_field13;
+    Field.Combo dep = (Field.Combo) tf_field8;
+    String where = " where academic_year_id = '" + year.getId() + "' and department_id='" + dep.getId() + "' ";
+    List<Academic_year_periods.to_academic_year_periods> periods1 = Academic_year_periods.ret_data(where);
+    if (!periods1.isEmpty()) {
+      Academic_year_periods.to_academic_year_periods acad = (Academic_year_periods.to_academic_year_periods) periods1.get(0);
+      String per = acad.period;
+      periods2 = Combo.periods(per);
 //            System.out.println("" + periods.size());
-        }
     }
+  }
 
-    private void init_periods() {
-        Field.Combo acad = (Field.Combo) tf_field13;
-        Field.Combo dep = (Field.Combo) tf_field14;
-        acad_schedules.clear();
-        acad_schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "' and department_id='" + dep.getId() + "'");
+  private void init_periods() {
+    Field.Combo acad = (Field.Combo) tf_field13;
+    Field.Combo dep = (Field.Combo) tf_field14;
+    acad_schedules.clear();
+    acad_schedules = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "' and department_id='" + dep.getId() + "'");
 
-        Object[][] obj = new Object[acad_schedules.size()][1];
-        int i = 0;
-        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
-            obj[i][0] = " " + to.period;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field19.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field19, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_year_period_schedules.to_academic_year_period_schedules to = (Academic_year_period_schedules.to_academic_year_period_schedules) acad_schedules.get(data.selected_row);
-                tf_field19.setText("" + to.period);
-                ret_enrollments();
-            }
-        });
+    Object[][] obj = new Object[acad_schedules.size()][1];
+    int i = 0;
+    for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules) {
+      obj[i][0] = " " + to.period;
+      i++;
     }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field19.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field19, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_year_period_schedules.to_academic_year_period_schedules to = (Academic_year_period_schedules.to_academic_year_period_schedules) acad_schedules.get(data.selected_row);
+        tf_field19.setText("" + to.period);
+        ret_enrollments();
+      }
+    });
+  }
 
-    private void init_periods2() {
-        Field.Combo acad = (Field.Combo) tf_field3;
-        Field.Combo dep = (Field.Combo) tf_field8;
-        acad_schedules2.clear();
-        acad_schedules2 = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "'  and department_id='" + dep.getId() + "'");
+  private void init_periods2() {
+    Field.Combo acad = (Field.Combo) tf_field3;
+    Field.Combo dep = (Field.Combo) tf_field8;
+    acad_schedules2.clear();
+    acad_schedules2 = Academic_year_period_schedules.ret_data(" where academic_year_id='" + acad.getId() + "'  and department_id='" + dep.getId() + "'");
 
-        Object[][] obj = new Object[acad_schedules2.size()][1];
-        int i = 0;
-        for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules2) {
-            obj[i][0] = " " + to.period;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_field21.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf_field21, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_year_period_schedules.to_academic_year_period_schedules to = (Academic_year_period_schedules.to_academic_year_period_schedules) acad_schedules.get(data.selected_row);
-                tf_field21.setText("" + to.period);
-
-            }
-        });
+    Object[][] obj = new Object[acad_schedules2.size()][1];
+    int i = 0;
+    for (Academic_year_period_schedules.to_academic_year_period_schedules to : acad_schedules2) {
+      obj[i][0] = " " + to.period;
+      i++;
     }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_field21.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_field21, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_year_period_schedules.to_academic_year_period_schedules to = (Academic_year_period_schedules.to_academic_year_period_schedules) acad_schedules.get(data.selected_row);
+        tf_field21.setText("" + to.period);
 
-    List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
-    Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
-    List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules2 = new ArrayList();
-    Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule2 = null;
+      }
+    });
+  }
 
-    private void set_period() {
-        Field.Combo sy = (Field.Combo) tf_field13;
-        Field.Combo dep = (Field.Combo) tf_field14;
-        String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
-        acad_schedules = Academic_year_period_schedules.ret_data(where2);
+  List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules = new ArrayList();
+  Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule = null;
+  List<Academic_year_period_schedules.to_academic_year_period_schedules> acad_schedules2 = new ArrayList();
+  Academic_year_period_schedules.to_academic_year_period_schedules acad_schedule2 = null;
 
-        Field.Combo tf = (Field.Combo) tf_field19;
-        if (!acad_schedules.isEmpty()) {
-            acad_schedule = acad_schedules.get(0);
+  private void set_period() {
+    Field.Combo sy = (Field.Combo) tf_field13;
+    Field.Combo dep = (Field.Combo) tf_field14;
+    String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
+    acad_schedules = Academic_year_period_schedules.ret_data(where2);
 
-            tf.setText(acad_schedule.period);
-            tf.setId("" + acad_schedule.id);
-        } else {
-            tf.setText("");
-            tf.setId("");
-        }
+    Field.Combo tf = (Field.Combo) tf_field19;
+    if (!acad_schedules.isEmpty()) {
+      acad_schedule = acad_schedules.get(0);
+
+      tf.setText(acad_schedule.period);
+      tf.setId("" + acad_schedule.id);
+    } else {
+      tf.setText("");
+      tf.setId("");
     }
+  }
 
-    private void set_period2() {
-        Field.Combo sy = (Field.Combo) tf_field13;
-        Field.Combo dep = (Field.Combo) tf_field8;
-        String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
-        acad_schedules2 = Academic_year_period_schedules.ret_data(where2);
+  private void set_period2() {
+    Field.Combo sy = (Field.Combo) tf_field13;
+    Field.Combo dep = (Field.Combo) tf_field8;
+    String where2 = "  where academic_year_id='" + sy.getId() + "' and status=1 and department_id='" + dep.getId() + "'";
+    acad_schedules2 = Academic_year_period_schedules.ret_data(where2);
 
-        Field.Combo tf = (Field.Combo) tf_field21;
-        if (!acad_schedules2.isEmpty()) {
-            acad_schedule2 = acad_schedules2.get(0);
+    Field.Combo tf = (Field.Combo) tf_field21;
+    if (!acad_schedules2.isEmpty()) {
+      acad_schedule2 = acad_schedules2.get(0);
 
-            tf.setText(acad_schedule2.period);
-            tf.setId("" + acad_schedule2.id);
-        } else {
-            tf.setText("");
-            tf.setId("");
-        }
+      tf.setText(acad_schedule2.period);
+      tf.setId("" + acad_schedule2.id);
+    } else {
+      tf.setText("");
+      tf.setId("");
     }
+  }
 
-    private void init_academic_years(JTextField tf) {
-        Object[][] obj = new Object[acad_years2.size()][1];
-        int i = 0;
-        for (Academic_years.to_academic_years to : acad_years2) {
-            obj[i][0] = " " + to.years;
-            i++;
-        }
-        JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf.getWidth()};
-        int width = 0;
-        String[] col_names = {""};
-        TableRenderer tr = new TableRenderer();
-        TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
-        tr.setCallback(new TableRenderer.Callback() {
-            @Override
-            public void ok(TableRenderer.OutputData data) {
-                Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
-                Field.Combo co = (Field.Combo) tf;
-                co.setText("" + to.years);
-                co.setId("" + to.id);
-
-            }
-        });
+  private void init_academic_years(JTextField tf) {
+    Object[][] obj = new Object[acad_years2.size()][1];
+    int i = 0;
+    for (Academic_years.to_academic_years to : acad_years2) {
+      obj[i][0] = " " + to.years;
+      i++;
     }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        Academic_years.to_academic_years to = acad_years2.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf;
+        co.setText("" + to.years);
+        co.setId("" + to.id);
+
+      }
+    });
+  }
 
 }
