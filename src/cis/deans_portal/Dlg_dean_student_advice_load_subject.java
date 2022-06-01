@@ -785,7 +785,7 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
                 case 8:
                     if (tt.status == 0) {
                         return " Posted";
-                    } else if (tt.status == 1 && tt.is_loaded) {
+                    } else if (tt.status == 1 && tt.is_loaded ||tt.status == 1 && !tt.is_loaded) {
                         String[] cap = tt.created_by.split(" of ");
                         int min = FitIn.toInt(cap[0]);
                         int max = FitIn.toInt(cap[1]);

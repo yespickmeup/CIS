@@ -1786,6 +1786,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     String course = "" + pay_stud.course_code;
 
     Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, "" + created_by, "" + updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, student_id, student_no, student_name);
+    
     String or = Downpayments.pay(downpayment, to_collections);
 
     c_transaction_no = or;

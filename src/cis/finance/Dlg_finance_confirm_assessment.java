@@ -1477,6 +1477,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
     private void myInit() {
     init_key();
     init_tbl_mode_of_payments(tbl_mode_of_payments);
+    jLabel79.setVisible(false);
+    tf_field133.setVisible(false);
   }
 
   List<Mode_of_payments.to_mode_of_payments> modess = null;

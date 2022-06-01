@@ -1341,6 +1341,7 @@ public class Enrollments {
   public static void approve_advising(to_enrollments to_enrollments, String term) {
     try {
       Connection conn = MyConnection.connect();
+      conn.setAutoCommit(false);
       String s0 = "update enrollments set "
               + " approved_by_id = '" + MyUser.getUser_id() + "' "
               + ",approved_by = '" + MyUser.getUser_screen_name() + "' "
@@ -1348,8 +1349,14 @@ public class Enrollments {
               + ",term= '" + term + "' "
               + " where id='" + to_enrollments.id + "' "
               + " ";
-      PreparedStatement stmt = conn.prepareStatement(s0);
-      stmt.execute();
+      PreparedStatement stmt = conn.prepareStatement("");
+      stmt.addBatch(s0);
+
+      String s2 = " update enrollment_student_loaded_subjects set status=1 where enrollment_id='" + to_enrollments.id + "' and status=0 ";
+      stmt.addBatch(s2);
+
+      stmt.executeBatch();
+      conn.commit();
       Lg.s(Enrollments.class, "Successfully Updated");
     } catch (SQLException e) {
       throw new RuntimeException(e);

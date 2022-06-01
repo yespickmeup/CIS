@@ -25,9 +25,9 @@ import cis.finance.Dlg_finance;
 import cis.finance.Enrollment_assessment_payment_modes;
 import cis.finance.Enrollment_assessments;
 import cis.finance.Miscellaneous_fees;
+import cis.finance.Student_balance_adjustments;
 import cis.registrar.Dlg_registrar_approve_enrollment;
 import cis.reports.Srpt_course_syllabus;
-import cis.reports.Srpt_transcript_of_records;
 import cis.students.Students;
 import cis.test.DayCheck;
 import cis.users.MyUser;
@@ -6510,6 +6510,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
     List<Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests> dropped_subjects = Enrollment_student_loaded_subjects_drop_requests.ret_data(" where enrollment_id='" + enroll.id + "' and status=1  ");
     List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + enroll.id + "' ");
     List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
+    List<Student_balance_adjustments.to_student_balance_adjustments> special_classes = Student_balance_adjustments.ret_data(" where student_id='" + enroll.student_id + "' and academic_year_id='" + enroll.academic_year_id + "' and particular like '%Special Class%'");
 
     jProgressBar2.setString("Loading...Please wait...");
     jProgressBar2.setIndeterminate(true);
@@ -6670,6 +6671,13 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
           cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc(fee.fee, fee.amount);
           rpt_fees.add(f);
           other_fee += fee.amount;
+        }
+
+        if (!special_classes.isEmpty()) {
+          Student_balance_adjustments.to_student_balance_adjustments special = special_classes.get(0);
+          cis.reports.Srpt_enrollment_assessment.field_misc f = new cis.reports.Srpt_enrollment_assessment.field_misc("Special Class", special.adjustment_amount);
+          rpt_fees.add(f);
+          other_fee += special.adjustment_amount;
         }
 
         List<cis.reports.Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();

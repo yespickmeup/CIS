@@ -269,3 +269,16 @@ id int auto_increment primary key
 ,collection_id int
 ,collection_no varchar(255)
 );
+
+
+select count(id) from enrollment_offered_subjects eos where eos.id<>0  and eos.department_id='5'  and eos.academic_year_id='10'  and eos.term like 'Summer Class'  and eos.subject_code like '%%'    or eos.department_id='5'  and eos.academic_year_id='10'  and eos.term like 'Summer Class'  and eos.description like '%%'  order by eos.subject_code,eos.description asc ;
+
+
+delete from enrollment_offered_subjects  where id<>0  and department_id='5'  and academic_year_id='10'  and term like 'Summer Class'  and subject_code like '%%' 
+ or department_id='5'  and academic_year_id='10'  and term like 'Summer Class'  and description like '%%'  order by subject_code,description asc ;
+
+
+update students set balance=0; 
+update enrollment_assessment_payment_modes set paid=amount;
+
+update student_balance_adjustments set particular="Special Class", particular_id=6 where id=1;

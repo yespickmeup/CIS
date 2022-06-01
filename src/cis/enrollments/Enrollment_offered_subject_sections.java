@@ -1276,7 +1276,7 @@ public class Enrollment_offered_subject_sections {
                 String updated_by = rs.getString(40);
                 int status = rs.getInt(41);
                 int is_uploaded = rs.getInt(42);
-
+//                System.out.println("status: "+status);
                 String s2 = "select "
                         + " room "
                         + ", day"

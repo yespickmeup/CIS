@@ -266,7 +266,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/cis/icons2/typing.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Disbursement Categories"/>
+            <Property name="toolTipText" type="java.lang.String" value="Finance Encoding"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
