@@ -469,6 +469,7 @@ public class Downpayments {
       ResultSet rs = stmt.executeQuery(s0);
       while (rs.next()) {
         int id = rs.getInt(1);
+        System.out.println("id: "+id);
         int enrollment_id = rs.getInt(2);
         String enrollment_no = rs.getString(3);
         int academic_year_id = rs.getInt(4);

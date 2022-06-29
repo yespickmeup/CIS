@@ -1,0 +1,18 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * Author:  USER
+ * Created: 06 6, 22
+ */
+
+insert into  user_default_previlege_others(account,account_name,name)values('Transactions','Accounting','Override Downpayment');
+
+
+Alaton, Leoren Kaye
+Albito, Riza Beb
+
+INSERT INTO `students` (`id`, `is_transferee`, `academic_year_id`, `academic_year`, `student_no`, `last_name`, `first_name`, `middle_name`, `nick_name`, `current_address`, `permanent_address`, `email_address`, `postal_code`, `tel_no`, `mobile_no`, `date_of_birth`, `place_of_birth`, `age`, `gender`, `citizenship`, `religion`, `civil_status`, `spouse_name`, `date_of_communion`, `date_of_confirmation`, `is_right_handed`, `is_indigenous`, `indigenous_name`, `level_id`, `level`, `college_id`, `college`, `department_id`, `department`, `year_level`, `year_level_status`, `preferred_course1`, `preferred_course2`, `preferred_course3`, `father_name`, `father_citizenship`, `father_home_address`, `father_email_address`, `father_mobile_no`, `father_occupation`, `father_employer`, `father_business_address`, `father_business_tel_no`, `father_educational_attainment`, `father_last_school_attended`, `mother_name`, `mother_citizenship`, `mother_home_address`, `mother_email_address`, `mother_mobile_no`, `mother_occupation`, `mother_employer`, `mother_business_address`, `mother_business_tel_no`, `mother_educational_attainment`, `mother_last_school_attended`, `guardian_name`, `guardian_mailing_address`, `guardian_telephone_no`, `grade_school_name`, `grade_school_region`, `grade_school_school_year`, `grade_school_awards`, `high_school_name`, `high_school_region`, `high_school_school_year`, `high_school_awards`, `college_school_name`, `college_school_region`, `college_school_school_year`, `college_awards`, `junior_high_name`, `junior_high_region`, `junior_high_year`, `junior_high_awards`, `tesda_name`, `tesda_region`, `tesda_year`, `tesda_awards`, `sibling1`, `sibling2`, `sibling3`, `sibling4`, `sibling5`, `sibling6`, `sibling7`, `sibling8`, `created_at`, `updated_at`, `created_by`, `updated_by`, `status`, `is_uploaded`, `course_id`, `course_code`, `course_description`, `date_enrolled`, `balance`, `prepaid`, `fb_account`, `blood_type`, `als_name`, `als_region`, `als_year`, `als_awards`, `high_school_strand`, `high_school_track`) VALUES
+(2374, 0, 10, '2021 - 2021', '20210790', 'ALATON', 'LEOREN KAYE', 'ELLO', 'KAYE', 'MALAUAY ZAMBOANGITA NEG OR.', '', 'ALATONLEOREN@GMAIL.COM', '6218', '', '0965-391-1982', '2002-07-04', 'NOPH', 19, 0, 'Filipino', 'Roman Catholic', '1', '', NULL, NULL, 0, 0, '', 13, 'College of Allied Health Sciences', 13, 'College of Allied Health Sciences', 5, 'TERTIARY DEPARTMENT', 'First Year', NULL, 'NURSING ', 'CRIMINOLOGY', 'RADTECH', 'EFREN %MENDEZ%ALATON', 'FILIPINO', 'MALUAY ZAMBOANGITA', '', '0965-391-1982', 'FISH VENDOP', '', '', '', '', '', 'LEONIDES%TRENIA%ELLO', 'FILIPINO', 'MALUAY ZAMBOANGITA', '', '0935-586-9471', '', '', '', '', '', '', '', '', '', 'MALUAY ELEM SCHOOL', 'Region 7', '', '', 'SANTIAGO DELMO MEMORIAL HOGH SCHOOL', 'Region 7', '', '', '', 'Region 7', '', '', 'SANTIAGO DELMO MEMORIAL HOGH SCHOOL', 'Region 7', '', '', '', 'Region 7', '', '', '%%%%%%', '%%%%%%', '%%%%%%', '%%%%%%', '%%%%%%', '%%%%%%', '%%%%%%', '%%%%%%', '2021-08-14 15:04:32', '2021-08-14 15:04:32', '12', '12', 0, 0, 238, 'BSRT 2021', 'Bachelor of Science in Radiologic Technology 2021', '2021-08-14', 0, 0, 'ALATON LEOREN KAYE ELLO', 'A+', '', 'Region 7', '', '', 'HUMMS', '');

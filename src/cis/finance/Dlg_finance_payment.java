@@ -15,10 +15,12 @@ import cis.downpayments.Downpayments;
 import cis.enrollments.Enrollments;
 import cis.other_payments.Other_payments;
 import cis.students.Students;
+import cis.users.Dlg_authenticate;
 import cis.users.MyUser;
 import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_action3;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -1586,13 +1588,50 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     tbl_mode_of_payments_M.fireTableDataChanged();
   }
 
+  private void override() {
+    Window p = (Window) this;
+    Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+    nd.setTitle("");
+    nd.do_override_downpayment();
+    nd.setCallback(new Dlg_authenticate.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+        closeDialog.ok();
+        pay4();
+      }
+
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
   private void confirm() {
 
     if (is_other_payment || is_downpayment) {
       double amount = FitIn.toDouble(tf_total_amount.getText());
       if (amount <= 0) {
-        Alert.set(0, "Enter Amount");
-        return;
+        if (is_downpayment) {
+          Alert.set(0, "Enter Amount");
+          Window p = (Window) this;
+          Dlg_confirm_action3 nd = Dlg_confirm_action3.create(p, true);
+          nd.setTitle("");
+          nd.do_pass("Confirm override?");
+          nd.setCallback(new Dlg_confirm_action3.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_action3.OutputData data) {
+              closeDialog.ok();
+              override();
+            }
+          });
+          nd.setLocationRelativeTo(this);
+          nd.setVisible(true);
+        } else {
+          Alert.set(0, "Enter Amount");
+          return;
+        }
+
       }
       double tendered = FitIn.toDouble(tf_field20.getText());
       if (amount != tendered) {
@@ -1786,7 +1825,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     String course = "" + pay_stud.course_code;
 
     Collection.to_collections to_collections = new Collection.to_collections(id, collection_no, or_no, payment_type, amount_paid, cash, discount_name, discount_rate, discount_amount, discount_customer_name, discount_customer_id, check_amount, check_bank, check_no, check_holder, check_date, credit_card_type, credit_card_rate, credit_card_amount, credit_card_no, gift_certificate_from, gift_certificate_description, gift_certificate_no, gift_certificate_amount, online_bank, online_reference_no, online_amount, online_holder, online_date, created_at, updated_at, "" + created_by, "" + updated_by, status, is_uploaded, ref_id, school_year, period, year_level, department_id, department, college_id, college, course_id, course, student_id, student_no, student_name);
-    
+
     String or = Downpayments.pay(downpayment, to_collections);
 
     c_transaction_no = or;

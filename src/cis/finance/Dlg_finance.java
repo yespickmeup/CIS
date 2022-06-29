@@ -4459,20 +4459,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
 
     List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
-    List<Downpayments.to_downpayments> downpayments = Downpayments.ret_data(" where enrollment_id='" + enroll.id + "' and status<>2");
 
-    if (downpayments.isEmpty()) {
-      jButton3.setEnabled(false);
-      jButton17.setText("Downpayment");
-      hasDownpayment = false;
-//      return;
-    } else {
-      double amount = 0;
-      Downpayments.to_downpayments down = (Downpayments.to_downpayments) downpayments.get(0);
-      amount = down.amount;
-      jButton17.setText("Downpayment (" + FitIn.fmt_wc_0(amount) + ")");
-      hasDownpayment = true;
-    }
     List<Student_balance_adjustments.to_student_balance_adjustments> special_classes = Student_balance_adjustments.ret_data(" where student_id='" + enroll.student_id + "' and academic_year_id='" + enroll.academic_year_id + "' and particular like '%Special Class%'");
 
     List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where enrollment_id='" + enroll.id + "' and status<2  ");
@@ -4517,6 +4504,23 @@ public class Dlg_finance extends javax.swing.JDialog {
         String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
         String student_course = enroll.course_code + " - " + enroll.course_description;
         String student_year_level = enroll.year_level;
+
+        List<Downpayments.to_downpayments> downpayments = Downpayments.ret_data(" where enrollment_id='" + enroll.id + "' and status<>2");
+
+        double downpay = 0;
+        if (downpayments.isEmpty()) {
+          jButton3.setEnabled(false);
+          jButton17.setText("Downpayment");
+          hasDownpayment = false;
+//      return;
+        } else {
+          double amount = 0;
+          Downpayments.to_downpayments down = (Downpayments.to_downpayments) downpayments.get(0);
+          amount = down.amount;
+          downpay = amount;
+          jButton17.setText("Downpayment (" + FitIn.fmt_wc_0(amount) + ")");
+          hasDownpayment = true;
+        }
 
         List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
         List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
@@ -4655,12 +4659,13 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         total_assessment = tution_fee + other_fee + misc_fee;
 
-        payable = total_assessment - downpayment;
+        payable = total_assessment - downpay;
+        downpayment = downpay;
         double sub_total = total_assessment;
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
           double balance = ea.amount - ea.paid;
-          downpayment += ea.paid;
-          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tution_fee, misc_fee, other_fee, sub_total, "");
+//          downpayment += ea.paid;
+          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, sub_total, downpayment, (sub_total-downpayment), tution_fee, misc_fee, other_fee, sub_total, "");
           rpt_summary.add(f2);
         }
 

@@ -14,7 +14,9 @@ import cis.colleges.Colleges;
 import cis.courses.Courses;
 import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.deans_portal.Dlg_dean_student_advice_load_subject;
+import static cis.deans_portal.Dlg_dean_student_advice_load_subject.tbl_enrollment_offered_subject_sections_M;
 import cis.departments.Departments;
+import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects;
@@ -2993,8 +2995,9 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
   private void myInit() {
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+//    System.setProperty("pool_db", "db_cis_cosca");
+//    System.setProperty("pool_password", "password");
+
     init_key();
     jPanel5.setVisible(false);
     tf_field3.setVisible(false);
@@ -4318,7 +4321,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     tbl_enrollments.getColumnModel().getColumn(8).setCellRenderer(new ImageRenderer());
     tbl_enrollments.getColumnModel().getColumn(9).setCellRenderer(new ImageRenderer());
     tbl_enrollments.getColumnModel().getColumn(10).setCellRenderer(new ImageRenderer());
-     tbl_enrollments.getColumnModel().getColumn(11).setCellRenderer(new ImageRenderer());
+    tbl_enrollments.getColumnModel().getColumn(11).setCellRenderer(new ImageRenderer());
   }
 
   public static void loadData_enrollments(List<Enrollments.to_enrollments> acc) {
@@ -5076,29 +5079,37 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         case 3:
           return " " + tt.section;
         case 4:
-          if (tt.status == -1) {
-            return " ";
-          } else if (tt.status == 0) {
-            return " Added";
-          } else if (tt.status == 1) {
-            return " Enrolled";
-          } else if (tt.status == 2) {
-            return " Passed";
-          } else if (tt.status == 3) {
-            return " Failed";
+          if (tt.isIs_loaded()) {
+            if (tt.status == -1) {
+              return " ";
+            } else if (tt.status == 0) {
+              return " Added";
+            } else if (tt.status == 1) {
+              return " Enrolled";
+            } else if (tt.status == 2) {
+              return " Passed";
+            } else if (tt.status == 3) {
+              return " Failed";
+            } else {
+              return " Dropped";
+            }
           } else {
-            return " Dropped";
+            return " Search";
           }
-        default:
-          if (tt.status == 1) {
-            return "/cis/icons2/quit.png";
-          } else if (tt.status == -1) {
-            return "/cis/icons2/plus.png";
-          } else if (tt.status == 4) {
-            return "/cis/icons2/plus.png";
-          } else {
 
-            return "/cis/icons/remove11.png";
+        default:
+          if (tt.isIs_loaded()) {
+            if (tt.status == 1) {
+              return "/cis/icons2/quit.png";
+            } else if (tt.status == -1) {
+              return "/cis/icons2/plus.png";
+            } else if (tt.status == 4) {
+              return "/cis/icons2/plus.png";
+            } else {
+              return "/cis/icons/remove11.png";
+            }
+          } else {
+            return "/cis/icons/tool.png";
           }
 
       }
@@ -5111,7 +5122,13 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     Field.Input stud = (Field.Input) tf_field8;
     Field.Input co = (Field.Input) tf_field131;
 
-    List<Students_curriculum.curriculum> datas = Students_curriculum.ret_data(acad.id, FitIn.toInt(co.getId()), FitIn.toInt(stud.getId()));
+    List<Students_curriculum.curriculum> datas = new ArrayList();
+    if (jCheckBox33.isSelected()) {
+      datas = Students_curriculum.ret_data(acad.id, FitIn.toInt(co.getId()), FitIn.toInt(stud.getId()));
+    } else {
+      datas = Students_curriculum.ret_data2(acad.id, FitIn.toInt(co.getId()), FitIn.toInt(stud.getId()));
+
+    }
     enrolled_subjects = datas;
     loadData_enrollment_student_loaded_subjects(datas);
     filter_enrolled_subjects();
@@ -5162,195 +5179,227 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
     }
     Students_curriculum.curriculum to = (Students_curriculum.curriculum) tbl_enrollment_student_loaded_subjects_ALM.get(row);
     int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
-    if (col == 5) {
-      if (to.status == -1 || to.status == 4) {
-        List<Academic_offering_subjects.to_academic_offering_subjects> aoss = Academic_offering_subjects.ret_data(" where subject_id = '" + to.subject_id + "' and course_id ='" + to.course_id + "' and academic_year_id='" + to.academic_year_id + "' ");
-        Window p = (Window) this;
-        Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
-        nd.setTitle("");
-        Academic_offering_subjects.to_academic_offering_subjects aos = null;
-        boolean is_autoload = false;
-        if (jCheckBox33.isSelected()) {
-          is_autoload = true;
-        }
-        if (!aoss.isEmpty()) {
-          aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
-          nd.do_pass(aos, acad.id, enroll, is_autoload);
-        }
-        final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
-        nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
-          @Override
-          public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
-            closeDialog.ok();
+    if (!to.is_loaded) {
+      if (col == 4) {
+        if (!to.is_loaded) {
+          Field.Input stud = (Field.Input) tf_field8;
+          List<String> datas = Students_curriculum.getStudentEnrolledSubjectDetail(stud.getId(), "" + to.subject_id);
+          if (!datas.isEmpty()) {
+            if (FitIn.toInt(datas.get(5)) == 1) {
+              to.setStatus(FitIn.toInt(datas.get(0)));
+              to.setTerm(datas.get(1));
+              to.setSection(datas.get(2));
+              to.setAcademic_offering_subject_id(FitIn.toInt(datas.get(3)));
+              to.setId(FitIn.toInt(datas.get(4)));
+              to.setIs_loaded(true);
+              tbl_enrollment_student_loaded_subjects_M.fireTableCellUpdated(row, 4);
+              tbl_enrollment_student_loaded_subjects_M.fireTableCellUpdated(row, 5);
+              tbl_enrollment_student_loaded_subjects_M.fireTableDataChanged();
+            } else {
+              to.setIs_loaded(true);
+              tbl_enrollment_student_loaded_subjects_M.fireTableCellUpdated(row, 4);
+              tbl_enrollment_student_loaded_subjects_M.fireTableCellUpdated(row, 5);
+              tbl_enrollment_student_loaded_subjects_M.fireTableDataChanged();
+            }
 
-            int id = 0;
-            int enrollment_id = enroll.id;
-            String enrollment_no = enroll.enrollment_no;
-            Field.Input stud = (Field.Input) tf_field8;
-
-            int student_id = FitIn.toInt(stud.getId());
-            String student_no = stud.getText();
-            String fname = tf_field5.getText();
-            String mi = tf_field6.getText();
-            String lname = tf_field7.getText();
-            int enrollment_offered_subject_section_id = data.to.id;
-            int enrollment_offered_subject_id = data.to.enrollment_offered_subject_id;
-            int academic_offering_subject_id = aos2.id;
-            int academic_offering_id = aos2.academic_offering_id;
-            int academic_year_id = aos2.academic_year_id;
-            String academic_year = aos2.academic_year;
-            int level_id = aos2.level_id;
-            String level = aos2.level;
-            int college_id = aos2.college_id;
-            String college = aos2.college;
-            int department_id = aos2.department_id;
-            String department = aos2.department;
-            int course_id = aos2.course_id;
-            String course_code = aos2.course_code;
-            String course_description = aos2.course_description;
-            String term = aos2.term;
-            String year_level = aos2.year_level;
-            int subject_id = aos2.subject_id;
-            String subject_code = aos2.subject_code;
-            String description = aos2.description;
-            int lecture_units = FitIn.toInt("" + aos2.lecture_units);
-            int lab_units = FitIn.toInt("" + to.lab_units);
-            String faculty_id = data.to.faculty_id;
-            String faculty_name = data.to.faculty_name;
-            String section = data.to.section;
-            int room_id = data.to.room_id;
-            String room = data.to.room;
-            String schedule = data.to.schedule;
-            String day = data.to.day;
-            String time = data.to.time;
-            String start_time = null;
-            String closing_time = null;
-            String created_at = DateType.now();
-            String updated_at = DateType.now();
-            String created_by = MyUser.getUser_id();
-            String updated_by = MyUser.getUser_id();
-            int status = 0;
-            int is_uploaded = 0;
-            double final_grade = 0;
-            String final_grade_remarks = "";
-            String final_grade_created_at = DateType.now();
-            String final_grade_created_by = "";
-            int is_payed = 0;
-            double retake = 0;
-            Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
-            Enrollment_student_loaded_subjects.add_data(load);
-
-            ret_enrolled_subjects();
-            ret_added_subjects();
-            Alert.set(1, "");
           }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-      }
-      if (to.status == 0) {
-        Window p = (Window) this;
-        Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
-        nd.setTitle("");
-        nd.do_pass("<html>Are you sure you want to delete <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
+        }
 
-        nd.setCallback(new Dlg_confirm_delete2.Callback() {
-          @Override
-          public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
-            closeDialog.ok();
-            Enrollment_student_loaded_subjects.delete_data2(to.id);
-            ret_enrolled_subjects();
-            ret_added_subjects();
-            Alert.set(3, "");
+      }
+
+    } else {
+
+      if (col == 5) {
+        if (to.status == -1 || to.status == 4) {
+          List<Academic_offering_subjects.to_academic_offering_subjects> aoss = Academic_offering_subjects.ret_data(" where subject_id = '" + to.subject_id + "' and course_id ='" + to.course_id + "' and academic_year_id='" + to.academic_year_id + "' ");
+          Window p = (Window) this;
+          Dlg_dean_student_advice_load_subject nd = Dlg_dean_student_advice_load_subject.create(p, true);
+          nd.setTitle("");
+          Academic_offering_subjects.to_academic_offering_subjects aos = null;
+          boolean is_autoload = false;
+          if (jCheckBox33.isSelected()) {
+            is_autoload = true;
           }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-      }
-      if (to.status == 1) {
-        final int enrollment_student_loaded_subject_id = to.id;
-        List<Students_curriculum.curriculum> drops = tbl_dropped_subjects_ALM;
+          if (!aoss.isEmpty()) {
+            aos = (Academic_offering_subjects.to_academic_offering_subjects) aoss.get(0);
+            nd.do_pass(aos, acad.id, enroll, is_autoload);
+          }
+          final Academic_offering_subjects.to_academic_offering_subjects aos2 = aos;
+          nd.setCallback(new Dlg_dean_student_advice_load_subject.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_dean_student_advice_load_subject.OutputData data) {
+              closeDialog.ok();
 
-        int drop_exists = 0;
-        for (Students_curriculum.curriculum drop : drops) {
+              int id = 0;
+              int enrollment_id = enroll.id;
+              String enrollment_no = enroll.enrollment_no;
+              Field.Input stud = (Field.Input) tf_field8;
+
+              int student_id = FitIn.toInt(stud.getId());
+              String student_no = stud.getText();
+              String fname = tf_field5.getText();
+              String mi = tf_field6.getText();
+              String lname = tf_field7.getText();
+              int enrollment_offered_subject_section_id = data.to.id;
+              int enrollment_offered_subject_id = data.to.enrollment_offered_subject_id;
+              int academic_offering_subject_id = aos2.id;
+              int academic_offering_id = aos2.academic_offering_id;
+              int academic_year_id = aos2.academic_year_id;
+              String academic_year = aos2.academic_year;
+              int level_id = aos2.level_id;
+              String level = aos2.level;
+              int college_id = aos2.college_id;
+              String college = aos2.college;
+              int department_id = aos2.department_id;
+              String department = aos2.department;
+              int course_id = aos2.course_id;
+              String course_code = aos2.course_code;
+              String course_description = aos2.course_description;
+              String term = aos2.term;
+              String year_level = aos2.year_level;
+              int subject_id = aos2.subject_id;
+              String subject_code = aos2.subject_code;
+              String description = aos2.description;
+              int lecture_units = FitIn.toInt("" + aos2.lecture_units);
+              int lab_units = FitIn.toInt("" + to.lab_units);
+              String faculty_id = data.to.faculty_id;
+              String faculty_name = data.to.faculty_name;
+              String section = data.to.section;
+              int room_id = data.to.room_id;
+              String room = data.to.room;
+              String schedule = data.to.schedule;
+              String day = data.to.day;
+              String time = data.to.time;
+              String start_time = null;
+              String closing_time = null;
+              String created_at = DateType.now();
+              String updated_at = DateType.now();
+              String created_by = MyUser.getUser_id();
+              String updated_by = MyUser.getUser_id();
+              int status = 0;
+              int is_uploaded = 0;
+              double final_grade = 0;
+              String final_grade_remarks = "";
+              String final_grade_created_at = DateType.now();
+              String final_grade_created_by = "";
+              int is_payed = 0;
+              double retake = 0;
+              Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects load = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, 1, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
+              Enrollment_student_loaded_subjects.add_data(load);
+
+              ret_enrolled_subjects();
+              ret_added_subjects();
+              Alert.set(1, "");
+            }
+          });
+          nd.setLocationRelativeTo(this);
+          nd.setVisible(true);
+        }
+        if (to.status == 0) {
+          Window p = (Window) this;
+          Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
+          nd.setTitle("");
+          nd.do_pass("<html>Are you sure you want to delete <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
+
+          nd.setCallback(new Dlg_confirm_delete2.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
+              closeDialog.ok();
+              Enrollment_student_loaded_subjects.delete_data2(to.id);
+              ret_enrolled_subjects();
+              ret_added_subjects();
+              Alert.set(3, "");
+            }
+          });
+          nd.setLocationRelativeTo(this);
+          nd.setVisible(true);
+        }
+        if (to.status == 1) {
+          final int enrollment_student_loaded_subject_id = to.id;
+          List<Students_curriculum.curriculum> drops = tbl_dropped_subjects_ALM;
+
+          int drop_exists = 0;
+          for (Students_curriculum.curriculum drop : drops) {
 //                    System.out.println("subj: " + drop.subject_code+ " | "+drop.id);
-          if (drop.academic_offering_subject_id == enrollment_student_loaded_subject_id) {
-            drop_exists = 1;
-            break;
+            if (drop.academic_offering_subject_id == enrollment_student_loaded_subject_id) {
+              drop_exists = 1;
+              break;
+            }
           }
-        }
-        if (drop_exists == 1) {
-          Alert.set(0, "Drop request already added!");
-          return;
-        }
-
-        Window p = (Window) this;
-        Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
-        nd.setTitle("");
-        nd.do_pass("<html>Are you sure you want to drop <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
-        nd.setCallback(new Dlg_confirm_delete2.Callback() {
-          @Override
-          public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
-            closeDialog.ok();
-            int id = 0;
-
-            List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> enrollments = Enrollment_student_loaded_subjects.ret_data(" where id='" + to.id + "' ");
-            Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects enroll = enrollments.get(0);
-            int enrollment_id = enroll.enrollment_id;
-            String enrollment_no = enroll.enrollment_no;
-            int student_id = enroll.student_id;
-            String student_no = enroll.student_no;
-            String fname = enroll.fname;
-            String mi = enroll.mi;
-            String lname = enroll.lname;
-            int enrollment_offered_subject_section_id = enroll.enrollment_offered_subject_section_id;
-            int enrollment_offered_subject_id = enroll.enrollment_offered_subject_id;
-            int academic_offering_subject_id = enroll.academic_offering_subject_id;
-            int academic_offering_id = enroll.academic_offering_id;
-            int academic_year_id = enroll.academic_year_id;
-            String academic_year = enroll.academic_year;
-            int level_id = enroll.level_id;
-            String level = enroll.level;
-            int college_id = enroll.college_id;
-            String college = enroll.college;
-            int department_id = enroll.department_id;
-            String department = enroll.department;
-            int course_id = enroll.course_id;
-            String course_code = enroll.course_code;
-            String course_description = enroll.course_description;
-            String term = enroll.term;
-            String year_level = enroll.year_level;
-            int subject_id = enroll.subject_id;
-            String subject_code = enroll.subject_code;
-            String description = enroll.description;
-            int lecture_units = enroll.lecture_units;
-            int lab_units = enroll.lab_units;
-            String faculty_id = enroll.faculty_id;
-            String faculty_name = enroll.faculty_name;
-            String section = enroll.section;
-            int room_id = enroll.room_id;
-            String room = enroll.room;
-            String schedule = enroll.schedule;
-            String day = enroll.day;
-            String time = enroll.time;
-            String start_time = enroll.start_time;
-            String closing_time = enroll.closing_time;
-            String created_at = DateType.now();
-            String updated_at = DateType.now();
-            String created_by = MyUser.getUser_id();
-            String updated_by = MyUser.getUser_id();
-            int status = 0;
-            int is_uploaded = 0;
-            Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests to2 = new Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests(id, enrollment_student_loaded_subject_id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
-            Enrollment_student_loaded_subjects_drop_requests.add_data(to2);
-            ret_dropped_subjects();
-            Alert.set(1, "");
+          if (drop_exists == 1) {
+            Alert.set(0, "Drop request already added!");
+            return;
           }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
+
+          Window p = (Window) this;
+          Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
+          nd.setTitle("");
+          nd.do_pass("<html>Are you sure you want to drop <b>" + to.course_code + " - " + to.course_description + "</b> subject?</html>");
+          nd.setCallback(new Dlg_confirm_delete2.Callback() {
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
+              closeDialog.ok();
+              int id = 0;
+
+              List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> enrollments = Enrollment_student_loaded_subjects.ret_data(" where id='" + to.id + "' ");
+              Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects enroll = enrollments.get(0);
+              int enrollment_id = enroll.enrollment_id;
+              String enrollment_no = enroll.enrollment_no;
+              int student_id = enroll.student_id;
+              String student_no = enroll.student_no;
+              String fname = enroll.fname;
+              String mi = enroll.mi;
+              String lname = enroll.lname;
+              int enrollment_offered_subject_section_id = enroll.enrollment_offered_subject_section_id;
+              int enrollment_offered_subject_id = enroll.enrollment_offered_subject_id;
+              int academic_offering_subject_id = enroll.academic_offering_subject_id;
+              int academic_offering_id = enroll.academic_offering_id;
+              int academic_year_id = enroll.academic_year_id;
+              String academic_year = enroll.academic_year;
+              int level_id = enroll.level_id;
+              String level = enroll.level;
+              int college_id = enroll.college_id;
+              String college = enroll.college;
+              int department_id = enroll.department_id;
+              String department = enroll.department;
+              int course_id = enroll.course_id;
+              String course_code = enroll.course_code;
+              String course_description = enroll.course_description;
+              String term = enroll.term;
+              String year_level = enroll.year_level;
+              int subject_id = enroll.subject_id;
+              String subject_code = enroll.subject_code;
+              String description = enroll.description;
+              int lecture_units = enroll.lecture_units;
+              int lab_units = enroll.lab_units;
+              String faculty_id = enroll.faculty_id;
+              String faculty_name = enroll.faculty_name;
+              String section = enroll.section;
+              int room_id = enroll.room_id;
+              String room = enroll.room;
+              String schedule = enroll.schedule;
+              String day = enroll.day;
+              String time = enroll.time;
+              String start_time = enroll.start_time;
+              String closing_time = enroll.closing_time;
+              String created_at = DateType.now();
+              String updated_at = DateType.now();
+              String created_by = MyUser.getUser_id();
+              String updated_by = MyUser.getUser_id();
+              int status = 0;
+              int is_uploaded = 0;
+              Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests to2 = new Enrollment_student_loaded_subjects_drop_requests.to_enrollment_student_loaded_subjects_drop_requests(id, enrollment_student_loaded_subject_id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded);
+              Enrollment_student_loaded_subjects_drop_requests.add_data(to2);
+              ret_dropped_subjects();
+              Alert.set(1, "");
+            }
+          });
+          nd.setLocationRelativeTo(this);
+          nd.setVisible(true);
+        }
       }
     }
+
   }
 //</editor-fold> 
 

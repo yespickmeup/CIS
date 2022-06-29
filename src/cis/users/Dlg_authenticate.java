@@ -11,6 +11,7 @@ import cis.utils.DeEncrypter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
@@ -24,160 +25,160 @@ import synsoftech.fields.Field;
  */
 public class Dlg_authenticate extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_authenticate
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_authenticate
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
-    }
+  }
 
-    public static interface Callback {
+  public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
 
-    public static class InputData {
-    }
+  public static class InputData {
+  }
 
-    public static class OutputData {
-    }
+  public static class OutputData {
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_authenticate(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_authenticate(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_authenticate(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_authenticate() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_authenticate myRef;
+
+  private void setThisRef(Dlg_authenticate myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_authenticate> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_authenticate create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_authenticate(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_authenticate() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_authenticate myRef;
+  public static Dlg_authenticate create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_authenticate myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_authenticate> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_authenticate dialog = dialogContainer.get(parent);
 
-    public static Dlg_authenticate create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
-
-    }
-
-    public static Dlg_authenticate create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
-
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_authenticate dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_authenticate((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_authenticate dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_authenticate((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
-
-    }
-    //</editor-fold>    
-
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
-
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Dlg_authenticate dialog = Dlg_authenticate.create(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
+      if (dialog == null) {
+        dialog = new Dlg_authenticate((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_authenticate dialog = dialogContainer.get(parent);
+
+      if (dialog == null) {
+        dialog = new Dlg_authenticate((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
+
     }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+    return null;
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  }
+  //</editor-fold>    
+
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_authenticate dialog = Dlg_authenticate.create(new javax.swing.JFrame(), true);
+    dialog.setVisible(true);
+
+  }
+  //</editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
+    }
+
+  }
+
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
+
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -308,28 +309,28 @@ public class Dlg_authenticate extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_usernameMouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_usernameMouseClicked
 
     private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_usernameActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        authenticate();
+      authenticate();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        disposed();
+      disposed();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
-        authenticate();
+      authenticate();
     }//GEN-LAST:event_tf_passwordActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton8;
@@ -342,53 +343,85 @@ public class Dlg_authenticate extends javax.swing.JDialog {
     private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
 
-    private void myInit() {
+  private void myInit() {
 //        System.setProperty("pool_host", "localhost");
 //        System.setProperty("pool_db", "db_cis_cosca");
 //        System.setProperty("pool_password", "password");
-        init_key();
-    }
+    init_key();
+  }
 
-    public void do_pass() {
+  boolean override_downpayment = false;
 
-    }
+  public void do_pass() {
 
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
+  }
 
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
+  public void do_override_downpayment() {
+    override_downpayment = true;
+  }
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
+
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
-    }
-    // </editor-fold>
+                      disposed();
+                    }
+                  });
+  }
+  // </editor-fold>
 
-    private void authenticate() {
-        String user_name = tf_username.getText();
-        String date = DateType.sf.format(new Date());
-        String password = tf_password.getText();
-        password = DeEncrypter.encrypt(password);
-        String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
-        final Users.to_users to = Users.ret_data_autho(where);
-        if (to == null) {
-            Alert.set(0, "Incorrect username or password!");
-            tf_username.grabFocus();
-            return;
+  private void authenticate() {
+    if (!override_downpayment) {
+      String user_name = tf_username.getText();
+      String date = DateType.sf.format(new Date());
+      String password = tf_password.getText();
+      password = DeEncrypter.encrypt(password);
+      String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
+      final Users.to_users to = Users.ret_data_autho(where);
+      if (to == null) {
+        Alert.set(0, "Incorrect username or password!");
+        tf_username.grabFocus();
+        return;
+      }
+      ok1();
+    } else {
+      String user_name = tf_username.getText();
+      String password = tf_password.getText();
+      password = DeEncrypter.encrypt(password);
+      String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
+
+      final Users.to_users to = Users.ret_data_autho(where);
+      if (to == null) {
+        Alert.set(0, "Incorrect username or password!");
+        tf_username.grabFocus();
+        return;
+      } else {
+        String where2 = " where user_name like '" + user_name + "' and  name like '" + "Override Downpayment - (Add)" + "'";
+        List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
+        if (!privs.isEmpty()) {
+          ok1();
+        } else {
+          Alert.set(0, "Privilege not added!");
+          return;
         }
-        ok1();
+
+      }
+
     }
 
-    private void ok1() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
+  }
+
+  private void ok1() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
     }
+  }
 }
