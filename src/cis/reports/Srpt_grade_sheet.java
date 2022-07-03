@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import mijzcx.synapse.desk.utils.Application;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -932,7 +933,8 @@ public class Srpt_grade_sheet {
                             + ",sixth"
                             + ",remarks"
                             + " from enrollment_student_loaded_subject_grades "
-                            + " where enrollment_student_loaded_subject_id='" + id2 + "' limit 1";
+                            + " where enrollment_student_loaded_subject_id='" + id2 + "' order by id desc limit 1";
+//                    System.out.println("id2: "+id2);
                     Statement stmt5 = conn.createStatement();
                     ResultSet rs5 = stmt5.executeQuery(s5);
                     if (rs5.next()) {
@@ -1016,7 +1018,7 @@ public class Srpt_grade_sheet {
         } else if (stmt == null) {
             return null;
         } else {
-            return stmt;
+            return FitIn.fmt_wc_0(stmt);
         }
     }
 }

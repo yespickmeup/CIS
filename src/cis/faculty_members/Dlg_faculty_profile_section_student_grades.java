@@ -27,179 +27,179 @@ import synsoftech.fields.Field;
  */
 public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_faculty_profile_section_student_grades
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_faculty_profile_section_student_grades
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
+  }
+
+  public static interface Callback {
+
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
+
+  public static class InputData {
+  }
+
+  public static class OutputData {
+
+    public final double first;
+    public final double second;
+    public final double third;
+    public final double fourth;
+    public final double fifth;
+    public final double final_grade;
+    public final String remarks;
+
+    public OutputData(double first, double second, double third, double fourth, double fifth, double final_grade, String remarks) {
+      this.first = first;
+      this.second = second;
+      this.third = third;
+      this.fourth = fourth;
+      this.fifth = fifth;
+      this.final_grade = final_grade;
+      this.remarks = remarks;
     }
 
-    public static interface Callback {
-
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
-
-    public static class InputData {
-    }
-
-    public static class OutputData {
-
-        public final double first;
-        public final double second;
-        public final double third;
-        public final double fourth;
-        public final double fifth;
-        public final double final_grade;
-        public final String remarks;
-
-        public OutputData(double first, double second, double third, double fourth, double fifth, double final_grade, String remarks) {
-            this.first = first;
-            this.second = second;
-            this.third = third;
-            this.fourth = fourth;
-            this.fifth = fifth;
-            this.final_grade = final_grade;
-            this.remarks = remarks;
-        }
-
-    }
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_faculty_profile_section_student_grades(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_faculty_profile_section_student_grades(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_faculty_profile_section_student_grades(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_faculty_profile_section_student_grades() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_faculty_profile_section_student_grades myRef;
+
+  private void setThisRef(Dlg_faculty_profile_section_student_grades myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_faculty_profile_section_student_grades> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_faculty_profile_section_student_grades create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_faculty_profile_section_student_grades(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_faculty_profile_section_student_grades() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_faculty_profile_section_student_grades myRef;
+  public static Dlg_faculty_profile_section_student_grades create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_faculty_profile_section_student_grades myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_faculty_profile_section_student_grades> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_faculty_profile_section_student_grades dialog = dialogContainer.get(parent);
 
-    public static Dlg_faculty_profile_section_student_grades create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
-
-    }
-
-    public static Dlg_faculty_profile_section_student_grades create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
-
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_faculty_profile_section_student_grades dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_faculty_profile_section_student_grades((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_faculty_profile_section_student_grades dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_faculty_profile_section_student_grades((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
-
-    }
-    //</editor-fold>    
-
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
-
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Dlg_faculty_profile_section_student_grades dialog = Dlg_faculty_profile_section_student_grades.create(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
+      if (dialog == null) {
+        dialog = new Dlg_faculty_profile_section_student_grades((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_faculty_profile_section_student_grades dialog = dialogContainer.get(parent);
+
+      if (dialog == null) {
+        dialog = new Dlg_faculty_profile_section_student_grades((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
+
     }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+    return null;
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  }
+  //</editor-fold>    
+
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_faculty_profile_section_student_grades dialog = Dlg_faculty_profile_section_student_grades.create(new javax.swing.JFrame(), true);
+    dialog.setVisible(true);
+
+  }
+  //</editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
+    }
+
+  }
+
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
+
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -618,40 +618,40 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        disposed();
+      disposed();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tf_field21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field21KeyReleased
-        count();
+      count();
     }//GEN-LAST:event_tf_field21KeyReleased
 
     private void tf_field22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field22KeyReleased
-        count();
+      count();
     }//GEN-LAST:event_tf_field22KeyReleased
 
     private void tf_field23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field23KeyReleased
-        count();
+      count();
     }//GEN-LAST:event_tf_field23KeyReleased
 
     private void tf_field24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field24KeyReleased
-        count();
+      count();
     }//GEN-LAST:event_tf_field24KeyReleased
 
     private void tf_field25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_field25KeyReleased
-        count();
+      count();
     }//GEN-LAST:event_tf_field25KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        save();
+      save();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tf_field25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field25ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tf_field25ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -693,202 +693,206 @@ public class Dlg_faculty_profile_section_student_grades extends javax.swing.JDia
     private javax.swing.JTextField tf_field26;
     // End of variables declaration//GEN-END:variables
 
-    private void myInit() {
-        init_key();
-        jCheckBox7.setVisible(false);
+  private void myInit() {
+    init_key();
+    jCheckBox7.setVisible(false);
+
+    jLabel31.setVisible(false);
+    tf_field23.setVisible(false);
+
+    jLabel33.setVisible(false);
+    tf_field25.setVisible(false);
+  }
+
+  public void do_pass(Srpt_class_list.field to) {
+    tf_field16.setText(to.getStudent_no());
+    tf_field17.setText(to.getStudent_name());
+    tf_field18.setText(to.getCourse());
+    tf_field19.setText(to.getYear_level());
+    tf_field20.setText(to.getContact_no());
+    List<Students.to_students> students = Students.ret_data(" where student_no='" + to.getStudent_no() + "' ");
+    if (!students.isEmpty()) {
+      Students.to_students student = students.get(0);
+      String department = student.department;
+      if (department.equalsIgnoreCase("TERTIARY DEPARTMENT") || department.equalsIgnoreCase("SENIOR HIGH SCHOOL")) {
+
+        jLabel29.setText("Prelim");
+        jLabel30.setText("Midterm");
+        jLabel31.setText("Prelim");
+        jLabel32.setText("Final");
+      }
+      if (department.equalsIgnoreCase("BASIC EDUCATION")) {
+        jLabel29.setText("1st Quarter");
+        jLabel30.setText("2nd Quarter");
+        jLabel31.setText("3rd Quarter");
+        jLabel32.setText("4th Quarter");
+      }
     }
 
-    public void do_pass(Srpt_class_list.field to) {
-        tf_field16.setText(to.getStudent_no());
-        tf_field17.setText(to.getStudent_name());
-        tf_field18.setText(to.getCourse());
-        tf_field19.setText(to.getYear_level());
-        tf_field20.setText(to.getContact_no());
-        List<Students.to_students> students = Students.ret_data(" where student_no='" + to.getStudent_no() + "' ");
-        if (!students.isEmpty()) {
-            Students.to_students student = students.get(0);
-            String department = student.department;
-            if (department.equalsIgnoreCase("TERTIARY DEPARTMENT") || department.equalsIgnoreCase("SENIOR HIGH SCHOOL")) {
-              
-                jLabel29.setText("Prelim");
-                jLabel30.setText("Midterm");
-                jLabel31.setText("Prelim");
-                jLabel32.setText("Final");
-            }
-            if (department.equalsIgnoreCase("BASIC EDUCATION")) {
-                jLabel29.setText("1st Quarter");
-                jLabel30.setText("2nd Quarter");
-                jLabel31.setText("3rd Quarter");
-                jLabel32.setText("4th Quarter");
-            }
-        }
+    String where = " where enrollment_student_loaded_subject_id='" + to.getEsls_id() + "' order by id desc limit 1";
+    List<Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades> datas = Enrollment_student_loaded_subject_grades.ret_data(where);
+    if (!datas.isEmpty()) {
+      Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades to1 = (Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades) datas.get(0);
 
-        String where = " where enrollment_student_loaded_subject_id='" + to.getEsls_id() + "' order by id desc limit 1";
-        List<Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades> datas = Enrollment_student_loaded_subject_grades.ret_data(where);
-        if (!datas.isEmpty()) {
-            Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades to1 = (Enrollment_student_loaded_subject_grades.to_enrollment_student_loaded_subject_grades) datas.get(0);
+      tf_field21.setText(FitIn.fmt_woc_0(to1.first));
+      tf_field22.setText(FitIn.fmt_woc_0(to1.second));
+      tf_field23.setText(FitIn.fmt_woc_0(to1.third));
+      tf_field24.setText(FitIn.fmt_woc_0(to1.fourth));
+      tf_field25.setText(FitIn.fmt_woc_0(to1.fifth));
+      tf_field26.setText(FitIn.fmt_woc_0(to1.sixth));
 
-            tf_field21.setText(FitIn.fmt_woc_0(to1.first));
-            tf_field22.setText(FitIn.fmt_woc_0(to1.second));
-            tf_field23.setText(FitIn.fmt_woc_0(to1.third));
-            tf_field24.setText(FitIn.fmt_woc_0(to1.fourth));
-            tf_field25.setText(FitIn.fmt_woc_0(to1.fifth));
-            tf_field26.setText(FitIn.fmt_woc_0(to1.sixth));
+      String remarks = "Passed";
+      if (to1.remarks.equalsIgnoreCase("Passed")) {
+        jCheckBox1.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("Failed")) {
+        jCheckBox2.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("Incomplete")) {
+        jCheckBox3.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("Dropped")) {
+        jCheckBox4.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("No Credit")) {
+        jCheckBox7.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("No Grade")) {
+        jCheckBox7.setSelected(true);
+      } else if (to1.remarks.equalsIgnoreCase("In Progress")) {
+        jCheckBox8.setSelected(true);
+      } else {
+        jCheckBox7.setSelected(true);
+      }
+      if (to1.sixth > 0 && to1.sixth < 75) {
+        tf_field26.setBackground(java.awt.Color.red);
+      } else if (to1.sixth <= 0) {
+        tf_field26.setBackground(new java.awt.Color(255, 255, 255));
+        tf_field26.setText("");
+      } else if (to1.sixth > 74) {
+        tf_field26.setBackground(new java.awt.Color(0, 102, 255));
+      } else {
+        tf_field26.setBackground(new java.awt.Color(255, 255, 255));
+        tf_field26.setText("");
+      }
 
-            String remarks = "Passed";
-            if (to1.remarks.equalsIgnoreCase("Passed")) {
-                jCheckBox1.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("Failed")) {
-                jCheckBox2.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("Incomplete")) {
-                jCheckBox3.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("Dropped")) {
-                jCheckBox4.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("No Credit")) {
-                jCheckBox7.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("No Grade")) {
-                jCheckBox7.setSelected(true);
-            } else if (to1.remarks.equalsIgnoreCase("In Progress")) {
-                jCheckBox8.setSelected(true);
-            } else {
-                jCheckBox7.setSelected(true);
-            }
-            if (to1.sixth > 0 && to1.sixth < 75) {
-                tf_field26.setBackground(java.awt.Color.red);
-            } else if (to1.sixth <= 0) {
-                tf_field26.setBackground(new java.awt.Color(255, 255, 255));
-                tf_field26.setText("");
-            } else if (to1.sixth > 74) {
-                tf_field26.setBackground(new java.awt.Color(0, 102, 255));
-            } else {
-                tf_field26.setBackground(new java.awt.Color(255, 255, 255));
-                tf_field26.setText("");
-            }
-
-        }
     }
+  }
 
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
 
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
+                      disposed();
+                    }
+                  });
+  }
+  // </editor-fold>
+
+  private void count() {
+    double first = FitIn.toDouble(tf_field21.getText());
+    double second = FitIn.toDouble(tf_field22.getText());
+    double third = FitIn.toDouble(tf_field23.getText());
+    double fourth = FitIn.toDouble(tf_field24.getText());
+    double fifth = FitIn.toDouble(tf_field25.getText());
+
+    int div = 0;
+    if (first > 1) {
+      div++;
     }
-    // </editor-fold>
-
-    private void count() {
-        double first = FitIn.toDouble(tf_field21.getText());
-        double second = FitIn.toDouble(tf_field22.getText());
-        double third = FitIn.toDouble(tf_field23.getText());
-        double fourth = FitIn.toDouble(tf_field24.getText());
-        double fifth = FitIn.toDouble(tf_field25.getText());
-
-        int div = 0;
-        if (first > 1) {
-            div++;
-        }
-        if (second > 1) {
-            div++;
-        }
-        if (third > 1) {
-            div++;
-        }
-        if (fourth > 1) {
-            div++;
-        }
+    if (second > 1) {
+      div++;
+    }
+//    if (third > 1) {
+//      div++;
+//    }
+    if (fourth > 1) {
+      div++;
+    }
 //        if (fifth > 1) {
 //            div++;
 //        }
-        double grade = (first + second + third + fourth) / div;
+    double grade = (first + second + fourth) / div;
 //        System.out.println("grade: " + grade);
-        tf_field26.setText(FitIn.fmt_woc_0(grade));
-        if (grade > 0 && grade < 75) {
-            tf_field26.setBackground(java.awt.Color.red);
-        } else if (grade <= 0) {
-            tf_field26.setBackground(new java.awt.Color(255, 255, 255));
-            tf_field26.setText("");
-        } else if (grade > 74) {
-            tf_field26.setBackground(new java.awt.Color(0, 102, 255));
-        } else {
-            tf_field26.setBackground(new java.awt.Color(255, 255, 255));
-            tf_field26.setText("");
-        }
+    tf_field26.setText(FitIn.fmt_woc_0(grade));
+    if (grade > 0 && grade < 75) {
+      tf_field26.setBackground(java.awt.Color.red);
+    } else if (grade <= 0) {
+      tf_field26.setBackground(new java.awt.Color(255, 255, 255));
+      tf_field26.setText("");
+    } else if (grade > 74) {
+      tf_field26.setBackground(new java.awt.Color(0, 102, 255));
+    } else {
+      tf_field26.setBackground(new java.awt.Color(255, 255, 255));
+      tf_field26.setText("");
     }
+  }
 
-    private void save() {
-        Window p = (Window) this;
-        Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
-        nd.setTitle("");
+  private void save() {
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
 //        nd.do_pass(services);
-        nd.setCallback(new Dlg_confirm_action.Callback() {
+    nd.setCallback(new Dlg_confirm_action.Callback() {
 
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
-                closeDialog.ok();
-                ok1();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+        ok1();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void ok1() {
+    double first = FitIn.toDouble(tf_field21.getText());
+    double second = FitIn.toDouble(tf_field22.getText());
+    double third = FitIn.toDouble(tf_field23.getText());
+    double fourth = FitIn.toDouble(tf_field24.getText());
+    double fifth = FitIn.toDouble(tf_field25.getText());
+
+    int div = 0;
+    if (first > 1) {
+      div++;
+    }
+    if (second > 1) {
+      div++;
     }
 
-    private void ok1() {
-        double first = FitIn.toDouble(tf_field21.getText());
-        double second = FitIn.toDouble(tf_field22.getText());
-        double third = FitIn.toDouble(tf_field23.getText());
-        double fourth = FitIn.toDouble(tf_field24.getText());
-        double fifth = FitIn.toDouble(tf_field25.getText());
-
-        int div = 0;
-        if (first > 1) {
-            div++;
-        }
-        if (second > 1) {
-            div++;
-        }
-        if (third > 1) {
-            div++;
-        }
-        if (fourth > 1) {
-            div++;
-        }
-
-        double final_grade = (first + second + third + fourth) / div;
-        String remarks = "In Progress";
-        if (jCheckBox1.isSelected()) {
-            remarks = "Passed";
-        }
-        if (jCheckBox2.isSelected()) {
-            remarks = "Failed";
-        }
-        if (jCheckBox3.isSelected()) {
-            remarks = "Incomplete";
-        }
-        if (jCheckBox4.isSelected()) {
-            remarks = "Dropped";
-        }
-        if (jCheckBox7.isSelected()) {
-            remarks = "No Credit";
-        }
-        
-        if (jCheckBox5.isSelected()) {
-            remarks = "No Grade";
-        }
-        if (jCheckBox6.isSelected()) {
-            remarks = "Withdraw";
-        }
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData(first, second, third, fourth, fifth, final_grade, remarks));
-        }
+    if (fourth > 1) {
+      div++;
     }
+
+    double final_grade = (first + second + fourth) / div;
+    String remarks = "In Progress";
+    if (jCheckBox1.isSelected()) {
+      remarks = "Passed";
+    }
+    if (jCheckBox2.isSelected()) {
+      remarks = "Failed";
+    }
+    if (jCheckBox3.isSelected()) {
+      remarks = "Incomplete";
+    }
+    if (jCheckBox4.isSelected()) {
+      remarks = "Dropped";
+    }
+    if (jCheckBox7.isSelected()) {
+      remarks = "No Credit";
+    }
+
+    if (jCheckBox5.isSelected()) {
+      remarks = "No Grade";
+    }
+    if (jCheckBox6.isSelected()) {
+      remarks = "Withdraw";
+    }
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData(first, second, third, fourth, fifth, final_grade, remarks));
+    }
+  }
 }

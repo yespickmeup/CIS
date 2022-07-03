@@ -20,6 +20,7 @@ import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
@@ -758,8 +759,8 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
 
   private void myInit() {
 
-//        System.setProperty("pool_db", "db_cis_cosca");
-//        System.setProperty("pool_password", "password");
+//    System.setProperty("pool_db", "db_cis_cosca");
+//    System.setProperty("pool_password", "password");
     init_key();
 
     acad_years = Academic_years.ret_data(" where status=1 limit 1");
@@ -1301,7 +1302,8 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
   }
 //</editor-fold> 
 
-  private void set_report(Students.to_students to) {
+  private void set_report(Students.to_students to, final String medium1, final String entrance_data1, final String major1, final String date_of_graduation1, final String junior_high1, final String junior_high_date1, final String senior_high1, final String senior_high_date1, final String or_no1, final String prepared_by1, final String registrar1) {
+
     jTabbedPane1.setSelectedIndex(1);
     jProgressBar1.setString("Loading...Please wait...");
     jProgressBar1.setIndeterminate(true);
@@ -1396,11 +1398,12 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
                     } else if (subject.final_grade_created_at == null && subject.status == 1) {
                       status = "Ongoing";
                     }
+                    Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
+                    fields.add(f);
                     break;
                   }
                 }
-                Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
-                fields.add(f);
+
               }
             }
           }
@@ -1410,21 +1413,23 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
         String logo_path = System.getProperty("logo_path", "C:\\\\Users\\\\USER\\\\cis\\\\logo.jpg");
         String logo_path2 = System.getProperty("logo_path2", "C:\\\\Users\\\\USER\\\\cis\\\\logo2.jpg");
         String department = to.department;
-        String major = "xxx";
-        String date_of_graduation = "xxx";
-        String junior_high = "";
-        String senior_high = "";
-        String junior_high_date = "";
-        String senior_high_date = "";
-        String parents = to.father_name + ", "+to.mother_name;
-        if(to.father_name.contains("%") && to.mother_name.contains("%")){
+        String major = major1;
+        String date_of_graduation = date_of_graduation1;
+        String junior_high = junior_high1;
+        String senior_high = senior_high1;
+        String junior_high_date = junior_high_date1;
+        String senior_high_date = senior_high_date1;
+        String parents = to.father_name + ", " + to.mother_name;
+        if (to.father_name.contains("%%") && to.mother_name.contains("%%")) {
           parents = to.guardian_name;
         }
-        String medium_of_instruction = "English CHED School COde: 0729 PRC School Code: 1038";
-        String or = "099689, 01/01/2001";
+        String medium_of_instruction = medium1;
+        String or = or_no1;
         String date = DateType.day_and_time.format(new Date());
+        prepared_by = prepared_by1;
+        verified_by = registrar1;
         Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar, fields, logo_path, logo_path2, department, major, date_of_graduation, junior_high, senior_high, junior_high_date, senior_high_date, parents, medium_of_instruction, or, date);
-       
+
         rpt.fields.addAll(fields);
         report_transcript(rpt, jrxml);
         jProgressBar1.setString("Finished...");
@@ -1484,7 +1489,23 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
     }
     Students.to_students to = (Students.to_students) tbl_enrollments_ALM.get(row);
     int col = tbl_enrollments.getSelectedColumn();
-    set_report(to);
+
+    Window p = (Window) this;
+    Dlg_TOR_details nd = Dlg_TOR_details.create(p, true);
+    nd.setTitle("");
+    nd.do_pass();
+    nd.setCallback(new Dlg_TOR_details.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_TOR_details.OutputData data) {
+        closeDialog.ok();
+        set_report(to, data.medium, data.entrance_data, data.major, data.date_of_graduation, data.junior_high, data.junior_high_date, data.senior_high, data.senior_high_date, data.or_no, data.prepared_by, data.registrar);
+
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+
   }
 
   private void init_academic_years(JTextField tf) {

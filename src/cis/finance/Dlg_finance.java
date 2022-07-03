@@ -4485,6 +4485,7 @@ public class Dlg_finance extends javax.swing.JDialog {
           jPanel17.setMinimumSize(new Dimension(626, 0));
           jPanel17.setMaximumSize(new Dimension(626, 0));
           jPanel17.setPreferredSize(new Dimension(626, 0));
+          jButton17.setText("Downpayment");
           jPanel17.updateUI();
           return;
         }
@@ -4665,7 +4666,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
           double balance = ea.amount - ea.paid;
 //          downpayment += ea.paid;
-          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, sub_total, downpayment, (sub_total-downpayment), tution_fee, misc_fee, other_fee, sub_total, "");
+          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, sub_total, downpayment, (sub_total - downpayment), tution_fee, misc_fee, other_fee, sub_total, "");
           rpt_summary.add(f2);
         }
 
