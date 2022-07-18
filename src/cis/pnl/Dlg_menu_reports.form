@@ -316,7 +316,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/cis/icons2/hand.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Services Report"/>
+            <Property name="toolTipText" type="java.lang.String" value="Collections Report"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>

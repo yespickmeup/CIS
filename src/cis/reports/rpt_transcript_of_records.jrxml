@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74def21a-091e-477e-91ec-8b8a053803c2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="688"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="school_name" class="java.lang.String"/>
 	<parameter name="school_address" class="java.lang.String"/>
 	<parameter name="lname" class="java.lang.String"/>
@@ -37,6 +37,7 @@
 	<parameter name="medium_of_instruction" class="java.lang.String"/>
 	<parameter name="or" class="java.lang.String"/>
 	<parameter name="date" class="java.lang.String"/>
+	<parameter name="photo_url" class="java.lang.String"/>
 	<field name="subject_code" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
 	<field name="final_grade" class="java.lang.String"/>
@@ -157,7 +158,7 @@
 		</band>
 	</background>
 	<title>
-		<band height="313" splitType="Stretch">
+		<band height="316" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="147" y="29" width="276" height="28"/>
 				<box>
@@ -169,10 +170,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Old English Text MT" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Colegio de Sta. Catalina de Alejandria]]></text>
+				<text><![CDATA[Colegio de Sta. Catalina de Alejandria, Inc.]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="193" width="470" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="209" width="470" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -186,7 +187,7 @@
 				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="151" width="188" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="167" width="188" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -228,7 +229,7 @@
 				<text><![CDATA[Bishop Epifanio B. Surban Street, Dumaguete City, Negros Oriental, Philippines]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="147" y="97" width="276" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="147" y="113" width="276" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -242,7 +243,7 @@
 				<text><![CDATA[OFFICE OF THE REGISTRAR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="147" y="111" width="276" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="147" y="127" width="276" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -260,7 +261,7 @@
 				<imageExpression><![CDATA[$P{logo_path}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="137" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="153" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -274,7 +275,7 @@
 				<text><![CDATA[Name of Student:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="151" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="167" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -288,7 +289,7 @@
 				<text><![CDATA[Date of Birth:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="193" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="209" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -302,7 +303,7 @@
 				<text><![CDATA[Home Address:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="179" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="195" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -316,7 +317,7 @@
 				<text><![CDATA[Parent or Guardian:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="165" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="181" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -330,7 +331,7 @@
 				<text><![CDATA[Entrance Data:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="207" width="102" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="223" width="102" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -344,7 +345,7 @@
 				<text><![CDATA[Medium of Instruction:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="137" width="188" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="153" width="188" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -358,7 +359,7 @@
 				<textFieldExpression><![CDATA[$P{lname}+" " +$P{fname}+" " +$P{mname}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="179" width="188" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="195" width="188" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -372,7 +373,7 @@
 				<textFieldExpression><![CDATA[$P{parents}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="165" width="188" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="181" width="188" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -386,7 +387,7 @@
 				<textFieldExpression><![CDATA[$P{entrance_credential}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="207" width="470" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="102" y="223" width="470" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -400,7 +401,7 @@
 				<textFieldExpression><![CDATA[$P{medium_of_instruction}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="242" width="127" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="258" width="127" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -414,7 +415,7 @@
 				<text><![CDATA[Elementary School:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="151" width="86" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="167" width="86" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -428,7 +429,7 @@
 				<text><![CDATA[Degree/Title/Course:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="137" width="86" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="153" width="86" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -442,7 +443,7 @@
 				<text><![CDATA[College/Department:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="165" width="86" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="181" width="86" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -456,7 +457,7 @@
 				<text><![CDATA[Major:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="256" width="127" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="272" width="127" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -470,7 +471,7 @@
 				<text><![CDATA[High School:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="227" width="127" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="243" width="127" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -484,7 +485,7 @@
 				<text><![CDATA[Other Records of Graduation:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="151" width="196" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="167" width="196" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -498,7 +499,7 @@
 				<textFieldExpression><![CDATA[$P{course}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="179" width="86" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="290" y="195" width="86" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -512,7 +513,7 @@
 				<text><![CDATA[Date of Graduation:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="137" width="196" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="153" width="196" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -526,7 +527,7 @@
 				<textFieldExpression><![CDATA[$P{department}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="165" width="196" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="181" width="196" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -540,7 +541,7 @@
 				<textFieldExpression><![CDATA[$P{major}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="179" width="196" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="376" y="195" width="196" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -554,7 +555,7 @@
 				<textFieldExpression><![CDATA[$P{date_of_graduation}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="284" width="127" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="300" width="127" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -568,7 +569,7 @@
 				<text><![CDATA[Senior High School Completer:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="270" width="127" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="0" y="286" width="127" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -582,7 +583,7 @@
 				<text><![CDATA[Junior High School Completer:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="127" y="227" width="373" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="127" y="243" width="373" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -596,7 +597,7 @@
 				<text><![CDATA[School]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="500" y="227" width="72" height="15"/>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="500" y="243" width="72" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -610,7 +611,7 @@
 				<text><![CDATA[Year]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="242" width="373" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="258" width="373" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -624,7 +625,7 @@
 				<textFieldExpression><![CDATA[$P{elementary_school}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="256" width="373" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="272" width="373" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -638,7 +639,7 @@
 				<textFieldExpression><![CDATA[$P{high_school}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="270" width="373" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="286" width="373" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -652,7 +653,7 @@
 				<textFieldExpression><![CDATA[$P{junior_high}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="285" width="373" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="127" y="301" width="373" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -666,7 +667,7 @@
 				<textFieldExpression><![CDATA[$P{senior_high}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="242" width="72" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="258" width="72" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -680,7 +681,7 @@
 				<textFieldExpression><![CDATA[$P{elementary_school_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="256" width="72" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="272" width="72" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -694,7 +695,7 @@
 				<textFieldExpression><![CDATA[$P{high_school_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="270" width="72" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="286" width="72" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -708,7 +709,7 @@
 				<textFieldExpression><![CDATA[$P{junior_high_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="285" width="72" height="15"/>
+				<reportElement uuid="e823df82-506a-43e8-ab40-d9d80d11103b" x="500" y="301" width="72" height="15"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -721,6 +722,24 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{senior_high_date}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="510b2214-84e8-4d23-be16-ef0f82311af9" x="123" y="81" width="325" height="12"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Tel. Nos. (035) 422-9202; 422-3174; Fax (035) 225-7435; Email: cosca.registrar2015@gmail.com]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="3cea27f8-49ff-4f1e-b65f-e98944d58831" x="448" y="29" width="84" height="74"/>
+				<imageExpression><![CDATA[$P{photo_url}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -1516,6 +1516,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
       Academic_year_fees.to_academic_year_fees to2 = (Academic_year_fees.to_academic_year_fees) datas.get(0);
       Field.Input amount = (Field.Input) tf_fixed_amount;
       Field.Input per_unit = (Field.Input) tf_field19;
+//      System.out.println("to2.is_per_unit: "+to2.is_per_unit);
+//        System.out.println("to2.amount: "+to2.amount);
       if (to2.is_per_unit == 0) {
         tf_field19.setEnabled(false);
         tf_field19.setText("");

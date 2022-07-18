@@ -97,7 +97,8 @@ public class MyMain {
       System.setProperty("img_path", prop.getProperty("img_path", System.getProperty("user.home", "C:\\Users\\User") + "\\"));
       System.setProperty("logo_path", prop.getProperty("logo_path", System.getProperty("user.home", "C:\\\\Users\\\\User") + "\\\\cis\\\\logo.jpg"));
       System.setProperty("logo_path2", prop.getProperty("logo_path2", System.getProperty("user.home", "C:\\\\Users\\\\User") + "\\\\cis\\\\logo2.jpg"));
-     
+      System.setProperty("logo_path3", prop.getProperty("logo_path3", System.getProperty("user.home", "C:\\\\Users\\\\User") + "\\\\cis\\\\thumbnail.jpg"));
+
     } catch (IOException e) {
       throw new RuntimeException(e);
     } finally {

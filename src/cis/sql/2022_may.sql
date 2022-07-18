@@ -282,3 +282,12 @@ update students set balance=0;
 update enrollment_assessment_payment_modes set paid=amount;
 
 update student_balance_adjustments set particular="Special Class", particular_id=6 where id=1;
+
+insert into user_default_privileges(account,privilege)values('Maintenance','Backup');
+insert into  user_default_previlege_others(account,account_name,name)values('Transactions','Accounting','Override OR Date');
+
+drop table if exists customers;
+create table customers(
+id int auto_increment primary key
+,name varchar(255)
+);

@@ -1128,6 +1128,154 @@ public class Enrollment_assessments {
     }
   }
 
+  public static void void_collection(Collection.to_collections to_collections) {
+    try {
+      Connection conn = MyConnection.connect();
+      conn.setAutoCommit(false);
+
+      //Add Collection Details
+      if (to_collections.payment_type.equalsIgnoreCase("Tuition")) {
+        //<editor-fold defaultstate="collapsed" desc=" Tuition ">
+        String s0 = "update collections set status=2 where id ='" + to_collections.id + "' ";
+        String s2 = "update enrollment_assessment_payments set status=2 where id ='" + to_collections.ref_id + "' ";
+        String s13 = "update enrollment_assessment_payment_details set status=2 where enrollment_assessment_payment_id ='" + to_collections.ref_id + "' ";
+        PreparedStatement stmt5 = conn.prepareStatement("");
+        stmt5.addBatch(s0);
+        stmt5.addBatch(s2);
+        stmt5.addBatch(s13);
+        stmt5.executeBatch();
+
+        String s10 = "select "
+                + "id"
+                + ",balance"
+                + ",prepaid"
+                + " from students"
+                + " where id='" + to_collections.student_id + "' ";
+        Statement stmt10 = conn.createStatement();
+        ResultSet rs10 = stmt10.executeQuery(s10);
+        double balance = 0;
+        if (rs10.next()) {
+          balance = rs10.getDouble(2);
+        }
+        double new_balance = balance + to_collections.amount_paid;
+//            System.out.println("balance: " + balance + " - " + to_enrollment_assessment_payments.amount_paid);
+        String s3 = "update students set "
+                + " balance= :balance "
+                + " where id='" + to_collections.student_id + "' "
+                + " ";
+
+        s3 = SqlStringUtil.parse(s3)
+                .setNumber("balance", new_balance)
+                .ok();
+        stmt5.addBatch(s3);
+
+        stmt5.executeBatch();
+        conn.commit();
+
+        Lg.s(Enrollment_assessments.class, "Successfully Added");
+        //</editor-fold>
+      } else if (to_collections.payment_type.equalsIgnoreCase("Back Account")) {
+        //<editor-fold defaultstate="collapsed" desc=" Back Account ">
+        String s0 = "update collections set status=2 where id ='" + to_collections.id + "' ";
+        String s2 = "update student_balance_adjustment_payments set status=2 where id ='" + to_collections.ref_id + "' ";
+        PreparedStatement stmt5 = conn.prepareStatement("");
+        stmt5.addBatch(s0);
+        stmt5.addBatch(s2);
+        stmt5.executeBatch();
+
+        //search payment id
+        String s6 = "select "
+                + " sba_id"
+                + " from student_balance_adjustment_payments "
+                + " where id ='" + to_collections.ref_id + "' ";
+
+        Statement stmt6 = conn.createStatement();
+        ResultSet rs6 = stmt6.executeQuery(s6);
+        int sba_id = 0;
+        if (rs6.next()) {
+          sba_id = rs6.getInt(1);
+        }
+
+        //Search Payment
+        String s12 = "select "
+                + " paid"
+                + " from student_balance_adjustments"
+                + " where id='" + sba_id + "' ";
+        Statement stmt12 = conn.createStatement();
+        ResultSet rs12 = stmt12.executeQuery(s12);
+        double paid = 0;
+        if (rs12.next()) {
+          paid = rs12.getDouble(1);
+        }
+        double new_paid = paid - to_collections.amount_paid;
+        String s13 = "update student_balance_adjustments set "
+                + " paid= :new_paid "
+                + " where id='" + sba_id + "' "
+                + " ";
+
+        s13 = SqlStringUtil.parse(s13)
+                .setNumber("new_paid", new_paid)
+                .ok();
+        stmt5.addBatch(s13);
+
+        String s10 = "select "
+                + "id"
+                + ",balance"
+                + ",prepaid"
+                + " from students"
+                + " where id='" + to_collections.student_id + "' ";
+        Statement stmt10 = conn.createStatement();
+        ResultSet rs10 = stmt10.executeQuery(s10);
+        double balance = 0;
+        if (rs10.next()) {
+          balance = rs10.getDouble(2);
+        }
+        double new_balance = balance + to_collections.amount_paid;
+        String s3 = "update students set "
+                + " balance= :balance "
+                + " where id='" + to_collections.student_id + "' "
+                + " ";
+
+        s3 = SqlStringUtil.parse(s3)
+                .setNumber("balance", new_balance)
+                .ok();
+        stmt5.addBatch(s3);
+
+        stmt5.executeBatch();
+        conn.commit();
+
+        Lg.s(Enrollment_assessments.class, "Successfully Added");
+        //</editor-fold>
+      } else if (to_collections.payment_type.equalsIgnoreCase("Downpayment")) {
+        System.out.println("to_collections.payment_type: " + to_collections.payment_type);
+        String s0 = "update collections set status=2 where id ='" + to_collections.id + "' ";
+        String s2 = "update downpayments set status=2 where id ='" + to_collections.ref_id + "' ";
+        System.out.println("s0: " + s0);
+        System.out.println("s2: " + s2);
+        PreparedStatement stmt5 = conn.prepareStatement("");
+        stmt5.addBatch(s0);
+        stmt5.addBatch(s2);
+        stmt5.executeBatch();
+        conn.commit();
+      } else {
+        System.out.println("to_collections.payment_type: " + to_collections.payment_type);
+        String s0 = "update collections set status=2 where id ='" + to_collections.id + "' ";
+        String s2 = "update other_payments set status=2 where id ='" + to_collections.ref_id + "' ";
+        System.out.println("s0: " + s0);
+        System.out.println("s2: " + s2);
+        PreparedStatement stmt5 = conn.prepareStatement("");
+        stmt5.addBatch(s0);
+        stmt5.addBatch(s2);
+        stmt5.executeBatch();
+        conn.commit();
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      MyConnection.close();
+    }
+  }
+
   public static void update_data(to_enrollment_assessments to_enrollment_assessments) {
     try {
       Connection conn = MyConnection.connect();
@@ -1214,7 +1362,9 @@ public class Enrollment_assessments {
 
       PreparedStatement stmt = conn.prepareStatement(s0);
       stmt.execute();
-      Lg.s(Enrollment_assessments.class, "Successfully Updated");
+      Lg
+              .s(Enrollment_assessments.class,
+                 "Successfully Updated");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     } finally {
@@ -1231,7 +1381,9 @@ public class Enrollment_assessments {
 
       PreparedStatement stmt = conn.prepareStatement(s0);
       stmt.execute();
-      Lg.s(Enrollment_assessments.class, "Successfully Deleted");
+      Lg
+              .s(Enrollment_assessments.class,
+                 "Successfully Deleted");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     } finally {
@@ -1300,7 +1452,9 @@ public class Enrollment_assessments {
 
       stmt.executeBatch();
       conn.commit();
-      Lg.s(Enrollment_assessments.class, "Successfully Deleted");
+      Lg
+              .s(Enrollment_assessments.class,
+                 "Successfully Deleted");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     } finally {

@@ -15,8 +15,11 @@ import cis.collections.Collection.to_collections;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
 import cis.disbursements.S1_disbursements;
+import cis.finance.Enrollment_assessments;
 import cis.other_payments.Other_payments;
+import cis.users.Dlg_authenticate;
 import cis.users.MyUser;
+import cis.users.User_previlege_others;
 import cis.users.User_previleges;
 import cis.users.Users;
 import cis.utils.Alert;
@@ -27,6 +30,7 @@ import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
@@ -226,6 +230,8 @@ public class Dlg_collections extends javax.swing.JDialog {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    buttonGroup1 = new javax.swing.ButtonGroup();
+    buttonGroup2 = new javax.swing.ButtonGroup();
     jPanel1 = new javax.swing.JPanel();
     jTabbedPane1 = new javax.swing.JTabbedPane();
     jPanel2 = new javax.swing.JPanel();
@@ -279,6 +285,12 @@ public class Dlg_collections extends javax.swing.JDialog {
     jLabel25 = new javax.swing.JLabel();
     jCheckBox12 = new javax.swing.JCheckBox();
     tf_field16 = new Field.Combo();
+    jLabel18 = new javax.swing.JLabel();
+    jCheckBox6 = new javax.swing.JCheckBox();
+    jCheckBox7 = new javax.swing.JCheckBox();
+    jCheckBox8 = new javax.swing.JCheckBox();
+    jLabel19 = new javax.swing.JLabel();
+    tf_cashier6 = new Field.Combo();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -358,6 +370,11 @@ public class Dlg_collections extends javax.swing.JDialog {
 
       }
     ));
+    tbl_collections.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tbl_collectionsMouseClicked(evt);
+      }
+    });
     jScrollPane1.setViewportView(tbl_collections);
 
     jLabel5.setText("No. of rows:");
@@ -504,7 +521,6 @@ public class Dlg_collections extends javax.swing.JDialog {
     jLabel1.setText("Date from:");
 
     jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jCheckBox4.setText("All");
 
     jDateChooser1.setDate(new Date());
     jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -531,9 +547,9 @@ public class Dlg_collections extends javax.swing.JDialog {
       }
     });
 
+    buttonGroup2.add(jCheckBox5);
     jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jCheckBox5.setSelected(true);
-    jCheckBox5.setText("All");
 
     jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel23.setText("Department:");
@@ -679,6 +695,36 @@ public class Dlg_collections extends javax.swing.JDialog {
       }
     });
 
+    jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel18.setText("Order by:");
+
+    buttonGroup1.add(jCheckBox6);
+    jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox6.setText("Collection No");
+
+    buttonGroup1.add(jCheckBox7);
+    jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox7.setSelected(true);
+    jCheckBox7.setText("OR No.");
+
+    buttonGroup2.add(jCheckBox8);
+    jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+    jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel19.setText("Shift:");
+
+    tf_cashier6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    tf_cashier6.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tf_cashier6MouseClicked(evt);
+      }
+    });
+    tf_cashier6.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tf_cashier6ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
     jPanel4.setLayout(jPanel4Layout);
     jPanel4Layout.setHorizontalGroup(
@@ -708,13 +754,28 @@ public class Dlg_collections extends javax.swing.JDialog {
                   .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(2, 2, 2)
                   .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+              .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jCheckBox8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(tf_cashier6)
+                .addGap(263, 263, 263))))
           .addGroup(jPanel4Layout.createSequentialGroup()
             .addGap(94, 94, 94)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,15 +844,24 @@ public class Dlg_collections extends javax.swing.JDialog {
                   .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
               .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                  .addComponent(tf_cashier, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                      .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                      .addComponent(jCheckBox6)
+                      .addComponent(jCheckBox7))
+                    .addComponent(tf_cashier, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(1, 1, 1)
                   .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                      .addGap(26, 26, 26)
-                      .addComponent(tf_cashier5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                      .addGap(26, 26, 26)
+                      .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_cashier5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox8)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_cashier6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                   .addComponent(jCheckBox1)
                   .addGap(1, 1, 1)
@@ -957,11 +1027,25 @@ public class Dlg_collections extends javax.swing.JDialog {
       init_courses();
     }//GEN-LAST:event_tf_field16ActionPerformed
 
+  private void tbl_collectionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_collectionsMouseClicked
+    select_collection();
+  }//GEN-LAST:event_tbl_collectionsMouseClicked
+
+  private void tf_cashier6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_cashier6MouseClicked
+    init_shift();
+  }//GEN-LAST:event_tf_cashier6MouseClicked
+
+  private void tf_cashier6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cashier6ActionPerformed
+    init_shift();
+  }//GEN-LAST:event_tf_cashier6ActionPerformed
+
   /**
    * @param args the command line arguments
    */
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.ButtonGroup buttonGroup1;
+  private javax.swing.ButtonGroup buttonGroup2;
   private javax.swing.JButton jButton5;
   private javax.swing.JCheckBox jCheckBox1;
   private javax.swing.JCheckBox jCheckBox10;
@@ -971,6 +1055,9 @@ public class Dlg_collections extends javax.swing.JDialog {
   private javax.swing.JCheckBox jCheckBox21;
   private javax.swing.JCheckBox jCheckBox4;
   private javax.swing.JCheckBox jCheckBox5;
+  private javax.swing.JCheckBox jCheckBox6;
+  private javax.swing.JCheckBox jCheckBox7;
+  private javax.swing.JCheckBox jCheckBox8;
   private com.toedter.calendar.JDateChooser jDateChooser1;
   private com.toedter.calendar.JDateChooser jDateChooser2;
   private javax.swing.JLabel jLabel1;
@@ -982,6 +1069,8 @@ public class Dlg_collections extends javax.swing.JDialog {
   private javax.swing.JLabel jLabel15;
   private javax.swing.JLabel jLabel16;
   private javax.swing.JLabel jLabel17;
+  private javax.swing.JLabel jLabel18;
+  private javax.swing.JLabel jLabel19;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel22;
   private javax.swing.JLabel jLabel23;
@@ -1009,6 +1098,7 @@ public class Dlg_collections extends javax.swing.JDialog {
   private javax.swing.JTable tbl_collections;
   private javax.swing.JTextField tf_cashier;
   private javax.swing.JTextField tf_cashier5;
+  private javax.swing.JTextField tf_cashier6;
   private javax.swing.JTextField tf_field13;
   private javax.swing.JTextField tf_field14;
   private javax.swing.JTextField tf_field15;
@@ -1026,6 +1116,10 @@ public class Dlg_collections extends javax.swing.JDialog {
     init_tbl_collections(tbl_collections);
     setAcad();
     ret_users();
+
+    shifts.clear();
+    shifts.add("08:00am - 12:00pm");
+    shifts.add("01:00pm - 05:00pm");
   }
 
   public void do_pass() {
@@ -1060,9 +1154,9 @@ public class Dlg_collections extends javax.swing.JDialog {
     tbl_collections.setModel(tbl_collections_M);
     tbl_collections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     tbl_collections.setRowHeight(25);
-    int[] tbl_widths_collections = {120, 100, 150, 100, 80, 80, 80, 80, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int[] tbl_widths_collections = {120, 100, 150, 100, 80, 80, 80, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     for (int i = 0, n = tbl_widths_collections.length; i < n; i++) {
-      if (i == 3) {
+      if (i == 3 || i == 4) {
         continue;
       }
       TableWidthUtilities.setColumnWidth(tbl_collections, i, tbl_widths_collections[i]);
@@ -1083,7 +1177,7 @@ public class Dlg_collections extends javax.swing.JDialog {
   public static class TblcollectionsModel extends AbstractTableAdapter {
 
     public static String[] COLUMNS = {
-      "Collection No", "OR No", "Particular", "Payor", "Cash", "Check", "Credit Card", "Gift Cert", "Online", "Status", "", "check_amount", "check_bank", "check_no", "check_holder", "check_date", "credit_card_type", "credit_card_rate", "credit_card_amount", "credit_card_no", "gift_certificate_from", "gift_certificate_description", "gift_certificate_no", "gift_certificate_amount", "online_bank", "online_reference_no", "online_amount", "online_holder", "online_date", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "ref_id", "school_year", "period", "year_level", "department_id", "department", "college_id", "college", "course_id", "course", "student_id", "student_no", "student_name"
+      "Collection No", "OR No", "Date/Time", "Particular", "Payor", "Cash", "Check", "Online", "Status", "", "", "check_amount", "check_bank", "check_no", "check_holder", "check_date", "credit_card_type", "credit_card_rate", "credit_card_amount", "credit_card_no", "gift_certificate_from", "gift_certificate_description", "gift_certificate_no", "gift_certificate_amount", "online_bank", "online_reference_no", "online_amount", "online_holder", "online_date", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "ref_id", "school_year", "period", "year_level", "department_id", "department", "college_id", "college", "course_id", "course", "student_id", "student_no", "student_name"
     };
 
     public TblcollectionsModel(ListModel listmodel) {
@@ -1115,29 +1209,33 @@ public class Dlg_collections extends javax.swing.JDialog {
         case 1:
           return " " + tt.or_no;
         case 2:
-          return " " + tt.payment_type;
+          return " " + DateType.convert_slash_datetime3(tt.created_at);
         case 3:
-          return " " + tt.student_name;
+          return " " + tt.payment_type;
         case 4:
-          return " " + FitIn.fmt_wc_0(tt.cash);
+          return " " + tt.student_name;
         case 5:
-          return " " + FitIn.fmt_wc_0(tt.check_amount);
+          return " " + FitIn.fmt_wc_0(tt.cash);
         case 6:
-          return " " + FitIn.fmt_wc_0(tt.credit_card_amount);
+          return " " + FitIn.fmt_wc_0(tt.check_amount);
         case 7:
-          return " " + FitIn.fmt_wc_0(tt.gift_certificate_amount);
-        case 8:
           return " " + FitIn.fmt_wc_0(tt.online_amount);
-        case 9:
+        case 8:
           if (tt.status == 0) {
             return " Counted";
           } else {
             return "    Void";
           }
+        case 9:
+          if (tt.status == 0) {
+            return "   Void";
+          } else {
+            return "";
+          }
         case 10:
-          return "   Void";
+          return tt.check_bank;
         case 11:
-          return tt.check_amount;
+          return tt.check_bank;
         case 12:
           return tt.check_bank;
         case 13:
@@ -1642,7 +1740,29 @@ public class Dlg_collections extends javax.swing.JDialog {
             Logger.getLogger(Dlg_collections.class.getName()).log(Level.SEVERE, null, ex);
           }
         }
-        if (!jCheckBox4.isSelected() && jCheckBox5.isSelected()) {
+
+        if (jCheckBox8.isSelected() && !tf_cashier6.getText().isEmpty()) {
+          String date1 = DateType.sf.format(jDateChooser1.getDate());
+          String date_from_sales = "";
+          String date_to_sales = "";
+          if (tf_cashier6.getText().equals(("08:00am - 12:00pm"))) {
+            date_from_sales = date1 + " 07:30:00";
+            date_to_sales = date1 + " 12:30:00";
+            date = date1 + " 08:00 AM - " + " - " + date1 + " 12:00 PM";
+          }
+          if (tf_cashier6.getText().equals(("01:00pm - 05:00pm"))) {
+            date_from_sales = date1 + " 13:00:00";
+            date_to_sales = date1 + " 17:30:00";
+            date = date1 + " 01:00 PM - " + " - " + date1 + " 05:00 PM";
+          }
+
+          where = where + " and created_at between '" + date_from_sales + "' and '" + date_to_sales + "'";
+          where2 = where2 + " and time_in between '" + date_from_sales + "' and '" + date_to_sales + "'";
+          where3 = where3 + " and date_added between '" + date_from_sales + "' and '" + date_to_sales + "'";
+
+        }
+
+        if (jCheckBox4.isSelected()) {
           String date_from = DateType.sf.format(jDateChooser1.getDate());
           String date_to = DateType.sf.format(jDateChooser2.getDate());
 
@@ -1650,19 +1770,34 @@ public class Dlg_collections extends javax.swing.JDialog {
           where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
           where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
         }
+//        if (!jCheckBox4.isSelected() && !jCheckBox5.isSelected()) {
+//          String date_from = DateType.sf.format(jDateChooser1.getDate());
+//          String date_to = DateType.sf.format(jDateChooser2.getDate());
+//
+//          where = where + " and Date(created_at) between '" + date_from + "' and '" + date_to + "'";
+//          where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
+//          where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
+//        }
 
-        List<Collection.to_collections> datas = Collection.ret_data(where);
+        String order_by = " order by collection_no asc ";
+        if (jCheckBox7.isSelected()) {
+          order_by = " order by or_no, created_by asc ";
+        }
+//        System.out.println(where);
+        List<Collection.to_collections> datas = Collection.ret_data(where + order_by);
         double cash = 0;
         double credit_card = 0;
         double check = 0;
         double online = 0;
         double gc = 0;
         for (Collection.to_collections to : datas) {
-          cash += to.cash;
-          credit_card += to.credit_card_amount;
-          check += to.check_amount;
-          online += to.online_amount;
-          gc += to.gift_certificate_amount;
+          if (to.status == 0) {
+            cash += to.cash;
+            credit_card += to.credit_card_amount;
+            check += to.check_amount;
+            online += to.online_amount;
+            gc += to.gift_certificate_amount;
+          }
         }
         jLabel8.setText(FitIn.fmt_wc_0(cash) + " ");
         jLabel11.setText(FitIn.fmt_wc_0(credit_card) + " ");
@@ -1719,72 +1854,75 @@ public class Dlg_collections extends javax.swing.JDialog {
         double oi_credit_card = 0;
 
         for (Collection.to_collections to : datas) {
+          if (to.status == 0) {
+            check_amount += to.check_amount;
+            credit_card_amount += to.credit_card_amount;
+            gc_amount += to.gift_certificate_amount;
+            online_amount += to.online_amount;
+            receipts_total += to.amount_paid;
+            receipts_sale_discount += to.discount_amount;
 
-          check_amount += to.check_amount;
-          credit_card_amount += to.credit_card_amount;
-          gc_amount += to.gift_certificate_amount;
-          online_amount += to.online_amount;
-          receipts_total += to.amount_paid;
-          receipts_sale_discount += to.discount_amount;
-
-          sf_cash += to.cash;
-          if (to.payment_type.equalsIgnoreCase("Tuition")) {
-            sf_cash += to.cash;
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
-              sf_gcash += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
-              sf_cebuana += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
-              sf_palawan += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
-              sf_ml += to.online_amount;
-            }
-          } else if (to.payment_type.equalsIgnoreCase("Canteen")) {
-            canteen_cash += to.cash;
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
-              canteen_gcash += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
-              canteen_cebuana += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
-              canteen_palawan += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
-              canteen_ml += to.online_amount;
-            }
-          } else if (to.payment_type.equalsIgnoreCase("Books")) {
-            books_cash += to.cash;
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
-              books_gcash += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
-              books_cebuana += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
-              books_palawan += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
-              books_ml += to.online_amount;
-            }
-          } else {
-            oi_cash += to.cash;
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
-              oi_gcash += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
-              oi_cebuana += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
-              oi_palawan += to.online_amount;
-            }
-            if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
-              oi_ml += to.online_amount;
+//            sf_cash += to.cash;
+//            System.out.println("sf_cash: "+sf_cash);
+            if (to.payment_type.equalsIgnoreCase("Tuition")) {
+              sf_cash += to.cash;
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                sf_gcash += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                sf_cebuana += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                sf_palawan += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                sf_ml += to.online_amount;
+              }
+            } else if (to.payment_type.equalsIgnoreCase("Canteen")) {
+              canteen_cash += to.cash;
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                canteen_gcash += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                canteen_cebuana += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                canteen_palawan += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                canteen_ml += to.online_amount;
+              }
+            } else if (to.payment_type.equalsIgnoreCase("Books")) {
+              books_cash += to.cash;
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                books_gcash += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                books_cebuana += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                books_palawan += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                books_ml += to.online_amount;
+              }
+            } else {
+              oi_cash += to.cash;
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("GCash"))) {
+                oi_gcash += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Cebuana"))) {
+                oi_cebuana += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("Palawan"))) {
+                oi_palawan += to.online_amount;
+              }
+              if (to.online_amount > 0 && to.online_bank.equalsIgnoreCase(("MLhuillier"))) {
+                oi_ml += to.online_amount;
+              }
             }
           }
+
         }
 
         cash_sales = sf_cash + canteen_cash + books_cash + oi_cash;
@@ -1967,7 +2105,27 @@ public class Dlg_collections extends javax.swing.JDialog {
             Logger.getLogger(Dlg_collections.class.getName()).log(Level.SEVERE, null, ex);
           }
         }
-        if (!jCheckBox4.isSelected() && jCheckBox5.isSelected()) {
+        if (jCheckBox8.isSelected() && !tf_cashier6.getText().isEmpty()) {
+          String date1 = DateType.sf.format(jDateChooser1.getDate());
+          String date_from_sales = "";
+          String date_to_sales = "";
+          if (tf_cashier6.getText().equals(("08:00am - 12:00pm"))) {
+            date_from_sales = date1 + " 07:30:00";
+            date_to_sales = date1 + " 12:30:00";
+            date = date1 + " 08:00 AM - " + " - " + date1 + " 12:00 PM";
+          }
+          if (tf_cashier6.getText().equals(("01:00pm - 05:00pm"))) {
+            date_from_sales = date1 + " 13:00:00";
+            date_to_sales = date1 + " 17:30:00";
+            date = date1 + " 01:00 PM - " + " - " + date1 + " 05:00 PM";
+          }
+
+          where = where + " and created_at between '" + date_from_sales + "' and '" + date_to_sales + "'";
+          where2 = where2 + " and time_in between '" + date_from_sales + "' and '" + date_to_sales + "'";
+          where3 = where3 + " and date_added between '" + date_from_sales + "' and '" + date_to_sales + "'";
+
+        }
+        if (jCheckBox4.isSelected()) {
           String date_from = DateType.sf.format(jDateChooser1.getDate());
           String date_to = DateType.sf.format(jDateChooser2.getDate());
 
@@ -1975,19 +2133,24 @@ public class Dlg_collections extends javax.swing.JDialog {
           where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
           where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
         }
-
-        List<Collection.to_collections> datas2 = Collection.ret_data(where);
+        String order_by = " order by collection_no asc ";
+        if (jCheckBox7.isSelected()) {
+          order_by = " order by or_no, created_by asc ";
+        }
+        List<Collection.to_collections> datas2 = Collection.ret_data(where + order_by);
         double cash = 0;
         double credit_card = 0;
         double check = 0;
         double online = 0;
         double gc = 0;
         for (Collection.to_collections to : datas2) {
-          cash += to.cash;
-          credit_card += to.credit_card_amount;
-          check += to.check_amount;
-          online += to.online_amount;
-          gc += to.gift_certificate_amount;
+          if (to.status == 0) {
+            cash += to.cash;
+            credit_card += to.credit_card_amount;
+            check += to.check_amount;
+            online += to.online_amount;
+            gc += to.gift_certificate_amount;
+          }
         }
         jLabel8.setText(FitIn.fmt_wc_0(cash) + " ");
         jLabel11.setText(FitIn.fmt_wc_0(credit_card) + " ");
@@ -1997,7 +2160,7 @@ public class Dlg_collections extends javax.swing.JDialog {
 
         String jrxml = "rpt_collection_report.jrxml";
 
-        List<Srpt_collection_report.field> datas = Srpt_collection_report.ret_data(where);
+        List<Srpt_collection_report.field> datas = Srpt_collection_report.ret_data(where + order_by);
 
         Srpt_collection_report rpt = new Srpt_collection_report(business_name, address, contact_no, school_year, semester, department, college, year_level, user, date, printed_by);
         rpt.fields.addAll(datas);
@@ -2096,4 +2259,195 @@ public class Dlg_collections extends javax.swing.JDialog {
     }
   }
 
+  private void edit_date(to_collections collection) {
+
+    Window p = (Window) this;
+    Dlg_collection_edit_date nd = Dlg_collection_edit_date.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(collection.created_at);
+    nd.setCallback(new Dlg_collection_edit_date.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_collection_edit_date.OutputData data) {
+        closeDialog.ok();
+        Collection.update_or_date(collection, data.date);
+        Alert.set(2, "");
+        generate();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void edit_or(to_collections collection) {
+
+    Window p = (Window) this;
+    Dlg_collection_edit_OR nd = Dlg_collection_edit_OR.create(p, true);
+    nd.setTitle("");
+    nd.do_pass(collection.or_no);
+    nd.setCallback(new Dlg_collection_edit_OR.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_collection_edit_OR.OutputData data) {
+        closeDialog.ok();
+        Collection.update_or_no(collection, data.name);
+        Alert.set(2, "");
+        generate();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void select_collection() {
+    int row = tbl_collections.getSelectedRow();
+    if (row < 0) {
+      return;
+    }
+    int col = tbl_collections.getSelectedColumn();
+    to_collections collection = (to_collections) tbl_collections_ALM.get(row);
+    if (collection.status == 2) {
+      Alert.set(0, "Collection already cancelled!");
+      return;
+    }
+    if (col == 1) {
+
+      Window p = (Window) this;
+      Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+      nd.setTitle("");
+      nd.do_pass();
+      nd.setCallback(new Dlg_authenticate.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+          closeDialog.ok();
+          String where2 = " where user_name like '" + MyUser.getUser_name() + "' and  name like '" + "Override OR Date - (Add)" + "'";
+          List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
+          if (!privs.isEmpty()) {
+            edit_or(collection);
+          } else {
+            Alert.set(0, "Privilege not added!");
+            return;
+          }
+
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+
+    }
+    if (col == 2) {
+      Window p = (Window) this;
+      Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+      nd.setTitle("");
+      nd.do_pass();
+      nd.setCallback(new Dlg_authenticate.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+          closeDialog.ok();
+          String where2 = " where user_name like '" + MyUser.getUser_name() + "' and  name like '" + "Override OR Date - (Add)" + "'";
+          List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
+          if (!privs.isEmpty()) {
+            edit_date(collection);
+          } else {
+            Alert.set(0, "Privilege not added!");
+            return;
+          }
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+
+    if (col == 3) {
+      Window p = (Window) this;
+      Dlg_collection_edit_payment_type nd = Dlg_collection_edit_payment_type.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(collection.payment_type);
+      nd.setCallback(new Dlg_collection_edit_payment_type.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_collection_edit_payment_type.OutputData data) {
+          closeDialog.ok();
+          Collection.update_payment_type(collection, data.name);
+          Alert.set(2, "");
+          generate();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+    if (col == 4) {
+      Window p = (Window) this;
+      Dlg_collection_edit_payor nd = Dlg_collection_edit_payor.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(collection.student_name);
+      nd.setCallback(new Dlg_collection_edit_payor.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_collection_edit_payor.OutputData data) {
+          closeDialog.ok();
+          Collection.update_name(collection, data.name);
+          Alert.set(2, "");
+          generate();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+    if (col == 9) {
+      Window p = (Window) this;
+      Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+      nd.setTitle("");
+      nd.do_pass();
+      nd.setCallback(new Dlg_authenticate.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+          closeDialog.ok();
+          String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Collections Report - (Delete)" + "' limit 1";
+
+          List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
+          if (privileges.isEmpty()) {
+            Alert.set(0, "Privilege not added!");
+            return;
+          }
+//          System.out.println("Deleted!");
+          Enrollment_assessments.void_collection(collection);
+          Alert.set(3, "");
+          generate();
+//        set_assessment2();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+  }
+  List<String> shifts = new ArrayList();
+
+  private void init_shift() {
+
+    Object[][] obj = new Object[shifts.size()][1];
+    int i = 0;
+    for (String to : shifts) {
+      obj[i][0] = " " + to;
+      i++;
+    }
+    JLabel[] labels = {};
+    int[] tbl_widths_customers = {tf_cashier6.getWidth()};
+    int width = 0;
+    String[] col_names = {""};
+    TableRenderer tr = new TableRenderer();
+    TableRenderer.setPopup(tf_cashier6, obj, labels, tbl_widths_customers, col_names);
+    tr.setCallback(new TableRenderer.Callback() {
+      @Override
+      public void ok(TableRenderer.OutputData data) {
+        String to = shifts.get(data.selected_row);
+        Field.Combo co = (Field.Combo) tf_cashier6;
+        co.setText("" + to);
+
+      }
+
+    });
+  }
 }

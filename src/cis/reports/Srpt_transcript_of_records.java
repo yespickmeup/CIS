@@ -66,8 +66,9 @@ public class Srpt_transcript_of_records {
   public final String medium_of_instruction;
   public final String or;
   public final String date;
+  public final String photo_url;
 
-  public Srpt_transcript_of_records(String school_name, String school_address, String lname, String fname, String mname, String sname, String address, String bday, String school_last_attended, String school_last_attended_date, String entrance_credential, String date_of_admission, String elementary_school, String elementary_school_date, String high_school, String high_school_date, String course_code, String course, String prepared_by, String verified_by, String registrar, List<field> fields, String logo_path, String logo_path2, String department, String major, String date_of_graduation, String junior_high, String senior_high, String junior_high_date, String senior_high_date, String parents, String medium_of_instruction, String or, String date) {
+  public Srpt_transcript_of_records(String school_name, String school_address, String lname, String fname, String mname, String sname, String address, String bday, String school_last_attended, String school_last_attended_date, String entrance_credential, String date_of_admission, String elementary_school, String elementary_school_date, String high_school, String high_school_date, String course_code, String course, String prepared_by, String verified_by, String registrar, List<field> fields, String logo_path, String logo_path2, String department, String major, String date_of_graduation, String junior_high, String senior_high, String junior_high_date, String senior_high_date, String parents, String medium_of_instruction, String or, String date,String photo_url) {
     this.school_name = school_name;
     this.school_address = school_address;
     this.lname = lname;
@@ -103,6 +104,7 @@ public class Srpt_transcript_of_records {
     this.medium_of_instruction = medium_of_instruction;
     this.or = or;
     this.date = date;
+    this.photo_url=photo_url;
   }
 
   public static class field {
@@ -290,7 +292,8 @@ public class Srpt_transcript_of_records {
     String medium_of_instruction="English CHED School COde: 0729 PRC School Code: 1038";
     String or="099689, 01/01/2001";
     String date="June 27, 2022";
-    Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar, fields, img_path, img_path2, department, major, date_of_graduation, junior_high, senior_high, junior_high_date, senior_high_date, parents, medium_of_instruction, or, date);
+    String photo_url="";
+    Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar, fields, img_path, img_path2, department, major, date_of_graduation, junior_high, senior_high, junior_high_date, senior_high_date, parents, medium_of_instruction, or, date,photo_url);
     rpt.fields.addAll(fields);
     JRViewer viewer = get_viewer(rpt, jrxml);
     JFrame f = Application.launchMainFrame3(viewer, "Sample", true);

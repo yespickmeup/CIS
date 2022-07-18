@@ -121,7 +121,7 @@ public class Other_payments {
     try {
       Connection conn = MyConnection.connect();
       conn.setAutoCommit(false);
-
+      System.out.println("payment: ");
       String collection_or_no = "";
       int collection_id = 0;
 

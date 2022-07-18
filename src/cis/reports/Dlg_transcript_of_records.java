@@ -1302,7 +1302,7 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
   }
 //</editor-fold> 
 
-  private void set_report(Students.to_students to, final String medium1, final String entrance_data1, final String major1, final String date_of_graduation1, final String junior_high1, final String junior_high_date1, final String senior_high1, final String senior_high_date1, final String or_no1, final String prepared_by1, final String registrar1) {
+  private void set_report(Students.to_students to, final String medium1, final String entrance_data1, final String major1, final String date_of_graduation1, final String junior_high1, final String junior_high_date1, final String senior_high1, final String senior_high_date1, final String or_no1, final String prepared_by1, final String registrar1, final String photo_url) {
 
     jTabbedPane1.setSelectedIndex(1);
     jProgressBar1.setString("Loading...Please wait...");
@@ -1428,7 +1428,15 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
         String date = DateType.day_and_time.format(new Date());
         prepared_by = prepared_by1;
         verified_by = registrar1;
-        Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar, fields, logo_path, logo_path2, department, major, date_of_graduation, junior_high, senior_high, junior_high_date, senior_high_date, parents, medium_of_instruction, or, date);
+        String url = "";
+        if (photo_url.isEmpty()) {
+          url = System.getProperty("logo_path3", "C:\\\\Users\\\\USER\\\\cis\\\\thumbnail.jpg");
+        } else {
+          url = photo_url;
+        }
+        System.out.println("url: " + url);
+        System.out.println("logo_path2: " + logo_path2);
+        Srpt_transcript_of_records rpt = new Srpt_transcript_of_records(school_name, school_address, lname, fname, mname, sname, address, bday, school_last_attended, school_last_attended_date, entrance_credential, date_of_admission, elementary_school, elementary_school_date, high_school, high_school_date, course_code, course, prepared_by, verified_by, registrar, fields, logo_path, logo_path2, department, major, date_of_graduation, junior_high, senior_high, junior_high_date, senior_high_date, parents, medium_of_instruction, or, date, url);
 
         rpt.fields.addAll(fields);
         report_transcript(rpt, jrxml);
@@ -1499,7 +1507,7 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
       @Override
       public void ok(CloseDialog closeDialog, Dlg_TOR_details.OutputData data) {
         closeDialog.ok();
-        set_report(to, data.medium, data.entrance_data, data.major, data.date_of_graduation, data.junior_high, data.junior_high_date, data.senior_high, data.senior_high_date, data.or_no, data.prepared_by, data.registrar);
+        set_report(to, data.medium, data.entrance_data, data.major, data.date_of_graduation, data.junior_high, data.junior_high_date, data.senior_high, data.senior_high_date, data.or_no, data.prepared_by, data.registrar, data.photo_url);
 
       }
     });

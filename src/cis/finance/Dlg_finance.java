@@ -4476,6 +4476,23 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void run() {
 
+        List<Downpayments.to_downpayments> downpayments = Downpayments.ret_data(" where enrollment_id='" + enroll.id + "' and status<>2");
+        System.out.println("downpayments: " + downpayments.size());
+        double downpay = 0;
+        if (downpayments.isEmpty()) {
+          jButton3.setEnabled(false);
+          jButton17.setText("Downpayment");
+          hasDownpayment = false;
+//      return;
+        } else {
+          double amount = 0;
+          Downpayments.to_downpayments down = (Downpayments.to_downpayments) downpayments.get(0);
+          amount = down.amount;
+          downpay = amount;
+          jButton17.setText("Downpayment (" + FitIn.fmt_wc_0(amount) + ")");
+          hasDownpayment = true;
+        }
+
         if (assessments.isEmpty()) {
           jProgressBar1.setString("Finished...");
           jProgressBar1.setIndeterminate(false);
@@ -4485,7 +4502,6 @@ public class Dlg_finance extends javax.swing.JDialog {
           jPanel17.setMinimumSize(new Dimension(626, 0));
           jPanel17.setMaximumSize(new Dimension(626, 0));
           jPanel17.setPreferredSize(new Dimension(626, 0));
-          jButton17.setText("Downpayment");
           jPanel17.updateUI();
           return;
         }
@@ -4505,23 +4521,6 @@ public class Dlg_finance extends javax.swing.JDialog {
         String student_name = enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name;
         String student_course = enroll.course_code + " - " + enroll.course_description;
         String student_year_level = enroll.year_level;
-
-        List<Downpayments.to_downpayments> downpayments = Downpayments.ret_data(" where enrollment_id='" + enroll.id + "' and status<>2");
-
-        double downpay = 0;
-        if (downpayments.isEmpty()) {
-          jButton3.setEnabled(false);
-          jButton17.setText("Downpayment");
-          hasDownpayment = false;
-//      return;
-        } else {
-          double amount = 0;
-          Downpayments.to_downpayments down = (Downpayments.to_downpayments) downpayments.get(0);
-          amount = down.amount;
-          downpay = amount;
-          jButton17.setText("Downpayment (" + FitIn.fmt_wc_0(amount) + ")");
-          hasDownpayment = true;
-        }
 
         List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_added_subjects = new ArrayList();
         List<cis.reports.Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
@@ -5231,7 +5230,10 @@ public class Dlg_finance extends javax.swing.JDialog {
   }
 
   private void downpayment() {
-    if (downpayment_student == null || enroll == null) {
+//    System.out.println("downpayment_student: " + downpayment_student);
+//    System.out.println("enroll: " + enroll);
+
+    if (enroll == null) {
       Alert.set(0, "Select a student!");
       return;
     }

@@ -5,11 +5,16 @@
  */
 package cis.reports;
 
+import cis.utils.Alert;
 import cis.utils.DateType;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
@@ -54,8 +59,9 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
     public final String or_no;
     public final String prepared_by;
     public final String registrar;
+    public final String photo_url;
 
-    public OutputData(String medium, String entrance_data, String major, String date_of_graduation, String junior_high, String junior_high_date, String senior_high, String senior_high_date, String or_no, String prepared_by, String registrar) {
+    public OutputData(String medium, String entrance_data, String major, String date_of_graduation, String junior_high, String junior_high_date, String senior_high, String senior_high_date, String or_no, String prepared_by, String registrar, String photo_url) {
       this.medium = medium;
       this.entrance_data = entrance_data;
       this.major = major;
@@ -67,6 +73,7 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
       this.or_no = or_no;
       this.prepared_by = prepared_by;
       this.registrar = registrar;
+      this.photo_url = photo_url;
     }
 
   }
@@ -234,6 +241,9 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
     jd_graduated = new com.toedter.calendar.JDateChooser();
     jd_junior_graduated = new com.toedter.calendar.JDateChooser();
     jd_senior_graduated = new com.toedter.calendar.JDateChooser();
+    jLabel23 = new javax.swing.JLabel();
+    tf_medium1 = new Field.Input();
+    jButton7 = new Button.Default();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -365,6 +375,24 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
     jd_senior_graduated.setDate(new Date());
     jd_senior_graduated.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+    jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel23.setText("Photo Directory:");
+
+    tf_medium1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    tf_medium1.setEnabled(false);
+    tf_medium1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tf_medium1ActionPerformed(evt);
+      }
+    });
+
+    jButton7.setText("Select Location");
+    jButton7.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton7ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -377,14 +405,19 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
               .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                   .addComponent(tf_major)
                   .addComponent(tf_medium, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
-                  .addComponent(tf_entrance, javax.swing.GroupLayout.Alignment.LEADING))
+                  .addComponent(tf_entrance, javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(tf_medium1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
               .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jCheckBox13)
@@ -437,7 +470,13 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(60, 60, 60)
+        .addGap(50, 50, 50)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tf_medium1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(tf_medium, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -487,7 +526,7 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(tf_field11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -541,12 +580,20 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
   }//GEN-LAST:event_tf_or_noActionPerformed
 
   private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     ok();
+    ok();
   }//GEN-LAST:event_jButton5ActionPerformed
 
   private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
     disposed();
   }//GEN-LAST:event_jButton6ActionPerformed
+
+  private void tf_medium1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_medium1ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_medium1ActionPerformed
+
+  private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    select_photo();
+  }//GEN-LAST:event_jButton7ActionPerformed
 
   /**
    * @param args the command line arguments
@@ -555,6 +602,7 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton jButton5;
   private javax.swing.JButton jButton6;
+  private javax.swing.JButton jButton7;
   private javax.swing.JCheckBox jCheckBox13;
   private javax.swing.JCheckBox jCheckBox14;
   private javax.swing.JCheckBox jCheckBox15;
@@ -569,6 +617,7 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
   private javax.swing.JLabel jLabel20;
   private javax.swing.JLabel jLabel21;
   private javax.swing.JLabel jLabel22;
+  private javax.swing.JLabel jLabel23;
   private javax.swing.JPanel jPanel1;
   private com.toedter.calendar.JDateChooser jd_graduated;
   private com.toedter.calendar.JDateChooser jd_junior_graduated;
@@ -578,6 +627,7 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
   private javax.swing.JTextField tf_junior;
   private javax.swing.JTextField tf_major;
   private javax.swing.JTextField tf_medium;
+  private javax.swing.JTextField tf_medium1;
   private javax.swing.JTextField tf_or_no;
   private javax.swing.JTextField tf_prepared_by;
   private javax.swing.JTextField tf_senior;
@@ -630,9 +680,22 @@ public class Dlg_TOR_details extends javax.swing.JDialog {
     String or_no = tf_or_no.getText();
     String prepared_by = tf_prepared_by.getText();
     String registrar = tf_field11.getText();
-
+    String photo_url = tf_medium1.getText();
+//    if (!photo_url.isEmpty()) {
+//      photo_url = photo_url.replaceAll("\\", "\\");
+//    }
     if (callback != null) {
-      callback.ok(new CloseDialog(this), new OutputData(medium, entrance_data, major, date_of_graduation, junior_high, junior_high_date, senior_high, senior_high_date, or_no, prepared_by, registrar));
+      callback.ok(new CloseDialog(this), new OutputData(medium, entrance_data, major, date_of_graduation, junior_high, junior_high_date, senior_high, senior_high_date, or_no, prepared_by, registrar, photo_url));
+    }
+  }
+
+  private void select_photo() {
+    final JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\cis\\Photos"));
+    int result = fileChooser.showOpenDialog(this);
+    if (result == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = fileChooser.getSelectedFile();
+      tf_medium1.setText(selectedFile.getAbsolutePath());
     }
   }
 }

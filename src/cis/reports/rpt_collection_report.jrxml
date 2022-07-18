@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6b37673-cce7-4887-a861-cade5b52bf0c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6b37673-cce7-4887-a861-cade5b52bf0c">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="23"/>
+	<property name="ireport.y" value="39"/>
 	<parameter name="business_name" class="java.lang.String"/>
 	<parameter name="address" class="java.lang.String"/>
 	<parameter name="contact_no" class="java.lang.String"/>
@@ -26,6 +26,7 @@
 	<field name="gc" class="java.lang.Double"/>
 	<field name="check" class="java.lang.Double"/>
 	<field name="online" class="java.lang.Double"/>
+	<field name="or_date" class="java.lang.String"/>
 	<variable name="cash_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{cash}]]></variableExpression>
 	</variable>
@@ -198,7 +199,7 @@
 				<text><![CDATA[OR#]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="27b1d733-2620-407c-ba25-68e2e8a5013a" mode="Opaque" x="104" y="0" width="88" height="20" backcolor="#DEDCDC"/>
+				<reportElement uuid="27b1d733-2620-407c-ba25-68e2e8a5013a" mode="Opaque" x="177" y="0" width="101" height="20" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -211,7 +212,7 @@
 				<text><![CDATA[Name of Student/Client]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8246edff-5cea-4a81-a082-b16284d09746" mode="Opaque" x="192" y="0" width="61" height="20" backcolor="#DEDCDC"/>
+				<reportElement uuid="8246edff-5cea-4a81-a082-b16284d09746" mode="Opaque" x="278" y="0" width="61" height="20" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -224,7 +225,7 @@
 				<text><![CDATA[Particular]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e04d66f8-86af-497d-930a-894e2fd672f9" mode="Opaque" x="253" y="0" width="44" height="20" backcolor="#DEDCDC"/>
+				<reportElement uuid="e04d66f8-86af-497d-930a-894e2fd672f9" mode="Opaque" x="339" y="0" width="44" height="20" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -237,7 +238,7 @@
 				<text><![CDATA[Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ced6a772-7b0b-4b0d-a740-373092856158" mode="Opaque" x="297" y="0" width="38" height="20" backcolor="#DEDCDC"/>
+				<reportElement uuid="ced6a772-7b0b-4b0d-a740-373092856158" mode="Opaque" x="383" y="0" width="38" height="20" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -250,7 +251,7 @@
 				<text><![CDATA[Year Level]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ab7ed42b-ff61-4672-83e3-7ce6a4310004" mode="Opaque" x="335" y="0" width="48" height="20" backcolor="#DEDCDC"/>
+				<reportElement uuid="ab7ed42b-ff61-4672-83e3-7ce6a4310004" mode="Opaque" x="421" y="0" width="48" height="20" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -261,32 +262,6 @@
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cash]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="76379e28-a1c6-4a57-92de-2c86b6d6fb0a" mode="Opaque" x="383" y="0" width="43" height="20" backcolor="#DEDCDC"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Credit Card]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="76379e28-a1c6-4a57-92de-2c86b6d6fb0a" mode="Opaque" x="426" y="0" width="43" height="20" backcolor="#DEDCDC"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GC]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="76379e28-a1c6-4a57-92de-2c86b6d6fb0a" mode="Opaque" x="469" y="0" width="43" height="20" backcolor="#DEDCDC"/>
@@ -313,6 +288,19 @@
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Online]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a6e2e353-cfb0-4b88-82db-8d13e75aad6c" mode="Opaque" x="104" y="0" width="73" height="20" backcolor="#DEDCDC"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OR Date]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -358,7 +346,7 @@
 				<textFieldExpression><![CDATA[$F{or_no}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="8100d392-924f-4307-be5f-3f1b1be2dac9" x="104" y="0" width="88" height="15"/>
+				<reportElement uuid="8100d392-924f-4307-be5f-3f1b1be2dac9" x="177" y="0" width="101" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -371,7 +359,7 @@
 				<textFieldExpression><![CDATA[$F{student_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="faea59e2-0c2b-4c94-a07e-608b77e7aaa2" x="192" y="0" width="61" height="15"/>
+				<reportElement uuid="faea59e2-0c2b-4c94-a07e-608b77e7aaa2" x="278" y="0" width="61" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -384,7 +372,7 @@
 				<textFieldExpression><![CDATA[$F{particular}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="18142183-30c0-4759-b791-09f2fa71e620" x="253" y="0" width="44" height="15"/>
+				<reportElement uuid="18142183-30c0-4759-b791-09f2fa71e620" x="339" y="0" width="44" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -397,7 +385,7 @@
 				<textFieldExpression><![CDATA[$F{course}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="d4110637-bd3e-4f77-a3c1-2ad816741464" x="297" y="0" width="38" height="15"/>
+				<reportElement uuid="d4110637-bd3e-4f77-a3c1-2ad816741464" x="383" y="0" width="38" height="15"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -410,7 +398,7 @@
 				<textFieldExpression><![CDATA[$F{year_level}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="669e9214-d6bd-42fc-8d8c-02960bf8373d" mode="Transparent" x="335" y="0" width="48" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="669e9214-d6bd-42fc-8d8c-02960bf8373d" mode="Transparent" x="421" y="0" width="48" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -422,34 +410,6 @@
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cash}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="cd1c3f80-f05a-4dd4-b5df-b55fad5975a8" mode="Transparent" x="383" y="0" width="43" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{credit_card}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="cd1c3f80-f05a-4dd4-b5df-b55fad5975a8" mode="Transparent" x="426" y="0" width="43" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{gc}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
 				<reportElement uuid="cd1c3f80-f05a-4dd4-b5df-b55fad5975a8" mode="Transparent" x="469" y="0" width="43" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -479,6 +439,19 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{check}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement uuid="cfac637b-d781-4606-b60d-34d930f951e5" x="104" y="0" width="73" height="15"/>
+				<box>
+					<topPen lineWidth="0.2"/>
+					<leftPen lineWidth="0.2"/>
+					<bottomPen lineWidth="0.2"/>
+					<rightPen lineWidth="0.2"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{or_date}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -490,7 +463,7 @@
 	<summary>
 		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="76379e28-a1c6-4a57-92de-2c86b6d6fb0a" mode="Opaque" x="0" y="0" width="335" height="15" backcolor="#DEDCDC"/>
+				<reportElement uuid="76379e28-a1c6-4a57-92de-2c86b6d6fb0a" mode="Opaque" x="0" y="0" width="421" height="15" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -504,7 +477,7 @@
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="cc9a2e5f-4be6-4d5a-9291-ad504310ae08" mode="Opaque" x="335" y="0" width="48" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
+				<reportElement uuid="cc9a2e5f-4be6-4d5a-9291-ad504310ae08" mode="Opaque" x="421" y="0" width="48" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -512,13 +485,13 @@
 					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{cash_1}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="dd9ad4da-c0d5-4c30-9d63-a552f8b1f80c" mode="Opaque" x="383" y="0" width="43" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
+				<reportElement uuid="dd9ad4da-c0d5-4c30-9d63-a552f8b1f80c" mode="Opaque" x="469" y="0" width="43" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
 				<box>
 					<topPen lineWidth="0.2"/>
 					<leftPen lineWidth="0.2"/>
@@ -526,35 +499,7 @@
 					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{credit_card_1}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="d7bb12cd-cc32-4028-8ab0-c3f6bec95117" mode="Opaque" x="426" y="0" width="43" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{gc_1}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="09fa35b3-80eb-488c-8310-12a9eb23aeda" mode="Opaque" x="469" y="0" width="43" height="15" forecolor="#000000" backcolor="#DEDCDC"/>
-				<box>
-					<topPen lineWidth="0.2"/>
-					<leftPen lineWidth="0.2"/>
-					<bottomPen lineWidth="0.2"/>
-					<rightPen lineWidth="0.2"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{check_1}]]></textFieldExpression>
@@ -568,7 +513,7 @@
 					<rightPen lineWidth="0.2"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="7" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{online_1}]]></textFieldExpression>
