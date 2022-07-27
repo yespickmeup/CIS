@@ -291,11 +291,15 @@ public class Dlg_finance extends javax.swing.JDialog {
     jButton8 = new Button.Info();
     jButton13 = new Button.Primary();
     jButton14 = new Button.Primary();
+    jButton20 = new Button.Primary();
+    jCheckBox11 = new javax.swing.JCheckBox();
     jPanel30 = new javax.swing.JPanel();
     jPanel27 = new javax.swing.JPanel();
     jScrollPane7 = new javax.swing.JScrollPane();
     tbl_transactions = new javax.swing.JTable();
     jButton9 = new Button.Info();
+    jButton21 = new Button.Primary();
+    jCheckBox12 = new javax.swing.JCheckBox();
     jPanel31 = new javax.swing.JPanel();
     jPanel32 = new javax.swing.JPanel();
     jLabel53 = new javax.swing.JLabel();
@@ -358,6 +362,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     tf_field129 = new Field.Combo();
     jButton4 = new javax.swing.JButton();
     jButton17 = new Button.Primary();
+    jButton18 = new Button.Primary();
     jLabel22 = new javax.swing.JLabel();
     tf_field13 = new Field.Combo();
     jLabel26 = new javax.swing.JLabel();
@@ -375,6 +380,8 @@ public class Dlg_finance extends javax.swing.JDialog {
     jLabel3 = new javax.swing.JLabel();
     jPanel17 = new javax.swing.JPanel();
     jButton12 = new Button.Warning();
+    jButton19 = new Button.Info();
+    jCheckBox13 = new javax.swing.JCheckBox();
     jPanel2 = new javax.swing.JPanel();
     jTabbedPane2 = new javax.swing.JTabbedPane();
     jPanel3 = new javax.swing.JPanel();
@@ -847,7 +854,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         .addComponent(jLabel7)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
     );
@@ -886,6 +893,16 @@ public class Dlg_finance extends javax.swing.JDialog {
       }
     });
 
+    jButton20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jButton20.setText("Retrieve Fees");
+    jButton20.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton20ActionPerformed(evt);
+      }
+    });
+
+    jCheckBox11.setText("Auto");
+
     javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
     jPanel29.setLayout(jPanel29Layout);
     jPanel29Layout.setHorizontalGroup(
@@ -896,10 +913,14 @@ public class Dlg_finance extends javax.swing.JDialog {
           .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+            .addComponent(jCheckBox11)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap())
     );
@@ -910,7 +931,9 @@ public class Dlg_finance extends javax.swing.JDialog {
         .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jCheckBox11))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -949,7 +972,7 @@ public class Dlg_finance extends javax.swing.JDialog {
       jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel27Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
         .addContainerGap())
     );
     jPanel27Layout.setVerticalGroup(
@@ -968,6 +991,16 @@ public class Dlg_finance extends javax.swing.JDialog {
       }
     });
 
+    jButton21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jButton21.setText("Retrieve Transactions");
+    jButton21.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton21ActionPerformed(evt);
+      }
+    });
+
+    jCheckBox12.setText("Auto");
+
     javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
     jPanel30.setLayout(jPanel30Layout);
     jPanel30Layout.setHorizontalGroup(
@@ -977,7 +1010,10 @@ public class Dlg_finance extends javax.swing.JDialog {
         .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(jPanel30Layout.createSequentialGroup()
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jCheckBox12)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap())
     );
@@ -985,7 +1021,11 @@ public class Dlg_finance extends javax.swing.JDialog {
       jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
         .addGap(25, 25, 25)
-        .addComponent(jButton9)
+        .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jButton9)
+          .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jCheckBox12)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addContainerGap())
@@ -999,7 +1039,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     jPanel31.setLayout(jPanel31Layout);
     jPanel31Layout.setHorizontalGroup(
       jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 686, Short.MAX_VALUE)
+      .addGap(0, 733, Short.MAX_VALUE)
     );
     jPanel31Layout.setVerticalGroup(
       jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1542,6 +1582,15 @@ public class Dlg_finance extends javax.swing.JDialog {
       }
     });
 
+    jButton18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jButton18.setText("Tuition Discount");
+    jButton18.setEnabled(false);
+    jButton18.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton18ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
     jPanel16.setLayout(jPanel16Layout);
     jPanel16Layout.setHorizontalGroup(
@@ -1558,7 +1607,8 @@ public class Dlg_finance extends javax.swing.JDialog {
           .addGroup(jPanel16Layout.createSequentialGroup()
             .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addContainerGap())
     );
     jPanel16Layout.setVerticalGroup(
@@ -1573,7 +1623,9 @@ public class Dlg_finance extends javax.swing.JDialog {
         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(59, 59, 59))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(12, 12, 12))
     );
 
     javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -1766,7 +1818,7 @@ public class Dlg_finance extends javax.swing.JDialog {
       .addGroup(jPanel19Layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+          .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
           .addGroup(jPanel19Layout.createSequentialGroup()
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1778,7 +1830,7 @@ public class Dlg_finance extends javax.swing.JDialog {
       jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel19Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
@@ -1795,11 +1847,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     jPanel17.setLayout(jPanel17Layout);
     jPanel17Layout.setHorizontalGroup(
       jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 626, Short.MAX_VALUE)
+      .addGap(0, 703, Short.MAX_VALUE)
     );
     jPanel17Layout.setVerticalGroup(
       jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 615, Short.MAX_VALUE)
+      .addGap(0, 607, Short.MAX_VALUE)
     );
 
     jTabbedPane3.addTab("Print Preview", jPanel17);
@@ -1810,6 +1862,15 @@ public class Dlg_finance extends javax.swing.JDialog {
         jButton12ActionPerformed(evt);
       }
     });
+
+    jButton19.setText("View Assessment");
+    jButton19.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton19ActionPerformed(evt);
+      }
+    });
+
+    jCheckBox13.setText("Auto");
 
     javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
     jPanel15.setLayout(jPanel15Layout);
@@ -1827,6 +1888,10 @@ public class Dlg_finance extends javax.swing.JDialog {
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jCheckBox13)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap())
     );
@@ -1836,9 +1901,11 @@ public class Dlg_finance extends javax.swing.JDialog {
         .addGap(0, 0, 0)
         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(5, 5, 5)
-        .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+          .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jCheckBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jLabel5)
@@ -1968,7 +2035,7 @@ public class Dlg_finance extends javax.swing.JDialog {
           .addComponent(jButton1)
           .addComponent(jButton10))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2070,7 +2137,7 @@ public class Dlg_finance extends javax.swing.JDialog {
           .addComponent(jButton2)
           .addComponent(jButton11))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2535,7 +2602,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     );
     jPanel8Layout.setVerticalGroup(
       jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 640, Short.MAX_VALUE)
+      .addGap(0, 645, Short.MAX_VALUE)
     );
 
     jTabbedPane2.addTab("Print Preview", jPanel8);
@@ -2545,9 +2612,9 @@ public class Dlg_finance extends javax.swing.JDialog {
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-        .addContainerGap(106, Short.MAX_VALUE)
+        .addContainerGap(155, Short.MAX_VALUE)
         .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(92, Short.MAX_VALUE))
+        .addContainerGap(142, Short.MAX_VALUE))
     );
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2957,6 +3024,22 @@ public class Dlg_finance extends javax.swing.JDialog {
     downpayment();
   }//GEN-LAST:event_jButton17ActionPerformed
 
+  private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jButton18ActionPerformed
+
+  private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    view_assessment();
+  }//GEN-LAST:event_jButton19ActionPerformed
+
+  private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    ret_fees();
+  }//GEN-LAST:event_jButton20ActionPerformed
+
+  private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+    ret_transactions();
+  }//GEN-LAST:event_jButton21ActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -2974,7 +3057,11 @@ public class Dlg_finance extends javax.swing.JDialog {
   private javax.swing.JButton jButton15;
   private javax.swing.JButton jButton16;
   private javax.swing.JButton jButton17;
+  private javax.swing.JButton jButton18;
+  private javax.swing.JButton jButton19;
   private javax.swing.JButton jButton2;
+  private javax.swing.JButton jButton20;
+  private javax.swing.JButton jButton21;
   private javax.swing.JButton jButton3;
   private javax.swing.JButton jButton4;
   private javax.swing.JButton jButton5;
@@ -2984,6 +3071,9 @@ public class Dlg_finance extends javax.swing.JDialog {
   private javax.swing.JButton jButton9;
   private javax.swing.JCheckBox jCheckBox1;
   private javax.swing.JCheckBox jCheckBox10;
+  private javax.swing.JCheckBox jCheckBox11;
+  private javax.swing.JCheckBox jCheckBox12;
+  private javax.swing.JCheckBox jCheckBox13;
   private javax.swing.JCheckBox jCheckBox16;
   private javax.swing.JCheckBox jCheckBox2;
   private javax.swing.JCheckBox jCheckBox3;
@@ -3732,6 +3822,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     List<Academic_year_fees.to_academic_year_fees> datas = Miscellaneous_fees.ret_data3(where);
+//    System.out.println("where: "+where);
     loadData_other_fees(datas);
 
     double amount = 0;
@@ -4339,17 +4430,22 @@ public class Dlg_finance extends javax.swing.JDialog {
         tf_field134.setText(to.approved_by);
 
         ret_added_subjects(to);
-        SwingUtilities.invokeLater(new Runnable() {
-          @Override
-          public void run() {
-            set_assessment2();
-          }
-        });
-
+        if (jCheckBox13.isSelected()) {
+          view_assessment();
+        }
       }
     });
   }
 
+  private void view_assessment() {
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        set_assessment2();
+      }
+    });
+
+  }
   List<Mode_of_payments.to_mode_of_payments> modes = new ArrayList();
 
   private void init_mode_of_payments() {
@@ -4454,9 +4550,10 @@ public class Dlg_finance extends javax.swing.JDialog {
               + " and group_id=2 ";
     }
     List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
-
+    System.out.println(where3);
     List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
     List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
+//    System.out.println("where3: "+where3);
 
     List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
 
@@ -4981,8 +5078,13 @@ public class Dlg_finance extends javax.swing.JDialog {
         tf_field127.setText(stud.department);
         tf_field139.setText(stud.college);
         tf_field140.setText(stud.year_level);
-        ret_fees();
-        ret_transactions();
+        if (jCheckBox11.isSelected()) {
+          ret_fees();
+        }
+        if (jCheckBox12.isSelected()) {
+          ret_transactions();
+        }
+
       }
     });
   }
@@ -5130,8 +5232,12 @@ public class Dlg_finance extends javax.swing.JDialog {
           @Override
           public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
             closeDialog.ok();
+
             ret_fees();
-            ret_transactions();
+
+            if (jCheckBox12.isSelected()) {
+              ret_transactions();
+            }
           }
         });
         nd.setLocationRelativeTo(this);
@@ -5147,7 +5253,9 @@ public class Dlg_finance extends javax.swing.JDialog {
           public void ok(CloseDialog closeDialog, Dlg_finance_student_payment_details_subjects.OutputData data) {
             closeDialog.ok();
             ret_fees();
-            ret_transactions();
+            if (jCheckBox12.isSelected()) {
+              ret_transactions();
+            }
           }
         });
         nd.setLocationRelativeTo(this);
@@ -5171,7 +5279,9 @@ public class Dlg_finance extends javax.swing.JDialog {
           public void ok(CloseDialog closeDialog, Dlg_finance_payment.OutputData data) {
             closeDialog.ok();
             ret_fees();
-            ret_transactions();
+            if (jCheckBox12.isSelected()) {
+              ret_transactions();
+            }
           }
         });
         nd.setLocationRelativeTo(this);
@@ -5980,7 +6090,7 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
         closeDialog.ok();
-        String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Assessment - (Delete)" + "' limit 1";
+        String wheree = " where user_id='" + data.userId + "' and privilege like '" + "Assessment - (Delete)" + "' limit 1";
 
         List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
         if (privileges.isEmpty()) {
@@ -6010,7 +6120,9 @@ public class Dlg_finance extends javax.swing.JDialog {
       public void ok(CloseDialog closeDialog, Dlg_student_balance_adjustment_add.OutputData data) {
         closeDialog.ok();
         ret_fees();
-        ret_transactions();
+        if (jCheckBox12.isSelected()) {
+          ret_transactions();
+        }
       }
     });
     nd.setLocationRelativeTo(this);

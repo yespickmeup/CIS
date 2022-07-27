@@ -45,6 +45,12 @@ public class Dlg_authenticate extends javax.swing.JDialog {
   }
 
   public static class OutputData {
+    public final String userId;
+
+    public OutputData(String userId) {
+      this.userId = userId;
+    }
+    
   }
 //</editor-fold>
 
@@ -391,7 +397,7 @@ public class Dlg_authenticate extends javax.swing.JDialog {
         tf_username.grabFocus();
         return;
       }
-      ok1();
+      ok1(""+to.id);
     } else {
       String user_name = tf_username.getText();
       String password = tf_password.getText();
@@ -407,7 +413,7 @@ public class Dlg_authenticate extends javax.swing.JDialog {
         String where2 = " where user_name like '" + user_name + "' and  name like '" + "Override Downpayment - (Add)" + "'";
         List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
         if (!privs.isEmpty()) {
-          ok1();
+          ok1(""+to.id);
         } else {
           Alert.set(0, "Privilege not added!");
           return;
@@ -419,9 +425,9 @@ public class Dlg_authenticate extends javax.swing.JDialog {
 
   }
 
-  private void ok1() {
+  private void ok1(String user_id) {
     if (callback != null) {
-      callback.ok(new CloseDialog(this), new OutputData());
+      callback.ok(new CloseDialog(this), new OutputData(user_id));
     }
   }
 }

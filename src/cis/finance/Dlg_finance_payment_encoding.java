@@ -1469,7 +1469,7 @@ public class Dlg_finance_payment_encoding extends javax.swing.JDialog {
     }
     if (!jCheckBox17.isSelected()) {
       Field.Combo period = (Field.Combo) tf_field18;
-      where = where + " and period like '" + period.getText() + "' ";
+      where = where + " and year_level like '" + period.getText() + "' ";
     }
 
     if (!jCheckBox21.isSelected()) {
@@ -1487,7 +1487,7 @@ public class Dlg_finance_payment_encoding extends javax.swing.JDialog {
 //        }
     where = where + " and concat(last_name,space(1),first_name) like '%" + tf_field128.getText() + "%' ";
     where = where + " order by last_name asc ";
-
+    System.out.println(where);
     List<Students.to_students> students = Students.ret_data(where);
     loadData_students(students);
     jLabel2.setText("" + students.size());

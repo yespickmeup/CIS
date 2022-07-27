@@ -1435,7 +1435,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     List<Srpt_enrollment_assessment.field_add_subjects> rpt_dropped_subjects = new ArrayList();
     double no_of_units_lab = 0;
     List<Srpt_enrollment_assessment.field> fields = new ArrayList();
-    String w=" where student_id='" + to.student_id + "' and academic_year_id='" + to.academic_year_id + "' and particular like '%Special Class%'";
+    String w = " where student_id='" + to.student_id + "' and academic_year_id='" + to.academic_year_id + "' and particular like '%Special Class%'";
     List<Student_balance_adjustments.to_student_balance_adjustments> special_classes = Student_balance_adjustments.ret_data(w);
 //    System.out.println(w);
 //    System.out.println("size: "+special_classes.size());
@@ -1589,6 +1589,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.year_level + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=2 ";
     } else {
       where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
@@ -1596,6 +1597,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=2 ";
     }
 //       
@@ -1632,7 +1634,7 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
       rpt_fees.add(f);
       other_fee += special.adjustment_amount;
     }
-    
+
     List<Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes> eapm = Enrollment_assessment_payment_modes.ret_data(" where enrollment_id='" + to.id + "' ");
     List<Srpt_enrollment_assessment.field_summary> rpt_summary = new ArrayList();
 

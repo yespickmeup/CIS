@@ -1414,11 +1414,11 @@ public class Enrollment_assessments {
 
       stmt.addBatch(s2);
 
-      String s3 = "update enrollment_student_loaded_subjects set status=0  "
-              + " where enrollment_id='" + enroll.id + "' and status<2 "
-              + " ";
-
-      stmt.addBatch(s3);
+//      String s3 = "update enrollment_student_loaded_subjects set status=0  "
+//              + " where enrollment_id='" + enroll.id + "' and status<2 "
+//              + " ";
+//
+//      stmt.addBatch(s3);
 
       String s4 = "update enrollments set assessed_by_id=NULL,assessed_by=NULL,assessed_date=NULL  "
               + " where id='" + enroll.id + "' "
@@ -1452,8 +1452,7 @@ public class Enrollment_assessments {
 
       stmt.executeBatch();
       conn.commit();
-      Lg
-              .s(Enrollment_assessments.class,
+      Lg.s(Enrollment_assessments.class,
                  "Successfully Deleted");
     } catch (SQLException e) {
       throw new RuntimeException(e);

@@ -284,6 +284,11 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     tf_field22 = new Field.Input();
     jButton4 = new Button.Default();
     jButton3 = new Button.Success();
+    jPanel8 = new javax.swing.JPanel();
+    jLabel87 = new javax.swing.JLabel();
+    tf_customer_name1 = new Field.Input();
+    jLabel88 = new javax.swing.JLabel();
+    tf_customer_name2 = new Field.Input();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -455,7 +460,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel1)
           .addComponent(jLabel2))
-        .addContainerGap())
+        .addGap(60, 60, 60))
     );
 
     jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -987,13 +992,93 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
       }
     });
 
+    jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+    jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Student Info"));
+
+    jLabel87.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel87.setText("Student No.:");
+
+    tf_customer_name1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    tf_customer_name1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    tf_customer_name1.setFocusable(false);
+    tf_customer_name1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tf_customer_name1MouseClicked(evt);
+      }
+    });
+    tf_customer_name1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tf_customer_name1ActionPerformed(evt);
+      }
+    });
+    tf_customer_name1.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        tf_customer_name1KeyReleased(evt);
+      }
+    });
+
+    jLabel88.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel88.setText("Student Name:");
+
+    tf_customer_name2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    tf_customer_name2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    tf_customer_name2.setFocusable(false);
+    tf_customer_name2.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tf_customer_name2MouseClicked(evt);
+      }
+    });
+    tf_customer_name2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tf_customer_name2ActionPerformed(evt);
+      }
+    });
+    tf_customer_name2.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        tf_customer_name2KeyReleased(evt);
+      }
+    });
+
+    javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+    jPanel8.setLayout(jPanel8Layout);
+    jPanel8Layout.setHorizontalGroup(
+      jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel8Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel8Layout.createSequentialGroup()
+            .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(tf_customer_name1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel8Layout.createSequentialGroup()
+            .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(tf_customer_name2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel8Layout.setVerticalGroup(
+      jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel8Layout.createSequentialGroup()
+        .addGap(5, 5, 5)
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(tf_customer_name1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(tf_customer_name2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGap(31, 31, 31)
-        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1009,13 +1094,17 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         .addGap(34, 34, 34)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addContainerGap())
+          .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-          .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addGap(13, 13, 13))
+              .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(13, 13, 13))))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1177,6 +1266,30 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
       tf_total_amount.setText(FitIn.fmt_wc_0(amount));
     }//GEN-LAST:event_tf_field23KeyReleased
 
+  private void tf_customer_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_customer_name1MouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name1MouseClicked
+
+  private void tf_customer_name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_customer_name1ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name1ActionPerformed
+
+  private void tf_customer_name1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_customer_name1KeyReleased
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name1KeyReleased
+
+  private void tf_customer_name2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_customer_name2MouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name2MouseClicked
+
+  private void tf_customer_name2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_customer_name2ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name2ActionPerformed
+
+  private void tf_customer_name2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_customer_name2KeyReleased
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_customer_name2KeyReleased
+
   /**
    * @param args the command line arguments
    */
@@ -1215,6 +1328,8 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
   private javax.swing.JLabel jLabel84;
   private javax.swing.JLabel jLabel85;
   private javax.swing.JLabel jLabel86;
+  private javax.swing.JLabel jLabel87;
+  private javax.swing.JLabel jLabel88;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
@@ -1222,6 +1337,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
   private javax.swing.JPanel jPanel5;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JPanel jPanel7;
+  private javax.swing.JPanel jPanel8;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JTextField lbl_credit_card_rate;
@@ -1237,6 +1353,8 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
   private javax.swing.JTextField tf_credit_card_amount;
   private javax.swing.JTextField tf_credit_card_type;
   private javax.swing.JTextField tf_customer_name;
+  private javax.swing.JTextField tf_customer_name1;
+  private javax.swing.JTextField tf_customer_name2;
   private javax.swing.JTextField tf_field20;
   private javax.swing.JTextField tf_field21;
   private javax.swing.JTextField tf_field22;
@@ -1257,6 +1375,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     jPanel3.setMinimumSize(new Dimension(450, 500));
     jPanel4.setMinimumSize(new Dimension(404, 437));
     ret_particulars();
+    jPanel8.setVisible(false);
   }
 
   private void hide_other_payments(boolean stmt) {
@@ -1331,7 +1450,19 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     jLabel76.setVisible(false);
     tf_particular.setVisible(false);
     jButton2.setVisible(false);
+    tf_customer_name.setText("");
+
+    tf_customer_name1.setText(enroll.student_no);
+    tf_customer_name2.setText(enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name);
+
+    Field.Input tf = (Field.Input) tf_customer_name;
+    tf.setId("" + enroll.student_id);
+    tf.setText(enroll.last_name + ", " + enroll.first_name + " " + enroll.middle_name);
+
+    jPanel8.setVisible(true);
+
     tf_field23.grabFocus();
+
   }
 
   // <editor-fold defaultstate="collapsed" desc="Key">
@@ -1854,6 +1985,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     c_gc = gift_certificate_amount;
     c_check = check_amount;
     c_online = online_amount;
+
     Alert.set(1, "Payment Successful!");
   }
 
@@ -2308,6 +2440,11 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
         c_gc = 0;
         c_check = 0;
         c_online = 0;
+        enroll = null;
+        pay_stud = null;
+        Field.Input tf = (Field.Input) tf_customer_name;
+        tf.setId("");
+        tf.setText("");
         ok1();
       }
     });

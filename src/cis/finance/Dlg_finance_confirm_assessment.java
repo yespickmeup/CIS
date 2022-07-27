@@ -1587,6 +1587,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.year_level + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=2 ";
     } else {
       where3 = where3 + " and academic_year_id='" + to.academic_year_id + "' "
@@ -1594,6 +1595,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=2 ";
     }
 
@@ -2086,8 +2088,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
       System.out.println("total_amount: " + total_amount + " = (" + (tendered + downpayment) + ")");
       if (tendered == downpayment) {
         total = downpayment;
-      } else if (total_amount == (tendered )) {
-        total = tendered+downpayment;
+      } else if (total_amount == (tendered)) {
+        total = tendered + downpayment;
       }
     }
     for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes mode : modes) {

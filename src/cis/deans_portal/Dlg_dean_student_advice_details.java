@@ -6498,7 +6498,6 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
               + " and level_id='" + enroll.level_id + "' "
               + " and course_id='" + enroll.course_id + "' "
               + " and period like '" + enroll.period + "' "
-              + " and year_level like '" + enroll.year_level + "' "
               + " and group_id=2 ";
     }
     List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
