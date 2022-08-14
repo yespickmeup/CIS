@@ -18,6 +18,7 @@ import cis.courses.Courses;
 import cis.departments.Departments;
 import cis.discount_types.Dlg_discount_types;
 import cis.downpayments.Downpayments;
+import cis.enrollments.Enrollment_assessment_discounts;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
@@ -3284,8 +3285,8 @@ public class Dlg_finance extends javax.swing.JDialog {
   private void myInit() {
     init_key();
 
-    System.setProperty("pool_db", "db_cis_cosca");
-    System.setProperty("pool_password", "password");
+//    System.setProperty("pool_db", "db_cis_cosca");
+//    System.setProperty("pool_password", "password");
 //        System.setProperty("pool_host", "10.0.0.251");
     deps = Departments.ret_data(" order by department_name  asc ");
 
@@ -4614,8 +4615,10 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void run() {
 
+        jButton18.setText("Tuition Discount");
+
         List<Downpayments.to_downpayments> downpayments = Downpayments.ret_data(" where enrollment_id='" + enroll.id + "' and status<>2");
-        System.out.println("downpayments: " + downpayments.size());
+//        System.out.println("downpayments: " + downpayments.size());
         double downpay = 0;
         if (downpayments.isEmpty()) {
           jButton3.setEnabled(false);
@@ -4650,6 +4653,16 @@ public class Dlg_finance extends javax.swing.JDialog {
           return;
         }
         jButton18.setEnabled(true);
+        Enrollment_assessments.to_enrollment_assessments asessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+        List<Enrollment_assessment_discounts.to_enrollment_assessment_discounts> discounts = Enrollment_assessment_discounts.ret_data(" where enrollment_id = '" + asessment.enrollment_id + "' and status=1 limit 1");
+        double total_discount = 0;
+        if (!discounts.isEmpty()) {
+          Enrollment_assessment_discounts.to_enrollment_assessment_discounts disc = (Enrollment_assessment_discounts.to_enrollment_assessment_discounts) discounts.get(0);
+          jButton18.setText("Tuition Discount " + FitIn.fmt_wc_0(disc.total_discount));
+          total_discount=disc.total_discount;
+        } else {
+          jButton18.setText("Tuition Discount");
+        }
         String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
         String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
         String date = synsoftech.util.DateType.slash.format(new Date());
@@ -4806,10 +4819,11 @@ public class Dlg_finance extends javax.swing.JDialog {
         payable = total_assessment - downpay;
         downpayment = downpay;
         double sub_total = total_assessment;
+      
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
           double balance = ea.amount - ea.paid;
 //          downpayment += ea.paid;
-          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, sub_total, downpayment, (sub_total - downpayment), tution_fee, misc_fee, other_fee, sub_total, "");
+          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, sub_total, downpayment, (sub_total - downpayment), tution_fee, misc_fee, other_fee, sub_total, "",total_discount);
           rpt_summary.add(f2);
         }
         assessment_sub_total = sub_total;
@@ -6212,7 +6226,7 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void ok(CloseDialog closeDialog, Dlg_finance_assessment_discount.OutputData data) {
         closeDialog.ok();
-
+        set_assessment2();
       }
     });
     nd.setLocationRelativeTo(this);

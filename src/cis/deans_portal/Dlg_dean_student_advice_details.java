@@ -14,6 +14,7 @@ import cis.academic.Academic_year_periods;
 import cis.academic.Academic_years;
 import cis.academic.Srpt_academic_offering_subjects;
 import cis.enrollments.Dlg_student_enrollment_approved;
+import cis.enrollments.Enrollment_assessment_discounts;
 import cis.enrollments.Enrollment_department_requirements;
 import cis.enrollments.Enrollment_department_requirements.to_enrollment_department_requirements;
 import cis.enrollments.Enrollment_offered_subject_sections;
@@ -6537,8 +6538,17 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
           return;
         }
 
-        Enrollment_assessments.to_enrollment_assessments assessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+        Enrollment_assessments.to_enrollment_assessments asessment = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+        List<Enrollment_assessment_discounts.to_enrollment_assessment_discounts> discounts = Enrollment_assessment_discounts.ret_data(" where enrollment_id = '" + asessment.enrollment_id + "' and status=1 limit 1");
+        double total_discount = 0;
+        if (!discounts.isEmpty()) {
+          Enrollment_assessment_discounts.to_enrollment_assessment_discounts disc = (Enrollment_assessment_discounts.to_enrollment_assessment_discounts) discounts.get(0);
 
+          total_discount=disc.total_discount;
+        } else {
+
+        }
+        
         String business_name = System.getProperty("school_name", "Colegio de Santa Catalina de Alejandria (COSCA)");
         String address = System.getProperty("address", "Bishop Epifanio B. Surban St. Dumaguete City Negros Oriental, Bishop Epifanio Surban St, Dumaguete, Negros Oriental");
         String date = synsoftech.util.DateType.slash.format(new Date());
@@ -6695,7 +6705,7 @@ public class Dlg_dean_student_advice_details extends javax.swing.JDialog {
         for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
           double balance = ea.amount - ea.paid;
           downpayment += ea.paid;
-          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
+          cis.reports.Srpt_enrollment_assessment.field_summary f2 = new cis.reports.Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "",total_discount);
           rpt_summary.add(f2);
         }
 

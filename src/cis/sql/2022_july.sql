@@ -50,6 +50,14 @@ id int auto_increment primary key
 ,is_total_percent int
 ,total_rate double
 ,total_amount double
+,total_tuition_fee double
+,total_misc double 
+,total_assessment double
+,total_discount double
+,total_other_fees double
+,student_id int
+,student_no varchar(255)
+,student_name varchar(255)
 ,created_at datetime
 ,updated_at datetime
 ,created_by varchar(255)

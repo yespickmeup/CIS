@@ -59,8 +59,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="jButton14" min="-2" pref="194" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton13" min="-2" pref="144" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton12" min="-2" pref="193" max="-2" attributes="0"/>
@@ -85,6 +87,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton12" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jButton13" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="jButton14" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
@@ -265,6 +268,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field15MouseClicked"/>
@@ -603,7 +607,7 @@
                       <EmptySpace pref="33" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="tf_field23" alignment="1" min="-2" pref="551" max="-2" attributes="0"/>
-                          <Component id="tf_field24" alignment="1" min="-2" pref="551" max="-2" attributes="0"/>
+                          <Component id="tf_asssessment_no" alignment="1" min="-2" pref="551" max="-2" attributes="0"/>
                           <Component id="tf_field25" alignment="1" min="-2" pref="551" max="-2" attributes="0"/>
                           <Component id="tf_field22" alignment="1" min="-2" pref="551" max="-2" attributes="0"/>
                       </Group>
@@ -622,7 +626,7 @@
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel39" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="tf_field24" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="tf_asssessment_no" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -686,7 +690,7 @@
                 <Property name="text" type="java.lang.String" value="Assessment No.:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_field24">
+            <Component class="javax.swing.JTextField" name="tf_asssessment_no">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
@@ -694,8 +698,8 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_field24MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_field24ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_asssessment_noMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_asssessment_noActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Field.Input()"/>
@@ -754,6 +758,18 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Button.Default()"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Discount"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Button.Warning()"/>
           </AuxValues>
         </Component>
       </SubComponents>

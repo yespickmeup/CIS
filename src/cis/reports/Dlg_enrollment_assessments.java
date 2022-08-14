@@ -11,11 +11,13 @@ import cis.academic.Academic_year_period_schedules;
 import cis.academic.Academic_years;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
+import cis.enrollments.Enrollment_assessment_discounts;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects_drop_requests;
 import cis.enrollments.Enrollments;
 import cis.enrollments.Enrollments.to_enrollments;
 import cis.finance.Enrollment_assessment_payment_modes;
+import cis.finance.Enrollment_assessments;
 import cis.finance.Miscellaneous_fees;
 import cis.finance.Student_balance_adjustments;
 import cis.users.MyUser;
@@ -52,6 +54,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
@@ -1645,10 +1648,21 @@ public class Dlg_enrollment_assessments extends javax.swing.JDialog {
     total_assessment = tution_fee + other_fee + misc_fee;
     payable = total_assessment - downpayment;
     double sub_total = total_assessment;
+
+    List<Enrollment_assessment_discounts.to_enrollment_assessment_discounts> discounts = Enrollment_assessment_discounts.ret_data(" where enrollment_id = '" + to.id + "' and status=1 limit 1");
+    double total_discount = 0;
+    if (!discounts.isEmpty()) {
+      Enrollment_assessment_discounts.to_enrollment_assessment_discounts disc = (Enrollment_assessment_discounts.to_enrollment_assessment_discounts) discounts.get(0);
+
+      total_discount = disc.total_discount;
+    } else {
+
+    }
+
     for (Enrollment_assessment_payment_modes.to_enrollment_assessment_payment_modes ea : eapm) {
       double balance = ea.amount - ea.paid;
       downpayment += ea.paid;
-      Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "");
+      Srpt_enrollment_assessment.field_summary f2 = new Srpt_enrollment_assessment.field_summary(total_assessment, downpayment, payable, ea.mode, ea.to_pay, ea.amount, ea.paid, balance, tuition_fee, misc_fee, other_fee, sub_total, "", total_discount);
       rpt_summary.add(f2);
     }
 

@@ -5,25 +5,38 @@
  */
 package cis.finance;
 
-import cis.academic.Academic_years;
 import cis.discount_types.Discount_types;
 import cis.discount_types.Dlg_discount_types;
+import cis.enrollments.Enrollment_assessment_discounts;
 import cis.enrollments.Enrollments;
+import cis.users.MyUser;
+import cis.utils.Alert;
+import cis.utils.DateType;
+import cis.utils.Dlg_confirm_action;
+import cis.utils.Dlg_confirm_delete;
 import cis.utils.TableRenderer;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
+import synsoftech.panels.Loading;
 
 /**
  *
@@ -221,12 +234,13 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     jLabel38 = new javax.swing.JLabel();
     tf_field23 = new Field.Input();
     jLabel39 = new javax.swing.JLabel();
-    tf_field24 = new Field.Input();
+    tf_asssessment_no = new Field.Input();
     jLabel40 = new javax.swing.JLabel();
     tf_field25 = new Field.Input();
     jLabel41 = new javax.swing.JLabel();
     jButton12 = new Button.Success();
     jButton13 = new Button.Default();
+    jButton14 = new Button.Warning();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -277,6 +291,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     });
 
     tf_field15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    tf_field15.setFocusable(false);
     tf_field15.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         tf_field15MouseClicked(evt);
@@ -617,16 +632,16 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel39.setText("Assessment No.:");
 
-    tf_field24.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-    tf_field24.setFocusable(false);
-    tf_field24.addMouseListener(new java.awt.event.MouseAdapter() {
+    tf_asssessment_no.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    tf_asssessment_no.setFocusable(false);
+    tf_asssessment_no.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        tf_field24MouseClicked(evt);
+        tf_asssessment_noMouseClicked(evt);
       }
     });
-    tf_field24.addActionListener(new java.awt.event.ActionListener() {
+    tf_asssessment_no.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        tf_field24ActionPerformed(evt);
+        tf_asssessment_noActionPerformed(evt);
       }
     });
 
@@ -663,7 +678,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(tf_field23, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(tf_field24, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(tf_asssessment_no, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(tf_field25, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(tf_field22, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(47, 47, 47))
@@ -678,7 +693,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
         .addGap(1, 1, 1)
         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(tf_field24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(tf_asssessment_no, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -704,6 +719,14 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
       }
     });
 
+    jButton14.setText("Delete Discount");
+    jButton14.setEnabled(false);
+    jButton14.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton14ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -713,8 +736,10 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
             .addGroup(jPanel1Layout.createSequentialGroup()
+              .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
               .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -733,7 +758,8 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap(63, Short.MAX_VALUE))
     );
 
@@ -855,13 +881,13 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     // TODO add your handling code here:
   }//GEN-LAST:event_tf_field23ActionPerformed
 
-  private void tf_field24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field24MouseClicked
+  private void tf_asssessment_noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_asssessment_noMouseClicked
     // TODO add your handling code here:
-  }//GEN-LAST:event_tf_field24MouseClicked
+  }//GEN-LAST:event_tf_asssessment_noMouseClicked
 
-  private void tf_field24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field24ActionPerformed
+  private void tf_asssessment_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_asssessment_noActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_tf_field24ActionPerformed
+  }//GEN-LAST:event_tf_asssessment_noActionPerformed
 
   private void tf_field25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field25MouseClicked
     // TODO add your handling code here:
@@ -872,7 +898,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   }//GEN-LAST:event_tf_field25ActionPerformed
 
   private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
+    confirm();
   }//GEN-LAST:event_jButton12ActionPerformed
 
   private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -891,6 +917,10 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     discount_types();
   }//GEN-LAST:event_jButton1ActionPerformed
 
+  private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    confirm_delete();
+  }//GEN-LAST:event_jButton14ActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -899,6 +929,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton12;
   private javax.swing.JButton jButton13;
+  private javax.swing.JButton jButton14;
   private javax.swing.JCheckBox jCheckBox1;
   private javax.swing.JCheckBox jCheckBox2;
   private javax.swing.JCheckBox jCheckBox3;
@@ -922,6 +953,7 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
   private javax.swing.JPanel jPanel4;
+  private javax.swing.JTextField tf_asssessment_no;
   private javax.swing.JTextField tf_field14;
   private javax.swing.JTextField tf_field15;
   private javax.swing.JTextField tf_field16;
@@ -932,7 +964,6 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   private javax.swing.JTextField tf_field21;
   private javax.swing.JTextField tf_field22;
   private javax.swing.JTextField tf_field23;
-  private javax.swing.JTextField tf_field24;
   private javax.swing.JTextField tf_field25;
   private javax.swing.JTextField tf_field26;
   // End of variables declaration//GEN-END:variables
@@ -941,12 +972,20 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     init_key();
   }
 
+  Enrollment_assessments.to_enrollment_assessments assessment = null;
+  int discount_id = 0;
+
   public void do_pass(Enrollments.to_enrollments enroll, double assessment_sub_total, double assessment_tuition, double assessment_misc, double assessment_other_fess) {
+
+    assessment = null;
+    discount_id = 0;
     List<Enrollment_assessments.to_enrollment_assessments> assessments = Enrollment_assessments.ret_data(" where enrollment_id='" + enroll.id + "' ");
     if (!assessments.isEmpty()) {
       Enrollment_assessments.to_enrollment_assessments to = (Enrollment_assessments.to_enrollment_assessments) assessments.get(0);
+      assessment = to;
+
       tf_field23.setText(to.enrollment_no);
-      tf_field24.setText("" + to.id);
+      tf_asssessment_no.setText("" + to.id);
       tf_field25.setText(to.student_no);
       tf_field22.setText(to.lname + ", " + to.fname + " " + to.mi);
 
@@ -954,6 +993,8 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
       tf_field19.setText(FitIn.fmt_wc_0(assessment_tuition));
       tf_field20.setText(FitIn.fmt_wc_0(assessment_misc));
       tf_field26.setText(FitIn.fmt_wc_0(assessment_other_fess));
+
+      ret_discount();
     }
     ret_discounts();
   }
@@ -976,6 +1017,76 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   }
   // </editor-fold>
 
+  private void ret_discount() {
+    List<Enrollment_assessment_discounts.to_enrollment_assessment_discounts> discounts = Enrollment_assessment_discounts.ret_data(" where enrollment_id = '" + assessment.enrollment_id + "' and status=1 limit 1");
+
+    if (!discounts.isEmpty()) {
+      jButton14.setEnabled(true);
+
+      Enrollment_assessment_discounts.to_enrollment_assessment_discounts discount = (Enrollment_assessment_discounts.to_enrollment_assessment_discounts) discounts.get(0);
+      discount_id = discount.id;
+      if (discount.is_tution == 1) {
+        jCheckBox2.setSelected(true);
+        if (discount.is_tuition_percent == 1) {
+          jCheckBox1.setSelected(true);
+          tf_field14.setText(FitIn.fmt_wc_0((discount.tuition_rate)));
+          jLabel31.setVisible(true);
+        } else {
+          jCheckBox1.setSelected(false);
+          tf_field14.setText(FitIn.fmt_wc_0((discount.tuition_amount)));
+          jLabel31.setVisible(false);
+        }
+      }
+      if (discount.is_tution == 0) {
+        jCheckBox2.setSelected(false);
+        tf_field14.setText("");
+      }
+
+      if (discount.is_misc == 1) {
+        jCheckBox3.setSelected(true);
+        if (discount.is_misc_percent == 1) {
+          jCheckBox5.setSelected(true);
+          tf_field17.setText(FitIn.fmt_wc_0((discount.misc_rate)));
+          jLabel34.setVisible(true);
+        } else {
+          jCheckBox5.setSelected(false);
+          tf_field17.setText(FitIn.fmt_wc_0((discount.misc_amount)));
+          jLabel34.setVisible(false);
+        }
+      } else {
+        jCheckBox3.setSelected(false);
+        tf_field17.setText("");
+      }
+
+      if (discount.is_total == 1) {
+        jCheckBox4.setSelected(true);
+        if (discount.is_total_percent == 1) {
+          jCheckBox6.setSelected(true);
+          tf_field18.setText(FitIn.fmt_wc_0((discount.total_rate)));
+          jLabel35.setVisible(true);
+        } else {
+          jCheckBox6.setSelected(false);
+          tf_field18.setText(FitIn.fmt_wc_0((discount.total_amount)));
+          jLabel35.setVisible(false);
+        }
+      } else {
+        jCheckBox6.setSelected(false);
+        tf_field18.setText("");
+      }
+      tf_field16.setText(FitIn.fmt_wc_0(discount.total_assessment));
+      tf_field19.setText(FitIn.fmt_wc_0(discount.total_tuition_fee));
+      tf_field20.setText(FitIn.fmt_wc_0(discount.total_misc));
+      tf_field26.setText(FitIn.fmt_wc_0(discount.total_other_fees));
+      tf_field21.setText(FitIn.fmt_wc_0(discount.total_discount));
+      tf_field15.setText(discount.discount_name);
+
+      jButton12.setEnabled(false);
+    } else {
+      jButton14.setEnabled(false);
+      tf_field21.setText("");
+      jButton12.setEnabled(true);
+    }
+  }
   List<Discount_types.to_discount_types> discounts = new ArrayList();
 
   private void ret_discounts() {
@@ -984,77 +1095,79 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
   }
 
   private void init_discounts(JTextField tf) {
-    Object[][] obj = new Object[discounts.size()][1];
-    int i = 0;
-    for (Discount_types.to_discount_types to : discounts) {
-      obj[i][0] = " " + to.discount_name;
-      i++;
-    }
-    JLabel[] labels = {};
-    int[] tbl_widths_customers = {tf.getWidth()};
-    int width = 0;
-    String[] col_names = {""};
-    TableRenderer tr = new TableRenderer();
-    TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
-    tr.setCallback(new TableRenderer.Callback() {
-      @Override
-      public void ok(TableRenderer.OutputData data) {
-        Discount_types.to_discount_types to = discounts.get(data.selected_row);
-        Field.Combo co = (Field.Combo) tf;
-        co.setText("" + to.discount_name);
-        co.setId("" + to.id);
+    if (!jButton14.isEnabled()) {
+      Object[][] obj = new Object[discounts.size()][1];
+      int i = 0;
+      for (Discount_types.to_discount_types to : discounts) {
+        obj[i][0] = " " + to.discount_name;
+        i++;
+      }
+      JLabel[] labels = {};
+      int[] tbl_widths_customers = {tf.getWidth()};
+      int width = 0;
+      String[] col_names = {""};
+      TableRenderer tr = new TableRenderer();
+      TableRenderer.setPopup(tf, obj, labels, tbl_widths_customers, col_names);
+      tr.setCallback(new TableRenderer.Callback() {
+        @Override
+        public void ok(TableRenderer.OutputData data) {
+          Discount_types.to_discount_types to = discounts.get(data.selected_row);
+          Field.Combo co = (Field.Combo) tf;
+          co.setText("" + to.discount_name);
+          co.setId("" + to.id);
 
-        if (to.is_tution == 1) {
-          jCheckBox2.setSelected(true);
-          if (to.is_tuition_percent == 1) {
-            jCheckBox1.setSelected(true);
-            tf_field14.setText(FitIn.fmt_wc_0((to.tuition_rate)));
-            jLabel31.setVisible(true);
-          } else {
-            jCheckBox1.setSelected(false);
-            tf_field14.setText(FitIn.fmt_wc_0((to.tuition_amount)));
-            jLabel31.setVisible(false);
+          if (to.is_tution == 1) {
+            jCheckBox2.setSelected(true);
+            if (to.is_tuition_percent == 1) {
+              jCheckBox1.setSelected(true);
+              tf_field14.setText(FitIn.fmt_wc_0((to.tuition_rate)));
+              jLabel31.setVisible(true);
+            } else {
+              jCheckBox1.setSelected(false);
+              tf_field14.setText(FitIn.fmt_wc_0((to.tuition_amount)));
+              jLabel31.setVisible(false);
+            }
           }
-        }
-        if (to.is_tution == 0) {
-          jCheckBox2.setSelected(false);
-          tf_field14.setText("");
-        }
-
-        if (to.is_misc == 1) {
-          jCheckBox3.setSelected(true);
-          if (to.is_misc_percent == 1) {
-            jCheckBox5.setSelected(true);
-            tf_field17.setText(FitIn.fmt_wc_0((to.misc_rate)));
-            jLabel34.setVisible(true);
-          } else {
-            jCheckBox5.setSelected(false);
-            tf_field17.setText(FitIn.fmt_wc_0((to.misc_amount)));
-            jLabel34.setVisible(false);
+          if (to.is_tution == 0) {
+            jCheckBox2.setSelected(false);
+            tf_field14.setText("");
           }
-        } else {
-          jCheckBox3.setSelected(false);
-          tf_field17.setText("");
-        }
 
-        if (to.is_total == 1) {
-          jCheckBox4.setSelected(true);
-          if (to.is_total_percent == 1) {
-            jCheckBox6.setSelected(true);
-            tf_field18.setText(FitIn.fmt_wc_0((to.total_rate)));
-            jLabel35.setVisible(true);
+          if (to.is_misc == 1) {
+            jCheckBox3.setSelected(true);
+            if (to.is_misc_percent == 1) {
+              jCheckBox5.setSelected(true);
+              tf_field17.setText(FitIn.fmt_wc_0((to.misc_rate)));
+              jLabel34.setVisible(true);
+            } else {
+              jCheckBox5.setSelected(false);
+              tf_field17.setText(FitIn.fmt_wc_0((to.misc_amount)));
+              jLabel34.setVisible(false);
+            }
+          } else {
+            jCheckBox3.setSelected(false);
+            tf_field17.setText("");
+          }
+
+          if (to.is_total == 1) {
+            jCheckBox4.setSelected(true);
+            if (to.is_total_percent == 1) {
+              jCheckBox6.setSelected(true);
+              tf_field18.setText(FitIn.fmt_wc_0((to.total_rate)));
+              jLabel35.setVisible(true);
+            } else {
+              jCheckBox6.setSelected(false);
+              tf_field18.setText(FitIn.fmt_wc_0((to.total_amount)));
+              jLabel35.setVisible(false);
+            }
           } else {
             jCheckBox6.setSelected(false);
-            tf_field18.setText(FitIn.fmt_wc_0((to.total_amount)));
-            jLabel35.setVisible(false);
+            tf_field18.setText("");
           }
-        } else {
-          jCheckBox6.setSelected(false);
-          tf_field18.setText("");
+          calculate_discount(to);
         }
-        calculate_discount(to);
-      }
-    });
+      });
+    }
   }
 
   private void calculate_discount(Discount_types.to_discount_types to) {
@@ -1104,5 +1217,197 @@ public class Dlg_finance_assessment_discount extends javax.swing.JDialog {
     });
     nd.setLocationRelativeTo(this);
     nd.setVisible(true);
+  }
+
+  private void confirm() {
+    if (tf_field15.getText().isEmpty()) {
+      Alert.set(0, "Select a discount!");
+      return;
+    }
+    if (FitIn.toDouble(tf_field21.getText()) == 0) {
+      Alert.set(0, "Enter Amount!");
+      return;
+    }
+    Window p = (Window) this;
+    Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+    nd.setTitle("");
+//    nd.do_pass(services);
+    nd.setCallback(new Dlg_confirm_action.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+        closeDialog.ok();
+        call_loader();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void call_loader() {
+    Loader loader = new Loader(this);
+    loader.execute();
+  }
+
+  public class Loader extends SwingWorker {
+
+    private Loading dialog;
+
+    public Loader(JDialog dlg) {
+
+      dialog = new Loading();
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      int xSize = ((int) tk.getScreenSize().
+              getWidth());
+      int ySize = ((int) tk.getScreenSize().
+              getHeight());
+      dialog.setSize(xSize, ySize);
+      dialog.setPreferredSize(new Dimension(xSize, ySize));
+      dialog.setAlwaysOnTop(true);
+      addPropertyChangeListener(new PropertyChangeListener() {
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+          if ("state".equals(evt.getPropertyName())) {
+            if (getState() == SwingWorker.StateValue.STARTED) {
+              SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                  if (getState() == SwingWorker.StateValue.STARTED) {
+                    dialog.setVisible(true);
+                  }
+                }
+              });
+            }
+          }
+        }
+      });
+    }
+
+    @Override
+    protected Object doInBackground() throws Exception {
+      save_transaction();
+      return null;
+    }
+
+    @Override
+    protected void done() {
+      dialog.dispose();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+          ok();
+        }
+      });
+    }
+
+  }
+
+  private void save_transaction() {
+    int id = 0;
+    int enrollment_assessment_id = assessment.id;
+    String enrollment_assessment_no = "" + assessment.id;
+    int enrollment_id = assessment.enrollment_id;
+    String enrollment_no = assessment.enrollment_no;
+    int academic_year_id = assessment.academic_year_id;
+    String academic_year = assessment.academic_year;
+    String discount_name = tf_field15.getText();
+
+    int is_tution = 0;
+    int is_tuition_percent = 0;
+    double tuition_rate = 0;
+    double tuition_amount = 0;
+    if (jCheckBox2.isSelected()) {
+      is_tution = 1;
+      if (jCheckBox1.isSelected()) {
+        is_tuition_percent = 1;
+        tuition_rate = FitIn.toDouble(tf_field14.getText());
+      }
+      if (!jCheckBox1.isSelected()) {
+        tuition_amount = FitIn.toDouble(tf_field14.getText());
+      }
+    }
+
+    int is_misc = 0;
+    int is_misc_percent = 0;
+    double misc_rate = 0;
+    double misc_amount = 0;
+
+    if (jCheckBox3.isSelected()) {
+      is_misc = 1;
+      if (jCheckBox5.isSelected()) {
+        is_misc_percent = 1;
+        misc_rate = FitIn.toDouble(tf_field17.getText());
+      }
+      if (!jCheckBox5.isSelected()) {
+        misc_amount = FitIn.toDouble(tf_field17.getText());
+      }
+    }
+
+    int is_total = 0;
+    int is_total_percent = 0;
+    double total_rate = 0;
+    double total_amount = 0;
+
+    if (jCheckBox4.isSelected()) {
+      is_total = 1;
+      if (jCheckBox6.isSelected()) {
+        is_total_percent = 1;
+        total_rate = FitIn.toDouble(tf_field18.getText());
+      }
+      if (!jCheckBox6.isSelected()) {
+        total_amount = FitIn.toDouble(tf_field18.getText());
+      }
+    }
+
+    double total_tuition_fee = FitIn.toDouble(tf_field19.getText());
+    double total_misc = FitIn.toDouble(tf_field20.getText());
+    double total_assessment = FitIn.toDouble(tf_field16.getText());
+    double total_discount = FitIn.toDouble(tf_field21.getText());
+    double total_other_fees = FitIn.toDouble(tf_field26.getText());
+
+    int student_id = assessment.student_id;
+    String student_no = assessment.student_no;
+    String student_name = assessment.lname + ", " + assessment.fname + " " + assessment.mi;
+
+    String created_at = DateType.now();
+    String updated_at = DateType.now();
+    String created_by = MyUser.getUser_id();
+    String updated_by = MyUser.getUser_id();
+    int status = 1;
+    Enrollment_assessment_discounts.to_enrollment_assessment_discounts discount = new Enrollment_assessment_discounts.to_enrollment_assessment_discounts(id, enrollment_assessment_id, enrollment_assessment_no, enrollment_id, enrollment_no, academic_year_id, academic_year, discount_name, is_tution, is_tuition_percent, tuition_rate, tuition_amount, is_misc, is_misc_percent, misc_rate, misc_amount, is_total, is_total_percent, total_rate, total_amount, total_tuition_fee, total_misc, total_assessment, total_discount, total_other_fees, student_id, student_no, student_name, created_at, updated_at, created_by, updated_by, status);
+    Enrollment_assessment_discounts.add_data(discount);
+    Alert.set(1, updated_by);
+  }
+
+  private void ok() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
+    }
+  }
+
+  private void confirm_delete() {
+    Window p = (Window) this;
+    Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+    nd.setTitle("");
+//    nd.do_pass(services);
+    nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+      @Override
+      public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+        closeDialog.ok();
+        delete();
+      }
+    });
+    nd.setLocationRelativeTo(this);
+    nd.setVisible(true);
+  }
+
+  private void delete() {
+    if (discount_id != 0) {
+      Enrollment_assessment_discounts.delete_data2(discount_id, assessment.student_id, FitIn.toDouble(tf_field21.getText()));
+      ret_discount();
+      Alert.set(3, "");
+
+    }
   }
 }
