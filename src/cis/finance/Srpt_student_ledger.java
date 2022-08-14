@@ -55,11 +55,13 @@ public class Srpt_student_ledger {
         String credit;
         String interest;
         double balance;
+        String or_no;
+        double amount;
 
         public field() {
         }
 
-        public field(int id, String mode, String year_level, String term, String academic_year, String date, String debit, String credit, String interest, double balance) {
+        public field(int id, String mode, String year_level, String term, String academic_year, String date, String debit, String credit, String interest, double balance,String or_no, double amount) {
             this.id = id;
             this.mode = mode;
             this.year_level = year_level;
@@ -70,7 +72,25 @@ public class Srpt_student_ledger {
             this.credit = credit;
             this.interest = interest;
             this.balance = balance;
+            this.or_no=or_no;
+            this.amount = amount;
         }
+
+    public String getOr_no() {
+      return or_no;
+    }
+
+    public void setOr_no(String or_no) {
+      this.or_no = or_no;
+    }
+
+    public double getAmount() {
+      return amount;
+    }
+
+    public void setAmount(double amount) {
+      this.amount = amount;
+    }
 
         public int getId() {
             return id;
@@ -174,7 +194,9 @@ public class Srpt_student_ledger {
             String credit = "" + (150 * i);
             String interest = "";
             double balance = FitIn.toDouble(debit) - FitIn.toDouble(credit);
-            Srpt_student_ledger.field f = new Srpt_student_ledger.field(id, mode, year_level, term, academic_year, date, debit, credit, interest, balance);
+            String or_no="";
+            double amount = 0;
+            Srpt_student_ledger.field f = new Srpt_student_ledger.field(id, mode, year_level, term, academic_year, date, debit, credit, interest, balance,or_no, amount);
             fields.add(f);
         }
         String jrxml = "rpt_student_ledger.jrxml";

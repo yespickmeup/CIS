@@ -13,6 +13,7 @@ import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_student_loaded_subject_transfers;
 import cis.enrollments.Enrollment_student_loaded_subjects;
 import cis.enrollments.Enrollments;
+import static cis.registrar.Dlg_registrar_student_transfer_section.tbl_enrollment_offered_subject_sections_M;
 import cis.students.Students;
 import cis.test.DayCheck;
 import cis.users.MyUser;
@@ -52,160 +53,160 @@ import synsoftech.util.ImageRenderer;
  */
 public class Dlg_registrar_student_transfer_section_student extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dlg_registrar_student_transfer_section_student
-     */
-    //<editor-fold defaultstate="collapsed" desc=" callback ">
-    private Callback callback;
+  /**
+   * Creates new form Dlg_registrar_student_transfer_section_student
+   */
+  //<editor-fold defaultstate="collapsed" desc=" callback ">
+  private Callback callback;
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
+  public void setCallback(Callback callback) {
+    this.callback = callback;
 
-    }
+  }
 
-    public static interface Callback {
+  public static interface Callback {
 
-        void ok(CloseDialog closeDialog, OutputData data);
-    }
+    void ok(CloseDialog closeDialog, OutputData data);
+  }
 
-    public static class InputData {
-    }
+  public static class InputData {
+  }
 
-    public static class OutputData {
-    }
+  public static class OutputData {
+  }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_registrar_student_transfer_section_student(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  //<editor-fold defaultstate="collapsed" desc=" Constructors ">
+  private Dlg_registrar_student_transfer_section_student(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  private Dlg_registrar_student_transfer_section_student(java.awt.Dialog parent, boolean modal) {
+    super(parent, modal);
+    setUndecorated(true);
+    initComponents();
+    myInit();
+  }
+
+  public Dlg_registrar_student_transfer_section_student() {
+    super();
+    setUndecorated(true);
+    initComponents();
+    myInit();
+
+  }
+  private Dlg_registrar_student_transfer_section_student myRef;
+
+  private void setThisRef(Dlg_registrar_student_transfer_section_student myRef) {
+    this.myRef = myRef;
+  }
+  private static java.util.Map<Object, Dlg_registrar_student_transfer_section_student> dialogContainer = new java.util.HashMap();
+
+  public static void clearUpFirst(java.awt.Window parent) {
+    if (dialogContainer.containsKey(parent)) {
+      dialogContainer.remove(parent);
+    }
+  }
+
+  public static Dlg_registrar_student_transfer_section_student create(java.awt.Window parent, boolean modal) {
+
+    if (modal) {
+      return create(parent, ModalityType.APPLICATION_MODAL);
     }
 
-    private Dlg_registrar_student_transfer_section_student(java.awt.Dialog parent, boolean modal) {
-        super(parent, modal);
-        setUndecorated(true);
-        initComponents();
-        myInit();
-    }
+    return create(parent, ModalityType.MODELESS);
 
-    public Dlg_registrar_student_transfer_section_student() {
-        super();
-        setUndecorated(true);
-        initComponents();
-        myInit();
+  }
 
-    }
-    private Dlg_registrar_student_transfer_section_student myRef;
+  public static Dlg_registrar_student_transfer_section_student create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
-    private void setThisRef(Dlg_registrar_student_transfer_section_student myRef) {
-        this.myRef = myRef;
-    }
-    private static java.util.Map<Object, Dlg_registrar_student_transfer_section_student> dialogContainer = new java.util.HashMap();
+    if (parent instanceof java.awt.Frame) {
 
-    public static void clearUpFirst(java.awt.Window parent) {
-        if (dialogContainer.containsKey(parent)) {
-            dialogContainer.remove(parent);
-        }
-    }
+      Dlg_registrar_student_transfer_section_student dialog = dialogContainer.get(parent);
 
-    public static Dlg_registrar_student_transfer_section_student create(java.awt.Window parent, boolean modal) {
-
-        if (modal) {
-            return create(parent, ModalityType.APPLICATION_MODAL);
-        }
-
-        return create(parent, ModalityType.MODELESS);
-
-    }
-
-    public static Dlg_registrar_student_transfer_section_student create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
-
-        if (parent instanceof java.awt.Frame) {
-
-            Dlg_registrar_student_transfer_section_student dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_registrar_student_transfer_section_student((java.awt.Frame) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        if (parent instanceof java.awt.Dialog) {
-            Dlg_registrar_student_transfer_section_student dialog = dialogContainer.get(parent);
-
-            if (dialog == null) {
-                dialog = new Dlg_registrar_student_transfer_section_student((java.awt.Dialog) parent, false);
-                dialog.setModalityType(modalType);
-                dialogContainer.put(parent, dialog);
-                java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
-                dialog.setThisRef(dialog);
-                return dialog;
-            } else {
-                dialog.setModalityType(modalType);
-                return dialog;
-            }
-
-        }
-
-        return null;
-
-    }
-    //</editor-fold>    
-
-    //<editor-fold defaultstate="collapsed" desc=" main ">
-    public static void main(String args[]) {
-
-        try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Dlg_registrar_student_transfer_section_student dialog = Dlg_registrar_student_transfer_section_student.create(new javax.swing.JFrame(), true);
-        dialog.setVisible(true);
-
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" added ">
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible == true) {
-            getContentPane().removeAll();
-            initComponents();
-            myInit();
-            repaint();
-        }
+      if (dialog == null) {
+        dialog = new Dlg_registrar_student_transfer_section_student((java.awt.Frame) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
 
     }
 
-    public javax.swing.JPanel getSurface() {
-        return (javax.swing.JPanel) getContentPane();
+    if (parent instanceof java.awt.Dialog) {
+      Dlg_registrar_student_transfer_section_student dialog = dialogContainer.get(parent);
+
+      if (dialog == null) {
+        dialog = new Dlg_registrar_student_transfer_section_student((java.awt.Dialog) parent, false);
+        dialog.setModalityType(modalType);
+        dialogContainer.put(parent, dialog);
+        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
+        dialog.setThisRef(dialog);
+        return dialog;
+      } else {
+        dialog.setModalityType(modalType);
+        return dialog;
+      }
+
     }
 
-    public void nullify() {
-        myRef.setVisible(false);
-        myRef = null;
-    }
-    //</editor-fold>
+    return null;
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  }
+  //</editor-fold>    
+
+  //<editor-fold defaultstate="collapsed" desc=" main ">
+  public static void main(String args[]) {
+
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Dlg_registrar_student_transfer_section_student dialog = Dlg_registrar_student_transfer_section_student.create(new javax.swing.JFrame(), true);
+    dialog.setVisible(true);
+
+  }
+  //</editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" added ">
+  @Override
+  public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible == true) {
+      getContentPane().removeAll();
+      initComponents();
+      myInit();
+      repaint();
+    }
+
+  }
+
+  public javax.swing.JPanel getSurface() {
+    return (javax.swing.JPanel) getContentPane();
+  }
+
+  public void nullify() {
+    myRef.setVisible(false);
+    myRef = null;
+  }
+  //</editor-fold>
+
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -634,16 +635,16 @@ public class Dlg_registrar_student_transfer_section_student extends javax.swing.
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_enrollment_offered_subject_sectionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
-        select_section();
+      select_section();
     }//GEN-LAST:event_tbl_enrollment_offered_subject_sectionsMouseClicked
 
     private void tbl_enrollment_student_loaded_subjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_enrollment_student_loaded_subjectsMouseClicked
-        select_enrolled_subject();
+      select_enrolled_subject();
     }//GEN-LAST:event_tbl_enrollment_student_loaded_subjectsMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -690,654 +691,687 @@ public class Dlg_registrar_student_transfer_section_student extends javax.swing.
     private javax.swing.JTextField tf_field28;
     // End of variables declaration//GEN-END:variables
 
-    private void myInit() {
-        init_key();
-        init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-        init_tbl_enrollment_offered_subject_sections(tbl_enrollment_offered_subject_sections);
+  private void myInit() {
+    init_key();
+    init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
+    init_tbl_enrollment_offered_subject_sections(tbl_enrollment_offered_subject_sections);
+  }
+
+  Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section = null;
+  Academic_years.to_academic_years acad_year = null;
+  String period = "";
+  Dlg_dean_student_advice_load_subject_students.students student = null;
+
+  public void do_pass(Dlg_dean_student_advice_load_subject_students.students to, Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec, Academic_years.to_academic_years acad, String term) {
+
+    section = sec;
+    acad_year = acad;
+    period = term;
+    student = to;
+    init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
+    Field.Input st = (Field.Input) tf_field16;
+    st.setText(to.student_no);
+    st.setId("" + to.student_id);
+    tf_field17.setText(to.name);
+    List<Students.to_students> students = Students.ret_data(" where id='" + to.student_id + "' ");
+    if (!students.isEmpty()) {
+      Students.to_students student = (Students.to_students) students.get(0);
+      tf_field18.setText(student.course_code);
+      tf_field19.setText(student.year_level);
+      tf_field20.setText(student.mobile_no);
+    }
+    //set section details
+    tf_field21.setText(sec.subject_code);
+    tf_field22.setText(sec.section);
+    tf_field23.setText(sec.description);
+    String day = sec.day.replaceAll("&nbsp;&nbsp;", "");
+    day = day.replaceAll("<br>", "\n");
+    jTextArea1.setText(day);
+    tf_field24.setText(sec.faculty_name);
+    tf_field25.setText(sec.created_by);
+    tf_field26.setText(sec.updated_by);
+    tf_field27.setText(sec.room);
+    if (sec.status == 0) {
+      tf_field28.setText("Posted");
+    } else if (sec.status == 1) {
+      String[] cap = sec.created_by.split(" of ");
+      int min = FitIn.toInt(cap[0]);
+      int max = FitIn.toInt(cap[1]);
+      if (min >= max) {
+        tf_field28.setText("Full");
+      } else {
+        tf_field28.setText("Open");
+      }
+
+    } else if (sec.status == 2) {
+      tf_field28.setText("Closed");
+    } else {
+      tf_field28.setText("Dropped");
     }
 
-    Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections section = null;
-    Academic_years.to_academic_years acad_year = null;
-    String period = "";
-    Dlg_dean_student_advice_load_subject_students.students student = null;
+    //retrieve loaded subject
+    ret_loaded_subjects();
+    //retrived available section
+    ret_eos();
+  }
 
-    public void do_pass(Dlg_dean_student_advice_load_subject_students.students to, Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec, Academic_years.to_academic_years acad, String term) {
+  static int is_pending = 0;
 
-        section = sec;
-        acad_year = acad;
-        period = term;
-        student = to;
-        init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-        Field.Input st = (Field.Input) tf_field16;
-        st.setText(to.student_no);
-        st.setId("" + to.student_id);
-        tf_field17.setText(to.name);
-        List<Students.to_students> students = Students.ret_data(" where id='" + to.student_id + "' ");
-        if (!students.isEmpty()) {
-            Students.to_students student = (Students.to_students) students.get(0);
-            tf_field18.setText(student.course_code);
-            tf_field19.setText(student.year_level);
-            tf_field20.setText(student.mobile_no);
-        }
-        //set section details
-        tf_field21.setText(sec.subject_code);
-        tf_field22.setText(sec.section);
-        tf_field23.setText(sec.description);
-        String day = sec.day.replaceAll("&nbsp;&nbsp;", "");
-        day = day.replaceAll("<br>", "\n");
-        jTextArea1.setText(day);
-        tf_field24.setText(sec.faculty_name);
-        tf_field25.setText(sec.created_by);
-        tf_field26.setText(sec.updated_by);
-        tf_field27.setText(sec.room);
-        if (sec.status == 0) {
-            tf_field28.setText("Posted");
-        } else if (sec.status == 1) {
-            String[] cap = sec.created_by.split(" of ");
-            int min = FitIn.toInt(cap[0]);
-            int max = FitIn.toInt(cap[1]);
-            if (min >= max) {
-                tf_field28.setText("Full");
-            } else {
-                tf_field28.setText("Open");
-            }
+  public void do_pass2(Dlg_dean_student_advice_load_subject_students.students to, Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec, Academic_years.to_academic_years acad, String term) {
+    is_pending = 1;
+    section = sec;
+    acad_year = acad;
+    period = term;
+    student = to;
+    init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
+    tf_field17.setText(to.name);
+    List<Enrollments.to_enrollments> students = Enrollments.ret_data(" where id='" + to.enrollment_id + "' ");
+    if (!students.isEmpty()) {
+      Enrollments.to_enrollments enrollment = (Enrollments.to_enrollments) students.get(0);
+      Field.Input st = (Field.Input) tf_field16;
+      jLabel24.setText("Enrollment No.:");
+      st.setText(enrollment.enrollment_no);
+      st.setId("" + enrollment.id);
+      tf_field18.setText(enrollment.course_code);
+      tf_field19.setText(enrollment.year_level);
+      tf_field20.setText(enrollment.mobile_no);
+    }
+    //set section details
+    tf_field21.setText(sec.subject_code);
+    tf_field22.setText(sec.section);
+    tf_field23.setText(sec.description);
+    String day = sec.day.replaceAll("&nbsp;&nbsp;", "");
+    day = day.replaceAll("<br>", "\n");
+    jTextArea1.setText(day);
+    tf_field24.setText(sec.faculty_name);
+    tf_field25.setText(sec.created_by);
+    tf_field26.setText(sec.updated_by);
+    tf_field27.setText(sec.room);
+    if (sec.status == 0) {
+      tf_field28.setText("Posted");
+    } else if (sec.status == 1) {
+      String[] cap = sec.created_by.split(" of ");
+      int min = FitIn.toInt(cap[0]);
+      int max = FitIn.toInt(cap[1]);
+      if (min >= max) {
+        tf_field28.setText("Full");
+      } else {
+        tf_field28.setText("Open");
+      }
 
-        } else if (sec.status == 2) {
-            tf_field28.setText("Closed");
-        } else {
-            tf_field28.setText("Dropped");
-        }
-
-        //retrieve loaded subject
-        ret_loaded_subjects();
-        //retrived available section
-        ret_eos();
+    } else if (sec.status == 2) {
+      tf_field28.setText("Closed");
+    } else {
+      tf_field28.setText("Dropped");
     }
 
-    static int is_pending = 0;
+    //retrieve loaded subject
+    ret_loaded_subjects();
 
-    public void do_pass2(Dlg_dean_student_advice_load_subject_students.students to, Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections sec, Academic_years.to_academic_years acad, String term) {
-        is_pending = 1;
-        section = sec;
-        acad_year = acad;
-        period = term;
-        student = to;
-        init_tbl_enrollment_student_loaded_subjects(tbl_enrollment_student_loaded_subjects);
-        tf_field17.setText(to.name);
-        List<Enrollments.to_enrollments> students = Enrollments.ret_data(" where id='" + to.enrollment_id + "' ");
-        if (!students.isEmpty()) {
-            Enrollments.to_enrollments enrollment = (Enrollments.to_enrollments) students.get(0);
-            Field.Input st = (Field.Input) tf_field16;
-            jLabel24.setText("Enrollment No.:");
-            st.setText(enrollment.enrollment_no);
-            st.setId("" + enrollment.id);
-            tf_field18.setText(enrollment.course_code);
-            tf_field19.setText(enrollment.year_level);
-            tf_field20.setText(enrollment.mobile_no);
-        }
-        //set section details
-        tf_field21.setText(sec.subject_code);
-        tf_field22.setText(sec.section);
-        tf_field23.setText(sec.description);
-        String day = sec.day.replaceAll("&nbsp;&nbsp;", "");
-        day = day.replaceAll("<br>", "\n");
-        jTextArea1.setText(day);
-        tf_field24.setText(sec.faculty_name);
-        tf_field25.setText(sec.created_by);
-        tf_field26.setText(sec.updated_by);
-        tf_field27.setText(sec.room);
-        if (sec.status == 0) {
-            tf_field28.setText("Posted");
-        } else if (sec.status == 1) {
-            String[] cap = sec.created_by.split(" of ");
-            int min = FitIn.toInt(cap[0]);
-            int max = FitIn.toInt(cap[1]);
-            if (min >= max) {
-                tf_field28.setText("Full");
-            } else {
-                tf_field28.setText("Open");
-            }
+    //retrived available section
+    ret_eos();
+  }
 
-        } else if (sec.status == 2) {
-            tf_field28.setText("Closed");
-        } else {
-            tf_field28.setText("Dropped");
-        }
+  // <editor-fold defaultstate="collapsed" desc="Key">
+  private void disposed() {
+    this.dispose();
+  }
 
-        //retrieve loaded subject
-        ret_loaded_subjects();
+  private void init_key() {
+    KeyMapping.mapKeyWIFW(getSurface(),
+                          KeyEvent.VK_ESCAPE, new KeyAction() {
 
-        //retrived available section
-        ret_eos();
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="Key">
-    private void disposed() {
-        this.dispose();
-    }
-
-    private void init_key() {
-        KeyMapping.mapKeyWIFW(getSurface(),
-                              KeyEvent.VK_ESCAPE, new KeyAction() {
-
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              ok();
-                          }
-                      });
-    }
-    // </editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" enrollment_student_loaded_subjects "> 
-    public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
-    public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
-
-    public static void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
-        tbl_enrollment_student_loaded_subjects_ALM = new ArrayListModel();
-        tbl_enrollment_student_loaded_subjects_M = new Tblenrollment_student_loaded_subjectsModel(tbl_enrollment_student_loaded_subjects_ALM);
-        tbl_enrollment_student_loaded_subjects.setModel(tbl_enrollment_student_loaded_subjects_M);
-        tbl_enrollment_student_loaded_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_enrollment_student_loaded_subjects.setRowHeight(25);
-        int col = 0;
-        if (is_pending == 1) {
-            col = 30;
-        }
-        int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 0, 0, 60, 60, 70, col, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
-            if (i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_enrollment_student_loaded_subjects, i, tbl_widths_enrollment_student_loaded_subjects[i]);
-        }
-        Dimension d = tbl_enrollment_student_loaded_subjects.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_enrollment_student_loaded_subjects.getTableHeader().setPreferredSize(d);
-        tbl_enrollment_student_loaded_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_student_loaded_subjects.setRowHeight(25);
-        tbl_enrollment_student_loaded_subjects.setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
-    }
-
-    public static void loadData_enrollment_student_loaded_subjects(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> acc) {
-        tbl_enrollment_student_loaded_subjects_ALM.clear();
-        tbl_enrollment_student_loaded_subjects_ALM.addAll(acc);
-    }
-
-    public static class Tblenrollment_student_loaded_subjectsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Subject Code", "Description", "Lec", "Lab", "Section", "Room", "Day", "", "academic_offering_subject_id", "academic_offering_id", "academic_year_id", "academic_year", "level_id", "level", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "faculty_id", "faculty_name", "section", "room_id", "room", "schedule", "day", "time", "start_time", "closing_time", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
-        };
-
-        public Tblenrollment_student_loaded_subjectsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tt = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.subject_code;
-                case 1:
-                    return " " + tt.description;
-                case 2:
-                    return " " + tt.lecture_units;
-                case 3:
-                    return " " + tt.lab_units;
-                case 4:
-                    return " " + tt.section;
-                case 5:
-                    return " " + tt.room;
-                case 6:
-                    String day = DateType.mwf(tt.day);
-                    return " " + day;
-                case 7:
-                    return "/cis/icons/remove11.png";
-                case 8:
-                    return tt.academic_offering_subject_id;
-                case 9:
-                    return tt.academic_offering_id;
-                case 10:
-                    return tt.academic_year_id;
-                case 11:
-                    return tt.academic_year;
-                case 12:
-                    return tt.level_id;
-                case 13:
-                    return tt.level;
-                case 14:
-                    return tt.college_id;
-                case 15:
-                    return tt.college;
-                case 16:
-                    return tt.department_id;
-                case 17:
-                    return tt.department;
-                case 18:
-                    return tt.course_id;
-                case 19:
-                    return tt.course_code;
-                case 20:
-                    return tt.course_description;
-                case 21:
-                    return tt.term;
-                case 22:
-                    return tt.year_level;
-                case 23:
-                    return tt.subject_id;
-                case 24:
-                    return tt.subject_code;
-                case 25:
-                    return tt.description;
-                case 26:
-                    return tt.faculty_id;
-                case 27:
-                    return tt.faculty_name;
-                case 28:
-                    return tt.section;
-                case 29:
-                    return tt.room_id;
-                case 30:
-                    return tt.room;
-                case 31:
-                    return tt.schedule;
-                case 32:
-                    return tt.day;
-                case 33:
-                    return tt.time;
-                case 34:
-                    return tt.start_time;
-                case 35:
-                    return tt.closing_time;
-                case 36:
-                    return tt.created_at;
-                case 37:
-                    return tt.updated_at;
-                case 38:
-                    return tt.created_by;
-                case 39:
-                    return tt.updated_by;
-                case 40:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
-            }
-        }
-    }
-
-    private void ret_loaded_subjects() {
-        if (is_pending == 0) {
-            Field.Input tf = (Field.Input) tf_field16;
-
-            String where = " where academic_year_id='" + acad_year.id + "' and term like '" + period + "' and student_id='" + tf.getId() + "' and status<2 order by description asc ";
-//        System.out.println(where);
-            List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data(where);
-
-            loadData_enrollment_student_loaded_subjects(datas);
-            jLabel2.setText("" + datas.size());
-        } else {
-
-            String where = " where enrollment_id='" + student.enrollment_id + "' and status<2 order by description asc ";
-
-            List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data(where);
-
-            loadData_enrollment_student_loaded_subjects(datas);
-            jLabel2.setText("" + datas.size());
-        }
-
-    }
-
-    //<editor-fold defaultstate="collapsed" desc=" enrollment_offered_subject_sections "> 
-    public static ArrayListModel tbl_enrollment_offered_subject_sections_ALM;
-    public static Tblenrollment_offered_subject_sectionsModel tbl_enrollment_offered_subject_sections_M;
-
-    public static void init_tbl_enrollment_offered_subject_sections(JTable tbl_enrollment_offered_subject_sections) {
-        tbl_enrollment_offered_subject_sections_ALM = new ArrayListModel();
-        tbl_enrollment_offered_subject_sections_M = new Tblenrollment_offered_subject_sectionsModel(tbl_enrollment_offered_subject_sections_ALM);
-        tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
-        tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tbl_enrollment_offered_subject_sections.setRowHeight(25);
-        int[] tbl_widths_enrollment_offered_subject_sections = {90, 100, 70, 50, 130, 220, 0, 120, 90, 90, 70, 0, 0, 0, 0};
-        for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
-            if (i == 7 || i == 1) {
-                continue;
-            }
-            TableWidthUtilities.setColumnWidth(tbl_enrollment_offered_subject_sections, i, tbl_widths_enrollment_offered_subject_sections[i]);
-        }
-        Dimension d = tbl_enrollment_offered_subject_sections.getTableHeader().getPreferredSize();
-        d.height = 25;
-        tbl_enrollment_offered_subject_sections.getTableHeader().setPreferredSize(d);
-        tbl_enrollment_offered_subject_sections.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
-        tbl_enrollment_offered_subject_sections.setRowHeight(60);
-        tbl_enrollment_offered_subject_sections.setFont(new java.awt.Font("Arial", 0, 12));
-
-        TableColumnModel tcm = tbl_enrollment_offered_subject_sections.getColumnModel();
-        TableColumn tm = tcm.getColumn(5);
-        tm.setCellRenderer(new Dlg_academic_offerings.Html());
-    }
-
-    public static class Html extends DefaultTableCellRenderer {
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
-            JLabel lbl = new JLabel();
-            lbl.setText(value.toString());
-            lbl.setOpaque(true);
-            lbl.setBackground(Color.white);
-            if (selected) {
-                lbl.setBackground(new java.awt.Color(0, 120, 215));
-                lbl.setForeground(new java.awt.Color(255, 255, 255));
-            }
-            return lbl;
-        }
-    }
-
-    public static void loadData_enrollment_offered_subject_sections(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> acc) {
-        tbl_enrollment_offered_subject_sections_ALM.clear();
-        tbl_enrollment_offered_subject_sections_ALM.addAll(acc);
-    }
-
-    public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
-
-        public static String[] COLUMNS = {
-            "Code", "Description", "Section", "Max", "Room", "Day", "Time", "Instructor", "Capacity", "Pending", "Status", "", "updated_by", "status", "is_uploaded"
-        };
-
-        public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
-            super(listmodel, COLUMNS);
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            if (column == 100) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            if (col == 1000) {
-                return Boolean.class;
-            }
-            return Object.class;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections tt = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) getRow(row);
-            switch (col) {
-                case 0:
-                    return " " + tt.subject_code;
-                case 1:
-                    return " " + tt.description;
-                case 2:
-                    return " " + tt.section;
-                case 3:
-                    return " " + tt.max_students;
-                case 4:
-                    return " " + tt.room;
-                case 5:
-                    String html = "<html><body>"
-                            + " <p><font size=\"4\" > " + tt.day + "</font></p>"
-                            + "</body>"
-                            + "</html>";
-                    return html;
-                case 6:
-                    return " " + tt.time;
-                case 7:
-                    return " " + tt.faculty_name;
-                case 8:
-                    return " " + tt.created_by;
-                case 9:
-                    return " " + tt.updated_by;
-                case 10:
-                    if (tt.status == 0) {
-                        return " Posted";
-                    } else if (tt.status == 1) {
-                        String[] cap = tt.created_by.split(" of ");
-                        int min = FitIn.toInt(cap[0]);
-                        int max = FitIn.toInt(cap[1]);
-                        if (min >= max) {
-                            return " Full";
-                        } else {
-                            return " Open";
-                        }
-
-                    } else if (tt.status == 2) {
-                        return " Closed";
-                    } else {
-                        return " Dropped";
+                      ok();
                     }
-                case 11:
-                    return "Remove";
-                case 12:
-                    return tt.updated_by;
-                case 13:
-                    return tt.status;
-                default:
-                    return tt.is_uploaded;
+                  });
+  }
+  // </editor-fold>
+
+  //<editor-fold defaultstate="collapsed" desc=" enrollment_student_loaded_subjects "> 
+  public static ArrayListModel tbl_enrollment_student_loaded_subjects_ALM;
+  public static Tblenrollment_student_loaded_subjectsModel tbl_enrollment_student_loaded_subjects_M;
+
+  public static void init_tbl_enrollment_student_loaded_subjects(JTable tbl_enrollment_student_loaded_subjects) {
+    tbl_enrollment_student_loaded_subjects_ALM = new ArrayListModel();
+    tbl_enrollment_student_loaded_subjects_M = new Tblenrollment_student_loaded_subjectsModel(tbl_enrollment_student_loaded_subjects_ALM);
+    tbl_enrollment_student_loaded_subjects.setModel(tbl_enrollment_student_loaded_subjects_M);
+    tbl_enrollment_student_loaded_subjects.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_enrollment_student_loaded_subjects.setRowHeight(25);
+    int col = 0;
+    if (is_pending == 1) {
+      col = 30;
+    }
+    int[] tbl_widths_enrollment_student_loaded_subjects = {100, 100, 0, 0, 60, 60, 70, col, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
+      if (i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_enrollment_student_loaded_subjects, i, tbl_widths_enrollment_student_loaded_subjects[i]);
+    }
+    Dimension d = tbl_enrollment_student_loaded_subjects.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_enrollment_student_loaded_subjects.getTableHeader().setPreferredSize(d);
+    tbl_enrollment_student_loaded_subjects.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_student_loaded_subjects.setRowHeight(25);
+    tbl_enrollment_student_loaded_subjects.setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_student_loaded_subjects.getColumnModel().getColumn(7).setCellRenderer(new ImageRenderer());
+  }
+
+  public static void loadData_enrollment_student_loaded_subjects(List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> acc) {
+    tbl_enrollment_student_loaded_subjects_ALM.clear();
+    tbl_enrollment_student_loaded_subjects_ALM.addAll(acc);
+  }
+
+  public static class Tblenrollment_student_loaded_subjectsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Subject Code", "Description", "Lec", "Lab", "Section", "Room", "Day", "", "academic_offering_subject_id", "academic_offering_id", "academic_year_id", "academic_year", "level_id", "level", "college_id", "college", "department_id", "department", "course_id", "course_code", "course_description", "term", "year_level", "subject_id", "subject_code", "description", "faculty_id", "faculty_name", "section", "room_id", "room", "schedule", "day", "time", "start_time", "closing_time", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded"
+    };
+
+    public Tblenrollment_student_loaded_subjectsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tt = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.subject_code;
+        case 1:
+          return " " + tt.description;
+        case 2:
+          return " " + tt.lecture_units;
+        case 3:
+          return " " + tt.lab_units;
+        case 4:
+          return " " + tt.section;
+        case 5:
+          return " " + tt.room;
+        case 6:
+          String day = DateType.mwf(tt.day);
+          return " " + day;
+        case 7:
+          return "/cis/icons/remove11.png";
+        case 8:
+          return tt.academic_offering_subject_id;
+        case 9:
+          return tt.academic_offering_id;
+        case 10:
+          return tt.academic_year_id;
+        case 11:
+          return tt.academic_year;
+        case 12:
+          return tt.level_id;
+        case 13:
+          return tt.level;
+        case 14:
+          return tt.college_id;
+        case 15:
+          return tt.college;
+        case 16:
+          return tt.department_id;
+        case 17:
+          return tt.department;
+        case 18:
+          return tt.course_id;
+        case 19:
+          return tt.course_code;
+        case 20:
+          return tt.course_description;
+        case 21:
+          return tt.term;
+        case 22:
+          return tt.year_level;
+        case 23:
+          return tt.subject_id;
+        case 24:
+          return tt.subject_code;
+        case 25:
+          return tt.description;
+        case 26:
+          return tt.faculty_id;
+        case 27:
+          return tt.faculty_name;
+        case 28:
+          return tt.section;
+        case 29:
+          return tt.room_id;
+        case 30:
+          return tt.room;
+        case 31:
+          return tt.schedule;
+        case 32:
+          return tt.day;
+        case 33:
+          return tt.time;
+        case 34:
+          return tt.start_time;
+        case 35:
+          return tt.closing_time;
+        case 36:
+          return tt.created_at;
+        case 37:
+          return tt.updated_at;
+        case 38:
+          return tt.created_by;
+        case 39:
+          return tt.updated_by;
+        case 40:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
+    }
+  }
+
+  private void ret_loaded_subjects() {
+    if (is_pending == 0) {
+      Field.Input tf = (Field.Input) tf_field16;
+
+      String where = " where academic_year_id='" + acad_year.id + "' and term like '" + period + "' and student_id='" + tf.getId() + "' and status<2 order by description asc ";
+//        System.out.println(where);
+      List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data(where);
+
+      loadData_enrollment_student_loaded_subjects(datas);
+      jLabel2.setText("" + datas.size());
+    } else {
+
+      String where = " where enrollment_id='" + student.enrollment_id + "' and status<2 order by description asc ";
+
+      List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> datas = Enrollment_student_loaded_subjects.ret_data(where);
+
+      loadData_enrollment_student_loaded_subjects(datas);
+      jLabel2.setText("" + datas.size());
+    }
+
+  }
+
+  //<editor-fold defaultstate="collapsed" desc=" enrollment_offered_subject_sections "> 
+  public static ArrayListModel tbl_enrollment_offered_subject_sections_ALM;
+  public static Tblenrollment_offered_subject_sectionsModel tbl_enrollment_offered_subject_sections_M;
+
+  public static void init_tbl_enrollment_offered_subject_sections(JTable tbl_enrollment_offered_subject_sections) {
+    tbl_enrollment_offered_subject_sections_ALM = new ArrayListModel();
+    tbl_enrollment_offered_subject_sections_M = new Tblenrollment_offered_subject_sectionsModel(tbl_enrollment_offered_subject_sections_ALM);
+    tbl_enrollment_offered_subject_sections.setModel(tbl_enrollment_offered_subject_sections_M);
+    tbl_enrollment_offered_subject_sections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+    tbl_enrollment_offered_subject_sections.setRowHeight(25);
+    int[] tbl_widths_enrollment_offered_subject_sections = {90, 100, 70, 50, 130, 220, 0, 120, 90, 90, 70, 0, 0, 0, 0};
+    for (int i = 0, n = tbl_widths_enrollment_offered_subject_sections.length; i < n; i++) {
+      if (i == 7 || i == 1) {
+        continue;
+      }
+      TableWidthUtilities.setColumnWidth(tbl_enrollment_offered_subject_sections, i, tbl_widths_enrollment_offered_subject_sections[i]);
+    }
+    Dimension d = tbl_enrollment_offered_subject_sections.getTableHeader().getPreferredSize();
+    d.height = 25;
+    tbl_enrollment_offered_subject_sections.getTableHeader().setPreferredSize(d);
+    tbl_enrollment_offered_subject_sections.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
+    tbl_enrollment_offered_subject_sections.setRowHeight(60);
+    tbl_enrollment_offered_subject_sections.setFont(new java.awt.Font("Arial", 0, 12));
+
+    TableColumnModel tcm = tbl_enrollment_offered_subject_sections.getColumnModel();
+    TableColumn tm = tcm.getColumn(5);
+    tm.setCellRenderer(new Dlg_academic_offerings.Html());
+  }
+
+  public static class Html extends DefaultTableCellRenderer {
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+      JLabel lbl = new JLabel();
+      lbl.setText(value.toString());
+      lbl.setOpaque(true);
+      lbl.setBackground(Color.white);
+      if (selected) {
+        lbl.setBackground(new java.awt.Color(0, 120, 215));
+        lbl.setForeground(new java.awt.Color(255, 255, 255));
+      }
+      return lbl;
+    }
+  }
+
+  public static void loadData_enrollment_offered_subject_sections(List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> acc) {
+    tbl_enrollment_offered_subject_sections_ALM.clear();
+    tbl_enrollment_offered_subject_sections_ALM.addAll(acc);
+  }
+
+  public static class Tblenrollment_offered_subject_sectionsModel extends AbstractTableAdapter {
+
+    public static String[] COLUMNS = {
+      "Code", "Description", "Section", "Max", "Room", "Day", "Time", "Instructor", "Capacity", "Pending", "Status", "", "updated_by", "status", "is_uploaded"
+    };
+
+    public Tblenrollment_offered_subject_sectionsModel(ListModel listmodel) {
+      super(listmodel, COLUMNS);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      if (column == 100) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public Class getColumnClass(int col) {
+      if (col == 1000) {
+        return Boolean.class;
+      }
+      return Object.class;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+      Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections tt = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) getRow(row);
+      switch (col) {
+        case 0:
+          return " " + tt.subject_code;
+        case 1:
+          return " " + tt.description;
+        case 2:
+          return " " + tt.section;
+        case 3:
+          return " " + tt.max_students;
+        case 4:
+          return " " + tt.room;
+        case 5:
+          String html = "<html><body>"
+                  + " <p><font size=\"4\" > " + tt.day + "</font></p>"
+                  + "</body>"
+                  + "</html>";
+          return html;
+        case 6:
+          return " " + tt.time;
+        case 7:
+          return " " + tt.faculty_name;
+        case 8:
+          if (tt.is_loaded) {
+            return " " + tt.created_by;
+          } else {
+            return " Search";
+          }
+
+        case 9:
+          if (tt.is_loaded) {
+            return " " + tt.updated_by;
+          } else {
+            return " Search";
+          }
+
+        case 10:
+          if (tt.is_loaded) {
+            if (tt.status == 0) {
+              return " Posted";
+            } else if (tt.status == 1) {
+              String[] cap = tt.created_by.split(" of ");
+              int min = FitIn.toInt(cap[0]);
+              int max = FitIn.toInt(cap[1]);
+              if (min >= max) {
+                return " Full";
+              } else {
+                return " Open";
+              }
+
+            } else if (tt.status == 2) {
+              return " Closed";
+            } else {
+              return " Dropped";
             }
-        }
+          } else {
+            return " Search";
+          }
+
+        case 11:
+          return "Remove";
+        case 12:
+          return tt.updated_by;
+        case 13:
+          return tt.status;
+        default:
+          return tt.is_uploaded;
+      }
+    }
+  }
+
+  private void ret_eos() {
+    String where = " where enrollment_offered_subject_id='" + section.enrollment_offered_subject_id + "' and status<2 and id<> '" + section.id + "' order by description,section asc ";
+    List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data3(where);
+    loadData_enrollment_offered_subject_sections(datas);
+    jLabel4.setText("" + datas.size());
+
+  }
+
+  private void select_section() {
+    int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
+    if (row < 0) {
+      return;
     }
 
-    private void ret_eos() {
-        String where = " where enrollment_offered_subject_id='" + section.enrollment_offered_subject_id + "' and status<2 and id<> '" + section.id + "' order by description,section asc ";
-        List<Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections> datas = Enrollment_offered_subject_sections.ret_data2(where);
-        loadData_enrollment_offered_subject_sections(datas);
-        jLabel4.setText("" + datas.size());
+    Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
+    if (to.is_loaded) {
+      if (to.status == 0) {
+        Alert.set(0, "Subject not yet open!");
+        return;
+      }
+      if (to.status == 1) {
+
+        String[] cap = to.created_by.split(" of ");
+        int min = FitIn.toInt(cap[0]);
+        int max = FitIn.toInt(cap[1]);
+        if (min >= max) {
+          Alert.set(0, "Section already full!");
+          return;
+        }
+      }
+
+      boolean check = check_if_exists();
+
+      if (check) {
+        Alert.set(0, "Day/Time not available!");
+        return;
+      }
+
+      Window p = (Window) this;
+      Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
+      nd.setTitle("");
+      nd.do_pass("<html>Are you sure you want to transfer <br>Subject Code: <b>" + to.subject_code + "</b><br>Section <b>" + tf_field22.getText() + "</b> to <b>" + to.section
+              + "</> </html>");
+
+      nd.setCallback(new Dlg_confirm_delete2.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
+          closeDialog.ok();
+
+          List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where id='" + student.id + "' ");
+          Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub = subjects.get(0);
+          int id = 0;
+          int enrollment_id = sub.enrollment_id;
+          String enrollment_no = sub.enrollment_no;
+          int student_id = sub.student_id;
+          String student_no = sub.student_no;
+          String fname = sub.fname;
+          String mi = sub.mi;
+          String lname = sub.lname;
+          int enrollment_offered_subject_section_id = to.id;
+          int enrollment_offered_subject_id = to.enrollment_offered_subject_id;
+          int academic_offering_subject_id = sub.academic_offering_subject_id;
+          int academic_offering_id = sub.academic_offering_id;
+          int academic_year_id = sub.academic_year_id;
+          String academic_year = sub.academic_year;
+          int level_id = sub.level_id;
+          String level = sub.level;
+          int college_id = sub.college_id;
+          String college = sub.college;
+          int department_id = sub.department_id;
+          String department = sub.department;
+          int course_id = sub.course_id;
+          String course_code = sub.course_code;
+          String course_description = sub.course_description;
+          String term = sub.term;
+          String year_level = sub.year_level;
+          int subject_id = to.subject_id;
+          String subject_code = to.subject_code;
+          String description = to.description;
+          int lecture_units = FitIn.toInt("" + to.lecture_units);
+          int lab_units = FitIn.toInt("" + to.lab_units);
+          String faculty_id = "" + to.faculty_id;
+          String faculty_name = to.faculty_name;
+          String section = to.section;
+          int room_id = to.room_id;
+          String room = to.room;
+          String schedule = to.schedule;
+          String day = to.day;
+          String time = to.time;
+          String start_time = to.start_time;
+          String closing_time = to.closing_time;
+          String created_at = DateType.now();
+          String updated_at = DateType.now();
+          String created_by = MyUser.getUser_id();
+          String updated_by = MyUser.getUser_id();
+          int status = sub.status;
+          int is_uploaded = sub.is_uploaded;
+          int is_added = sub.is_added;
+          double final_grade = 0;
+          String final_grade_remarks = "";
+          String final_grade_created_at = null;
+          String final_grade_created_by = null;
+          int is_payed = 0;
+          double retake = 0;
+          Enrollment_student_loaded_subject_transfers.to_enrollment_student_loaded_subject_transfers transfer = new Enrollment_student_loaded_subject_transfers.to_enrollment_student_loaded_subject_transfers(id, sub.id, to.id, created_at, FitIn.toInt(MyUser.getUser_id()), updated_at, FitIn.toInt(MyUser.getUser_id()), status);
+          Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tsls = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by, is_payed, retake);
+
+          Enrollment_student_loaded_subject_transfers.add_data(transfer, tsls);
+          Alert.set(2, "");
+
+          //retrieve loaded subject
+          ret_loaded_subjects();
+          //retrived available section
+          ret_eos();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    } else {
+      List<String> datas = Enrollment_offered_subject_sections.getSectionDetails("" + to.id, to.max_students);
+      if (!datas.isEmpty()) {
+        to.setCreated_by(datas.get(4));
+        to.setUpdated_by(datas.get(5));
+        to.setDay(datas.get(0));
+        to.setRoom(datas.get(1));
+        to.setFaculty_name(datas.get(2));
+        to.setIs_loaded(true);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 4);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 5);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 7);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 8);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 9);
+        tbl_enrollment_offered_subject_sections_M.fireTableCellUpdated(row, 10);
+      }
+    }
+  }
+
+  private boolean check_if_exists() {
+
+    int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
+    if (row < 0) {
 
     }
+    Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections eoss = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
 
-    private void select_section() {
-        int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
-        if (row < 0) {
-            return;
+    String[] days3 = eoss.day.split("<br>");
+    boolean available = true;
+    List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = tbl_enrollment_student_loaded_subjects_ALM;
+    Field.Input tf = (Field.Input) tf_field21;
+    for (int i = 0; i < days3.length; i++) {
+      String d = days3[i];
+      d = d.replaceAll("&nbsp;&nbsp;", "");
+      String[] dd = d.split(": ");
+      String day1 = dd[0];
+
+      List<String> schedules = new ArrayList();
+      for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to : subjects) {
+        if (to.subject_id != FitIn.toInt(tf.getId())) {
+
+          schedules.add(to.day);
         }
-        Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections to = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
-
-        if (to.status == 0) {
-            Alert.set(0, "Subject not yet open!");
-            return;
-        }
-        if (to.status == 1) {
-
-            String[] cap = to.created_by.split(" of ");
-            int min = FitIn.toInt(cap[0]);
-            int max = FitIn.toInt(cap[1]);
-            if (min >= max) {
-                Alert.set(0, "Section already full!");
-                return;
-            }
-        }
-
-        boolean check = check_if_exists();
-
-        if (check) {
-            Alert.set(0, "Day/Time not available!");
-            return;
-        }
-
-        Window p = (Window) this;
-        Dlg_confirm_delete2 nd = Dlg_confirm_delete2.create(p, true);
-        nd.setTitle("");
-        nd.do_pass("<html>Are you sure you want to transfer <br>Subject Code: <b>" + to.subject_code + "</b><br>Section <b>" + tf_field22.getText() + "</b> to <b>" + to.section
-                + "</> </html>");
-
-        nd.setCallback(new Dlg_confirm_delete2.Callback() {
-            @Override
-            public void ok(CloseDialog closeDialog, Dlg_confirm_delete2.OutputData data) {
-                closeDialog.ok();
-
-                List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = Enrollment_student_loaded_subjects.ret_data(" where id='" + student.id + "' ");
-                Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects sub = subjects.get(0);
-                int id = 0;
-                int enrollment_id = sub.enrollment_id;
-                String enrollment_no = sub.enrollment_no;
-                int student_id = sub.student_id;
-                String student_no = sub.student_no;
-                String fname = sub.fname;
-                String mi = sub.mi;
-                String lname = sub.lname;
-                int enrollment_offered_subject_section_id = to.id;
-                int enrollment_offered_subject_id = to.enrollment_offered_subject_id;
-                int academic_offering_subject_id = sub.academic_offering_subject_id;
-                int academic_offering_id = sub.academic_offering_id;
-                int academic_year_id = sub.academic_year_id;
-                String academic_year = sub.academic_year;
-                int level_id = sub.level_id;
-                String level = sub.level;
-                int college_id = sub.college_id;
-                String college = sub.college;
-                int department_id = sub.department_id;
-                String department = sub.department;
-                int course_id = sub.course_id;
-                String course_code = sub.course_code;
-                String course_description = sub.course_description;
-                String term = sub.term;
-                String year_level = sub.year_level;
-                int subject_id = to.subject_id;
-                String subject_code = to.subject_code;
-                String description = to.description;
-                int lecture_units = FitIn.toInt("" + to.lecture_units);
-                int lab_units = FitIn.toInt("" + to.lab_units);
-                String faculty_id = "" + to.faculty_id;
-                String faculty_name = to.faculty_name;
-                String section = to.section;
-                int room_id = to.room_id;
-                String room = to.room;
-                String schedule = to.schedule;
-                String day = to.day;
-                String time = to.time;
-                String start_time = to.start_time;
-                String closing_time = to.closing_time;
-                String created_at = DateType.now();
-                String updated_at = DateType.now();
-                String created_by = MyUser.getUser_id();
-                String updated_by = MyUser.getUser_id();
-                int status = sub.status;
-                int is_uploaded = sub.is_uploaded;
-                int is_added = sub.is_added;
-                double final_grade = 0;
-                String final_grade_remarks = "";
-                String final_grade_created_at = null;
-                String final_grade_created_by = null;
-                int is_payed=0;
-                double retake=0;
-                Enrollment_student_loaded_subject_transfers.to_enrollment_student_loaded_subject_transfers transfer = new Enrollment_student_loaded_subject_transfers.to_enrollment_student_loaded_subject_transfers(id, sub.id, to.id, created_at, FitIn.toInt(MyUser.getUser_id()), updated_at, FitIn.toInt(MyUser.getUser_id()), status);
-                Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects tsls = new Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects(id, enrollment_id, enrollment_no, student_id, student_no, fname, mi, lname, enrollment_offered_subject_section_id, enrollment_offered_subject_id, academic_offering_subject_id, academic_offering_id, academic_year_id, academic_year, level_id, level, college_id, college, department_id, department, course_id, course_code, course_description, term, year_level, subject_id, subject_code, description, lecture_units, lab_units, faculty_id, faculty_name, section, room_id, room, schedule, day, time, start_time, closing_time, created_at, updated_at, created_by, updated_by, status, is_uploaded, is_added, final_grade, final_grade_remarks, final_grade_created_at, final_grade_created_by,is_payed,retake);
-
-                Enrollment_student_loaded_subject_transfers.add_data(transfer, tsls);
-                Alert.set(2, "");
-
-                //retrieve loaded subject
-                ret_loaded_subjects();
-                //retrived available section
-                ret_eos();
-            }
-        });
-        nd.setLocationRelativeTo(this);
-        nd.setVisible(true);
-    }
-
-    private boolean check_if_exists() {
-
-        int row = tbl_enrollment_offered_subject_sections.getSelectedRow();
-        if (row < 0) {
-
-        }
-        Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections eoss = (Enrollment_offered_subject_sections.to_enrollment_offered_subject_sections) tbl_enrollment_offered_subject_sections_ALM.get(row);
-
-        String[] days3 = eoss.day.split("<br>");
-        boolean available = true;
-        List<Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects> subjects = tbl_enrollment_student_loaded_subjects_ALM;
-        Field.Input tf = (Field.Input) tf_field21;
-        for (int i = 0; i < days3.length; i++) {
-            String d = days3[i];
-            d = d.replaceAll("&nbsp;&nbsp;", "");
-            String[] dd = d.split(": ");
-            String day1 = dd[0];
-
-            List<String> schedules = new ArrayList();
-            for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to : subjects) {
-                if (to.subject_id != FitIn.toInt(tf.getId())) {
-
-                    schedules.add(to.day);
-                }
-            }
-            available = DayCheck.compare_schedule(d, schedules);
-
-        }
-
-        return available;
-    }
-
-    private void select_enrolled_subject() {
-        int row = tbl_enrollment_student_loaded_subjects.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
-        Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) tbl_enrollment_student_loaded_subjects_ALM.get(row);
-
-        if (col == 7) {
-            Window p = (Window) this;
-            Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
-            nd.setTitle("");
-            nd.do_pass();
-            nd.setCallback(new Dlg_confirm_delete.Callback() {
-
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
-                    closeDialog.ok();
-                    Enrollment_student_loaded_subjects.delete_data(to);
-                    Alert.set(3, "");
-                    ret_loaded_subjects();
-                }
-            });
-            nd.setLocationRelativeTo(this);
-            nd.setVisible(true);
-        } else {
-
-            Window p = (Window) this;
-            Dlg_registrar_student_transfer_section_student_section_day nd = Dlg_registrar_student_transfer_section_student_section_day.create(p, true);
-            nd.setTitle("");
-            nd.do_pass(to.day);
-            nd.setCallback(new Dlg_registrar_student_transfer_section_student_section_day.Callback() {
-
-                @Override
-                public void ok(CloseDialog closeDialog, Dlg_registrar_student_transfer_section_student_section_day.OutputData data) {
-                    closeDialog.ok();
-
-                }
-            });
-            nd.setLocationRelativeTo(jScrollPane2);
-            nd.setVisible(true);
-        }
+      }
+      available = DayCheck.compare_schedule(d, schedules);
 
     }
 
-    private void ok() {
-        if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData());
-        }
+    return available;
+  }
+
+  private void select_enrolled_subject() {
+    int row = tbl_enrollment_student_loaded_subjects.getSelectedRow();
+    if (row < 0) {
+      return;
     }
+    int col = tbl_enrollment_student_loaded_subjects.getSelectedColumn();
+    Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects to = (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects) tbl_enrollment_student_loaded_subjects_ALM.get(row);
+
+    if (col == 7) {
+      Window p = (Window) this;
+      Dlg_confirm_delete nd = Dlg_confirm_delete.create(p, true);
+      nd.setTitle("");
+      nd.do_pass();
+      nd.setCallback(new Dlg_confirm_delete.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_confirm_delete.OutputData data) {
+          closeDialog.ok();
+          Enrollment_student_loaded_subjects.delete_data(to);
+          Alert.set(3, "");
+          ret_loaded_subjects();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    } else {
+
+      Window p = (Window) this;
+      Dlg_registrar_student_transfer_section_student_section_day nd = Dlg_registrar_student_transfer_section_student_section_day.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(to.day);
+      nd.setCallback(new Dlg_registrar_student_transfer_section_student_section_day.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_registrar_student_transfer_section_student_section_day.OutputData data) {
+          closeDialog.ok();
+
+        }
+      });
+      nd.setLocationRelativeTo(jScrollPane2);
+      nd.setVisible(true);
+    }
+
+  }
+
+  private void ok() {
+    if (callback != null) {
+      callback.ok(new CloseDialog(this), new OutputData());
+    }
+  }
 }

@@ -232,6 +232,7 @@ public class Dlg_collections extends javax.swing.JDialog {
 
     buttonGroup1 = new javax.swing.ButtonGroup();
     buttonGroup2 = new javax.swing.ButtonGroup();
+    buttonGroup3 = new javax.swing.ButtonGroup();
     jPanel1 = new javax.swing.JPanel();
     jTabbedPane1 = new javax.swing.JTabbedPane();
     jPanel2 = new javax.swing.JPanel();
@@ -253,6 +254,11 @@ public class Dlg_collections extends javax.swing.JDialog {
     jLabel14 = new javax.swing.JLabel();
     jLabel15 = new javax.swing.JLabel();
     jLabel17 = new javax.swing.JLabel();
+    jLabel28 = new javax.swing.JLabel();
+    tf_field19 = new Field.Search();
+    jCheckBox13 = new javax.swing.JCheckBox();
+    jCheckBox14 = new javax.swing.JCheckBox();
+    jCheckBox16 = new javax.swing.JCheckBox();
     jPanel4 = new javax.swing.JPanel();
     jLabel3 = new javax.swing.JLabel();
     jProgressBar1 = new javax.swing.JProgressBar();
@@ -421,6 +427,52 @@ public class Dlg_collections extends javax.swing.JDialog {
     jLabel17.setText("0.00");
     jLabel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+    jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel28.setText("Search:");
+
+    tf_field19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    tf_field19.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tf_field19MouseClicked(evt);
+      }
+    });
+    tf_field19.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tf_field19ActionPerformed(evt);
+      }
+    });
+
+    buttonGroup3.add(jCheckBox13);
+    jCheckBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox13.setText("Search by Name");
+    jCheckBox13.setFocusable(false);
+    jCheckBox13.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox13ActionPerformed(evt);
+      }
+    });
+
+    buttonGroup3.add(jCheckBox14);
+    jCheckBox14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox14.setSelected(true);
+    jCheckBox14.setText("by OR No.");
+    jCheckBox14.setFocusable(false);
+    jCheckBox14.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox14ActionPerformed(evt);
+      }
+    });
+
+    buttonGroup3.add(jCheckBox16);
+    jCheckBox16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox16.setText("by Collection No");
+    jCheckBox16.setFocusable(false);
+    jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCheckBox16ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
     jPanel7.setLayout(jPanel7Layout);
     jPanel7Layout.setHorizontalGroup(
@@ -433,7 +485,7 @@ public class Dlg_collections extends javax.swing.JDialog {
             .addComponent(jLabel5)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
             .addComponent(jLabel7)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -452,14 +504,32 @@ public class Dlg_collections extends javax.swing.JDialog {
             .addGap(15, 15, 15)
             .addComponent(jLabel15)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel7Layout.createSequentialGroup()
+            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jCheckBox13)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jCheckBox14)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jCheckBox16)
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     jPanel7Layout.setVerticalGroup(
       jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel7Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(tf_field19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jCheckBox13)
+          .addComponent(jCheckBox14)
+          .addComponent(jCheckBox16))
+        .addGap(13, 13, 13)
+        .addComponent(jScrollPane1)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1039,6 +1109,26 @@ public class Dlg_collections extends javax.swing.JDialog {
     init_shift();
   }//GEN-LAST:event_tf_cashier6ActionPerformed
 
+  private void tf_field19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_field19MouseClicked
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tf_field19MouseClicked
+
+  private void tf_field19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_field19ActionPerformed
+    generate();
+  }//GEN-LAST:event_tf_field19ActionPerformed
+
+  private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jCheckBox13ActionPerformed
+
+  private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jCheckBox14ActionPerformed
+
+  private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jCheckBox16ActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -1046,12 +1136,16 @@ public class Dlg_collections extends javax.swing.JDialog {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.ButtonGroup buttonGroup2;
+  private javax.swing.ButtonGroup buttonGroup3;
   private javax.swing.JButton jButton5;
   private javax.swing.JCheckBox jCheckBox1;
   private javax.swing.JCheckBox jCheckBox10;
   private javax.swing.JCheckBox jCheckBox11;
   private javax.swing.JCheckBox jCheckBox12;
+  private javax.swing.JCheckBox jCheckBox13;
+  private javax.swing.JCheckBox jCheckBox14;
   private javax.swing.JCheckBox jCheckBox15;
+  private javax.swing.JCheckBox jCheckBox16;
   private javax.swing.JCheckBox jCheckBox21;
   private javax.swing.JCheckBox jCheckBox4;
   private javax.swing.JCheckBox jCheckBox5;
@@ -1078,6 +1172,7 @@ public class Dlg_collections extends javax.swing.JDialog {
   private javax.swing.JLabel jLabel25;
   private javax.swing.JLabel jLabel26;
   private javax.swing.JLabel jLabel27;
+  private javax.swing.JLabel jLabel28;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
@@ -1105,6 +1200,7 @@ public class Dlg_collections extends javax.swing.JDialog {
   private javax.swing.JTextField tf_field16;
   private javax.swing.JTextField tf_field17;
   private javax.swing.JTextField tf_field18;
+  private javax.swing.JTextField tf_field19;
   // End of variables declaration//GEN-END:variables
 
   private void myInit() {
@@ -2133,6 +2229,22 @@ public class Dlg_collections extends javax.swing.JDialog {
           where2 = where2 + " and Date(time_in) between '" + date_from + "' and '" + date_to + "'";
           where3 = where3 + " and Date(date_added) between '" + date_from + "' and '" + date_to + "'";
         }
+
+        if (jCheckBox13.isSelected()) {
+          where = where + " and student_name like '%" + tf_field19.getText() + "%' ";
+          where2 = where2 + " and student_name like '%" + tf_field19.getText() + "%' ";
+          where3 = where3 + " and student_name like '%" + tf_field19.getText() + "%' ";
+        }
+        if (jCheckBox14.isSelected()) {
+          where = where + " and or_no like '%" + tf_field19.getText() + "%' ";
+          where2 = where2 + " and or_no like '%" + tf_field19.getText() + "%' ";
+          where3 = where3 + " and or_no like '%" + tf_field19.getText() + "%' ";
+        }
+        if (jCheckBox16.isSelected()) {
+          where = where + " and collection_no like '%" + tf_field19.getText() + "%' ";
+          where2 = where2 + " and collection_no like '%" + tf_field19.getText() + "%' ";
+          where3 = where3 + " and collection_no like '%" + tf_field19.getText() + "%' ";
+        }
         String order_by = " order by collection_no asc ";
         if (jCheckBox7.isSelected()) {
           order_by = " order by or_no, created_by asc ";
@@ -2321,7 +2433,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         @Override
         public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
           closeDialog.ok();
-          String where2 = " where user_name like '" + MyUser.getUser_name() + "' and  name like '" + "Override OR Date - (Add)" + "'";
+          String where2 = " where user_id like '" + data.userId + "' and  name like '" + "Override OR Date - (Add)" + "'";
           List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
           if (!privs.isEmpty()) {
             edit_or(collection);
@@ -2345,7 +2457,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         @Override
         public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
           closeDialog.ok();
-          String where2 = " where user_name like '" + MyUser.getUser_name() + "' and  name like '" + "Override OR Date - (Add)" + "'";
+          String where2 = " where user_id like '" + data.userId + "' and  name like '" + "Override OR Date - (Add)" + "'";
           List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
           if (!privs.isEmpty()) {
             edit_date(collection);
@@ -2405,7 +2517,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         @Override
         public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
           closeDialog.ok();
-          String wheree = " where user_id='" + MyUser.getUser_id() + "' and privilege like '" + "Collections Report - (Delete)" + "' limit 1";
+          String wheree = " where user_id='" + data.userId + "' and privilege like '" + "Collections Report - (Delete)" + "' limit 1";
 
           List<User_previleges.to_user_privileges> privileges = User_previleges.ret_data(wheree);
           if (privileges.isEmpty()) {

@@ -1240,7 +1240,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
@@ -1251,7 +1251,7 @@
                                       <Component id="jButton12" min="-2" pref="115" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1502,14 +1502,14 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel37" alignment="0" pref="312" max="32767" attributes="0"/>
-                                  <Component id="tf_field19" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field20" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field109" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field21" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field106" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field142" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field141" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel37" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tf_field19" alignment="1" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field20" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field109" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field21" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field106" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field142" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                  <Component id="tf_field141" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -1935,14 +1935,22 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel71" alignment="0" pref="510" max="32767" attributes="0"/>
-                                  <Component id="tf_field112" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field113" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field114" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field115" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field116" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="tf_field140" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_field145" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jLabel71" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tf_field140" min="-2" pref="534" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="tf_field112" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                          <Component id="tf_field113" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                          <Component id="tf_field114" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                          <Component id="tf_field115" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                          <Component id="tf_field116" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                          <Component id="tf_field145" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">

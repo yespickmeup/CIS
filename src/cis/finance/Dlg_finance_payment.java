@@ -22,6 +22,7 @@ import cis.utils.Alert;
 import cis.utils.DateType;
 import cis.utils.Dlg_confirm_action;
 import cis.utils.Dlg_confirm_action3;
+import cis.utils.Dlg_retry_transaction;
 import cis.utils.TableRenderer;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -1405,10 +1406,13 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
     hide_other_payments(true);
     tf_customer_name.grabFocus();
     is_other_payment = true;
+    is_downpayment = false;
   }
 
   public void do_pass(List<Finance.fees> fees, Students.to_students stud, boolean _has_or) {
     is_other_payment = false;
+    is_downpayment = false;
+
     pay_stud = stud;
     has_or = _has_or;
     loadData_mode_of_payments(fees);
@@ -1437,6 +1441,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
 
   public void do_pass_downpayment(Students.to_students stud, Enrollments.to_enrollments to) {
     is_downpayment = true;
+    is_other_payment = false;
     has_or = true;
     if (stud != null) {
       pay_stud = stud;
@@ -1782,7 +1787,7 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
       }
       double tendered = FitIn.toDouble(tf_field20.getText());
       if (amount != tendered) {
-        Alert.set(0, "No enough ampunt entered");
+        Alert.set(0, "No enough amount entered");
         return;
       }
     }
@@ -2418,38 +2423,62 @@ public class Dlg_finance_payment extends javax.swing.JDialog {
 
   private void set_change() {
 
-    List<Finance.fees> acc = tbl_mode_of_payments_ALM;
+    System.out.println("c_transaction_no: " + c_transaction_no);
+    System.out.println("c_gross_amount: " + c_gross_amount);
+    System.out.println("c_cash: " + c_cash);
+    System.out.println("c_credit_card: " + c_credit_card);
+    System.out.println("c_gc: " + c_gc);
+    if (c_transaction_no.isEmpty()) {
 
-    Window p = (Window) Dlg_finance_payment.this;
-    Dlg_touchscreen_change nd = Dlg_touchscreen_change.create(p, true);
-    nd.setTitle("");
+      Window p = (Window) this;
+      Dlg_retry_transaction nd = Dlg_retry_transaction.create(p, true);
+      nd.setTitle("");
+//      nd.do_pass(services);
+      nd.setCallback(new Dlg_retry_transaction.Callback() {
 
-    nd.do_pass(acc, c_transaction_no, c_gross_amount, c_cash, c_credit_card, c_gc, c_check, c_online);
-    nd.setCallback(new Dlg_touchscreen_change.Callback() {
-      @Override
-      public void ok(CloseDialog closeDialog, Dlg_touchscreen_change.OutputData data) {
-        closeDialog.ok();
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_retry_transaction.OutputData data) {
+          closeDialog.ok();
+          confirm();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    } else {
+      List<Finance.fees> acc = tbl_mode_of_payments_ALM;
 
-        System.out.println("Transaction Settled");
-        System.out.println("Clearing Fields.......");
+      Window p = (Window) Dlg_finance_payment.this;
+      Dlg_touchscreen_change nd = Dlg_touchscreen_change.create(p, true);
+      nd.setTitle("");
 
-        c_transaction_no = "";
-        c_gross_amount = 0;
-        c_cash = 0;
-        c_credit_card = 0;
-        c_gc = 0;
-        c_check = 0;
-        c_online = 0;
-        enroll = null;
-        pay_stud = null;
-        Field.Input tf = (Field.Input) tf_customer_name;
-        tf.setId("");
-        tf.setText("");
-        ok1();
-      }
-    });
-    nd.setLocationRelativeTo(null);
-    nd.setVisible(true);
+      nd.do_pass(acc, c_transaction_no, c_gross_amount, c_cash, c_credit_card, c_gc, c_check, c_online);
+      nd.setCallback(new Dlg_touchscreen_change.Callback() {
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_touchscreen_change.OutputData data) {
+          closeDialog.ok();
+
+          System.out.println("Transaction Settled");
+          System.out.println("Clearing Fields.......");
+
+          c_transaction_no = "";
+          c_gross_amount = 0;
+          c_cash = 0;
+          c_credit_card = 0;
+          c_gc = 0;
+          c_check = 0;
+          c_online = 0;
+          enroll = null;
+          pay_stud = null;
+          Field.Input tf = (Field.Input) tf_customer_name;
+          tf.setId("");
+          tf.setText("");
+          ok1();
+        }
+      });
+      nd.setLocationRelativeTo(null);
+      nd.setVisible(true);
+    }
+
   }
 
   private void ok1() {

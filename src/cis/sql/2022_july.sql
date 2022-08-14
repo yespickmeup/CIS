@@ -8,20 +8,50 @@
  * Created: 07 25, 22
  */
 
-drop table if exits enrollment_assessment_discounts;
+drop table if exists discount_types;
+create table discount_types(
+id int auto_increment primary key
+,discount_name varchar(255)
+,is_tution int
+,is_tuition_percent int
+,tuition_rate double
+,tuition_amount double
+,is_misc int
+,is_misc_percent int
+,misc_rate double
+,misc_amount double
+,is_total int
+,is_total_percent int
+,total_rate double
+,total_amount double
+,created_at datetime
+,created_by int
+);
+
+drop table if exists enrollment_assessment_discounts;
 create table enrollment_assessment_discounts(
 id int auto_increment primary key
 ,enrollment_assessment_id int
+,enrollment_assessment_no varchar(255)
 ,enrollment_id int
 ,enrollment_no varchar(255)
 ,academic_year_id int
 ,academic_year varchar(255)
 ,discount_name varchar(255)
-,discount_rate double
-,discount_amount double
+,is_tution int
+,is_tuition_percent int
+,tuition_rate double
 ,tuition_amount double
+,is_misc int
+,is_misc_percent int
+,misc_rate double
+,misc_amount double
+,is_total int
+,is_total_percent int
+,total_rate double
+,total_amount double
 ,created_at datetime
-,updated_by datetime
+,updated_at datetime
 ,created_by varchar(255)
 ,updated_by varchar(255)
 ,status int
