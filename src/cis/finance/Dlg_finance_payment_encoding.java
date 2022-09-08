@@ -6,8 +6,10 @@
 package cis.finance;
 
 import cis.academic.Academic_offerings;
+import cis.academic.Academic_year_fees;
 import cis.colleges.Colleges;
 import cis.departments.Departments;
+import cis.enrollments.Enrollments;
 import static cis.finance.Dlg_finance.loadData_fees;
 import static cis.finance.Dlg_finance.tbl_fees_ALM;
 import static cis.finance.Dlg_finance.tbl_fees_M;
@@ -1546,10 +1548,36 @@ public class Dlg_finance_payment_encoding extends javax.swing.JDialog {
     loadData_transactions(transactions);
     jLabel4.setText("" + transactions.size());
 
-    List<Finance.fees> datas = Finance.ret_data(stud);
-    loadData_fees(datas);
+    List<Enrollments.to_enrollments> datas = Enrollments.ret_data(" where student_id='" + stud.id + "' and date_enrolled IS NOT NULL order by id desc limit 1");
+    String year_level = "";
+    for (Enrollments.to_enrollments to : datas) {
+      year_level = to.year_level;
+    }
+    String where3 = " where id<>0 and academic_year_id='" + stud.academic_year_id + "' "
+            + " and department_id='" + stud.department_id + "' "
+            + " and level_id='" + stud.level_id + "' "
+            + " and course_id='" + stud.course_id + "' "
+            + " and period like '" + stud.year_level + "' "
+            + " and year_level like '" + year_level + "' "
+            + " and group_id=0 limit 1";
+
+    double fee_amount = 0;
+    int is_per_unit = 0;
+    double per_unit = 0;
+    double lab_unit_amount = 0;
+
+    List<Academic_year_fees.to_academic_year_fees> fees = Academic_year_fees.ret_data(where3);
+    for (Academic_year_fees.to_academic_year_fees fee : fees) {
+      fee_amount = fee.amount;
+      is_per_unit = fee.is_per_unit;
+      per_unit = fee.per_unit;
+      lab_unit_amount = fee.lab_unit_amount;
+    }
+
+    List<Finance.fees> datas2 = Finance.ret_data(stud,fee_amount,is_per_unit,per_unit,lab_unit_amount);
+    loadData_fees(datas2);
     double balance = 0;
-    for (Finance.fees fee : datas) {
+    for (Finance.fees fee : datas2) {
       balance += fee.balance;
     }
 

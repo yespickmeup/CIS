@@ -45,12 +45,13 @@ public class Dlg_authenticate extends javax.swing.JDialog {
   }
 
   public static class OutputData {
+
     public final String userId;
 
     public OutputData(String userId) {
       this.userId = userId;
     }
-    
+
   }
 //</editor-fold>
 
@@ -357,6 +358,7 @@ public class Dlg_authenticate extends javax.swing.JDialog {
   }
 
   boolean override_downpayment = false;
+  boolean override_assessment = false;
 
   public void do_pass() {
 
@@ -364,6 +366,10 @@ public class Dlg_authenticate extends javax.swing.JDialog {
 
   public void do_override_downpayment() {
     override_downpayment = true;
+  }
+
+  public void do_override_assessment() {
+    override_assessment = true;
   }
 
   // <editor-fold defaultstate="collapsed" desc="Key">
@@ -385,7 +391,9 @@ public class Dlg_authenticate extends javax.swing.JDialog {
   // </editor-fold>
 
   private void authenticate() {
-    if (!override_downpayment) {
+    System.out.println("override_downpayment: " + override_downpayment);
+    System.out.println("override_assessment: " + override_assessment);
+    if (!override_assessment && !override_downpayment) {
       String user_name = tf_username.getText();
       String date = DateType.sf.format(new Date());
       String password = tf_password.getText();
@@ -397,12 +405,14 @@ public class Dlg_authenticate extends javax.swing.JDialog {
         tf_username.grabFocus();
         return;
       }
-      ok1(""+to.id);
-    } else {
-      String user_name = tf_username.getText();
-      String password = tf_password.getText();
-      password = DeEncrypter.encrypt(password);
-      String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
+      ok1("" + to.id);
+    }
+    String user_name = tf_username.getText();
+    String password = tf_password.getText();
+    password = DeEncrypter.encrypt(password);
+    String where = " where user_name = '" + user_name + "' and password='" + password + "' ";
+
+    if (override_downpayment) {
 
       final Users.to_users to = Users.ret_data_autho(where);
       if (to == null) {
@@ -413,16 +423,31 @@ public class Dlg_authenticate extends javax.swing.JDialog {
         String where2 = " where user_name like '" + user_name + "' and  name like '" + "Override Downpayment - (Add)" + "'";
         List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
         if (!privs.isEmpty()) {
-          ok1(""+to.id);
+          ok1("" + to.id);
         } else {
           Alert.set(0, "Privilege not added!");
           return;
         }
 
       }
-
     }
-
+    if (override_assessment) {
+      final Users.to_users to = Users.ret_data_autho(where);
+      if (to == null) {
+        Alert.set(0, "Incorrect username or password!");
+        tf_username.grabFocus();
+        return;
+      } else {
+        String wheree = " where user_id='" + to.id + "' and name like '" + "Override Assessment - (Delete)" + "' limit 1";
+        List<User_previlege_others.to_user_previlege_others> privileges = User_previlege_others.ret_data(wheree);
+        if (privileges.isEmpty()) {
+          Alert.set(0, "Privilege not added!");
+          return;
+        } else {
+          ok1("" + to.id);
+        }
+      }
+    }
   }
 
   private void ok1(String user_id) {

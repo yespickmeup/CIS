@@ -1498,7 +1498,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and department_id='" + to.department_id + "' "
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
-              + " and period like '" + to.year_level + "' "
+              + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=0 ";
     } else {
       where = where + " and academic_year_id='" + to.academic_year_id + "' "
@@ -1506,6 +1507,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=0 ";
     }
 
@@ -1561,7 +1563,8 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and department_id='" + to.department_id + "' "
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
-              + " and period like '" + to.year_level + "' "
+              + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=1 ";
     } else {
       where2 = where2 + " and academic_year_id='" + to.academic_year_id + "' "
@@ -1569,6 +1572,7 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
               + " and level_id='" + to.level_id + "' "
               + " and course_id='" + to.course_id + "' "
               + " and period like '" + to.period + "' "
+              + " and year_level like '" + to.year_level + "' "
               + " and group_id=1 ";
     }
 
@@ -1616,6 +1620,9 @@ public class Dlg_finance_confirm_assessment extends javax.swing.JDialog {
     }
     tf_field136.setText(FitIn.fmt_wc_0(amount3));
     double total = FitIn.toDouble(tf_tuition_fee.getText()) + amount + amount3;
+    System.out.println("Tuition: "+FitIn.toDouble(tf_tuition_fee.getText()));
+    System.out.println("Amount: "+amount);
+    System.out.println("Amount3: "+amount3);
     tf_total_amount.setText(FitIn.fmt_wc_0(total));
     change_payment_modes();// 
     tf_cash.grabFocus();

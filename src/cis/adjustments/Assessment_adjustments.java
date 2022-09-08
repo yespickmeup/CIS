@@ -33,7 +33,7 @@ public class Assessment_adjustments {
     private static void set_balance() {
         List<Students.to_students> students = Students.ret_data("");
         for (Students.to_students student : students) {
-            List<Finance.fees> datas = Finance.ret_data(student);
+            List<Finance.fees> datas = Finance.ret_data(student,0,0,0,0);
             double balance = 0;
             for (Finance.fees fee : datas) {
                 balance += fee.balance;

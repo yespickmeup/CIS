@@ -591,6 +591,7 @@ public class Dlg_collections extends javax.swing.JDialog {
     jLabel1.setText("Date from:");
 
     jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jCheckBox4.setSelected(true);
 
     jDateChooser1.setDate(new Date());
     jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1799,6 +1800,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         if (!jCheckBox1.isSelected()) {
           user = tf_cashier.getText();
         }
+        
         String date = "All";
         if (!jCheckBox4.isSelected()) {
           date = DateType.slash.format(jDateChooser1.getDate()) + " - " + DateType.slash.format(jDateChooser2.getDate());

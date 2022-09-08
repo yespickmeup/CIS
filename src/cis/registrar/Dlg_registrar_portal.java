@@ -3954,7 +3954,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
       where = where + where2 + " and eos.description like '%" + search + "%' "
               + " order by eos.subject_code,eos.description asc ";
     }
-//        System.out.println(where);
+        System.out.println(where);
     List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);
 
     loadData_enrollment_offered_subjects(datas);
