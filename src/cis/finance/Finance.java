@@ -95,8 +95,9 @@ public class Finance {
     public final double credit;
     public final double balance;
     public final String or_no;
+    public final double discount;
 
-    public transactions(int id, String date, String trans_type, double amount, Date created, String mode, String year_level, String term, String academic_year, double debit, double credit, double balance, String or_no) {
+    public transactions(int id, String date, String trans_type, double amount, Date created, String mode, String year_level, String term, String academic_year, double debit, double credit, double balance, String or_no, double discount) {
       this.id = id;
       this.date = date;
       this.trans_type = trans_type;
@@ -110,6 +111,7 @@ public class Finance {
       this.credit = credit;
       this.balance = balance;
       this.or_no = or_no;
+      this.discount = discount;
     }
 
     public Date getCreated() {
@@ -150,6 +152,7 @@ public class Finance {
               + " where e.student_id='" + stud.id + "' "
               + " and (ea.amount-ea.paid) >0 ";
 
+//      System.out.println("s0: " + s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
 
@@ -215,6 +218,45 @@ public class Finance {
           double disc = rs11.getInt(1);
           discount2 += disc;
         }
+        balance = balance - discount2;
+
+        String s5 = "select "
+                + "sbap.id"
+                + ",(select c.year_level from collections c where c.id=sbap.collection_id limit 1)"
+                + ",(select c.period from collections c where c.id=sbap.collection_id limit 1)"
+                + ",sbap.adjustment_amount"
+                + ",sbap.paid"
+                + ",sbap.remarks"
+                + ",sbap.created_at"
+                + ",(select c.ref_id from collections c where c.id=sbap.collection_id limit 1)"
+                + ",(select c.payment_type from collections c where c.id=sbap.collection_id limit 1)"
+                + " from student_balance_adjustment_payments sbap"
+                + " where sbap.student_id='" + stud.id + "' ";
+
+        Statement stmt5 = conn.createStatement();
+        ResultSet rs5 = stmt5.executeQuery(s5);
+        while (rs5.next()) {
+          int id2 = rs5.getInt(1);
+          String year_level3 = rs5.getString(2);
+          String term3 = rs5.getString(3);
+          double adjustment_amount = rs5.getDouble(4);
+          double paid3 = rs5.getDouble(5);
+          String remarks = rs5.getString(6);
+          String created_at3 = rs5.getString(7);
+          int ref_id = rs5.getInt(8);
+          String particular = rs5.getString(9);
+
+          int is_payable = 0;
+          String s33 = "select is_payable from student_balance_adjustments where id='" + ref_id + "'";
+          Statement stmt33 = conn.createStatement();
+          ResultSet rs33 = stmt33.executeQuery(s33);
+          while (rs33.next()) {
+            is_payable = rs33.getInt(1);
+          }
+
+          balance = balance - paid3;
+        }
+
         fees f = new fees(id, title, date, deadline, amount, interest, paid2, balance, selected, 1, 0, mode, year_level, term, "", discount2);
         if (balance > 0) {
           datas.add(f);
@@ -394,46 +436,57 @@ public class Finance {
       //</editor-fold>
 
       //<editor-fold defaultstate="collapsed" desc=" Adjustments ">
-      String s5 = "select "
-              + "id"
-              + ",year_level"
-              + ",term"
-              + ",adjustment_amount"
-              + ",paid"
-              + ",remarks"
-              + ",created_at"
-              + ",is_payable"
-              + ",particular"
-              + " from student_balance_adjustments"
-              + " where student_id='" + stud.id + "' ";
-
-      Statement stmt5 = conn.createStatement();
-      ResultSet rs5 = stmt5.executeQuery(s5);
-      while (rs5.next()) {
-        int id = rs5.getInt(1);
-        String year_level3 = rs5.getString(2);
-        String term3 = rs5.getString(3);
-        double adjustment_amount = rs5.getDouble(4);
-        double paid = rs5.getDouble(5);
-        String remarks = rs5.getString(6);
-        String created_at = rs5.getString(7);
-        int is_payable = rs5.getInt(8);
-        String particular = rs5.getString(9);
-        double balance3 = adjustment_amount - paid;
-        if (balance3 > 0 && is_payable == 1) {
-          double discount = 0;
-          String title3
-                  = "<html><body>"
-                  + "&nbsp <font color=\"black\";size=\"4\"><b>" + "" + particular + "</b> ( " + DateType.convert_slash_datetime(created_at) + ")  </font><br>"
-                  + "&nbsp <font size=\"2\"> " + "Remarks: " + " (" + remarks + ")</font><br>"
-                  + "</body>"
-                  + "</html>";
-          fees f2 = new fees(id, title3, DateType.convert_slash_datetime(created_at), deadline2, adjustment_amount, 0, paid, balance3, selected2, 5, 0, "Adjustment - Balance", year_level3, term3, "", discount);
-          datas.add(f2);
-        }
-      }
+//      String s5 = "select "
+//              + "sbap.id"
+//              + ",(select c.year_level from collections c where c.id=sbap.collection_id limit 1)"
+//              + ",(select c.period from collections c where c.id=sbap.collection_id limit 1)"
+//              + ",sbap.adjustment_amount"
+//              + ",sbap.paid"
+//              + ",sbap.remarks"
+//              + ",sbap.created_at"
+//              + ",(select c.ref_id from collections c where c.id=sbap.collection_id limit 1)"
+//              + ",(select c.payment_type from collections c where c.id=sbap.collection_id limit 1)"
+//              + " from student_balance_adjustment_payments sbap"
+//              + " where sbap.student_id='" + stud.id + "' ";
+//
+//      Statement stmt5 = conn.createStatement();
+//      ResultSet rs5 = stmt5.executeQuery(s5);
+//      while (rs5.next()) {
+//        int id = rs5.getInt(1);
+//        System.out.println("id: "+id);
+//        String year_level3 = rs5.getString(2);
+//        String term3 = rs5.getString(3);
+//        double adjustment_amount = rs5.getDouble(4);
+//        double paid = rs5.getDouble(5);
+//        String remarks = rs5.getString(6);
+//        String created_at = rs5.getString(7);
+//        int ref_id = rs5.getInt(8);
+//        String particular = rs5.getString(9);
+//
+//        int is_payable = 0;
+//        String s33 = "select is_payable from student_balance_adjustments where id='" + ref_id + "'";
+//        Statement stmt33 = conn.createStatement();
+//        ResultSet rs33 = stmt33.executeQuery(s33);
+//        while (rs33.next()) {
+//          is_payable = rs33.getInt(1);
+//        }
+//        double balance3 = adjustment_amount - paid;
+//        System.out.println("adjustment_amount: "+adjustment_amount);
+//        System.out.println("paid: "+paid);
+//        System.out.println("balance3: "+balance3);
+//        if (balance3 > 0 && is_payable == 1) {
+//          double discount = 0;
+//          String title3
+//                  = "<html><body>"
+//                  + "&nbsp <font color=\"black\";size=\"4\"><b>" + "" + particular + "</b> ( " + DateType.convert_slash_datetime(created_at) + ")  </font><br>"
+//                  + "&nbsp <font size=\"2\"> " + "Remarks: " + " (" + remarks + ")</font><br>"
+//                  + "</body>"
+//                  + "</html>";
+//          fees f2 = new fees(id, title3, DateType.convert_slash_datetime(created_at), deadline2, adjustment_amount, 0, paid, balance3, selected2, 5, 0, "Adjustment - Balance", year_level3, term3, "", discount);
+//          datas.add(f2);
+//        }
+//      }
       //</editor-fold>
-
       return datas;
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -444,6 +497,8 @@ public class Finance {
 
   public static List<Finance.transactions> ret_transactions(Students.to_students student) {
     List<Finance.transactions> datas = new ArrayList();
+    List<Finance.transactions> datas2 = new ArrayList();
+    List<Finance.transactions> datas3 = new ArrayList();
     double balance = 0;
     try {
       Connection conn = MyConnection.connect();
@@ -496,26 +551,38 @@ public class Finance {
 
           d = new Date();
         }
-        Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount, d, mode, year_level, period, academic_year, debit, credit, balance, "");
+
+        String s6 = "select id, total_discount from enrollment_assessment_discounts where enrollment_assessment_id = '" + id + "' ";
+        Statement stmt6 = conn.createStatement();
+        ResultSet rs6 = stmt6.executeQuery(s6);
+        double total_discount = 0;
+        while (rs6.next()) {
+          int id6 = rs6.getInt(1);
+          total_discount += rs6.getDouble(2);
+        }
+        balance -= total_discount;
+        Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount, d, mode, year_level, period, academic_year, debit, credit, balance, "", total_discount);
         datas.add(to);
 
         String s100 = "select "
                 + "p.amount"
                 + ",(select c.or_no from collections c where p.collection_id=c.id limit 1)"
+                + ",p.created_at"
                 + " from downpayments p"
                 + " where enrollment_id='" + enrollment_id + "' limit 1";
-        System.out.println(s100);
+//        System.out.println(s100);
         Statement stmt100 = conn.createStatement();
         ResultSet rs100 = stmt100.executeQuery(s100);
         if (rs100.next()) {
           double down = rs100.getDouble(1);
           String or_no = rs100.getString(2);
+          String created_at2 = rs100.getString(3);
           double debit1 = 0;
           double credit1 = down;
           balance -= credit1;
 //        System.out.println(balance);
           String mode100 = "Downpayment - " + year_level + " (" + period + ")";
-          Finance.transactions to100 = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode100, amount, d, mode100, year_level, period, academic_year, debit1, credit1, balance, or_no);
+          Finance.transactions to100 = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at2), mode100, amount, d, mode100, year_level, period, academic_year, debit1, credit1, balance, or_no, 0);
           datas.add(to100);
         }
       }
@@ -528,12 +595,14 @@ public class Finance {
               + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
               + ",ea.academic_year"
               + ",(select c.or_no from collections c where eap.collection_id=c.id limit 1)"
+              + ",eap.created_at"
+              + ",eap.id"
               + " from enrollment_assessment_payments eap "
               + " right join enrollment_assessments ea "
               + " on eap.enrollment_assessment_id = ea.id "
               + " where ea.student_id='" + student.id + "'  and eap.status=0 and eap.academic_year_id >= 12 "
               + " order by eap.created_at asc ";
-//      System.out.println(s0);
+      System.out.println(s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
 
@@ -542,7 +611,7 @@ public class Finance {
       String academic_year = "";
       double debit = 0;
       double credit = 0;
-
+      String t_mode = "";
       while (rs.next()) {
         int id = rs.getInt(1);
         double amount_paid = rs.getDouble(2);
@@ -551,20 +620,33 @@ public class Finance {
         term = rs.getString(5);
         academic_year = rs.getString(6);
         String or_no = rs.getString(7);
+        String created_at3 = rs.getString(8);
+        int eap_id = rs.getInt(9);
         Date d = new Date();
         try {
-          d = DateType.datetime.parse(created_at);
+          d = DateType.datetime.parse(created_at3);
         } catch (ParseException ex) {
           d = new Date();
         }
 //        System.out.println("id: " + id + " = " + amount_paid);
+        String s6 = "select id, total_discount from enrollment_assessment_discounts where enrollment_assessment_id = '" + eap_id + "' ";
+        Statement stmt6 = conn.createStatement();
+        ResultSet rs6 = stmt6.executeQuery(s6);
+        double total_discount = 0;
+        while (rs6.next()) {
+          int id6 = rs6.getInt(1);
+          total_discount += rs6.getDouble(2);
+        }
+//        balance -= total_discount;
         if (amount_paid > 0) {
           credit = amount_paid;
           balance -= credit;
-//        System.out.println(balance);
+//          System.out.println("id: " + id + " = " + amount_paid);
           String mode = "Assessment Payment - " + year_level + " (" + term + ")";
-          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount_paid, d, mode, year_level, term, academic_year, debit, credit, balance, or_no);
-          datas.add(to);
+//          System.out.println("Mode!: "+mode);
+          t_mode = year_level + " (" + term + ")";
+          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at3), mode, amount_paid, d, mode, year_level, term, academic_year, debit, credit, balance, or_no, total_discount);
+          datas2.add(to);
         }
 
       }
@@ -612,14 +694,14 @@ public class Finance {
           credit2 = 0;
           debit2 = amount_paid;
           balance += debit2;
-          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, "Add Subject", year_level2, term2, academic_year2, debit2, credit2, balance, or_no);
+          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Add Subject", amount_paid, d, "Add Subject", year_level2, term2, academic_year2, debit2, credit2, balance, or_no, 0);
           datas.add(to);
         }
         if (trans_type == 2) {
           debit2 = 0;
           credit2 = amount_paid;
           balance -= credit2;
-          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, "Drop Subject", year_level2, term2, academic_year2, debit2, credit2, balance, or_no);
+          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), "Drop Subject", amount_paid, d, "Drop Subject", year_level2, term2, academic_year2, debit2, credit2, balance, or_no, 0);
           datas.add(to);
         }
 
@@ -657,21 +739,21 @@ public class Finance {
 
         if (is_payable == 1) {
           balance += debit1;
-          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "");
+          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
           datas.add(to);
         } else {
 //          System.out.println("is_payable2: " + is_payable);
           if (is_add == 1) {
             mode = "Adjustment - Add";
             balance += debit1;
-            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "");
+            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
             datas.add(to);
           } else {
             debit1 = 0;
             credit1 = adjustment_amount;
             mode = "Adjustment - Deduct";
             balance -= credit1;
-            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "");
+            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
             datas.add(to);
           }
         }
@@ -681,45 +763,76 @@ public class Finance {
 
       //<editor-fold defaultstate="collapsed" desc=" Adjustment Payments ">
       String s6 = "select "
-              + "id"
-              + ",adjustment_amount"
-              + ",paid"
-              + ",created_at"
-              + ",particular"
-              + " from student_balance_adjustment_payments"
+              + "sbap.id"
+              + ",sbap.adjustment_amount"
+              + ",sbap.paid"
+              + ",sbap.created_at"
+              + ",(select sba.particular from student_balance_adjustments sba where sba.id = sbap.sba_id limit 1)"
+              + ",(select c.year_level from collections c where c.id = sbap.collection_id limit 1 )"
+              + ",(select c.period from collections c where c.id = sbap.collection_id limit 1 )"
+              + ",(select c.school_year from collections c where c.id = sbap.collection_id limit 1 )"
+              + ",sbap.student_id"
+              + " from student_balance_adjustment_payments sbap "
               + " where student_id='" + student.id + "'  ";
 
       Statement stmt6 = conn.createStatement();
       ResultSet rs6 = stmt6.executeQuery(s6);
       while (rs6.next()) {
         int id = rs6.getInt(1);
+//        System.out.println("id: " + id);
         double adjustment_amount = rs6.getDouble(2);
         double paid = rs6.getDouble(3);
         String created_at = rs6.getString(4);
         String particular = rs6.getString(5);
-        String mode = "Adjustment - Add";
+        String year_level1 = rs6.getString(6);
+        String period1 = rs6.getString(7);
+        String school_year = rs6.getString(8);
+        String student_id = rs6.getString(9);
+        if (particular == null || particular.isEmpty()) {
+          particular = "Payment";
+        }
+//        String s22 = "select year_level,period from enrollments where student_id='" + student_id + "' and academic_year ='" + school_year + "' order by id asc limit 1";
+//        Statement stmt7 = conn.createStatement();
+//        ResultSet rs7 = stmt7.executeQuery(s22);
+//        System.out.println("s22: "+s22);
+//        while (rs7.next()) {
+//          year_level1 = rs7.getString(1);
+//          System.out.println("year_level1: "+year_level1);
+//          period1 = rs7.getString(2);
+//        }
+
+        String mode = t_mode;
         double debit1 = 0;
         double credit1 = paid;
-        mode = particular + " - Payment";
+        mode = particular + " - " + mode;
         Date d = new Date();
         try {
           d = DateType.datetime.parse(created_at);
         } catch (ParseException ex) {
           d = new Date();
         }
-        balance -= credit1;
-        Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "");
-        datas.add(to);
-      }
 
+        balance -= credit1;
+        Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+        datas2.add(to);
+      }
+      System.out.println("balance: " + balance);
       //</editor-fold>
       Collections.sort(datas, new Comparator<Finance.transactions>() {
                  public int compare(Finance.transactions o1, Finance.transactions o2) {
                    return o1.getCreated().compareTo(o2.getCreated());
                  }
                });
-      return datas;
+      Collections.sort(datas2, new Comparator<Finance.transactions>() {
+                 public int compare(Finance.transactions o1, Finance.transactions o2) {
+                   return o1.getCreated().compareTo(o2.getCreated());
+                 }
+               });
+      datas3.addAll(datas);
+      datas3.addAll(datas2);
+      return datas3;
     } catch (SQLException e) {
+      System.out.println("e: " + e);
       throw new RuntimeException(e);
     } finally {
       MyConnection.close();

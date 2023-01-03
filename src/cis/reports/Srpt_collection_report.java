@@ -346,6 +346,7 @@ public class Srpt_collection_report {
         String online_date = rs.getString(29);
         String created_at = rs.getString(30);
         String updated_at = rs.getString(31);
+        created_at = updated_at;
         String created_by = rs.getString(32);
         String updated_by = rs.getString(33);
         int status = rs.getInt(34);
@@ -371,11 +372,13 @@ public class Srpt_collection_report {
         double check = check_amount;
         double online = online_amount;
         String or_date = DateType.convert_slash_datetime3(created_at);
-        if (status == 0) {
+        if (status < 2) {
           field f = new field(id1, transaction_no, or_no, student_name, particular, course, year_level, cash, credit_card, gc, check, online, or_date);
           datas.add(f);
           count++;
         }
+//        System.out.println("or_no: " + or_no);
+
       }
       return datas;
     } catch (SQLException e) {

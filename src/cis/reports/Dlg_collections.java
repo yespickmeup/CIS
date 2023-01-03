@@ -1251,7 +1251,7 @@ public class Dlg_collections extends javax.swing.JDialog {
     tbl_collections.setModel(tbl_collections_M);
     tbl_collections.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     tbl_collections.setRowHeight(25);
-    int[] tbl_widths_collections = {120, 100, 150, 100, 80, 80, 80, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int[] tbl_widths_collections = {120, 100, 150, 100, 80, 80, 80, 80, 80, 60, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     for (int i = 0, n = tbl_widths_collections.length; i < n; i++) {
       if (i == 3 || i == 4) {
         continue;
@@ -1274,7 +1274,7 @@ public class Dlg_collections extends javax.swing.JDialog {
   public static class TblcollectionsModel extends AbstractTableAdapter {
 
     public static String[] COLUMNS = {
-      "Collection No", "OR No", "Date/Time", "Particular", "Payor", "Cash", "Check", "Online", "Status", "", "", "check_amount", "check_bank", "check_no", "check_holder", "check_date", "credit_card_type", "credit_card_rate", "credit_card_amount", "credit_card_no", "gift_certificate_from", "gift_certificate_description", "gift_certificate_no", "gift_certificate_amount", "online_bank", "online_reference_no", "online_amount", "online_holder", "online_date", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "ref_id", "school_year", "period", "year_level", "department_id", "department", "college_id", "college", "course_id", "course", "student_id", "student_no", "student_name"
+      "Collection No", "OR No", "Date/Time", "Particular", "Payor", "Cash", "Check", "Online", "CCard", "Status", "", "", "check_bank", "check_no", "check_holder", "check_date", "credit_card_type", "credit_card_rate", "credit_card_amount", "credit_card_no", "gift_certificate_from", "gift_certificate_description", "gift_certificate_no", "gift_certificate_amount", "online_bank", "online_reference_no", "online_amount", "online_holder", "online_date", "created_at", "updated_at", "created_by", "updated_by", "status", "is_uploaded", "ref_id", "school_year", "period", "year_level", "department_id", "department", "college_id", "college", "course_id", "course", "student_id", "student_no", "student_name"
     };
 
     public TblcollectionsModel(ListModel listmodel) {
@@ -1318,19 +1318,19 @@ public class Dlg_collections extends javax.swing.JDialog {
         case 7:
           return " " + FitIn.fmt_wc_0(tt.online_amount);
         case 8:
+          return " " + FitIn.fmt_wc_0(tt.credit_card_amount);
+        case 9:
           if (tt.status == 0) {
             return " Counted";
           } else {
             return "    Void";
           }
-        case 9:
+        case 10:
           if (tt.status == 0) {
             return "   Void";
           } else {
             return "";
           }
-        case 10:
-          return tt.check_bank;
         case 11:
           return tt.check_bank;
         case 12:
@@ -1800,7 +1800,7 @@ public class Dlg_collections extends javax.swing.JDialog {
         if (!jCheckBox1.isSelected()) {
           user = tf_cashier.getText();
         }
-        
+
         String date = "All";
         if (!jCheckBox4.isSelected()) {
           date = DateType.slash.format(jDateChooser1.getDate()) + " - " + DateType.slash.format(jDateChooser2.getDate());
@@ -2509,7 +2509,7 @@ public class Dlg_collections extends javax.swing.JDialog {
       nd.setLocationRelativeTo(this);
       nd.setVisible(true);
     }
-    if (col == 9) {
+    if (col == 10) {
       Window p = (Window) this;
       Dlg_authenticate nd = Dlg_authenticate.create(p, true);
       nd.setTitle("");

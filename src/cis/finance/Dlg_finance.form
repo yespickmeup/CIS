@@ -262,7 +262,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel23" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jXCollapsiblePane1" alignment="0" pref="474" max="32767" attributes="0"/>
+                                      <Component id="jXCollapsiblePane1" alignment="0" pref="476" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -274,7 +274,7 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel23" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel22" alignment="0" pref="138" max="32767" attributes="0"/>
+                                      <Component id="jPanel22" alignment="0" pref="139" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jXCollapsiblePane1" min="-2" max="-2" attributes="0"/>
@@ -385,7 +385,7 @@
                                           <Component id="tf_field12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jButton7" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                                      <EmptySpace pref="13" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel16" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="tf_field9" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -1802,7 +1802,7 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel14" max="32767" attributes="0"/>
-                                      <Component id="jPanel13" pref="137" max="32767" attributes="0"/>
+                                      <Component id="jPanel13" pref="139" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                   <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
@@ -1910,7 +1910,7 @@
                                           <Component id="jLabel15" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="tf_field8" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                                      <EmptySpace pref="13" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="tf_field5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>

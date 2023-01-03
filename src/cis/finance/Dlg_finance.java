@@ -5406,7 +5406,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         case 5:
           return " " + FitIn.fmt_wc_0(tt.discount) + " ";
         case 6:
-          return " " + FitIn.fmt_wc_0(tt.balance - tt.discount) + " ";
+          return " " + FitIn.fmt_wc_0(tt.balance ) + " ";
         default:
           return tt.selected;
 
@@ -5422,12 +5422,13 @@ public class Dlg_finance extends javax.swing.JDialog {
 
       @Override
       public void run() {
-
+        System.out.println("pay_student: " + pay_student.id);
         List<Finance.fees> datas = Finance.ret_data(pay_student, fee_amount, is_per_unit, per_unit, lab_unit_amount);
         loadData_fees(datas);
         double balance = 0;
         for (Finance.fees fee : datas) {
           balance += fee.balance;
+          System.out.println("balance: "+fee.balance);
         }
 
         jLabel6.setText(FitIn.fmt_wc_0(balance));
@@ -5618,7 +5619,7 @@ public class Dlg_finance extends javax.swing.JDialog {
     tbl_transactions.setModel(tbl_transactions_M);
     tbl_transactions.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     tbl_transactions.setRowHeight(25);
-    int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 80, 80, 30};
+    int[] tbl_widths_enrollment_student_loaded_subjects = {150, 100, 80, 80, 80, 80, 30};
     for (int i = 0, n = tbl_widths_enrollment_student_loaded_subjects.length; i < n; i++) {
       if (i == 1) {
         continue;
@@ -5631,10 +5632,11 @@ public class Dlg_finance extends javax.swing.JDialog {
     tbl_transactions.getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
     tbl_transactions.setRowHeight(25);
     tbl_transactions.setFont(new java.awt.Font("Arial", 0, 12));
-    tbl_transactions.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
+    tbl_transactions.getColumnModel().getColumn(6).setCellRenderer(new ImageRenderer());
     TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 2);
     TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 3);
     TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 4);
+    TableWidthUtilities.setColumnRightRenderer(tbl_transactions, 5);
   }
 
   public static void loadData_transactions(List<Finance.transactions> acc) {
@@ -5646,7 +5648,7 @@ public class Dlg_finance extends javax.swing.JDialog {
   public static class Tbl_transactions_Model extends AbstractTableAdapter {
 
     public static String[] COLUMNS = {
-      "Date", "Transactions", "Debit", "Credit", "Balance", ""
+      "Date", "Transactions", "Debit", "Credit", "Discount", "Balance", ""
     };
 
     public Tbl_transactions_Model(ListModel listmodel) {
@@ -5682,6 +5684,8 @@ public class Dlg_finance extends javax.swing.JDialog {
         case 3:
           return " " + FitIn.fmt_wc_0(tt.credit) + " ";
         case 4:
+          return " " + FitIn.fmt_wc_0(tt.discount) + " ";
+        case 5:
           return " " + FitIn.fmt_wc_0(tt.balance) + " ";
         default:
           return "/cis/icons/tool.png";
@@ -5699,6 +5703,9 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void run() {
         List<Finance.transactions> transactions = Finance.ret_transactions(pay_student);
+//        for (Finance.transactions to : transactions) {
+//          System.out.println("To: " + to.term + " - " + to.trans_type);
+//        }
         loadData_transactions(transactions);
         jButton21.setEnabled(true);
         jProgressBar4.setString("Finished...");
@@ -5830,12 +5837,12 @@ public class Dlg_finance extends javax.swing.JDialog {
           double amount = fee.amount;
           double interest = fee.interest;
           double paid = fee.paid;
-          double balance = fee.balance;
+          double balance = fee.balance - fee.discount;
           double debit = 0;
           double credit = 0;
           amount_due += balance;
           String or_no = fee.or_no;
-          Srpt_student_payables.field f = new Srpt_student_payables.field(id, mode, year_level, academic_year, date, amount, interest, paid, balance, debit, credit, or_no);
+          Srpt_student_payables.field f = new Srpt_student_payables.field(id, mode, year_level, academic_year, date, amount, interest, paid, balance, debit, credit, or_no, fee.discount);
           fields.add(f);
         }
 
@@ -5948,11 +5955,12 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         List<Finance.transactions> transactions = tbl_transactions_ALM;
         double amount_due = 0;
+        double total_discount = 0;
         for (Finance.transactions to : transactions) {
 
           int id = 0;
           String mode = to.mode;
-          System.out.println("mode: " + to.mode);
+//          System.out.println("mode: " + to.mode);
           String[] group = mode.split("-");
           mode = group[0];
           String term = to.term;
@@ -5970,13 +5978,18 @@ public class Dlg_finance extends javax.swing.JDialog {
           double balance = to.balance;
           double debit = to.debit;
           double credit = to.credit;
+          total_discount += to.discount;
           amount_due = balance;
           String or_no = to.or_no;
           if (credit == 0 && debit == 0) {
           } else {
-            Srpt_student_payables.field f = new Srpt_student_payables.field(id, mode, year_level, academic_year, date, amount, interest, paid, balance, debit, credit, or_no);
+            Srpt_student_payables.field f = new Srpt_student_payables.field(id, mode, year_level, academic_year, date2, amount, interest, paid, balance, debit, credit, or_no, to.discount);
             fields.add(f);
           }
+        }
+//        amount_due = amount_due - total_discount;
+        if (amount_due < 0) {
+          amount_due = 0;
         }
         String logo_path = System.getProperty("logo_path", "C:\\\\Users\\\\USER\\\\cis\\\\logo.jpg");
         String student_address = pay_student.permanent_address;

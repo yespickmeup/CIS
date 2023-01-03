@@ -74,8 +74,9 @@ public class Srpt_student_payables {
     double debit;
     double credit;
     String or_no;
+    double discount;
 
-    public field(int id, String mode, String year_level, String academic_year, String date, double amount, double interest, double paid, double balance,double debit, double credit,String or_no) {
+    public field(int id, String mode, String year_level, String academic_year, String date, double amount, double interest, double paid, double balance,double debit, double credit,String or_no,double discount) {
       this.id = id;
       this.mode = mode;
       this.year_level = year_level;
@@ -88,6 +89,15 @@ public class Srpt_student_payables {
       this.debit = debit;
       this.credit = credit;
       this.or_no=or_no;
+      this.discount=discount;
+    }
+
+    public double getDiscount() {
+      return discount;
+    }
+
+    public void setDiscount(double discount) {
+      this.discount = discount;
     }
 
     public String getOr_no() {
@@ -222,7 +232,8 @@ public class Srpt_student_payables {
       double debit = 0;
       double credit = 0;
       String or_no="";
-      field f = new field(id, mode, year_level, academic_year, date, amount, interest, paid, balance,debit,credit,or_no);
+      double discount = 0;
+      field f = new field(id, mode, year_level, academic_year, date, amount, interest, paid, balance,debit,credit,or_no,discount);
       fields.add(f);
     }
 
