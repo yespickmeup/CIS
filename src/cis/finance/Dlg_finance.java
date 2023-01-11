@@ -5258,6 +5258,7 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         student.setText(stud.student_no);
         student.setId("" + stud.id);
+        System.out.println(" stud.id: "+ stud.id);
 
         tf_field9.setText(stud.first_name);
         tf_field10.setText(stud.middle_name);
@@ -5406,7 +5407,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         case 5:
           return " " + FitIn.fmt_wc_0(tt.discount) + " ";
         case 6:
-          return " " + FitIn.fmt_wc_0(tt.balance ) + " ";
+          return " " + FitIn.fmt_wc_0(tt.balance) + " ";
         default:
           return tt.selected;
 
@@ -5428,7 +5429,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         double balance = 0;
         for (Finance.fees fee : datas) {
           balance += fee.balance;
-          System.out.println("balance: "+fee.balance);
+          System.out.println("balance: " + fee.balance);
         }
 
         jLabel6.setText(FitIn.fmt_wc_0(balance));
@@ -5703,9 +5704,16 @@ public class Dlg_finance extends javax.swing.JDialog {
       @Override
       public void run() {
         List<Finance.transactions> transactions = Finance.ret_transactions(pay_student);
-//        for (Finance.transactions to : transactions) {
-//          System.out.println("To: " + to.term + " - " + to.trans_type);
-//        }
+        double balance = 0;
+        for (Finance.transactions to : transactions) {
+          if (to.debit > 0) {
+            balance = balance + to.debit;
+          } else {
+            balance = balance - to.credit;
+          }
+          to.setBalance(balance);
+
+        }
         loadData_transactions(transactions);
         jButton21.setEnabled(true);
         jProgressBar4.setString("Finished...");

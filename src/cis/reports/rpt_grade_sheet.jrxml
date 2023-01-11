@@ -641,7 +641,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<paragraph leftIndent="2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{third}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fourth}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="491b41ab-9457-4bff-b312-01e4989a2044" x="420" y="0" width="42" height="15"/>

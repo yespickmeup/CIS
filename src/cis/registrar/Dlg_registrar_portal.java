@@ -14,9 +14,7 @@ import cis.colleges.Colleges;
 import cis.courses.Courses;
 import cis.deans_portal.Dlg_dean_student_advice_details;
 import cis.deans_portal.Dlg_dean_student_advice_load_subject;
-import static cis.deans_portal.Dlg_dean_student_advice_load_subject.tbl_enrollment_offered_subject_sections_M;
 import cis.departments.Departments;
-import cis.enrollments.Enrollment_offered_subject_sections;
 import cis.enrollments.Enrollment_offered_subjects;
 import cis.enrollments.Enrollment_offered_subjects.to_enrollment_offered_subjects;
 import cis.enrollments.Enrollment_student_loaded_subjects;
@@ -2997,7 +2995,6 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
 
 //    System.setProperty("pool_db", "db_cis_cosca");
 //    System.setProperty("pool_password", "password");
-
     init_key();
     jPanel5.setVisible(false);
     tf_field3.setVisible(false);
@@ -3954,7 +3951,7 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
       where = where + where2 + " and eos.description like '%" + search + "%' "
               + " order by eos.subject_code,eos.description asc ";
     }
-        System.out.println(where);
+    System.out.println(where);
     List<Enrollment_offered_subjects.to_enrollment_offered_subjects> datas = Enrollment_offered_subjects.ret_data2(where);
 
     loadData_enrollment_offered_subjects(datas);
@@ -3980,6 +3977,24 @@ public class Dlg_registrar_portal extends javax.swing.JDialog {
         public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_edit_units.OutputData data) {
           closeDialog.ok();
           Enrollment_offered_subjects.update_units(to.id, data.lec_units, data.lab_units);
+          Alert.set(2, "");
+          ret_opened_subjects();
+        }
+      });
+      nd.setLocationRelativeTo(this);
+      nd.setVisible(true);
+    }
+    if (col == 6) {
+      Window p = (Window) this;
+      Dlg_registrar_offer_subject_status_edit nd = Dlg_registrar_offer_subject_status_edit.create(p, true);
+      nd.setTitle("");
+      nd.do_pass(to.status);
+      nd.setCallback(new Dlg_registrar_offer_subject_status_edit.Callback() {
+
+        @Override
+        public void ok(CloseDialog closeDialog, Dlg_registrar_offer_subject_status_edit.OutputData data) {
+          closeDialog.ok();
+          Enrollment_offered_subjects.update_data_status(to.id, data._status);
           Alert.set(2, "");
           ret_opened_subjects();
         }

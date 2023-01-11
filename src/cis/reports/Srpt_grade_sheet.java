@@ -942,6 +942,7 @@ public class Srpt_grade_sheet {
             second = zero(rs5.getString(2));
             third = zero(rs5.getString(3));
             fourth = zero(rs5.getString(4));
+//            System.out.println("fourth: "+fourth);
             fifth = zero(rs5.getString(5));
             sixth = zero(rs5.getString(6));
             status = rs5.getString(7);

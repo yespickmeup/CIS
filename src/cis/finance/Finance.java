@@ -93,7 +93,7 @@ public class Finance {
     public final String academic_year;
     public final double debit;
     public final double credit;
-    public final double balance;
+    public double balance;
     public final String or_no;
     public final double discount;
 
@@ -112,6 +112,14 @@ public class Finance {
       this.balance = balance;
       this.or_no = or_no;
       this.discount = discount;
+    }
+
+    public double getBalance() {
+      return balance;
+    }
+
+    public void setBalance(double balance) {
+      this.balance = balance;
     }
 
     public Date getCreated() {
@@ -202,9 +210,11 @@ public class Finance {
 
         Statement stmt10 = conn.createStatement();
         ResultSet rs10 = stmt10.executeQuery(s10);
+//        System.out.println(s10);
         double payment = 0;
         while (rs10.next()) {
           payment += rs10.getDouble(1);
+//          System.out.println("payment: "+payment);
         }
         paid2 = paid2 + payment;
         balance = balance - payment;
@@ -234,6 +244,7 @@ public class Finance {
                 + " where sbap.student_id='" + stud.id + "' ";
 
         Statement stmt5 = conn.createStatement();
+//        System.out.println("s5: "+s5);
         ResultSet rs5 = stmt5.executeQuery(s5);
         while (rs5.next()) {
           int id2 = rs5.getInt(1);
@@ -241,6 +252,7 @@ public class Finance {
           String term3 = rs5.getString(3);
           double adjustment_amount = rs5.getDouble(4);
           double paid3 = rs5.getDouble(5);
+//          System.out.println("paid3: "+paid3);
           String remarks = rs5.getString(6);
           String created_at3 = rs5.getString(7);
           int ref_id = rs5.getInt(8);
@@ -279,7 +291,7 @@ public class Finance {
               + ",year_level"
               + " from enrollment_student_loaded_subjects"
               + " where student_id='" + stud.id + "' and status=0 ";
-
+//      System.out.println("s2: "+s2);
       String year_level = "";
       String term = "";
       Statement stmt2 = conn.createStatement();
@@ -344,7 +356,7 @@ public class Finance {
       double paid2 = 0;
       double balance = amount2 - paid2;
       boolean selected = false;
-
+//      System.out.println("added_subjects: "+added_subjects);
       if (added_subjects != 0) {
         double discount = 0;
         fees f = new fees(0, title, date, deadline, amount2, interest, paid2, balance, selected, 2, 0, "Add Subject", year_level, term, "", discount);
@@ -427,7 +439,7 @@ public class Finance {
       double paid3 = 0;
       double balance2 = amount3 - paid3;
       boolean selected2 = false;
-
+//      System.out.println("dropped_subjects2: "+dropped_subjects2);
       if (dropped_subjects2 != 0) {
         double discount = 0;
         fees f = new fees(0, title2, date2, deadline2, amount3, interest2, paid3, balance2, selected2, 3, 0, "Drop Subject", year_level, term, "", discount);
@@ -594,7 +606,7 @@ public class Finance {
               + ",ea.year_level"
               + ",(select e.period from enrollments e where e.enrollment_no=ea.enrollment_no limit 1)"
               + ",ea.academic_year"
-              + ",(select c.or_no from collections c where eap.collection_id=c.id limit 1)"
+              + ",(select c.or_no from collections c where eap.collection_id=c.id and c.student_id=ea.student_id limit 1)"
               + ",eap.created_at"
               + ",eap.id"
               + " from enrollment_assessment_payments eap "
@@ -638,7 +650,7 @@ public class Finance {
           total_discount += rs6.getDouble(2);
         }
 //        balance -= total_discount;
-        if (amount_paid > 0) {
+        if (amount_paid > 0 && or_no != null) {
           credit = amount_paid;
           balance -= credit;
 //          System.out.println("id: " + id + " = " + amount_paid);
@@ -665,6 +677,7 @@ public class Finance {
               + " where ea.student_id='" + student.id + "' and ea.academic_year_id >= 12";
 
       Statement stmt2 = conn.createStatement();
+//      System.out.println("s2: "+s2);
       ResultSet rs2 = stmt2.executeQuery(s2);
       String year_level2 = "";
       String term2 = "";
@@ -674,6 +687,7 @@ public class Finance {
 
       while (rs2.next()) {
         int id = rs2.getInt(1);
+//        System.out.println("id: "+id);
         int trans_type = rs2.getInt(2);
         double amount_paid = rs2.getDouble(3);
         String created_at = rs2.getString(4);
@@ -690,6 +704,7 @@ public class Finance {
           d = new Date();
         }
         amount_paid = amount_paid - discount_amount;
+//        System.out.println("trans_type: "+trans_type+ " = "+amount_paid);
         if (trans_type == 1) {
           credit2 = 0;
           debit2 = amount_paid;
@@ -715,9 +730,10 @@ public class Finance {
               + ",is_payable"
               + ",particular"
               + ",is_add"
+              + ",paid"
               + " from student_balance_adjustments"
               + " where student_id='" + student.id + "' and academic_year_id >= 12 ";
-
+//      System.out.println("s5: "+s5);
       Statement stmt5 = conn.createStatement();
       ResultSet rs5 = stmt5.executeQuery(s5);
       while (rs5.next()) {
@@ -727,6 +743,7 @@ public class Finance {
         int is_payable = rs5.getInt(4);
         String particular = rs5.getString(5);
         int is_add = rs5.getInt(6);
+        double paid = rs5.getDouble(7);
         String mode = "" + particular;
         Date d = new Date();
         try {
@@ -738,11 +755,16 @@ public class Finance {
         double credit1 = 0;
 
         if (is_payable == 1) {
-          balance += debit1;
-          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
-          datas.add(to);
+          double amount = debit1 - paid;
+          balance += amount;
+          if (amount > 0) {
+            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+            datas.add(to);
+          }
+
         } else {
 //          System.out.println("is_payable2: " + is_payable);
+//          System.out.println("is_add: "+is_add);
           if (is_add == 1) {
             mode = "Adjustment - Add";
             balance += debit1;
