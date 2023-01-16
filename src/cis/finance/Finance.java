@@ -240,6 +240,7 @@ public class Finance {
                 + ",sbap.created_at"
                 + ",(select c.ref_id from collections c where c.id=sbap.collection_id limit 1)"
                 + ",(select c.payment_type from collections c where c.id=sbap.collection_id limit 1)"
+                + ",(select c.status from collections c where c.id=sbap.collection_id limit 1)"
                 + " from student_balance_adjustment_payments sbap"
                 + " where sbap.student_id='" + stud.id + "' ";
 
@@ -257,7 +258,7 @@ public class Finance {
           String created_at3 = rs5.getString(7);
           int ref_id = rs5.getInt(8);
           String particular = rs5.getString(9);
-
+          int status = rs5.getInt(10);
           int is_payable = 0;
           String s33 = "select is_payable from student_balance_adjustments where id='" + ref_id + "'";
           Statement stmt33 = conn.createStatement();
@@ -266,7 +267,9 @@ public class Finance {
             is_payable = rs33.getInt(1);
           }
 
-          balance = balance - paid3;
+          if (status == 0) {
+            balance = balance - paid3;
+          }
         }
 
         fees f = new fees(id, title, date, deadline, amount, interest, paid2, balance, selected, 1, 0, mode, year_level, term, "", discount2);
@@ -794,6 +797,7 @@ public class Finance {
               + ",(select c.period from collections c where c.id = sbap.collection_id limit 1 )"
               + ",(select c.school_year from collections c where c.id = sbap.collection_id limit 1 )"
               + ",sbap.student_id"
+              + ",(select c.status from collections c where c.id = sbap.collection_id limit 1 )"
               + " from student_balance_adjustment_payments sbap "
               + " where student_id='" + student.id + "'  ";
 
@@ -810,9 +814,11 @@ public class Finance {
         String period1 = rs6.getString(7);
         String school_year = rs6.getString(8);
         String student_id = rs6.getString(9);
+        int status = rs6.getInt(10);
         if (particular == null || particular.isEmpty()) {
           particular = "Payment";
         }
+//        System.out.println("status: "+status);
 //        String s22 = "select year_level,period from enrollments where student_id='" + student_id + "' and academic_year ='" + school_year + "' order by id asc limit 1";
 //        Statement stmt7 = conn.createStatement();
 //        ResultSet rs7 = stmt7.executeQuery(s22);
@@ -833,12 +839,13 @@ public class Finance {
         } catch (ParseException ex) {
           d = new Date();
         }
-
-        balance -= credit1;
-        Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
-        datas2.add(to);
+        if (status == 0) {
+          balance -= credit1;
+          Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+          datas2.add(to);
+        }
       }
-      System.out.println("balance: " + balance);
+//      System.out.println("balance: " + balance);
       //</editor-fold>
       Collections.sort(datas, new Comparator<Finance.transactions>() {
                  public int compare(Finance.transactions o1, Finance.transactions o2) {
