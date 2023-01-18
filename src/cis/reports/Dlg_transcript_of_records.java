@@ -35,6 +35,7 @@ import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import mijzcx.synapse.desk.utils.CloseDialog;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
@@ -1389,7 +1390,7 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
                 String status = "";
                 for (Enrollment_student_loaded_subjects.to_enrollment_student_loaded_subjects subject : subjects) {
                   if (to.subject_id == subject.subject_id) {
-                    final_grade = "" + subject.final_grade;
+                    final_grade = "" + FitIn.fmt_woc_0(subject.final_grade);
                     if (subject.final_grade == 0) {
                       final_grade = "";
                     }
