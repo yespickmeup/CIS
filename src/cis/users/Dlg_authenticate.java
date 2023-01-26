@@ -359,6 +359,7 @@ public class Dlg_authenticate extends javax.swing.JDialog {
 
   boolean override_downpayment = false;
   boolean override_assessment = false;
+  boolean override_time_schedule = false;
 
   public void do_pass() {
 
@@ -366,10 +367,20 @@ public class Dlg_authenticate extends javax.swing.JDialog {
 
   public void do_override_downpayment() {
     override_downpayment = true;
+    override_assessment = false;
+    override_time_schedule = false;
   }
 
   public void do_override_assessment() {
     override_assessment = true;
+    override_downpayment = false;
+    override_time_schedule = false;
+  }
+
+  public void do_override_time_schedule() {
+    override_time_schedule = true;
+    override_assessment = false;
+    override_downpayment = false;
   }
 
   // <editor-fold defaultstate="collapsed" desc="Key">
@@ -391,9 +402,9 @@ public class Dlg_authenticate extends javax.swing.JDialog {
   // </editor-fold>
 
   private void authenticate() {
-    System.out.println("override_downpayment: " + override_downpayment);
-    System.out.println("override_assessment: " + override_assessment);
-    if (!override_assessment && !override_downpayment) {
+//    System.out.println("override_downpayment: " + override_downpayment);
+//    System.out.println("override_assessment: " + override_assessment);
+    if (!override_assessment && !override_downpayment && !override_time_schedule) {
       String user_name = tf_username.getText();
       String date = DateType.sf.format(new Date());
       String password = tf_password.getText();
@@ -446,6 +457,26 @@ public class Dlg_authenticate extends javax.swing.JDialog {
         } else {
           ok1("" + to.id);
         }
+      }
+    }
+
+    if (override_time_schedule) {
+      System.out.println("override_time_schedule: " + override_time_schedule);
+      final Users.to_users to = Users.ret_data_autho(where);
+      if (to == null) {
+        Alert.set(0, "Incorrect username or password!");
+        tf_username.grabFocus();
+        return;
+      } else {
+        String where2 = " where user_name like '" + user_name + "' and  name like '" + "Override Conflict Subject Schedule - (Add)" + "'";
+        List<User_previlege_others.to_user_previlege_others> privs = User_previlege_others.ret_data(where2);
+        if (!privs.isEmpty()) {
+          ok1("" + to.id);
+        } else {
+          Alert.set(0, "Privilege not added!");
+          return;
+        }
+
       }
     }
   }

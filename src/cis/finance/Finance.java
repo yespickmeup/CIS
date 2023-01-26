@@ -214,7 +214,7 @@ public class Finance {
         double payment = 0;
         while (rs10.next()) {
           payment += rs10.getDouble(1);
-//          System.out.println("payment: "+payment);
+          System.out.println("payment: "+rs10.getDouble(1));
         }
         paid2 = paid2 + payment;
         balance = balance - payment;
@@ -266,7 +266,7 @@ public class Finance {
           while (rs33.next()) {
             is_payable = rs33.getInt(1);
           }
-
+//          System.out.println("paid3: "+paid3);
           if (status == 0) {
             balance = balance - paid3;
           }
@@ -617,7 +617,7 @@ public class Finance {
               + " on eap.enrollment_assessment_id = ea.id "
               + " where ea.student_id='" + student.id + "'  and eap.status=0 and eap.academic_year_id >= 12 "
               + " order by eap.created_at asc ";
-      System.out.println(s0);
+//      System.out.println(s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
 
@@ -726,64 +726,65 @@ public class Finance {
       }
 
       //<editor-fold defaultstate="collapsed" desc=" Adjustments ">
-      String s5 = "select "
-              + "id"
-              + ",adjustment_amount"
-              + ",created_at"
-              + ",is_payable"
-              + ",particular"
-              + ",is_add"
-              + ",paid"
-              + " from student_balance_adjustments"
-              + " where student_id='" + student.id + "' and academic_year_id >= 12 ";
-//      System.out.println("s5: "+s5);
-      Statement stmt5 = conn.createStatement();
-      ResultSet rs5 = stmt5.executeQuery(s5);
-      while (rs5.next()) {
-        int id = rs5.getInt(1);
-        double adjustment_amount = rs5.getDouble(2);
-        String created_at = rs5.getString(3);
-        int is_payable = rs5.getInt(4);
-        String particular = rs5.getString(5);
-        int is_add = rs5.getInt(6);
-        double paid = rs5.getDouble(7);
-        String mode = "" + particular;
-        Date d = new Date();
-        try {
-          d = DateType.datetime.parse(created_at);
-        } catch (ParseException ex) {
-          d = new Date();
-        }
-        double debit1 = adjustment_amount;
-        double credit1 = 0;
-
-        if (is_payable == 1) {
-          double amount = debit1 - paid;
-          balance += amount;
-          if (amount > 0) {
-            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
-            datas.add(to);
-          }
-
-        } else {
-//          System.out.println("is_payable2: " + is_payable);
-//          System.out.println("is_add: "+is_add);
-          if (is_add == 1) {
-            mode = "Adjustment - Add";
-            balance += debit1;
-            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
-            datas.add(to);
-          } else {
-            debit1 = 0;
-            credit1 = adjustment_amount;
-            mode = "Adjustment - Deduct";
-            balance -= credit1;
-            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
-            datas.add(to);
-          }
-        }
-
-      }
+//      String s5 = "select "
+//              + "id"
+//              + ",adjustment_amount"
+//              + ",created_at"
+//              + ",is_payable"
+//              + ",particular"
+//              + ",is_add"
+//              + ",paid"
+//              + " from student_balance_adjustments"
+//              + " where student_id='" + student.id + "' and academic_year_id >= 12 ";
+////      System.out.println("s5: "+s5);
+//      Statement stmt5 = conn.createStatement();
+//      ResultSet rs5 = stmt5.executeQuery(s5);
+//      while (rs5.next()) {
+//        int id = rs5.getInt(1);
+//        System.out.println("id: "+id);
+//        double adjustment_amount = rs5.getDouble(2);
+//        String created_at = rs5.getString(3);
+//        int is_payable = rs5.getInt(4);
+//        String particular = rs5.getString(5);
+//        int is_add = rs5.getInt(6);
+//        double paid = rs5.getDouble(7);
+//        String mode = "" + particular;
+//        Date d = new Date();
+//        try {
+//          d = DateType.datetime.parse(created_at);
+//        } catch (ParseException ex) {
+//          d = new Date();
+//        }
+//        double debit1 = adjustment_amount;
+//        double credit1 = 0;
+//
+//        if (is_payable == 1) {
+//          double amount = debit1 - paid;
+//          balance += amount;
+//          if (amount > 0) {
+//            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+//            datas.add(to);
+//          }
+//
+//        } else {
+////          System.out.println("is_payable2: " + is_payable);
+////          System.out.println("is_add: "+is_add);
+//          if (is_add == 1) {
+//            mode = "Adjustment - Add";
+//            balance += debit1;
+//            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+//            datas.add(to);
+//          } else {
+//            debit1 = 0;
+//            credit1 = adjustment_amount;
+//            mode = "Adjustment - Deduct";
+//            balance -= credit1;
+//            Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, adjustment_amount, d, mode, year_level, "", academic_year, debit1, credit1, balance, "", 0);
+//            datas.add(to);
+//          }
+//        }
+//
+//      }
       //</editor-fold>
 
       //<editor-fold defaultstate="collapsed" desc=" Adjustment Payments ">
