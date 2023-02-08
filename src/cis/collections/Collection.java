@@ -446,6 +446,7 @@ public class Collection {
   public static void update_or_date(to_collections to_collections, String date) {
     try {
       Connection conn = MyConnection.connect();
+      conn.setAutoCommit(false);
       String s0 = "update collections set "
               + "created_at= :created_at "
               + " where id='" + to_collections.id + "' "
@@ -453,9 +454,21 @@ public class Collection {
       s0 = SqlStringUtil.parse(s0)
               .setString("created_at", date)
               .ok();
+      PreparedStatement stmt = conn.prepareStatement("");
+      stmt.addBatch(s0);
+      if (to_collections.payment_type.equalsIgnoreCase("Tuition")) {
+        String s2 = "update enrollment_assessment_payments set "
+                + "created_at= :created_at "
+                + " where collection_id='" + to_collections.id + "' "
+                + " ";
+        s2 = SqlStringUtil.parse(s2)
+                .setString("created_at", date)
+                .ok();
+        stmt.addBatch(s2);
+      }
 
-      PreparedStatement stmt = conn.prepareStatement(s0);
-      stmt.execute();
+      stmt.executeBatch();
+      conn.commit();
       Lg.s(Collection.class, "Successfully Updated");
     } catch (SQLException e) {
       throw new RuntimeException(e);

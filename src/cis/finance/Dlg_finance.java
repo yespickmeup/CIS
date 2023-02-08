@@ -4502,7 +4502,6 @@ public class Dlg_finance extends javax.swing.JDialog {
     }
 
     where = where + " order by last_name asc ";
-//        System.out.println("where: " + where);
     List<Enrollments.to_enrollments> datas = Enrollments.ret_data(where);
     jProgressBar2.setString("Loading...Please wait...");
     jProgressBar2.setIndeterminate(true);
@@ -4663,7 +4662,7 @@ public class Dlg_finance extends javax.swing.JDialog {
   boolean hasDownpayment = false;
 
   private void set_assessment2() {
-
+    
     String where = " where id<>0 ";
     String where3 = " where id<>0 ";
     String where2 = " where id<>0 ";
@@ -4714,8 +4713,9 @@ public class Dlg_finance extends javax.swing.JDialog {
               + " and year_level like '" + enroll.year_level + "' "
               + " and group_id=2 ";
     }
+  
     List<Academic_year_fees.to_academic_year_fees> datas = Academic_year_fees.ret_data(where);
-    System.out.println(where3);
+//    System.out.println(where3);
     List<Academic_year_fees.to_academic_year_fees> misc_fees = Miscellaneous_fees.ret_data2(where2);
     List<Academic_year_fees.to_academic_year_fees> other_fees = Miscellaneous_fees.ret_data3(where3);
 //    System.out.println("where3: "+where3);
@@ -5211,7 +5211,6 @@ public class Dlg_finance extends javax.swing.JDialog {
     Field.Input st = (Field.Input) tf_field8;
 
     String where = " where enrollment_id = '" + to.id + "' and status<2 order by description asc ";
-    System.out.println(where);
     List<Students_curriculum.curriculum> subjects = Students_curriculum.ret_added_subjects(where);
     loadData_added_subjects(subjects);
     jLabel3.setText("" + subjects.size());
@@ -5258,7 +5257,7 @@ public class Dlg_finance extends javax.swing.JDialog {
 
         student.setText(stud.student_no);
         student.setId("" + stud.id);
-        System.out.println(" stud.id: "+ stud.id);
+        System.out.println(" stud.id: " + stud.id);
 
         tf_field9.setText(stud.first_name);
         tf_field10.setText(stud.middle_name);
@@ -5707,7 +5706,7 @@ public class Dlg_finance extends javax.swing.JDialog {
         double balance = 0;
         for (Finance.transactions to : transactions) {
           if (to.debit > 0) {
-            balance = balance + to.debit;
+            balance = balance + (to.debit - to.discount);
           } else {
             balance = balance - to.credit;
           }

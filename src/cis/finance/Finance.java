@@ -163,7 +163,7 @@ public class Finance {
 //      System.out.println("s0: " + s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
-
+       int iii=0;
       while (rs.next()) {
         int id = rs.getInt(1);
         int enrollment_assessment_id = rs.getInt(2);
@@ -214,7 +214,7 @@ public class Finance {
         double payment = 0;
         while (rs10.next()) {
           payment += rs10.getDouble(1);
-          System.out.println("payment: "+rs10.getDouble(1));
+//          System.out.println("payment: "+rs10.getDouble(1));
         }
         paid2 = paid2 + payment;
         balance = balance - payment;
@@ -247,13 +247,15 @@ public class Finance {
         Statement stmt5 = conn.createStatement();
 //        System.out.println("s5: "+s5);
         ResultSet rs5 = stmt5.executeQuery(s5);
+       
         while (rs5.next()) {
           int id2 = rs5.getInt(1);
+//          System.out.println("id2: "+id2+ " - "+iii);
           String year_level3 = rs5.getString(2);
           String term3 = rs5.getString(3);
           double adjustment_amount = rs5.getDouble(4);
           double paid3 = rs5.getDouble(5);
-//          System.out.println("paid3: "+paid3);
+          System.out.println("    paid3: "+paid3);
           String remarks = rs5.getString(6);
           String created_at3 = rs5.getString(7);
           int ref_id = rs5.getInt(8);
@@ -270,8 +272,9 @@ public class Finance {
           if (status == 0) {
             balance = balance - paid3;
           }
+          iii++;
         }
-
+        System.out.println("balance: "+balance);
         fees f = new fees(id, title, date, deadline, amount, interest, paid2, balance, selected, 1, 0, mode, year_level, term, "", discount2);
         if (balance > 0) {
           datas.add(f);
@@ -576,6 +579,7 @@ public class Finance {
           total_discount += rs6.getDouble(2);
         }
         balance -= total_discount;
+        System.out.println("balance: "+balance+ " - "+total_discount);
         Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount, d, mode, year_level, period, academic_year, debit, credit, balance, "", total_discount);
         datas.add(to);
 
