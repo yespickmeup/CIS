@@ -118,8 +118,9 @@ public class Srpt_transcript_of_records {
     String year_level;
     String semester;
     String status;
+    double amount;
 
-    public field(String subject_code, String description, String final_grade, String re_exam, double units, int order, String year_level, String semester, String status) {
+    public field(String subject_code, String description, String final_grade, String re_exam, double units, int order, String year_level, String semester, String status,double amount) {
       this.subject_code = subject_code;
       this.description = description;
       this.final_grade = final_grade;
@@ -129,8 +130,18 @@ public class Srpt_transcript_of_records {
       this.year_level = year_level;
       this.semester = semester;
       this.status = status;
+      this.amount=amount;
     }
 
+    public double getAmount() {
+      return amount;
+    }
+
+    public void setAmount(double amount) {
+      this.amount = amount;
+    }
+
+    
     public String getStatus() {
       return status;
     }
@@ -271,7 +282,7 @@ public class Srpt_transcript_of_records {
                 break;
               }
             }
-            field f = new field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
+            field f = new field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status,0);
             fields.add(f);
           }
         }

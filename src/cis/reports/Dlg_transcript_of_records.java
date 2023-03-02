@@ -1394,12 +1394,38 @@ public class Dlg_transcript_of_records extends javax.swing.JDialog {
                     if (subject.final_grade == 0) {
                       final_grade = "";
                     }
+                    double amount = 0;
+//                    if (gr >= 99 && gr <= 100) {
+//                      final_grade = "" + 1.0;
+//                    } else if (gr >= 96 && gr <= 98) {
+//                      final_grade = "" + 1.25;
+//                    }else if (gr >= 93 && gr <= 95) {
+//                      final_grade = "" + 1.50;
+//                    }else if (gr >= 90 && gr <= 92) {
+//                      final_grade = "" + 1.75;
+//                    }else if (gr >= 87 && gr <= 89) {
+//                      final_grade = "" + 2.0;
+//                    }else if (gr >= 84 && gr <= 86) {
+//                      final_grade = "" + 2.25;
+//                    }else if (gr >= 81 && gr <= 83) {
+//                      final_grade = "" + 2.50;
+//                    }else if (gr >= 78 && gr <= 80) {
+//                      final_grade = "" + 2.75;
+//                    }else if (gr >= 75 && gr <= 77) {
+//                      final_grade = "" + 3.0;
+//                    }
+
                     if (subject.final_grade_created_at != null && subject.status == 1) {
                       status = subject.final_grade_remarks;
+                      if (subject.final_grade_remarks.equalsIgnoreCase("Incomplete")) {
+                        units = 0;
+                      }
+                      double gr = FitIn.toDouble(final_grade);
+                      amount = units * gr;
                     } else if (subject.final_grade_created_at == null && subject.status == 1) {
                       status = "Ongoing";
                     }
-                    Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status);
+                    Srpt_transcript_of_records.field f = new Srpt_transcript_of_records.field(subject_code, description, final_grade, re_exam, units, order, year_level, semester, status, amount);
                     fields.add(f);
                     break;
                   }

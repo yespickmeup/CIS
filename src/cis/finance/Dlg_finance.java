@@ -4905,6 +4905,9 @@ public class Dlg_finance extends javax.swing.JDialog {
           time = time.replaceAll("FM", "MF");
           String instructor = sub.faculty_name;
           double amount = lec_amount2 + lab_amount2;
+//          System.out.println("subject_code: "+subject_code + " id = "+sub.id);
+//          System.out.println("      lec_amount2= "+lec_amount2+ " lab_amount2= "+ lab_amount2 + " * "+amount);
+         
 //                    System.out.println("Amount: "+amount);
           tution_fee += amount;
           cis.reports.Srpt_enrollment_assessment.field f = new cis.reports.Srpt_enrollment_assessment.field(subject_code, description, lec_units, lab_units, lec_amount, lab_amount, room, day, time, instructor, amount, sub.section);
@@ -5422,13 +5425,13 @@ public class Dlg_finance extends javax.swing.JDialog {
 
       @Override
       public void run() {
-        System.out.println("pay_student: " + pay_student.id);
+//        System.out.println("pay_student: " + pay_student.id);
         List<Finance.fees> datas = Finance.ret_data(pay_student, fee_amount, is_per_unit, per_unit, lab_unit_amount);
         loadData_fees(datas);
         double balance = 0;
         for (Finance.fees fee : datas) {
           balance += fee.balance;
-          System.out.println("balance: " + fee.balance);
+//          System.out.println(""+fee.paid+ " = balance: " + fee.balance);
         }
 
         jLabel6.setText(FitIn.fmt_wc_0(balance));

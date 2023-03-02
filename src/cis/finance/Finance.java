@@ -136,7 +136,7 @@ public class Finance {
     }
   }
 
-  public static List<fees> ret_data(Students.to_students stud, double fee_amount, int is_per_unit, double per_unit, double lab_unit_amount) {
+   public static List<fees> ret_data(Students.to_students stud, double fee_amount, int is_per_unit, double per_unit, double lab_unit_amount) {
     List<fees> datas = new ArrayList();
 
     try {
@@ -160,10 +160,10 @@ public class Finance {
               + " where e.student_id='" + stud.id + "' "
               + " and (ea.amount-ea.paid) >0 ";
 
-//      System.out.println("s0: " + s0);
+      System.out.println("s0: " + s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
-       int iii=0;
+      int iii = 0;
       while (rs.next()) {
         int id = rs.getInt(1);
         int enrollment_assessment_id = rs.getInt(2);
@@ -200,6 +200,7 @@ public class Finance {
         double interest = 0;
         double paid2 = paid;
         double balance = amount2 - paid2;
+//        System.out.println("" + paid2 + " = balance: " + balance);
         boolean selected = false;
 
         String s10 = "select "
@@ -207,7 +208,7 @@ public class Finance {
                 + " from enrollment_assessment_payment_details"
                 + " where enrollment_assessment_id='" + enrollment_assessment_id + "' "
                 + " and mode like '" + mode + "' and mode_order=100 and status=0 ";
-
+//        System.out.println("s10: "+s10);
         Statement stmt10 = conn.createStatement();
         ResultSet rs10 = stmt10.executeQuery(s10);
 //        System.out.println(s10);
@@ -218,7 +219,7 @@ public class Finance {
         }
         paid2 = paid2 + payment;
         balance = balance - payment;
-//        System.out.println("Amount: "+amount);
+//        System.out.println("paid2: "+paid2+ " = "+balance);
         String s_discount = "select total_discount from enrollment_assessment_discounts where status= 1 and enrollment_assessment_id = '" + enrollment_assessment_id + "' ";
         Statement stmt11 = conn.createStatement();
         ResultSet rs11 = stmt11.executeQuery(s_discount);
@@ -229,7 +230,7 @@ public class Finance {
           discount2 += disc;
         }
         balance = balance - discount2;
-
+//        System.out.println("discount2: "+discount2);
         String s5 = "select "
                 + "sbap.id"
                 + ",(select c.year_level from collections c where c.id=sbap.collection_id limit 1)"
@@ -247,7 +248,7 @@ public class Finance {
         Statement stmt5 = conn.createStatement();
 //        System.out.println("s5: "+s5);
         ResultSet rs5 = stmt5.executeQuery(s5);
-       
+
         while (rs5.next()) {
           int id2 = rs5.getInt(1);
 //          System.out.println("id2: "+id2+ " - "+iii);
@@ -255,7 +256,7 @@ public class Finance {
           String term3 = rs5.getString(3);
           double adjustment_amount = rs5.getDouble(4);
           double paid3 = rs5.getDouble(5);
-          System.out.println("    paid3: "+paid3);
+          System.out.println("    paid3: " + paid3);
           String remarks = rs5.getString(6);
           String created_at3 = rs5.getString(7);
           int ref_id = rs5.getInt(8);
@@ -274,7 +275,7 @@ public class Finance {
           }
           iii++;
         }
-        System.out.println("balance: "+balance);
+
         fees f = new fees(id, title, date, deadline, amount, interest, paid2, balance, selected, 1, 0, mode, year_level, term, "", discount2);
         if (balance > 0) {
           datas.add(f);
@@ -579,7 +580,7 @@ public class Finance {
           total_discount += rs6.getDouble(2);
         }
         balance -= total_discount;
-        System.out.println("balance: "+balance+ " - "+total_discount);
+        System.out.println("balance: " + balance + " - " + total_discount);
         Finance.transactions to = new Finance.transactions(id, DateType.convert_slash_datetime3(created_at), mode, amount, d, mode, year_level, period, academic_year, debit, credit, balance, "", total_discount);
         datas.add(to);
 
@@ -790,7 +791,6 @@ public class Finance {
 //
 //      }
       //</editor-fold>
-
       //<editor-fold defaultstate="collapsed" desc=" Adjustment Payments ">
       String s6 = "select "
               + "sbap.id"

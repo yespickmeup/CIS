@@ -17,6 +17,7 @@ import cis.school_settings.School_settings;
 import cis.test.DayCheck;
 import cis.users.Dlg_authenticate;
 import cis.users.MyUser;
+import cis.users.User_previlege_others;
 import cis.users.User_previleges;
 import cis.utils.Alert;
 import cis.utils.Dlg_confirm_override_time_schedule;
@@ -967,6 +968,24 @@ public class Dlg_dean_student_advice_load_subject extends javax.swing.JDialog {
 //                System.out.println("setting: " + (maxx + load));
 //                System.out.println("count: " + (count + total_units));
           Alert.set(0, "Cannot proceed, limit reached!");
+
+          List<User_previlege_others.to_user_previlege_others> datas = User_previlege_others.ret_data(" where name like 'Subject Overload Override - (Add)' and user_id='" + MyUser.getUser_id() + "' ");
+          if (!datas.isEmpty()) {
+            Window p = (Window) this;
+            Dlg_authenticate nd = Dlg_authenticate.create(p, true);
+            nd.setTitle("");
+//                nd.do_pass(services);
+            nd.setCallback(new Dlg_authenticate.Callback() {
+
+              @Override
+              public void ok(CloseDialog closeDialog, Dlg_authenticate.OutputData data) {
+                closeDialog.ok();
+                ok2(to);
+              }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+          }
           return;
         } else {
           Alert.set(0, "Max subject load reached! Override to continue");
