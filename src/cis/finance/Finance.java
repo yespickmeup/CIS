@@ -810,7 +810,7 @@ public class Finance {
       ResultSet rs6 = stmt6.executeQuery(s6);
       while (rs6.next()) {
         int id = rs6.getInt(1);
-//        System.out.println("id: " + id);
+        System.out.println("id: " + id);
         double adjustment_amount = rs6.getDouble(2);
         double paid = rs6.getDouble(3);
         String created_at = rs6.getString(4);
@@ -850,6 +850,7 @@ public class Finance {
           datas2.add(to);
         }
       }
+      datas.addAll(datas2);
 //      System.out.println("balance: " + balance);
       //</editor-fold>
       Collections.sort(datas, new Comparator<Finance.transactions>() {
@@ -857,13 +858,13 @@ public class Finance {
                    return o1.getCreated().compareTo(o2.getCreated());
                  }
                });
-      Collections.sort(datas2, new Comparator<Finance.transactions>() {
-                 public int compare(Finance.transactions o1, Finance.transactions o2) {
-                   return o1.getCreated().compareTo(o2.getCreated());
-                 }
-               });
+//      Collections.sort(datas2, new Comparator<Finance.transactions>() {
+//                 public int compare(Finance.transactions o1, Finance.transactions o2) {
+//                   return o1.getCreated().compareTo(o2.getCreated());
+//                 }
+//               });
       datas3.addAll(datas);
-      datas3.addAll(datas2);
+//      datas3.addAll(datas2);
       return datas3;
     } catch (SQLException e) {
       System.out.println("e: " + e);

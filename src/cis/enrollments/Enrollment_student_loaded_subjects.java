@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.Lg;
 import mijzcx.synapse.desk.utils.SqlStringUtil;
 
@@ -974,6 +975,8 @@ public class Enrollment_student_loaded_subjects {
                 + ",description"
                 + ",lecture_units"
                 + ",lab_units"
+                + ",section"
+                + ",final_grade"
                 + " from enrollment_student_loaded_subjects"
                 + " where enrollment_id='" + field.getEnrollment_id() + "' and status=1 ";
 
@@ -987,7 +990,13 @@ public class Enrollment_student_loaded_subjects {
           String description = rs.getString(4);
           int lecture_units = rs.getInt(5);
           int lab_units = rs.getInt(6);
-
+          String section=rs.getString(7);
+          String fg = rs.getString(8);
+          if(fg.equalsIgnoreCase("0")){
+            fg="";
+          }else{
+            fg=FitIn.fmt_woc(fg);
+          }
           String name = field.getName();
           String course = field.getCourse();
           double no_of_units = 0;
@@ -996,7 +1005,7 @@ public class Enrollment_student_loaded_subjects {
 
           double lec_units = lecture_units;
 
-          Srpt_list_of_students_with_subjects.field f = new Srpt_list_of_students_with_subjects.field(field.getEnrollment_id(), field.getStudent_no(), name, course, no, subject_code, description, lec_units, lab_units);
+          Srpt_list_of_students_with_subjects.field f = new Srpt_list_of_students_with_subjects.field(field.getEnrollment_id(), field.getStudent_no(), name, course, no, subject_code, description, lec_units, lab_units,section,fg);
           list.add(f);
           i++;
         }
