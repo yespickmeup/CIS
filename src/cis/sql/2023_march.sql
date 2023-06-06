@@ -18,27 +18,35 @@ INSERT INTO `students` (`id`, `is_transferee`, `academic_year_id`, `academic_yea
 
 
 select id,subject_code,academic_year,term,year_level,student_no, concat(lname,',',fname,' ',mi) as name ,lecture_units, lab_units,created_at from enrollment_student_loaded_subjects where subject_code like 'FORENSIC4' and academic_year='2022 - 2023';
-update enrollment_student_loaded_subjects set lecture_units=2, lab_units=3 where subject_code like 'FORENSIC4' and academic_year='2022 - 2023';
+update enrollment_student_loaded_subjects set lecture_units=1, lab_units=2 where subject_code like 'FORENSIC4' and academic_year='2022 - 2023';
 
 Subject Code: FORENSIC4
 Rows: 144 
 
 select id,subject_code,academic_year,term,year_level,student_no, concat(lname,',',fname,' ',mi) as name ,lecture_units, lab_units,created_at from enrollment_student_loaded_subjects where subject_code like 'DEFTACT04' and academic_year='2022 - 2023';
-update enrollment_student_loaded_subjects set lecture_units=2, lab_units=3 where subject_code like 'DEFTACT04' and academic_year='2022 - 2023';
+update enrollment_student_loaded_subjects set lecture_units=0, lab_units=2 where subject_code like 'DEFTACT04' and academic_year='2022 - 2023';
+
 Subject Code: DEFTACT04
 Rows: 404 records
 
 select id,subject_code,academic_year,term,year_level,student_no, concat(lname,',',fname,' ',mi) as name ,lecture_units, lab_units,created_at from enrollment_student_loaded_subjects where subject_code like 'RT10' and academic_year='2022 - 2023';
-update enrollment_student_loaded_subjects set lecture_units=2, lab_units=3 where subject_code like 'RT10' and academic_year='2022 - 2023';
+update enrollment_student_loaded_subjects set lecture_units=1, lab_units=1 where subject_code like 'RT10' and academic_year='2022 - 2023';
+
 Subject Code: RT10
 Rows: 174
 
 select id,subject_code,academic_year,term,year_level,student_no, concat(lname,',',fname,' ',mi) as name ,lecture_units, lab_units,created_at from enrollment_student_loaded_subjects where subject_code like 'RT11' and academic_year='2022 - 2023';
-update enrollment_student_loaded_subjects set lecture_units=2, lab_units=3 where subject_code like 'RT11' and academic_year='2022 - 2023';
+update enrollment_student_loaded_subjects set lecture_units=2, lab_units=1 where subject_code like 'RT11' and academic_year='2022 - 2023';
+
 Subject Code: RT11
 Rows: 168
 
 
+select id,subject_code,academic_year,term,year_level,student_no, concat(lname,',',fname,' ',mi) as name ,lecture_units, lab_units,created_at from enrollment_student_loaded_subjects where subject_code like 'FORENSIC3' and academic_year='2022 - 2023';
+update enrollment_student_loaded_subjects set lecture_units=2, lab_units=3 where subject_code like 'FORENSIC3' and academic_year='2022 - 2023';
+
+Subject Code: FORENSIC4
+Rows: 144 
 
 
 

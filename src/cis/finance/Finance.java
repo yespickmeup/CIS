@@ -160,7 +160,7 @@ public class Finance {
               + " where e.student_id='" + stud.id + "' "
               + " and (ea.amount-ea.paid) >0 ";
 
-      System.out.println("s0: " + s0);
+//      System.out.println("s0: " + s0);
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery(s0);
       int iii = 0;
@@ -256,7 +256,7 @@ public class Finance {
           String term3 = rs5.getString(3);
           double adjustment_amount = rs5.getDouble(4);
           double paid3 = rs5.getDouble(5);
-          System.out.println("    paid3: " + paid3);
+//          System.out.println("    paid3: " + paid3);
           String remarks = rs5.getString(6);
           String created_at3 = rs5.getString(7);
           int ref_id = rs5.getInt(8);
